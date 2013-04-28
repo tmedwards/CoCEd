@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="CoCEd.View.GenitalsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:common="clr-namespace:CoCEd.Common"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/PageInclude.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="{x:Type TextBlock}" TargetType="{x:Type TextBlock}">
+                <Setter Property="MinWidth" Value="85"/>
+                <Setter Property="Padding" Value="0,4,0,4"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
+            <Border Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Balls" Style="{StaticResource Header}"/>
+            </Border>
+
+            <common:AutoGrid>
+                <TextBlock              Text="Pairs"/>
+                <common:MyNumericBox    Value="{Binding Game.Balls}" Min="0" IsInteger="True"/>
+
+                <TextBlock              Text="Size"/>
+                <common:MyNumericBox    Value="{Binding Game.BallSize}" Min="0" Unit="inches" IsInteger="False"/>
+                
+                <TextBlock              Text="Cum multiplier"/>
+                <common:MyNumericBox    Value="{Binding Game.CumMultiplier}" Min="0" IsInteger="False" Tip="{Binding Game.CumVolume}"/>
+            </common:AutoGrid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
+            <common:ArrayEditor Header="Cocks" Items="{Binding Game.Cocks}">
+                <common:ArrayEditor.ItemTemplate>
+                    <DataTemplate>
+                        <common:AutoGrid Columns="2">
+                            <TextBlock Text="{Binding Length}" Width="20" TextAlignment="Right"/>
+                            <TextBlock Text="{Binding Description}"/>
+                        </common:AutoGrid>
+                    </DataTemplate>
+                </common:ArrayEditor.ItemTemplate>
+                <common:AutoGrid>
+                    <TextBlock              Text="Type"/>
+                    <common:MyComboBox               SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
+                    
+                    <TextBlock              Text="Length"/>
+                    <common:MyNumericBox    Value="{Binding Length}" Min="0" IsInteger="True" Unit="inches"/>
+                    
+                    <TextBlock              Text="Thickness"/>
+                    <common:MyNumericBox    Value="{Binding Thickness}" Min="0" IsInteger="True" Unit="inches"/>
+
+                    <TextBlock              Text="Knots multiplier" Visibility="{Binding KnotVisibility}"/>
+                    <common:MyNumericBox    Value="{Binding KnotMultiplier}" Min="0" Visibility="{Binding KnotVisibility}"/>
+                </common:AutoGrid>
+            </common:ArrayEditor>
+        </StackPanel>
+            
+            
+        <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
+            <Border Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Ass" Style="{StaticResource Header}"/>
+            </Border>
+
+            <common:AutoGrid>
+                <TextBlock              Text="Loosness"/>
+                <common:MyComboBox               SelectedValue="{Binding Game.Ass.Looseness}" ItemsSource="{Binding Data.Body.AnalLoosenessLevels}"/>
+
+                <TextBlock              Text="Wetness"/>
+                <common:MyNumericBox    Value="{Binding Game.Ass.Wetness}" Min="0" Max="2" MinLabel="0 (dry)" MaxLabel="2 (moist)" IsInteger="True"/>
+            </common:AutoGrid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical">
+            <common:ArrayEditor Header="Vaginas" Items="{Binding Game.Vaginas}">
+                <common:ArrayEditor.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Description}"/>
+                    </DataTemplate>
+                </common:ArrayEditor.ItemTemplate>
+                <common:AutoGrid>
+                    <TextBlock              Text="Type"/>
+                    <common:MyComboBox               SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
+
+                    <TextBlock              Text="Loosness"/>
+                    <common:MyComboBox               SelectedValue="{Binding Looseness}" ItemsSource="{Binding AllLoosenessLevels}"/>
+
+                    <TextBlock              Text="Wetness"/>
+                    <common:MyComboBox               SelectedValue="{Binding Wetness}" ItemsSource="{Binding AllWetnessLevels}"/>
+
+                    <Border/>
+                    <CheckBox Content="Virgin" IsChecked="{Binding Virgin}"/>
+                </common:AutoGrid>
+            </common:ArrayEditor>
+
+            <common:AutoGrid Margin="0,30,0,0" Visibility="{Binding Game.ClitVisibility}">
+                <TextBlock              Text="Clit length"/>
+                <common:MyNumericBox    Value="{Binding Game.ClitLength}" Min="0" IsInteger="False" Unit="inches"/>
+            </common:AutoGrid>
+        </StackPanel> 
+    </Grid>
+</UserControl>
