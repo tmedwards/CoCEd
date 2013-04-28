@@ -36,7 +36,7 @@ namespace CoCEd.Common
         public static readonly DependencyProperty MinLabelProperty = DependencyProperty.Register("MinLabel", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
         public static readonly DependencyProperty MaxLabelProperty = DependencyProperty.Register("MaxLabel", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
         public static readonly DependencyProperty UnitProperty = DependencyProperty.Register("Unit", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
-        public static readonly DependencyProperty TipProperty = DependencyProperty.Register("Tip", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
+        public static readonly DependencyProperty TipProperty = DependencyProperty.Register("Tip", typeof(string), typeof(MyNumericBox), new PropertyMetadata(""));
 
         static MyNumericBox()
         {
@@ -150,7 +150,7 @@ namespace CoCEd.Common
 
         void textBox_LostFocus(object sender, EventArgs e)
         {
-            if (!TrySetValue(_textBox.Text)) return;
+            if (_hasError) return;
             DoPrettyFormat();
         }
 
@@ -185,7 +185,7 @@ namespace CoCEd.Common
 
         void OnValueChanged()
         {
-            DoPrettyFormat();
+            if (!_textChanged) DoPrettyFormat();
             SetUpButton(_minButton, Min, MinLabel, ShowMinButton);
             SetUpButton(_maxButton, Max, MaxLabel, ShowMaxButton);
 
@@ -202,14 +202,6 @@ namespace CoCEd.Common
             else _toolTip.Text = Tip;
         }
 
-        bool _suspendPrettyFormat;
-        void DoPrettyFormat()
-        {
-            if (_suspendPrettyFormat) return;
-            var format = IsInteger ? "0" : "0.0";
-            _textBox.Text = Value.ToString(format, CultureInfo.CurrentCulture);
-        }
-
         void SetUpButton(Button button, double value, string label, bool show)
         {
             if (!String.IsNullOrEmpty(label)) button.Content = label;
@@ -219,52 +211,79 @@ namespace CoCEd.Common
             button.Visibility = (show && (button.Content as string) != "") ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        bool _hasError;
+        bool _textChanged;
         void OnTextChanged()
         {
-            if (TrySetValue(_textBox.Text))
+            _textChanged = true;
+            try
             {
-                _border.Background = Brushes.Transparent;
+                if (TrySetValue(_textBox.Text))
+                {
+                    _hasError = false;
+                    _border.Background = Brushes.Transparent;
+                }
+                else
+                {
+                    _hasError = true;
+                    _border.Background = ErrorBrush;
+                }
             }
-            else
+            finally
             {
-                _border.Background = ErrorBrush;
+                _textChanged = false;
             }
         }
 
         bool TrySetValue(string str)
         {
-            try
-            {
-                _suspendPrettyFormat = true;
-                if (IsInteger)
-                {
-                    // Adobe encoded integer on 29bits (7+7+7+8)
-                    const int AmfMax = (1 << 28) - 1;
-                    const int AmfMin = -(1 << 28);
+            str = str.Trim();
+            if (IsPrettyFormat(str, Value)) return true;
 
-                    int value;
-                    if (!Int32.TryParse(str, NumberStyles.Integer, CultureInfo.InvariantCulture, out value) &&
-                        !Int32.TryParse(str, NumberStyles.Integer, CultureInfo.CurrentCulture, out value)) return false;
-                    if (value < AmfMin || value > AmfMax) return false;
-                    if (value < Min || value > Max) return false;
-                    Value = value;
-                    return true;
-                }
-                else
-                {
-                    double value;
-                    if (!Double.TryParse(str, NumberStyles.Float, CultureInfo.InvariantCulture, out value) &&
-                        !Double.TryParse(str, NumberStyles.Float, CultureInfo.CurrentCulture, out value)) return false;
-                    if (value < Min || value > Max) return false;
-
-                    Value = value;
-                    return true;
-                }
-            }
-            finally
+            if (IsInteger)
             {
-                _suspendPrettyFormat = false;
+                // Adobe encoded integer on 29bits (7+7+7+8)
+                const int AmfMax = (1 << 28) - 1;
+                const int AmfMin = -(1 << 28);
+
+                int value;
+                if (!Int32.TryParse(str, NumberStyles.Integer, CultureInfo.InvariantCulture, out value) &&
+                    !Int32.TryParse(str, NumberStyles.Integer, CultureInfo.CurrentCulture, out value)) return false;
+                if (value < AmfMin || value > AmfMax) return false;
+                if (value < Min || value > Max) return false;
+
+                Value = value;
+                return true;
             }
+            else
+            {
+                double value;
+                if (!Double.TryParse(str, NumberStyles.Float, CultureInfo.InvariantCulture, out value) &&
+                    !Double.TryParse(str, NumberStyles.Float, CultureInfo.CurrentCulture, out value)) return false;
+                if (value < Min || value > Max) return false;
+
+                Value = value;
+                return true;
+            }
+        }
+
+        void DoPrettyFormat()
+        {
+            var format = IsInteger ? "0" : "0.0";
+            _textBox.Text = Value.ToString(format, CultureInfo.CurrentCulture);
+        }
+
+        bool IsPrettyFormat(string text, double value)
+        {
+            //if (value.ToString(CultureInfo.CurrentCulture) == text) return true;
+            if (IsInteger && value.ToString("0", CultureInfo.CurrentCulture) == text) return true;
+            if (!IsInteger && value.ToString("0.0", CultureInfo.CurrentCulture) == text) return true;
+
+            /*if (value.ToString(CultureInfo.InvariantCulture) == text) return true;
+            if (IsInteger && value.ToString("0", CultureInfo.InvariantCulture) == text) return true;
+            if (!IsInteger && value.ToString("0.0", CultureInfo.InvariantCulture) == text) return true;*/
+
+            return false;
         }
     }
 }
