@@ -1,0 +1,270 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace CoCEd.Common
+{
+    [TemplatePart(Name = "border", Type = typeof(Border))]
+    [TemplatePart(Name = "textBox", Type = typeof(TextBox))]
+    [TemplatePart(Name = "toolTip", Type = typeof(TextBlock))]
+    [TemplatePart(Name = "minButton", Type = typeof(Button))]
+    [TemplatePart(Name = "maxButton", Type = typeof(Button))]
+    public class MyNumericBox : Control
+    {
+        public static readonly DependencyProperty MinProperty = DependencyProperty.Register("Min", typeof(double), typeof(MyNumericBox), new PropertyMetadata(Double.MinValue, OnPropertiesChanged));
+        public static readonly DependencyProperty MaxProperty = DependencyProperty.Register("Max", typeof(double), typeof(MyNumericBox), new PropertyMetadata(Double.MaxValue, OnPropertiesChanged));
+        public static readonly DependencyProperty ShowMinButtonProperty = DependencyProperty.Register("ShowMinButton", typeof(bool), typeof(MyNumericBox), new PropertyMetadata(true, OnPropertiesChanged));
+        public static readonly DependencyProperty ShowMaxButtonProperty = DependencyProperty.Register("ShowMaxButton", typeof(bool), typeof(MyNumericBox), new PropertyMetadata(true, OnPropertiesChanged));
+
+        public static readonly DependencyProperty IsIntegerProperty = DependencyProperty.Register("IsInteger", typeof(bool), typeof(MyNumericBox), new PropertyMetadata(true, OnPropertiesChanged));
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(double), typeof(MyNumericBox), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged));
+
+        public static readonly DependencyProperty ErrorBrushProperty = DependencyProperty.Register("ErrorBrush", typeof(Brush), typeof(MyNumericBox), new PropertyMetadata(Brushes.Pink, OnPropertiesChanged));
+        public static readonly DependencyProperty MinLabelProperty = DependencyProperty.Register("MinLabel", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
+        public static readonly DependencyProperty MaxLabelProperty = DependencyProperty.Register("MaxLabel", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
+        public static readonly DependencyProperty UnitProperty = DependencyProperty.Register("Unit", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
+        public static readonly DependencyProperty TipProperty = DependencyProperty.Register("Tip", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
+
+        static MyNumericBox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(MyNumericBox), new FrameworkPropertyMetadata(typeof(MyNumericBox)));
+        }
+
+        TextBlock _toolTip;
+        TextBox _textBox;
+        Button _minButton;
+        Button _maxButton;
+        Border _border;
+
+        public double Min
+        {
+            get { return (double)GetValue(MinProperty); }
+            set { SetValue(MinProperty, value); }
+        }
+
+        public double Max
+        {
+            get { return (double)GetValue(MaxProperty); }
+            set { SetValue(MaxProperty, value); }
+        }
+
+        public double Value
+        {
+            get { return (double)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
+        }
+
+        public bool ShowMinButton
+        {
+            get { return (bool)GetValue(ShowMinButtonProperty); }
+            set { SetValue(ShowMinButtonProperty, value); }
+        }
+
+        public bool ShowMaxButton
+        {
+            get { return (bool)GetValue(ShowMaxButtonProperty); }
+            set { SetValue(ShowMaxButtonProperty, value); }
+        }
+
+        public bool IsInteger
+        {
+            get { return (bool)GetValue(IsIntegerProperty); }
+            set { SetValue(IsIntegerProperty, value); }
+        }
+
+        public string Unit
+        {
+            get { return (string)GetValue(UnitProperty); }
+            set { SetValue(UnitProperty, value); }
+        }
+
+        public string MinLabel
+        {
+            get { return (string)GetValue(MinLabelProperty); }
+            set { SetValue(MinLabelProperty, value); }
+        }
+
+        public string MaxLabel
+        {
+            get { return (string)GetValue(MaxLabelProperty); }
+            set { SetValue(MaxLabelProperty, value); }
+        }
+
+        public string Tip
+        {
+            get { return (string)GetValue(TipProperty); }
+            set { SetValue(TipProperty, value); }
+        }
+
+        public Brush ErrorBrush
+        {
+            get { return (Brush)GetValue(ErrorBrushProperty); }
+            set { SetValue(ErrorBrushProperty, value); }
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            if (_minButton != null) _minButton.Click -= minButton_Click;
+            if (_maxButton != null) _maxButton.Click -= maxButton_Click;
+            if (_textBox != null) _textBox.TextChanged -= textBox_OnTextChanged;
+            if (_textBox != null) _textBox.GotMouseCapture -= textBox_OnFocused;
+            if (_textBox != null) _textBox.GotKeyboardFocus -= textBox_OnFocused;
+            if (_textBox != null) _textBox.LostKeyboardFocus -= textBox_LostFocus;
+
+            _border = GetTemplateChild("border") as Border;
+            _textBox = GetTemplateChild("textBox") as TextBox;
+            _minButton = GetTemplateChild("minButton") as Button;
+            _maxButton = GetTemplateChild("maxButton") as Button;
+            _toolTip = GetTemplateChild("toolTip") as TextBlock;
+
+            if (_minButton != null) _minButton.Click += minButton_Click;
+            if (_maxButton != null) _maxButton.Click += maxButton_Click;
+            if (_textBox != null) _textBox.TextChanged += textBox_OnTextChanged;
+            if (_textBox != null) _textBox.GotMouseCapture += textBox_OnFocused;
+            if (_textBox != null) _textBox.GotKeyboardFocus += textBox_OnFocused;
+            if (_textBox != null) _textBox.LostKeyboardFocus += textBox_LostFocus;
+
+            OnTextChanged();
+            OnValueChanged();
+        }
+
+        void textBox_OnFocused(object sender, EventArgs e)
+        {
+            _textBox.SelectAll();
+        }
+
+        void textBox_LostFocus(object sender, EventArgs e)
+        {
+            if (!TrySetValue(_textBox.Text)) return;
+            DoPrettyFormat();
+        }
+
+        void minButton_Click(object sender, RoutedEventArgs e)
+        {
+            Value = Min;   
+        }
+        void maxButton_Click(object sender, RoutedEventArgs e)
+        {
+            Value = Max;
+        }
+
+        void textBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            OnTextChanged();
+        }
+
+        static void OnPropertiesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            MyNumericBox box = (MyNumericBox)obj;
+            if (box._minButton == null) return;
+            box.OnTextChanged();
+            box.OnValueChanged();
+        }
+
+        static void OnValueChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            MyNumericBox box = (MyNumericBox)obj;
+            if (box._minButton == null) return;
+            box.OnValueChanged();
+        }
+
+        void OnValueChanged()
+        {
+            DoPrettyFormat();
+            SetUpButton(_minButton, Min, MinLabel, ShowMinButton);
+            SetUpButton(_maxButton, Max, MaxLabel, ShowMaxButton);
+
+            if (Unit == "inches")
+            {
+                if (Value >= 12) _toolTip.Text = String.Format("{0:0} cm ; {1:0}' {2:0}", Value * 2.54, Value / 12, Value % 12);
+                else if (Value >= 4) _toolTip.Text = String.Format("{0:0} cm", Value * 2.54);
+                else _toolTip.Text = String.Format("{0:0.0} cm", Value * 2.54);
+            }
+            else if (Unit == "feet")
+            {
+                _toolTip.Text = String.Format("{0:0}cm", Value * 12 * 2.54);
+            }
+            else _toolTip.Text = Tip;
+        }
+
+        bool _suspendPrettyFormat;
+        void DoPrettyFormat()
+        {
+            if (_suspendPrettyFormat) return;
+            var format = IsInteger ? "0" : "0.0";
+            _textBox.Text = Value.ToString(format, CultureInfo.CurrentCulture);
+        }
+
+        void SetUpButton(Button button, double value, string label, bool show)
+        {
+            if (!String.IsNullOrEmpty(label)) button.Content = label;
+            else if (value != Double.MinValue && value != Double.MaxValue) button.Content = value.ToString(CultureInfo.InvariantCulture);
+            else button.Content = "";
+
+            button.Visibility = (show && (button.Content as string) != "") ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        void OnTextChanged()
+        {
+            if (TrySetValue(_textBox.Text))
+            {
+                _border.Background = Brushes.Transparent;
+            }
+            else
+            {
+                _border.Background = ErrorBrush;
+            }
+        }
+
+        bool TrySetValue(string str)
+        {
+            try
+            {
+                _suspendPrettyFormat = true;
+                if (IsInteger)
+                {
+                    // Adobe encoded integer on 29bits (7+7+7+8)
+                    const int AmfMax = (1 << 28) - 1;
+                    const int AmfMin = -(1 << 28);
+
+                    int value;
+                    if (!Int32.TryParse(str, NumberStyles.Integer, CultureInfo.InvariantCulture, out value) &&
+                        !Int32.TryParse(str, NumberStyles.Integer, CultureInfo.CurrentCulture, out value)) return false;
+                    if (value < AmfMin || value > AmfMax) return false;
+                    if (value < Min || value > Max) return false;
+                    Value = value;
+                    return true;
+                }
+                else
+                {
+                    double value;
+                    if (!Double.TryParse(str, NumberStyles.Float, CultureInfo.InvariantCulture, out value) &&
+                        !Double.TryParse(str, NumberStyles.Float, CultureInfo.CurrentCulture, out value)) return false;
+                    if (value < Min || value > Max) return false;
+
+                    Value = value;
+                    return true;
+                }
+            }
+            finally
+            {
+                _suspendPrettyFormat = false;
+            }
+        }
+    }
+}

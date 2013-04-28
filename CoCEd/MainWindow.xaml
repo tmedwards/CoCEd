@@ -1,0 +1,36 @@
+﻿<Window x:Class="CoCEd.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:view="clr-namespace:CoCEd.View" 
+        xmlns:vm="clr-namespace:CoCEd.ViewModel" 
+        Title="CoC Editor" 
+        DataContext="{x:Static vm:VM.Instance}"
+        Width="1024" Height="768" MinWidth="1024" MinHeight="768">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <view:TopBar HorizontalAlignment="Stretch"/>
+        
+        <TabControl Grid.Row="1" Margin="0,30,0,0" IsEnabled="{Binding HasData}" SelectedIndex="3">
+            <TabItem Header="General" Padding="4" Width="150">
+                <view:GeneralPage/>
+            </TabItem>
+            <TabItem Header="Appearance" Padding="4" Width="150">
+                <view:AppearancePage/>
+            </TabItem>
+            <TabItem Header="Genitals" Padding="4" Width="150">
+                <view:GenitalsPage/>
+            </TabItem>
+            <TabItem Header="Perks" Padding="4" Width="150">
+                <view:PerkPage/>
+            </TabItem>
+            <TabItem Header="Items" Padding="4" Width="150">
+                <view:ItemPage/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

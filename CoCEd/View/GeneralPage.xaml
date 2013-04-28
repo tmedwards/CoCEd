@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="CoCEd.View.GeneralPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:common="clr-namespace:CoCEd.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/PageInclude.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="0,30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <common:AutoGrid>
+                <TextBlock              Text="Name"/>
+                <TextBox                Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,4,8,4" 
+                                        BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
+
+                <TextBlock              Text="Gems"/>
+                <common:MyNumericBox    Value="{Binding Game.Gems}" Min="0" IsInteger="True"/>
+            </common:AutoGrid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Orientation="Vertical">
+            <common:AutoGrid>
+                <TextBlock              Text="XP"/>
+                <common:MyNumericBox    Value="{Binding Game.XP}" Min="0" IsInteger="True"/>
+
+                <TextBlock              Text="Teasing XP"/>
+                <common:MyNumericBox    Value="{Binding Game.TeaseXP}" Min="0" IsInteger="True"/>
+            </common:AutoGrid>
+        </StackPanel>
+
+
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical">
+            <Border Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Core stats" Style="{StaticResource Header}"/>
+            </Border>
+            <common:AutoGrid>
+                <TextBlock              Text="Strength"/>
+                <common:MyNumericBox    Value="{Binding Game.Strength}" Min="0" Max="100" IsInteger="True"/>
+
+                <TextBlock              Text="Toughness"/>
+                <common:MyNumericBox    Value="{Binding Game.Toughness}" Min="0" Max="100" IsInteger="True"/>
+
+                <TextBlock              Text="Speed"/>
+                <common:MyNumericBox    Value="{Binding Game.Speed}" Min="0" Max="100" IsInteger="True"/>
+
+                <TextBlock              Text="Intelligence"/>
+                <common:MyNumericBox    Value="{Binding Game.Intelligence}" Min="0" Max="100" IsInteger="True"/>
+
+                <TextBlock              Text="Libido"/>
+                <common:MyNumericBox    Value="{Binding Game.Libido}" Min="0" Max="100" IsInteger="True"/>
+
+                <TextBlock              Text="Sensitivity"/>
+                <common:MyNumericBox    Value="{Binding Game.Sensitivity}" Min="0" Max="100" IsInteger="True"/>
+
+                <TextBlock              Text="Corruption"/>
+                <common:MyNumericBox    Value="{Binding Game.Corruption}" Min="0" Max="100" IsInteger="True"/>
+            </common:AutoGrid>
+        </StackPanel>
+
+        
+        <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Vertical">
+            <Border Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Combat stats" Style="{StaticResource Header}"/>
+            </Border>
+            <common:AutoGrid>
+                <TextBlock              Text="Current HP"/>
+                <common:MyNumericBox    Value="{Binding Game.HP}" Min="0" IsInteger="True"/>
+
+                <TextBlock              Text="Lust"/>
+                <common:MyNumericBox    Value="{Binding Game.Lust}" Min="0" Max="100" IsInteger="True"/>
+
+                <TextBlock              Text="Fatigue"/>
+                <common:MyNumericBox    Value="{Binding Game.Fatigue}" Min="0" Max="100" IsInteger="True"/>
+            </common:AutoGrid>
+        </StackPanel>
+
+        
+        
+        <StackPanel Grid.Column="3" Grid.Row="2" Orientation="Vertical">
+            <Border Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Procreation" Style="{StaticResource Header}"/>
+            </Border>
+            <common:AutoGrid>
+                <TextBlock              Text="Fertility"/>
+                <common:MyNumericBox    Value="{Binding Game.Fertility}" Min="0" Max="100" IsInteger="True"/>
+            </common:AutoGrid>
+
+            <common:AutoGrid Margin="0,15">
+                <TextBlock              Text="Pregnancy"/>
+                <common:MyComboBox SelectedValue="{Binding Game.PregnancyType}" ItemsSource="{Binding Data.Body.PregnancyTypes}"/>
+
+                <TextBlock              Text="Time remaining" Visibility="{Binding Game.PregnancyVisibility}"/>
+                <common:MyNumericBox    Value="{Binding Game.PregnancyTime}" Min="0" IsInteger="True" Unit="hours" Visibility="{Binding Game.PregnancyVisibility}"/>
+            </common:AutoGrid>
+
+            <common:AutoGrid>
+                <TextBlock              Text="Butt pregnancy"/>
+                <common:MyComboBox SelectedValue="{Binding Game.ButtPregnancyType}" ItemsSource="{Binding Data.Body.AnalPregnancyTypes}"/>
+
+                <TextBlock              Text="Time remaining" Visibility="{Binding Game.ButtPregnancyVisibility}"/>
+                <common:MyNumericBox    Value="{Binding Game.ButtPregnancyTime}" Min="0" IsInteger="True" Unit="hours" Visibility="{Binding Game.ButtPregnancyVisibility}"/>
+            </common:AutoGrid>
+
+            <!--
+            <TextBlock Text="Children" Style="{StaticResource Header}"/>
+            <common:AutoGrid>
+                <TextBlock              Text="From Marble"/>
+                <common:MyNumericBox    Value="{Binding Game.ChildrenMarble}" Min="0" IsInteger="True"/>
+
+                <TextBlock              Text="From Izma (girls)"/>
+                <common:MyNumericBox    Value="{Binding Game.ChildrenIzmaGirls}" Min="0" IsInteger="True"/>
+
+                <TextBlock              Text="From Izma (boys)"/>
+                <common:MyNumericBox    Value="{Binding Game.ChildrenIzmaBoys}" Min="0" IsInteger="True"/>
+            </common:AutoGrid>
+            -->     
+            
+        </StackPanel>
+    </Grid>
+</UserControl>
