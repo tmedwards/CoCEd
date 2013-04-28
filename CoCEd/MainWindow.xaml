@@ -15,7 +15,7 @@
         
         <view:TopBar HorizontalAlignment="Stretch"/>
         
-        <TabControl Grid.Row="1" Margin="0,30,0,0" IsEnabled="{Binding HasData}" SelectedIndex="3">
+        <TabControl Grid.Row="1" Margin="0,30,0,0" IsEnabled="{Binding HasData}">
             <TabItem Header="General" Padding="4" Width="150">
                 <view:GeneralPage/>
             </TabItem>
