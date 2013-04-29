@@ -57,7 +57,7 @@ namespace CoCEd.ViewModel
             OnPropertyChanged("HasData");
         }
 
-        const string _appTitle = "CoC Editor";
+        const string _appTitle = "CoCEd";
         public void NotifySaveRequiredChanged(bool saveRequired = true)
         {
             if (saveRequired == SaveRequired) return;

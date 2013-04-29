@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:CoCEd.View" 
         xmlns:vm="clr-namespace:CoCEd.ViewModel" 
-        Title="CoC Editor" 
+        Title="CoCEd" 
         DataContext="{x:Static vm:VM.Instance}"
         Width="1024" Height="768" MinWidth="1024" MinHeight="768">
     

@@ -5,6 +5,7 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -38,10 +39,18 @@ namespace CoCEd
         {
             e.Handled = true;
             MessageBox.Show(
-                "An error occured and the application is going to exit.\n\n Please report the error message below on CoC's forums:\n" + e.Exception.ToString(),
+                "An error occured and the application is going to exit.\n\n The error below has been saved as CoCEd.log. Please report it on CoC's forums (you can also use Ctrl+C):\n" + e.Exception.ToString(),
                 "Unexpected error.", MessageBoxButton.OK);
 
-            Shutdown();
+            try
+            {
+                if (File.Exists("CoCEd.log")) File.Delete("CoCEd.log");
+                File.WriteAllText("CoCEd.log", e.Exception.ToString());
+            }
+            finally
+            {
+                Shutdown();
+            }
         }
 
         void Initialize()
@@ -53,11 +62,11 @@ namespace CoCEd
                     break;
 
                 case XmlLoadingResult.MissingFile:
-                    MessageBox.Show("Could not find the gamedata.xml file.");
+                    MessageBox.Show("Could not find the CoCEd.xml file.");
                     break;
 
                 case XmlLoadingResult.NoPermission:
-                    MessageBox.Show("The gamedata.xml file was already in use or the application does not have the permission to access its own program folder.");
+                    MessageBox.Show("The CoCEd.xml file was already in use or the application does not have the permission to access its own program folder.");
                     break;
 
                 default:
