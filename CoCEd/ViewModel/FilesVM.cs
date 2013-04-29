@@ -293,7 +293,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (!Source.HasError) return null;
+                if (String.IsNullOrEmpty(Source.Error)) return null;
 
                 BitmapImage bmp = new BitmapImage();
                 bmp.BeginInit();

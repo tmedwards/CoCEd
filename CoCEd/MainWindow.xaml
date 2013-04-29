@@ -5,7 +5,7 @@
         xmlns:vm="clr-namespace:CoCEd.ViewModel" 
         Title="CoCEd" 
         DataContext="{x:Static vm:VM.Instance}"
-        Width="1024" Height="768" MinWidth="1024" MinHeight="768">
+        Width="1024" Height="738" MinWidth="1024" MinHeight="738">
     
     <Grid>
         <Grid.RowDefinitions>

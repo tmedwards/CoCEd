@@ -30,45 +30,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+      
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-            <Border Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Face" Style="{StaticResource Header}"/>
-            </Border>
-
-            <common:AutoGrid>
-                <TextBlock              Text="Hair length"/>
-                <common:MyNumericBox    Value="{Binding Game.HairLength}" Min="0" IsInteger="False" Unit="inches"/>
-
-                <TextBlock              Text="Hair color"/>
-                <common:MyComboBox SelectedValue="{Binding Game.HairColor}" ItemsSource="{Binding Data.Body.HairColors}"/>
-
-                <TextBlock              Text="Face"/>
-                <common:MyComboBox SelectedValue="{Binding Game.FaceType}" ItemsSource="{Binding Data.Body.FaceTypes}"/>
-
-                <TextBlock              Text="Tongue"/>
-                <common:MyComboBox SelectedValue="{Binding Game.TongueType}" ItemsSource="{Binding Data.Body.TongueTypes}"/>
-
-                <TextBlock              Text="Eyes"/>
-                <common:MyComboBox SelectedValue="{Binding Game.EyeType}" ItemsSource="{Binding Data.Body.EyeTypes}"/>
-
-                <TextBlock              Text="Ears"/>
-                <common:MyComboBox SelectedValue="{Binding Game.EarType}" ItemsSource="{Binding Data.Body.EarTypes}"/>
-
-                <TextBlock              Text="Antennae"/>
-                <common:MyComboBox SelectedValue="{Binding Game.AntennaeType}" ItemsSource="{Binding Data.Body.AntennaeTypes}"/>
-
-                <TextBlock              Text="Horns"/>
-                <common:MyComboBox SelectedValue="{Binding Game.HornType}" ItemsSource="{Binding Data.Body.HornTypes}"/>
-
-                <TextBlock              Text="{Binding Game.HornsValueLabel}" Visibility="{Binding Game.HornsValueVisibility}"/>
-                <common:MyNumericBox    Value="{Binding Game.HornsValue}" Min="0" IsInteger="False" Unit="{Binding Game.HornsValueUnit}" Visibility="{Binding Game.HornsValueVisibility}"/>
-
-                <TextBlock              Text="Nose piercing"/>
-                <common:MyPiercingBox DataContext="{Binding Game.NosePiercing}"/>
-            </common:AutoGrid>
-        </StackPanel>
-        
-        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
             <Border Style="{StaticResource HeaderBorder}">
                 <TextBlock Text="Body" Style="{StaticResource Header}"/>
             </Border>
@@ -97,6 +60,47 @@
         </StackPanel>
 
 
+
+        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
+            <Border Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Procreation" Style="{StaticResource Header}"/>
+            </Border>
+            <common:AutoGrid>
+                <TextBlock              Text="Fertility"/>
+                <common:MyNumericBox    Value="{Binding Game.Fertility}" Min="0" Max="100" IsInteger="True"/>
+            </common:AutoGrid>
+
+            <common:AutoGrid Margin="0,15">
+                <TextBlock              Text="Pregnancy"/>
+                <common:MyComboBox SelectedValue="{Binding Game.PregnancyType}" ItemsSource="{Binding Data.Body.PregnancyTypes}"/>
+
+                <TextBlock              Text="Time remaining" Visibility="{Binding Game.PregnancyVisibility}"/>
+                <common:MyNumericBox    Value="{Binding Game.PregnancyTime}" Min="0" IsInteger="True" Unit="hours" Visibility="{Binding Game.PregnancyVisibility}"/>
+            </common:AutoGrid>
+
+            <common:AutoGrid>
+                <TextBlock              Text="Butt pregnancy"/>
+                <common:MyComboBox SelectedValue="{Binding Game.ButtPregnancyType}" ItemsSource="{Binding Data.Body.AnalPregnancyTypes}"/>
+
+                <TextBlock              Text="Time remaining" Visibility="{Binding Game.ButtPregnancyVisibility}"/>
+                <common:MyNumericBox    Value="{Binding Game.ButtPregnancyTime}" Min="0" IsInteger="True" Unit="hours" Visibility="{Binding Game.ButtPregnancyVisibility}"/>
+            </common:AutoGrid>
+
+            <!--
+            <TextBlock Text="Children" Style="{StaticResource Header}"/>
+            <common:AutoGrid>
+                <TextBlock              Text="From Marble"/>
+                <common:MyNumericBox    Value="{Binding Game.ChildrenMarble}" Min="0" IsInteger="True"/>
+
+                <TextBlock              Text="From Izma (girls)"/>
+                <common:MyNumericBox    Value="{Binding Game.ChildrenIzmaGirls}" Min="0" IsInteger="True"/>
+
+                <TextBlock              Text="From Izma (boys)"/>
+                <common:MyNumericBox    Value="{Binding Game.ChildrenIzmaBoys}" Min="0" IsInteger="True"/>
+            </common:AutoGrid>
+            -->
+        </StackPanel>
+        
         <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
             <common:ArrayEditor Header="Breasts" Items="{Binding Game.Breasts}">
                 <common:ArrayEditor.ItemTemplate>
@@ -122,6 +126,9 @@
             <common:AutoGrid Margin="0,30,0,0" Visibility="{Binding Game.NippleVisibility}">
                 <TextBlock              Text="Nipple length"/>
                 <common:MyNumericBox    Value="{Binding Game.NippleLength}" Min="0" IsInteger="False" Unit="inches"/>
+                
+                <TextBlock              Text="Nipples piercing"/>
+                <common:MyPiercingBox DataContext="{Binding Game.NipplesPiercing}"/>
             </common:AutoGrid>
         </StackPanel>
         

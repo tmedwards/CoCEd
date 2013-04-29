@@ -125,6 +125,7 @@ namespace CoCEd.Common
             if (_textBox != null) _textBox.GotMouseCapture -= textBox_OnFocused;
             if (_textBox != null) _textBox.GotKeyboardFocus -= textBox_OnFocused;
             if (_textBox != null) _textBox.LostKeyboardFocus -= textBox_LostFocus;
+            if (_textBox != null) _textBox.PreviewKeyDown -= textBox_PreviewKeyDown;
 
             _border = GetTemplateChild("border") as Border;
             _textBox = GetTemplateChild("textBox") as TextBox;
@@ -138,9 +139,32 @@ namespace CoCEd.Common
             if (_textBox != null) _textBox.GotMouseCapture += textBox_OnFocused;
             if (_textBox != null) _textBox.GotKeyboardFocus += textBox_OnFocused;
             if (_textBox != null) _textBox.LostKeyboardFocus += textBox_LostFocus;
+            if (_textBox != null) _textBox.PreviewKeyDown += textBox_PreviewKeyDown;
 
             OnTextChanged();
             OnValueChanged();
+        }
+
+        void textBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                if (Value != (int)Value) Value = 1 + (int)Value;
+                else ++Value;
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Down)
+            {
+                if (Value != (int)Value) Value = (int)Value;
+                else --Value;
+                e.Handled = true;
+            }
+        }
+
+        void textBox_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            ++Value;
+            e.Handled = true;
         }
 
         void textBox_OnFocused(object sender, EventArgs e)
