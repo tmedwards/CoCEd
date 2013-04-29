@@ -1,8 +1,6 @@
-﻿* Reorganize listboxes
-* Remove my company, my name, etc. Add copyright and license. Change name.
-
-* Exgartuan
+﻿* Exgartuan
 * Children from Tamani
+* Reorganize listboxes
 
 
 
