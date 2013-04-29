@@ -60,26 +60,37 @@ namespace CoCEd.ViewModel
 
             // Standard path for IE, Firefox, etc
             var standardPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            standardPath = System.IO.Path.Combine(standardPath, @"Macromedia\Flash Player\#SharedObjects\");
-            standardPath = GetRandomNameFolder(standardPath, result);
+            if (standardPath != null)
+            {
+                standardPath = System.IO.Path.Combine(standardPath, @"Macromedia\Flash Player\#SharedObjects\");
+                standardPath = GetRandomNameFolder(standardPath, result);
+                if (standardPath != null)
+                {
+                    _paths[CocDirectory.StandardOffline] = Path.Combine(standardPath, "localhost");
+                    ImportFiles(CocDirectory.StandardOffline, result);
 
-            _paths[CocDirectory.StandardOffline] = Path.Combine(standardPath, "localhost");
-            ImportFiles(CocDirectory.StandardOffline, result);
-
-            _paths[CocDirectory.StandardOnline] = Path.Combine(standardPath, "www.fenoxo.com");
-            ImportFiles(CocDirectory.StandardOnline, result);
+                    _paths[CocDirectory.StandardOnline] = Path.Combine(standardPath, "www.fenoxo.com");
+                    ImportFiles(CocDirectory.StandardOnline, result);
+                }
+            }
 
 
             // Chome uses a specific path
             var chromePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            chromePath = System.IO.Path.Combine(chromePath, @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\");
-            chromePath = GetRandomNameFolder(chromePath, result);
+            if (standardPath != null)
+            {
+                chromePath = System.IO.Path.Combine(chromePath, @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\");
+                chromePath = GetRandomNameFolder(chromePath, result);
 
-            _paths[CocDirectory.ChromeOffline] = Path.Combine(chromePath, "localhost");
-            ImportFiles(CocDirectory.ChromeOffline, result);
+                if (chromePath != null)
+                {
+                    _paths[CocDirectory.ChromeOffline] = Path.Combine(chromePath, "localhost");
+                    ImportFiles(CocDirectory.ChromeOffline, result);
 
-            _paths[CocDirectory.ChromeOnline] = Path.Combine(chromePath, "www.fenoxo.com");
-            ImportFiles(CocDirectory.ChromeOnline, result);
+                    _paths[CocDirectory.ChromeOnline] = Path.Combine(chromePath, "www.fenoxo.com");
+                    ImportFiles(CocDirectory.ChromeOnline, result);
+                }
+            }
 
             CreateVM();
             UpdateDirectories();

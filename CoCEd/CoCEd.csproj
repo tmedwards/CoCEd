@@ -161,7 +161,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\cross.png" />
-    <Content Include="gamedata.xml">
+    <Content Include="CoCEd.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="TODO.txt" />

@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace CoCEd.Model
 {
-    [XmlRoot("CorruptionOfChampionsEditor")]
+    [XmlRoot("CoCEd")]
     public sealed class XmlData
     {
         [XmlElement("Body")]
@@ -31,7 +31,7 @@ namespace CoCEd.Model
         {
             try
             {
-                using (var stream = File.OpenRead("gamedata.xml"))
+                using (var stream = File.OpenRead("CoCEd.xml"))
                 {
                     XmlSerializer s = new XmlSerializer(typeof(XmlData));
                     Instance = s.Deserialize(stream) as XmlData;
