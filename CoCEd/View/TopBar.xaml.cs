@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace CoCEd.View
             InitializeComponent();
             openMenu.PlacementTarget = openButton;
             saveMenu.PlacementTarget = saveButton;
-            VM.Instance.SaveRequiredChanged += OnSaveRequiredChanged;
+            if (!DesignerProperties.GetIsInDesignMode(this)) VM.Instance.SaveRequiredChanged += OnSaveRequiredChanged;
         }
 
         void OnSaveRequiredChanged(object sender, bool saveRequired)
