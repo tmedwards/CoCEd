@@ -62,6 +62,9 @@
 
                 <TextBlock              Text="{Binding Game.HornsValueLabel}" Visibility="{Binding Game.HornsValueVisibility}"/>
                 <common:MyNumericBox    Value="{Binding Game.HornsValue}" Min="0" IsInteger="False" Unit="{Binding Game.HornsValueUnit}" Visibility="{Binding Game.HornsValueVisibility}"/>
+
+                <TextBlock              Text="Nose piercing"/>
+                <common:MyPiercingBox DataContext="{Binding Game.NosePiercing}"/>
             </common:AutoGrid>
         </StackPanel>
         

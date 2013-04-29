@@ -85,6 +85,8 @@ namespace CoCEd.Model
         public XmlEnum[] WingTypes { get; set; }
         [XmlArray, XmlArrayItem("LowerBodyType")]
         public XmlEnum[] LowerBodyTypes { get; set; }
+        [XmlArray, XmlArrayItem("PiercingType")]
+        public XmlEnum[] PiercingTypes { get; set; }
 
         [XmlArray, XmlArrayItem("CockType")]
         public XmlEnum[] CockTypes { get; set; }

@@ -404,23 +404,25 @@ namespace CoCEd.ViewModel
                 {
                     yield return new FileVM(file, CocDirectory.Custom);
                 }
+                yield break;
             }
-            else
+
+            // We could not find that folder
+            if (String.IsNullOrEmpty(_path)) yield break;
+
+            for (int i = 1; i <= 10; i++)
             {
-                for (int i = 1; i <= 10; i++)
+                var name = "Coc_" + i + ".sol";
+                var file = _files.FirstOrDefault(x => x.FilePath.EndsWith(name, StringComparison.InvariantCultureIgnoreCase));
+                if (file != null)
                 {
-                    var name = "Coc_" + i + ".sol";
-                    var file = _files.FirstOrDefault(x => x.FilePath.EndsWith(name, StringComparison.InvariantCultureIgnoreCase));
-                    if (file != null)
-                    {
-                        yield return new FileVM(file, _directory);
-                    }
-                    else
-                    {
-                        var path = Path.Combine(_path, name);
-                        var target = new SaveTargetVM { Label = "Coc_" + i, Path = path };
-                        yield return target;
-                    }
+                    yield return new FileVM(file, _directory);
+                }
+                else
+                {
+                    var path = Path.Combine(_path, name);
+                    var target = new SaveTargetVM { Label = "Coc_" + i, Path = path };
+                    yield return target;
                 }
             }
         }
