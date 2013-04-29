@@ -65,6 +65,7 @@
     <Compile Include="Common\ItemPanel.cs" />
     <Compile Include="Common\LayoutHelper.cs" />
     <Compile Include="Common\MyComboBox.cs" />
+    <Compile Include="Common\MyPiercingBox.cs" />
     <Compile Include="Common\UpdatableCollection.cs" />
     <Compile Include="Common\UpdatableCollectionHelper.cs" />
     <Compile Include="Common\MyNumericBox.cs" />

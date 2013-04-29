@@ -159,9 +159,18 @@
       <LowerBodyType ID="17" Name="Fox"/>
       <LowerBodyType ID="18" Name="Dragon"/>
     </LowerBodyTypes>
-  
-  
-    
+    <!--============================================================================================================================================-->
+    <PiercingTypes>
+      <PiercingType ID="0" Name="None"/>
+      <PiercingType ID="1" Name="Stud"/>
+      <PiercingType ID="2" Name="Ring"/>
+      <PiercingType ID="3" Name="Ladder"/>
+      <PiercingType ID="4" Name="Hoop"/>
+      <PiercingType ID="5" Name="Chain"/>
+    </PiercingTypes>
+
+
+
     <!--============================================================================================================================================-->
     <CockTypes>
       <CockType ID="0" Name="Human"/>

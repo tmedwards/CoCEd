@@ -24,3 +24,7 @@ nipplesPierced
 cocks[].pierced
 vaginas[].clitPierced
 vaginas[].labiaPierced
+
+
+
+Ceraph: ears, nipples, cock/clit/eyebrow

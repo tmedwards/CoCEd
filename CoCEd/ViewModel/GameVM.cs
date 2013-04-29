@@ -47,6 +47,9 @@ namespace CoCEd.ViewModel
             ItemGroups = groups.ToArray();
 
 
+            NosePiercing = new PiercingVM(_node, "nose");
+
+
             PerkGroups = new PerkGroupVM[]
             {
                 new PerkGroupVM("Starter", _node, XmlData.Instance.Perks.StarterPerks),
@@ -89,6 +92,12 @@ namespace CoCEd.ViewModel
         }
 
         public PerkGroupVM[] PerkGroups
+        {
+            get;
+            private set;
+        }
+
+        public PiercingVM NosePiercing
         {
             get;
             private set;
@@ -1005,6 +1014,49 @@ namespace CoCEd.ViewModel
         public AmfPair Pair
         {
             get { return _perksArray.FirstOrDefault(x => String.Equals((x.Value as AmfNode)["perkName"] as string, _xml.Name, StringComparison.InvariantCultureIgnoreCase)); }
+        }
+    }
+
+    public sealed class PiercingVM : NodeVM
+    {
+        readonly string _prefix;
+
+        public PiercingVM(AmfNode node, string prefix)
+            : base(node)
+        {
+            _prefix = prefix;
+        }
+
+        public IEnumerable<XmlEnum> AllTypes
+        {
+            get { return XmlData.Instance.Body.PiercingTypes; }
+        }
+
+        public int Type
+        {
+            get { return GetInt(_prefix + "Pierced"); }
+            set 
+            { 
+                SetValue(_prefix + "Pierced", value);
+                OnPropertyChanged("CanEditName");
+            }
+        }
+
+        public string UpperName
+        {
+            get { return GetString(_prefix + "PLong"); }
+            set { SetValue(_prefix + "PLong", value); }
+        }
+
+        public string LowerName
+        {
+            get { return GetString(_prefix + "PShort"); }
+            set { SetValue(_prefix + "PShort", value); }
+        }
+
+        public bool CanEditName
+        {
+            get { return Type != 0; }
         }
     }
 }
