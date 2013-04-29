@@ -169,6 +169,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\cross.png" />
     <Content Include="gamedata.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
