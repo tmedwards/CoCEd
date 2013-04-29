@@ -12,9 +12,11 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
+    public delegate void SaveRequiredChanged(object sender, bool e);
+
     public sealed class VM : BindableBase
     {
-        public event EventHandler<bool> SaveRequiredChanged;
+        public event SaveRequiredChanged SaveRequiredChanged;
 
         private VM()
         {
@@ -175,5 +177,12 @@ namespace CoCEd.ViewModel
         }
 
         protected abstract AmfNode CreateNewNode();
+    }
+}
+
+namespace System.Runtime.CompilerServices
+{
+    public class CallerMemberNameAttribute : Attribute
+    {
     }
 }
