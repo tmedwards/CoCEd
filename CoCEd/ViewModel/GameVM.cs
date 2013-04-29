@@ -33,7 +33,7 @@ namespace CoCEd.ViewModel
             groups.Add(group);
 
             group = new ItemSlotGroupVM("Chest", ItemCategories.All);
-            for (int i = 0; i < 6; i++) group.Add(file["itemStorage"][i]);
+            foreach(var pair in file["itemStorage"]) group.Add(pair.Value);
             groups.Add(group);
 
             group = new ItemSlotGroupVM("Armor rack", ItemCategories.Armor);
@@ -96,7 +96,7 @@ namespace CoCEd.ViewModel
 
         public string Name
         {
-            get { return GetValue("short"); }
+            get { return GetString("short"); }
             set 
             { 
                 SetValue("short", value);
@@ -106,79 +106,79 @@ namespace CoCEd.ViewModel
 
         public int Strength
         {
-            get { return (int)GetDouble("str"); }
+            get { return GetInt("str"); }
             set { SetDouble("str", value); }
         }
 
         public int Toughness
         {
-            get { return (int)GetDouble("tou"); }
+            get { return GetInt("tou"); }
             set { SetDouble("tou", value); }
         }
 
         public int Speed
         {
-            get { return (int)GetDouble("spe"); }
+            get { return GetInt("spe"); }
             set { SetDouble("spe", value); }
         }
 
         public int Intelligence
         {
-            get { return (int)GetDouble("inte"); }
+            get { return GetInt("inte"); }
             set { SetDouble("inte", value); }
         }
 
         public int Libido
         {
-            get { return (int)GetDouble("lib"); }
+            get { return GetInt("lib"); }
             set { SetDouble("lib", value); }
         }
 
         public int Sensitivity
         {
-            get { return (int)GetDouble("sens"); }
+            get { return GetInt("sens"); }
             set { SetDouble("sens", value); }
         }
 
         public int Corruption
         {
-            get { return (int)GetDouble("cor"); }
+            get { return GetInt("cor"); }
             set { SetDouble("cor", value); }
         }
 
         public int HP
         {
-            get { return GetValue("HP"); }
+            get { return GetInt("HP"); }
             set { SetValue("HP", value); }
         }
 
         public int XP
         {
-            get { return GetValue("XP"); }
+            get { return GetInt("XP"); }
             set { SetValue("XP", value); }
         }
 
         public int TeaseXP
         {
-            get { return GetValue("teaseXP"); }
+            get { return GetInt("teaseXP"); }
             set { SetValue("teaseXP", value); }
         }
 
         public int Lust
         {
-            get { return (int)GetDouble("lust"); }
+            get { return GetInt("lust"); }
             set { SetDouble("lust", value); }
         }
 
         public int Fatigue
         {
-            get { return GetValue("fatigue"); }
+            get { return GetInt("fatigue"); }
             set { SetValue("fatigue", value); }
         }
 
         public int Gems
         {
-            get { return GetValue("gems"); }
+            get { return GetInt("gems"); }
             set { SetValue("gems", value); }
         }
 
@@ -186,49 +186,49 @@ namespace CoCEd.ViewModel
 
         public double HairLength
         {
-            get { return GetValue("hairLength"); }
+            get { return GetDouble("hairLength"); }
             set { SetValue("hairLength", value); }
         }
 
         public string HairColor
         {
-            get { return GetValue("hairColor"); }
+            get { return GetString("hairColor"); }
             set { SetValue("hairColor", value); }
         }
 
         public int FaceType
         {
-            get { return GetValue("faceType"); }
+            get { return GetInt("faceType"); }
             set { SetValue("faceType", value); }
         }
 
         public int AntennaeType
         {
-            get { return GetValue("antennae"); }
+            get { return GetInt("antennae"); }
             set { SetValue("antennae", value); }
         }
 
         public int EyeType
         {
-            get { return GetValue("eyeType"); }
+            get { return GetInt("eyeType"); }
             set { SetValue("eyeType", value); }
         }
 
         public int EarType
         {
-            get { return GetValue("earType"); }
+            get { return GetInt("earType"); }
             set { SetValue("earType", value); }
         }
 
         public int TongueType
         {
-            get { return GetValue("tongueType"); }
+            get { return GetInt("tongueType"); }
             set { SetValue("tongueType", value); }
         }
 
         public int HornType
         {
-            get { return GetValue("hornType"); }
+            get { return GetInt("hornType"); }
             set 
             {
                 if (!SetValue("hornType", value)) return;
@@ -240,7 +240,7 @@ namespace CoCEd.ViewModel
 
         public double HornsValue
         {
-            get { return GetValue("horns"); }
+            get { return GetDouble("horns"); }
             set { SetValue("horns", value); }
         }
 
@@ -269,67 +269,67 @@ namespace CoCEd.ViewModel
 
         public double Height
         {
-            get { return GetValue("tallness"); }
+            get { return GetDouble("tallness"); }
             set { SetValue("tallness", value); }
         }
 
         public int HipRating
         {
-            get { return GetValue("hipRating"); }
+            get { return GetInt("hipRating"); }
             set { SetValue("hipRating", value); }
         }
 
         public int ButtRating
         {
-            get { return GetValue("buttRating"); }
+            get { return GetInt("buttRating"); }
             set { SetValue("buttRating", value); }
         }
 
         public int BodyThickness
         {
-            get { return GetValue("thickness"); }
+            get { return GetInt("thickness"); }
             set { SetValue("thickness", value); }
         }
 
         public int Muscles
         {
-            get { return GetValue("tone"); }
+            get { return GetInt("tone"); }
             set { SetValue("tone", value); }
         }
 
         public int Feminity
         {
-            get { return GetValue("femininity"); }
+            get { return GetInt("femininity"); }
             set { SetValue("femininity", value); }
         }
 
         public int SkinType
         {
-            get { return GetValue("skinType"); }
+            get { return GetInt("skinType"); }
             set { SetValue("skinType", value); }
         }
 
         public string SkinTone
         {
-            get { return GetValue("skinTone"); }
+            get { return GetString("skinTone"); }
             set { SetValue("skinTone", value); }
         }
 
         public int LowerBodyType
         {
-            get { return GetValue("lowerBody"); }
+            get { return GetInt("lowerBody"); }
             set { SetValue("lowerBody", value); }
         }
 
         public int TailType
         {
-            get { return GetValue("tailType"); }
+            get { return GetInt("tailType"); }
             set { SetValue("tailType", value); }
         }
 
         public int WingType
         {
-            get { return GetValue("wingType"); }
+            get { return GetInt("wingType"); }
             set { SetValue("wingType", value); }
         }
 
@@ -337,13 +337,13 @@ namespace CoCEd.ViewModel
 
         public int Fertility
         {
-            get { return GetValue("fertility"); }
+            get { return GetInt("fertility"); }
             set { SetValue("fertility", value); }
         }
 
         public int PregnancyType
         {
-            get { return GetValue("pregnancyType"); }
+            get { return GetInt("pregnancyType"); }
             set 
             {
                 if (!SetValue("pregnancyType", value)) return;
@@ -353,7 +353,7 @@ namespace CoCEd.ViewModel
 
         public int PregnancyTime
         {
-            get { return GetValue("pregnancyIncubation"); }
+            get { return GetInt("pregnancyIncubation"); }
             set { SetValue("pregnancyIncubation", value); }
         }
 
@@ -364,7 +364,7 @@ namespace CoCEd.ViewModel
 
         public int ButtPregnancyType
         {
-            get { return GetValue("buttPregnancyType"); }
+            get { return GetInt("buttPregnancyType"); }
             set 
             {
                 if (!SetValue("buttPregnancyType", value)) return;
@@ -374,14 +374,14 @@ namespace CoCEd.ViewModel
 
         public int ButtPregnancyTime
         {
-            get { return GetValue("buttPregnancyIncubation"); }
+            get { return GetInt("buttPregnancyIncubation"); }
             set { SetValue("buttPregnancyIncubation", value); }
         }
 
 
         public int Balls
         {
-            get { return GetValue("balls"); }
+            get { return GetInt("balls"); }
             set
             {
                 if (!SetValue("balls", value)) return;
@@ -391,7 +391,7 @@ namespace CoCEd.ViewModel
 
         public double BallSize
         {
-            get { return GetValue("ballSize"); }
+            get { return GetDouble("ballSize"); }
             set
             {
                 if (!SetValue("ballSize", value)) return;
@@ -401,7 +401,7 @@ namespace CoCEd.ViewModel
 
         public double CumMultiplier
         {
-            get { return GetValue("cumMultiplier"); }
+            get { return GetDouble("cumMultiplier"); }
             set 
             {
                 if (!SetValue("cumMultiplier", value)) return;
@@ -411,13 +411,13 @@ namespace CoCEd.ViewModel
 
         public double ClitLength
         {
-            get { return GetValue("clitLength"); }
+            get { return GetDouble("clitLength"); }
             set { SetValue("clitLength", value); }
         }
 
         public double NippleLength
         {
-            get { return GetValue("nippleLength"); }
+            get { return GetDouble("nippleLength"); }
             set { SetValue("nippleLength", value); }
         }
 
@@ -467,13 +467,13 @@ namespace CoCEd.ViewModel
 
         public int Looseness
         {
-            get { return GetValue("analLooseness"); }
+            get { return GetInt("analLooseness"); }
             set { SetValue("analLooseness", value); }
         }
 
         public int Wetness
         {
-            get { return GetValue("analWetness"); }
+            get { return GetInt("analWetness"); }
             set { SetValue("analWetness", value); }
         }
     }
@@ -492,7 +492,7 @@ namespace CoCEd.ViewModel
 
         public int Type
         {
-            get { return GetValue("cockType"); }
+            get { return GetInt("cockType"); }
             set 
             {
                 if (!SetValue("cockType", value)) return;
@@ -502,19 +502,19 @@ namespace CoCEd.ViewModel
 
         public int Length
         {
-            get { return GetValue("cockLength"); }
+            get { return GetInt("cockLength"); }
             set { SetValue("cockLength", value); }
         }
 
         public int Thickness
         {
-            get { return GetValue("cockThickness"); }
+            get { return GetInt("cockThickness"); }
             set { SetValue("cockThickness", value); }
         }
 
         public double KnotMultiplier
         {
-            get { return GetValue("knotMultiplier"); }
+            get { return GetDouble("knotMultiplier"); }
             set { SetValue("knotMultiplier", value); }
         }
 
@@ -571,7 +571,7 @@ namespace CoCEd.ViewModel
 
         public int Rating
         {
-            get { return (int)GetDouble("breastRating"); }
+            get { return GetInt("breastRating"); }
             set
             {
                 if (!SetDouble("breastRating", value)) return;
@@ -582,7 +582,7 @@ namespace CoCEd.ViewModel
 
         public int BreastCount
         {
-            get { return GetValue("breasts"); }
+            get { return GetInt("breasts"); }
             set
             {
                 if (!SetValue("breasts", value)) return;
@@ -592,19 +592,19 @@ namespace CoCEd.ViewModel
 
         public int NipplesPerBreast
         {
-            get { return GetValue("nipplesPerBreast"); }
+            get { return GetInt("nipplesPerBreast"); }
             set { SetValue("nipplesPerBreast", value); }
         }
 
         public bool Fuckable
         {
-            get { return GetValue("fuckable"); }
+            get { return GetBool("fuckable"); }
             set { SetValue("fuckable", value); }
         }
 
         public double LactationMultiplier
         {
-            get { return GetValue("lactationMultiplier"); }
+            get { return GetDouble("lactationMultiplier"); }
             set 
             {
                 if (!SetValue("lactationMultiplier", value)) return;
@@ -710,25 +710,25 @@ namespace CoCEd.ViewModel
 
         public int Type
         {
-            get { return GetValue("type"); }
+            get { return GetInt("type"); }
             set { SetValue("type", value);  }
         }
 
         public int Looseness
         {
-            get { return GetValue("vaginalLooseness"); }
+            get { return GetInt("vaginalLooseness"); }
             set { SetValue("vaginalLooseness", value); }
         }
 
         public int Wetness
         {
-            get { return GetValue("vaginalWetness"); }
+            get { return GetInt("vaginalWetness"); }
             set { SetValue("vaginalWetness", value); }
         }
 
         public bool Virgin
         {
-            get { return GetValue("virgin"); }
+            get { return GetBool("virgin"); }
             set { SetValue("virgin", value); }
         }
 
@@ -831,7 +831,7 @@ namespace CoCEd.ViewModel
 
         public int Quantity
         {
-            get { return GetValue("quantity"); }
+            get { return GetInt("quantity"); }
             set 
             {
                 if (!SetValue("quantity", value)) return;
@@ -842,7 +842,7 @@ namespace CoCEd.ViewModel
 
         public string Type
         {
-            get { return GetValue("shortName"); }
+            get { return GetString("shortName"); }
             set
             {
                 if (!SetValue("shortName", value)) return;
