@@ -83,14 +83,42 @@ namespace CoCEd.ViewModel
             _node = node;
         }
 
-        protected dynamic GetValue(string name)
+        private dynamic GetValue(string name)
         {
             return _node[name];
         }
 
         protected double GetDouble(string name)
         {
-            return (double)GetValue(name);
+            dynamic value = GetValue(name);
+            if (value is string) return Double.Parse((string)value);
+            return (double)value;
+        }
+
+        protected int GetInt(string name)
+        {
+            dynamic value = GetValue(name);
+            if (value is string) return Int32.Parse((string)value);
+            if (value is double) return (int)(double)value;
+            return (int)value;
+        }
+
+        protected string GetString(string name)
+        {
+            dynamic value = GetValue(name);
+            if (value is string) return (string)value;
+            if (value == null) return null;
+            return value.ToString();
+        }
+
+        protected bool GetBool(string name)
+        {
+            dynamic value = GetValue(name);
+            if (value == false) return false;
+            if (value == true) return true;
+            if (value == "true") return true;
+            if (value == "false") return false;
+            return (bool)value;
         }
 
         protected bool SetValue(string name, dynamic value, [CallerMemberName] string propertyName = null)
