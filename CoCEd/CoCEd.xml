@@ -422,128 +422,134 @@
   <!--============================================================================================================================================-->
   <Perks>
     <StarterPerks>
-      <Perk Name="Big Cock" Description="Gain cock size 25% faster and grow larger easier." Value1="1.25" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Big Clit" Description="Allows your clit to grow larger faster." Value1="1.25" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Big Tits" Description="Makes your tits grow larger more easily." Value1="1.5" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Fast" Description="Gain speed 25% faster." Value1="0.25" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Fertile" Description="Makes you 15% more likely to become pregnant." Value1="1.5" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Lusty" Description="Gain lust 25% faster." Value1="0.25" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Messy Orgasms" Description="Produces 50% more cum volume." Value1="1.25" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Sensitive" Description="Gain sensitivity 25% faster." Value1="0.25" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Smart" Description="Gain intelligence 25% faster." Value1="0.25" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Strong" Description="Gain strength 25% faster." Value1="0.25" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Tough" Description="Gain toughness 25% faster." Value1="0.25" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Wet Pussy" Description="Keeps your pussy from ever being anything less than wet." Value1="2" Value2="0" Value3="0" Value4="0" />
+      <Perk Name="Big Cock" Description="Gain cock size 25% faster and grow larger easier." Value1="1.25"/>
+      <Perk Name="Big Clit" Description="Allows your clit to grow larger faster." Value1="1.25"/>
+      <Perk Name="Big Tits" Description="Makes your tits grow larger more easily." Value1="1.5"/>
+      <Perk Name="Fast" Description="Gain speed 25% faster." Value1="0.25"/>
+      <Perk Name="Fertile" Description="Makes you 15% more likely to become pregnant." Value1="1.5"/>
+      <Perk Name="Lusty" Description="Gain lust 25% faster." Value1="0.25"/>
+      <Perk Name="Messy Orgasms" Description="Produces 50% more cum volume." Value1="1.25"/>
+      <Perk Name="Sensitive" Description="Gain sensitivity 25% faster." Value1="0.25"/>
+      <Perk Name="Smart" Description="Gain intelligence 25% faster." Value1="0.25"/>
+      <Perk Name="Strong" Description="Gain strength 25% faster." Value1="0.25"/>
+      <Perk Name="Tough" Description="Gain toughness 25% faster." Value1="0.25"/>
+      <Perk Name="Wet Pussy" Description="Keeps your pussy from ever being anything less than wet." Value1="2"/>
     </StarterPerks>
     
     <HistoryPerks>
-      <Perk Name="History: Alchemist" Value1="0" Value2="0" Value3="0" Value4="0"/>
-      <Perk Name="History: Fighter" Value1="0" Value2="0" Value3="0" Value4="0"/>
-      <Perk Name="History: Healer" Value1="0" Value2="0" Value3="0" Value4="0"/>
-      <Perk Name="History: Religious" Value1="0" Value2="0" Value3="0" Value4="0"/>
-      <Perk Name="History: Scholar" Value1="0" Value2="0" Value3="0" Value4="0"/>
-      <Perk Name="History: Slacker" Value1="0" Value2="0" Value3="0" Value4="0"/>
-      <Perk Name="History: Slut" Value1="0" Value2="0" Value3="0" Value4="0"/>
-      <Perk Name="History: Smith" Value1="0" Value2="0" Value3="0" Value4="0"/>
-      <Perk Name="History: Whore" Value1="0" Value2="0" Value3="0" Value4="0"/>
+      <Perk Name="History: Alchemist" Description="Alchemical experience makes items more reactive to your body."/>
+      <Perk Name="History: Fighter" Description="Past full of conflict increases physical damage dealt by 10%."/>
+      <Perk Name="History: Healer" Description="Healing experience increases HP gains by 20%."/>
+      <Perk Name="History: Religious" Description="Replaces masturbate with meditate when corruption less than or equal to 66."/>
+      <Perk Name="History: Scholar" Description="Time spent focusing your mind makes spellcasting 20% less fatiguing."/>
+      <Perk Name="History: Slacker" Description="Regenerate fatigue 20% faster."/>
+      <Perk Name="History: Slut" Description="Sexual experience has made you more able to handle large insertions and more resistant to stretching."/>
+      <Perk Name="History: Smith" Description="Knowledge of armor and fitting increases armor effectiveness by roughly 10%."/>
+      <Perk Name="History: Whore" Description="Seductive experience causes your tease attacks to be 15% more effective."/>
     </HistoryPerks>
 
     <Tier0Perks>
-      <Perk Name="Acclimation" Description="Reduces the rate at which your lust increases." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Corrupted Libido" Description="Reduces lust gain by 10%." Value1="20" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Double Attack" Description="Allows you to perform two melee attacks per round." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Evade" Description="CHEATER JACKASS JERKFACE" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Fertility+" Description="Increases pregnancy chance by 15% and cum volume by up to 50%." Value1="15" Value2="1.75" Value3="0" Value4="0" />
-      <Perk Name="Hot Blooded" Description="Raises minimum lust by up to 20." Value1="20" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Mage" Description="Increases the strength of your spells even more than 'Spellpower', up to 100%." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Nymphomania" Description="Raises minimum lust by up to 30." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Precision" Description="Reduces enemy damage resistance by 10." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Regeneration" Description="Regenerates 2 HP/hour and 1 HP/round." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Runner" Description="CHEATER JACKASS JERKFACE" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Seduction" Description="Upgrades your tease attack, making it more effective." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Spellpower" Description="Increases the effects of your spells by up to 50%." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Strong Back" Description="Cheating Nerd!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Strong Back 2: Strong Harder" Description="Cheating Nerd!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Tank" Description="Raises max HP by 50." Value1="0" Value2="0" Value3="0" Value4="0" />
+      <Perk Name="Acclimation" Description="Reduces lust gain by 15%."/>
+      <Perk Name="Corrupted Libido" Description="Reduces lust gain by 10%." Value1="20"/>
+      <Perk Name="Double Attack" Description="Allows you to perform two melee attacks per round."/>
+      <Perk Name="Evade" Description="Increases chances of evading enemy attacks."/>
+      <Perk Name="Fertility+" Description="Increases pregnancy chance by 15% and cum volume by up to 50%." Value1="15" Value2="1.75"/>
+      <Perk Name="Hot Blooded" Description="Raises minimum lust by up to 20." Value1="20"/>
+      <Perk Name="Mage" Description="Increases base spell strength by 50%."/>
+      <Perk Name="Nymphomania" Description="Raises minimum lust by up to 30."/>
+      <Perk Name="Precision" Description="Reduces enemy damage resistance by 10."/>
+      <Perk Name="Regeneration" Description="Regenerates 2 HP/hour and 1 HP/round."/>
+      <Perk Name="Runner" Description="Increases chances of escaping combat."/>
+      <Perk Name="Seduction" Description="Upgrades your tease attack, making it more effective."/>
+      <Perk Name="Spellpower" Description="Increases base spell strength by 50%."/>
+      <Perk Name="Strong Back" Description="Enables fourth item slot."/>
+      <Perk Name="Strong Back 2: Strong Harder" Description="Enables fifth item slot."/>
+      <Perk Name="Tank" Description="Raises max HP by 50."/>
     </Tier0Perks>
 
     <Tier1Perks>
-      <Perk Name="Agility" Description="CHEATER JACKASS JERKFACE" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Arousing Aura" Description="While your corruption is at or above 70, you exude an aura of lust." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Brutal Blows" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Channeling" Description="You've gotten even better at spellcasting, gaining up to 50% more effectiveness!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Immovable Object" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Lightning Strikes" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Masochist" Description="You have a masochism fetish and take 30 percent less damage, but your lust goes up when struck (Requires 60+ Libido)." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Medicine" Description="You now have a 15% chance per round of cleansing poisons/drugs from your body." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Regeneration 2" Description="You regenerate an additional 3HP per round and heal faster out of combat" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Resistance" Description="You've become resistant to the myriad ways your lust can be increased." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Sadist" Description="You have a sadism fetish and strike harder, but become aroused by the act of dealing damage." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Speedy Recovery" Description="Thanks to your impressive metabolism you regain fatigue 50% faster." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Tactician" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Tank 2" Description="Your maximum HP is raised by an extra 1 point per point of toughness!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Thunderous Strikes" Description="+20% 'Attack' damage while strength is at or above 80." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Weapon Mastery" Description="After getting so good at carrying large objects, you find large weapons much easier to handle (Double 'Large' weapon bonuses when equipped)." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Well Adjusted" Description="You gain half as much lust as time passes in Mareth." Value1="0" Value2="0" Value3="0" Value4="0" />
+      <Perk Name="Agility" Description="Boosts armor points by a portion of your speed on light/medium armors."/>
+      <Perk Name="Arousing Aura" Description="While your corruption is at or above 70, you exude an aura of lust."/>
+      <Perk Name="Brutal Blows" Description="Reduces enemy armor with each hit."/>
+      <Perk Name="Channeling" Description="Increases base spell strength by 50%."/>
+      <Perk Name="Immovable Object" Description="Grants 20% physical damage reduction."/>
+      <Perk Name="Lightning Strikes" Description="Increases the attack damage for non-heavy weapons."/>
+      <Perk Name="Masochist" Description="Take 30% less physical damage but gain lust when damage."/>
+      <Perk Name="Medicine" Description="Grants 15% chance per round of cleansing poisons/drugs from your body."/>
+      <Perk Name="Regeneration 2" Description="Gain 3HP per round of combat and heal faster out of combat."/>
+      <Perk Name="Resistance" Description="Reduces lust gain by 10%."/>
+      <Perk Name="Sadist" Description="Deal 20% more damage, but gain lust at the same time."/>
+      <Perk Name="Speedy Recovery" Description="Thanks to your impressive metabolism you regain fatigue 50% faster."/>
+      <Perk Name="Tactician" Description="Increases critical hit chance by up to 10% (Intelligence-based)."/>
+      <Perk Name="Tank 2" Description="Your maximum HP is raised by an extra 1 point per point of toughness!"/>
+      <Perk Name="Thunderous Strikes" Description="+20% 'Attack' damage while strength is at or above 80."/>
+      <Perk Name="Weapon Mastery" Description="Doubles damage bonus of weapons classified as 'Large'."/>
+      <Perk Name="Well Adjusted" Description="You gain half as much lust as time passes in Mareth."/>
     </Tier1Perks>
 
     <Tier2Perks>
-      <Perk Name="Archmage" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Berzerker" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Resolute" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Lunging Attacks" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
+      <Perk Name="Archmage" Description="Increases base spell strength by 50%."/>
+      <Perk Name="Berzerker" Description="Grants 'Berzerk' ability."/>
+      <Perk Name="Resolute" Description="Grants immunity to stuns and some statuses."/>
+      <Perk Name="Lunging Attacks" Description="Grants 50% armor penetration for standard attacks."/>
     </Tier2Perks>
     
     <EventPerks>
-      <Perk Name="Androgyny" Description="Your face is able to be as masculine or feminine as possible, regardless of gender." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Bimbo Body" Description="Cheater." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Bimbo Brains" Description="Cheater." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Blood Mage" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Brawler" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Bro Body" Description="You have the body of a muscled, sex-addicted hunk.  Your cock cannot be shorter than 10&quot;, you're much lustier, more accustomed to being turned on, and you gain a bonus to using your body to arouse your enemies in combat!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Bro Brains" Description="After drinking a 'Bro Brew', your maximum capacity for intellect is greatly decreased." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Brood Mother" Description="Pregnancy moves twice as fast as a normal woman's." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Bulge Armor" Description="Your crotch-hugging armor improves penis-based enticements." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Bunny Eggs" Description="Laying eggs has become a normal part of your bunny-body's routine." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Cornucopia" Description="Get out of here, you dirty hobo!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Diapause" Description="Your marsupial-like body can delay a pregnancy indefinitely, but drinking or otherwise intaking fluids will advance it." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Dragonfire" Description="You're a cheater, cheater." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Elven Bounty" Description="After your encounter with an elf, her magic has left you with increased fertility." Value1="0" Value2="15" Value3="0" Value4="0" />
-      <Perk Name="Feeder" Description="The LaBova has corrupted your breasts, preventing your lactation from decreasing and giving you an urge to feed it to others." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Fera's Boon - Alpha" Description="FUCKING SAVE EDITORS MANG" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Fera's Boon - Breeding Bitch" Description="HAXOR!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Fire Lord" Description="Thanks to Akbal's blessings, you're able to breathe gouts of green flame at your foes." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Flexibility" Description="CHEATER JACKASS JERKFACE" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Futa Faculties" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Futa Form" Description="" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Harpy Womb" Description="So long as you have harpy legs and a harpy tail, your womb will never produce small eggs." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Hellfire" Description="You've been gifted with Hellfire for pleasing the master of the hellhounds." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Incorporeality" Description="You seem to have inherited some of the spiritual powers of the residents of the afterlife!  While you wouldn't consider doing it for long due to its instability, you can temporarily become incorporeal for the sake of taking over enemies and giving them a taste of ghostly libido." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Luststick Adapted" Description="Minimum lust is permanently raised, but you are also more lust resistant.  In combat, you're immune to harpy lipstick, though it still gives you a rush during sex.  You can also wear the lipstick yourself." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Marae's Gift - Buttslut" Description="For some reason Marae altered your butthole to make it become wet and slippery when you're aroused." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Marae's Gift - Fertility" Description="Marae saw fit to 'reward' you for corrupting her by blessing you with unholy fertility!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Marae's Gift - Profractory" Description="Marae increased the speed at which your body produces cum, allowing you to build up fluid 3x as fast as a normal person." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Marae's Gift - Stud" Description="Marae saw fit to reward you for corrupting her by giving you a higher volume of semen and increasing its potency." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Marble Resistant" Description="You know how to avoid the addictive qualities of Marble's milk." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Marble's Milk" Description="You're totally addicted to Marble's milk and can't live without it." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Minotaur Cum Addict" Description="A hopeless addict to minotaur cum, you need it regularly and can be healed by bottled minotaur cum." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Misdirection" Description="You've learned quite a lot from Raphael, and your training, combined with the bodysuit, makes it easier to avoid attacks." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Omnibus' Gift" Description="Raises your minimum lust by up to 35 and slightly reduces lust gain." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="One Track Mind" Description="Q-q-quit peaking in my code, desu-chan!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Oviposition" Description="Laying eggs has become a normal part of your reptilian body's routine." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Pierced: Crimstone" Description="You've been pierced with Crimstone and your lust seems to stay a bit higher than before." Value1="5" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Pierced: Fertite" Description="You've been pierced with Fertite and any male or female organs have become more fertile." Value1="5" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Pierced: Furrite" Description="You've been pierced with Furrite and are more attractive to those who are part beast." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Pierced: Lethite" Description="You've been pierced with Lethite and demons are more attracted to you." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Pure and Loving" Description="Q-q-quit peaking in my code, desu-chan!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Purity Blessing" Description="Reduces the rate at which your corruption, libido, and lust increase." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Sensual Lover" Description="Q-q-quit peaking in my code, desu-chan!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Slime Core" Description="Moisture craving builds at a greatly reduced rate." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Slutty Seduction" Description="Your fetishy nurse outfit allows you access to an improved form of 'Tease'." Value1="8" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Thick Skin" Description="Your skin is now tough enough to effectively grant you an extra armor!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Whispered" Description="Akbal has allowed you to whisper to the minds of your foes, as he does." Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Wizard's Endurance" Description="Your spellcasting equipment makes it harder for spell-casting to fatigue you!" Value1="0" Value2="0" Value3="0" Value4="0" />
-      <Perk Name="Wizard's Focus" Description="Your wizard's staff grants you additional focus, reducing the use of fatigue for spells." Value1="0" Value2="0" Value3="0" Value4="0" />
+      <Perk Name="Androgyny" Description="No gender limits on facial masculinity or femininity."/>
+      <Perk Name="Basilisk Womb" Description="Enables your eggs to be properly fertilized into basilisks of both genders!"/>
+      <Perk Name="Bee Ovipositor" Description="Allows you to lay eggs through a special organ on your insect abdomen, though you need at least 10 eggs to lay."/>
+      <Perk Name="Bimbo Body" Description="Gives the body of a bimbo.  Tits will never stay below a 'DD' cup, libido is raised, lust resistance is raised, and upgrades tease."/>
+      <Perk Name="Bimbo Brains" Description="Now that you've drank bimbo liquer, you'll never, like, have the attention span and intelligence you once did!  But it's okay, 'cause you get to be so horny an' stuff!"/>
+      <Perk Name="Blood Mage" Description="Spellcasting now consumes health instead of fatigue!"/>
+      <Perk Name="Brawler" Description="Brawling experience allows you to make two unarmed attacks in a turn."/>
+      <Perk Name="Bro Body" Description="You have the body of a muscled, sex-addicted hunk.  Your cock cannot be shorter than 10&quot;, you're much lustier, more accustomed to being turned on, and you gain a bonus to using your body to arouse your enemies in combat!"/>
+      <Perk Name="Bro Brains" Description="After drinking a 'Bro Brew', your maximum capacity for intellect is greatly decreased."/>
+      <Perk Name="Brood Mother" Description="Pregnancy moves twice as fast as a normal woman's."/>
+      <Perk Name="Bulge Armor" Description="Grants a 5 point damage bonus to dick-based tease attacks."/>
+      <Perk Name="Bunny Eggs" Description="Laying eggs has become a normal part of your bunny-body's routine."/>
+      <Perk Name="Corrupted Nine-tails" Description="The mystical energy of the nine-tails surges through you, filling you with phenomenal cosmic power!  Your boundless magic allows you to recover quickly after casting spells, but your method of attaining it has corrupted the transformation, preventing you from achieving true enlightenment."/>
+      <Perk Name="Cornucopia" Description="Vaginal and Anal capacities increased by 30."/>
+      <Perk Name="Diapause" Description="Pregnancy does not advance normally, but develops quickly after taking in fluids."/>
+      <Perk Name="Dragonfire" Description="Allows access to a dragon breath attack."/>
+      <Perk Name="Elven Bounty" Description="Increases fertility and cum production by 15%."  Value2="15"/>
+      <Perk Name="Enlightened Nine-tails" Description="The mystical energy of the nine-tails surges through you, filling you with phenomenal cosmic power!  Your boundless magic allows you to recover quickly after casting spells."/>
+      <Perk Name="Feeder" Description="Lactation does not decrease and gives a compulsion to breastfeed others."/>
+      <Perk Name="Fera's Boon - Alpha" Description="Increases the rate your cum builds up and cum production in general."/>
+      <Perk Name="Fera's Boon - Breeding Bitch" Description="Increases fertility and reduces the time it takes to birth young."/>
+      <Perk Name="Fire Lord" Description="Thanks to Akbal's blessings, you're able to breathe gouts of green flame at your foes."/>
+      <Perk Name="Flexibility" Description="Grants cat-like flexibility.  Useful for dodging and 'fun'."/>
+      <Perk Name="Futa Faculties" Description="It's super hard to think about stuff that like, isn't working out or fucking!"/>
+      <Perk Name="Futa Form" Description="Ensures that your body fits the Futa look (Tits DD+, Dick 8&quot;+, &amp; Pussy).  Also keeps your lusts burning bright and improves the tease skill."/>
+      <Perk Name="Harpy Womb" Description="Increases all laid eggs to large size so long as you have harpy legs and a harpy tail."/>
+      <Perk Name="Hellfire" Description="Grants a corrupted fire breath attack, like the hellhounds in the mountains."/>
+      <Perk Name="Incorporeality" Description="Allows you to fade into a ghost-like state and temporarily possess others."/>
+      <Perk Name="Luststick Adapted" Description="Grants immunity to the lust-increasing effects of lust-stick and allows its use. Minimum lust is permanently raised."/>
+      <Perk Name="Marae's Gift - Buttslut" Description="Makes your anus provide lubrication when aroused."/>
+      <Perk Name="Marae's Gift - Fertility" Description="Greatly increases fertility and halves base pregnancy speed."/>
+      <Perk Name="Marae's Gift - Profractory" Description="Causes your cum to build up at 3x the normal rate."/>
+      <Perk Name="Marae's Gift - Stud" Description="Increases your cum production and potency greatly."/>
+      <Perk Name="Marble Resistant" Description="You know how to avoid the addictive qualities of Marble's milk."/>
+      <Perk Name="Marble's Milk" Description="You're totally addicted to Marble's milk and can't live without it."/>
+      <Perk Name="Minotaur Cum Addict" Description="Causes you to crave minotaur cum frequently.  You cannot shake this addiction."/>
+      <Perk Name="Misdirection" Description="Grants additional evasion chances while wearing Raphael's red bodysuit."/>
+      <Perk Name="Omnibus' Gift" Description="Raises your minimum lust by up to 35 and slightly reduces lust gain."/>
+      <Perk Name="One Track Mind" Description="Your constant desire for sex causes your sexual organs to be able to take larger insertions and disgorge greater amounts of fluid."/>
+      <Perk Name="Oviposition" Description="Laying eggs has become a normal part of your reptilian body's routine."/>
+      <Perk Name="Pierced: Crimstone" Description="Increases minimum lust by 5." Value1="5"/>
+      <Perk Name="Pierced: Fertite" Description="Increases fertility and cum production by 5%." Value1="5"/>
+      <Perk Name="Pierced: Furrite" Description="Increases chances of encountering 'furry' foes.."/>
+      <Perk Name="Pierced: Lethite" Description="Increases chances of encountering demonic foes."/>
+      <Perk Name="Pilgrim's Bounty" Description="Causes you to always cum as hard as if you had max lust."/>
+      <Perk Name="Pure and Loving" Description="Your caring attitude towards love and romance makes you slightly more resistant to lust and corruption."/>
+      <Perk Name="Purity Blessing" Description="Reduces the rate at which your corruption, libido, and lust increase."/>
+      <Perk Name="Sensual Lover" Description="Your sensual attitude towards love and romance makes your tease ability slightly more effective."/>
+      <Perk Name="Slime Core" Description="Moisture craving builds at a greatly reduced rate."/>
+      <Perk Name="Slutty Seduction" Description="Your fetishy nurse outfit allows you access to an improved form of 'Tease'." Value1="8"/>
+      <Perk Name="Spider Ovipositor" Description="Allows you to lay eggs through a special organ on your arachnid abdomen, though you need at least 10 eggs to lay."/>
+      <Perk Name="Thick Skin" Description="Your skin is now tough enough to effectively grant you an extra armor!"/>
+      <Perk Name="Whispered" Description="Akbal has allowed you to whisper to the minds of your foes, as he does."/>
+      <Perk Name="Wizard's Endurance" Description="Your spellcasting equipment makes it harder for spell-casting to fatigue you!"/>
+      <Perk Name="Wizard's Focus" Description="Your wizard's staff grants you additional focus, reducing the use of fatigue for spells."/>
     </EventPerks>
   </Perks>
 
