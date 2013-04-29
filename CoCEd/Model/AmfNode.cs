@@ -35,6 +35,11 @@ namespace CoCEd.Model
         private Undefined()
         {
         }
+
+        public override string ToString()
+        {
+            return "<undefined>";
+        }
     }
 
     public sealed class AmfPair

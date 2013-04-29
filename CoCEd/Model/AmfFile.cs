@@ -15,7 +15,7 @@ namespace CoCEd.Model
             : base(clone)
         {
             FilePath = clone.FilePath;
-            HasError = clone.HasError;
+            Error = clone.Error;
             Date = clone.Date;
             Name = clone.Name;
         }
@@ -35,23 +35,24 @@ namespace CoCEd.Model
                         Name = name;
                     }
                 }
+                throw new NotImplementedException();
             }
-            catch (IOException)
+            catch (IOException e)
             {
-                HasError = true;
+                Error = e.ToString();
             }
 #if !DEBUG
-            catch (InvalidOperationException)
+            catch (InvalidOperationException e)
             {
-                HasError = true;
+                Error = e.ToString();
             }
-            catch (ArgumentException)
+            catch (ArgumentException e)
             {
-                HasError = true;
+                Error = e.ToString();
             }
-            catch (NotImplementedException)
+            catch (NotImplementedException e)
             {
-                HasError = true;
+                Error = e.ToString();
             }
 #endif
         }
@@ -68,7 +69,7 @@ namespace CoCEd.Model
             private set;
         }
 
-        public bool HasError
+        public string Error
         {
             get;
             private set;

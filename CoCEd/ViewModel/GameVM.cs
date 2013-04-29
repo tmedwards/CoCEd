@@ -18,15 +18,26 @@ namespace CoCEd.ViewModel
         public GameVM(AmfFile file)
             : base(file)
         {
+            // Unique children
             Ass = new AssVM(file["ass"]);
+            LipPiercing = new PiercingVM(_node, "lip");
+            NosePiercing = new PiercingVM(_node, "nose");
+            EarsPiercing = new PiercingVM(_node, "ears");
+            EyebrowPiercing = new PiercingVM(_node, "eyebrow");
+            NipplesPiercing = new PiercingVM(_node, "nipples");
+            TonguePiercing = new PiercingVM(_node, "tongue");
+
+
+            // Collections
             Cocks = new CockArrayVM(file["cocks"]);
             Breasts = new BreastArrayVM(file["breastRows"]);
             Vaginas = new VaginaArrayVM(file["vaginas"]);
-
             Vaginas.CollectionChanged += OnGenitalsCollectionChanged;
             Breasts.CollectionChanged += OnGenitalsCollectionChanged;
             Cocks.CollectionChanged += OnGenitalsCollectionChanged;
 
+
+            // Items
             var groups = new List<ItemSlotGroupVM>();
             var group = new ItemSlotGroupVM("Inventory", ItemCategories.All);
             for (int i = 0; i < 5; i++) group.Add(file["itemSlot" + (i + 1)]);
@@ -47,9 +58,7 @@ namespace CoCEd.ViewModel
             ItemGroups = groups.ToArray();
 
 
-            NosePiercing = new PiercingVM(_node, "nose");
-
-
+            // Perks
             PerkGroups = new PerkGroupVM[]
             {
                 new PerkGroupVM("Starter", _node, XmlData.Instance.Perks.StarterPerks),
@@ -61,47 +70,20 @@ namespace CoCEd.ViewModel
             };
         }
 
-        public AssVM Ass
-        {
-            get;
-            private set;
-        }
+        public CockArrayVM Cocks { get; private set; }
+        public BreastArrayVM Breasts { get; private set; }
+        public VaginaArrayVM Vaginas { get; private set; }
 
-        public CockArrayVM Cocks
-        {
-            get;
-            private set;
-        }
+        public ItemSlotGroupVM[] ItemGroups { get; private set; }
+        public PerkGroupVM[] PerkGroups { get; private set; }
 
-        public BreastArrayVM Breasts
-        {
-            get;
-            private set;
-        }
-
-        public VaginaArrayVM Vaginas
-        {
-            get;
-            private set;
-        }
-
-        public ItemSlotGroupVM[] ItemGroups
-        {
-            get;
-            private set;
-        }
-
-        public PerkGroupVM[] PerkGroups
-        {
-            get;
-            private set;
-        }
-
-        public PiercingVM NosePiercing
-        {
-            get;
-            private set;
-        }
+        public AssVM Ass { get; private set; }
+        public PiercingVM NosePiercing { get; private set; }
+        public PiercingVM EarsPiercing { get; private set; }
+        public PiercingVM EyebrowPiercing { get; private set; }
+        public PiercingVM NipplesPiercing { get; private set; }
+        public PiercingVM TonguePiercing { get; private set; }
+        public PiercingVM LipPiercing { get; private set; }
 
         public string Name
         {
@@ -487,536 +469,6 @@ namespace CoCEd.ViewModel
         }
     }
 
-    public class CockVM : NodeVM
-    {
-        public CockVM(AmfNode node)
-            : base(node)
-        {
-        }
-
-        public XmlEnum[] AllTypes
-        {
-            get { return XmlData.Instance.Body.CockTypes; }
-        }
-
-        public int Type
-        {
-            get { return GetInt("cockType"); }
-            set 
-            {
-                if (!SetValue("cockType", value)) return;
-                OnPropertyChanged("KnotVisibility");
-            }
-        }
-
-        public int Length
-        {
-            get { return GetInt("cockLength"); }
-            set { SetValue("cockLength", value); }
-        }
-
-        public int Thickness
-        {
-            get { return GetInt("cockThickness"); }
-            set { SetValue("cockThickness", value); }
-        }
-
-        public double KnotMultiplier
-        {
-            get { return GetDouble("knotMultiplier"); }
-            set { SetValue("knotMultiplier", value); }
-        }
-
-        public Visibility KnotVisibility
-        {
-            get { return Type == 2 ? Visibility.Visible : Visibility.Collapsed; }
-        }
-
-        public string Description
-        {
-            get
-            {
-                var type = Type;
-                var cockType = XmlData.Instance.Body.CockTypes.FirstOrDefault(x => x.ID == type);
-                var cockTypeName = cockType != null ? cockType.Name : "unknown";
-                return String.Format("\" long {0} cock", cockTypeName);
-            }
-        }
-
-        protected override void OnPropertyChanged(string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            base.OnPropertyChanged("Description");
-        }
-    }
-
-    public sealed class CockArrayVM : ArrayVM<CockVM>
-    {
-        public CockArrayVM(AmfNode node)
-            : base(node, x => new CockVM(x))
-        {
-        }
-
-        protected override AmfNode CreateNewNode()
-        {
-            var node = new AmfArray();
-            node["cockLength"] = 8;
-            node["cockThickness"] = 2;
-            node["cockType"] = 0;
-            node["knotMultiplier"] = 0.0;
-            node["pierced"] = 0;
-            node["pLong"] = "";
-            node["pShort"] = "";
-            return node;
-        }
-    }
-
-    public class BreastsVM : NodeVM
-    {
-        public BreastsVM(AmfNode node)
-            : base(node)
-        {
-        }
-
-        public int Rating
-        {
-            get { return GetInt("breastRating"); }
-            set
-            {
-                if (!SetDouble("breastRating", value)) return;
-                OnPropertyChanged("RatingDescription");
-                OnPropertyChanged("MilkVolume");
-            }
-        }
-
-        public int BreastCount
-        {
-            get { return GetInt("breasts"); }
-            set
-            {
-                if (!SetValue("breasts", value)) return;
-                OnPropertyChanged("MilkVolume");
-            }
-        }
-
-        public int NipplesPerBreast
-        {
-            get { return GetInt("nipplesPerBreast"); }
-            set { SetValue("nipplesPerBreast", value); }
-        }
-
-        public bool Fuckable
-        {
-            get { return GetBool("fuckable"); }
-            set { SetValue("fuckable", value); }
-        }
-
-        public double LactationMultiplier
-        {
-            get { return GetDouble("lactationMultiplier"); }
-            set 
-            {
-                if (!SetValue("lactationMultiplier", value)) return;
-                OnPropertyChanged("MilkVolume");
-            }
-        }
-
-        public string MilkVolume
-        {
-            get
-            {
-                var qty = Rating * 10 * LactationMultiplier * BreastCount;
-                if (qty == 0) return "";
-                return qty < 1000 ? String.Format("{0:0} mL/h (base)", qty) : String.Format("{0:0.00} L/h (base)", qty * 0.001);
-            }
-        }
-
-        public string RatingDescription
-        {
-            get 
-            {
-                if (Rating <= 1) return "A";
-                if (Rating == 2) return "B";
-                if (Rating == 3) return "C";
-                if (Rating == 4) return "D";
-                if (Rating <= 6) return "DD";
-
-                // E=7,8  EE=9,10  F=11,12  FF=13,14
-                int offset = Math.Min(21, (Rating - 7) / 4);
-                char letter = (char)((int)'A' + (offset + 4));
-                bool doubled = (Rating - 7) >= offset * 4 + 2;
-
-                if (doubled) return letter.ToString() + letter;
-                return letter.ToString();
-            }
-        }
-
-        public string Description
-        {
-            get 
-            { 
-                var rating = RatingDescription;
-                if (BreastCount == 1) return "A " + rating + "-cup breast";
-                if (BreastCount == 2) return "A pair of " + rating + "-cup breasts";
-                if (BreastCount == 3) return "A triad of " + rating + "-cup breasts";
-                if (BreastCount == 4) return "A quartet of " + rating + "-cup breasts";
-                if (BreastCount == 5) return "A quintet of " + rating + "-cup breasts";
-                if (BreastCount == 6) return "A sextet of " + rating + "-cup breasts";
-                return "A bunch of " + rating + "-cup breasts";
-            }
-        }
-
-        protected override void OnPropertyChanged(string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            base.OnPropertyChanged("Description");
-        }
-    }
-
-    public sealed class BreastArrayVM : ArrayVM<BreastsVM>
-    {
-        public BreastArrayVM(AmfNode node)
-            : base(node, x => new BreastsVM(x))
-        {
-        }
-
-        protected override AmfNode CreateNewNode()
-        {
-            var node = new AmfArray();
-            node["breasts"] = 2;
-            node["fuckable"] = false;
-            node["breastRating"] = 3.0;
-            node["nipplesPerBreast"] = 1;
-            node["lactationMultiplier"] = 1.0;
-            node["milkFullness"] = 0;
-            node["fullness"] = 0;
-            return node;
-        }
-    }
-
-
-    public class VaginaVM : NodeVM
-    {
-        public VaginaVM(AmfNode node)
-            : base(node)
-        {
-        }
-
-        public XmlEnum[] AllTypes
-        {
-            get { return XmlData.Instance.Body.VaginaTypes; }
-        }
-
-        public XmlEnum[] AllLoosenessLevels
-        {
-            get { return XmlData.Instance.Body.VaginalLoosenessLevels; }
-        }
-
-        public XmlEnum[] AllWetnessLevels
-        {
-            get { return XmlData.Instance.Body.VaginalWetnessLevels; }
-        }
-
-        public int Type
-        {
-            get { return GetInt("type"); }
-            set { SetValue("type", value);  }
-        }
-
-        public int Looseness
-        {
-            get { return GetInt("vaginalLooseness"); }
-            set { SetValue("vaginalLooseness", value); }
-        }
-
-        public int Wetness
-        {
-            get { return GetInt("vaginalWetness"); }
-            set { SetValue("vaginalWetness", value); }
-        }
-
-        public bool Virgin
-        {
-            get { return GetBool("virgin"); }
-            set { SetValue("virgin", value); }
-        }
-
-        public string Description
-        {
-            get { return "One Vagina"; }
-        }
-
-        protected override void OnPropertyChanged(string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            base.OnPropertyChanged("Description");
-        }
-    }
-
-    public sealed class VaginaArrayVM : ArrayVM<VaginaVM>
-    {
-        public VaginaArrayVM(AmfNode node)
-            : base(node, x => new VaginaVM(x))
-        {
-        }
-
-        protected override AmfNode CreateNewNode()
-        {
-            var node = new AmfArray();
-
-            node["clipPLong"] = "";
-            node["clitPShort"] = "";
-            node["clitPierced"] = false;
-
-            node["labiaPLong"] = "";
-            node["labiaPShort"] = "";
-            node["labiaPierced"] = false;
-
-            node["type"] = 0;
-            node["virgin"] = true;
-            node["vaginalWetness"] = 1;
-            node["vaginalLooseness"] = 0;
-            return node;
-        }
-    }
-
-    public sealed class ItemSlotGroupVM
-    {
-        readonly List<ItemSlotVM> _slots = new List<ItemSlotVM>();
-
-        public ItemSlotGroupVM(string name, ItemCategories categories)
-        {
-            Name = name;
-            Categories = categories;
-        }
-
-        public string Name
-        {
-            get;
-            private set;
-        }
-
-        public ItemCategories Categories
-        {
-            get;
-            private set;
-        }
-
-        public IEnumerable<ItemSlotVM> Slots
-        {
-            get { return _slots; }
-        }
-
-        public void Add(AmfNode node)
-        {
-            _slots.Add(new ItemSlotVM(node, Categories));
-        }
-    }
-
-    public sealed class ItemSlotVM : NodeVM
-    {
-        public ItemSlotVM(AmfNode node, ItemCategories categories)
-            : base(node)
-        {
-            Categories = categories;
-        }
-
-        public ItemCategories Categories
-        {
-            get;
-            private set;
-        }
-
-        public IEnumerable<ItemGroupVM> AllGroups
-        {
-            get 
-            {
-                foreach(var group in XmlData.Instance.ItemGroups)
-                {
-                    if (Categories.HasFlag(group.Category)) yield return new ItemGroupVM(group, this);
-                }
-            }
-        }
-
-        public int Quantity
-        {
-            get { return GetInt("quantity"); }
-            set 
-            {
-                if (!SetValue("quantity", value)) return;
-                OnPropertyChanged("TypeDescription");
-                OnPropertyChanged("QuantityDescription");
-            }
-        }
-
-        public string Type
-        {
-            get { return GetString("shortName"); }
-            set
-            {
-                if (!SetValue("shortName", value)) return;
-                OnPropertyChanged("TypeDescription");
-                OnPropertyChanged("QuantityDescription");
-            }
-        }
-
-        public string TypeDescription
-        {
-            get
-            {
-                var type = XmlData.Instance.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
-                if (Quantity == 0 || type == null) return "<empty>";
-                return type.Name;
-            }
-        }
-
-        public string QuantityDescription
-        {
-            get
-            {
-                var type = XmlData.Instance.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
-                if (Quantity == 0 || type == null) return "";
-                return "x" + Quantity.ToString();
-            }
-        }
-    }
-
-
-    public sealed class ItemGroupVM
-    {
-        const int Columns = 3;
-        readonly ItemVM[] _items;
-
-        public ItemGroupVM(XmlItemGroup group, ItemSlotVM slot)
-        {
-            Name = group.Name;
-            _items = group.Items.OrderBy(x => x.Name).Select(x => new ItemVM(slot, x)).ToArray();
-        }
-
-        public string Name
-        {
-            get;
-            private set;
-        }
-
-        public IEnumerable<ItemVM> Items
-        {
-            get { return _items; }
-        }
-    }
-
-    public sealed class ItemVM : BindableBase
-    {
-        readonly ItemSlotVM _slot;
-        readonly XmlEnumWithStringID _item;
-
-        public ItemVM(ItemSlotVM slot, XmlEnumWithStringID item)
-        {
-            _slot = slot;
-            _item = item;
-        }
-
-        public string Name
-        {
-            get { return _item.Name; }
-        }
-
-        public bool IsSelected
-        {
-            get { return _slot.Type == _item.ID; }
-            set
-            {
-                if (value)
-                {
-                    _slot.Type = _item.ID;
-                    if (_slot.Quantity == 0) _slot.Quantity = 1;
-                }
-                else if (_slot.Type == _item.ID)
-                {
-                    _slot.Type = "";
-                }
-                OnPropertyChanged();
-                VM.Instance.NotifySaveRequiredChanged();
-            }
-        }
-    }
-
-    public sealed class PerkGroupVM
-    {
-        public PerkGroupVM(string name, AmfNode character, IEnumerable<XmlPerk> perks)
-        {
-            Name = name;
-            Perks = perks.OrderBy(x => x.Name).Select(x => new PerkVM(character["perks"] as AmfNode, x)).ToArray();
-        }
-
-        public string Name
-        {
-            get;
-            private set;
-        }
-
-        public PerkVM[] Perks
-        {
-            get;
-            private set;
-        }
-    }
-
-    public sealed class PerkVM : BindableBase
-    {
-        readonly AmfNode _perksArray;
-        readonly XmlPerk _xml;
-
-        public PerkVM(AmfNode perksArray, XmlPerk xml)
-        {
-            _perksArray = perksArray;
-            _xml = xml;
-        }
-
-        public string Name
-        {
-            get { return _xml.Name; }
-        }
-
-        public string Description
-        {
-            get { return String.IsNullOrEmpty(_xml.Description) ? "<no description>" : _xml.Description; }
-        }
-
-        public bool IsOwned
-        {
-            get { return Pair != null; }
-            set
-            {
-                var pair = Pair;
-                if (value == (pair != null)) return;
-                if (value)
-                {
-                    AmfNode perk = new AmfArray();
-                    perk["perkDesc"] = _xml.Description;
-                    perk["perkName"] = _xml.Name;
-                    perk["value1"] = _xml.Value1;
-                    perk["value2"] = _xml.Value2;
-                    perk["value3"] = _xml.Value3;
-                    perk["value4"] = _xml.Value4;
-                    _perksArray.Add(perk);
-                }
-                else
-                {
-                    object removed;
-                    _perksArray.Remove(pair.Key, true, out removed);
-                }
-                OnPropertyChanged("IsOwned");
-                VM.Instance.NotifySaveRequiredChanged();
-            }
-        }
-
-        public AmfPair Pair
-        {
-            get { return _perksArray.FirstOrDefault(x => String.Equals((x.Value as AmfNode)["perkName"] as string, _xml.Name, StringComparison.InvariantCultureIgnoreCase)); }
-        }
-    }
-
     public sealed class PiercingVM : NodeVM
     {
         readonly string _prefix;
@@ -1034,24 +486,24 @@ namespace CoCEd.ViewModel
 
         public int Type
         {
-            get { return GetInt(_prefix + "Pierced"); }
+            get { return GetInt(_prefix == "" ? "pierced" : _prefix + "Pierced"); }
             set 
             { 
-                SetValue(_prefix + "Pierced", value);
+                SetValue(_prefix == "" ? "pierced" : _prefix + "Pierced", value);
                 OnPropertyChanged("CanEditName");
             }
         }
 
         public string UpperName
         {
-            get { return GetString(_prefix + "PLong"); }
-            set { SetValue(_prefix + "PLong", value); }
+            get { return GetString(_prefix == "" ? "pLong" : _prefix + "PLong"); }
+            set { SetValue(_prefix == "" ? "pLong" : _prefix + "PLong", value); }
         }
 
         public string LowerName
         {
-            get { return GetString(_prefix + "PShort"); }
-            set { SetValue(_prefix + "PShort", value); }
+            get { return GetString(_prefix == "" ? "pShort" : _prefix + "PShort"); }
+            set { SetValue(_prefix == "" ? "pShort" : _prefix + "PShort", value); }
         }
 
         public bool CanEditName

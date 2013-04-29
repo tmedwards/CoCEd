@@ -65,7 +65,10 @@
                 <common:AutoGrid>
                     <TextBlock              Text="Type"/>
                     <common:MyComboBox               SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
-                    
+
+                    <TextBlock              Text="Piercing"/>
+                    <common:MyPiercingBox DataContext="{Binding Piercing}"/>
+
                     <TextBlock              Text="Length"/>
                     <common:MyNumericBox    Value="{Binding Length}" Min="0" IsInteger="True" Unit="inches"/>
                     
@@ -74,6 +77,7 @@
 
                     <TextBlock              Text="Knots multiplier" Visibility="{Binding KnotVisibility}"/>
                     <common:MyNumericBox    Value="{Binding KnotMultiplier}" Min="0" Visibility="{Binding KnotVisibility}"/>
+                   
                 </common:AutoGrid>
             </common:ArrayEditor>
         </StackPanel>
@@ -109,6 +113,12 @@
 
                     <TextBlock              Text="Wetness"/>
                     <common:MyComboBox               SelectedValue="{Binding Wetness}" ItemsSource="{Binding AllWetnessLevels}"/>
+
+                    <TextBlock              Text="Labia piercing"/>
+                    <common:MyPiercingBox DataContext="{Binding LabiaPiercing}"/>
+
+                    <TextBlock              Text="Clit piercing"/>
+                    <common:MyPiercingBox DataContext="{Binding ClitPiercing}"/>
 
                     <Border/>
                     <CheckBox Content="Virgin" IsChecked="{Binding Virgin}"/>

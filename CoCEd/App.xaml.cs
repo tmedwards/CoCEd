@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using System.Xml.Serialization;
+using CoCEd.Common;
 using CoCEd.Model;
 using CoCEd.ViewModel;
 
@@ -44,18 +45,8 @@ namespace CoCEd
                 "An error occured and the application is going to exit.\n\n The error below will be saved as CoCEd.log. Please report it on CoC's forums (you can also use Ctrl+C):\n" + e.Exception.ToString(),
                 "Unexpected error.", MessageBoxButton.OK);
 
-            try
-            {
-                if (File.Exists("CoCEd.log")) File.Delete("CoCEd.log");
-                File.WriteAllText("CoCEd.log", e.Exception.ToString());
-            }
-            catch
-            {
-            }
-            finally
-            {
-                Shutdown();
-            }
+            Logger.Error(e.Exception);
+            Shutdown();
         }
 
         void Initialize()

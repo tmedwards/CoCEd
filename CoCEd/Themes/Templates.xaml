@@ -191,13 +191,13 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Type" VerticalAlignment="Center"/>
                                     <common:MyComboBox Grid.Column="1" SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}" HorizontalAlignment="Right"/>
-                                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Foreground="#808080" Margin="0,0,0,0" Text="Even if you change or remove one of Ceraph's piercings, the game will still consider it is there." TextWrapping="Wrap" TextAlignment="Justify" />
+                                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Foreground="#808080" Margin="3,0,0,0" Text="Even if you change or remove one of Ceraph's piercings, the game will still consider it is there." TextWrapping="Wrap" TextAlignment="Justify" />
 
                                     <TextBox Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding UpperName}" IsEnabled="{Binding CanEditName}" Height="26" VerticalContentAlignment="Center"/>
-                                    <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Text="Ex: Diamond eyebrow-stud" IsEnabled="{Binding CanEditName}" Foreground="#808080" VerticalAlignment="Center" Margin="0,2,0,0"/>
+                                    <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Text="Ex: Diamond eyebrow-stud" IsEnabled="{Binding CanEditName}" Foreground="#808080" VerticalAlignment="Center" Margin="3,2,0,0"/>
 
                                     <TextBox Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding LowerName}" IsEnabled="{Binding CanEditName}" Height="26" VerticalContentAlignment="Center"/>
-                                    <TextBlock Grid.Row="7" Grid.ColumnSpan="2" Text="Ex: diamond eyebrow-stud" IsEnabled="{Binding CanEditName}" Foreground="#808080" VerticalAlignment="Center" Margin="0,2,0,0"/>
+                                    <TextBlock Grid.Row="7" Grid.ColumnSpan="2" Text="Ex: diamond eyebrow-stud" IsEnabled="{Binding CanEditName}" Foreground="#808080" VerticalAlignment="Center" Margin="3,2,0,0"/>
                                 </Grid>
                             </Border>
                         </Popup>

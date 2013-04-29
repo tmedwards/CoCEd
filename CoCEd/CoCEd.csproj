@@ -64,6 +64,7 @@
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\ItemPanel.cs" />
     <Compile Include="Common\LayoutHelper.cs" />
+    <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\MyComboBox.cs" />
     <Compile Include="Common\MyPiercingBox.cs" />
     <Compile Include="Common\UpdatableCollection.cs" />
@@ -75,8 +76,13 @@
     <Compile Include="Model\AmfWriter.cs" />
     <Compile Include="Model\ComparisonStream.cs" />
     <Compile Include="Model\XmlData.cs" />
+    <Compile Include="ViewModel\BreastVM.cs" />
+    <Compile Include="ViewModel\CockVM.cs" />
     <Compile Include="ViewModel\GameVM.cs" />
     <Compile Include="ViewModel\FilesVM.cs" />
+    <Compile Include="ViewModel\ItemVM.cs" />
+    <Compile Include="ViewModel\PerkVM.cs" />
+    <Compile Include="ViewModel\VaginaVM.cs" />
     <Compile Include="ViewModel\VM.cs" />
     <Compile Include="View\AppearancePage.xaml.cs">
       <DependentUpon>AppearancePage.xaml</DependentUpon>

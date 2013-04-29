@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoCEd.Common;
 using CoCEd.ViewModel;
 using Microsoft.Win32;
 
@@ -66,9 +67,10 @@ namespace CoCEd.View
         {
             var item = (MenuItem)sender;
             var file = (FileVM)item.DataContext;
-            if (file.Source.HasError)
+            if (!String.IsNullOrEmpty(file.Source.Error))
             {
-                var result = MessageBox.Show("This file was not loaded correctly, this could lead to corrupted savegames, are you sure you want to load it?", "This file has errors", MessageBoxButton.OKCancel);
+                var result = MessageBox.Show("This file was not loaded correctly, this could lead to corrupted savegames, are you sure you want to load it?\n\n" + file.Source.Error, "This file has errors", MessageBoxButton.OKCancel);
+                Logger.Error(file.Source.Error);
                 if (result != MessageBoxResult.OK) return;
             }
             VM.Instance.Files.Load(file.Source.FilePath);
