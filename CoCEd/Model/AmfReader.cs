@@ -46,7 +46,7 @@ namespace CoCEd.Model
             {
                 var key = ReadString();
                 var value = ReadValue();
-                file.Add(key, value);
+                file.AddNoCheck(key, value);
 
                 if (_reader.ReadByte() != 0) throw new InvalidOperationException();
                 if (_reader.BaseStream.Position == _reader.BaseStream.Length) break;
@@ -190,14 +190,14 @@ namespace CoCEd.Model
                 if (key == "") break;
 
                 var value = ReadValue();
-                result.Add(key, value);
+                result.AddNoCheck(key, value);
             }
 
             // Dense part (consecutive indices >=0 and <count)
             for (int i = 0; i < count; i++)
             {
                 var value = ReadValue();
-                result.Add(i.ToString(), value);
+                result.AddNoCheck(i.ToString(), value);
             }
 
             return result;
@@ -217,7 +217,7 @@ namespace CoCEd.Model
             foreach (var name in result.Trait.Properties)
             {
                 var value = ReadValue();
-                result[name] = value;
+                result.AddNoCheck(name, value);
             }
 
             if (result.Trait.IsDynamic)
@@ -228,7 +228,7 @@ namespace CoCEd.Model
                     if (name == "") break;
 
                     var value = ReadValue();
-                    result[name] = value;
+                    result.AddNoCheck(name, value);
                 }
             } 
 

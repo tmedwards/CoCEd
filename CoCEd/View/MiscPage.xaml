@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="CoCEd.View.MiscPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:common="clr-namespace:CoCEd.Common"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+    
+    <common:AutoGrid Margin="30">
+        <TextBlock              Text="Children with Tamani"/>
+        <common:MyNumericBox    Value="{Binding Game.TamaniChildren}" Min="0" IsInteger="True" IsEnabled="{Binding Game.HasMetTamani}"/>
+
+        <TextBlock              Text="Exgartuan"/>
+        <ComboBox SelectedIndex="{Binding Game.Exagartuan}">
+            <ComboBoxItem>Not infested</ComboBoxItem>
+            <ComboBoxItem>Cock</ComboBoxItem>
+            <ComboBoxItem>Breasts</ComboBoxItem>
+        </ComboBox>
+    </common:AutoGrid>
+</UserControl>

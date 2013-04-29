@@ -85,56 +85,48 @@ namespace CoCEd.ViewModel
             _node = node;
         }
 
-        private dynamic GetValue(string name)
+        public dynamic GetValue(string name)
         {
             return _node[name];
         }
 
-        protected double GetDouble(string name)
+        public double GetDouble(string name)
         {
-            dynamic value = GetValue(name);
-            if (value is string) return Double.Parse((string)value);
-            return (double)value;
+            return _node.GetDouble(name);
         }
 
-        protected int GetInt(string name)
+        public int GetInt(string name)
         {
-            dynamic value = GetValue(name);
-            if (value is string) return Int32.Parse((string)value);
-            if (value is double) return (int)(double)value;
-            return (int)value;
+            return _node.GetInt(name);
         }
 
-        protected string GetString(string name)
+        public string GetString(string name)
         {
-            dynamic value = GetValue(name);
-            if (value is string) return (string)value;
-            if (value == null) return null;
-            return value.ToString();
+            return _node.GetString(name);
         }
 
-        protected bool GetBool(string name)
+        public bool GetBool(string name)
         {
-            dynamic value = GetValue(name);
-            if (value == false) return false;
-            if (value == true) return true;
-            if (value == "true") return true;
-            if (value == "false") return false;
-            return (bool)value;
+            return _node.GetBool(name);
         }
 
-        protected bool SetValue(string name, dynamic value, [CallerMemberName] string propertyName = null)
+        public bool SetValue(string name, dynamic value, [CallerMemberName] string propertyName = null)
         {
             if (_node[name] == value) return false;
             _node[name] = value;
             OnPropertyChanged(propertyName);
-            VM.Instance.NotifySaveRequiredChanged(true);
             return true;
         }
 
         protected bool SetDouble(string name, double value, [CallerMemberName] string propertyName = null)
         {
             return SetValue(name, value, propertyName);
+        }
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            VM.Instance.NotifySaveRequiredChanged(true);
         }
     }
 

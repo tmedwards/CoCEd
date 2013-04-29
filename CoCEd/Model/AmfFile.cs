@@ -35,7 +35,6 @@ namespace CoCEd.Model
                         Name = name;
                     }
                 }
-                throw new NotImplementedException();
             }
             catch (IOException e)
             {
