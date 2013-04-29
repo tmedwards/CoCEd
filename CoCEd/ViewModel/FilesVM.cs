@@ -35,15 +35,6 @@ namespace CoCEd.ViewModel
         public FileGroupVM ChromeOnlineFiles { get; private set; }
         public FileGroupVM ExternalFiles { get; private set; }
 
-        void CreateVM()
-        {
-            ExternalFiles = new FileGroupVM(CocDirectory.Custom,                    _files[CocDirectory.Custom],            "");
-            StandardOnlineFiles = new FileGroupVM(CocDirectory.StandardOnline,      _files[CocDirectory.StandardOnline],    _paths[CocDirectory.StandardOnline]);
-            StandardOfflineFiles = new FileGroupVM(CocDirectory.StandardOffline,    _files[CocDirectory.StandardOffline],   _paths[CocDirectory.StandardOffline]);
-            ChromeOfflineFiles = new FileGroupVM(CocDirectory.ChromeOffline,        _files[CocDirectory.ChromeOffline],     _paths[CocDirectory.ChromeOffline]);
-            ChromeOnlineFiles = new FileGroupVM(CocDirectory.ChromeOnline,          _files[CocDirectory.ChromeOnline],      _paths[CocDirectory.ChromeOnline]);
-        }
-
         void UpdateDirectories()
         {
             ExternalFiles.Update();
@@ -55,57 +46,56 @@ namespace CoCEd.ViewModel
 
         public AmfScanResult LoadFiles()
         {
+            // Default values
+            foreach (CocDirectory value in Enum.GetValues(typeof(CocDirectory)))
+            {
+                _files[value] = new List<AmfFile>();
+                _paths[value] = "";
+            }
+
+            // Import files
             var result = new AmfScanResult();
-            _files[CocDirectory.Custom] = new List<AmfFile>();
+            ImportFiles(Environment.SpecialFolder.ApplicationData, @"Macromedia\Flash Player\#SharedObjects\", 
+                CocDirectory.StandardOffline, CocDirectory.StandardOnline, result);
 
-            // Standard path for IE, Firefox, etc
-            var standardPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            if (standardPath != null)
-            {
-                standardPath = System.IO.Path.Combine(standardPath, @"Macromedia\Flash Player\#SharedObjects\");
-                standardPath = GetRandomNameFolder(standardPath, result);
-                if (standardPath != null)
-                {
-                    _paths[CocDirectory.StandardOffline] = Path.Combine(standardPath, "localhost");
-                    ImportFiles(CocDirectory.StandardOffline, result);
+            ImportFiles(Environment.SpecialFolder.LocalApplicationData, @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\", 
+                CocDirectory.ChromeOffline, CocDirectory.ChromeOnline, result);
 
-                    _paths[CocDirectory.StandardOnline] = Path.Combine(standardPath, "www.fenoxo.com");
-                    ImportFiles(CocDirectory.StandardOnline, result);
-                }
-            }
-
-
-            // Chome uses a specific path
-            var chromePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            if (standardPath != null)
-            {
-                chromePath = System.IO.Path.Combine(chromePath, @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\");
-                chromePath = GetRandomNameFolder(chromePath, result);
-
-                if (chromePath != null)
-                {
-                    _paths[CocDirectory.ChromeOffline] = Path.Combine(chromePath, "localhost");
-                    ImportFiles(CocDirectory.ChromeOffline, result);
-
-                    _paths[CocDirectory.ChromeOnline] = Path.Combine(chromePath, "www.fenoxo.com");
-                    ImportFiles(CocDirectory.ChromeOnline, result);
-                }
-            }
-
-            CreateVM();
+            // Create collections
+            ExternalFiles = new FileGroupVM(CocDirectory.Custom, _files[CocDirectory.Custom], "");
+            StandardOnlineFiles = new FileGroupVM(CocDirectory.StandardOnline, _files[CocDirectory.StandardOnline], _paths[CocDirectory.StandardOnline]);
+            StandardOfflineFiles = new FileGroupVM(CocDirectory.StandardOffline, _files[CocDirectory.StandardOffline], _paths[CocDirectory.StandardOffline]);
+            ChromeOfflineFiles = new FileGroupVM(CocDirectory.ChromeOffline, _files[CocDirectory.ChromeOffline], _paths[CocDirectory.ChromeOffline]);
+            ChromeOnlineFiles = new FileGroupVM(CocDirectory.ChromeOnline, _files[CocDirectory.ChromeOnline], _paths[CocDirectory.ChromeOnline]);
             UpdateDirectories();
+
             return result;
         }
 
-        string GetRandomNameFolder(string path, AmfScanResult result)
+        void ImportFiles(Environment.SpecialFolder root, string suffix, CocDirectory offline, CocDirectory online, AmfScanResult result)
         {
+            string path = "";
             try
             {
-                // Deal with that directory with a random name.
+                // User\AppData\Roaming 
+                path = Environment.GetFolderPath(root);
+                if (path == null) return;
+
+                // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\
+                path = Path.Combine(path, suffix);
+
+                // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7
                 var subDirectories = Directory.GetDirectories(path);
                 if (subDirectories.Length > 1) result.MoreThanOneFolderPath = path;
-                if (subDirectories.Length != 1) return null;
-                return subDirectories[0];
+                if (subDirectories.Length != 1) return;
+                path = subDirectories[0];
+
+                // Scan files
+                _paths[offline] = Path.Combine(path, "localhost");
+                _files[offline] = ScanFiles(_paths[offline], result).ToList();
+
+                _paths[online] = Path.Combine(path, "www.fenoxo.com");
+                _files[online] = ScanFiles(_paths[online], result).ToList();
             }
             catch (SecurityException)
             {
@@ -118,43 +108,36 @@ namespace CoCEd.ViewModel
             catch (DirectoryNotFoundException)
             {
             }
-            return null;
         }
 
-        void ImportFiles(CocDirectory path, AmfScanResult result)
+        static IEnumerable<AmfFile> ScanFiles(string dirPath, AmfScanResult result)
         {
-            _files[path] = new List<AmfFile>();
-            var dirPath = _paths[path];
-            try
+            for (int i = 1; i <= 10; i++)
             {
-                for (int i = 1; i <= 10; i++)
+                AmfFile file = null;
+                var filePath = Path.Combine(dirPath, "Coc_" + i + ".sol");
+                try
                 {
-                    var filePath = Path.Combine(dirPath, "Coc_" + i + ".sol");
-                    try
-                    {
-                        if (!File.Exists(filePath)) continue;
-
-                        var file = new AmfFile(filePath);
-                        _files[path].Add(file);
-                    }
-                    catch (SecurityException)
-                    {
-                        result.MissingPermissionPath = filePath;
-                    }
-                    catch (UnauthorizedAccessException)
-                    {
-                        result.MissingPermissionPath = filePath;
-                    }
+                    if (!File.Exists(filePath)) continue;
+                    file = new AmfFile(filePath);
                 }
-            }
-            catch (DirectoryNotFoundException)
-            {
+                catch (SecurityException)
+                {
+                    result.MissingPermissionPath = filePath;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    result.MissingPermissionPath = filePath;
+                }
+                catch (DirectoryNotFoundException)
+                {
+                }
+                if (file != null) yield return file;
             }
         }
 
 
         AmfFile _currentFileClone;
-
         public void Load(string path)
         {
             // Pick original or create
