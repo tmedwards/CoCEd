@@ -1,6 +1,8 @@
 ﻿* Exgartuan
 * Children from Tamani
 * Reorganize listboxes
+* Numeric boxes: up and down keyboard shortcuts
+* Piercing control
 
 
 
