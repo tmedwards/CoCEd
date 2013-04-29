@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security;
@@ -74,6 +75,8 @@ namespace CoCEd.ViewModel
 
         void ImportFiles(Environment.SpecialFolder root, string suffix, CocDirectory offline, CocDirectory online, AmfScanResult result)
         {
+            Stopwatch w = new Stopwatch();
+            w.Start();
             string path = "";
             try
             {
@@ -108,6 +111,8 @@ namespace CoCEd.ViewModel
             catch (DirectoryNotFoundException)
             {
             }
+            var elapsed = w.ElapsedMilliseconds;
+            Debug.WriteLine("elapsed");
         }
 
         static IEnumerable<AmfFile> ScanFiles(string dirPath, AmfScanResult result)
@@ -148,6 +153,9 @@ namespace CoCEd.ViewModel
                 file = new AmfFile(path);
                 directory = Store(file);
             }
+
+            // After load
+            DebugStatuses(file);
 
             // Set clone as "current"
             _currentFileClone = new AmfFile(file);
@@ -240,6 +248,17 @@ namespace CoCEd.ViewModel
 
             _files[CocDirectory.Custom].Add(file);
             return CocDirectory.Custom;
+        }
+
+        [Conditional("DEBUG")]
+        void DebugStatuses(AmfFile file)
+        {
+            foreach (AmfPair pair in file["statusAffects"])
+            {
+                int key = Int32.Parse(pair.Key);
+                var name = pair.Value["statusAffectName"] as string;
+                Debug.WriteLine(key.ToString("000") + " - " + name);
+            }
         }
     }
 

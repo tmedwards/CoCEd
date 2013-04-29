@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,7 +15,6 @@ namespace CoCEd.ViewModel
     // TeaseLevel / XP
     public sealed class GameVM : NodeVM
     {
-
         public GameVM(AmfFile file)
             : base(file)
         {
@@ -435,6 +435,84 @@ namespace CoCEd.ViewModel
         public Visibility ClitVisibility
         {
             get { return Vaginas.Count == 0 ? Visibility.Collapsed : Visibility.Visible; }
+        }
+
+        public bool HasMetTamani
+        {
+            get { return HasStatus("Tamani"); }
+        }
+
+        public int TamaniChildren
+        {
+            get { return GetStatusInt("Tamani", "2"); }
+            set { SetStatusValue("Tamani", "2", value); }
+        }
+
+        public int Exagartuan
+        {
+            get { return GetStatusInt("Exgartuan", "1", 0); }
+            set 
+            {
+                if (value == Exagartuan) return;
+                if (Exagartuan == 0) EnsureStatusExists("Exgartuan", value, 0, 0, 0);
+                else if (value == 0) RemoveStatus("Exgartuan");
+                else SetStatusValue("Exgartuan", "1", value);
+            }
+        }
+
+        int GetStatusInt(string name, string index, int defaultValue = 0)
+        {
+            var node = GetStatus(name);
+            if (node == null) return defaultValue;
+            return node.GetInt("value" + index);
+        }
+
+        void SetStatusValue(string name, string index, dynamic value, [CallerMemberName] string propertyName = null)
+        {
+            if (GetStatus(name)["value" + index] == value) return;
+            GetStatus(name)["value" + index] = value;
+            OnPropertyChanged(propertyName);
+        }
+
+        bool HasStatus(string name)
+        {
+            return GetStatus(name) != null;
+        }
+
+        AmfNode GetStatus(string name)
+        {
+            AmfNode statuses = _node["statusAffects"];
+            return statuses.Select(x => x.Value).Cast<AmfNode>().FirstOrDefault(x => name == x["statusAffectName"] as string);
+        }
+
+        void RemoveStatus(string name, [CallerMemberName] string propertyName = null)
+        {
+            AmfNode statuses = _node["statusAffects"];
+            AmfPair pair = statuses.FirstOrDefault(x => name == x.Value["statusAffectName"] as string);
+            if (pair == null) return;
+
+            object node;
+            statuses.Remove(pair.Key, true, out node);
+            OnPropertyChanged("propertyName");
+        }
+
+        void EnsureStatusExists(string name, dynamic defaultValue1, dynamic defaultValue2, dynamic defaultValue3, dynamic defaultValue4, [CallerMemberName] string propertyName = null)
+        {
+            var node = GetStatus(name);
+            if (node != null) return;
+
+            node = new AmfArray();
+            node["statusAffectName"] = name;
+            node["value1"] = defaultValue1;
+            node["value2"] = defaultValue2;
+            node["value3"] = defaultValue3;
+            node["value4"] = defaultValue4;
+
+            AmfNode statuses = _node["statusAffects"];
+            statuses.Add(node);
+
+            OnPropertyChanged(propertyName);
+            return;
         }
 
         void OnGenitalsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

@@ -127,6 +127,39 @@ namespace CoCEd.Model
             }
         }
 
+        public double GetDouble(string name)
+        {
+            dynamic value = this[name];
+            if (value is string) return Double.Parse((string)value);
+            return (double)value;
+        }
+
+        public int GetInt(string name)
+        {
+            dynamic value = this[name];
+            if (value is string) return Int32.Parse((string)value);
+            if (value is double) return (int)(double)value;
+            return (int)value;
+        }
+
+        public string GetString(string name)
+        {
+            dynamic value = this[name];
+            if (value is string) return (string)value;
+            if (value == null) return null;
+            return value.ToString();
+        }
+
+        public bool GetBool(string name)
+        {
+            dynamic value = this[name];
+            if (value == false) return false;
+            if (value == true) return true;
+            if (value == "true") return true;
+            if (value == "false") return false;
+            return (bool)value;
+        }
+
         public bool Contains(string key)
         {
             return _pairs.Any(x => x.Key == key);
@@ -135,12 +168,17 @@ namespace CoCEd.Model
         public void Add(AmfNode node)
         {
             int count = DenseCount;
-            Add(count.ToString(), node);
+            AddNoCheck(count.ToString(), node);
         }
 
         public void Add(string key, object value)
         {
             if (_pairs.Any(x => x.Key == key)) throw new ArgumentException();
+            _pairs.Add(new AmfPair(key, value));
+        }
+
+        public void AddNoCheck(string key, object value)
+        {
             _pairs.Add(new AmfPair(key, value));
         }
 
@@ -213,6 +251,9 @@ namespace CoCEd.Model
 
     public sealed class AmfArray : AmfNode
     {
+        public AmfArray()
+        {
+        }
     }
 
     public sealed class AmfObject : AmfNode

@@ -1,5 +1,4 @@
 ﻿* Exgartuan
-* Children from Tamani
 * Reorganize listboxes
 * Sort perks
 

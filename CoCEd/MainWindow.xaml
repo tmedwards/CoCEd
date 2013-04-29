@@ -31,6 +31,9 @@
             <TabItem Header="Items" Padding="4" Width="150">
                 <view:ItemPage/>
             </TabItem>
+            <TabItem Header="Others" Padding="4" Width="150">
+                <view:MiscPage/>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
