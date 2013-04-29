@@ -81,13 +81,13 @@ namespace CoCEd
             VM.Create();
 
             var solResult = VM.Instance.Files.LoadFiles();
+            if (solResult.MoreThanOneFolderPath != null)
+            {
+                MessageBox.Show("There should be only one folder in:\n" + solResult.MoreThanOneFolderPath);
+            }
             if (solResult.MissingPermissionPath != null)
             {
                 MessageBox.Show("Missing permission for IO on a folder or a file:\n" + solResult.MissingPermissionPath);
-            }
-            else if (solResult.MoreThanOneFolderPath != null)
-            {
-                MessageBox.Show("There should be only one folder in:\n" + solResult.MoreThanOneFolderPath);
             }
         }
 
