@@ -72,7 +72,7 @@ namespace CoCEd.View
             var file = (FileVM)item.DataContext;
             if (!String.IsNullOrEmpty(file.Source.Error))
             {
-                var result = MessageBox.Show("This file was not loaded correctly, this could lead to corrupted savegames, are you sure you want to load it?\n\n" + file.Source.Error, "This file has errors", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                var result = MessageBox.Show("CoCEd could not read this file correctly. Continuing may make CoCEd unstable or cause it to write corrupted files. It is advised that you cancel this operation.\n\n" + file.Source.Error, "File error", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 Logger.Error(file.Source.Error);
                 if (result != MessageBoxResult.OK) return;
             }
