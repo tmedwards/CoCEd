@@ -40,7 +40,7 @@ namespace CoCEd
 
             MessageBox.Show(
                 "An error occured and the application is going to exit.\n\n The error below will be saved as CoCEd.log. Please report it on CoC's forums (you can also use Ctrl+C):\n" + e.Exception.ToString(),
-                "Unexpected error.", MessageBoxButton.OK);
+                "Unexpected error.", MessageBoxButton.OK, MessageBoxImage.Error);
 
             Logger.Error(e.Exception);
             Shutdown();
@@ -55,12 +55,14 @@ namespace CoCEd
                     break;
 
                 case XmlLoadingResult.MissingFile:
-                    MessageBox.Show("Could not find the CoCEd.xml file.");
-                    break;
+                    MessageBox.Show("Could not find the CoCEd.xml file.", "Fatal error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Shutdown();
+                    return;
 
                 case XmlLoadingResult.NoPermission:
-                    MessageBox.Show("The CoCEd.xml file was already in use or the application does not have the permission to access its own program folder.");
-                    break;
+                    MessageBox.Show("The CoCEd.xml file was already in use or the application does not have the permission to access its own program folder.", "Fatal error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Shutdown();
+                    return;
 
                 default:
                     throw new NotImplementedException();
@@ -72,11 +74,11 @@ namespace CoCEd
             var set = FileManager.CreateSet();
             if (FileManager.MoreThanOneFolderPath != null)
             {
-                MessageBox.Show("There should be only one folder in:\n" + FileManager.MoreThanOneFolderPath);
+                MessageBox.Show("There should be only one folder in:\n" + FileManager.MoreThanOneFolderPath, "Unexpected folder streucture", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             if (FileManager.MissingPermissionPath != null)
             {
-                MessageBox.Show("Missing permission for IO on a folder or a file:\n" + FileManager.MissingPermissionPath);
+                MessageBox.Show("Missing permission for IO on a folder or a file:\n" + FileManager.MissingPermissionPath, "IO Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
 #if DEBUG
