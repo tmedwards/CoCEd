@@ -74,13 +74,13 @@
                     </Grid>
                 </ToggleButton.Content>
                 <ToggleButton.ContextMenu>
-                    <ContextMenu x:Name="openMenu" Closed="openPopup_Closed" Placement="Bottom" MinWidth="150" ItemContainerStyle="{StaticResource OpenMenuStyle}">
-                        <MenuItem Header="Offline"          DataContext="{Binding Files.StandardOfflineFiles}"  />
-                        <MenuItem Header="Offline (Chrome)" DataContext="{Binding Files.ChromeOfflineFiles}"    />
-                        <MenuItem Header="Online"           DataContext="{Binding Files.StandardOnlineFiles}"   />
-                        <MenuItem Header="Online (Chrome)"  DataContext="{Binding Files.ChromeOnlineFiles}"     />
-                        <MenuItem Header="External"         DataContext="{Binding Files.ExternalFiles}"         />
-                        <MenuItem Header="Import..." x:Name="importMenu" Click="importMenu_Click"   />
+                    <ContextMenu x:Name="openMenu" Closed="openMenu_Closed" Placement="Bottom" MinWidth="150" ItemContainerStyle="{StaticResource OpenMenuStyle}">
+                        <MenuItem Header="Offline"          DataContext="{Binding StandardOfflineFiles}"  />
+                        <MenuItem Header="Offline (Chrome)" DataContext="{Binding ChromeOfflineFiles}"    />
+                        <MenuItem Header="Online"           DataContext="{Binding StandardOnlineFiles}"   />
+                        <MenuItem Header="Online (Chrome)"  DataContext="{Binding ChromeOnlineFiles}"     />
+                        <MenuItem Header="External"         DataContext="{Binding ExternalFiles}"         />
+                        <MenuItem Header="Import..." x:Name="importMenu" Click="importMenu_Click"/>
                     </ContextMenu>
                 </ToggleButton.ContextMenu>
             </ToggleButton>
@@ -100,12 +100,12 @@
                     </Grid>
                 </ToggleButton.Content>
                 <ToggleButton.ContextMenu>
-                    <ContextMenu x:Name="saveMenu" Closed="savePopup_Closed" Placement="Bottom" MinWidth="150" ItemContainerStyle="{StaticResource SaveMenuStyle}">
-                        <MenuItem Header="Offline"          DataContext="{Binding Files.StandardOfflineFiles}"  />
-                        <MenuItem Header="Offline (Chrome)" DataContext="{Binding Files.ChromeOfflineFiles}"    />
-                        <MenuItem Header="Online"           DataContext="{Binding Files.StandardOnlineFiles}"   />
-                        <MenuItem Header="Online (Chrome)"  DataContext="{Binding Files.ChromeOnlineFiles}"     />
-                        <MenuItem Header="External"         DataContext="{Binding Files.ExternalFiles}" Visibility="{Binding TargetMenuVisibility}"/>
+                    <ContextMenu x:Name="saveMenu" Closed="saveMenu_Closed" Placement="Bottom" MinWidth="150" ItemContainerStyle="{StaticResource SaveMenuStyle}">
+                        <MenuItem Header="Offline"          DataContext="{Binding StandardOfflineFiles}"  />
+                        <MenuItem Header="Offline (Chrome)" DataContext="{Binding ChromeOfflineFiles}"    />
+                        <MenuItem Header="Online"           DataContext="{Binding StandardOnlineFiles}"   />
+                        <MenuItem Header="Online (Chrome)"  DataContext="{Binding ChromeOnlineFiles}"     />
+                        <MenuItem Header="External"         DataContext="{Binding ExternalFiles}" Visibility="{Binding TargetMenuVisibility}"/>
                         <MenuItem Header="Export..." x:Name="exportMenu" Click="exportMenu_Click"   />
                     </ContextMenu>
                 </ToggleButton.ContextMenu>

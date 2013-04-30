@@ -127,16 +127,18 @@ namespace CoCEd.Model
             }
         }
 
-        public double GetDouble(string name)
+        public double GetDouble(string name, double? defaultValue = null)
         {
             dynamic value = this[name];
+            if (value is Undefined) return defaultValue.Value;
             if (value is string) return Double.Parse((string)value);
             return (double)value;
         }
 
-        public int GetInt(string name)
+        public int GetInt(string name, int? defaultValue = null)
         {
             dynamic value = this[name];
+            if (value is Undefined) return defaultValue.Value;
             if (value is string) return Int32.Parse((string)value);
             if (value is double) return (int)(double)value;
             return (int)value;

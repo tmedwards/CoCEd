@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,52 +20,81 @@ namespace CoCEd.ViewModel
     {
         public event SaveRequiredChanged SaveRequiredChanged;
 
+        const string AppTitle = "CoCEd";
+
+        readonly List<string> _externalPaths = new List<string>();
+        AmfFile _currentFile;
+
         private VM()
         {
-            Data = XmlData.Instance;
-            FileLabelVisibility = Visibility.Collapsed;
-            Files = new FilesVM();
         }
 
         public static void Create()
         {
             Instance = new VM();
+            Instance.Data = XmlData.Instance;
         }
 
-        public static VM Instance
-        {
-            get;
-            private set;
-        }
+        public static VM Instance { get; private set; }
 
-        public FilesVM Files { get; private set; }
-        public XmlData Data { get; private set; }
-        public Visibility FileLabelVisibility { get; private set; }
-        public GameVM Game { get; private set; }
-        public string FileLabel { get; private set; }
         public bool SaveRequired { get; private set; }
-        public bool HasData { get; private set; }
+        public XmlData Data { get; private set; }
+        public GameVM Game { get; private set; }
 
-        public void SetCurrentFile(AmfFile file, CocDirectory directory)
+        public Visibility FileLabelVisibility 
         {
-            FileLabelVisibility = Visibility.Visible;
-            FileLabel = Path.GetFileNameWithoutExtension(file.FilePath);
-            Game = new GameVM(file);
-            HasData = true;
+            get { return _currentFile == null ? Visibility.Collapsed : Visibility.Visible; }
+        }
+
+        public string FileLabel 
+        {
+            get { return _currentFile == null ? "" : Path.GetFileNameWithoutExtension(_currentFile.FilePath); }
+        }
+
+        public bool HasData
+        {
+            get { return _currentFile != null; }
+        }
+
+        public void Load(string path)
+        {
+            FileManager.StoreExternal(path);
+            _currentFile = new AmfFile(path);
+
+            Game = new GameVM(_currentFile);
 
             OnPropertyChanged("Game");
-            OnPropertyChanged("FileLabelVisibility");
-            OnPropertyChanged("FileLabel");
             OnPropertyChanged("HasData");
+            OnPropertyChanged("FileLabel");
+            OnPropertyChanged("FileLabelVisibility");
+            VM.Instance.NotifySaveRequiredChanged(false);
         }
 
-        const string _appTitle = "CoCEd";
+        public void Save(string path)
+        {
+            try
+            {
+                FileManager.StoreExternal(path);
+                _currentFile.Save(path);
+            }
+            catch (SecurityException)
+            {
+                MessageBox.Show("CoCEd does not have the permission do to this.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("CoCEd does not have the permission to do this.");
+            }
+
+            VM.Instance.NotifySaveRequiredChanged(false);
+        }
+
         public void NotifySaveRequiredChanged(bool saveRequired = true)
         {
             if (saveRequired == SaveRequired) return;
 
             SaveRequired = saveRequired;
-            Application.Current.MainWindow.Title = saveRequired ? _appTitle + "*" : _appTitle;  // Databinding does not work for this
+            Application.Current.MainWindow.Title = saveRequired ? AppTitle + "*" : AppTitle;  // Databinding does not work for this
             if (SaveRequiredChanged != null) SaveRequiredChanged(null, saveRequired);
         }
     }
@@ -95,9 +126,9 @@ namespace CoCEd.ViewModel
             return _node.GetDouble(name);
         }
 
-        public int GetInt(string name)
+        public int GetInt(string name, int? defaultValue = null)
         {
-            return _node.GetInt(name);
+            return _node.GetInt(name, defaultValue);
         }
 
         public string GetString(string name)

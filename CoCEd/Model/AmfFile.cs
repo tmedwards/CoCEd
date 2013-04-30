@@ -11,6 +11,9 @@ namespace CoCEd.Model
 {
     public sealed class AmfFile : AmfNode
     {
+        static readonly HashSet<String> _backedUpFiles = new HashSet<string>();
+
+
         public AmfFile(AmfFile clone)
             : base(clone)
         {
@@ -53,6 +56,14 @@ namespace CoCEd.Model
             {
                 Error = e.ToString();
             }
+            catch (UnauthorizedAccessException e)
+            {
+                Error = e.ToString();
+            }
+            catch (SecurityException e)
+            {
+                Error = e.ToString();
+            }
 #endif
         }
 
@@ -80,16 +91,21 @@ namespace CoCEd.Model
             private set;
         }
 
-        public AmfFile Save(string path)
+        public void Save(string path)
         {
+            EnsureBackupExists(path);
+
+            // Delete existing file
             var name = Path.GetFileNameWithoutExtension(path);
             if (File.Exists(path))
             {
-                File.SetAttributes(path, FileAttributes.Normal);
+                var attribs = File.GetAttributes(path) & ~FileAttributes.ReadOnly;
+                File.SetAttributes(path, attribs);   
                 File.Delete(path);
             }
 
-            using (var stream = File.OpenWrite(path))
+            // Create it
+            using (var stream = File.Create(path))
             {
                 using (var writer = new AmfWriter(stream))
                 {
@@ -98,11 +114,34 @@ namespace CoCEd.Model
                     stream.Close();
                 }
             }
+        }
 
-            var clone = new AmfFile(this);
-            clone.FilePath = path;
-            clone.Name = name;
-            return clone;
+        void EnsureBackupExists(string path)
+        {
+            try
+            {
+                // Backups are only done once per file throughout the lifetime of this process.
+                var lowerPath = path.ToLowerInvariant();
+                if (_backedUpFiles.Contains(lowerPath)) return;
+
+                // Does not backup files created by us during the liftime of this process.
+                if (!File.Exists(path))
+                {
+                    _backedUpFiles.Add(lowerPath);
+                    return;
+                }
+
+                // Create backup
+                var backUpPath = lowerPath.Replace(".sol", ".bak");
+                File.Copy(path, backUpPath, true);
+                _backedUpFiles.Add(lowerPath);
+            }
+            catch (UnauthorizedAccessException)
+            {
+            }
+            catch (SecurityException)
+            {
+            }
         }
 
 #if DEBUG
@@ -118,11 +157,5 @@ namespace CoCEd.Model
             }
         }
 #endif
-    }
-
-    public class AmfScanResult
-    {
-        public String MoreThanOneFolderPath { get; set; }
-        public String MissingPermissionPath { get; set; }
     }
 }
