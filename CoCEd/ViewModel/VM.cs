@@ -79,11 +79,11 @@ namespace CoCEd.ViewModel
             }
             catch (SecurityException)
             {
-                MessageBox.Show("CoCEd does not have the permission do to this.");
+                MessageBox.Show("CoCEd does not have the permission do to this.", "Permissions problem", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("CoCEd does not have the permission to do this.");
+                MessageBox.Show("CoCEd does not have the permission to do this.", "Permissions problem", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
             VM.Instance.NotifySaveRequiredChanged(false);

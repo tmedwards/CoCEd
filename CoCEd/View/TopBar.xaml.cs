@@ -72,7 +72,7 @@ namespace CoCEd.View
             var file = (FileVM)item.DataContext;
             if (!String.IsNullOrEmpty(file.Source.Error))
             {
-                var result = MessageBox.Show("This file was not loaded correctly, this could lead to corrupted savegames, are you sure you want to load it?\n\n" + file.Source.Error, "This file has errors", MessageBoxButton.OKCancel);
+                var result = MessageBox.Show("This file was not loaded correctly, this could lead to corrupted savegames, are you sure you want to load it?\n\n" + file.Source.Error, "This file has errors", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 Logger.Error(file.Source.Error);
                 if (result != MessageBoxResult.OK) return;
             }
