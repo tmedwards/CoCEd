@@ -15,264 +15,242 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
-    public enum CocDirectory
+    public static class FileManager
     {
-        Custom,
-        ChromeOnline,
-        ChromeOffline,
-        StandardOnline,
-        StandardOffline,
-    }
+        static readonly List<string> _externalPaths = new List<string>();
 
-    public sealed class FilesVM : BindableBase
-    {
-        readonly HashSet<String> _backedUpFiles = new HashSet<string>();
-        readonly Dictionary<CocDirectory, String> _paths = new Dictionary<CocDirectory, String>();
-        readonly Dictionary<CocDirectory, List<AmfFile>> _files = new Dictionary<CocDirectory, List<AmfFile>>();
+        public static string MoreThanOneFolderPath { get; private set; }
+        public static string MissingPermissionPath { get; private set; }
 
-        public FileGroupVM StandardOfflineFiles { get; private set; }
-        public FileGroupVM StandardOnlineFiles { get; private set; }
-        public FileGroupVM ChromeOfflineFiles { get; private set; }
-        public FileGroupVM ChromeOnlineFiles { get; private set; }
-        public FileGroupVM ExternalFiles { get; private set; }
+        public static string StandardOfflinePath { get; private set; }
+        public static string StandardOnlinePath { get; private set; }
+        public static string ChromeOfflinePath { get; private set; }
+        public static string ChromeOnlinePath { get; private set; }
 
-        void UpdateDirectories()
+        public static void BuildPaths()
         {
-            ExternalFiles.Update();
-            StandardOnlineFiles.Update();
-            StandardOfflineFiles.Update();
-            ChromeOfflineFiles.Update();
-            ChromeOnlineFiles.Update();
+            const string standardPath = @"Macromedia\Flash Player\#SharedObjects\";
+            StandardOfflinePath = BuildPath(Environment.SpecialFolder.ApplicationData, standardPath, "localhost");
+            StandardOnlinePath = BuildPath(Environment.SpecialFolder.ApplicationData, standardPath, "www.fenoxo.com");
+
+            const string chromePath = @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\";
+            ChromeOfflinePath = BuildPath(Environment.SpecialFolder.LocalApplicationData, chromePath, "localhost");
+            ChromeOnlinePath = BuildPath(Environment.SpecialFolder.LocalApplicationData, chromePath, "www.fenoxo.com");
         }
 
-        public AmfScanResult LoadFiles()
+        static string BuildPath(Environment.SpecialFolder root, string middle, string suffix)
         {
-            // Default values
-            foreach (CocDirectory value in Enum.GetValues(typeof(CocDirectory)))
-            {
-                _files[value] = new List<AmfFile>();
-                _paths[value] = "";
-            }
-
-            // Import files
-            var result = new AmfScanResult();
-            ImportFiles(Environment.SpecialFolder.ApplicationData, @"Macromedia\Flash Player\#SharedObjects\", 
-                CocDirectory.StandardOffline, CocDirectory.StandardOnline, result);
-
-            ImportFiles(Environment.SpecialFolder.LocalApplicationData, @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\", 
-                CocDirectory.ChromeOffline, CocDirectory.ChromeOnline, result);
-
-            // Create collections
-            ExternalFiles = new FileGroupVM(CocDirectory.Custom, _files[CocDirectory.Custom], "");
-            StandardOnlineFiles = new FileGroupVM(CocDirectory.StandardOnline, _files[CocDirectory.StandardOnline], _paths[CocDirectory.StandardOnline]);
-            StandardOfflineFiles = new FileGroupVM(CocDirectory.StandardOffline, _files[CocDirectory.StandardOffline], _paths[CocDirectory.StandardOffline]);
-            ChromeOfflineFiles = new FileGroupVM(CocDirectory.ChromeOffline, _files[CocDirectory.ChromeOffline], _paths[CocDirectory.ChromeOffline]);
-            ChromeOnlineFiles = new FileGroupVM(CocDirectory.ChromeOnline, _files[CocDirectory.ChromeOnline], _paths[CocDirectory.ChromeOnline]);
-            UpdateDirectories();
-
-            return result;
-        }
-
-        void ImportFiles(Environment.SpecialFolder root, string suffix, CocDirectory offline, CocDirectory online, AmfScanResult result)
-        {
-            Stopwatch w = new Stopwatch();
-            w.Start();
-            string path = "";
+            var path = "";
             try
             {
                 // User\AppData\Roaming 
                 path = Environment.GetFolderPath(root);
-                if (path == null) return;
+                if (path == null) return "";
 
                 // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\
-                path = Path.Combine(path, suffix);
+                path = Path.Combine(path, middle);
+                if (!Directory.Exists(path)) return "";
 
                 // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7
                 var subDirectories = Directory.GetDirectories(path);
-                if (subDirectories.Length > 1) result.MoreThanOneFolderPath = path;
-                if (subDirectories.Length != 1) return;
+                if (subDirectories.Length > 1) MoreThanOneFolderPath = path;
+                if (subDirectories.Length != 1) return "";
                 path = subDirectories[0];
 
-                // Scan files
-                _paths[offline] = Path.Combine(path, "localhost");
-                _files[offline] = ScanFiles(_paths[offline], result).ToList();
-
-                _paths[online] = Path.Combine(path, "www.fenoxo.com");
-                _files[online] = ScanFiles(_paths[online], result).ToList();
+                // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7\localhost
+                path = Path.Combine(path, suffix);
+                if (Directory.Exists(path)) return path;
             }
             catch (SecurityException)
             {
-                result.MissingPermissionPath = path;
+                MissingPermissionPath = path;
             }
             catch (UnauthorizedAccessException)
             {
-                result.MissingPermissionPath = path;
+                MissingPermissionPath = path;
             }
-            catch (DirectoryNotFoundException)
+            catch (IOException)
             {
             }
-            var elapsed = w.ElapsedMilliseconds;
-            Debug.WriteLine("elapsed");
+            return "";
         }
 
-        static IEnumerable<AmfFile> ScanFiles(string dirPath, AmfScanResult result)
+        public static FileGroupSetVM CreateSet()
         {
+            var set = new FileGroupSetVM();
+
+            set.StandardOfflineFiles = CreateGroup(StandardOfflinePath);
+            set.StandardOnlineFiles = CreateGroup(StandardOnlinePath);
+            set.ChromeOfflineFiles = CreateGroup(ChromeOfflinePath);
+            set.ChromeOnlineFiles = CreateGroup(ChromeOnlinePath);
+
+            var externalFiles = _externalPaths.Select(x => new AmfFile(x));
+            set.ExternalFiles = new FileGroupVM("", externalFiles);
+            return set;
+        }
+
+        static FileGroupVM CreateGroup(string path)
+        {
+            if (String.IsNullOrEmpty(path)) return new FileGroupVM("", new AmfFile[0]);
+
+            List<AmfFile> files = new List<AmfFile>();
             for (int i = 1; i <= 10; i++)
             {
-                AmfFile file = null;
-                var filePath = Path.Combine(dirPath, "Coc_" + i + ".sol");
+                var filePath = Path.Combine(path, "Coc_" + i + ".sol");
                 try
                 {
                     if (!File.Exists(filePath)) continue;
-                    file = new AmfFile(filePath);
+                    files.Add(new AmfFile(filePath));
                 }
                 catch (SecurityException)
                 {
-                    result.MissingPermissionPath = filePath;
+                    MissingPermissionPath = filePath;
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    result.MissingPermissionPath = filePath;
+                    MissingPermissionPath = filePath;
                 }
-                catch (DirectoryNotFoundException)
+                catch (IOException)
                 {
                 }
-                if (file != null) yield return file;
             }
+
+            // Create group
+            return new FileGroupVM(path, files);
         }
 
-
-        AmfFile _currentFileClone;
-        public void Load(string path)
+        public static void StoreExternal(string path)
         {
-            // Pick original or create
-            CocDirectory directory;
-            var file = GetFile(path, out directory);
-            if (file == null)
-            {
-                file = new AmfFile(path);
-                directory = Store(file);
-            }
+            path = Canonize(path);
 
-            // After load
-            DebugStatuses(file);
+            if (_externalPaths.Contains(path)) return;
+            if (AreParentAndChild(StandardOfflinePath, path)) return;
+            if (AreParentAndChild(StandardOnlinePath, path)) return;
+            if (AreParentAndChild(ChromeOfflinePath, path)) return;
+            if (AreParentAndChild(ChromeOnlinePath, path)) return;
 
-            // Set clone as "current"
-            _currentFileClone = new AmfFile(file);
-            VM.Instance.SetCurrentFile(_currentFileClone, directory);
-            VM.Instance.NotifySaveRequiredChanged(false);
-            UpdateDirectories();
+            _externalPaths.Add(path);
         }
 
-        public void Save(string path)
+        static bool AreParentAndChild(string dirPath, string filePath)
         {
-            try
-            {
-                EnsureBackupExists(path);
-                var file = _currentFileClone.Save(path);
-                Store(file);
-            }
-            catch (SecurityException)
-            {
-                MessageBox.Show("The editor does not have the permission do to this.");
-            }
-            catch (UnauthorizedAccessException)
-            {
-                MessageBox.Show("The editor does not have the permission to do this.");
-            }
-
-            VM.Instance.NotifySaveRequiredChanged(false);
-            UpdateDirectories();
+            if (String.IsNullOrEmpty(dirPath)) return false;
+            dirPath = Canonize(dirPath);
+            return filePath.StartsWith(dirPath);
         }
 
-        private void EnsureBackupExists(string path)
+        static string Canonize(string path)
         {
-            try
-            {
-                // Backups are only done once per file throughout the lifetime of this process.
-                var lowerPath = path.ToLowerInvariant();
-                if (_backedUpFiles.Contains(lowerPath)) return;
-
-                // Does not backup files created by us during the liftime of this process.
-                if (!File.Exists(path))
-                {
-                    _backedUpFiles.Add(lowerPath);
-                    return;
-                }
-
-                // Create backup
-                var backUpPath = lowerPath.Replace(".sol", ".bak");
-                File.Copy(path, backUpPath, true);
-                _backedUpFiles.Add(lowerPath);
-            }
-            catch (UnauthorizedAccessException)
-            {
-            }
-            catch (SecurityException)
-            {
-            }
-        }
-
-        AmfFile GetFile(string path, out CocDirectory directory)
-        {
-            foreach (var groupPair in _files)
-            {
-                foreach (var file in groupPair.Value)
-                {
-                    if (String.Equals(file.FilePath, path, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        directory = groupPair.Key;
-                        return file;
-                    }
-                }
-            }
-
-            directory = CocDirectory.Custom;
-            return null;
-        }
-
-        CocDirectory Store(AmfFile file)
-        {
-            foreach (var groupPair in _files)
-            {
-                for(int i = 0; i < groupPair.Value.Count; i++)
-                {
-                    var oldFile = groupPair.Value[i];
-                    if (String.Equals(oldFile.FilePath, file.FilePath, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        groupPair.Value[i] = file;
-                        return groupPair.Key;
-                    }
-                }
-            }
-
-            _files[CocDirectory.Custom].Add(file);
-            return CocDirectory.Custom;
-        }
-
-        [Conditional("DEBUG")]
-        void DebugStatuses(AmfFile file)
-        {
-            foreach (AmfPair pair in file["statusAffects"])
-            {
-                int key = Int32.Parse(pair.Key);
-                var name = pair.Value["statusAffectName"] as string;
-                Debug.WriteLine(key.ToString("000") + " - " + name);
-            }
+            return path.ToLowerInvariant().Replace("/", "\\");
         }
     }
 
+    public sealed class FileGroupSetVM
+    {
+        public FileGroupVM StandardOfflineFiles { get; set; }
+        public FileGroupVM StandardOnlineFiles { get; set; }
+        public FileGroupVM ChromeOfflineFiles { get; set; }
+        public FileGroupVM ChromeOnlineFiles { get; set; }
+        public FileGroupVM ExternalFiles { get; set; }
+
+        // Fake properties for import/export menus in order to avoid binding errors
+        public FileVM[] Files { get { return new FileVM[0]; } }
+        public Object[] Targets { get { return new Object[0]; } }
+        public Visibility MenuVisibility { get { return Visibility.Visible; } }
+    }
+
+    public class FileGroupVM : BindableBase
+    {
+        readonly string _path;
+
+        public FileGroupVM(string path, IEnumerable<AmfFile> files, bool isExternal = false)
+        {
+            _path = path;
+            IsExternal = isExternal;
+            Files = files.Select(x => new FileVM(x, isExternal)).ToArray();
+
+            if (IsExternal) Targets = Files;
+            else Targets = EnumerateSaveTargets().ToArray();
+
+            MenuVisibility = Files.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
+            TargetForeground = Files.Length == 0 ? Brushes.DarkGray : Brushes.Black;
+            TargetMenuVisibility = Targets.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        IEnumerable<Object> EnumerateSaveTargets()
+        {
+            if (String.IsNullOrEmpty(_path)) yield break;
+
+            // Return either a SaveTargetVM or a FileVM
+            for (int i = 1; i <= 10; i++)
+            {
+                var name = "Coc_" + i + ".sol";
+                var file = Files.FirstOrDefault(x => x.Source.FilePath.EndsWith(name, StringComparison.InvariantCultureIgnoreCase));
+                if (file != null)
+                {
+                    yield return file;
+                }
+                else
+                {
+                    var path = Path.Combine(_path, name);
+                    var target = new SaveTargetVM { Label = "Coc_" + i, Path = path };
+                    yield return target;
+                }
+            }
+        }
+
+        public bool IsExternal
+        {
+            get;
+            private set;
+        }
+
+        public FileVM[] Files
+        {
+            get;
+            private set;
+        }
+
+        public Object[] Targets
+        {
+            get;
+            private set;
+        }
+
+        public Visibility MenuVisibility
+        {
+            get;
+            private set;
+        }
+
+        public Visibility TargetMenuVisibility
+        {
+            get;
+            private set;
+        }
+
+        public Brush TargetForeground
+        {
+            get;
+            private set;
+        }
+    }
 
     public class FileVM
     {
-        public FileVM(AmfFile source, CocDirectory directory)
+        readonly bool _isExternal;
+
+        public FileVM(AmfFile source, bool isExternal)
         {
             Source = source;
-            Directory = directory;
+            _isExternal = isExternal;
         }
 
-        public AmfFile Source { get; private set; }
-        public CocDirectory Directory { get; private set; }
+        public AmfFile Source 
+        { 
+            get; 
+            private set; 
+        }
 
         public string Path
         {
@@ -281,7 +259,7 @@ namespace CoCEd.ViewModel
 
         public string Label
         {
-            get { return Directory == CocDirectory.Custom ? System.IO.Path.GetFileNameWithoutExtension(Source.FilePath) : Source.Name; }
+            get { return _isExternal ? System.IO.Path.GetFileNameWithoutExtension(Source.FilePath) : Source.Name; }
         }
 
         public string SubLabel
@@ -354,96 +332,6 @@ namespace CoCEd.ViewModel
         public Visibility SubLabelVisibility
         {
             get { return Visibility.Collapsed; }
-        }
-    }
-
-    public class FileGroupVM : BindableBase
-    {
-        readonly CocDirectory _directory;
-        readonly List<AmfFile> _files;
-        readonly string _path;
-
-        public FileGroupVM(CocDirectory dir, List<AmfFile> files, string path)
-        {
-            _path = path;
-            _files = files;
-            _directory = dir;
-
-            Files = new UpdatableCollection<AmfFile, FileVM>(files, x => new FileVM(x, CocDirectory.Custom));
-        }
-
-        public UpdatableCollection<AmfFile, FileVM> Files
-        {
-            get;
-            private set;
-        }
-
-        public List<Object> Targets
-        {
-            get;
-            private set;
-        }
-
-        public Visibility MenuVisibility
-        {
-            get;
-            private set;
-        }
-
-        public Visibility TargetMenuVisibility
-        {
-            get;
-            private set;
-        }
-
-        public Brush TargetForeground
-        {
-            get;
-            private set;
-        }
-
-        public void Update()
-        {
-            Files.Update();
-            Targets = EnumerateSaveTargets().ToList();
-            MenuVisibility = Files.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
-            TargetMenuVisibility = Targets.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
-            TargetForeground = Files.Count == 0 ? Brushes.DarkGray : Brushes.Black;
-            OnPropertyChanged("TargetMenuVisibility");
-            OnPropertyChanged("TargetForeground");
-            OnPropertyChanged("MenuVisibility");
-            OnPropertyChanged("Targets");
-        }
-
-        IEnumerable<Object> EnumerateSaveTargets()
-        {
-            if (_directory == CocDirectory.Custom)
-            {
-                foreach (var file in _files)
-                {
-                    yield return new FileVM(file, CocDirectory.Custom);
-                }
-                yield break;
-            }
-
-            // We could not find that folder
-            if (String.IsNullOrEmpty(_path)) yield break;
-
-            for (int i = 1; i <= 10; i++)
-            {
-                var name = "Coc_" + i + ".sol";
-                var file = _files.FirstOrDefault(x => x.FilePath.EndsWith(name, StringComparison.InvariantCultureIgnoreCase));
-                if (file != null)
-                {
-                    yield return new FileVM(file, _directory);
-                }
-                else
-                {
-                    var path = Path.Combine(_path, name);
-                    var target = new SaveTargetVM { Label = "Coc_" + i, Path = path };
-                    yield return target;
-                }
-            }
         }
     }
 }

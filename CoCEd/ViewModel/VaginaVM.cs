@@ -35,7 +35,7 @@ namespace CoCEd.ViewModel
 
         public int Type
         {
-            get { return GetInt("type"); }
+            get { return GetInt("type", 0); }
             set { SetValue("type", value); }
         }
 

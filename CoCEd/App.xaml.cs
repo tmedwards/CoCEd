@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -30,10 +31,6 @@ namespace CoCEd
             DispatcherUnhandledException += OnDispatcherUnhandledException;
 #endif
             Initialize();
-#if DEBUG
-            AutoLoad();
-            //ParsePerks();
-#endif
         }
 
         void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
@@ -71,28 +68,47 @@ namespace CoCEd
 
             VM.Create();
 
-            var solResult = VM.Instance.Files.LoadFiles();
-            if (solResult.MoreThanOneFolderPath != null)
+            FileManager.BuildPaths();
+            var set = FileManager.CreateSet();
+            if (FileManager.MoreThanOneFolderPath != null)
             {
-                MessageBox.Show("There should be only one folder in:\n" + solResult.MoreThanOneFolderPath);
+                MessageBox.Show("There should be only one folder in:\n" + FileManager.MoreThanOneFolderPath);
             }
-            if (solResult.MissingPermissionPath != null)
+            if (FileManager.MissingPermissionPath != null)
             {
-                MessageBox.Show("Missing permission for IO on a folder or a file:\n" + solResult.MissingPermissionPath);
+                MessageBox.Show("Missing permission for IO on a folder or a file:\n" + FileManager.MissingPermissionPath);
             }
+
+#if DEBUG
+            var file = AutoLoad(set);
+            //DebugStatuses(file);
+            //RunTest(set);
+            //ParsePerks();
+#endif
         }
 
 
 #if DEBUG
-        static void AutoLoad()
+        static AmfFile AutoLoad(FileGroupSetVM set)
         {
-            var file = VM.Instance.Files.StandardOfflineFiles.Files[0];
-            VM.Instance.Files.Load(file.Path);
+            var file = set.StandardOfflineFiles.Files[0];
+            VM.Instance.Load(file.Path);
+            return file.Source;
         }
 
-        static void RunTest()
+        static void PrintStatuses(AmfFile file)
         {
-            foreach (var first in VM.Instance.Files.StandardOfflineFiles.Files)
+            foreach (AmfPair pair in file["statusAffects"])
+            {
+                int key = Int32.Parse(pair.Key);
+                var name = pair.Value["statusAffectName"] as string;
+                Debug.WriteLine(key.ToString("000") + " - " + name);
+            }
+        }
+
+        static void RunTest(FileGroupSetVM set)
+        {
+            foreach (var first in set.StandardOfflineFiles.Files)
             {
                 var outPath = "e:\\" + first.Source.Name + ".sol";
                 first.Source.Test();
@@ -106,6 +122,7 @@ namespace CoCEd
                     if (input[i] != output[i]) throw new InvalidOperationException();
                 }
             }
+            MessageBox.Show("Success!");
         }
 
         void ParsePerks()

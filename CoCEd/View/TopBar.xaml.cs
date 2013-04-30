@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -39,12 +40,12 @@ namespace CoCEd.View
             else saveButton.Style = null;
         }
 
-        void openPopup_Closed(object sender, EventArgs e)
+        void openMenu_Closed(object sender, EventArgs e)
         {
             openButton.IsChecked = false;
         }
 
-        void savePopup_Closed(object sender, EventArgs e)
+        void saveMenu_Closed(object sender, EventArgs e)
         {
             saveButton.IsChecked = false;
         }
@@ -53,6 +54,7 @@ namespace CoCEd.View
         {
             bool isChecked = (openButton.IsChecked == true);
             openButton.IsHitTestVisible = !isChecked;
+            if (isChecked) openMenu.DataContext = FileManager.CreateSet();
             openMenu.IsOpen = isChecked;
         }
 
@@ -60,6 +62,7 @@ namespace CoCEd.View
         {
             bool isChecked = (saveButton.IsChecked == true);
             saveButton.IsHitTestVisible = !isChecked;
+            if (isChecked) saveMenu.DataContext = FileManager.CreateSet();
             saveMenu.IsOpen = isChecked;
         }
 
@@ -73,14 +76,14 @@ namespace CoCEd.View
                 Logger.Error(file.Source.Error);
                 if (result != MessageBoxResult.OK) return;
             }
-            VM.Instance.Files.Load(file.Source.FilePath);
+            VM.Instance.Load(file.Source.FilePath);
         }
 
         void saveMenu_Click(object sender, RoutedEventArgs e)
         {
             var item = (MenuItem)sender;
             dynamic file = item.DataContext;
-            VM.Instance.Files.Save(file.Path);
+            VM.Instance.Save(file.Path);
         }
 
         void importMenu_Click(object sender, RoutedEventArgs e)
@@ -96,7 +99,7 @@ namespace CoCEd.View
             if (result == false) return;
 
             string path = dlg.FileName;
-            VM.Instance.Files.Load(path);
+            VM.Instance.Load(path);
         }
 
         void exportMenu_Click(object sender, RoutedEventArgs e)
@@ -113,7 +116,7 @@ namespace CoCEd.View
             if (result == false) return;
 
             string path = dlg.FileName;
-            VM.Instance.Files.Save(path);
+            VM.Instance.Save(path);
         }
     }
 }
