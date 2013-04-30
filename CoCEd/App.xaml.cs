@@ -55,12 +55,12 @@ namespace CoCEd
                     break;
 
                 case XmlLoadingResult.MissingFile:
-                    MessageBox.Show("Could not find the CoCEd.xml file.", "Fatal error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The CoCEd.xml file could not be found.", "Fatal error", MessageBoxButton.OK, MessageBoxImage.Error);
                     Shutdown();
                     return;
 
                 case XmlLoadingResult.NoPermission:
-                    MessageBox.Show("The CoCEd.xml file was already in use or the application does not have the permission to access its own program folder.", "Fatal error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The CoCEd.xml file was already in use or this application does not have the permission to read the folder it is located in.", "Fatal error", MessageBoxButton.OK, MessageBoxImage.Error);
                     Shutdown();
                     return;
 
@@ -74,11 +74,11 @@ namespace CoCEd
             var set = FileManager.CreateSet();
             if (FileManager.MoreThanOneFolderPath != null)
             {
-                MessageBox.Show("There should be only one folder in:\n" + FileManager.MoreThanOneFolderPath, "Unexpected folder streucture", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("There should be only one folder within:\n" + FileManager.MoreThanOneFolderPath + "\n\n Some files won't be displayed in the open/save menus.", "Could not scan some folders", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             if (FileManager.MissingPermissionPath != null)
             {
-                MessageBox.Show("Missing permission for IO on a folder or a file:\n" + FileManager.MissingPermissionPath, "IO Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("CoCEd does not have the permission to read a folder or a file:\n" + FileManager.MissingPermissionPath + "\n\n Some files won't be displayed in the open/save menus.", "Could not scan some folders", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
 #if DEBUG
