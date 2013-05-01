@@ -1,26 +1,12 @@
-﻿* Exgartuan
+﻿* Imps birthed and imps gangbang
+* Status 'heat'
+* Buttstretched, CuntStretched
+* KeltOff, Kelt submissiveness
+* Spells
+* Golden lipstick
+* Faerie fucked
+* Rut
+* Worms
+* Infos
 * Reorganize listboxes
-* Sort perks
-
-
-earsPierced
-1 = Green gem-stone ear-studs (Ceraph)
-
-eyebrowPierced
-1 = Diamond eyebrow-stud
-
-nosePierced [deprecated]
-
-lipPierced
-
-tonguePierced
-
-nipplesPierced
-
-cocks[].pierced
-vaginas[].clitPierced
-vaginas[].labiaPierced
-
-
-
-Ceraph: ears, nipples, cock/clit/eyebrow
+* Sort perks on save

@@ -6,10 +6,10 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
-    public class BreastsVM : NodeVM
+    public class BreastsVM : ObjectVM
     {
-        public BreastsVM(AmfNode node)
-            : base(node)
+        public BreastsVM(AmfObject obj)
+            : base(obj)
         {
         }
 
@@ -110,22 +110,22 @@ namespace CoCEd.ViewModel
 
     public sealed class BreastArrayVM : ArrayVM<BreastsVM>
     {
-        public BreastArrayVM(AmfNode node)
-            : base(node, x => new BreastsVM(x))
+        public BreastArrayVM(AmfObject obj)
+            : base(obj, x => new BreastsVM(x))
         {
         }
 
-        protected override AmfNode CreateNewNode()
+        protected override AmfObject CreateNewObject()
         {
-            var node = new AmfArray();
-            node["breasts"] = 2;
-            node["fuckable"] = false;
-            node["breastRating"] = 3.0;
-            node["nipplesPerBreast"] = 1;
-            node["lactationMultiplier"] = 1.0;
-            node["milkFullness"] = 0;
-            node["fullness"] = 0;
-            return node;
+            var obj = new AmfObject(AmfTypes.Array);
+            obj["breasts"] = 2;
+            obj["fuckable"] = false;
+            obj["breastRating"] = 3.0;
+            obj["nipplesPerBreast"] = 1;
+            obj["lactationMultiplier"] = 1.0;
+            obj["milkFullness"] = 0;
+            obj["fullness"] = 0;
+            return obj;
         }
     }
 }

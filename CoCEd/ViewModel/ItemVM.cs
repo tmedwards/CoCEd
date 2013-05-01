@@ -34,16 +34,16 @@ namespace CoCEd.ViewModel
             get { return _slots; }
         }
 
-        public void Add(AmfNode node)
+        public void Add(AmfObject obj)
         {
-            _slots.Add(new ItemSlotVM(node, Categories));
+            _slots.Add(new ItemSlotVM(obj, Categories));
         }
     }
 
-    public sealed class ItemSlotVM : NodeVM
+    public sealed class ItemSlotVM : ObjectVM
     {
-        public ItemSlotVM(AmfNode node, ItemCategories categories)
-            : base(node)
+        public ItemSlotVM(AmfObject obj, ItemCategories categories)
+            : base(obj)
         {
             Categories = categories;
         }

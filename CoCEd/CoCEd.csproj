@@ -71,10 +71,11 @@
     <Compile Include="Common\UpdatableCollectionHelper.cs" />
     <Compile Include="Common\MyNumericBox.cs" />
     <Compile Include="Model\AmfFile.cs" />
-    <Compile Include="Model\AmfNode.cs" />
+    <Compile Include="Model\AmfObject.cs" />
     <Compile Include="Model\AmfReader.cs" />
     <Compile Include="Model\AmfWriter.cs" />
     <Compile Include="Model\ComparisonStream.cs" />
+    <Compile Include="Model\FileManager.cs" />
     <Compile Include="Model\XmlData.cs" />
     <Compile Include="ViewModel\BreastVM.cs" />
     <Compile Include="ViewModel\CockVM.cs" />
@@ -84,8 +85,8 @@
     <Compile Include="ViewModel\PerkVM.cs" />
     <Compile Include="ViewModel\VaginaVM.cs" />
     <Compile Include="ViewModel\VM.cs" />
-    <Compile Include="View\AppearancePage.xaml.cs">
-      <DependentUpon>AppearancePage.xaml</DependentUpon>
+    <Compile Include="View\BodyPage.xaml.cs">
+      <DependentUpon>BodyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ConfirmationBox.xaml.cs">
       <DependentUpon>ConfirmationBox.xaml</DependentUpon>
@@ -128,7 +129,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\AppearancePage.xaml">
+    <Page Include="View\BodyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

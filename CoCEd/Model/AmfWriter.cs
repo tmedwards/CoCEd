@@ -11,8 +11,8 @@ namespace CoCEd.Model
     {
         readonly BinaryWriter _writer;
         readonly Dictionary<String, int> _stringLookup = new Dictionary<String, int>();
+        readonly Dictionary<Object, int> _objectLookup = new Dictionary<Object, int>();
         readonly Dictionary<AmfTrait, int> _traitLookup = new Dictionary<AmfTrait, int>();
-        readonly Dictionary<AmfObject, int> _objectLookup = new Dictionary<AmfObject, int>();
 
         public AmfWriter(Stream stream)
         {
@@ -42,7 +42,7 @@ namespace CoCEd.Model
 
             // Name
             var countBytes = BitConverter.GetBytes((UInt16)newName.Length);
-            WriteBytesAfterSwap(countBytes, i => 1 - i);
+            WriteReversedBytes(countBytes);
             _writer.Write(newName.ToArray());
 
             // AMF version number
@@ -54,16 +54,15 @@ namespace CoCEd.Model
             // Key-value pairs
             foreach(var pair in file)
             {
-                WriteString(pair.Key);
+                WriteString((string)pair.Key);
                 WriteValue(pair.Value);
                 _writer.Write((byte)0);
             }
 
             // Replace size
-            int dataSize = (int)_writer.BaseStream.Length - 6;
-            var sizeBytes = BitConverter.GetBytes(dataSize);
             _writer.BaseStream.Seek(2, SeekOrigin.Begin);
-            WriteBytesAfterSwap(sizeBytes, i => 3 - i);
+            uint dataSize = (uint)_writer.BaseStream.Length - 6;
+            WriteU32(dataSize);
 
             // Flush
             _writer.Flush();
@@ -73,16 +72,16 @@ namespace CoCEd.Model
         {
             if (obj == null)
             {
+                _writer.Write((byte)AmfTypes.Undefined);
+            }
+            else if (obj is AmfNull)
+            {
                 _writer.Write((byte)AmfTypes.Null);
             }
             else if (obj is Boolean)
             {
                 if ((bool)obj) _writer.Write((byte)AmfTypes.True);
                 else _writer.Write((byte)AmfTypes.False);
-            }
-            else if (obj is Undefined)
-            {
-                _writer.Write((byte)AmfTypes.Undefined);
             }
             else if (obj is Int32)
             {
@@ -99,25 +98,51 @@ namespace CoCEd.Model
                 _writer.Write((byte)AmfTypes.String);
                 WriteString((string)obj);
             }
-            else if (obj is AmfArray)
-            {
-                _writer.Write((byte)AmfTypes.Array);
-                WriteArray((AmfArray)obj);
-            }
-            else if (obj is AmfObject)
-            {
-                _writer.Write((byte)AmfTypes.Object);
-                WriteObject((AmfObject)obj);
-            }
-            else if (obj is byte[])
-            {
-                _writer.Write((byte)AmfTypes.ByteArray);
-                WriteByteArray((byte[])obj);
-            }
             else if (obj is DateTime)
             {
                 _writer.Write((byte)AmfTypes.Date);
                 WriteDate((DateTime)obj);
+            }
+            else if (obj is Byte[])
+            {
+                _writer.Write((byte)AmfTypes.ByteArray);
+                WriteByteArray((Byte[])obj);
+            }
+            else if (obj is AmfXmlType)
+            {
+                var x = (AmfXmlType)obj;
+                if (x.IsDocument) _writer.Write((byte)AmfTypes.XmlDoc);
+                else _writer.Write((byte)AmfTypes.XmlMarker);
+                WriteXML(x);
+            }
+            else if (obj is AmfObject)
+            {
+                var o = (AmfObject)obj;
+                _writer.Write((byte)o.Type);
+                switch (o.Type)
+                {
+                    case AmfTypes.Array:
+                        WriteArray(o);
+                        break;
+
+                    case AmfTypes.Object:
+                        WriteObject(o);
+                        break;
+
+                    case AmfTypes.Dictionary:
+                        WriteDictionary(o);
+                        break;
+
+                    case AmfTypes.VectorInt:
+                    case AmfTypes.VectorUInt:
+                    case AmfTypes.VectorDouble:
+                    case AmfTypes.VectorGeneric:
+                        WriteVector(o);
+                        break;
+
+                    default:
+                        throw new NotImplementedException();
+                }
             }
             else
             {
@@ -125,14 +150,27 @@ namespace CoCEd.Model
             }
         }
 
-        void WriteBytesAfterSwap(byte[] srcBytes, Func<int, int> indexTransform)
+        void WriteReversedBytes(byte[] srcBytes)
         {
-            byte[] destBytes = new byte[srcBytes.Length];
-            for (int i = 0; i < srcBytes.Length; i++)
-            {
-                destBytes[indexTransform(i)] = srcBytes[i];
-            }
-            _writer.Write(destBytes);
+            for (int i = srcBytes.Length - 1; i >= 0; --i) _writer.Write(srcBytes[i]);
+        }
+
+        void WriteDouble(double value)
+        {
+            var bytes = BitConverter.GetBytes(value);
+            WriteReversedBytes(bytes);
+        }
+
+        void WriteU32(uint value)
+        {
+            var bytes = BitConverter.GetBytes(value);
+            WriteReversedBytes(bytes);
+        }
+
+        void WriteI32(int value)
+        {
+            var bytes = BitConverter.GetBytes(value);
+            WriteReversedBytes(bytes);
         }
 
         void WriteI29(int value)
@@ -151,7 +189,7 @@ namespace CoCEd.Model
 
         void WriteU29(int value)
         {
-            // Two combinations possible
+            // Two possible combinations
             // 7-7-7-8 (22-15-8-0)
             // 0-7-7-7 (   14-7-0)
 
@@ -174,68 +212,64 @@ namespace CoCEd.Model
             }
         }
 
-        void WriteDouble(double value)
-        {
-            var bytes = BitConverter.GetBytes(value);
-            WriteBytesAfterSwap(bytes, i => 7 - i);
-        }
-
-        void WriteString(string value)
+        void WriteString(string str)
         {
             int index;
-            if (value == "")
+            if (str == "")
             {
                 WriteU29(0, true);
             }
-            else if (_stringLookup.TryGetValue(value, out index))
+            else if (_stringLookup.TryGetValue(str, out index))
             {
                 WriteU29(index, false);
             }
             else
             {
-                WriteU29(value.Length, true);
-                _writer.Write(value.ToArray());
-                _stringLookup.Add(value, _stringLookup.Count);
+                WriteU29(str.Length, true);
+                _writer.Write(str.ToArray());
+                _stringLookup.Add(str, _stringLookup.Count);
             }
         }
 
-        void WriteArray(AmfArray obj)
+        void WriteDate(DateTime date)
         {
-            // TODO: Optimize this : o(n²) to o(n)
-            int countDense = obj.DenseCount;
-            WriteU29(countDense, true);
+            if (TryWriteRef(date)) return;
+            WriteU29(0, true);
+
+            var elapsed = date - new DateTime(1970, 1, 1);
+            WriteDouble(elapsed.TotalMilliseconds);
+        }
+
+        void WriteByteArray(byte[] array)
+        {
+            if (TryWriteRef(array)) return;
+            WriteU29(array.Length, true);
+            _writer.Write(array);
+        }
+
+        void WriteArray(AmfObject array)
+        {
+            if (TryWriteRef(array)) return;
+            WriteU29(array.DenseCount, true);
 
             // Associative part (key-value pairs)
-            foreach(var pair in obj)
+            foreach(var pair in array.GetAssociativePart())
             {
-                int index;
-                if (Int32.TryParse(pair.Key, out index) && index < countDense) continue;
-
-                WriteString(pair.Key);
+                WriteString(pair.Key.ToString());
                 WriteValue(pair.Value);
             }
             WriteString("");
 
             // Dense part (consecutive indices >=0 and <count)
-            for (int i = 0; i < countDense; i++)
+            foreach (var value in array.GetDensePart())
             {
-                var value = obj[i.ToString()];
                 WriteValue(value);
             }
         }
 
         void WriteObject(AmfObject obj)
         {
-            // By reference or by instance?
-            int index;
-            if (_objectLookup.TryGetValue(obj, out index))
-            {
-                WriteU29(index, false);
-                return;
-            }
-            _objectLookup.Add(obj, _objectLookup.Count);
-
-            // Trait
+            if (TryWriteRef(obj)) return;
             WriteTrait(obj.Trait);
 
             // Trait's properties
@@ -253,7 +287,7 @@ namespace CoCEd.Model
                     // Is prop from trait or dynamic?
                     if (obj.Trait.Properties.Contains(pair.Key)) continue;
 
-                    WriteString(pair.Key);
+                    WriteString(pair.Key.ToString());
                     WriteValue(pair.Value);
                 }
                 WriteString("");
@@ -285,18 +319,75 @@ namespace CoCEd.Model
             }
         }
 
-        void WriteByteArray(byte[] value)
+        void WriteDictionary(AmfObject obj)
         {
-            WriteU29(value.Length, true);
-            _writer.Write(value);
+            if (TryWriteRef(obj)) return;
+            WriteU29(obj.Count, true);
+
+            _writer.Write(obj.HasWeakKeys);
+            foreach (var pair in obj)
+            {
+                WriteValue(pair.Key);
+                WriteValue(pair.Value);
+            }
         }
 
-        void WriteDate(DateTime date)
+        void WriteVector(AmfObject vector)
         {
-            WriteU29(0, true);
+            if (vector.AssociativeCount != 0) throw new InvalidOperationException("AssociativeCount was not zero.");
 
-            var elapsed = date - new DateTime(1970, 1, 1);
-            WriteDouble(elapsed.TotalMilliseconds);
+            if (TryWriteRef(vector)) return;
+            WriteU29(vector.DenseCount, true);
+
+            _writer.Write(vector.IsFixedVector);
+            if (vector.Type == AmfTypes.VectorGeneric) WriteString(vector.GenericElementType);
+
+            foreach (var value in vector.GetDensePart())
+            {
+                switch (vector.Type)
+                {
+                    case AmfTypes.VectorInt:
+                        WriteI32((int)value);
+                        break;
+
+                    case AmfTypes.VectorUInt:
+                        WriteU32((uint)value);
+                        break;
+
+                    case AmfTypes.VectorDouble:
+                        WriteDouble((double)value);
+                        break;
+
+                    case AmfTypes.VectorGeneric:
+                        WriteValue(value);
+                        break;
+
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+        }
+
+        void WriteXML(AmfXmlType xml)
+        {
+            if (TryWriteRef(xml)) return;
+            WriteU29(xml.Content.Length, true);
+            _writer.Write(xml.Content.ToArray());
+        }
+
+        bool TryWriteRef(Object obj)
+        {
+            int index;
+            if (_objectLookup.TryGetValue(obj, out index))
+            {
+                WriteU29(index, false);
+                return true;
+            }
+            else
+            {
+                _objectLookup.Add(obj, _objectLookup.Count);
+                return false;
+            }
         }
 
         void IDisposable.Dispose()

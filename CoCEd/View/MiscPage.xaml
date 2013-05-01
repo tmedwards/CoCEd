@@ -5,16 +5,80 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:common="clr-namespace:CoCEd.Common"
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
-    
-    <common:AutoGrid Margin="30">
-        <TextBlock              Text="Children with Tamani"/>
-        <common:MyNumericBox    Value="{Binding Game.TamaniChildren}" Min="0" IsInteger="True" IsEnabled="{Binding Game.HasMetTamani}"/>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/PageInclude.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
 
-        <TextBlock              Text="Exgartuan"/>
-        <ComboBox SelectedIndex="{Binding Game.Exagartuan}">
-            <ComboBoxItem>Not infested</ComboBoxItem>
-            <ComboBoxItem>Cock</ComboBoxItem>
-            <ComboBoxItem>Breasts</ComboBoxItem>
-        </ComboBox>
-    </common:AutoGrid>
+    <Grid Margin="0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <common:AutoGrid Grid.Column="1" Grid.Row="1">
+            <TextBlock              Text="Exgartuan"/>
+            <ComboBox SelectedIndex="{Binding Game.Exagartuan}">
+                <ComboBoxItem>Not infested</ComboBoxItem>
+                <ComboBoxItem>Cock</ComboBoxItem>
+                <ComboBoxItem>Breasts</ComboBoxItem>
+            </ComboBox>
+        </common:AutoGrid>
+
+        <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
+            <Border Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="Procreation" Style="{StaticResource Header}"/>
+            </Border>
+            <common:AutoGrid>
+                <TextBlock              Text="Fertility"/>
+                <common:MyNumericBox    Value="{Binding Game.Fertility}" Min="0" Max="100" IsInteger="True"/>
+            </common:AutoGrid>
+
+            <common:AutoGrid Margin="0,30">
+                <TextBlock              Text="Pregnancy"/>
+                <common:MyComboBox SelectedValue="{Binding Game.PregnancyType}" ItemsSource="{Binding Data.Body.PregnancyTypes}"/>
+
+                <TextBlock              Text="Time remaining"/>
+                <common:MyNumericBox    Value="{Binding Game.PregnancyTime}" Min="0" IsInteger="True" Unit="hours" IsEnabled="{Binding Game.IsPregnancyEnabled}"/>
+                
+                <TextBlock              Text="Butt pregnancy"/>
+                <common:MyComboBox SelectedValue="{Binding Game.ButtPregnancyType}" ItemsSource="{Binding Data.Body.AnalPregnancyTypes}"/>
+
+                <TextBlock              Text="Time remaining"/>
+                <common:MyNumericBox    Value="{Binding Game.ButtPregnancyTime}" Min="0" IsInteger="True" Unit="hours" IsEnabled="{Binding Game.IsButtPregnancyEnabled}"/>
+            </common:AutoGrid>
+
+            <common:AutoGrid Margin="0,15">
+                <TextBlock              Text="Children with Tamani"/>
+                <common:MyNumericBox    Value="{Binding Game.TamaniChildren}" Min="0" IsInteger="True" IsEnabled="{Binding Game.HasMetTamani}"/>
+            </common:AutoGrid>
+
+            <!--
+            <TextBlock Text="Children" Style="{StaticResource Header}"/>
+            <common:AutoGrid>
+                <TextBlock              Text="From Marble"/>
+                <common:MyNumericBox    Value="{Binding Game.ChildrenMarble}" Min="0" IsInteger="True"/>
+
+                <TextBlock              Text="From Izma (girls)"/>
+                <common:MyNumericBox    Value="{Binding Game.ChildrenIzmaGirls}" Min="0" IsInteger="True"/>
+
+                <TextBlock              Text="From Izma (boys)"/>
+                <common:MyNumericBox    Value="{Binding Game.ChildrenIzmaBoys}" Min="0" IsInteger="True"/>
+            </common:AutoGrid>
+            -->
+        </StackPanel>
+    </Grid>
 </UserControl>

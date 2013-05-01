@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace CoCEd.Model
 {
-    internal sealed class AmfReader : IDisposable
+    public sealed class AmfReader : IDisposable
     {
         readonly BinaryReader _reader;
         readonly List<String> _stringLookup = new List<String>();
+        readonly List<Object> _objectLookup = new List<Object>();
         readonly List<AmfTrait> _traitLookup = new List<AmfTrait>();
-        readonly List<AmfObject> _objectLookup = new List<AmfObject>();
 
         public AmfReader(Stream stream)
         {
@@ -46,7 +47,7 @@ namespace CoCEd.Model
             {
                 var key = ReadString();
                 var value = ReadValue();
-                file.AddNoCheck(key, value);
+                file.Add(key, value);
 
                 if (_reader.ReadByte() != 0) throw new InvalidOperationException();
                 if (_reader.BaseStream.Position == _reader.BaseStream.Length) break;
@@ -59,10 +60,10 @@ namespace CoCEd.Model
             switch (type)
             {
                 case AmfTypes.Undefined:
-                    return Undefined.Instance;
+                    return null;
 
                 case AmfTypes.Null:
-                    return null;
+                    return AmfNull.Instance;
 
                 case AmfTypes.True:
                     return true;
@@ -79,38 +80,48 @@ namespace CoCEd.Model
                 case AmfTypes.String:
                     return ReadString();
 
+                case AmfTypes.Date:
+                    return ReadDate();
+
+                case AmfTypes.ByteArray:
+                    return ReadByteArray();
+
                 case AmfTypes.Array:
                     return ReadArray();
 
                 case AmfTypes.Object:
                     return ReadObject();
 
-                case AmfTypes.ByteArray:
-                    return ReadByteArray();
+                case AmfTypes.Dictionary:
+                    return ReadDictionary();
 
-                case AmfTypes.Date:
-                    return ReadDate();
+                case AmfTypes.VectorInt:
+                case AmfTypes.VectorUInt:
+                case AmfTypes.VectorDouble:
+                case AmfTypes.VectorGeneric:
+                    return ReadVector(type);
+
+                case AmfTypes.XmlDoc:
+                    return ReadXML(true);
+
+                case AmfTypes.XmlMarker:
+                    return ReadXML(false);
 
                 default:
                     throw new NotImplementedException();
             }
         }
 
-        byte[] ReadBytesAndSwap(int count, Func<int, int> indexTransform)
+        readonly byte[] _buffer = new byte[8];
+        void FillBufferReversed(int count)
         {
-            byte[] srcBytes = _reader.ReadBytes(count);
-            byte[] destBytes = new byte[count];
-            for (int i = 0; i < srcBytes.Length; i++)
-            {
-                destBytes[indexTransform(i)] = srcBytes[i];
-            }
-            return destBytes;
+            for (int i = 0; i < count; i++) _buffer[count - (i + 1)] = _reader.ReadByte();
         }
 
         double ReadDouble()
         {
-            var bytes = ReadBytesAndSwap(8, i => 7 - i);
-            return BitConverter.ToDouble(bytes, 0);
+            FillBufferReversed(8);
+            return BitConverter.ToDouble(_buffer, 0);
         }
 
         string ReadString(int numChars)
@@ -133,14 +144,20 @@ namespace CoCEd.Model
 
         ushort ReadU16()
         {
-            var bytes = ReadBytesAndSwap(2, i => 1 - i);
-            return BitConverter.ToUInt16(bytes, 0);
+            FillBufferReversed(2);
+            return BitConverter.ToUInt16(_buffer, 0);
         }
 
         uint ReadU32()
         {
-            var bytes = ReadBytesAndSwap(4, i => 3 - i);
-            return BitConverter.ToUInt32(bytes, 0);
+            FillBufferReversed(4);
+            return BitConverter.ToUInt32(_buffer, 0);
+        }
+
+        int ReadI32()
+        {
+            FillBufferReversed(4);
+            return BitConverter.ToInt32(_buffer, 0);
         }
 
         int ReadI29()
@@ -176,12 +193,26 @@ namespace CoCEd.Model
             }
         }
 
-        AmfArray ReadArray()
+        DateTime ReadDate()
         {
-            var result = new AmfArray();
             bool isInstance;
-            var count = ReadU29(out isInstance);
-            if (!isInstance) throw new NotImplementedException("Violation of AMF3 spec. Array by reference in v4?");
+            int refIndex = ReadU29(out isInstance);
+            if (!isInstance) return (DateTime)_objectLookup[refIndex];
+
+            var elapsed = ReadDouble();
+            var result = new DateTime(1970, 1, 1) + TimeSpan.FromMilliseconds(elapsed);
+            _objectLookup.Add(result);
+            return result;
+        }
+
+        AmfObject ReadArray()
+        {
+            bool isInstance;
+            var indexOrCount = ReadU29(out isInstance);
+            if (!isInstance) return (AmfObject)_objectLookup[indexOrCount];
+
+            var result = new AmfObject(AmfTypes.Array, indexOrCount);
+            _objectLookup.Add(result);
 
             // Associative part (key-value pairs)
             while (true)
@@ -190,14 +221,14 @@ namespace CoCEd.Model
                 if (key == "") break;
 
                 var value = ReadValue();
-                result.AddNoCheck(key, value);
+                result.Add(key, value);
             }
 
             // Dense part (consecutive indices >=0 and <count)
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < indexOrCount; i++)
             {
                 var value = ReadValue();
-                result.AddNoCheck(i.ToString(), value);
+                result.Push(value);
             }
 
             return result;
@@ -207,9 +238,9 @@ namespace CoCEd.Model
         {
             bool isInstance;
             int refIndex = ReadU29(out isInstance);
-            if (!isInstance) return _objectLookup[refIndex];
+            if (!isInstance) return (AmfObject)_objectLookup[refIndex];
 
-            var result = new AmfObject();
+            var result = new AmfObject(AmfTypes.Object);
             _objectLookup.Add(result);
 
             result.Trait = ReadTrait(refIndex);
@@ -217,7 +248,7 @@ namespace CoCEd.Model
             foreach (var name in result.Trait.Properties)
             {
                 var value = ReadValue();
-                result.AddNoCheck(name, value);
+                result.Add(name, value);
             }
 
             if (result.Trait.IsDynamic)
@@ -228,7 +259,7 @@ namespace CoCEd.Model
                     if (name == "") break;
 
                     var value = ReadValue();
-                    result.AddNoCheck(name, value);
+                    result.Add(name, value);
                 }
             } 
 
@@ -258,31 +289,91 @@ namespace CoCEd.Model
             return result;
         }
 
+        byte[] ReadByteArray()
+        {
+            bool isInstance;
+            int lengthOrIndex = ReadU29(out isInstance);
+            if (!isInstance) return (byte[])_objectLookup[lengthOrIndex];
+
+            var result = _reader.ReadBytes(lengthOrIndex);
+            _objectLookup.Add(result);
+            return result;
+        }
+
+        AmfObject ReadVector(AmfTypes type)
+        {
+            bool isInstance;
+            int lengthOrIndex = ReadU29(out isInstance);
+            if (!isInstance) return (AmfObject)_objectLookup[lengthOrIndex];
+
+            var result = new AmfObject(type, lengthOrIndex);
+            _objectLookup.Add(result);
+
+            result.IsFixedVector = _reader.ReadBoolean();
+            if (type == AmfTypes.VectorGeneric) result.GenericElementType = ReadString();
+
+            for (int j = 0; j < lengthOrIndex; ++j)
+            {
+                switch (type)
+                {
+                    case AmfTypes.VectorInt:
+                        result.Push(ReadI32());
+                        break;
+
+                    case AmfTypes.VectorUInt:
+                        result.Push(ReadU32());
+                        break;
+
+                    case AmfTypes.VectorDouble:
+                        result.Push(ReadDouble());
+                        break;
+
+                    case AmfTypes.VectorGeneric:
+                        result.Push(ReadValue());
+                        break;
+
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+            return result;
+        }
+
+        AmfObject ReadDictionary()
+        {
+            bool isInstance;
+            int lengthOrIndex = ReadU29(out isInstance);
+            if (!isInstance) return (AmfObject)_objectLookup[lengthOrIndex];
+
+            var result = new AmfObject(AmfTypes.Dictionary, lengthOrIndex);
+            _objectLookup.Add(result);
+
+            result.HasWeakKeys = _reader.ReadBoolean();
+            for (int j = 0; j < lengthOrIndex; ++j)
+            {
+                var key = ReadValue();
+                var value = ReadValue();
+                result.Add(key, value);
+            }
+            return result;
+        }
+
+        AmfXmlType ReadXML(bool isDocument)
+        {
+            bool isInstance;
+            int lengthOrIndex = ReadU29(out isInstance);
+            if (!isInstance) return (AmfXmlType)_objectLookup[lengthOrIndex];
+
+            var result = new AmfXmlType { IsDocument = isDocument };
+            result.Content = ReadString(lengthOrIndex);
+            _objectLookup.Add(result);
+            return result;
+        }
+
         static bool PopFlag(ref int value)
         {
             bool result = (value & 1) == 1;
             value >>= 1;
-            return result;
-        }
-
-        byte[] ReadByteArray()
-        {
-            bool mustBeOne;
-            int length = ReadU29(out mustBeOne);
-            if (!mustBeOne) throw new NotImplementedException("Violation of the AMF spec: did Adobe introduced byte array by ref?");
-
-            var result = _reader.ReadBytes(length);
-            return result;
-        }
-
-        DateTime ReadDate()
-        {
-            bool mustBeOne;
-            ReadU29(out mustBeOne);
-            if (!mustBeOne) throw new NotImplementedException("Violation of the AMF spec: did Adobe introduced date by ref?");
-
-            var elapsed = ReadDouble();
-            var result = new DateTime(1970, 1, 1) + TimeSpan.FromMilliseconds(elapsed);
             return result;
         }
 

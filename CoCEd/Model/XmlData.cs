@@ -103,6 +103,8 @@ namespace CoCEd.Model
         public XmlEnum[] PregnancyTypes { get; set; }
         [XmlArray, XmlArrayItem("AnalPregnancyType")]
         public XmlEnum[] AnalPregnancyTypes { get; set; }
+        [XmlArray, XmlArrayItem("EggPregnancyType")]
+        public XmlEnum[] EggPregnancyTypes { get; set; }
     }
 
     public sealed class XmlPerkSet
