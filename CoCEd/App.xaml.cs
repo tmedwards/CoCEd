@@ -84,8 +84,9 @@ namespace CoCEd
 #if DEBUG
             var file = AutoLoad(set);
             //DebugStatuses(file);
-            //RunTest(set);
+            //RunSerializationTest(set);
             //ParsePerks();
+            Test();
 #endif
         }
 
@@ -100,16 +101,18 @@ namespace CoCEd
 
         static void PrintStatuses(AmfFile file)
         {
-            foreach (AmfPair pair in file["statusAffects"])
+            foreach (AmfPair pair in file.GetObj("statusAffects"))
             {
-                int key = Int32.Parse(pair.Key);
-                var name = pair.Value["statusAffectName"] as string;
+                int key = Int32.Parse(pair.Key as string);
+                var name = pair.ValueAsObject.GetString("statusAffectName");
                 Debug.WriteLine(key.ToString("000") + " - " + name);
             }
         }
 
-        static void RunTest(FileGroupSetVM set)
+        static void RunSerializationTest(FileGroupSetVM set)
         {
+            Stopwatch s = new Stopwatch();
+            s.Start();
             foreach (var first in set.StandardOfflineFiles.Files)
             {
                 var outPath = "e:\\" + first.Source.Name + ".sol";
@@ -124,6 +127,7 @@ namespace CoCEd
                     if (input[i] != output[i]) throw new InvalidOperationException();
                 }
             }
+            var elapsed = s.ElapsedMilliseconds;
             MessageBox.Show("Success!");
         }
 
@@ -208,6 +212,13 @@ namespace CoCEd
             }
 
             File.WriteAllText("e:\\CocItems.xml", builder.ToString());
+        }
+
+        void Test()
+        {
+            Dictionary<Object, Object> dic = new Dictionary<object, object>();
+            dic.Add(5, "abc");
+            if (dic[5] as string != "abc") throw new InvalidOperationException();
         }
 #endif
     }

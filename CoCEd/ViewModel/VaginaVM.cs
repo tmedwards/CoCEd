@@ -6,9 +6,9 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
-    public class VaginaVM : NodeVM
+    public class VaginaVM : ObjectVM
     {
-        public VaginaVM(AmfNode node)
+        public VaginaVM(AmfObject node)
             : base(node)
         {
             ClitPiercing = new PiercingVM(node, "clit");
@@ -71,28 +71,28 @@ namespace CoCEd.ViewModel
 
     public sealed class VaginaArrayVM : ArrayVM<VaginaVM>
     {
-        public VaginaArrayVM(AmfNode node)
-            : base(node, x => new VaginaVM(x))
+        public VaginaArrayVM(AmfObject obj)
+            : base(obj, x => new VaginaVM(x))
         {
         }
 
-        protected override AmfNode CreateNewNode()
+        protected override AmfObject CreateNewObject()
         {
-            var node = new AmfArray();
+            var obj = new AmfObject(AmfTypes.Array);
 
-            node["clipPLong"] = "";
-            node["clitPShort"] = "";
-            node["clitPierced"] = false;
+            obj["clipPLong"] = "";
+            obj["clitPShort"] = "";
+            obj["clitPierced"] = false;
 
-            node["labiaPLong"] = "";
-            node["labiaPShort"] = "";
-            node["labiaPierced"] = false;
+            obj["labiaPLong"] = "";
+            obj["labiaPShort"] = "";
+            obj["labiaPierced"] = false;
 
-            node["type"] = 0;
-            node["virgin"] = true;
-            node["vaginalWetness"] = 1;
-            node["vaginalLooseness"] = 0;
-            return node;
+            obj["type"] = 0;
+            obj["virgin"] = true;
+            obj["vaginalWetness"] = 1;
+            obj["vaginalLooseness"] = 0;
+            return obj;
         }
     }
 }

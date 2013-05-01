@@ -19,8 +19,8 @@
             <TabItem Header="General" Padding="4" Width="150">
                 <view:GeneralPage/>
             </TabItem>
-            <TabItem Header="Appearance" Padding="4" Width="150">
-                <view:AppearancePage/>
+            <TabItem Header="Body" Padding="4" Width="150">
+                <view:BodyPage/>
             </TabItem>
             <TabItem Header="Genitals" Padding="4" Width="150">
                 <view:GenitalsPage/>

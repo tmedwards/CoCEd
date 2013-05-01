@@ -7,12 +7,12 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
-    public class CockVM : NodeVM
+    public class CockVM : ObjectVM
     {
-        public CockVM(AmfNode node)
-            : base(node)
+        public CockVM(AmfObject obj)
+            : base(obj)
         {
-            Piercing = new PiercingVM(node, "");
+            Piercing = new PiercingVM(obj, "");
         }
 
         public PiercingVM Piercing { get; private set; }
@@ -75,22 +75,22 @@ namespace CoCEd.ViewModel
 
     public sealed class CockArrayVM : ArrayVM<CockVM>
     {
-        public CockArrayVM(AmfNode node)
-            : base(node, x => new CockVM(x))
+        public CockArrayVM(AmfObject obj)
+            : base(obj, x => new CockVM(x))
         {
         }
 
-        protected override AmfNode CreateNewNode()
+        protected override AmfObject CreateNewObject()
         {
-            var node = new AmfArray();
-            node["cockLength"] = 8;
-            node["cockThickness"] = 2;
-            node["cockType"] = 0;
-            node["knotMultiplier"] = 0.0;
-            node["pierced"] = 0;
-            node["pLong"] = "";
-            node["pShort"] = "";
-            return node;
+            var obj = new AmfObject(AmfTypes.Array);
+            obj["cockLength"] = 8;
+            obj["cockThickness"] = 2;
+            obj["cockType"] = 0;
+            obj["knotMultiplier"] = 0.0;
+            obj["pierced"] = 0;
+            obj["pLong"] = "";
+            obj["pShort"] = "";
+            return obj;
         }
     }
 }

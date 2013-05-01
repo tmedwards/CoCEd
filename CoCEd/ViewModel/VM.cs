@@ -107,44 +107,44 @@ namespace CoCEd.ViewModel
         void MoveItemToIndex(int sourceIndex, int destIndex);
     }
 
-    public abstract class NodeVM : BindableBase
+    public abstract class ObjectVM : BindableBase
     {
-        protected readonly AmfNode _node;
+        protected readonly AmfObject _obj;
 
-        protected NodeVM(AmfNode node)
+        protected ObjectVM(AmfObject node)
         {
-            _node = node;
+            _obj = node;
         }
 
         public dynamic GetValue(string name)
         {
-            return _node[name];
+            return _obj[name];
         }
 
         public double GetDouble(string name)
         {
-            return _node.GetDouble(name);
+            return _obj.GetDouble(name);
         }
 
         public int GetInt(string name, int? defaultValue = null)
         {
-            return _node.GetInt(name, defaultValue);
+            return _obj.GetInt(name, defaultValue);
         }
 
         public string GetString(string name)
         {
-            return _node.GetString(name);
+            return _obj.GetString(name);
         }
 
         public bool GetBool(string name)
         {
-            return _node.GetBool(name);
+            return _obj.GetBool(name);
         }
 
-        public bool SetValue(string name, dynamic value, [CallerMemberName] string propertyName = null)
+        public bool SetValue(string name, object value, [CallerMemberName] string propertyName = null)
         {
-            if (_node[name] == value) return false;
-            _node[name] = value;
+            if (AmfObject.AreSame(_obj[name], value)) return false;
+            _obj[name] = value;
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -161,28 +161,27 @@ namespace CoCEd.ViewModel
         }
     }
 
-    public abstract class ArrayVM<TResult> : UpdatableCollection<AmfNode, TResult>, IArrayVM
+    public abstract class ArrayVM<TResult> : UpdatableCollection<AmfObject, TResult>, IArrayVM
     {
-        readonly AmfNode _node;
+        readonly AmfObject _object;
 
-        protected ArrayVM(AmfNode node, Func<AmfNode, TResult> selector)
-            : base(node.Select(x => x.Value as AmfNode), selector)
+        protected ArrayVM(AmfObject node, Func<AmfObject, TResult> selector)
+            : base(node.Select(x => x.Value as AmfObject), selector)
         {
-            _node = node;
+            _object = node;
         }
 
         void IArrayVM.Create()
         {
-            AmfNode node = CreateNewNode();
-            _node.Add(node);
+            AmfObject node = CreateNewObject();
+            _object.Push(node);
             Update();
             VM.Instance.NotifySaveRequiredChanged(true);
         }
 
         void IArrayVM.Delete(int index)
         {
-            Object removedValue;
-            _node.Remove(index.ToString(), true, out removedValue);
+            _object.RemoveKey(index);
             Update();
             VM.Instance.NotifySaveRequiredChanged(true);
         }
@@ -190,16 +189,12 @@ namespace CoCEd.ViewModel
         void IArrayVM.MoveItemToIndex(int sourceIndex, int destIndex)
         {
             if (sourceIndex == destIndex) return;
-            if (sourceIndex < destIndex) --destIndex;
-
-            Object removedValue;
-            if (!_node.Remove(sourceIndex.ToString(), true, out removedValue)) throw new InvalidOperationException();
-            _node.Insert(removedValue, destIndex);
+            _object.Move(sourceIndex, destIndex);
             Update();
             VM.Instance.NotifySaveRequiredChanged(true);
         }
 
-        protected abstract AmfNode CreateNewNode();
+        protected abstract AmfObject CreateNewObject();
     }
 }
 

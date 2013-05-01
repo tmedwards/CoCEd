@@ -221,7 +221,6 @@
       <PregnancyType ID="2"  Name="Minotaur"/>
       <PregnancyType ID="4"  Name="Mouse-morph (Jojo/Corrupt Amily)"/>
       <PregnancyType ID="11" Name="Mouse-morph (Amily)"/>
-      <PregnancyType ID="5"  Name="Eggs"/>
       <PregnancyType ID="6"  Name="Hellhound"/>
       <PregnancyType ID="7"  Name="Centaur (Kelt)"/>
       <PregnancyType ID="8"  Name="Cowgirls (Marble)"/>
@@ -238,6 +237,18 @@
       <PregnancyType ID="20"  Name="Equine (Cotton)"/>
       <PregnancyType ID="21"  Name="Fox (Urta)"/>
       <PregnancyType ID="22"  Name="Sand witch"/>
+      <PregnancyType ID="10000"   Name="Small brown egg"/>
+      <PregnancyType ID="10001"   Name="Large brown egg"/>
+      <PregnancyType ID="10100"   Name="Small purple egg"/>
+      <PregnancyType ID="10101"   Name="Large purple egg"/>
+      <PregnancyType ID="10200"   Name="Small blue egg"/>
+      <PregnancyType ID="10201"   Name="Large blue egg"/>
+      <PregnancyType ID="10300"   Name="Small pink egg"/>
+      <PregnancyType ID="10301"   Name="Large pink egg"/>
+      <PregnancyType ID="10400"   Name="Small white egg"/>
+      <PregnancyType ID="10401"   Name="Large white egg"/>
+      <PregnancyType ID="10500"   Name="Small rubbery black egg"/>
+      <PregnancyType ID="10501"   Name="Large rubbery black egg"/>
     </PregnancyTypes>
     <!--============================================================================================================================================-->
     <AnalPregnancyTypes>

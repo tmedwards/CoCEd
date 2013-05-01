@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CoCEd.View.AppearancePage"
+﻿<UserControl x:Class="CoCEd.View.BodyPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -60,48 +60,27 @@
         </StackPanel>
 
 
-
         <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
             <Border Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Procreation" Style="{StaticResource Header}"/>
+                <TextBlock Text="Lower body" Style="{StaticResource Header}"/>
             </Border>
             <common:AutoGrid>
-                <TextBlock              Text="Fertility"/>
-                <common:MyNumericBox    Value="{Binding Game.Fertility}" Min="0" Max="100" IsInteger="True"/>
+                <TextBlock              Text="Butt"/>
+                <common:MyNumericBox    Value="{Binding Game.ButtRating}" Min="0" Max="20" IsInteger="True" MinLabel="0 (thin)" MaxLabel="20 (very big)" Tip="4 is average"/>
+
+                <TextBlock              Text="Hips &amp; thighs"/>
+                <common:MyNumericBox    Value="{Binding Game.HipRating}" Min="0" Max="20" IsInteger="True" MinLabel="0 (thin)" MaxLabel="20 (very big)" Tip="4-6 is average"/>
+
+                <TextBlock              Text="Lower body"/>
+                <common:MyComboBox SelectedValue="{Binding Game.LowerBodyType}" ItemsSource="{Binding Data.Body.LowerBodyTypes}"/>
+
+                <TextBlock              Text="Tail"/>
+                <common:MyComboBox SelectedValue="{Binding Game.TailType}" ItemsSource="{Binding Data.Body.TailTypes}"/>
             </common:AutoGrid>
-
-            <common:AutoGrid Margin="0,15">
-                <TextBlock              Text="Pregnancy"/>
-                <common:MyComboBox SelectedValue="{Binding Game.PregnancyType}" ItemsSource="{Binding Data.Body.PregnancyTypes}"/>
-
-                <TextBlock              Text="Time remaining" Visibility="{Binding Game.PregnancyVisibility}"/>
-                <common:MyNumericBox    Value="{Binding Game.PregnancyTime}" Min="0" IsInteger="True" Unit="hours" Visibility="{Binding Game.PregnancyVisibility}"/>
-            </common:AutoGrid>
-
-            <common:AutoGrid>
-                <TextBlock              Text="Butt pregnancy"/>
-                <common:MyComboBox SelectedValue="{Binding Game.ButtPregnancyType}" ItemsSource="{Binding Data.Body.AnalPregnancyTypes}"/>
-
-                <TextBlock              Text="Time remaining" Visibility="{Binding Game.ButtPregnancyVisibility}"/>
-                <common:MyNumericBox    Value="{Binding Game.ButtPregnancyTime}" Min="0" IsInteger="True" Unit="hours" Visibility="{Binding Game.ButtPregnancyVisibility}"/>
-            </common:AutoGrid>
-
-            <!--
-            <TextBlock Text="Children" Style="{StaticResource Header}"/>
-            <common:AutoGrid>
-                <TextBlock              Text="From Marble"/>
-                <common:MyNumericBox    Value="{Binding Game.ChildrenMarble}" Min="0" IsInteger="True"/>
-
-                <TextBlock              Text="From Izma (girls)"/>
-                <common:MyNumericBox    Value="{Binding Game.ChildrenIzmaGirls}" Min="0" IsInteger="True"/>
-
-                <TextBlock              Text="From Izma (boys)"/>
-                <common:MyNumericBox    Value="{Binding Game.ChildrenIzmaBoys}" Min="0" IsInteger="True"/>
-            </common:AutoGrid>
-            -->
         </StackPanel>
         
-        <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
+       
+        <StackPanel Grid.Column="3" Grid.Row="1" Grid.RowSpan="3" Orientation="Vertical">
             <common:ArrayEditor Header="Breasts" Items="{Binding Game.Breasts}">
                 <common:ArrayEditor.ItemTemplate>
                     <DataTemplate>
@@ -131,27 +110,5 @@
                 <common:MyPiercingBox DataContext="{Binding Game.NipplesPiercing}"/>
             </common:AutoGrid>
         </StackPanel>
-        
-        
-        <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical">
-            <Border Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Lower body" Style="{StaticResource Header}"/>
-            </Border>
-            <common:AutoGrid>
-                <TextBlock              Text="Butt"/>
-                <common:MyNumericBox    Value="{Binding Game.ButtRating}" Min="0" Max="20" IsInteger="True" MinLabel="0 (thin)" MaxLabel="20 (very big)" Tip="4 is average"/>
-
-                <TextBlock              Text="Hips &amp; thighs"/>
-                <common:MyNumericBox    Value="{Binding Game.HipRating}" Min="0" Max="20" IsInteger="True" MinLabel="0 (thin)" MaxLabel="20 (very big)" Tip="4-6 is average"/>
-
-                <TextBlock              Text="Lower body"/>
-                <common:MyComboBox SelectedValue="{Binding Game.LowerBodyType}" ItemsSource="{Binding Data.Body.LowerBodyTypes}"/>
-
-                <TextBlock              Text="Tail"/>
-                <common:MyComboBox SelectedValue="{Binding Game.TailType}" ItemsSource="{Binding Data.Body.TailTypes}"/>
-            </common:AutoGrid>
-        </StackPanel>
-
-
     </Grid>
 </UserControl>

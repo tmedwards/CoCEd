@@ -13,25 +13,25 @@ using CoCEd.Model;
 namespace CoCEd.ViewModel
 {
     // TeaseLevel / XP
-    public sealed class GameVM : NodeVM
+    public sealed class GameVM : ObjectVM
     {
         public GameVM(AmfFile file)
             : base(file)
         {
             // Unique children
-            Ass = new AssVM(file["ass"]);
-            LipPiercing = new PiercingVM(_node, "lip");
-            NosePiercing = new PiercingVM(_node, "nose");
-            EarsPiercing = new PiercingVM(_node, "ears");
-            EyebrowPiercing = new PiercingVM(_node, "eyebrow");
-            NipplesPiercing = new PiercingVM(_node, "nipples");
-            TonguePiercing = new PiercingVM(_node, "tongue");
+            Ass = new AssVM(file.GetObj("ass"));
+            LipPiercing = new PiercingVM(_obj, "lip");
+            NosePiercing = new PiercingVM(_obj, "nose");
+            EarsPiercing = new PiercingVM(_obj, "ears");
+            EyebrowPiercing = new PiercingVM(_obj, "eyebrow");
+            NipplesPiercing = new PiercingVM(_obj, "nipples");
+            TonguePiercing = new PiercingVM(_obj, "tongue");
 
 
             // Collections
-            Cocks = new CockArrayVM(file["cocks"]);
-            Breasts = new BreastArrayVM(file["breastRows"]);
-            Vaginas = new VaginaArrayVM(file["vaginas"]);
+            Cocks = new CockArrayVM(file.GetObj("cocks"));
+            Breasts = new BreastArrayVM(file.GetObj("breastRows"));
+            Vaginas = new VaginaArrayVM(file.GetObj("vaginas"));
             Vaginas.CollectionChanged += OnGenitalsCollectionChanged;
             Breasts.CollectionChanged += OnGenitalsCollectionChanged;
             Cocks.CollectionChanged += OnGenitalsCollectionChanged;
@@ -40,19 +40,20 @@ namespace CoCEd.ViewModel
             // Items
             var groups = new List<ItemSlotGroupVM>();
             var group = new ItemSlotGroupVM("Inventory", ItemCategories.All);
-            for (int i = 0; i < 5; i++) group.Add(file["itemSlot" + (i + 1)]);
+            for (int i = 0; i < 5; i++) group.Add(file.GetObj("itemSlot" + (i + 1)));
             groups.Add(group);
 
             group = new ItemSlotGroupVM("Chest", ItemCategories.All);
-            foreach(var pair in file["itemStorage"]) group.Add(pair.Value);
+            foreach(var pair in file.GetObj("itemStorage")) group.Add(pair.ValueAsObject);
             groups.Add(group);
 
+            var gearStorage = file.GetObj("gearStorage");
             group = new ItemSlotGroupVM("Armor rack", ItemCategories.Armor);
-            for (int i = 0; i < 9; i++) group.Add(file["gearStorage"][i + 9]);
+            for (int i = 0; i < 9; i++) group.Add(gearStorage.GetObj(i + 9));
             groups.Add(group);
 
             group = new ItemSlotGroupVM("Weapon rack", ItemCategories.Weapon);
-            for (int i = 0; i < 9; i++) group.Add(file["gearStorage"][i]);
+            for (int i = 0; i < 9; i++) group.Add(gearStorage.GetObj(i));
             groups.Add(group);
 
             ItemGroups = groups.ToArray();
@@ -61,12 +62,12 @@ namespace CoCEd.ViewModel
             // Perks
             PerkGroups = new PerkGroupVM[]
             {
-                new PerkGroupVM("Starter", _node, XmlData.Instance.Perks.StarterPerks),
-                new PerkGroupVM("History", _node, XmlData.Instance.Perks.HistoryPerks),
-                new PerkGroupVM("Tier0", _node, XmlData.Instance.Perks.Tier0Perks),
-                new PerkGroupVM("Tier1", _node, XmlData.Instance.Perks.Tier1Perks),
-                new PerkGroupVM("Tier2", _node, XmlData.Instance.Perks.Tier2Perks),
-                new PerkGroupVM("Events", _node, XmlData.Instance.Perks.EventPerks)
+                new PerkGroupVM("Starter", _obj, XmlData.Instance.Perks.StarterPerks),
+                new PerkGroupVM("History", _obj, XmlData.Instance.Perks.HistoryPerks),
+                new PerkGroupVM("Tier0", _obj, XmlData.Instance.Perks.Tier0Perks),
+                new PerkGroupVM("Tier1", _obj, XmlData.Instance.Perks.Tier1Perks),
+                new PerkGroupVM("Tier2", _obj, XmlData.Instance.Perks.Tier2Perks),
+                new PerkGroupVM("Events", _obj, XmlData.Instance.Perks.EventPerks)
             };
         }
 
@@ -334,11 +335,32 @@ namespace CoCEd.ViewModel
 
         public int PregnancyType
         {
-            get { return GetInt("pregnancyType"); }
+            get 
+            { 
+                int type = GetInt("pregnancyType"); 
+                if (type != 5) return type;
+
+                int eggType = GetStatusInt("eggs", "1", 0);
+                int eggSize = GetStatusInt("eggs", "2", 0);
+                return 10000 + eggType * 100 + eggSize;
+            }
             set 
             {
-                if (!SetValue("pregnancyType", value)) return;
-                OnPropertyChanged("PregnancyVisibility");
+                if (value < 10000)
+                {
+                    SetValue("pregnancyType", value);
+                }
+                else
+                {
+                    value = value % 10000;
+                    int eggType = value / 100;
+                    int eggSize = value % 100;
+                    EnsureStatusExists("eggs", eggType, eggSize, 6, 0);
+                    SetStatusValue("eggs", "1", eggType);
+                    SetStatusValue("eggs", "2", eggSize);
+                    SetValue("pregnancyType", 5);
+                }
+                OnPropertyChanged("IsPregnancyEnabled");
             }
         }
 
@@ -348,9 +370,9 @@ namespace CoCEd.ViewModel
             set { SetValue("pregnancyIncubation", value); }
         }
 
-        public Visibility PregnancyVisibility
+        public bool IsPregnancyEnabled
         {
-            get { return PregnancyType == 0 ? Visibility.Collapsed : Visibility.Visible; }
+            get { return PregnancyType != 0; }
         }
 
         public int ButtPregnancyType
@@ -359,7 +381,7 @@ namespace CoCEd.ViewModel
             set 
             {
                 if (!SetValue("buttPregnancyType", value)) return;
-                OnPropertyChanged("ButtPregnancyVisibility");
+                OnPropertyChanged("IsEggPregnancyEnabled");
             }
         }
 
@@ -369,6 +391,10 @@ namespace CoCEd.ViewModel
             set { SetValue("buttPregnancyIncubation", value); }
         }
 
+        public bool IsButtPregnancyEnabled
+        {
+            get { return ButtPregnancyType != 0; }
+        }
 
         public int Balls
         {
@@ -422,11 +448,6 @@ namespace CoCEd.ViewModel
             }
         }
 
-        public Visibility ButtPregnancyVisibility
-        {
-            get { return ButtPregnancyType == 0 ? Visibility.Collapsed : Visibility.Visible; }
-        }
-
         public Visibility NippleVisibility
         {
             get { return Breasts.Count == 0 ? Visibility.Collapsed : Visibility.Visible; }
@@ -460,16 +481,44 @@ namespace CoCEd.ViewModel
             }
         }
 
-        int GetStatusInt(string name, string index, int defaultValue = 0)
+        public double VaginalCapacityBonus
         {
-            var node = GetStatus(name);
-            if (node == null) return defaultValue;
-            return node.GetInt("value" + index);
+            get { return GetStatusDouble("Bonus vCapacity", "1"); }
+            set
+            {
+                EnsureStatusExists("Bonus vCapacity", value, 0, 0, 0);
+                SetStatusValue("Bonus vCapacity", "1", value);
+            }
         }
 
-        void SetStatusValue(string name, string index, dynamic value, [CallerMemberName] string propertyName = null)
+        public double AnalCapacityBonus
         {
-            if (GetStatus(name)["value" + index] == value) return;
+            get { return GetStatusDouble("Bonus aCapacity", "1"); }
+            set 
+            {
+                EnsureStatusExists("Bonus aCapacity", value, 0, 0, 0);
+                SetStatusValue("Bonus aCapacity", "1", value); 
+            }
+        }
+
+        int GetStatusInt(string name, string index, int defaultValue = 0)
+        {
+            var obj = GetStatus(name);
+            if (obj == null) return defaultValue;
+            return obj.GetInt("value" + index);
+        }
+
+        double GetStatusDouble(string name, string index, double defaultValue = 0)
+        {
+            var obj = GetStatus(name);
+            if (obj == null) return defaultValue;
+            return obj.GetDouble("value" + index);
+        }
+
+        void SetStatusValue(string name, string index, object value, [CallerMemberName] string propertyName = null)
+        {
+            var oldValue = GetStatus(name)["value" + index];
+            if (AmfObject.AreSame(oldValue, value)) return;
             GetStatus(name)["value" + index] = value;
             OnPropertyChanged(propertyName);
         }
@@ -479,37 +528,36 @@ namespace CoCEd.ViewModel
             return GetStatus(name) != null;
         }
 
-        AmfNode GetStatus(string name)
+        AmfObject GetStatus(string name)
         {
-            AmfNode statuses = _node["statusAffects"];
-            return statuses.Select(x => x.Value).Cast<AmfNode>().FirstOrDefault(x => name == x["statusAffectName"] as string);
+            AmfObject statuses = _obj.GetObj("statusAffects");
+            return statuses.Select(x => x.ValueAsObject).FirstOrDefault(x => name == x["statusAffectName"] as string);
         }
 
         void RemoveStatus(string name, [CallerMemberName] string propertyName = null)
         {
-            AmfNode statuses = _node["statusAffects"];
-            AmfPair pair = statuses.FirstOrDefault(x => name == x.Value["statusAffectName"] as string);
+            AmfObject statuses = _obj.GetObj("statusAffects");
+            AmfPair pair = statuses.FirstOrDefault(x => name == x.ValueAsObject["statusAffectName"] as string);
             if (pair == null) return;
 
-            object node;
-            statuses.Remove(pair.Key, true, out node);
+            statuses.RemoveKey(pair.Key);
             OnPropertyChanged("propertyName");
         }
 
         void EnsureStatusExists(string name, dynamic defaultValue1, dynamic defaultValue2, dynamic defaultValue3, dynamic defaultValue4, [CallerMemberName] string propertyName = null)
         {
-            var node = GetStatus(name);
-            if (node != null) return;
+            var obj = GetStatus(name);
+            if (obj != null) return;
 
-            node = new AmfArray();
-            node["statusAffectName"] = name;
-            node["value1"] = defaultValue1;
-            node["value2"] = defaultValue2;
-            node["value3"] = defaultValue3;
-            node["value4"] = defaultValue4;
+            obj = new AmfObject(AmfTypes.Array);
+            obj["statusAffectName"] = name;
+            obj["value1"] = defaultValue1;
+            obj["value2"] = defaultValue2;
+            obj["value3"] = defaultValue3;
+            obj["value4"] = defaultValue4;
 
-            AmfNode statuses = _node["statusAffects"];
-            statuses.Add(node);
+            AmfObject statuses = (AmfObject)_obj["statusAffects"];
+            statuses.Push(obj);
 
             OnPropertyChanged(propertyName);
             return;
@@ -527,10 +575,10 @@ namespace CoCEd.ViewModel
         }
     }
 
-    public sealed class AssVM : NodeVM
+    public sealed class AssVM : ObjectVM
     {
-        public AssVM(AmfNode node)
-            : base(node)
+        public AssVM(AmfObject obj)
+            : base(obj)
         {
         }
 
@@ -547,12 +595,12 @@ namespace CoCEd.ViewModel
         }
     }
 
-    public sealed class PiercingVM : NodeVM
+    public sealed class PiercingVM : ObjectVM
     {
         readonly string _prefix;
 
-        public PiercingVM(AmfNode node, string prefix)
-            : base(node)
+        public PiercingVM(AmfObject obj, string prefix)
+            : base(obj)
         {
             _prefix = prefix;
         }

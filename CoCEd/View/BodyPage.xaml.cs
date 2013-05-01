@@ -18,9 +18,9 @@ namespace CoCEd.View
     /// <summary>
     /// Interaction logic for BodyPage.xaml
     /// </summary>
-    public partial class AppearancePage : UserControl
+    public partial class BodyPage : UserControl
     {
-        public AppearancePage()
+        public BodyPage()
         {
             InitializeComponent();
         }

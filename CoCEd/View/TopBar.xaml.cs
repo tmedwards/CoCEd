@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CoCEd.Common;
+using CoCEd.Model;
 using CoCEd.ViewModel;
 using Microsoft.Win32;
 

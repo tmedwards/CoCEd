@@ -9,21 +9,13 @@ using System.Threading.Tasks;
 
 namespace CoCEd.Model
 {
-    public sealed class AmfFile : AmfNode
+    public sealed class AmfFile : AmfObject
     {
         static readonly HashSet<String> _backedUpFiles = new HashSet<string>();
 
 
-        public AmfFile(AmfFile clone)
-            : base(clone)
-        {
-            FilePath = clone.FilePath;
-            Error = clone.Error;
-            Date = clone.Date;
-            Name = clone.Name;
-        }
-
         public AmfFile(string path)
+            : base(AmfTypes.Array)
         {
             FilePath = path;
             Date = File.GetLastWriteTime(path);
