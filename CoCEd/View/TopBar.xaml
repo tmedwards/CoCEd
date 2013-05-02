@@ -118,6 +118,6 @@
             <TextBlock Text="{Binding FileLabel}" Margin="12,0" VerticalAlignment="Center" FontSize="14" Foreground="DarkGray"/>
         </StackPanel>
         
-        <TextBlock Text="0.9d" Grid.Column="4" Foreground="#808080" Margin="2,2"/>
+        <TextBlock Text="0.9e" Grid.Column="4" Foreground="#808080" Margin="2,2"/>
     </Grid>
 </UserControl>

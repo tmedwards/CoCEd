@@ -86,8 +86,8 @@ namespace CoCEd
             //DebugStatuses(file);
             //RunSerializationTest(set);
             //ParsePerks();
-            ImportStatuses();
-            ImportFlags();
+            //ImportStatuses();
+            //ImportFlags();
 #endif
         }
 

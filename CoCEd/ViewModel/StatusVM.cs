@@ -1,69 +1,85 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows;
 using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
-    public sealed class StatusesVM : ArrayVM<StatusVM>
-    {
-        public StatusesVM(AmfObject array)
-            : base(array, x => new StatusVM(x))
-        {
-        }
-
-        public StatusVM this[string name]
-        {
-            get { return this.FirstOrDefault(x => x.Name == name); }
-        }
-
-        public StatusVM Create(string name, object defaultValue1, object defaultValue2, object defaultValue3, object defaultValue4)
-        {
-            var obj = new AmfObject(AmfTypes.Array);
-            obj["statusAffectName"] = name;
-            obj["value1"] = defaultValue1;
-            obj["value2"] = defaultValue2;
-            obj["value3"] = defaultValue3;
-            obj["value4"] = defaultValue4;
-            return Add(obj);
-        }
-
-        protected override AmfObject CreateNewObject()
-        {
-            var obj = new AmfObject(AmfTypes.Array);
-            obj["statusAffectName"] = "";
-            obj["value1"] = 0;
-            obj["value2"] = 0;
-            obj["value3"] = 0;
-            obj["value4"] = 0;
-            return obj;
-        }
-    }
-
-
-    public sealed class StatusVM : ObjectVM
+    public sealed class StatusVM : BindableBase
     {
         readonly XmlEnumWithStringID _data;
+        readonly AmfObject _statuses;
+        readonly string _name;
 
-        public StatusVM(AmfObject obj)
-            : base(obj)
+        public StatusVM(AmfObject allStatuses, string name)
         {
-            var name = Name;
-            _data = XmlData.Instance.Statuses.FirstOrDefault(x => x.Name == name);
+            _data = XmlData.Instance.Statuses.FirstOrDefault(x => x.ID == name);
+            _statuses = allStatuses;
+            _name = name;
+
+            GameProperties = new HashSet<string>();
+        }
+
+        public HashSet<string> GameProperties
+        {
+            get;
+            private set;
+        }
+
+        public AmfObject Object
+        {
+            get { return _statuses.Select(x => x.ValueAsObject).FirstOrDefault(x => x.GetString("statusAffectName") == _name); }
+        }
+
+        public bool HasStatus
+        {
+            get { return Object != null; }
+            set
+            {
+                var pair = _statuses.FirstOrDefault(x => x.ValueAsObject.GetString("statusAffectName") == _name);
+                if ((pair != null) == value) return;
+
+                if (value)
+                {
+                    var obj = new AmfObject(AmfTypes.Array);
+                    obj["statusAffectName"] = _name;
+                    obj["value1"] = 0;
+                    obj["value2"] = 0;
+                    obj["value3"] = 0;
+                    obj["value4"] = 0;
+                    _statuses.Push(obj);
+                }
+                else
+                {
+                    _statuses.Pop((int)pair.Key);
+                }
+                OnPropertyChanged();
+                base.OnPropertyChanged("DetailsVisibility");
+            }
         }
 
         public string Name
         {
-            get { return GetString("statusAffectName"); }
-            set 
-            { 
-                if (Name == value) return;
-                VM.Instance.Game.OnStatusChanged(Name);
-                base.SetValue("statusAffectName", value);
-                VM.Instance.Game.OnStatusChanged(value);
-            }
+            get { return _name; }
+        }
+
+        public string Comment
+        {
+            get { return _data == null ? "" : _data.Description; }
+        }
+
+        public Visibility CommentVisibility
+        {
+            get { return _data != null ? Visibility.Visible : Visibility.Collapsed; }
+        }
+
+        public Visibility DetailsVisibility
+        {
+            get { return HasStatus ? Visibility.Visible : Visibility.Collapsed; }
         }
 
         public double Value1
@@ -90,17 +106,53 @@ namespace CoCEd.ViewModel
             set { SetDoubleOrIntValue("value4", value); }
         }
 
+        public double GetDouble(string name)
+        {
+            var obj = Object;
+            if (obj == null) return 0;
+            return obj.GetDouble(name);
+        }
+
+        public int GetInt(string name)
+        {
+            var obj = Object;
+            if (obj == null) return 0;
+            return obj.GetInt(name);
+        }
+
         void SetDoubleOrIntValue(string key, double value, [CallerMemberName] string propertyName = null)
         {
             if (value == (int)value) SetValue(key, (int)value, propertyName);
             else SetValue(key, (double)value, propertyName);
         }
 
-        public override bool SetValue(object key, object value, string propertyName = null)
+        public bool SetValue(object key, object value, [CallerMemberName] string propertyName = null)
         {
-            if (!base.SetValue(key, value, propertyName)) return false;
-            VM.Instance.Game.OnStatusChanged(Name);
+            var obj = Object;
+            if (AmfObject.AreSame(obj[key], value)) return false;
+            obj[key] = value;
+            OnPropertyChanged(propertyName);
             return true;
+        }
+
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            VM.Instance.NotifySaveRequiredChanged(true);
+            VM.Instance.Game.OnStatusChanged(Name);
+        }
+
+        public bool Match(string str)
+        {
+            if (str == null || str.Length < 3) return true;
+
+            int index = (Name ?? "").IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+            if (index != -1) return true;
+
+            index = (Comment ?? "").IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+            if (index != -1) return true;
+
+            return false;
         }
     }
 }

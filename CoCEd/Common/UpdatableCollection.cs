@@ -103,20 +103,30 @@ namespace System.ComponentModel
                 {
                     var items = _items.SelectRange(diff.NewIndex, diff.Count).ToArray();
                     _items.RemoveRange(diff.NewIndex, diff.Count);
-                    diff = NotifyDeletion(diff, items);
+                    OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                    //diff = NotifyDeletion(diff, items);
                 }
             }
             else
             {
                 _items.UpdateFrom(newSource, _selector, differences);
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
 
             // Compare elements count
             if (_items.Count != oldCount) OnPropertyChanged("Count");
         }
 
-        private ListDifference NotifyInsertion(ListDifference diff, TResult[] items)
+        ListDifference NotifyInsertion(ListDifference diff, TResult[] items)
         {
+            int index = diff.NewIndex;
+            foreach (var item in items)
+            {
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
+                ++index;
+            }
+
+            /*
             if (items.Length == 1)
             {
                 OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, items[0], diff.NewIndex));
@@ -124,11 +134,11 @@ namespace System.ComponentModel
             else
             {
                 OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, items, diff.NewIndex));
-            }
+            }*/
             return diff;
         }
 
-        private ListDifference NotifyDeletion(ListDifference diff, TResult[] items)
+        ListDifference NotifyDeletion(ListDifference diff, TResult[] items)
         {
             if (items.Length == 1)
             {
@@ -140,8 +150,6 @@ namespace System.ComponentModel
             }
             return diff;
         }
-
-
 
         private void ThrowReadOnlyException()
         {
