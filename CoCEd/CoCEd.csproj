@@ -79,10 +79,14 @@
     <Compile Include="Model\XmlData.cs" />
     <Compile Include="ViewModel\BreastVM.cs" />
     <Compile Include="ViewModel\CockVM.cs" />
+    <Compile Include="ViewModel\FlagVM.cs" />
+    <Compile Include="ViewModel\GameVM.Core.cs" />
     <Compile Include="ViewModel\GameVM.cs" />
     <Compile Include="ViewModel\FilesVM.cs" />
     <Compile Include="ViewModel\ItemVM.cs" />
     <Compile Include="ViewModel\PerkVM.cs" />
+    <Compile Include="ViewModel\PiercingVM.cs" />
+    <Compile Include="ViewModel\StatusVM.cs" />
     <Compile Include="ViewModel\VaginaVM.cs" />
     <Compile Include="ViewModel\VM.cs" />
     <Compile Include="View\BodyPage.xaml.cs">
@@ -105,6 +109,9 @@
     </Compile>
     <Compile Include="View\PerkPage.xaml.cs">
       <DependentUpon>PerkPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RawPage.xaml.cs">
+      <DependentUpon>RawPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
@@ -154,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PerkPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RawPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

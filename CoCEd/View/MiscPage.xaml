@@ -10,6 +10,17 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Themes/PageInclude.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="{x:Type TextBlock}" TargetType="{x:Type TextBlock}">
+                <Setter Property="MinWidth" Value="160"/>
+                <Setter Property="Padding" Value="0,4,0,4"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=IsEnabled}" Value="False">
+                        <Setter Property="Foreground" Value="#808080"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -32,10 +43,23 @@
         <common:AutoGrid Grid.Column="1" Grid.Row="1">
             <TextBlock              Text="Exgartuan"/>
             <ComboBox SelectedIndex="{Binding Game.Exagartuan}">
-                <ComboBoxItem>Not infested</ComboBoxItem>
+                <ComboBoxItem>Not possessed</ComboBoxItem>
                 <ComboBoxItem>Cock</ComboBoxItem>
                 <ComboBoxItem>Breasts</ComboBoxItem>
             </ComboBox>
+
+            <TextBlock              Text="Worms"/>
+            <ComboBox SelectedIndex="{Binding Game.WormStatus}">
+                <ComboBoxItem>Disabled</ComboBoxItem>
+                <ComboBoxItem>Enabled</ComboBoxItem>
+                <ComboBoxItem>Infested</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock              Text="Addiction: minotaur cum"/>
+            <common:MyNumericBox    Value="{Binding Game.MinotaurCumAddiction}" Min="0" Max="120" IsInteger="True"/>
+
+            <TextBlock              Text="Addiction: marble milk" IsEnabled="{Binding HasMetMarble}"/>
+            <common:MyNumericBox    Value="{Binding Game.MarbleMilkAddiction}" Min="0" Max="120" IsInteger="True" IsEnabled="{Binding Game.HasMetMarble}"/>
         </common:AutoGrid>
 
         <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
@@ -51,34 +75,26 @@
                 <TextBlock              Text="Pregnancy"/>
                 <common:MyComboBox SelectedValue="{Binding Game.PregnancyType}" ItemsSource="{Binding Data.Body.PregnancyTypes}"/>
 
-                <TextBlock              Text="Time remaining"/>
+                <TextBlock              Text="Time remaining*" IsEnabled="{Binding Game.IsPregnancyEnabled}" ToolTip="A virgin vagina will put pregnancy on hold. With the diapause perk it will only progress when you absorb fluids."/>
                 <common:MyNumericBox    Value="{Binding Game.PregnancyTime}" Min="0" IsInteger="True" Unit="hours" IsEnabled="{Binding Game.IsPregnancyEnabled}"/>
                 
                 <TextBlock              Text="Butt pregnancy"/>
                 <common:MyComboBox SelectedValue="{Binding Game.ButtPregnancyType}" ItemsSource="{Binding Data.Body.AnalPregnancyTypes}"/>
 
-                <TextBlock              Text="Time remaining"/>
+                <TextBlock              Text="Time remaining*" IsEnabled="{Binding Game.IsButtPregnancyEnabled}" ToolTip="With the diapause perk it will only progress when you absorb fluids."/>
                 <common:MyNumericBox    Value="{Binding Game.ButtPregnancyTime}" Min="0" IsInteger="True" Unit="hours" IsEnabled="{Binding Game.IsButtPregnancyEnabled}"/>
             </common:AutoGrid>
 
             <common:AutoGrid Margin="0,15">
-                <TextBlock              Text="Children with Tamani"/>
-                <common:MyNumericBox    Value="{Binding Game.TamaniChildren}" Min="0" IsInteger="True" IsEnabled="{Binding Game.HasMetTamani}"/>
+                <TextBlock              Text="Birthed Tamani children*" IsEnabled="{Binding Game.HasMetTamani}" ToolTip="After 24 daughters, enables a new encounter whose level is a factor of the total number."/>
+                <common:MyNumericBox    Value="{Binding Game.BirthedTamaniChildren}" Min="0" IsInteger="True" IsEnabled="{Binding Game.HasMetTamani}"/>
+                
+                <TextBlock              Text="Birthed adult minotaurs*" ToolTip="Affects encounters in the mountain. Past 25 children the minotaur gangbang bad ending is triggered for addicted players in need of minotaur cum."/>
+                <common:MyNumericBox    Value="{Binding Game.BirthedMinotaurs}" Min="0" IsInteger="True"/>
+
+                <TextBlock              Text="Birthed imps*" ToolTip="Affects the probability of imp gangbang rape at night."/>
+                <common:MyNumericBox    Value="{Binding Game.BirthedImps}" Min="0" IsInteger="True"/>
             </common:AutoGrid>
-
-            <!--
-            <TextBlock Text="Children" Style="{StaticResource Header}"/>
-            <common:AutoGrid>
-                <TextBlock              Text="From Marble"/>
-                <common:MyNumericBox    Value="{Binding Game.ChildrenMarble}" Min="0" IsInteger="True"/>
-
-                <TextBlock              Text="From Izma (girls)"/>
-                <common:MyNumericBox    Value="{Binding Game.ChildrenIzmaGirls}" Min="0" IsInteger="True"/>
-
-                <TextBlock              Text="From Izma (boys)"/>
-                <common:MyNumericBox    Value="{Binding Game.ChildrenIzmaBoys}" Min="0" IsInteger="True"/>
-            </common:AutoGrid>
-            -->
         </StackPanel>
     </Grid>
 </UserControl>

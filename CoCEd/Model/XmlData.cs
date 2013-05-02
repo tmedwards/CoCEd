@@ -16,10 +16,18 @@ namespace CoCEd.Model
     {
         [XmlElement("Body")]
         public XmlBodySet Body { get; set; }
+
         [XmlElement("Perks")]
         public XmlPerkSet Perks { get; set; }
+
         [XmlArray("Items"), XmlArrayItem("ItemGroup")]
         public XmlItemGroup[] ItemGroups { get; set; }
+
+        [XmlArray, XmlArrayItem("Status")]
+        public XmlEnumWithStringID[] Statuses { get; set; }
+
+        [XmlArray, XmlArrayItem("Flag")]
+        public XmlEnum[] Flags { get; set; }
        
         public static XmlData Instance
         {

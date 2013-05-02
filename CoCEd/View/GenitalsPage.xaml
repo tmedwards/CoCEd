@@ -15,6 +15,11 @@
                 <Setter Property="Padding" Value="0,4,0,4"/>
                 <Setter Property="TextAlignment" Value="Right"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=IsEnabled}" Value="False">
+                        <Setter Property="Foreground" Value="#808080"/>
+                    </DataTrigger>
+                </Style.Triggers>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -95,7 +100,7 @@
                 <TextBlock              Text="Wetness"/>
                 <common:MyNumericBox    Value="{Binding Game.Ass.Wetness}" Min="0" Max="2" MinLabel="0 (dry)" MaxLabel="2 (moist)" IsInteger="True"/>
 
-                <TextBlock              Text="Anal capacity bonus"/>
+                <TextBlock              Text="Anal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
                 <common:MyNumericBox    Value="{Binding Game.AnalCapacityBonus}" Min="0" IsInteger="False" Unit="inches²"/>
             </common:AutoGrid>
         </StackPanel>
@@ -132,7 +137,7 @@
                 <TextBlock              Text="Clit length"/>
                 <common:MyNumericBox    Value="{Binding Game.ClitLength}" Min="0" IsInteger="False" Unit="inches"/>
 
-                <TextBlock              Text="Vaginal capacity bonus"/>
+                <TextBlock              Text="Vaginal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
                 <common:MyNumericBox    Value="{Binding Game.VaginalCapacityBonus}" Min="0" IsInteger="False" Unit="inches²"/>
             </common:AutoGrid>
         </StackPanel> 

@@ -69,7 +69,7 @@ namespace CoCEd.ViewModel
                 }
                 else
                 {
-                    _perksArray.RemoveKey(pair.Key);
+                    _perksArray.Pop((int)pair.Key);
                 }
                 OnPropertyChanged("IsOwned");
                 VM.Instance.NotifySaveRequiredChanged();

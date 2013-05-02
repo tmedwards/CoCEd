@@ -13,7 +13,7 @@ using CoCEd.Model;
 namespace CoCEd.ViewModel
 {
     // TeaseLevel / XP
-    public sealed class GameVM : ObjectVM
+    public sealed partial class GameVM : ObjectVM
     {
         public GameVM(AmfFile file)
             : base(file)
@@ -30,11 +30,13 @@ namespace CoCEd.ViewModel
 
             // Collections
             Cocks = new CockArrayVM(file.GetObj("cocks"));
-            Breasts = new BreastArrayVM(file.GetObj("breastRows"));
             Vaginas = new VaginaArrayVM(file.GetObj("vaginas"));
-            Vaginas.CollectionChanged += OnGenitalsCollectionChanged;
-            Breasts.CollectionChanged += OnGenitalsCollectionChanged;
-            Cocks.CollectionChanged += OnGenitalsCollectionChanged;
+            Breasts = new BreastArrayVM(file.GetObj("breastRows"));
+            Statuses = new StatusesVM(file.GetObj("statusAffects"));
+            Statuses.CollectionChanged += OnStatusCollectionChanged;
+            Vaginas.CollectionChanged += OnGenitalCollectionChanged;
+            Breasts.CollectionChanged += OnGenitalCollectionChanged;
+            Cocks.CollectionChanged += OnGenitalCollectionChanged;
 
 
             // Items
@@ -59,6 +61,15 @@ namespace CoCEd.ViewModel
             ItemGroups = groups.ToArray();
 
 
+            // Flags
+            var flagsObj = GetObj("flags");
+            var flagsData = new XmlEnum[flagsObj.Count];
+            foreach(var flagData in XmlData.Instance.Flags) flagsData[flagData.ID] = flagData;
+
+            Flags = new FlagVM[flagsObj.Count];
+            for (int i = 0; i < Flags.Length; ++i) Flags[i] = new FlagVM(flagsObj, flagsData[i], i);
+
+
             // Perks
             PerkGroups = new PerkGroupVM[]
             {
@@ -74,9 +85,11 @@ namespace CoCEd.ViewModel
         public CockArrayVM Cocks { get; private set; }
         public BreastArrayVM Breasts { get; private set; }
         public VaginaArrayVM Vaginas { get; private set; }
+        public StatusesVM Statuses { get; private set; }
 
         public ItemSlotGroupVM[] ItemGroups { get; private set; }
         public PerkGroupVM[] PerkGroups { get; private set; }
+        public FlagVM[] Flags { get; private set; }
 
         public AssVM Ass { get; private set; }
         public PiercingVM NosePiercing { get; private set; }
@@ -381,7 +394,7 @@ namespace CoCEd.ViewModel
             set 
             {
                 if (!SetValue("buttPregnancyType", value)) return;
-                OnPropertyChanged("IsEggPregnancyEnabled");
+                OnPropertyChanged("IsButtPregnancyEnabled");
             }
         }
 
@@ -458,17 +471,6 @@ namespace CoCEd.ViewModel
             get { return Vaginas.Count == 0 ? Visibility.Collapsed : Visibility.Visible; }
         }
 
-        public bool HasMetTamani
-        {
-            get { return HasStatus("Tamani"); }
-        }
-
-        public int TamaniChildren
-        {
-            get { return GetStatusInt("Tamani", "2"); }
-            set { SetStatusValue("Tamani", "2", value); }
-        }
-
         public int Exagartuan
         {
             get { return GetStatusInt("Exgartuan", "1", 0); }
@@ -501,77 +503,72 @@ namespace CoCEd.ViewModel
             }
         }
 
-        int GetStatusInt(string name, string index, int defaultValue = 0)
+        public bool HasMetTamani
         {
-            var obj = GetStatus(name);
-            if (obj == null) return defaultValue;
-            return obj.GetInt("value" + index);
+            get { return HasStatus("Tamani"); }
         }
 
-        double GetStatusDouble(string name, string index, double defaultValue = 0)
+        public int BirthedTamaniChildren
         {
-            var obj = GetStatus(name);
-            if (obj == null) return defaultValue;
-            return obj.GetDouble("value" + index);
+            get { return GetStatusInt("Tamani", "2"); }
+            set { SetStatusValue("Tamani", "2", value); }
         }
 
-        void SetStatusValue(string name, string index, object value, [CallerMemberName] string propertyName = null)
+        public int BirthedImps
         {
-            var oldValue = GetStatus(name)["value" + index];
-            if (AmfObject.AreSame(oldValue, value)) return;
-            GetStatus(name)["value" + index] = value;
-            OnPropertyChanged(propertyName);
+            get { return GetStatusInt("Birthed Imps", "1"); }
+            set
+            {
+                EnsureStatusExists("Birthed Imps", value, 0, 0, 0);
+                SetStatusValue("Birthed Imps", "1", value);
+            }
         }
 
-        bool HasStatus(string name)
+        public int BirthedMinotaurs
         {
-            return GetStatus(name) != null;
+            get { return GetFlagInt(326); }
+            set { SetFlag(326, value); }
         }
 
-        AmfObject GetStatus(string name)
+        public int MinotaurCumAddiction
         {
-            AmfObject statuses = _obj.GetObj("statusAffects");
-            return statuses.Select(x => x.ValueAsObject).FirstOrDefault(x => name == x["statusAffectName"] as string);
+            get { return GetFlagInt(18); }
+            set { SetFlag(18, value); }
         }
 
-        void RemoveStatus(string name, [CallerMemberName] string propertyName = null)
+        public int MarbleMilkAddiction
         {
-            AmfObject statuses = _obj.GetObj("statusAffects");
-            AmfPair pair = statuses.FirstOrDefault(x => name == x.ValueAsObject["statusAffectName"] as string);
-            if (pair == null) return;
-
-            statuses.RemoveKey(pair.Key);
-            OnPropertyChanged("propertyName");
+            get { return GetStatusInt("Marble", "3", 0); }
+            set { SetStatusValue("Marble", "3", value); }
         }
 
-        void EnsureStatusExists(string name, dynamic defaultValue1, dynamic defaultValue2, dynamic defaultValue3, dynamic defaultValue4, [CallerMemberName] string propertyName = null)
+        public bool HasMetMarble
         {
-            var obj = GetStatus(name);
-            if (obj != null) return;
-
-            obj = new AmfObject(AmfTypes.Array);
-            obj["statusAffectName"] = name;
-            obj["value1"] = defaultValue1;
-            obj["value2"] = defaultValue2;
-            obj["value3"] = defaultValue3;
-            obj["value4"] = defaultValue4;
-
-            AmfObject statuses = (AmfObject)_obj["statusAffects"];
-            statuses.Push(obj);
-
-            OnPropertyChanged(propertyName);
-            return;
+            get { return HasStatus("Marble"); }
         }
 
-        void OnGenitalsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        public int WormStatus
         {
-            if (Cocks.Count != 0 && Vaginas.Count != 0) SetValue("gender", 3);
-            else if (Vaginas.Count != 0) SetValue("gender", 2);
-            else if (Cocks.Count != 0) SetValue("gender", 1);
-            else SetValue("gender", 0);
+            get
+            {
+                if (HasStatus("infested")) return 2;
+                if (HasStatus("wormsOff")) return 0;
+                RegisterStatusDependency("wormsOn");
+                return 1;
+            }
+            set
+            {
+                if (value == WormStatus) return;
 
-            OnPropertyChanged("NippleVisibility");
-            OnPropertyChanged("ClitVisibility");
+                if (value == 0) EnsureStatusExists("wormsOff",0,0,0,0);
+                else RemoveStatus("wormsOff");
+
+                if (value >= 1) EnsureStatusExists("wormsOn", 0, 0, 0, 0);
+                else RemoveStatus("wormsOn");
+
+                if (value == 2) EnsureStatusExists("infested", 0, 0, 0, 0);
+                else RemoveStatus("infested");
+            }
         }
     }
 
@@ -592,49 +589,6 @@ namespace CoCEd.ViewModel
         {
             get { return GetInt("analWetness"); }
             set { SetValue("analWetness", value); }
-        }
-    }
-
-    public sealed class PiercingVM : ObjectVM
-    {
-        readonly string _prefix;
-
-        public PiercingVM(AmfObject obj, string prefix)
-            : base(obj)
-        {
-            _prefix = prefix;
-        }
-
-        public IEnumerable<XmlEnum> AllTypes
-        {
-            get { return XmlData.Instance.Body.PiercingTypes; }
-        }
-
-        public int Type
-        {
-            get { return GetInt(_prefix == "" ? "pierced" : _prefix + "Pierced"); }
-            set 
-            { 
-                SetValue(_prefix == "" ? "pierced" : _prefix + "Pierced", value);
-                OnPropertyChanged("CanEditName");
-            }
-        }
-
-        public string UpperName
-        {
-            get { return GetString(_prefix == "" ? "pLong" : _prefix + "PLong"); }
-            set { SetValue(_prefix == "" ? "pLong" : _prefix + "PLong", value); }
-        }
-
-        public string LowerName
-        {
-            get { return GetString(_prefix == "" ? "pShort" : _prefix + "PShort"); }
-            set { SetValue(_prefix == "" ? "pShort" : _prefix + "PShort", value); }
-        }
-
-        public bool CanEditName
-        {
-            get { return Type != 0; }
         }
     }
 }
