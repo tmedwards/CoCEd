@@ -16,7 +16,7 @@
         <view:TopBar HorizontalAlignment="Stretch"/>
         
         <TabControl Grid.Row="1" Margin="0,30,0,0" IsEnabled="{Binding HasData}">
-            <TabItem Header="General" Padding="4" Width="150">
+            <TabItem Header="General" Padding="4" Width="100">
                 <view:GeneralPage/>
             </TabItem>
             <TabItem Header="Body" Padding="4" Width="150">
@@ -34,6 +34,9 @@
             <TabItem Header="Others" Padding="4" Width="150">
                 <view:MiscPage/>
             </TabItem>
+            <!--TabItem Header="Raw" Padding="4" Width="150">
+                <view:RawPage/>
+            </TabItem-->
         </TabControl>
     </Grid>
 </Window>

@@ -60,6 +60,7 @@ namespace CoCEd.ViewModel
         {
             FileManager.StoreExternal(path);
             _currentFile = new AmfFile(path);
+            ImportFileData(_currentFile);
 
             Game = new GameVM(_currentFile);
 
@@ -68,6 +69,17 @@ namespace CoCEd.ViewModel
             OnPropertyChanged("FileLabel");
             OnPropertyChanged("FileLabelVisibility");
             VM.Instance.NotifySaveRequiredChanged(false);
+        }
+
+        void ImportFileData(AmfFile _currentFile)
+        {
+            // WHICH GROUP?
+            /*
+            foreach (var perk in _currentFile.GetObj("perks").Select(x => x.ValueAsObject))
+            {
+                var name = perk.GetString("perkName");
+                var perkData =
+            }*/
         }
 
         public void Save(string path)
@@ -111,47 +123,52 @@ namespace CoCEd.ViewModel
     {
         protected readonly AmfObject _obj;
 
-        protected ObjectVM(AmfObject node)
+        protected ObjectVM(AmfObject obj)
         {
-            _obj = node;
+            _obj = obj;
         }
 
-        public dynamic GetValue(string name)
+        public object GetValue(object key)
         {
-            return _obj[name];
+            return _obj[key];
         }
 
-        public double GetDouble(string name)
+        public double GetDouble(object key)
         {
-            return _obj.GetDouble(name);
+            return _obj.GetDouble(key);
         }
 
-        public int GetInt(string name, int? defaultValue = null)
+        public int GetInt(object key, int? defaultValue = null)
         {
-            return _obj.GetInt(name, defaultValue);
+            return _obj.GetInt(key, defaultValue);
         }
 
-        public string GetString(string name)
+        public string GetString(object key)
         {
-            return _obj.GetString(name);
+            return _obj.GetString(key);
         }
 
-        public bool GetBool(string name)
+        public bool GetBool(object key)
         {
-            return _obj.GetBool(name);
+            return _obj.GetBool(key);
         }
 
-        public bool SetValue(string name, object value, [CallerMemberName] string propertyName = null)
+        public AmfObject GetObj(object key)
         {
-            if (AmfObject.AreSame(_obj[name], value)) return false;
-            _obj[name] = value;
+            return _obj.GetObj(key);
+        }
+
+        public virtual bool SetValue(object key, object value, [CallerMemberName] string propertyName = null)
+        {
+            if (AmfObject.AreSame(_obj[key], value)) return false;
+            _obj[key] = value;
             OnPropertyChanged(propertyName);
             return true;
         }
 
-        protected bool SetDouble(string name, double value, [CallerMemberName] string propertyName = null)
+        protected bool SetDouble(object key, double value, [CallerMemberName] string propertyName = null)
         {
-            return SetValue(name, value, propertyName);
+            return SetValue(key, value, propertyName);
         }
 
         protected override void OnPropertyChanged(string propertyName = null)
@@ -165,23 +182,29 @@ namespace CoCEd.ViewModel
     {
         readonly AmfObject _object;
 
-        protected ArrayVM(AmfObject node, Func<AmfObject, TResult> selector)
-            : base(node.Select(x => x.Value as AmfObject), selector)
+        protected ArrayVM(AmfObject obj, Func<AmfObject, TResult> selector)
+            : base(obj.Select(x => x.Value as AmfObject), selector)
         {
-            _object = node;
+            _object = obj;
         }
 
-        void IArrayVM.Create()
+        public void Create()
         {
             AmfObject node = CreateNewObject();
+            Add(node);
+        }
+
+        protected TResult Add(AmfObject node)
+        {
             _object.Push(node);
             Update();
             VM.Instance.NotifySaveRequiredChanged(true);
+            return this[_object.DenseCount - 1];
         }
 
-        void IArrayVM.Delete(int index)
+        public void Delete(int index)
         {
-            _object.RemoveKey(index);
+            _object.Pop(index);
             Update();
             VM.Instance.NotifySaveRequiredChanged(true);
         }

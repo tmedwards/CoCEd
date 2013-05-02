@@ -86,7 +86,8 @@ namespace CoCEd
             //DebugStatuses(file);
             //RunSerializationTest(set);
             //ParsePerks();
-            Test();
+            ImportStatuses();
+            ImportFlags();
 #endif
         }
 
@@ -174,7 +175,7 @@ namespace CoCEd
             }
         }
 
-        void ImportWiki()
+        void ImportItems()
         {
             // 1) Copy the item codes page from the wiki in OOo calc.
             // 2) Select all and save as e:\\CocItems.txt
@@ -214,11 +215,56 @@ namespace CoCEd
             File.WriteAllText("e:\\CocItems.xml", builder.ToString());
         }
 
-        void Test()
+        void ImportStatuses()
         {
-            Dictionary<Object, Object> dic = new Dictionary<object, object>();
-            dic.Add(5, "abc");
-            if (dic[5] as string != "abc") throw new InvalidOperationException();
+            // 1) Copy the item codes page from the wiki in OOo calc.
+            // 2) Select all and save as e:\\CocItems.txt
+
+            var builder = new StringBuilder();
+            var lines = File.ReadAllLines("e:\\CocStatuses.txt");
+            const string format = "\t\t<Status ID=\"{0}\" Description=\"{1}\"/>";
+            string status = null;
+
+            foreach (var line in lines)
+            {
+                if (line.StartsWith("\t"))
+                {
+                    builder.AppendFormat(format, status, line.Trim('\t', ' ')).AppendLine();
+                    status = null;
+                }
+                else
+                {
+                    status = line;
+                }
+            }
+
+            var text = builder.ToString().Replace(" Description=\"\"", "");
+            File.WriteAllText("e:\\CocStatuses.xml", text);
+        }
+
+        void ImportFlags()
+        {
+            // 1) Copy the item codes page from the wiki in OOo calc.
+            // 2) Select all and save as e:\\CocItems.txt
+
+            var builder = new StringBuilder();
+            var lines = File.ReadAllLines("e:\\CocFlags.txt");
+            const string format3 = "\t\t<Status ID=\"{0}\" Name=\"{1}\" Description=\"{2}\"/>";
+            const string format2 = "\t\t<Status ID=\"{0}\" Name=\"{1}\"/>";
+
+            foreach (var line in lines)
+            {
+                var keys = line.Split('\t');
+                if (keys.Length == 3 && !String.IsNullOrEmpty(keys[2]))
+                {
+                    builder.AppendFormat(format3, keys[0], keys[1], keys[2]).AppendLine();
+                }
+                else
+                {
+                    builder.AppendFormat(format2, keys[0], keys[1]).AppendLine();
+                }
+            }
+            File.WriteAllText("e:\\CocFlags.xml", builder.ToString());
         }
 #endif
     }
