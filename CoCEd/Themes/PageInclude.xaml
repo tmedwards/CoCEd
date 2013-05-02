@@ -8,7 +8,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=IsEnabled}" Value="False">
-                <Setter Property="Foreground" Value="#808080"/>
+                <Setter Property="Foreground" Value="#C0C0C0"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows;
 using CoCEd.Model;
 
 namespace CoCEd.ViewModel
@@ -21,7 +23,16 @@ namespace CoCEd.ViewModel
             _index = index;
             _label = data != null ? data.Name : "";
             _comment = data != null ? data.Description : "";
+            if (!String.IsNullOrEmpty(_comment)) _label = _label + "*";
             _description = flags.GetString(_index);
+
+            GameProperties = new HashSet<string>();
+        }
+
+        public HashSet<string> GameProperties
+        {
+            get;
+            private set;
         }
 
         public int Index
@@ -32,6 +43,16 @@ namespace CoCEd.ViewModel
         public int GetInt()
         {
             return _obj.GetInt(_index);
+        }
+
+        public string Label
+        {
+            get { return _label; }
+        }
+
+        public string Comment
+        {
+            get { return _comment; }
         }
 
         string _description;
@@ -52,10 +73,12 @@ namespace CoCEd.ViewModel
         object GetValueFromLabel(string value)
         {
             int iValue;
-            if (Int32.TryParse(value, out iValue)) return iValue;
+            if (Int32.TryParse(value, NumberStyles.Integer, CultureInfo.CurrentCulture, out iValue)) return iValue;
+            if (Int32.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out iValue)) return iValue;
 
             double fValue;
-            if (Double.TryParse(value, out fValue)) return fValue;
+            if (Double.TryParse(value, NumberStyles.AllowDecimalPoint, CultureInfo.CurrentCulture, out fValue)) return iValue;
+            if (Double.TryParse(value, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out fValue)) return iValue;
 
             if (String.Equals(value, "true", StringComparison.InvariantCulture)) return true;
             if (String.Equals(value, "false", StringComparison.InvariantCulture)) return false;
@@ -83,6 +106,19 @@ namespace CoCEd.ViewModel
             // Notify subscribers
             OnPropertyChanged("ValueLabel");
             return true;
+        }
+
+        public bool Match(string str)
+        {
+            if (str == null || str.Length < 3) return true;
+
+            int index = (Label ?? "").IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+            if (index != -1) return true;
+
+            index = (Comment ?? "").IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+            if (index != -1) return true;
+
+            return false;
         }
     }
 }

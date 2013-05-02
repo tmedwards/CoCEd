@@ -188,6 +188,12 @@ namespace CoCEd.ViewModel
             _object = obj;
         }
 
+        protected ArrayVM(AmfObject obj, IEnumerable<AmfObject> values, Func<AmfObject, TResult> selector)
+            : base(values, selector)
+        {
+            _object = obj;
+        }
+
         public void Create()
         {
             AmfObject node = CreateNewObject();

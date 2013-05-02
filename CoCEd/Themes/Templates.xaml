@@ -5,7 +5,7 @@
     xmlns:common="clr-namespace:CoCEd.Common">
 
     <SolidColorBrush x:Key="NumericBorderBrush" Color="#808080"/>
-    <SolidColorBrush x:Key="NumericDisabledForeground" Color="#A0A0A0"/>
+    <SolidColorBrush x:Key="NumericDisabledForeground" Color="#C0C0C0"/>
     <SolidColorBrush x:Key="NumericMouseOverBackground" Color="#DA3100"/>
 
     <Style x:Key="MinMaxButton" TargetType="{x:Type Button}">
@@ -68,6 +68,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="unitText" Property="Foreground" Value="{StaticResource NumericDisabledForeground}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource NumericDisabledForeground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

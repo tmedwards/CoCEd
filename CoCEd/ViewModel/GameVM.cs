@@ -15,6 +15,9 @@ namespace CoCEd.ViewModel
     // TeaseLevel / XP
     public sealed partial class GameVM : ObjectVM
     {
+        readonly FlagVM[] _allFlags;
+        readonly StatusVM[] _allStatuses;
+
         public GameVM(AmfFile file)
             : base(file)
         {
@@ -32,8 +35,6 @@ namespace CoCEd.ViewModel
             Cocks = new CockArrayVM(file.GetObj("cocks"));
             Vaginas = new VaginaArrayVM(file.GetObj("vaginas"));
             Breasts = new BreastArrayVM(file.GetObj("breastRows"));
-            Statuses = new StatusesVM(file.GetObj("statusAffects"));
-            Statuses.CollectionChanged += OnStatusCollectionChanged;
             Vaginas.CollectionChanged += OnGenitalCollectionChanged;
             Breasts.CollectionChanged += OnGenitalCollectionChanged;
             Cocks.CollectionChanged += OnGenitalCollectionChanged;
@@ -64,11 +65,18 @@ namespace CoCEd.ViewModel
             // Flags
             var flagsObj = GetObj("flags");
             var flagsData = new XmlEnum[flagsObj.Count];
-            foreach(var flagData in XmlData.Instance.Flags) flagsData[flagData.ID] = flagData;
+            foreach(var flagData in XmlData.Instance.Flags) flagsData[flagData.ID - 1] = flagData;
 
-            Flags = new FlagVM[flagsObj.Count];
-            for (int i = 0; i < Flags.Length; ++i) Flags[i] = new FlagVM(flagsObj, flagsData[i], i);
+            _allFlags = new FlagVM[flagsObj.Count];
+            for (int i = 0; i < _allFlags.Length; ++i) _allFlags[i] = new FlagVM(flagsObj, flagsData[i], i);
+            Flags = new UpdatableCollection<FlagVM>(_allFlags.Where(x => x.Match(_searchText)));
 
+
+            // Statuses
+            var obj = file.GetObj("statusAffects");
+            var statuses = obj.Select(x => x.ValueAsObject.GetString("statusAffectName")).Union(XmlData.Instance.Statuses.Select(x => x.ID)).ToArray();
+            _allStatuses = statuses.OrderBy(x => x).Select(x => new StatusVM(obj, x)).ToArray();
+            Statuses = new UpdatableCollection<StatusVM>(_allStatuses.Where(x => x.Match(_searchText)));
 
             // Perks
             PerkGroups = new PerkGroupVM[]
@@ -85,11 +93,11 @@ namespace CoCEd.ViewModel
         public CockArrayVM Cocks { get; private set; }
         public BreastArrayVM Breasts { get; private set; }
         public VaginaArrayVM Vaginas { get; private set; }
-        public StatusesVM Statuses { get; private set; }
 
+        public UpdatableCollection<StatusVM> Statuses { get; private set; }
+        public UpdatableCollection<FlagVM> Flags { get; private set; }
         public ItemSlotGroupVM[] ItemGroups { get; private set; }
         public PerkGroupVM[] PerkGroups { get; private set; }
-        public FlagVM[] Flags { get; private set; }
 
         public AssVM Ass { get; private set; }
         public PiercingVM NosePiercing { get; private set; }
@@ -569,6 +577,26 @@ namespace CoCEd.ViewModel
                 if (value == 2) EnsureStatusExists("infested", 0, 0, 0, 0);
                 else RemoveStatus("infested");
             }
+        }
+
+        string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText == value) return;
+                _searchText = value;
+                Statuses.Update();
+                Flags.Update();
+                OnPropertyChanged("SearchPromptVisibility");
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility SearchPromptVisibility
+        {
+            get { return String.IsNullOrEmpty(_searchText) ? Visibility.Visible : Visibility.Collapsed; }
         }
     }
 

@@ -17,7 +17,7 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=IsEnabled}" Value="False">
-                        <Setter Property="Foreground" Value="#808080"/>
+                        <Setter Property="Foreground" Value="#C0C0C0"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -64,7 +64,7 @@
 
         <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
             <Border Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Procreation" Style="{StaticResource Header}"/>
+                <TextBlock Text="Procreation" Style="{StaticResource Header}" />
             </Border>
             <common:AutoGrid>
                 <TextBlock              Text="Fertility"/>

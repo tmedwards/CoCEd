@@ -11,31 +11,47 @@
                 <ResourceDictionary Source="../Themes/PageInclude.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
-            <DataTemplate x:Key="IntegerTemplate">
-                <common:MyNumericBox Value="{Binding IntValue}" IsInteger="True"/>
-            </DataTemplate>
-            <DataTemplate x:Key="DoubleTemplate">
-                <common:MyNumericBox Value="{Binding DoubleValue}" IsInteger="False"/>
-            </DataTemplate>
-            <DataTemplate x:Key="BooleanTemplate">
-                <CheckBox IsChecked="{Binding BoolValue}" Content="{Binding Label}"/>
-            </DataTemplate>
-            <DataTemplate x:Key="StringTemplate">
-                <TextBox Text="{Binding StringValue}"/>
-            </DataTemplate>
+            <Style x:Key="StatusText" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="#808080"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=IsEnabled}" Value="False">
+                        <Setter Property="Foreground" Value="#B0B0B0"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
 
             <Style x:Key="StatusStyle" TargetType="{x:Type ListViewItem}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListViewItem}">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock x:Name="text" Text="{Binding Comment}"/>
-                            </StackPanel>
+                            <Border x:Name="root">
+                                <CheckBox IsChecked="{Binding HasStatus}">
+                                    <CheckBox.Content>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding Name}" FontSize="14"/>
+                                            <TextBlock Text="{Binding Comment}" IsEnabled="{Binding HasStatus}" Visibility="{Binding CommentVisiblity}" Style="{StaticResource StatusText}" TextWrapping="Wrap"/>
+                                            <common:AutoGrid Columns="4" Margin="20,6,0,20" IsEnabled="{Binding HasStatus}" Visibility="Collapsed" x:Name="details">
+                                                <TextBlock Text="Value1" Style="{StaticResource StatusText}"/>
+                                                <common:MyNumericBox Value="{Binding Value1}" IsInteger="False" Margin="-45,-1,0,-1" Height="30"/>
+
+                                                <TextBlock Text="Value2" Style="{StaticResource StatusText}" Margin="40,0,4,0"/>
+                                                <common:MyNumericBox Value="{Binding Value2}" IsInteger="False" Margin="-45,-1,0,-1" Height="30"/>
+
+                                                <TextBlock Text="Value3" Style="{StaticResource StatusText}" Margin="0,0,4,0"/>
+                                                <common:MyNumericBox Value="{Binding Value3}" IsInteger="False" Margin="-45,-1,0,-1" Height="30"/>
+
+                                                <TextBlock Text="Value4" Style="{StaticResource StatusText}" Margin="40,0,4,0"/>
+                                                <common:MyNumericBox Value="{Binding Value4}" IsInteger="False" Margin="-45,-1,0,-1" Height="30"/>
+                                            </common:AutoGrid>
+                                        </StackPanel>
+                                    </CheckBox.Content>
+                                </CheckBox>
+                            </Border>
                             <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                </Trigger>
-                                <Trigger Property="IsSelected" Value="true">
-                                    <Setter TargetName="text" Property="Foreground" Value="White" />
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="details" Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="root" Property="Background" Value="#F0F0F0"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -43,18 +59,24 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="FlagStyle" TargetType="{x:Type ListViewItem}">
+            <Style x:Key="FlagStyle" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Focusable" Value="False"/>
+                <Setter Property="Margin" Value="0"/>
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ListViewItem}">
-                            <Grid x:Name="root">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock x:Name="text" Text="{Binding Label}"/>
-                                <common:MyNumericBox Value="{Binding Value}" Grid.Column="1"/>
-                            </Grid>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <Border BorderThickness="0,0,0,1" BorderBrush="#E0E0E0" Margin="0,0,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Index}" Margin="6" VerticalAlignment="Center" Foreground="#808080"/>
+                                    <TextBlock x:Name="text" Text="{Binding Label}" ToolTip="{Binding Comment}" Foreground="#404040" TextWrapping="Wrap" Grid.Column="1" VerticalAlignment="Center" Margin="0,6,4,6"/>
+                                    <TextBox Text="{Binding ValueLabel}" Grid.Column="2" Margin="0,-1,0,-1" Padding="2" BorderThickness="1" BorderBrush="Transparent" Panel.ZIndex="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                                </Grid>
+                            </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -63,13 +85,35 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Margin="30,30,0,30">
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="30"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <ListView/>
+
+        <Grid Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Search..." Foreground="#A0A0A0" Margin="10,0" Padding="0" Width="Auto" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Visibility="{Binding Game.SearchPromptVisibility}"/>
+            <TextBox Width="250" Height="28" Background="Transparent" VerticalContentAlignment="Center" Padding="6,0" Text="{Binding Path=Game.SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+
+        <Border Style="{StaticResource HeaderBorder}" Grid.Column="0" Grid.Row="1">
+            <TextBlock Text="Flags" Style="{StaticResource Header}" Margin="4,0,0,0"/>
+        </Border>
+
+        <ListBox ItemsSource="{Binding Game.Flags}" ItemContainerStyle="{StaticResource FlagStyle}" BorderThickness="0" Margin="0" Padding="0" Grid.Column="0" Grid.Row="2"
+                 HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+
+        <Border Style="{StaticResource HeaderBorder}" Grid.Column="2" Grid.Row="1">
+            <TextBlock Text="Statuses" Style="{StaticResource Header}" Margin="4,0,0,0"/>
+        </Border>
+
+        <ListView ItemsSource="{Binding Game.Statuses}" ItemContainerStyle="{StaticResource StatusStyle}" BorderThickness="0" Margin="0" Padding="0" Grid.Column="2" Grid.Row="2"
+                 HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False"/>
     </Grid>
 </UserControl>

@@ -15,28 +15,28 @@
         
         <view:TopBar HorizontalAlignment="Stretch"/>
         
-        <TabControl Grid.Row="1" Margin="0,30,0,0" IsEnabled="{Binding HasData}">
-            <TabItem Header="General" Padding="4" Width="100">
+        <TabControl Grid.Row="1" Margin="0,30,0,0" IsEnabled="{Binding HasData}" Padding="0">
+            <TabItem Header="General" Width="100" Margin="0">
                 <view:GeneralPage/>
             </TabItem>
-            <TabItem Header="Body" Padding="4" Width="150">
+            <TabItem Header="Body" Width="150" Margin="0">
                 <view:BodyPage/>
             </TabItem>
-            <TabItem Header="Genitals" Padding="4" Width="150">
+            <TabItem Header="Genitals" Width="150" Margin="0">
                 <view:GenitalsPage/>
             </TabItem>
-            <TabItem Header="Perks" Padding="4" Width="150">
+            <TabItem Header="Perks" Width="150" Margin="0">
                 <view:PerkPage/>
             </TabItem>
-            <TabItem Header="Items" Padding="4" Width="150">
+            <TabItem Header="Items" Width="150" Margin="0">
                 <view:ItemPage/>
             </TabItem>
-            <TabItem Header="Others" Padding="4" Width="150">
+            <TabItem Header="Others" Width="150" Margin="0">
                 <view:MiscPage/>
             </TabItem>
-            <!--TabItem Header="Raw" Padding="4" Width="150">
+            <TabItem Header="Raw" Width="150" Margin="0">
                 <view:RawPage/>
-            </TabItem-->
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

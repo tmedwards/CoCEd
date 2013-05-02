@@ -10,56 +10,24 @@ namespace CoCEd.ViewModel
 {
     public sealed partial class GameVM : ObjectVM
     {
-        readonly Dictionary<String, HashSet<String>> _statusToPropertyBindings = new Dictionary<String, HashSet<String>>();
-        readonly Dictionary<Int32, HashSet<String>> _flagToPropertyBindings = new Dictionary<Int32, HashSet<String>>();
-
         public void OnFlagChanged(int index)
         {
-            HashSet<String> properties;
-            if (!_flagToPropertyBindings.TryGetValue(index, out properties)) return;
-            foreach (var prop in properties) OnPropertyChanged(prop);
+            foreach(var prop in _allFlags[index].GameProperties) OnPropertyChanged(prop);
         }
 
         public void OnStatusChanged(string name)
         {
-            HashSet<String> properties;
-            if (!_statusToPropertyBindings.TryGetValue(name, out properties)) return;
-            foreach (var prop in properties) OnPropertyChanged(prop);
+            foreach (var prop in _allStatuses.First(x => x.Name == name).GameProperties) OnPropertyChanged(prop);
         }
 
         void RegisterFlagDependency(int index, [CallerMemberName] string propertyName = null)
         {
-            HashSet<String> properties;
-            if (!_flagToPropertyBindings.TryGetValue(index, out properties))
-            {
-                properties = new HashSet<string>();
-                _flagToPropertyBindings[index] = properties;
-            }
-            properties.Add(propertyName);
+            _allFlags[index].GameProperties.Add(propertyName);
         }
 
         void RegisterStatusDependency(string name, [CallerMemberName] string propertyName = null)
         {
-            HashSet<String> properties;
-            if (!_statusToPropertyBindings.TryGetValue(name, out properties))
-            {
-                properties = new HashSet<string>();
-                _statusToPropertyBindings[name] = properties;
-            }
-            properties.Add(propertyName);
-
-        }
-
-        void OnStatusCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.OldItems != null)
-            {
-                foreach (StatusVM status in e.OldItems) OnStatusChanged(status.Name);
-            }
-            if (e.NewItems != null)
-            {
-                foreach (StatusVM status in e.NewItems) OnStatusChanged(status.Name);
-            }
+            _allStatuses.First(x => x.Name == name).GameProperties.Add(propertyName);
         }
 
 
@@ -67,12 +35,12 @@ namespace CoCEd.ViewModel
         int GetFlagInt(int index, [CallerMemberName] string propertyName = null)
         {
             RegisterFlagDependency(index, propertyName);
-            return Flags[index].GetInt();
+            return _allFlags[index].GetInt();
         }
 
         void SetFlag(int index, object value)
         {
-            Flags[index].SetValue(value);
+            _allFlags[index].SetValue(value);
         }
 
 
@@ -80,46 +48,47 @@ namespace CoCEd.ViewModel
         bool HasStatus(string name, [CallerMemberName] string propertyName = null)
         {
             RegisterStatusDependency(name, propertyName);
-            return Statuses[name] != null;
+            return _allStatuses.First(x => x.Name == name).HasStatus;
         }
 
         int GetStatusInt(string name, string index, int defaultValue = 0, [CallerMemberName] string propertyName = null)
         {
             RegisterStatusDependency(name, propertyName);
-            var obj = Statuses[name];
-            if (obj == null) return defaultValue;
-            return obj.GetInt("value" + index);
+            var status = _allStatuses.First(x => x.Name == name);
+            if (!status.HasStatus) return defaultValue;
+            return status.GetInt("value" + index);
         }
 
         double GetStatusDouble(string name, string index, double defaultValue = 0, [CallerMemberName] string propertyName = null)
         {
             RegisterStatusDependency(name, propertyName);
-            var obj = Statuses[name];
-            if (obj == null) return defaultValue;
-            return obj.GetDouble("value" + index);
+            var status = _allStatuses.First(x => x.Name == name);
+            if (!status.HasStatus) return defaultValue;
+            return status.GetDouble("value" + index);
         }
 
         void SetStatusValue(string statusName, string valueIndex, object value)
         {
-            var obj = Statuses[statusName];
-            obj.SetValue("value" + valueIndex, value);
+            var status = _allStatuses.First(x => x.Name == statusName);
+            status.SetValue("value" + valueIndex, value);
         }
 
         void RemoveStatus(string name)
         {
-            var status = Statuses[name];
-            if (status == null) return;
-
-            int index = Statuses.IndexOf(status);
-            Statuses.Delete(index);
+            var status = _allStatuses.First(x => x.Name == name);
+            status.HasStatus = false;
         }
 
         void EnsureStatusExists(string name, double defaultValue1, double defaultValue2, double defaultValue3, double defaultValue4)
         {
-            var status = Statuses[name];
-            if (status != null) return;
+            var status = _allStatuses.First(x => x.Name == name);
+            if (status.HasStatus) return;
 
-            Statuses.Create(name, defaultValue1, defaultValue2, defaultValue3, defaultValue4);
+            status.HasStatus = true;
+            status.Value1 = defaultValue1;
+            status.Value2 = defaultValue2;
+            status.Value3 = defaultValue3;
+            status.Value4 = defaultValue4;
         }
 
 
