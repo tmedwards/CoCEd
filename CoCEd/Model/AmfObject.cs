@@ -299,15 +299,15 @@ namespace CoCEd.Model
 
         public void Move(int sourceIndex, int destIndex)
         {
-            if (sourceIndex == destIndex) return;
+            if (destIndex == sourceIndex) return;
+            // No change on the index: the shift caused by the removal is compensated by the fact that we need to increment the index since we want to insert "after".
+
             if (sourceIndex < 0 || sourceIndex >= _denseValues.Count) throw new ArgumentOutOfRangeException();
             if (destIndex < 0 || destIndex >= _denseValues.Count) throw new ArgumentOutOfRangeException();
 
             var value = _denseValues[sourceIndex];
-            _denseValues.Insert(destIndex, value);
-
-            if (sourceIndex > destIndex) ++sourceIndex;
             _denseValues.RemoveAt(sourceIndex);
+            _denseValues.Insert(destIndex, value);
         }
 
         public void Add(Object key, Object value)

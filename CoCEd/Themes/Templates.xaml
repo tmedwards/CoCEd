@@ -79,21 +79,50 @@
     </Style>
 
 
-<!--
-    <Style x:Key="ArrayEditorItemStyle" TargetType="{x:Type ListBoxItem}">
+    <Style x:Key="ArrayEditorButton" TargetType="{x:Type Button}">
         <Setter Property="Focusable" Value="true"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Border>
-                        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="root" BorderThickness="0" BorderBrush="#808080" SnapsToDevicePixels="True" Margin="{TemplateBinding Padding}" Background="#00FFFFFF">
+                        <TextBlock x:Name="text" Text="{TemplateBinding Content}" Foreground="#606060" FontSize="12" HorizontalAlignment="Center" Margin="0,0,0,0"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="text" Property="Foreground" Value="#DA3100"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="text" Property="Foreground" Value="#DA3810"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
--->
-    
+
+    <Style x:Key="ArrayEditorItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border x:Name="root" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="#DA3100" SnapsToDevicePixels="True" Background="#00FFFFFF">
+                        <ContentPresenter x:Name="presenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="#F8F8F8"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="#F0F0F0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type common:ArrayEditor}">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -109,21 +138,20 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
                             <Border BorderThickness="0,0,0,1" BorderBrush="#808080" SnapsToDevicePixels="True">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
                                 <TextBlock Text="{TemplateBinding Header}" FontWeight="Bold" FontSize="14" VerticalAlignment="Bottom" Margin="4,0,0,0"/>
-                            </Border>
-                            <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                <Button x:Name="addButton" Content="Add" Padding="4"/>
-                                <Button x:Name="removeButton" Content="Remove" Padding="4" Margin="4,0,0,0"/>
-                            </StackPanel>
-                        </Grid>
-                        <ListBox Grid.Row="1" x:Name="listBox" SelectionMode="Single" Margin="0" Padding="0" BorderThickness="0"
-                                        ItemsSource="{TemplateBinding Items}" ItemTemplate="{TemplateBinding ItemTemplate}" />
+                                <Button x:Name="addButton" Grid.Column="1" Content="Add" Style="{StaticResource ArrayEditorButton}" Margin="4,0,0,0"/>
+                                <Button x:Name="removeButton" Grid.Column="2" Content="Remove" Style="{StaticResource ArrayEditorButton}" Margin="4,0,0,0"/>
+                            </Grid>
+                        </Border>
+                        <ListBox Grid.Row="1" x:Name="listBox" SelectionMode="Single" Margin="0" Padding="0" BorderThickness="0" ItemContainerStyle="{StaticResource ArrayEditorItem}"
+                                        ItemsSource="{TemplateBinding Items}" ItemTemplate="{TemplateBinding ItemTemplate}" AllowDrop="True" />
                         <Border Grid.Row="2" x:Name="contentBorder" BorderThickness="0,1,0,0" BorderBrush="#808080" SnapsToDevicePixels="True" Visibility="Collapsed">
                             <ContentControl Content="{TemplateBinding Content}" Margin="0,8,0,0" />
                         </Border>

@@ -26,7 +26,17 @@ namespace CoCEd
         public MainWindow()
         {
             InitializeComponent();
+            ((FrameworkElement)Content).QueryContinueDrag += OnQueryContinueDrag;
         }
+
+        void OnQueryContinueDrag(object sender, QueryContinueDragEventArgs e)
+        {
+            if ((e.KeyStates & DragDropKeyStates.LeftMouseButton) != DragDropKeyStates.LeftMouseButton)
+            {
+                e.Action = DragAction.Cancel;
+            }
+        }
+
 
 #if !DEBUG
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
