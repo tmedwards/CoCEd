@@ -69,5 +69,6 @@
 
         <view:TopBar HorizontalAlignment="Stretch" Margin="0,9,5,0"/>
 
+        <TextBlock Text="0.9e" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,43,5,0" Foreground="#A0A0A0" FontSize="12"/>
     </Grid>
 </Window>
