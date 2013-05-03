@@ -13,9 +13,14 @@ namespace CoCEd.Model
         readonly Dictionary<String, int> _stringLookup = new Dictionary<String, int>();
         readonly Dictionary<Object, int> _objectLookup = new Dictionary<Object, int>();
         readonly Dictionary<AmfTrait, int> _traitLookup = new Dictionary<AmfTrait, int>();
+        readonly MemoryStream _charStream = new MemoryStream(1 << 16);
+        readonly BinaryWriter _charWriter;
+        readonly BinaryReader _charReader;
 
         public AmfWriter(Stream stream)
         {
+            _charWriter = new BinaryWriter(_charStream);
+            _charReader = new BinaryReader(_charStream);
             _writer = new BinaryWriter(stream);
         }
 
@@ -225,10 +230,24 @@ namespace CoCEd.Model
             }
             else
             {
-                WriteU29(str.Length, true);
-                _writer.Write(str.ToArray());
+                WritePlainString(str);
                 _stringLookup.Add(str, _stringLookup.Count);
             }
+        }
+
+        void WritePlainString(string str)
+        {
+            _charStream.Position = 0;
+            foreach (var c in str) _charWriter.Write(c);
+
+            int numBytes = (int)_charStream.Position;
+            byte[] bytes = new byte[numBytes];
+
+            _charStream.Position = 0;
+            _charStream.Read(bytes, 0, numBytes);
+
+            WriteU29(numBytes, true);
+            _writer.Write(bytes);
         }
 
         void WriteDate(DateTime date)
@@ -371,8 +390,7 @@ namespace CoCEd.Model
         void WriteXML(AmfXmlType xml)
         {
             if (TryWriteRef(xml)) return;
-            WriteU29(xml.Content.Length, true);
-            _writer.Write(xml.Content.ToArray());
+            WritePlainString(xml.Content);
         }
 
         bool TryWriteRef(Object obj)

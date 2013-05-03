@@ -31,12 +31,12 @@ namespace CoCEd.Model
             if (size + 6 != _reader.BaseStream.Length) throw new InvalidOperationException("Wrong file size");
 
             // Magic signature
-            if (ReadString(4) != "TCSO") throw new InvalidOperationException();
+            if (ReadPlainString(4) != "TCSO") throw new InvalidOperationException();
             _reader.BaseStream.Seek(6, SeekOrigin.Current);
 
             // Read name
             size = ReadU16();
-            name = ReadString(size);
+            name = ReadPlainString(size);
 
             // Version
             int version = (int)ReadU32();
@@ -124,10 +124,19 @@ namespace CoCEd.Model
             return BitConverter.ToDouble(_buffer, 0);
         }
 
-        string ReadString(int numChars)
+        string ReadPlainString(int lengthInBytes)
         {
-            var chars = _reader.ReadChars(numChars);
-            return new string(chars);
+            var start = _reader.BaseStream.Position;
+            var chars = new char[lengthInBytes];
+
+            var numChars = 0;
+            while(_reader.BaseStream.Position < start + lengthInBytes)
+            {
+                chars[numChars] = _reader.ReadChar();
+                ++numChars;
+            }
+
+            return new string(chars, 0, numChars);
         }
 
         string ReadString()
@@ -135,9 +144,9 @@ namespace CoCEd.Model
             bool isValue;
             var lengthOrIndex = ReadU29(out isValue);
             if (!isValue) return _stringLookup[lengthOrIndex];
-            if (lengthOrIndex == 0) return "";
 
-            var str = ReadString(lengthOrIndex);
+            if (lengthOrIndex == 0) return "";
+            var str = ReadPlainString(lengthOrIndex);
             _stringLookup.Add(str);
             return str;
         }
@@ -365,7 +374,7 @@ namespace CoCEd.Model
             if (!isInstance) return (AmfXmlType)_objectLookup[lengthOrIndex];
 
             var result = new AmfXmlType { IsDocument = isDocument };
-            result.Content = ReadString(lengthOrIndex);
+            result.Content = ReadPlainString(lengthOrIndex);
             _objectLookup.Add(result);
             return result;
         }

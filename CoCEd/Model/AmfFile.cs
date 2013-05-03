@@ -31,11 +31,11 @@ namespace CoCEd.Model
                     }
                 }
             }
+#if !DEBUG
             catch (IOException e)
             {
                 Error = e.ToString();
             }
-#if !DEBUG
             catch (InvalidOperationException e)
             {
                 Error = e.ToString();
@@ -52,11 +52,11 @@ namespace CoCEd.Model
             {
                 Error = e.ToString();
             }
+#endif
             catch (SecurityException e)
             {
                 Error = e.ToString();
             }
-#endif
         }
 
         public string FilePath
