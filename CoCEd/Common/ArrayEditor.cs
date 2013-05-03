@@ -66,6 +66,11 @@ namespace CoCEd.Common
         Border _contentBorder;
         public override void OnApplyTemplate()
         {
+            if (_listBox != null) _listBox.Drop -= listBox_Drop;
+            if (_listBox != null) _listBox.DragOver += _listBox_DragOver;
+            if (_listBox != null) _listBox.DragEnter += _listBox_DragOver;
+            if (_listBox != null) _listBox.PreviewMouseLeftButtonDown += _listBox_PreviewMouseLeftButtonDown;
+            if (_listBox != null) _listBox.PreviewMouseMove -= listBox_PreviewMouseMove;
             if (_listBox != null) _listBox.SelectionChanged -= listBox_SelectionChanged;
             if (_removeButton != null) _removeButton.Click -= removeButton_Click;
             if (_addButton != null) _addButton.Click -= addButton_Click;
@@ -74,12 +79,79 @@ namespace CoCEd.Common
             _listBox = GetTemplateChild("listBox") as ListBox;
             _addButton = GetTemplateChild("addButton") as Button;
             _removeButton = GetTemplateChild("removeButton") as Button;
-            _contentBorder = GetTemplateChild("contentBorder") as Border; 
+            _contentBorder = GetTemplateChild("contentBorder") as Border;
 
+            if (_listBox != null) _listBox.Drop += listBox_Drop;
+            if (_listBox != null) _listBox.DragOver += _listBox_DragOver;
+            if (_listBox != null) _listBox.DragEnter += _listBox_DragOver;
+            if (_listBox != null) _listBox.PreviewMouseLeftButtonDown += _listBox_PreviewMouseLeftButtonDown;
+            if (_listBox != null) _listBox.PreviewMouseMove += listBox_PreviewMouseMove;
             if (_listBox != null) _listBox.SelectionChanged += listBox_SelectionChanged;
             if (_removeButton != null) _removeButton.Click += removeButton_Click;
             if (_addButton != null) _addButton.Click += addButton_Click;
             OnContentChanged();
+        }
+
+        Type _draggedType;
+        void _listBox_DragOver(object sender, DragEventArgs e)
+        {
+            if (_draggedType != null && e.Data.GetDataPresent(_draggedType))
+            {
+                var data = MoveDraggedItem(e);
+                if (data != null) e.Data.SetData(data); // The VM changed after the update
+                e.Effects = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effects = DragDropEffects.None;
+            }
+            e.Handled = true;
+        }
+
+        void listBox_Drop(object sender, DragEventArgs e)
+        {
+            MoveDraggedItem(e);
+        }
+
+        Object MoveDraggedItem(DragEventArgs e)
+        {
+            if (_draggedType == null) return null;
+            var droppedData = e.Data.GetData(_draggedType);
+            if (droppedData == null) return null;
+
+            var targetItem = ((UIElement)e.OriginalSource).AncestorsAndSelf().FirstOrDefault(x => x is ListBoxItem) as ListBoxItem;
+            int targetIndex = targetItem != null ? Items.IndexOf(targetItem.DataContext) : Items.Count - 1;
+            int sourceIndex = Items.IndexOf(droppedData);
+
+            if (sourceIndex == targetIndex) return null;
+            Items.MoveItemToIndex(sourceIndex, targetIndex);
+            _listBox.SelectedIndex = targetIndex;
+            return Items[targetIndex];
+        }
+
+        Point _dragSource;
+        void listBox_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            // M1 not pressed?
+            if (e.LeftButton != MouseButtonState.Pressed) return;
+
+            // Not engouh distance from start point?
+            var diff = e.GetPosition(this) - _dragSource;
+            if (Math.Abs(diff.X) < SystemParameters.MinimumHorizontalDragDistance && Math.Abs(diff.Y) < SystemParameters.MinimumVerticalDragDistance) return;
+
+            // Get dragged item
+            var draggedItem = ((UIElement)e.OriginalSource).AncestorsAndSelf().FirstOrDefault(x => x is ListBoxItem) as ListBoxItem;
+            if (draggedItem == null) return;
+
+            // Do drag drop
+            _draggedType = draggedItem.DataContext.GetType();
+            DragDrop.DoDragDrop(draggedItem, draggedItem.DataContext, DragDropEffects.Move);
+            draggedItem.IsSelected = true;
+        }
+
+        void _listBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _dragSource = e.GetPosition(this);
         }
 
         void addButton_Click(object sender, RoutedEventArgs e)
@@ -134,7 +206,7 @@ namespace CoCEd.Common
                 return;
             }
 
-            _listBox.SelectedIndex = 0;
+            if (_listBox.SelectedIndex == -1) _listBox.SelectedIndex = 0;
         }
     }
 }

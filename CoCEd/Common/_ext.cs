@@ -2,12 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
 
 namespace CoCEd.Common
 {
-    public static class LayoutHelper
+    public static class Extensions
     {
+        public static IEnumerable<UIElement> AncestorsAndSelf(this UIElement element)
+        {
+            while (element != null)
+            {
+                yield return element;
+                element = VisualTreeHelper.GetParent(element) as UIElement;
+            }
+        }
+
         public static double MaxOrZero<T>(this IEnumerable<T> items, Func<T, double> selector)
         {
             double value = 0.0;
@@ -15,4 +25,6 @@ namespace CoCEd.Common
             return value;
         }
     }
+
+
 }

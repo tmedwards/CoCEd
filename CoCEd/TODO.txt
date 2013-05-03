@@ -11,7 +11,6 @@
 * SourceForge: http://sourceforge.net/api/file/index/project-id/156708/rss
 * MsgBox with "open dir"
 * Skin tones and hair colors : free edition
-* Wetness >0 && <=2 ? Use a combobox!
 
 
 birthSpiderEggsFromAnusITSBLEEDINGYAYYYYY
