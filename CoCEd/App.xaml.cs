@@ -83,8 +83,9 @@ namespace CoCEd
 
 #if DEBUG
             var file = AutoLoad(set);
+            //new AmfFile("e:\\invalid.sol").TestSerialization();
             //DebugStatuses(file);
-            RunSerializationTest(set);
+            //RunSerializationTest(set);
             //ParsePerks();
             //ImportStatuses();
             //ImportFlags();
@@ -117,7 +118,7 @@ namespace CoCEd
             foreach (var first in set.StandardOfflineFiles.Files)
             {
                 var outPath = "e:\\" + first.Source.Name + ".sol";
-                first.Source.Test();
+                first.Source.TestSerialization();
                 first.Source.Save(outPath);
 
                 var input = File.ReadAllBytes(first.Source.FilePath);

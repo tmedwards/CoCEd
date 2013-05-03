@@ -27,9 +27,11 @@ namespace CoCEd.View
     /// </summary>
     public partial class TopBar : UserControl
     {
+        Style _saveStyle;
         public TopBar()
         {
             InitializeComponent();
+            _saveStyle = saveButton.Style;
             openMenu.PlacementTarget = openButton;
             saveMenu.PlacementTarget = saveButton;
             if (!DesignerProperties.GetIsInDesignMode(this)) VM.Instance.SaveRequiredChanged += OnSaveRequiredChanged;
@@ -38,7 +40,7 @@ namespace CoCEd.View
         void OnSaveRequiredChanged(object sender, bool saveRequired)
         {
             if (saveRequired) saveButton.Style = (Style)Resources["HighlightedButton"];
-            else saveButton.Style = null;
+            else saveButton.Style = _saveStyle;
         }
 
         void openMenu_Closed(object sender, EventArgs e)

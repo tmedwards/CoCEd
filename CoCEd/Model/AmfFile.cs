@@ -137,7 +137,7 @@ namespace CoCEd.Model
         }
 
 #if DEBUG
-        public void Test()
+        public void TestSerialization()
         {
             using (var stream = new ComparisonStream(FilePath))
             {
