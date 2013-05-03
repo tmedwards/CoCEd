@@ -16,6 +16,11 @@
     <Style x:Key="Header" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=IsEnabled}" Value="False">
+                <Setter Property="Foreground" Value="#808080"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="HeaderBorder" TargetType="{x:Type Border}">

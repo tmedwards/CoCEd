@@ -84,7 +84,7 @@ namespace CoCEd
 #if DEBUG
             var file = AutoLoad(set);
             //DebugStatuses(file);
-            //RunSerializationTest(set);
+            RunSerializationTest(set);
             //ParsePerks();
             //ImportStatuses();
             //ImportFlags();

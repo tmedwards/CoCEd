@@ -5,7 +5,7 @@
         xmlns:vm="clr-namespace:CoCEd.ViewModel" 
         Title="CoCEd" 
         DataContext="{x:Static vm:VM.Instance}"
-        Width="1024" Height="738" MinWidth="1024" MinHeight="738">
+        Width="1024" Height="736" MinWidth="1024" MinHeight="736"> <!-- 1024x738-->
     
     <Grid>
         <Grid.RowDefinitions>
@@ -15,7 +15,7 @@
         
         <view:TopBar HorizontalAlignment="Stretch"/>
         
-        <TabControl Grid.Row="1" Margin="0,30,0,0" IsEnabled="{Binding HasData}" Padding="0">
+        <TabControl Grid.Row="1" Margin="0,10,0,0" IsEnabled="{Binding HasData}" Padding="0">
             <TabItem Header="General" Width="100" Margin="0">
                 <view:GeneralPage/>
             </TabItem>
@@ -34,7 +34,7 @@
             <TabItem Header="Others" Width="150" Margin="0">
                 <view:MiscPage/>
             </TabItem>
-            <TabItem Header="Raw" Width="150" Margin="0">
+            <TabItem Header="Raw data" Width="150" Margin="0">
                 <view:RawPage/>
             </TabItem>
         </TabControl>
