@@ -245,7 +245,7 @@ namespace CoCEd.ViewModel
             set 
             {
                 if (!SetValue("hornType", value)) return;
-                OnPropertyChanged("HornsValueVisibility");
+                OnPropertyChanged("HornsValueEnabled");
                 OnPropertyChanged("HornsValueLabel");
                 OnPropertyChanged("HornsValueUnit");
             }
@@ -261,10 +261,9 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (HornType == 1) return "Horn count";
-                if (HornType == 2) return "Horns length";
                 if (HornType == 5) return "Antlers' branches";
-                return "?";
+                if (HornType == 1) return "Horn count";
+                return "Horns length";  // 2
             }
         }
 
@@ -273,9 +272,9 @@ namespace CoCEd.ViewModel
             get { return HornType == 2 ? "inches" : ""; }
         }
 
-        public Visibility HornsValueVisibility
+        public bool HornsValueEnabled
         {
-            get { return (HornType == 1 || HornType == 2 || HornType == 5) ? Visibility.Visible : Visibility.Collapsed; }
+            get { return (HornType == 1 || HornType == 2 || HornType == 5); }
         }
 
 

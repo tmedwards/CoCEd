@@ -1,15 +1,17 @@
-﻿* 'Heat' and 'rut' statuses
+﻿* Sort perks on save
+* 'Heat' and 'rut' statuses
 * Buttstretched, CuntStretched
 * KeltOff, Kelt submissiveness
 * Spells
 * Golden lipstick
 * Faerie fucked
 * Reorganize listboxes
-* Sort perks on save
 * 'dysfunction'
 * Addiction
 * SourceForge: http://sourceforge.net/api/file/index/project-id/156708/rss
 * MsgBox with "open dir"
+* Skin tones and hair colors : free edition
+* Wetness >0 && <=2 ? Use a combobox!
 
 
 birthSpiderEggsFromAnusITSBLEEDINGYAYYYYY
@@ -24,3 +26,11 @@ gooPregVagBirth
 basiliskBirth
 satyrBirth
 popOutBenoitEggs
+
+
+
+	if(player.hairType == 1) descript += "feather-";
+	else if(player.hairType == 2) descript += "transparent ";
+	else if(player.hairType == 3) descript += "goo-";
+	else if(player.hairType == 4) descript += "tentacle-";
+	descript += "hair";
