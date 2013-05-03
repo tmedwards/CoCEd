@@ -215,7 +215,7 @@ namespace CoCEd.Common
 
             if (Unit == "inches")
             {
-                if (Value >= 12) _toolTip.Text = String.Format("{0:0} cm ; {1:0}' {2:0}", Value * 2.54, Value / 12, Value % 12);
+                if (Value >= 12) _toolTip.Text = String.Format("{0:0} cm ; {1:0}' {2:0}", Value * 2.54, (int)(Value / 12), Value % 12);
                 else if (Value >= 4) _toolTip.Text = String.Format("{0:0} cm", Value * 2.54);
                 else _toolTip.Text = String.Format("{0:0.0} cm", Value * 2.54);
             }
