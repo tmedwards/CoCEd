@@ -99,7 +99,7 @@
                     <common:MyComboBox               SelectedValue="{Binding Game.Ass.Looseness}" ItemsSource="{Binding Data.Body.AnalLoosenessLevels}"/>
 
                     <TextBlock              Text="Wetness"/>
-                    <common:MyNumericBox    Value="{Binding Game.Ass.Wetness}" Min="0" Max="2" MinLabel="0 (dry)" MaxLabel="2 (moist)" IsInteger="True"/>
+                    <common:MyComboBox               SelectedValue="{Binding Game.Ass.Wetness}" ItemsSource="{Binding Data.Body.AnalWetnessLevels}"/>
 
                     <TextBlock              Text="Anal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
                     <common:MyNumericBox    Value="{Binding Game.AnalCapacityBonus}" Min="0" IsInteger="False" Unit="inches²"/>

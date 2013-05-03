@@ -103,5 +103,10 @@ namespace CoCEd.ViewModel
             OnPropertyChanged("NippleVisibility");
             OnPropertyChanged("ClitVisibility");
         }
+
+        public bool IsMale
+        {
+            get { return GetInt("gender", 0) <= 1; }
+        }
     }
 }

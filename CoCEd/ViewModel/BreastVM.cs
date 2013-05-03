@@ -70,19 +70,19 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (Rating <= 1) return "A";
-                if (Rating == 2) return "B";
-                if (Rating == 3) return "C";
-                if (Rating == 4) return "D";
-                if (Rating <= 6) return "DD";
+                if (Rating <= 1) return "A-cup";
+                if (Rating == 2) return "B-cup";
+                if (Rating == 3) return "C-cup";
+                if (Rating == 4) return "D-cup";
+                if (Rating <= 6) return "DD-cup";
 
                 // E=7,8  EE=9,10  F=11,12  FF=13,14
                 int offset = Math.Min(21, (Rating - 7) / 4);
                 char letter = (char)((int)'A' + (offset + 4));
                 bool doubled = (Rating - 7) >= offset * 4 + 2;
 
-                if (doubled) return letter.ToString() + letter;
-                return letter.ToString();
+                if (doubled) return letter.ToString() + letter + "-cup";
+                return letter.ToString() + "-cup";
             }
         }
 
@@ -91,12 +91,12 @@ namespace CoCEd.ViewModel
             get
             {
                 var rating = RatingDescription;
-                if (BreastCount == 1) return "A " + rating + "-cup breast";
-                if (BreastCount == 2) return "A pair of " + rating + "-cup breasts";
-                if (BreastCount == 3) return "A triad of " + rating + "-cup breasts";
-                if (BreastCount == 4) return "A quartet of " + rating + "-cup breasts";
-                if (BreastCount == 5) return "A quintet of " + rating + "-cup breasts";
-                if (BreastCount == 6) return "A sextet of " + rating + "-cup breasts";
+                if (BreastCount == 1) return "A " + rating + " breast";
+                if (BreastCount == 2) return "A pair of " + rating + " breasts";
+                if (BreastCount == 3) return "A triad of " + rating + " breasts";
+                if (BreastCount == 4) return "A quartet of " + rating + " breasts";
+                if (BreastCount == 5) return "A quintet of " + rating + " breasts";
+                if (BreastCount == 6) return "A sextet of " + rating + " breasts";
                 return "A bunch of " + rating + "-cup breasts";
             }
         }
