@@ -14,104 +14,106 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Margin="0,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-      
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-            <Border Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Body" Style="{StaticResource Header}"/>
-            </Border>
-            <common:AutoGrid>
-                <TextBlock              Text="Height"/>
-                <common:MyNumericBox    Value="{Binding Game.Height}" Min="0" IsInteger="False" Unit="inches"/>
-
-                <TextBlock              Text="Feminity"/>
-                <common:MyNumericBox    Value="{Binding Game.Feminity}" Min="0" Max="100" IsInteger="True" MinLabel="0 (masc)" MaxLabel="100 (fem)"/>
-
-                <TextBlock              Text="Muscles"/>
-                <common:MyNumericBox    Value="{Binding Game.Muscles}" Min="0" Max="100" IsInteger="True" MinLabel="0 (soft)" MaxLabel="100 (highly built)"/>
-
-                <TextBlock              Text="Thickness"/>
-                <common:MyNumericBox    Value="{Binding Game.BodyThickness}" Min="0" Max="100" IsInteger="True" MinLabel="0 (thin)" MaxLabel="100 (fat)"/>
-
-                <TextBlock              Text="Skin type"/>
-                <common:MyComboBox SelectedValue="{Binding Game.SkinType}" ItemsSource="{Binding Data.Body.SkinTypes}"/>
-
-                <TextBlock              Text="Skin tone"/>
-                <common:MyComboBox SelectedValue="{Binding Game.SkinTone}" ItemsSource="{Binding Data.Body.SkinTones}"/>
-
-                <TextBlock              Text="Wings"/>
-                <common:MyComboBox SelectedValue="{Binding Game.WingType}" ItemsSource="{Binding Data.Body.WingTypes}"/>
-            </common:AutoGrid>
-        </StackPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
 
-        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
-            <Border Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Lower body" Style="{StaticResource Header}"/>
-            </Border>
-            <common:AutoGrid>
-                <TextBlock              Text="Butt"/>
-                <common:MyNumericBox    Value="{Binding Game.ButtRating}" Min="0" Max="20" IsInteger="True" MinLabel="0 (thin)" MaxLabel="20 (very big)" Tip="4 is average"/>
-
-                <TextBlock              Text="Hips &amp; thighs"/>
-                <common:MyNumericBox    Value="{Binding Game.HipRating}" Min="0" Max="20" IsInteger="True" MinLabel="0 (thin)" MaxLabel="20 (very big)" Tip="4-6 is average"/>
-
-                <TextBlock              Text="Lower body"/>
-                <common:MyComboBox SelectedValue="{Binding Game.LowerBodyType}" ItemsSource="{Binding Data.Body.LowerBodyTypes}"/>
-
-                <TextBlock              Text="Tail"/>
-                <common:MyComboBox SelectedValue="{Binding Game.TailType}" ItemsSource="{Binding Data.Body.TailTypes}"/>
-            </common:AutoGrid>
-        </StackPanel>
-        
-       
-        <StackPanel Grid.Column="3" Grid.Row="1" Grid.RowSpan="3" Orientation="Vertical">
-            <common:ArrayEditor Header="Breasts" Items="{Binding Game.Breasts}">
-                <common:ArrayEditor.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Description}"/>
-                    </DataTemplate>
-                </common:ArrayEditor.ItemTemplate>
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
+                <Border Style="{StaticResource HeaderBorder}">
+                    <TextBlock Text="Body" Style="{StaticResource Header}"/>
+                </Border>
                 <common:AutoGrid>
-                    <TextBlock              Text="Rating"/>
-                    <common:MyNumericBox    Value="{Binding Rating}" Min="1" Max="96" IsInteger="True" Tip="{Binding RatingDescription}" />
+                    <TextBlock              Text="Height"/>
+                    <common:MyNumericBox    Value="{Binding Game.Height}" Min="0" IsInteger="False" Unit="inches"/>
 
-                    <TextBlock              Text="Breast count"/>
-                    <common:MyNumericBox    Value="{Binding BreastCount}" Min="1" IsInteger="True"/>
+                    <TextBlock              Text="Feminity"/>
+                    <common:MyNumericBox    Value="{Binding Game.Feminity}" Min="0" Max="100" IsInteger="True" MinLabel="0 (masc)" MaxLabel="100 (fem)"/>
 
-                    <TextBlock              Text="Nipples per breast"/>
-                    <common:MyNumericBox    Value="{Binding NipplesPerBreast}" Min="0" IsInteger="True"/>
+                    <TextBlock              Text="Muscles"/>
+                    <common:MyNumericBox    Value="{Binding Game.Muscles}" Min="0" Max="100" IsInteger="True" MinLabel="0 (soft)" MaxLabel="100 (highly built)"/>
 
-                    <TextBlock              Text="Lactation multiplier"/>
-                    <common:MyNumericBox    Value="{Binding LactationMultiplier}" Min="0" IsInteger="False" Tip="{Binding MilkVolume}"/>
+                    <TextBlock              Text="Thickness"/>
+                    <common:MyNumericBox    Value="{Binding Game.BodyThickness}" Min="0" Max="100" IsInteger="True" MinLabel="0 (thin)" MaxLabel="100 (fat)"/>
 
-                    <Border/>
-                    <CheckBox Content="Fuckable nipples*" ToolTip="Your nipples do have a hole." IsChecked="{Binding Fuckable}" Margin="54,5,0,0"/>
+                    <TextBlock              Text="Skin type"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.SkinType}" ItemsSource="{Binding Data.Body.SkinTypes}"/>
+
+                    <TextBlock              Text="Skin tone"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.SkinTone}" ItemsSource="{Binding Data.Body.SkinTones}"/>
+
+                    <TextBlock              Text="Wings"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.WingType}" ItemsSource="{Binding Data.Body.WingTypes}"/>
                 </common:AutoGrid>
-            </common:ArrayEditor>
+            </StackPanel>
 
-            <common:AutoGrid Margin="0,30,0,0" Visibility="{Binding Game.NippleVisibility}">
-                <TextBlock              Text="Nipple length"/>
-                <common:MyNumericBox    Value="{Binding Game.NippleLength}" Min="0" IsInteger="False" Unit="inches"/>
-                
-                <TextBlock              Text="Nipples piercing"/>
-                <common:MyPiercingBox DataContext="{Binding Game.NipplesPiercing}"/>
-            </common:AutoGrid>
-        </StackPanel>
-    </Grid>
+
+            <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
+                <Border Style="{StaticResource HeaderBorder}">
+                    <TextBlock Text="Lower body" Style="{StaticResource Header}"/>
+                </Border>
+                <common:AutoGrid>
+                    <TextBlock              Text="Butt"/>
+                    <common:MyNumericBox    Value="{Binding Game.ButtRating}" Min="0" Max="20" IsInteger="True" MinLabel="0 (thin)" MaxLabel="20 (very big)" Tip="4 is average"/>
+
+                    <TextBlock              Text="Hips &amp; thighs"/>
+                    <common:MyNumericBox    Value="{Binding Game.HipRating}" Min="0" Max="20" IsInteger="True" MinLabel="0 (thin)" MaxLabel="20 (very big)" Tip="4-6 is average"/>
+
+                    <TextBlock              Text="Lower body"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.LowerBodyType}" ItemsSource="{Binding Data.Body.LowerBodyTypes}"/>
+
+                    <TextBlock              Text="Tail"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.TailType}" ItemsSource="{Binding Data.Body.TailTypes}"/>
+                </common:AutoGrid>
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="3" Grid.Row="1" Grid.RowSpan="3" Orientation="Vertical">
+                <common:ArrayEditor Header="Breasts" Items="{Binding Game.Breasts}">
+                    <common:ArrayEditor.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Description}"/>
+                        </DataTemplate>
+                    </common:ArrayEditor.ItemTemplate>
+                    <common:AutoGrid>
+                        <TextBlock              Text="Rating"/>
+                        <common:MyNumericBox    Value="{Binding Rating}" Min="1" Max="96" IsInteger="True" Tip="{Binding RatingDescription}" />
+
+                        <TextBlock              Text="Breast count"/>
+                        <common:MyNumericBox    Value="{Binding BreastCount}" Min="1" IsInteger="True"/>
+
+                        <TextBlock              Text="Nipples per breast"/>
+                        <common:MyNumericBox    Value="{Binding NipplesPerBreast}" Min="0" IsInteger="True"/>
+
+                        <TextBlock              Text="Lactation multiplier"/>
+                        <common:MyNumericBox    Value="{Binding LactationMultiplier}" Min="0" IsInteger="False" Tip="{Binding MilkVolume}"/>
+
+                        <Border/>
+                        <CheckBox Content="Fuckable nipples*" ToolTip="Your nipples do have a hole." IsChecked="{Binding Fuckable}" Margin="54,5,0,0"/>
+                    </common:AutoGrid>
+                </common:ArrayEditor>
+
+                <common:AutoGrid Margin="0,30,0,0" Visibility="{Binding Game.NippleVisibility}">
+                    <TextBlock              Text="Nipple length"/>
+                    <common:MyNumericBox    Value="{Binding Game.NippleLength}" Min="0" IsInteger="False" Unit="inches"/>
+
+                    <TextBlock              Text="Nipples piercing"/>
+                    <common:MyPiercingBox DataContext="{Binding Game.NipplesPiercing}"/>
+                </common:AutoGrid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

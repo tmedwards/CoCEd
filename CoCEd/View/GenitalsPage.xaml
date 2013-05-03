@@ -24,122 +24,124 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Margin="0,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-            <Border Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Balls" Style="{StaticResource Header}"/>
-            </Border>
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
+                <Border Style="{StaticResource HeaderBorder}">
+                    <TextBlock Text="Balls" Style="{StaticResource Header}"/>
+                </Border>
 
-            <common:AutoGrid>
-                <TextBlock              Text="Pairs"/>
-                <common:MyNumericBox    Value="{Binding Game.Balls}" Min="0" IsInteger="True"/>
-
-                <TextBlock              Text="Size"/>
-                <common:MyNumericBox    Value="{Binding Game.BallSize}" Min="0" Unit="inches" IsInteger="False"/>
-                
-                <TextBlock              Text="Cum multiplier"/>
-                <common:MyNumericBox    Value="{Binding Game.CumMultiplier}" Min="0" IsInteger="False" Tip="{Binding Game.CumVolume}"/>
-            </common:AutoGrid>
-        </StackPanel>
-
-        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
-            <common:ArrayEditor Header="Cocks" Items="{Binding Game.Cocks}">
-                <common:ArrayEditor.ItemTemplate>
-                    <DataTemplate>
-                        <common:AutoGrid Columns="2">
-                            <TextBlock Text="{Binding Length}" Width="20" TextAlignment="Right"/>
-                            <TextBlock Text="{Binding Description}"/>
-                        </common:AutoGrid>
-                    </DataTemplate>
-                </common:ArrayEditor.ItemTemplate>
                 <common:AutoGrid>
-                    <TextBlock              Text="Type"/>
-                    <common:MyComboBox               SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
+                    <TextBlock              Text="Pairs"/>
+                    <common:MyNumericBox    Value="{Binding Game.Balls}" Min="0" IsInteger="True"/>
 
-                    <TextBlock              Text="Piercing"/>
-                    <common:MyPiercingBox DataContext="{Binding Piercing}"/>
+                    <TextBlock              Text="Size"/>
+                    <common:MyNumericBox    Value="{Binding Game.BallSize}" Min="0" Unit="inches" IsInteger="False"/>
 
-                    <TextBlock              Text="Length"/>
-                    <common:MyNumericBox    Value="{Binding Length}" Min="0" IsInteger="True" Unit="inches"/>
-                    
-                    <TextBlock              Text="Thickness"/>
-                    <common:MyNumericBox    Value="{Binding Thickness}" Min="0" IsInteger="True" Unit="inches"/>
-
-                    <TextBlock              Text="Knots multiplier" Visibility="{Binding KnotVisibility}"/>
-                    <common:MyNumericBox    Value="{Binding KnotMultiplier}" Min="0" Visibility="{Binding KnotVisibility}"/>
-                   
+                    <TextBlock              Text="Cum multiplier"/>
+                    <common:MyNumericBox    Value="{Binding Game.CumMultiplier}" Min="0" IsInteger="False" Tip="{Binding Game.CumVolume}"/>
                 </common:AutoGrid>
-            </common:ArrayEditor>
-        </StackPanel>
-            
-            
-        <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
-            <Border Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Ass" Style="{StaticResource Header}"/>
-            </Border>
+            </StackPanel>
 
-            <common:AutoGrid>
-                <TextBlock              Text="Loosness"/>
-                <common:MyComboBox               SelectedValue="{Binding Game.Ass.Looseness}" ItemsSource="{Binding Data.Body.AnalLoosenessLevels}"/>
+            <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
+                <common:ArrayEditor Header="Cocks" Items="{Binding Game.Cocks}">
+                    <common:ArrayEditor.ItemTemplate>
+                        <DataTemplate>
+                            <common:AutoGrid Columns="2">
+                                <TextBlock Text="{Binding Length}" Width="20" TextAlignment="Right"/>
+                                <TextBlock Text="{Binding Description}"/>
+                            </common:AutoGrid>
+                        </DataTemplate>
+                    </common:ArrayEditor.ItemTemplate>
+                    <common:AutoGrid>
+                        <TextBlock              Text="Type"/>
+                        <common:MyComboBox               SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
 
-                <TextBlock              Text="Wetness"/>
-                <common:MyNumericBox    Value="{Binding Game.Ass.Wetness}" Min="0" Max="2" MinLabel="0 (dry)" MaxLabel="2 (moist)" IsInteger="True"/>
+                        <TextBlock              Text="Piercing"/>
+                        <common:MyPiercingBox DataContext="{Binding Piercing}"/>
 
-                <TextBlock              Text="Anal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
-                <common:MyNumericBox    Value="{Binding Game.AnalCapacityBonus}" Min="0" IsInteger="False" Unit="inches²"/>
-            </common:AutoGrid>
-        </StackPanel>
+                        <TextBlock              Text="Length"/>
+                        <common:MyNumericBox    Value="{Binding Length}" Min="0" IsInteger="True" Unit="inches"/>
 
-        <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical">
-            <common:ArrayEditor Header="Vaginas" Items="{Binding Game.Vaginas}">
-                <common:ArrayEditor.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Description}"/>
-                    </DataTemplate>
-                </common:ArrayEditor.ItemTemplate>
+                        <TextBlock              Text="Thickness"/>
+                        <common:MyNumericBox    Value="{Binding Thickness}" Min="0" IsInteger="True" Unit="inches"/>
+
+                        <TextBlock              Text="Knots multiplier" Visibility="{Binding KnotVisibility}"/>
+                        <common:MyNumericBox    Value="{Binding KnotMultiplier}" Min="0" Visibility="{Binding KnotVisibility}"/>
+
+                    </common:AutoGrid>
+                </common:ArrayEditor>
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
+                <Border Style="{StaticResource HeaderBorder}">
+                    <TextBlock Text="Ass" Style="{StaticResource Header}"/>
+                </Border>
+
                 <common:AutoGrid>
-                    <TextBlock              Text="Type"/>
-                    <common:MyComboBox               SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
-
                     <TextBlock              Text="Loosness"/>
-                    <common:MyComboBox               SelectedValue="{Binding Looseness}" ItemsSource="{Binding AllLoosenessLevels}"/>
+                    <common:MyComboBox               SelectedValue="{Binding Game.Ass.Looseness}" ItemsSource="{Binding Data.Body.AnalLoosenessLevels}"/>
 
                     <TextBlock              Text="Wetness"/>
-                    <common:MyComboBox               SelectedValue="{Binding Wetness}" ItemsSource="{Binding AllWetnessLevels}"/>
+                    <common:MyNumericBox    Value="{Binding Game.Ass.Wetness}" Min="0" Max="2" MinLabel="0 (dry)" MaxLabel="2 (moist)" IsInteger="True"/>
 
-                    <TextBlock              Text="Labia piercing"/>
-                    <common:MyPiercingBox DataContext="{Binding LabiaPiercing}"/>
-
-                    <TextBlock              Text="Clit piercing"/>
-                    <common:MyPiercingBox DataContext="{Binding ClitPiercing}"/>
-
-                    <Border/>
-                    <CheckBox Content="Virgin" IsChecked="{Binding Virgin}"/>
+                    <TextBlock              Text="Anal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
+                    <common:MyNumericBox    Value="{Binding Game.AnalCapacityBonus}" Min="0" IsInteger="False" Unit="inches²"/>
                 </common:AutoGrid>
-            </common:ArrayEditor>
+            </StackPanel>
 
-            <common:AutoGrid Margin="0,30,0,0" Visibility="{Binding Game.ClitVisibility}">
-                <TextBlock              Text="Clit length"/>
-                <common:MyNumericBox    Value="{Binding Game.ClitLength}" Min="0" IsInteger="False" Unit="inches"/>
+            <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical">
+                <common:ArrayEditor Header="Vaginas" Items="{Binding Game.Vaginas}">
+                    <common:ArrayEditor.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Description}"/>
+                        </DataTemplate>
+                    </common:ArrayEditor.ItemTemplate>
+                    <common:AutoGrid>
+                        <TextBlock              Text="Type"/>
+                        <common:MyComboBox               SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
 
-                <TextBlock              Text="Vaginal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
-                <common:MyNumericBox    Value="{Binding Game.VaginalCapacityBonus}" Min="0" IsInteger="False" Unit="inches²"/>
-            </common:AutoGrid>
-        </StackPanel> 
-    </Grid>
+                        <TextBlock              Text="Loosness"/>
+                        <common:MyComboBox               SelectedValue="{Binding Looseness}" ItemsSource="{Binding AllLoosenessLevels}"/>
+
+                        <TextBlock              Text="Wetness"/>
+                        <common:MyComboBox               SelectedValue="{Binding Wetness}" ItemsSource="{Binding AllWetnessLevels}"/>
+
+                        <TextBlock              Text="Labia piercing"/>
+                        <common:MyPiercingBox DataContext="{Binding LabiaPiercing}"/>
+
+                        <TextBlock              Text="Clit piercing"/>
+                        <common:MyPiercingBox DataContext="{Binding ClitPiercing}"/>
+
+                        <Border/>
+                        <CheckBox Content="Virgin" IsChecked="{Binding Virgin}"/>
+                    </common:AutoGrid>
+                </common:ArrayEditor>
+
+                <common:AutoGrid Margin="0,30,0,0" Visibility="{Binding Game.ClitVisibility}">
+                    <TextBlock              Text="Clit length"/>
+                    <common:MyNumericBox    Value="{Binding Game.ClitLength}" Min="0" IsInteger="False" Unit="inches"/>
+
+                    <TextBlock              Text="Vaginal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
+                    <common:MyNumericBox    Value="{Binding Game.VaginalCapacityBonus}" Min="0" IsInteger="False" Unit="inches²"/>
+                </common:AutoGrid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

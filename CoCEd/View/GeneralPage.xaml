@@ -14,146 +14,146 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Margin="0,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-            <common:AutoGrid>
-                <TextBlock              Text="Name"/>
-                <TextBox                Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,4,8,4" 
-                                        BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
-
-                <TextBlock              Text="Gems"/>
-                <common:MyNumericBox    Value="{Binding Game.Gems}" Min="0" IsInteger="True"/>
-            </common:AutoGrid>
-        </StackPanel>
-
-        <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
-            <common:AutoGrid>
-                <TextBlock              Text="XP"/>
-                <common:MyNumericBox    Value="{Binding Game.XP}" Min="0" IsInteger="True"/>
-
-                <TextBlock              Text="Teasing XP"/>
-                <common:MyNumericBox    Value="{Binding Game.TeaseXP}" Min="0" IsInteger="True"/>
-            </common:AutoGrid>
-        </StackPanel>
-
-
-
-        <Grid Grid.Column="1" Grid.Row="3">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <StackPanel Orientation="Vertical">
-                <Border Style="{StaticResource HeaderBorder}">
-                    <TextBlock Text="Core stats" Style="{StaticResource Header}"/>
-                </Border>
+        
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
                 <common:AutoGrid>
-                    <TextBlock              Text="Strength"/>
-                    <common:MyNumericBox    Value="{Binding Game.Strength}" Min="0" Max="100" IsInteger="True"/>
+                    <TextBlock              Text="Name"/>
+                    <TextBox                Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,4,8,4" 
+                                            BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
 
-                    <TextBlock              Text="Toughness"/>
-                    <common:MyNumericBox    Value="{Binding Game.Toughness}" Min="0" Max="100" IsInteger="True"/>
-
-                    <TextBlock              Text="Speed"/>
-                    <common:MyNumericBox    Value="{Binding Game.Speed}" Min="0" Max="100" IsInteger="True"/>
-
-                    <TextBlock              Text="Intelligence"/>
-                    <common:MyNumericBox    Value="{Binding Game.Intelligence}" Min="0" Max="100" IsInteger="True"/>
-
-                    <TextBlock              Text="Libido"/>
-                    <common:MyNumericBox    Value="{Binding Game.Libido}" Min="0" Max="100" IsInteger="True"/>
-
-                    <TextBlock              Text="Sensitivity"/>
-                    <common:MyNumericBox    Value="{Binding Game.Sensitivity}" Min="0" Max="100" IsInteger="True"/>
-
-                    <TextBlock              Text="Corruption"/>
-                    <common:MyNumericBox    Value="{Binding Game.Corruption}" Min="0" Max="100" IsInteger="True"/>
+                    <TextBlock              Text="Gems"/>
+                    <common:MyNumericBox    Value="{Binding Game.Gems}" Min="0" IsInteger="True"/>
                 </common:AutoGrid>
             </StackPanel>
 
-            
-            <StackPanel Orientation="Vertical" Grid.Row="2">
-                <Border Style="{StaticResource HeaderBorder}" Margin="0,30,0,0">
-                    <TextBlock Text="Combat stats" Style="{StaticResource Header}"/>
-                </Border>
+            <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
                 <common:AutoGrid>
-                    <TextBlock              Text="Current HP"/>
-                    <common:MyNumericBox    Value="{Binding Game.HP}" Min="0" IsInteger="True"/>
+                    <TextBlock              Text="XP"/>
+                    <common:MyNumericBox    Value="{Binding Game.XP}" Min="0" IsInteger="True"/>
 
-                    <TextBlock              Text="Lust"/>
-                    <common:MyNumericBox    Value="{Binding Game.Lust}" Min="0" Max="100" IsInteger="True"/>
+                    <TextBlock              Text="Teasing XP"/>
+                    <common:MyNumericBox    Value="{Binding Game.TeaseXP}" Min="0" IsInteger="True"/>
+                </common:AutoGrid>
+            </StackPanel>
 
-                    <TextBlock              Text="Fatigue"/>
-                    <common:MyNumericBox    Value="{Binding Game.Fatigue}" Min="0" Max="100" IsInteger="True"/>
+
+
+            <Grid Grid.Column="1" Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical">
+                    <Border Style="{StaticResource HeaderBorder}">
+                        <TextBlock Text="Core stats" Style="{StaticResource Header}"/>
+                    </Border>
+                    <common:AutoGrid>
+                        <TextBlock              Text="Strength"/>
+                        <common:MyNumericBox    Value="{Binding Game.Strength}" Min="0" Max="100" IsInteger="True"/>
+
+                        <TextBlock              Text="Toughness"/>
+                        <common:MyNumericBox    Value="{Binding Game.Toughness}" Min="0" Max="100" IsInteger="True"/>
+
+                        <TextBlock              Text="Speed"/>
+                        <common:MyNumericBox    Value="{Binding Game.Speed}" Min="0" Max="100" IsInteger="True"/>
+
+                        <TextBlock              Text="Intelligence"/>
+                        <common:MyNumericBox    Value="{Binding Game.Intelligence}" Min="0" Max="100" IsInteger="True"/>
+
+                        <TextBlock              Text="Libido"/>
+                        <common:MyNumericBox    Value="{Binding Game.Libido}" Min="0" Max="100" IsInteger="True"/>
+
+                        <TextBlock              Text="Sensitivity"/>
+                        <common:MyNumericBox    Value="{Binding Game.Sensitivity}" Min="0" Max="100" IsInteger="True"/>
+
+                        <TextBlock              Text="Corruption"/>
+                        <common:MyNumericBox    Value="{Binding Game.Corruption}" Min="0" Max="100" IsInteger="True"/>
+                    </common:AutoGrid>
+                </StackPanel>
+
+            
+                <StackPanel Orientation="Vertical" Grid.Row="2">
+                    <Border Style="{StaticResource HeaderBorder}" Margin="0,30,0,0">
+                        <TextBlock Text="Combat stats" Style="{StaticResource Header}"/>
+                    </Border>
+                    <common:AutoGrid>
+                        <TextBlock              Text="Current HP"/>
+                        <common:MyNumericBox    Value="{Binding Game.HP}" Min="0" IsInteger="True"/>
+
+                        <TextBlock              Text="Lust"/>
+                        <common:MyNumericBox    Value="{Binding Game.Lust}" Min="0" Max="100" IsInteger="True"/>
+
+                        <TextBlock              Text="Fatigue"/>
+                        <common:MyNumericBox    Value="{Binding Game.Fatigue}" Min="0" Max="100" IsInteger="True"/>
+                    </common:AutoGrid>
+                </StackPanel>
+            </Grid>
+
+
+            <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical">
+                <Border Style="{StaticResource HeaderBorder}">
+                    <TextBlock Text="Face" Style="{StaticResource Header}"/>
+                </Border>
+
+                <common:AutoGrid>
+                    <TextBlock              Text="Hair length"/>
+                    <common:MyNumericBox    Value="{Binding Game.HairLength}" Min="0" IsInteger="False" Unit="inches"/>
+
+                    <TextBlock              Text="Hair color"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.HairColor}" ItemsSource="{Binding Data.Body.HairColors}"/>
+
+                    <TextBlock              Text="Face"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.FaceType}" ItemsSource="{Binding Data.Body.FaceTypes}"/>
+
+                    <TextBlock              Text="Tongue"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.TongueType}" ItemsSource="{Binding Data.Body.TongueTypes}"/>
+
+                    <TextBlock              Text="Eyes"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.EyeType}" ItemsSource="{Binding Data.Body.EyeTypes}"/>
+
+                    <TextBlock              Text="Ears"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.EarType}" ItemsSource="{Binding Data.Body.EarTypes}"/>
+
+                    <TextBlock              Text="Antennae"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.AntennaeType}" ItemsSource="{Binding Data.Body.AntennaeTypes}"/>
+
+                    <TextBlock              Text="Horns"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.HornType}" ItemsSource="{Binding Data.Body.HornTypes}"/>
+
+                    <TextBlock              Text="{Binding Game.HornsValueLabel}" Visibility="{Binding Game.HornsValueVisibility}"/>
+                    <common:MyNumericBox    Value="{Binding Game.HornsValue}" Min="0" IsInteger="False" Unit="{Binding Game.HornsValueUnit}" Visibility="{Binding Game.HornsValueVisibility}"/>
+
+                    <TextBlock              Text="Eyebrow piercing"/>
+                    <common:MyPiercingBox DataContext="{Binding Game.EyebrowPiercing}"/>
+                
+                    <TextBlock              Text="Ears piercing"/>
+                    <common:MyPiercingBox DataContext="{Binding Game.EarsPiercing}"/>
+
+                    <TextBlock              Text="Lip piercing"/>
+                    <common:MyPiercingBox DataContext="{Binding Game.LipPiercing}"/>
+
+                    <TextBlock              Text="Tongue piercing"/>
+                    <common:MyPiercingBox DataContext="{Binding Game.TonguePiercing}"/>
                 </common:AutoGrid>
             </StackPanel>
         </Grid>
-
-
-        <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical">
-            <Border Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="Face" Style="{StaticResource Header}"/>
-            </Border>
-
-            <common:AutoGrid>
-                <TextBlock              Text="Hair length"/>
-                <common:MyNumericBox    Value="{Binding Game.HairLength}" Min="0" IsInteger="False" Unit="inches"/>
-
-                <TextBlock              Text="Hair color"/>
-                <common:MyComboBox SelectedValue="{Binding Game.HairColor}" ItemsSource="{Binding Data.Body.HairColors}"/>
-
-                <TextBlock              Text="Face"/>
-                <common:MyComboBox SelectedValue="{Binding Game.FaceType}" ItemsSource="{Binding Data.Body.FaceTypes}"/>
-
-                <TextBlock              Text="Tongue"/>
-                <common:MyComboBox SelectedValue="{Binding Game.TongueType}" ItemsSource="{Binding Data.Body.TongueTypes}"/>
-
-                <TextBlock              Text="Eyes"/>
-                <common:MyComboBox SelectedValue="{Binding Game.EyeType}" ItemsSource="{Binding Data.Body.EyeTypes}"/>
-
-                <TextBlock              Text="Ears"/>
-                <common:MyComboBox SelectedValue="{Binding Game.EarType}" ItemsSource="{Binding Data.Body.EarTypes}"/>
-
-                <TextBlock              Text="Antennae"/>
-                <common:MyComboBox SelectedValue="{Binding Game.AntennaeType}" ItemsSource="{Binding Data.Body.AntennaeTypes}"/>
-
-                <TextBlock              Text="Horns"/>
-                <common:MyComboBox SelectedValue="{Binding Game.HornType}" ItemsSource="{Binding Data.Body.HornTypes}"/>
-
-                <TextBlock              Text="{Binding Game.HornsValueLabel}" Visibility="{Binding Game.HornsValueVisibility}"/>
-                <common:MyNumericBox    Value="{Binding Game.HornsValue}" Min="0" IsInteger="False" Unit="{Binding Game.HornsValueUnit}" Visibility="{Binding Game.HornsValueVisibility}"/>
-
-                <TextBlock              Text="Eyebrow piercing"/>
-                <common:MyPiercingBox DataContext="{Binding Game.EyebrowPiercing}"/>
-                
-                <TextBlock              Text="Ears piercing"/>
-                <common:MyPiercingBox DataContext="{Binding Game.EarsPiercing}"/>
-
-                <TextBlock              Text="Lip piercing"/>
-                <common:MyPiercingBox DataContext="{Binding Game.LipPiercing}"/>
-
-                <TextBlock              Text="Tongue piercing"/>
-                <common:MyPiercingBox DataContext="{Binding Game.TonguePiercing}"/>
-            </common:AutoGrid>
-        </StackPanel>        
-        
-
-    </Grid>
+    </ScrollViewer>
 </UserControl>

@@ -58,7 +58,6 @@ namespace CoCEd.ViewModel
                     _statuses.Pop((int)pair.Key);
                 }
                 OnPropertyChanged();
-                base.OnPropertyChanged("DetailsVisibility");
             }
         }
 
@@ -75,11 +74,6 @@ namespace CoCEd.ViewModel
         public Visibility CommentVisibility
         {
             get { return _data != null ? Visibility.Visible : Visibility.Collapsed; }
-        }
-
-        public Visibility DetailsVisibility
-        {
-            get { return HasStatus ? Visibility.Visible : Visibility.Collapsed; }
         }
 
         public double Value1
@@ -153,6 +147,24 @@ namespace CoCEd.ViewModel
             if (index != -1) return true;
 
             return false;
+        }
+
+        bool _isExpanded;
+        public bool IsExpanded
+        {
+            get { return _isExpanded; }
+            set
+            {
+                if (_isExpanded == value) return;
+                _isExpanded = value;
+                base.OnPropertyChanged();
+                base.OnPropertyChanged("DetailsVisibility");
+            }
+        }
+
+        public Visibility DetailsVisibility
+        {
+            get { return IsExpanded ? Visibility.Visible : Visibility.Collapsed; }
         }
     }
 }

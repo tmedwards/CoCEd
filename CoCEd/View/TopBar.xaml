@@ -7,10 +7,38 @@
              d:DesignHeight="300" d:DesignWidth="300">
     
     <UserControl.Resources>
-       
-        <Style x:Key="HighlightedButton" TargetType="{x:Type ToggleButton}">
-            <Setter Property="Background" Value="#FF87FF23"/>
-            <Setter Property="Foreground" Value="Black"/>
+
+        <Style x:Key="{x:Type ToggleButton}" TargetType="{x:Type ToggleButton}" >
+            <Setter Property="Foreground" Value="#606060"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Margin="6,0,4,2" Background="#00FFFFFF">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="4"/>
+                                    <ColumnDefinition Width="16"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{TemplateBinding Content}"/>
+                                <Path Grid.Column="2" Fill="{TemplateBinding Foreground}" Data="M 0 0 L 5 5 L 10 0 Z" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,3,0,0" SnapsToDevicePixels="True"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="#A0A0A0"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#DA3610"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="HighlightedButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
+            <Setter Property="Foreground" Value="#DA3100"/>
         </Style>
         
         <DataTemplate x:Key="FileTemplate">
@@ -52,28 +80,21 @@
         </Style>
 
     </UserControl.Resources>
-    
-    <Grid HorizontalAlignment="Stretch" Height="28" Margin="5,5">
+
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Grid>
-            <ToggleButton x:Name="openButton" Width="150" BorderThickness="0" FontSize="14" Checked="openButton_StateChanged" Unchecked="openButton_StateChanged" HorizontalContentAlignment="Stretch">
-                <ToggleButton.Content>
-                    <Grid Margin="6,0,4,2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="4"/>
-                            <ColumnDefinition Width="16"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="Open"/>
-                        <Path Grid.Column="2" Fill="#606060" Data="M 0 0 L 5 5 L 10 0 Z" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,3,0,0" SnapsToDevicePixels="True"/>
-                    </Grid>
-                </ToggleButton.Content>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Text="CoCEd" FontSize="48" Margin="0,-16,0,0" FontWeight="Thin"/>
+
+            <TextBlock Text="0.9e" Margin="0,-4" VerticalAlignment="Top"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Grid.Column="2">
+            <ToggleButton x:Name="openButton" Margin="150,0,0,0" Content="Open" BorderThickness="0" FontSize="14" Checked="openButton_StateChanged" Unchecked="openButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent">
                 <ToggleButton.ContextMenu>
                     <ContextMenu x:Name="openMenu" Closed="openMenu_Closed" Placement="Bottom" MinWidth="150" ItemContainerStyle="{StaticResource OpenMenuStyle}">
                         <MenuItem Header="Offline"          DataContext="{Binding StandardOfflineFiles}"  />
@@ -85,21 +106,8 @@
                     </ContextMenu>
                 </ToggleButton.ContextMenu>
             </ToggleButton>
-        </Grid>
-        
-        <Grid Grid.Column="2">
-            <ToggleButton x:Name="saveButton" Width="150" BorderThickness="0" FontSize="14" Checked="saveButton_StateChanged" Unchecked="saveButton_StateChanged" IsEnabled="{Binding HasData}" HorizontalContentAlignment="Stretch">
-                <ToggleButton.Content>
-                    <Grid Margin="6,0,4,2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="4"/>
-                            <ColumnDefinition Width="16"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="Save as"/>
-                        <Path Grid.Column="2" Fill="#606060" Data="M 0 0 L 5 5 L 10 0 Z" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,3,0,0" SnapsToDevicePixels="True"/>
-                    </Grid>
-                </ToggleButton.Content>
+
+            <ToggleButton x:Name="saveButton" Margin="20,0,0,0" Content="Save as" BorderThickness="0" FontSize="14" Checked="saveButton_StateChanged" Unchecked="saveButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsEnabled="{Binding HasData}" >
                 <ToggleButton.ContextMenu>
                     <ContextMenu x:Name="saveMenu" Closed="saveMenu_Closed" Placement="Bottom" MinWidth="150" ItemContainerStyle="{StaticResource SaveMenuStyle}">
                         <MenuItem Header="Offline"          DataContext="{Binding StandardOfflineFiles}"  />
@@ -111,13 +119,8 @@
                     </ContextMenu>
                 </ToggleButton.ContextMenu>
             </ToggleButton>
-        </Grid>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="3" Visibility="{Binding FileLabelVisibility}">
-            <TextBlock Text="Current file:" Margin="26,0,0,0" VerticalAlignment="Center" FontSize="14" Foreground="Gray"/>
-            <TextBlock Text="{Binding FileLabel}" Margin="12,0" VerticalAlignment="Center" FontSize="14" Foreground="DarkGray"/>
         </StackPanel>
-        
-        <TextBlock Text="0.9e" Grid.Column="4" Foreground="#808080" Margin="2,2"/>
+
+        <TextBlock Text="{Binding FileLabel}" Margin="0,2,0,0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="14" Foreground="#A0A0A0" VerticalAlignment="Top" FontStretch="Expanded" FontWeight="Thin"/>
     </Grid>
 </UserControl>

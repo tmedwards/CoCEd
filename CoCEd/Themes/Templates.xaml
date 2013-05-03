@@ -6,7 +6,8 @@
 
     <SolidColorBrush x:Key="NumericBorderBrush" Color="#808080"/>
     <SolidColorBrush x:Key="NumericDisabledForeground" Color="#C0C0C0"/>
-    <SolidColorBrush x:Key="NumericMouseOverBackground" Color="#DA3100"/>
+    <SolidColorBrush x:Key="NumericDisabledForegroundDark" Color="#808080"/>
+    <SolidColorBrush x:Key="NumericMouseOverBackground" Color="#DA3610"/>
 
     <Style x:Key="MinMaxButton" TargetType="{x:Type Button}">
         <Setter Property="MinWidth" Value="30"/>
@@ -68,6 +69,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="unitText" Property="Foreground" Value="{StaticResource NumericDisabledForeground}" />
+                            <Setter TargetName="textBox" Property="Foreground" Value="{StaticResource NumericDisabledForegroundDark}" />
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource NumericDisabledForeground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
