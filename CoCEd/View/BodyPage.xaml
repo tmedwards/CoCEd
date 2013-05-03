@@ -41,13 +41,13 @@
                     <common:MyNumericBox    Value="{Binding Game.Height}" Min="0" IsInteger="False" Unit="inches"/>
 
                     <TextBlock              Text="Feminity"/>
-                    <common:MyNumericBox    Value="{Binding Game.Feminity}" Min="0" Max="100" IsInteger="True" MinLabel="0 (masc)" MaxLabel="100 (fem)"/>
+                    <common:MyNumericBox    Value="{Binding Game.Feminity}" Min="0" Max="100" IsInteger="True"  Tip="{Binding Game.FeminityTip}"/>
 
                     <TextBlock              Text="Muscles"/>
-                    <common:MyNumericBox    Value="{Binding Game.Muscles}" Min="0" Max="100" IsInteger="True" MinLabel="0 (soft)" MaxLabel="100 (highly built)"/>
+                    <common:MyNumericBox    Value="{Binding Game.Muscles}" Min="0" Max="100" IsInteger="True"  Tip="{Binding Game.MusclesTip}"/>
 
-                    <TextBlock              Text="Thickness"/>
-                    <common:MyNumericBox    Value="{Binding Game.BodyThickness}" Min="0" Max="100" IsInteger="True" MinLabel="0 (thin)" MaxLabel="100 (fat)"/>
+                    <TextBlock              Text="Frame"/>
+                    <common:MyNumericBox    Value="{Binding Game.Frame}" Min="0" Max="100" IsInteger="True" Tip="{Binding Game.FrameTip}"/>
 
                     <TextBlock              Text="Skin type"/>
                     <common:MyComboBox SelectedValue="{Binding Game.SkinType}" ItemsSource="{Binding Data.Body.SkinTypes}"/>
@@ -67,10 +67,10 @@
                 </Border>
                 <common:AutoGrid>
                     <TextBlock              Text="Butt"/>
-                    <common:MyNumericBox    Value="{Binding Game.ButtRating}" Min="0" Max="20" IsInteger="True" MinLabel="0 (thin)" MaxLabel="20 (very big)" Tip="4 is average"/>
+                    <common:MyNumericBox    Value="{Binding Game.ButtRating}" Min="0" Max="20" IsInteger="True" Tip="{Binding Game.ButtRatingTip}"/>
 
                     <TextBlock              Text="Hips &amp; thighs"/>
-                    <common:MyNumericBox    Value="{Binding Game.HipRating}" Min="0" Max="20" IsInteger="True" MinLabel="0 (thin)" MaxLabel="20 (very big)" Tip="4-6 is average"/>
+                    <common:MyNumericBox    Value="{Binding Game.HipRating}" Min="0" Max="20" IsInteger="True" Tip="{Binding Game.HipRatingTip}"/>
 
                     <TextBlock              Text="Lower body"/>
                     <common:MyComboBox SelectedValue="{Binding Game.LowerBodyType}" ItemsSource="{Binding Data.Body.LowerBodyTypes}"/>

@@ -206,6 +206,15 @@
       <VaginalLoosenessLevel ID="4" Name="Gaping-wide"/>
     </VaginalLoosenessLevels>
     <!--============================================================================================================================================-->
+    <AnalWetnessLevels>
+      <AnalWetnessLevel ID="0" Name="Dry"/>
+      <AnalWetnessLevel ID="1" Name="Normal"/>
+      <AnalWetnessLevel ID="2" Name="Moist"/>
+      <AnalWetnessLevel ID="3" Name="Slimy"/>
+      <AnalWetnessLevel ID="4" Name="Drooling"/>
+      <AnalWetnessLevel ID="4" Name="Slime-drooling"/>
+    </AnalWetnessLevels>
+    <!--============================================================================================================================================-->
     <AnalLoosenessLevels>
       <AnalLoosenessLevel ID="0" Name="Virgin"/>
       <AnalLoosenessLevel ID="1" Name="Tight"/>

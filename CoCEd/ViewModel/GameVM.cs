@@ -288,31 +288,115 @@ namespace CoCEd.ViewModel
         public int HipRating
         {
             get { return GetInt("hipRating"); }
-            set { SetValue("hipRating", value); }
+            set 
+            { 
+                SetValue("hipRating", value);
+                OnPropertyChanged("HipRatingTip");
+            }
+        }
+
+        public string HipRatingTip
+        {
+            get 
+            {
+                if (HipRating >= 20) return IsMale ? "extended" : "breeder";
+                if (HipRating >= 15) return IsMale ? "large" : "mother";
+                if (HipRating >= 10) return IsMale ? "feminine" : "sexy";
+                if (HipRating >= 6) return "graceful";
+                return "unremarkable";
+            }
         }
 
         public int ButtRating
         {
             get { return GetInt("buttRating"); }
-            set { SetValue("buttRating", value); }
+            set 
+            { 
+                SetValue("buttRating", value);
+                OnPropertyChanged("ButtRatingTip");
+            }
         }
 
-        public int BodyThickness
+        public string ButtRatingTip
+        {
+            get
+            {
+                if (ButtRating >= 20) return "obscene";
+                if (ButtRating >= 15) return "bust out";
+                if (ButtRating >= 10) return "enticing";
+                if (ButtRating >= 6) return "nice";
+                if (ButtRating >= 4) return "decent";
+                return "unremarkable";
+            }
+        }
+
+        public int Frame
         {
             get { return GetInt("thickness"); }
-            set { SetValue("thickness", value); }
+            set 
+            { 
+                SetValue("thickness", value);
+                OnPropertyChanged("FrameTip");
+            }
+        }
+
+        public string FrameTip
+        {
+            get
+            {
+                if (Frame >= 90) return "wide";
+                if (Frame >= 60) return "thick";
+                if (Frame >= 40) return "average";
+                if (Frame >= 25) return "narrow";
+                return "thin";
+            }
         }
 
         public int Muscles
         {
             get { return GetInt("tone"); }
-            set { SetValue("tone", value); }
+            set 
+            { 
+                SetValue("tone", value);
+                OnPropertyChanged("MusclesTip");
+            }
+        }
+
+        public string MusclesTip
+        {
+            get
+            {
+                if (Muscles > 90) return "rippling muscles";
+                if (Muscles > 75) return "showing off";
+                if (Muscles > 50) return "visible";
+                if (Muscles > 25) return "average";
+                return "soft";
+            }
         }
 
         public int Feminity
         {
             get { return GetInt("femininity"); }
-            set { SetValue("femininity", value); }
+            set 
+            { 
+                SetValue("femininity", value);
+                OnPropertyChanged("FeminityTip");
+            }
+        }
+
+        public string FeminityTip
+        {
+            get
+            {
+                if (Feminity > 90) return "hyper-feminine";
+                if (Feminity >= 80) return "gorgeous";
+                if (Feminity >= 70) return "feminine";
+                if (Feminity >= 55) return "feminine touch";
+                if (Feminity >= 45) return "androgeneous";
+                if (Feminity >= 35) return "barely masculine";
+                if (Feminity >= 20) return "handsome";
+                return "hyper-masculine";
+            }
         }
 
         public int SkinType

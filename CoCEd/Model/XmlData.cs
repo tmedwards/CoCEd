@@ -106,6 +106,8 @@ namespace CoCEd.Model
         public XmlEnum[] VaginalLoosenessLevels { get; set; }
         [XmlArray, XmlArrayItem("AnalLoosenessLevel")]
         public XmlEnum[] AnalLoosenessLevels { get; set; }
+        [XmlArray, XmlArrayItem("AnalWetnessLevel")]
+        public XmlEnum[] AnalWetnessLevels { get; set; }
 
         [XmlArray, XmlArrayItem("PregnancyType")]
         public XmlEnum[] PregnancyTypes { get; set; }
