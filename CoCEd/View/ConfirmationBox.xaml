@@ -16,7 +16,14 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="This savegame has been changed. Do you still want to close this application?" Margin="30,0" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap"/>
+        <Grid Margin="20,10,10,10" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="image" Width="32" Height="32" VerticalAlignment="Top"/>
+            <TextBlock Text="This savegame has been changed. Do you still want to close this application?" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Margin="10,0,0,0"/>
+        </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <!--Button Click="save_Click">Save</Button-->
             <Button Click="close_Click">Close</Button>
