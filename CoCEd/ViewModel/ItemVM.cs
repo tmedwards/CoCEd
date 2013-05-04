@@ -78,7 +78,7 @@ namespace CoCEd.ViewModel
 
         public string Type
         {
-            get { return GetString("shortName"); }
+            get { return GetString("shortName").Trim(); }
             set
             {
                 if (!SetValue("shortName", value)) return;
