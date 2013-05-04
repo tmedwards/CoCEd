@@ -1,5 +1,4 @@
-﻿* 'Misc' header
-* 'Heat' and 'rut' statuses
+﻿* 'Heat' and 'rut' statuses
 * Buttstretched, CuntStretched
 * KeltOff, Kelt submissiveness
 * Spells
@@ -23,11 +22,3 @@ gooPregVagBirth
 basiliskBirth
 satyrBirth
 popOutBenoitEggs
-
-
-
-	if(player.hairType == 1) descript += "feather-";
-	else if(player.hairType == 2) descript += "transparent ";
-	else if(player.hairType == 3) descript += "goo-";
-	else if(player.hairType == 4) descript += "tentacle-";
-	descript += "hair";

@@ -84,6 +84,7 @@
     <Compile Include="ViewModel\GameVM.cs" />
     <Compile Include="ViewModel\FilesVM.cs" />
     <Compile Include="ViewModel\ItemVM.cs" />
+    <Compile Include="ViewModel\KeyItemVM.cs" />
     <Compile Include="ViewModel\PerkVM.cs" />
     <Compile Include="ViewModel\PiercingVM.cs" />
     <Compile Include="ViewModel\StatusVM.cs" />
@@ -101,8 +102,11 @@
     <Compile Include="View\GenitalsPage.xaml.cs">
       <DependentUpon>GenitalsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ItemPage.xaml.cs">
-      <DependentUpon>ItemPage.xaml</DependentUpon>
+    <Compile Include="View\ItemsPage.xaml.cs">
+      <DependentUpon>ItemsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KeyItemsPage.xaml.cs">
+      <DependentUpon>KeyItemsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MiscPage.xaml.cs">
       <DependentUpon>MiscPage.xaml</DependentUpon>
@@ -152,7 +156,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ItemPage.xaml">
+    <Page Include="View\ItemsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\KeyItemsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

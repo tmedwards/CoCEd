@@ -24,7 +24,10 @@ namespace CoCEd.Model
         public XmlItemGroup[] ItemGroups { get; set; }
 
         [XmlArray, XmlArrayItem("Status")]
-        public XmlStatus[] Statuses { get; set; }
+        public XmlName[] Statuses { get; set; }
+
+        [XmlArray, XmlArrayItem("KeyItem")]
+        public XmlName[] KeyItems { get; set; }
 
         [XmlArray, XmlArrayItem("Flag")]
         public XmlEnum[] Flags { get; set; }
@@ -185,7 +188,7 @@ namespace CoCEd.Model
         }
     }
 
-    public sealed class XmlStatus
+    public sealed class XmlName
     {
         [XmlAttribute]
         public string Name { get; set; }

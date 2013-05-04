@@ -468,9 +468,57 @@
 		  <Item ID="TubeTop" Name="Tube Top"/>
 	  </ItemGroup>
   </Items>
+
+
+
+  <!--============================================================================================================================================-->
+  <KeyItems>
+    <KeyItem Name="All-Natural Onahole" Description="Masturbation aid."/>
+    <KeyItem Name="All-Natural Self-Stimulation Belt" Description="Masturbation aid for hermaphrodites."/>
+    <KeyItem Name="Bow" Description="Grants a special attack."/>
+    <KeyItem Name="Breast Milker" Description="To be installed at the farm."/>
+    <KeyItem Name="Breast Milker - Installed At Whitney's Farm" Description="Allows the character to milk their breasts at the farm."/>
+    <KeyItem Name="Camp - Chest" Description="Item storage to be put at the camp."/>
+    <KeyItem Name="Carrot" Description="Masturbation aid."/>
+    <KeyItem Name="Centaur Pole" Description="A masturbatory aid suited for female centaur's needs."/>
+    <KeyItem Name="Cock Milker" Description="To be installed at the farm."/>
+    <KeyItem Name="Cock Milker - Installed At Whitney's Farm" Description="Allows the character to milk their or Jojo's cock(s) at the farm."/>
+    <KeyItem Name="Dangerous Plants" Description="As explained by the title, this tome is filled with information on all manner of dangerous plants from this realm."/>
+    <KeyItem Name="Deluxe Dildo" Description="Masturbation aid."/>
+    <KeyItem Name="Deluxe Onahole" Description="Masturbation aid."/>
+    <KeyItem Name="Demonic Strap-On" Description="Masturbation aid."/>
+    <KeyItem Name="Dildo" Description="Masturbation aid."/>
+    <KeyItem Name="Dragon Egg" Description=""/>
+    <KeyItem Name="Dragon Eggshell" Description=""/>
+    <KeyItem Name="Dual Belt" Description="Masturbation aid for hermaphrodites."/>
+    <KeyItem Name="Equipment Rack - Armor" Description="Item storage to be put at the camp."/>
+    <KeyItem Name="Equipment Rack - Weapons" Description="Item storage to be put at the camp."/>
+    <KeyItem Name="Fake Mare" Description="A masturbatory aid suited for male centaur's needs."/>
+    <KeyItem Name="Harpy Key A" Description=""/>
+    <KeyItem Name="Harpy Key B" Description=""/>
+    <KeyItem Name="Hentai Comic" Description="Can be given to a demon in the factory. "/>
+    <KeyItem Name="Iron Key" Description="Allows further progression into the Demon Factory."/>
+    <KeyItem Name="Jojo's Talisman" Description="Given to the player by Jojo if a follower and Hollicynthea is allowed to grow to maturity. Jojo then leaves the camp."/>
+    <KeyItem Name="Marae's Lethicite" Description=""/>
+    <KeyItem Name="Nieve's Tear" Description="Given as a memento after your snow lover melts after the winter event."/>
+    <KeyItem Name="North Star Key" Description=""/>
+    <KeyItem Name="Onyx Token - Ceraph's" Description="Obtains from Ceraph when she is a follower, if the PC chose to carry the token instead of a belly-button piercing."/>
+    <KeyItem Name="Opal Ring" Description=""/>
+    <KeyItem Name="Plain Onahole" Description="Masturbation aid."/>
+    <KeyItem Name="Potent Mixture" Description="Used to corrupt Amily in the town ruins."/>
+    <KeyItem Name="Ruby Heart" Description=""/>
+    <KeyItem Name="Self-Stimulation Belt" Description="Masturbation aid."/>
+    <KeyItem Name="Sheila's Lethicite" Description=""/>
+    <KeyItem Name="Silver Kitty-Bell" Description="Obtained from the vagrant cats, is used to call Katherine."/>
+    <KeyItem Name="Spare Key to Urta's House" Description=""/>
+    <KeyItem Name="Supervisor's Key" Description=""/>
+    <KeyItem Name="Traveler's Guide" Description=""/>
+    <KeyItem Name="Yoga Guide" Description=""/>
+    <KeyItem Name="Zetaz's Map" Description="Will allow the player to find the final dungeon when it is implemented."/>
+  </KeyItems>
   
-  
-  
+
+
   <!--============================================================================================================================================-->
   <Perks>
     <StarterPerks>

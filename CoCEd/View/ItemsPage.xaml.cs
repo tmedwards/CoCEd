@@ -20,9 +20,9 @@ namespace CoCEd.View
     /// <summary>
     /// Interaction logic for ItemPage.xaml
     /// </summary>
-    public partial class ItemPage : UserControl
+    public partial class ItemsPage : UserControl
     {
-        public ItemPage()
+        public ItemsPage()
         {
             InitializeComponent();
         }

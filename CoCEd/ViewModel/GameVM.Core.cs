@@ -20,6 +20,11 @@ namespace CoCEd.ViewModel
             foreach (var prop in _allStatuses.First(x => x.Name == name).GameProperties) OnPropertyChanged(prop);
         }
 
+        public void OnKeyItemChanged(string name)
+        {
+            // Not used right now
+        }
+
         void RegisterFlagDependency(int index, [CallerMemberName] string propertyName = null)
         {
             _allFlags[index].GameProperties.Add(propertyName);
