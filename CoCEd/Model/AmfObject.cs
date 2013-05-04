@@ -330,6 +330,11 @@ namespace CoCEd.Model
             _associativePairs.Add(new AmfPair(key, value));
         }
 
+        public void SortDensePart(Comparison<Object> comparison)
+        {
+            _denseValues.Sort(comparison);
+        }
+
         /*public dynamic D()
         {
             return this;
