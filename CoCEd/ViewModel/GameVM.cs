@@ -68,7 +68,7 @@ namespace CoCEd.ViewModel
             foreach(var flagData in XmlData.Instance.Flags) flagsData[flagData.ID - 1] = flagData;
 
             _allFlags = new FlagVM[flagsObj.Count];
-            for (int i = 0; i < _allFlags.Length; ++i) _allFlags[i] = new FlagVM(flagsObj, flagsData[i], i);
+            for (int i = 0; i < _allFlags.Length; ++i) _allFlags[i] = new FlagVM(flagsObj, flagsData[i], i + 1);
             Flags = new UpdatableCollection<FlagVM>(_allFlags.Where(x => x.Match(_searchText)));
 
 
