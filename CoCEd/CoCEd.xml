@@ -108,7 +108,7 @@
     </EarTypes>
     <!--============================================================================================================================================-->
     <HornTypes>
-      <HornType ID="0" Name="Human"/>
+      <HornType ID="0" Name="None"/>
       <HornType ID="1" Name="Demon"/>
       <HornType ID="2" Name="Cow/minotaur"/>
       <HornType ID="3" Name="Draconic x2"/>
