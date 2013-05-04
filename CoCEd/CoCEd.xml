@@ -310,10 +310,12 @@
 		  <Item ID="BC Beer" Name="Black Cat Beer"/>
 		  <Item ID="BroBrew" Name="Bro Brew"/>
 		  <Item ID="Coal" Name="Coal"/>
-		  <Item ID="F.Draft" Name="Fuck Draft"/>
+      <Item ID="Debimbo" Name="Debimbo"/>
+      <Item ID="F.Draft" Name="Fuck Draft"/>
 		  <Item ID="GodMead" Name="God's Mead"/>
 		  <Item ID="GroPlus" Name="GroPlus"/>
 		  <Item ID="ExtSerm" Name="Hair Extension Serum"/>
+      <Item ID="IzyMilk" Name="Isabella's milk"/>
 		  <Item ID="KitGift" Name="Kitsune's Gift"/>
 		  <Item ID="Lactaid" Name="Lactaid"/>
 		  <Item ID="L.Draft" Name="Lust Draft"/>
@@ -323,7 +325,8 @@
 		  <Item ID="NumbRox" Name="Numb Rocks"/>
 		  <Item ID="OviElix" Name="Oviposition Elixer"/>
 		  <Item ID="P.Pearl" Name="Pure Pearl"/>
-		  <Item ID="PSDelit" Name="Purified Succubi's Delite"/>
+      <Item ID="PurPeac" Name="Pure Peach"/>
+      <Item ID="PSDelit" Name="Purified Succubi's Delite"/>
 		  <Item ID="Reducto" Name="Reducto"/>
 		  <Item ID="SensDrf" Name="Sensitivity Draft"/>
 		  <Item ID="SheepMk" Name="Sheep Milk"/>
