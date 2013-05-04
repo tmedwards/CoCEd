@@ -92,6 +92,10 @@ namespace CoCEd.ViewModel
         }
 
 
+        bool IsMale
+        {
+            get { return GetInt("gender", 0) <= 1; }
+        }
 
         void OnGenitalCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -104,9 +108,14 @@ namespace CoCEd.ViewModel
             OnPropertyChanged("ClitVisibility");
         }
 
-        public bool IsMale
+        public void BeforeSerialization()
         {
-            get { return GetInt("gender", 0) <= 1; }
+            _obj.GetObj("perks").SortDensePart((x, y) =>
+                {
+                    var obj1 = x as AmfObject;
+                    var obj2 = y as AmfObject;
+                    return String.Compare(obj1.GetString("perkName"), obj2.GetString("perkName"));
+                });
         }
     }
 }

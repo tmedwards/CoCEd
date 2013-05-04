@@ -86,6 +86,7 @@ namespace CoCEd.ViewModel
         {
             try
             {
+                Game.BeforeSerialization();
                 FileManager.StoreExternal(path);
                 _currentFile.Save(path);
             }

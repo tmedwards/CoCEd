@@ -1,11 +1,9 @@
-﻿* Sort perks on save
-* 'Heat' and 'rut' statuses
+﻿* 'Heat' and 'rut' statuses
 * Buttstretched, CuntStretched
 * KeltOff, Kelt submissiveness
 * Spells
 * Golden lipstick
 * Faerie fucked
-* Reorganize listboxes
 * 'dysfunction'
 * Addiction
 * SourceForge: http://sourceforge.net/api/file/index/project-id/156708/rss
