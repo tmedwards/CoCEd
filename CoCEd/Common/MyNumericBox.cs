@@ -126,6 +126,7 @@ namespace CoCEd.Common
             if (_textBox != null) _textBox.GotKeyboardFocus -= textBox_OnFocused;
             if (_textBox != null) _textBox.LostKeyboardFocus -= textBox_LostFocus;
             if (_textBox != null) _textBox.PreviewKeyDown -= textBox_PreviewKeyDown;
+            if (_textBox != null) _textBox.PreviewMouseDown -= _textBox_PreviewMouseDown;
 
             _border = GetTemplateChild("border") as Border;
             _textBox = GetTemplateChild("textBox") as TextBox;
@@ -140,7 +141,7 @@ namespace CoCEd.Common
             if (_textBox != null) _textBox.GotKeyboardFocus += textBox_OnFocused;
             if (_textBox != null) _textBox.LostKeyboardFocus += textBox_LostFocus;
             if (_textBox != null) _textBox.PreviewKeyDown += textBox_PreviewKeyDown;
-            _textBox.PreviewMouseDown += _textBox_PreviewMouseDown;
+            if (_textBox != null) _textBox.PreviewMouseDown += _textBox_PreviewMouseDown;
 
             OnTextChanged();
             OnValueChanged();
