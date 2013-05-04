@@ -140,9 +140,19 @@ namespace CoCEd.Common
             if (_textBox != null) _textBox.GotKeyboardFocus += textBox_OnFocused;
             if (_textBox != null) _textBox.LostKeyboardFocus += textBox_LostFocus;
             if (_textBox != null) _textBox.PreviewKeyDown += textBox_PreviewKeyDown;
+            _textBox.PreviewMouseDown += _textBox_PreviewMouseDown;
 
             OnTextChanged();
             OnValueChanged();
+        }
+
+        void _textBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_textBox.SelectedText == _textBox.Text && _textBox.IsFocused)
+            {
+                _textBox.Select(0,0);
+                e.Handled = true;
+            }
         }
 
         void textBox_PreviewKeyDown(object sender, KeyEventArgs e)
