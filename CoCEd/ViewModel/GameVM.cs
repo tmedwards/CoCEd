@@ -78,6 +78,11 @@ namespace CoCEd.ViewModel
             _allStatuses = statuses.OrderBy(x => x).Select(x => new StatusVM(obj, x)).ToArray();
             Statuses = new UpdatableCollection<StatusVM>(_allStatuses.Where(x => x.Match(_searchText)));
 
+            // KeyItems
+            obj = file.GetObj("keyItems");
+            var keyItems = obj.Select(x => x.ValueAsObject.GetString("keyName")).Union(XmlData.Instance.KeyItems.Select(x => x.Name)).ToArray();
+            KeyItems = keyItems.OrderBy(x => x).Select(x => new KeyItemVM(obj, x)).ToArray();
+
             // Perks
             PerkGroups = new PerkGroupVM[]
             {
@@ -98,6 +103,7 @@ namespace CoCEd.ViewModel
         public UpdatableCollection<FlagVM> Flags { get; private set; }
         public ItemSlotGroupVM[] ItemGroups { get; private set; }
         public PerkGroupVM[] PerkGroups { get; private set; }
+        public KeyItemVM[] KeyItems { get; private set; }
 
         public AssVM Ass { get; private set; }
         public PiercingVM NosePiercing { get; private set; }

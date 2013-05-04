@@ -16,11 +16,11 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="4"/>
+                                    <ColumnDefinition Width="2"/>
                                     <ColumnDefinition Width="16"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{TemplateBinding Content}"/>
-                                <Path Grid.Column="2" Fill="{TemplateBinding Foreground}" Data="M 0 0 L 5 5 L 10 0 Z" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,3,0,0" SnapsToDevicePixels="True"/>
+                                <Path Grid.Column="2" Fill="{TemplateBinding Foreground}" Data="M 0 0 L 5 5 L 10 0 Z" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,4,0,0" SnapsToDevicePixels="True"/>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -93,7 +93,7 @@
         </StackPanel-->
         
         <StackPanel Orientation="Horizontal" Grid.Column="2">
-            <ToggleButton x:Name="openButton" Margin="0,0,0,0" Content="Open" BorderThickness="0" FontSize="14" Checked="openButton_StateChanged" Unchecked="openButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent">
+            <ToggleButton x:Name="openButton" Margin="0,0,0,0" Content="Open" BorderThickness="0" FontSize="12" Checked="openButton_StateChanged" Unchecked="openButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent">
                 <ToggleButton.ContextMenu>
                     <ContextMenu x:Name="openMenu" Closed="openMenu_Closed" Placement="Bottom" MinWidth="150" ItemContainerStyle="{StaticResource OpenMenuStyle}">
                         <MenuItem Header="Offline"          DataContext="{Binding StandardOfflineFiles}"  />
@@ -106,7 +106,7 @@
                 </ToggleButton.ContextMenu>
             </ToggleButton>
 
-            <ToggleButton x:Name="saveButton" Margin="5,0,0,0" Content="Save as" BorderThickness="0" FontSize="14" Checked="saveButton_StateChanged" Unchecked="saveButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsEnabled="{Binding HasData}" >
+            <ToggleButton x:Name="saveButton" Margin="5,0,0,0" Content="Save as" BorderThickness="0" FontSize="12" Checked="saveButton_StateChanged" Unchecked="saveButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsEnabled="{Binding HasData}" >
                 <ToggleButton.ContextMenu>
                     <ContextMenu x:Name="saveMenu" Closed="saveMenu_Closed" Placement="Bottom" MinWidth="150" ItemContainerStyle="{StaticResource SaveMenuStyle}">
                         <MenuItem Header="Offline"          DataContext="{Binding StandardOfflineFiles}"  />

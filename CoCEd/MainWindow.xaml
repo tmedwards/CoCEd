@@ -12,11 +12,12 @@
         <Style x:Key="{x:Type TabItem}" TargetType="{x:Type TabItem}">
             <Setter Property="Margin" Value="0"/>
             <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
-                        <Border x:Name="root" BorderThickness="0" BorderBrush="#808080" SnapsToDevicePixels="True" Margin="{TemplateBinding Padding}" Background="#00FFFFFF">
-                            <TextBlock x:Name="text" Text="{TemplateBinding Header}" Foreground="#E0E0E0" FontSize="16" HorizontalAlignment="Center" Margin="30,8,30,12"/>
+                        <Border x:Name="root" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="#303030" SnapsToDevicePixels="True" Margin="{TemplateBinding Padding}" Background="#00FFFFFF">
+                            <TextBlock x:Name="text" Text="{TemplateBinding Header}" Foreground="#E0E0E0" FontSize="12" HorizontalAlignment="Center" Margin="20,8,20,12"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -53,21 +54,24 @@
             <TabItem Header="Genitals">
                 <view:GenitalsPage Background="White"/>
             </TabItem>
-            <TabItem Header="Perks">
-                <view:PerkPage Background="White"/>
-            </TabItem>
-            <TabItem Header="Items">
-                <view:ItemPage Background="White"/>
-            </TabItem>
             <TabItem Header="Others">
                 <view:MiscPage Background="White"/>
             </TabItem>
-            <TabItem Header="Raw data">
+            <TabItem Header="Perks">
+                <view:PerkPage Background="White"/>
+            </TabItem>
+            <TabItem Header="Key items">
+                <view:KeyItemsPage Background="White"/>
+            </TabItem>
+            <TabItem Header="Items">
+                <view:ItemsPage Background="White"/>
+            </TabItem>
+            <TabItem Header="Raw data" BorderThickness="0">
                 <view:RawPage Background="White"/>
             </TabItem>
         </TabControl>
 
-        <view:TopBar HorizontalAlignment="Stretch" Margin="0,9,5,0"/>
+        <view:TopBar HorizontalAlignment="Stretch" Margin="0,7,5,0"/>
 
         <TextBlock Text="0.9f" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,43,5,0" Foreground="#A0A0A0" FontSize="12"/>
     </Grid>

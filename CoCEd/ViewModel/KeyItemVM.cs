@@ -9,16 +9,16 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
-    public sealed class StatusVM : BindableBase
+    public sealed class KeyItemVM : BindableBase
     {
         readonly XmlName _data;
-        readonly AmfObject _statuses;
+        readonly AmfObject _items;
         readonly string _name;
 
-        public StatusVM(AmfObject allStatuses, string name)
+        public KeyItemVM(AmfObject keyItems, string name)
         {
-            _data = XmlData.Instance.Statuses.FirstOrDefault(x => x.Name == name);
-            _statuses = allStatuses;
+            _data = XmlData.Instance.KeyItems.FirstOrDefault(x => x.Name == name);
+            _items = keyItems;
             _name = name;
 
             GameProperties = new HashSet<string>();
@@ -32,30 +32,30 @@ namespace CoCEd.ViewModel
 
         public AmfObject Object
         {
-            get { return _statuses.Select(x => x.ValueAsObject).FirstOrDefault(x => x.GetString("statusAffectName") == _name); }
+            get { return _items.Select(x => x.ValueAsObject).FirstOrDefault(x => x.GetString("keyName") == _name); }
         }
 
-        public bool HasStatus
+        public bool HasItem
         {
             get { return Object != null; }
             set
             {
-                var pair = _statuses.FirstOrDefault(x => x.ValueAsObject.GetString("statusAffectName") == _name);
+                var pair = _items.FirstOrDefault(x => x.ValueAsObject.GetString("keyName") == _name);
                 if ((pair != null) == value) return;
 
                 if (value)
                 {
                     var obj = new AmfObject(AmfTypes.Array);
-                    obj["statusAffectName"] = _name;
+                    obj["keyName"] = _name;
                     obj["value1"] = 0;
                     obj["value2"] = 0;
                     obj["value3"] = 0;
                     obj["value4"] = 0;
-                    _statuses.Push(obj);
+                    _items.Push(obj);
                 }
                 else
                 {
-                    _statuses.Pop((int)pair.Key);
+                    _items.Pop((int)pair.Key);
                 }
                 OnPropertyChanged();
             }
@@ -133,9 +133,10 @@ namespace CoCEd.ViewModel
         {
             base.OnPropertyChanged(propertyName);
             VM.Instance.NotifySaveRequiredChanged(true);
-            VM.Instance.Game.OnStatusChanged(Name);
+            VM.Instance.Game.OnKeyItemChanged(Name);
         }
 
+        /*
         public bool Match(string str)
         {
             if (str == null || str.Length < 3) return true;
@@ -147,7 +148,7 @@ namespace CoCEd.ViewModel
             if (index != -1) return true;
 
             return false;
-        }
+        }*/
 
         bool _isExpanded;
         public bool IsExpanded

@@ -37,7 +37,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                        <StackPanel Orientation="Vertical" Margin="0,30,0,0">
+                        <StackPanel Orientation="Vertical" Margin="0,0,0,30">
                             <Border Background="Transparent" IsHitTestVisible="False">
                                 <TextBlock Text="{Binding Name}" Margin="4" FontSize="14" FontWeight="Bold"/>
                             </Border>
@@ -50,7 +50,7 @@
     </UserControl.Resources>
     
     <Grid>
-        <TreeView ItemsSource="{Binding Game.PerkGroups}" ItemContainerStyle="{StaticResource GroupStyle}" BorderThickness="0" Margin="30,0,0,0"
+        <TreeView ItemsSource="{Binding Game.PerkGroups}" ItemContainerStyle="{StaticResource GroupStyle}" BorderThickness="0" Margin="30,30,0,0"
                   HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
     </Grid>
 </UserControl>
