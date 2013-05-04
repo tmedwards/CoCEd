@@ -24,7 +24,7 @@ namespace CoCEd.Model
         public XmlItemGroup[] ItemGroups { get; set; }
 
         [XmlArray, XmlArrayItem("Status")]
-        public XmlEnumWithStringID[] Statuses { get; set; }
+        public XmlStatus[] Statuses { get; set; }
 
         [XmlArray, XmlArrayItem("Flag")]
         public XmlEnum[] Flags { get; set; }
@@ -65,12 +65,13 @@ namespace CoCEd.Model
     {
         [XmlArray, XmlArrayItem("SkinType")]
         public XmlEnum[] SkinTypes { get; set; }
-        [XmlArray, XmlArrayItem("SkinTone")]
-        public XmlEnumWithStringID[] SkinTones { get; set; }
         [XmlArray, XmlArrayItem("HairType")]
         public XmlEnum[] HairTypes { get; set; }
         [XmlArray, XmlArrayItem("HairColor")]
-        public XmlEnumWithStringID[] HairColors { get; set; }
+        public String[] HairColors { get; set; }
+        [XmlArray, XmlArrayItem("SkinTone")]
+        public String[] SkinTones { get; set; }
+
 
         [XmlArray, XmlArrayItem("FaceType")]
         public XmlEnum[] FaceTypes { get; set; }
@@ -182,6 +183,14 @@ namespace CoCEd.Model
         {
             return ID + " | " + Name;
         }
+    }
+
+    public sealed class XmlStatus
+    {
+        [XmlAttribute]
+        public string Name { get; set; }
+        [XmlAttribute]
+        public string Description { get; set; }
     }
 
     public sealed class XmlPerk

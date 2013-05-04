@@ -10,10 +10,22 @@
     </SkinTypes>
     <!--============================================================================================================================================-->
     <SkinTones>
-      <SkinTone ID="light" Name="Light"/>
-      <SkinTone ID="olive" Name="Olive"/>
-      <SkinTone ID="dark" Name="Dark"/>
-      <SkinTone ID="ebony" Name="Ebony"/>
+      <SkinTone>albino</SkinTone>
+      <SkinTone>ashen</SkinTone>
+      <SkinTone>ashen grayish-blue</SkinTone>
+      <SkinTone>brown</SkinTone>
+      <SkinTone>dark</SkinTone>
+      <SkinTone>ebony</SkinTone>
+      <SkinTone>ghostly pale</SkinTone>
+      <SkinTone>grayish-blue</SkinTone>
+      <SkinTone>green</SkinTone>
+      <SkinTone>light</SkinTone>
+      <SkinTone>olive</SkinTone>
+      <SkinTone>pale</SkinTone>
+      <SkinTone>pale yellow</SkinTone>
+      <SkinTone>pink</SkinTone>
+      <SkinTone>tan</SkinTone>
+      <SkinTone>yellow</SkinTone>
     </SkinTones>
     <!--============================================================================================================================================-->
     <HairTypes>
@@ -25,20 +37,31 @@
     </HairTypes>
     <!--============================================================================================================================================-->
     <HairColors>
-      <HairColor ID="black" Name="Black"/>
-      <HairColor ID="blonde" Name="Blonde"/>
-      <HairColor ID="brown" Name="Brown"/>
-      <HairColor ID="red" Name="Red"/>
-      <HairColor ID="white" Name="White"/>
-      <HairColor ID="auburn" Name="Auburn"/>
-      <HairColor ID="gray" Name="Gray"/>
-      <HairColor ID="blue" Name="Blue"/>
-      <HairColor ID="orange" Name="Orange"/>
-      <HairColor ID="pink" Name="Pink"/>
-      <HairColor ID="purple" Name="Purple"/>
-      <HairColor ID="green" Name="Green"/>
-      <HairColor ID="midnight black" Name="Midnight black"/>
-      <HairColor ID="silver" Name="Silver"/>
+      <HairColor>auburn</HairColor>
+      <HairColor>black</HairColor>
+      <HairColor>black and orange</HairColor>
+      <HairColor>black and yellow</HairColor>
+      <HairColor>blond</HairColor>
+      <HairColor>blonde</HairColor>
+      <HairColor>blue</HairColor>
+      <HairColor>brown</HairColor>
+      <HairColor>deep red</HairColor>
+      <HairColor>golden blonde</HairColor>
+      <HairColor>gray</HairColor>
+      <HairColor>green</HairColor>
+      <HairColor>light blonde</HairColor>
+      <HairColor>midnight black</HairColor>
+      <HairColor>orange</HairColor>
+      <HairColor>pink</HairColor>
+      <HairColor>platinum blonde</HairColor>
+      <HairColor>purple</HairColor>
+      <HairColor>purplish-black</HairColor>
+      <HairColor>red</HairColor>
+      <HairColor>sandy-blonde</HairColor>
+      <HairColor>silver</HairColor>
+      <HairColor>silver-white</HairColor>
+      <HairColor>white</HairColor>
+      <HairColor>white and black</HairColor>
     </HairColors>
     <!--============================================================================================================================================-->
     <FaceTypes>
@@ -586,173 +609,173 @@
   
   <!--============================================================================================================================================-->
   <Statuses>
-    <Status ID="Akbal Speed" Description="Temporary status; used only during combat with Akbal."/>
-    <Status ID="all-natural onahole used" Description="You've used the All-Natural Onahole during self-stimulation."/>
-    <Status ID="Amily Venom" Description="Temporary status; used only during combat with Amily."/>
-    <Status ID="Anemone Arousal" Description="Temporary status; used only during combat with Anemone."/>
-    <Status ID="Anemone Venom" Description="Temporary status; used only during combat with Anemone."/>
-    <Status ID="Basilisk Compulsion" Description="Temporary status; used only during combat with Basilisk."/>
-    <Status ID="BasiliskSlow" Description="Temporary status; used only during combat with Basilisk."/>
-    <Status ID="Birthed" Description="The number of times you have given birth. At 9, the next pregnancy results in acquiring the Brood Mother perk"/>
-    <Status ID="Birthed Imps" Description="The number of times you have given birth to imps. This affects the chance of an imp gang bang. Sometimes the affect does not occur until the next time you give birth to an imp in-game."/>
-    <Status ID="Black Nipples" Description="You have black nipples. Obtained by consuming Trap Oil."/>
-    <Status ID="Blind" Description="This status affect means you are blind. It will disappear the next time you leave combat. Changing unwanted statuses to this is an effective way to cure yourself."/>
-    <Status ID="BlowjobOn" Description="Kelt-related status. Gained from eagerly giving Kelt a blowjob, or submitting to a later blowjob requirement with high (90+) submissiveness. The character will automatically give Kelt a blowjob when he asks, without a player choice."/>
-    <Status ID="Boat Discovery" Description="You have discovered the boat on the shore of the Lake, making it directly available in the &quot;Places&quot; menu."/>
-    <Status ID="Bonus aCapacity" Description="Bonus anal capacity. Added to the base capacity (determined from looseness and wetness) to determine how much the character can take. Characters with capacity larger than the object they're taking will not be stretched. Gained normally from coal."/>
-    <Status ID="Bonus vCapacity" Description="Bonus vaginal capacity. Added to the base capacity (determined from looseness and wetness) to determine how much the character can take. Characters with capacity larger than the object they're taking will not be stretched. Gained normally from goblin ale or wet cloths."/>
-    <Status ID="Bottled Milk"/>
-    <Status ID="Bound"/>
-    <Status ID="Breasts Milked" Description="You've used the milker."/>
-    <Status ID="BSwordBroken" Description="Determines if you went to the lake and found an old, dead tree with the rusted, broken Beautiful Sword. Occurs if you overload the factory valves before retrieving the sword."/>
-    <Status ID="BUILT: Milker" Description="Whitney's built a milking machine for you at her farm."/>
-    <Status ID="ButtStretched" Description="The amount your butt has been stretched in the past relative to cock value. If you were fucked by a horse dick, this value is probably pretty high. This affects nothing as of yet. It is only statistical."/>
-    <Status ID="Camp Marble" Description="Marble has joined your camp."/>
-    <Status ID="Camp Rathazul" Description="Rathazul has joined your camp."/>
-    <Status ID="Charge Weapon" Description="Weapon attack power is currently enhanced by the effects of the &quot;Charge=&quot; spell. Disappears after combat."/>
-    <Status ID="Cock Pumped" Description="You've used the cock pump."/>
-    <Status ID="CuntStretched" Description="Number of times your cunt has been stretched out larger than normal."/>
-    <Status ID="Defense: Canopy" Description="You have the thorn canopy protecting you camp from giving 1/3 of Marae's Lethicite to Rathazul."/>
-    <Status ID="deluxe onahole used" Description="You've used the Deluxe Onahole during self-stimulation."/>
-    <Status ID="DemonSeed"/>
-    <Status ID="Disarmed" Description="Tracks if you have been disarmed during combat. Disappears after combat."/>
-    <Status ID="dog warning" Description="You've received the warning that precedes the bad end for becoming too dog-like."/>
-    <Status ID="DungeonShutDown" Description="You shut down the Factory properly, rather than overloading it and blowing it to bits."/>
-    <Status ID="dysfunction" Description="You are unable to masturbate."/>
-    <Status ID="Edryn" Description="You've met Edryn."/>
-    <Status ID="eggs" Description="You're pregnant with eggs."/>
-    <Status ID="Ever Raped Jojo" Description="Have you ever raped Jojo? If this is here, you have. Congratulations."/>
-    <Status ID="Exgartuan" Description="Possession by Exgartuan(m)"/>
-    <Status ID="Exgartuan" Description="Possession by Exgartuan(f)"/>
-    <Status ID="exploredDeepwoods"/>
-    <Status ID="FactoryIncubusDefeated" Description="You defeated the Incubus Engineer. If you want to fight him again, just remove this status!"/>
-    <Status ID="FactoryOmnibusDefeated" Description="You have defeated the Factory Omnibus Overlord."/>
-    <Status ID="FactoryOverload" Description="You overloaded the Factory and blew it to bits, rather than shutting it down."/>
-    <Status ID="FactorySuccubusDefeated" Description="You defeated the Succubus Secretary. If you want to fight her again, just remove this status! If you want a demon dick, raping her with your cock will give you that."/>
-    <Status ID="Faerie Fem Fuck" Description="Number of times you have raped the Fairy as a female. The higher the value, the further along she is at being the equivalent of a marijuana drug abuser. Lol."/>
-    <Status ID="Faerie Fucked" Description="Number of times you have raped the Fairy as a male. The higher the value, the more of an alcoholic she is."/>
-    <Status ID="fapped genderless" Description="You have already masturbated while genderless. If you want to see the discovery scene for genderless anal masturbation once again, just remove this."/>
-    <Status ID="Feeder"/>
-    <Status ID="fetishON" Description="Fetish Cultists may now be encountered by the lake."/>
-    <Status ID="FirstAttack"/>
-    <Status ID="Found Factory" Description="You've found the factory, making it directly available in the &quot;Places&quot; menu."/>
-    <Status ID="FuckedMarble"/>
-    <Status ID="Gnoll Spear"/>
-    <Status ID="hairdresser meeting"/>
-    <Status ID="Hangover"/>
-    <Status ID="heat" Description="You are in a temporary state of constant feminine need, and are especially fertile. The only way to quench the intense heat in your snatch is to satiate your lust by finding a mate to make you pregnant."/>
-    <Status ID="horse warning" Description="You've received the warning that precedes the bad end for becoming too horse-like."/>
-    <Status ID="Imp GangBang" Description="You have been gangbanged by imps while you were sleeping, and chances are they'll do it again if they can."/>
-    <Status ID="IncubusBribed" Description="Determines if you gave the Incubus Mechanic in the Factory the Hentai Comic."/>
-    <Status ID="infestAttempted"/>
-    <Status ID="infested"/>
-    <Status ID="Isabella Stunned" Description="The stun Isabella can inflict. Disappears after a round of combat."/>
-    <Status ID="Izma Bleed" Description="The Izma bleed effect she can inflict. Disappears after combat."/>
-    <Status ID="Jizzpants"/>
-    <Status ID="Jojo Meditation Count" Description="Number of times you've meditated with Jojo."/>
-    <Status ID="JojoNightWatch" Description="Is Jojo protecting you from getting raped by demons while you sleep?"/>
-    <Status ID="JojoTFOffer" Description="You have approached the idea of tranforming Jojo into Tentacle Jojo. If you chose No and wish to change your mind, remove this. Otherwise you are stuck with the choice."/>
-    <Status ID="Kelt" Description="Value 1: Archery skill. Higher skill means lower miss chance and higher damage with the bow. Maxes out at 100."/>
-    <Status ID="Kelt Bad End Warning" Description="You're growing far too fond of Kelt and are at risk of falling completely under his corrupted influence."/>
-    <Status ID="KeltBJ"/>
-    <Status ID="KeltOff" Description="You did something that really pissed off Kelt�even more so than usual, for the arrogant prick� and now he's stormed off and refuses to teach you ever again. You must have made some sort of egregious affront to his ego. Remove this to bring him back."/>
-    <Status ID="Kiss of Death"/>
-    <Status ID="Knows Arouse" Description="You know the black-magic lust-raising enticement spell, &quot;Arouse&quot;"/>
-    <Status ID="Knows Blind" Description="You know the white-magic vision-impairment spell, &quot;Blind&quot;"/>
-    <Status ID="Knows Charge" Description="You know the white-magic weapon-enhancement spell, &quot;Charge&quot;"/>
-    <Status ID="Knows Heal" Description="You know the black-magic healing spell, &quot;Heal&quot;"/>
-    <Status ID="Knows Might" Description="You know the black-magic Strength-enhancing spell, &quot;Might&quot;"/>
-    <Status ID="Knows Whitefire" Description="You know the white-magic holy fire spell, &quot;Whitefire&quot;"/>
-    <Status ID="Lactaction Endurance"/>
-    <Status ID="Lactation Reduc0"/>
-    <Status ID="Lactation Reduc1"/>
-    <Status ID="Lactation Reduc2"/>
-    <Status ID="Lactation Reduc3"/>
-    <Status ID="Lactation Reduction" Description="Hours since last milked."/>
-    <Status ID="lootEgg"/>
-    <Status ID="Lust Stick Applied" Description="Gained from applying golden lipstick and unlocks the Kiss special attack."/>
-    <Status ID="lust venom"/>
-    <Status ID="Luststick"/>
-    <Status ID="LustyTongue"/>
-    <Status ID="Malon Visited Post Addiction" Description="Determines if you went back to tell Marble you got over your addiction to her milk."/>
-    <Status ID="Marae Complete" Description="You have finished Marae's quest."/>
-    <Status ID="Marae's Quest Start" Description="You have received Marae's quest."/>
-    <Status ID="Marble" Description="the first is the hours you have spend with her x10, the second is for addiction percentage, the third is for how she reacts when you're addicted (0=not addicted yet 1=kind, 2=inlove), the fourth is left untouched."/>
-    <Status ID="Marble Rape Attempted"/>
-    <Status ID="MarbleConversation"/>
-    <Status ID="MarbleHasItem" Description="Marble has a gift waiting for you back at camp."/>
-    <Status ID="MarbleItemCooldown" Description="How long until Marble has another gift for you."/>
-    <Status ID="Marbles Milk" Description="the first is the cooldown until you need more milk, leave untouched the others"/>
-    <Status ID="MarbleSpecials"/>
-    <Status ID="MarbleWithdrawl"/>
-    <Status ID="MeanToNaga" Description="I don't know what this means yet, but it makes me sad :c"/>
-    <Status ID="Meditated" Description="Only first value is used. If 1 daily meditation session already done. Set to 0 for for meditate again."/>
-    <Status ID="meet wanderer" Description="First met Marcus and Lucia while wandering the desert."/>
-    <Status ID="Met Corrupt Marae"/>
-    <Status ID="Met Marae"/>
-    <Status ID="Met Whitney" Description="Value 1: The number of times the character has met Whitney while exploring the lake - 1. When this value hits 2, Whitney will no longer be encounterable at the lake and the farm will be unlocked as a place."/>
-    <Status ID="metRathazul" Description="You've met Rathazul."/>
-    <Status ID="metWorms"/>
-    <Status ID="Might" Description="You are under the effect of Might, boosting your Strength. Adding this manually without also manually raising Strength will reduce your Strength at the end of the next combat instance."/>
-    <Status ID="Milked" Description="Number of times you've been milked."/>
-    <Status ID="Mino + Cowgirl"/>
-    <Status ID="Naga"/>
-    <Status ID="Naga Bind" Description="Temporary status; used only during combat with Naga."/>
-    <Status ID="Naga Venom" Description="Temporary status; used only during combat with Naga."/>
-    <Status ID="NakedOn"/>
-    <Status ID="No More Marble" Description="After overcoming your addiction, Marble has threatened to leave forever out of shame for having gotten you addicted in the first place. If your relationship with her is good enough, however, you'll be able to convince her to move in to your camp with you."/>
-    <Status ID="NoFlee"/>
-    <Status ID="noJojo" Description="Jojo has left the game."/>
-    <Status ID="Oswald" Description="You've met Oswald from the Pawn Shop."/>
-    <Status ID="paralyze venom"/>
-    <Status ID="plain onahole used" Description="You've used the Plain Onahole during self-stimulation."/>
-    <Status ID="Poison"/>
-    <Status ID="Post Akbal Submission"/>
-    <Status ID="PureCampJojo" Description="Non-corrupted Jojo has joined your camp."/>
-    <Status ID="RathazulArmor" Description="Rathazul has made you a suit of armor with some of the exotic materials you've come across during your adventures."/>
-    <Status ID="repeatSuccubi"/>
-    <Status ID="rut" Description="You are in an insatiable state of pure, carnal, masculine need. You just feel the urge to fuck pretty much anything and everything in sight. Unfortunately for you, you can't just beat the meat to beat the heat, so no matter how many living or debatably living things you fuck and manage to impregnate, you won't be able to escape this frenzied bout of lust until it passes of its own accord in due time. But then again, since you're reading this, why would you let it go when you can prolong and augment it indefinitely?"/>
-    <Status ID="Shark-Girl"/>
-    <Status ID="Slime Craving"/>
-    <Status ID="Slime Craving Feed"/>
-    <Status ID="Slime Craving Output"/>
-    <Status ID="Stone Lust"/>
-    <Status ID="SuccubiFirst"/>
-    <Status ID="succubiNight"/>
-    <Status ID="TakenGro+"/>
-    <Status ID="TakenLactaid"/>
-    <Status ID="talked with marble about factory"/>
-    <Status ID="talked with marble about factory shutdown"/>
-    <Status ID="talked with marble about factoryCLEAN"/>
-    <Status ID="talked with marble about factoryDIRTY"/>
-    <Status ID="talked with marble about marae"/>
-    <Status ID="Tamani" Description="Value 2: corresponds with the number of daughters you have with her (but is somehow not always exactly the same)"/>
-    <Status ID="Tamani Female Encounter"/>
-    <Status ID="Tel'Adre" Description="The status is created when the character attempts to enter Tel'Adre."/>
-    <Status ID="TEMP" Description="Temporary status affect used while loading saves. If you see this in your save, something has likely gone wrong somewhere."/>
-    <Status ID="Temporary Heat"/>
-    <Status ID="TensionReleased"/>
-    <Status ID="Tentacle Jojo"/>
-    <Status ID="TentacleBadEndCounter"/>
-    <Status ID="TentacleBind"/>
-    <Status ID="TF2" Description="Silly Toggle one-time event in the mountains (must be level 1 &amp; strength = 40). &quot;As zey say, everyone gets ONE.&quot;"/>
-    <Status ID="Throat Punch" Description="This means you got punched in the throat. Way to go. Now you can't cast spells. Disappears after combat."/>
-    <Status ID="Took Blessed Sword" Description="This means you took the Beautiful Sword from the Lake. Remove this to re-enable that scene."/>
-    <Status ID="Uniball" Description="You have a &quot;trap&quot; ball sack. Obtained by consuming Trap Oil."/>
-    <Status ID="used natural self-stim"/>
-    <Status ID="used self-stim"/>
-    <Status ID="Victoria"/>
-    <Status ID="Voluntary Demonpack" Description="The number of times you agreed to stay with the Oasis demons."/>
-    <Status ID="wanderer demon" Description="The character has advised Marcus to go demon."/>
-    <Status ID="wanderer human" Description="The character has advised Marcus to stay human, against Lucia's wishes."/>
-    <Status ID="Web"/>
-    <Status ID="Web-Silence" Description="You have been silenced from casting spells due to webs on your face. Disappears after combat."/>
-    <Status ID="worm plugged"/>
-    <Status ID="WormOffer"/>
-    <Status ID="wormsHalf" Description="Gained from choosing 'Who Cares?' at the worms sign. Halves the chance that worms will be encountered."/>
-    <Status ID="wormsOff" Description="Gained from choosing 'Grossed Out' at the worms sign. Worms are turned off and will not appear in the game."/>
-    <Status ID="wormsOn" Description="Gained from choosing 'Aroused' or 'Who Cares?' at the worms sign. Worms are turned on and will appear in the game."/>
-    <Status ID="Yara" Description="The PC has asked Yara about herself."/>
+    <Status Name="Akbal Speed" Description="Temporary status; used only during combat with Akbal."/>
+    <Status Name="all-natural onahole used" Description="You've used the All-Natural Onahole during self-stimulation."/>
+    <Status Name="Amily Venom" Description="Temporary status; used only during combat with Amily."/>
+    <Status Name="Anemone Arousal" Description="Temporary status; used only during combat with Anemone."/>
+    <Status Name="Anemone Venom" Description="Temporary status; used only during combat with Anemone."/>
+    <Status Name="Basilisk Compulsion" Description="Temporary status; used only during combat with Basilisk."/>
+    <Status Name="BasiliskSlow" Description="Temporary status; used only during combat with Basilisk."/>
+    <Status Name="Birthed" Description="The number of times you have given birth. At 9, the next pregnancy results in acquiring the Brood Mother perk"/>
+    <Status Name="Birthed Imps" Description="The number of times you have given birth to imps. This affects the chance of an imp gang bang. Sometimes the affect does not occur until the next time you give birth to an imp in-game."/>
+    <Status Name="Black Nipples" Description="You have black nipples. Obtained by consuming Trap Oil."/>
+    <Status Name="Blind" Description="This status affect means you are blind. It will disappear the next time you leave combat. Changing unwanted statuses to this is an effective way to cure yourself."/>
+    <Status Name="BlowjobOn" Description="Kelt-related status. Gained from eagerly giving Kelt a blowjob, or submitting to a later blowjob requirement with high (90+) submissiveness. The character will automatically give Kelt a blowjob when he asks, without a player choice."/>
+    <Status Name="Boat Discovery" Description="You have discovered the boat on the shore of the Lake, making it directly available in the &quot;Places&quot; menu."/>
+    <Status Name="Bonus aCapacity" Description="Bonus anal capacity. Added to the base capacity (determined from looseness and wetness) to determine how much the character can take. Characters with capacity larger than the object they're taking will not be stretched. Gained normally from coal."/>
+    <Status Name="Bonus vCapacity" Description="Bonus vaginal capacity. Added to the base capacity (determined from looseness and wetness) to determine how much the character can take. Characters with capacity larger than the object they're taking will not be stretched. Gained normally from goblin ale or wet cloths."/>
+    <Status Name="Bottled Milk"/>
+    <Status Name="Bound"/>
+    <Status Name="Breasts Milked" Description="You've used the milker."/>
+    <Status Name="BSwordBroken" Description="Determines if you went to the lake and found an old, dead tree with the rusted, broken Beautiful Sword. Occurs if you overload the factory valves before retrieving the sword."/>
+    <Status Name="BUILT: Milker" Description="Whitney's built a milking machine for you at her farm."/>
+    <Status Name="ButtStretched" Description="The amount your butt has been stretched in the past relative to cock value. If you were fucked by a horse dick, this value is probably pretty high. This affects nothing as of yet. It is only statistical."/>
+    <Status Name="Camp Marble" Description="Marble has joined your camp."/>
+    <Status Name="Camp Rathazul" Description="Rathazul has joined your camp."/>
+    <Status Name="Charge Weapon" Description="Weapon attack power is currently enhanced by the effects of the &quot;Charge=&quot; spell. Disappears after combat."/>
+    <Status Name="Cock Pumped" Description="You've used the cock pump."/>
+    <Status Name="CuntStretched" Description="Number of times your cunt has been stretched out larger than normal."/>
+    <Status Name="Defense: Canopy" Description="You have the thorn canopy protecting you camp from giving 1/3 of Marae's Lethicite to Rathazul."/>
+    <Status Name="deluxe onahole used" Description="You've used the Deluxe Onahole during self-stimulation."/>
+    <Status Name="DemonSeed"/>
+    <Status Name="Disarmed" Description="Tracks if you have been disarmed during combat. Disappears after combat."/>
+    <Status Name="dog warning" Description="You've received the warning that precedes the bad end for becoming too dog-like."/>
+    <Status Name="DungeonShutDown" Description="You shut down the Factory properly, rather than overloading it and blowing it to bits."/>
+    <Status Name="dysfunction" Description="You are unable to masturbate."/>
+    <Status Name="Edryn" Description="You've met Edryn."/>
+    <Status Name="eggs" Description="You're pregnant with eggs."/>
+    <Status Name="Ever Raped Jojo" Description="Have you ever raped Jojo? If this is here, you have. Congratulations."/>
+    <Status Name="Exgartuan" Description="Possession by Exgartuan(m)"/>
+    <Status Name="Exgartuan" Description="Possession by Exgartuan(f)"/>
+    <Status Name="exploredDeepwoods"/>
+    <Status Name="FactoryIncubusDefeated" Description="You defeated the Incubus Engineer. If you want to fight him again, just remove this status!"/>
+    <Status Name="FactoryOmnibusDefeated" Description="You have defeated the Factory Omnibus Overlord."/>
+    <Status Name="FactoryOverload" Description="You overloaded the Factory and blew it to bits, rather than shutting it down."/>
+    <Status Name="FactorySuccubusDefeated" Description="You defeated the Succubus Secretary. If you want to fight her again, just remove this status! If you want a demon dick, raping her with your cock will give you that."/>
+    <Status Name="Faerie Fem Fuck" Description="Number of times you have raped the Fairy as a female. The higher the value, the further along she is at being the equivalent of a marijuana drug abuser. Lol."/>
+    <Status Name="Faerie Fucked" Description="Number of times you have raped the Fairy as a male. The higher the value, the more of an alcoholic she is."/>
+    <Status Name="fapped genderless" Description="You have already masturbated while genderless. If you want to see the discovery scene for genderless anal masturbation once again, just remove this."/>
+    <Status Name="Feeder"/>
+    <Status Name="fetishON" Description="Fetish Cultists may now be encountered by the lake."/>
+    <Status Name="FirstAttack"/>
+    <Status Name="Found Factory" Description="You've found the factory, making it directly available in the &quot;Places&quot; menu."/>
+    <Status Name="FuckedMarble"/>
+    <Status Name="Gnoll Spear"/>
+    <Status Name="hairdresser meeting"/>
+    <Status Name="Hangover"/>
+    <Status Name="heat" Description="You are in a temporary state of constant feminine need, and are especially fertile. The only way to quench the intense heat in your snatch is to satiate your lust by finding a mate to make you pregnant."/>
+    <Status Name="horse warning" Description="You've received the warning that precedes the bad end for becoming too horse-like."/>
+    <Status Name="Imp GangBang" Description="You have been gangbanged by imps while you were sleeping, and chances are they'll do it again if they can."/>
+    <Status Name="IncubusBribed" Description="Determines if you gave the Incubus Mechanic in the Factory the Hentai Comic."/>
+    <Status Name="infestAttempted"/>
+    <Status Name="infested"/>
+    <Status Name="Isabella Stunned" Description="The stun Isabella can inflict. Disappears after a round of combat."/>
+    <Status Name="Izma Bleed" Description="The Izma bleed effect she can inflict. Disappears after combat."/>
+    <Status Name="Jizzpants"/>
+    <Status Name="Jojo Meditation Count" Description="Number of times you've meditated with Jojo."/>
+    <Status Name="JojoNightWatch" Description="Is Jojo protecting you from getting raped by demons while you sleep?"/>
+    <Status Name="JojoTFOffer" Description="You have approached the idea of tranforming Jojo into Tentacle Jojo. If you chose No and wish to change your mind, remove this. Otherwise you are stuck with the choice."/>
+    <Status Name="Kelt" Description="Value 1: Archery skill. Higher skill means lower miss chance and higher damage with the bow. Maxes out at 100."/>
+    <Status Name="Kelt Bad End Warning" Description="You're growing far too fond of Kelt and are at risk of falling completely under his corrupted influence."/>
+    <Status Name="KeltBJ"/>
+    <Status Name="KeltOff" Description="You did something that really pissed off Kelt�even more so than usual, for the arrogant prick� and now he's stormed off and refuses to teach you ever again. You must have made some sort of egregious affront to his ego. Remove this to bring him back."/>
+    <Status Name="Kiss of Death"/>
+    <Status Name="Knows Arouse" Description="You know the black-magic lust-raising enticement spell, &quot;Arouse&quot;"/>
+    <Status Name="Knows Blind" Description="You know the white-magic vision-impairment spell, &quot;Blind&quot;"/>
+    <Status Name="Knows Charge" Description="You know the white-magic weapon-enhancement spell, &quot;Charge&quot;"/>
+    <Status Name="Knows Heal" Description="You know the black-magic healing spell, &quot;Heal&quot;"/>
+    <Status Name="Knows Might" Description="You know the black-magic Strength-enhancing spell, &quot;Might&quot;"/>
+    <Status Name="Knows Whitefire" Description="You know the white-magic holy fire spell, &quot;Whitefire&quot;"/>
+    <Status Name="Lactaction Endurance"/>
+    <Status Name="Lactation Reduc0"/>
+    <Status Name="Lactation Reduc1"/>
+    <Status Name="Lactation Reduc2"/>
+    <Status Name="Lactation Reduc3"/>
+    <Status Name="Lactation Reduction" Description="Hours since last milked."/>
+    <Status Name="lootEgg"/>
+    <Status Name="Lust Stick Applied" Description="Gained from applying golden lipstick and unlocks the Kiss special attack."/>
+    <Status Name="lust venom"/>
+    <Status Name="Luststick"/>
+    <Status Name="LustyTongue"/>
+    <Status Name="Malon Visited Post Addiction" Description="Determines if you went back to tell Marble you got over your addiction to her milk."/>
+    <Status Name="Marae Complete" Description="You have finished Marae's quest."/>
+    <Status Name="Marae's Quest Start" Description="You have received Marae's quest."/>
+    <Status Name="Marble" Description="the first is the hours you have spend with her x10, the second is for addiction percentage, the third is for how she reacts when you're addicted (0=not addicted yet 1=kind, 2=inlove), the fourth is left untouched."/>
+    <Status Name="Marble Rape Attempted"/>
+    <Status Name="MarbleConversation"/>
+    <Status Name="MarbleHasItem" Description="Marble has a gift waiting for you back at camp."/>
+    <Status Name="MarbleItemCooldown" Description="How long until Marble has another gift for you."/>
+    <Status Name="Marbles Milk" Description="the first is the cooldown until you need more milk, leave untouched the others"/>
+    <Status Name="MarbleSpecials"/>
+    <Status Name="MarbleWithdrawl"/>
+    <Status Name="MeanToNaga" Description="I don't know what this means yet, but it makes me sad :c"/>
+    <Status Name="Meditated" Description="Only first value is used. If 1 daily meditation session already done. Set to 0 for for meditate again."/>
+    <Status Name="meet wanderer" Description="First met Marcus and Lucia while wandering the desert."/>
+    <Status Name="Met Corrupt Marae"/>
+    <Status Name="Met Marae"/>
+    <Status Name="Met Whitney" Description="Value 1: The number of times the character has met Whitney while exploring the lake - 1. When this value hits 2, Whitney will no longer be encounterable at the lake and the farm will be unlocked as a place."/>
+    <Status Name="metRathazul" Description="You've met Rathazul."/>
+    <Status Name="metWorms"/>
+    <Status Name="Might" Description="You are under the effect of Might, boosting your Strength. Adding this manually without also manually raising Strength will reduce your Strength at the end of the next combat instance."/>
+    <Status Name="Milked" Description="Number of times you've been milked."/>
+    <Status Name="Mino + Cowgirl"/>
+    <Status Name="Naga"/>
+    <Status Name="Naga Bind" Description="Temporary status; used only during combat with Naga."/>
+    <Status Name="Naga Venom" Description="Temporary status; used only during combat with Naga."/>
+    <Status Name="NakedOn"/>
+    <Status Name="No More Marble" Description="After overcoming your addiction, Marble has threatened to leave forever out of shame for having gotten you addicted in the first place. If your relationship with her is good enough, however, you'll be able to convince her to move in to your camp with you."/>
+    <Status Name="NoFlee"/>
+    <Status Name="noJojo" Description="Jojo has left the game."/>
+    <Status Name="Oswald" Description="You've met Oswald from the Pawn Shop."/>
+    <Status Name="paralyze venom"/>
+    <Status Name="plain onahole used" Description="You've used the Plain Onahole during self-stimulation."/>
+    <Status Name="Poison"/>
+    <Status Name="Post Akbal Submission"/>
+    <Status Name="PureCampJojo" Description="Non-corrupted Jojo has joined your camp."/>
+    <Status Name="RathazulArmor" Description="Rathazul has made you a suit of armor with some of the exotic materials you've come across during your adventures."/>
+    <Status Name="repeatSuccubi"/>
+    <Status Name="rut" Description="You are in an insatiable state of pure, carnal, masculine need. You just feel the urge to fuck pretty much anything and everything in sight. Unfortunately for you, you can't just beat the meat to beat the heat, so no matter how many living or debatably living things you fuck and manage to impregnate, you won't be able to escape this frenzied bout of lust until it passes of its own accord in due time. But then again, since you're reading this, why would you let it go when you can prolong and augment it indefinitely?"/>
+    <Status Name="Shark-Girl"/>
+    <Status Name="Slime Craving"/>
+    <Status Name="Slime Craving Feed"/>
+    <Status Name="Slime Craving Output"/>
+    <Status Name="Stone Lust"/>
+    <Status Name="SuccubiFirst"/>
+    <Status Name="succubiNight"/>
+    <Status Name="TakenGro+"/>
+    <Status Name="TakenLactaid"/>
+    <Status Name="talked with marble about factory"/>
+    <Status Name="talked with marble about factory shutdown"/>
+    <Status Name="talked with marble about factoryCLEAN"/>
+    <Status Name="talked with marble about factoryDIRTY"/>
+    <Status Name="talked with marble about marae"/>
+    <Status Name="Tamani" Description="Value 2: corresponds with the number of daughters you have with her (but is somehow not always exactly the same)"/>
+    <Status Name="Tamani Female Encounter"/>
+    <Status Name="Tel'Adre" Description="The status is created when the character attempts to enter Tel'Adre."/>
+    <Status Name="TEMP" Description="Temporary status affect used while loading saves. If you see this in your save, something has likely gone wrong somewhere."/>
+    <Status Name="Temporary Heat"/>
+    <Status Name="TensionReleased"/>
+    <Status Name="Tentacle Jojo"/>
+    <Status Name="TentacleBadEndCounter"/>
+    <Status Name="TentacleBind"/>
+    <Status Name="TF2" Description="Silly Toggle one-time event in the mountains (must be level 1 &amp; strength = 40). &quot;As zey say, everyone gets ONE.&quot;"/>
+    <Status Name="Throat Punch" Description="This means you got punched in the throat. Way to go. Now you can't cast spells. Disappears after combat."/>
+    <Status Name="Took Blessed Sword" Description="This means you took the Beautiful Sword from the Lake. Remove this to re-enable that scene."/>
+    <Status Name="Uniball" Description="You have a &quot;trap&quot; ball sack. Obtained by consuming Trap Oil."/>
+    <Status Name="used natural self-stim"/>
+    <Status Name="used self-stim"/>
+    <Status Name="Victoria"/>
+    <Status Name="Voluntary Demonpack" Description="The number of times you agreed to stay with the Oasis demons."/>
+    <Status Name="wanderer demon" Description="The character has advised Marcus to go demon."/>
+    <Status Name="wanderer human" Description="The character has advised Marcus to stay human, against Lucia's wishes."/>
+    <Status Name="Web"/>
+    <Status Name="Web-Silence" Description="You have been silenced from casting spells due to webs on your face. Disappears after combat."/>
+    <Status Name="worm plugged"/>
+    <Status Name="WormOffer"/>
+    <Status Name="wormsHalf" Description="Gained from choosing 'Who Cares?' at the worms sign. Halves the chance that worms will be encountered."/>
+    <Status Name="wormsOff" Description="Gained from choosing 'Grossed Out' at the worms sign. Worms are turned off and will not appear in the game."/>
+    <Status Name="wormsOn" Description="Gained from choosing 'Aroused' or 'Who Cares?' at the worms sign. Worms are turned on and will appear in the game."/>
+    <Status Name="Yara" Description="The PC has asked Yara about herself."/>
   </Statuses>
   
   

@@ -37,18 +37,25 @@
                     <TextBox                Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,4,8,4" 
                                             BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
 
-                    <TextBlock              Text="Gems"/>
-                    <common:MyNumericBox    Value="{Binding Game.Gems}" Min="0" IsInteger="True"/>
-                </common:AutoGrid>
-            </StackPanel>
-
-            <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
-                <common:AutoGrid>
                     <TextBlock              Text="XP"/>
                     <common:MyNumericBox    Value="{Binding Game.XP}" Min="0" IsInteger="True"/>
 
                     <TextBlock              Text="Teasing XP"/>
                     <common:MyNumericBox    Value="{Binding Game.TeaseXP}" Min="0" IsInteger="True"/>
+
+                </common:AutoGrid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
+                <common:AutoGrid>
+                    <TextBlock              Text="Gems"/>
+                    <common:MyNumericBox    Value="{Binding Game.Gems}" Min="0" IsInteger="True"/>
+
+                    <TextBlock              Text="Days"/>
+                    <common:MyNumericBox    Value="{Binding Game.Days}" Min="0" IsInteger="True"/>
+
+                    <TextBlock              Text="Time"/>
+                    <common:MyNumericBox    Value="{Binding Game.Hours}" Min="0" Max="23" IsInteger="True" Unit="hours"/>
                 </common:AutoGrid>
             </StackPanel>
 
@@ -118,7 +125,10 @@
                     <common:MyNumericBox    Value="{Binding Game.HairLength}" Min="0" IsInteger="False" Unit="inches"/>
 
                     <TextBlock              Text="Hair color"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.HairColor}" ItemsSource="{Binding Data.Body.HairColors}"/>
+                    <ComboBox Text="{Binding Game.HairColor}" ItemsSource="{Binding Data.Body.HairColors}" Style="{StaticResource EditableTextBox}"/>
+
+                    <TextBlock              Text="Hair type"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.HairType}" ItemsSource="{Binding Data.Body.HairTypes}"/>
 
                     <TextBlock              Text="Face"/>
                     <common:MyComboBox SelectedValue="{Binding Game.FaceType}" ItemsSource="{Binding Data.Body.FaceTypes}"/>

@@ -11,13 +11,13 @@ namespace CoCEd.ViewModel
 {
     public sealed class StatusVM : BindableBase
     {
-        readonly XmlEnumWithStringID _data;
+        readonly XmlStatus _data;
         readonly AmfObject _statuses;
         readonly string _name;
 
         public StatusVM(AmfObject allStatuses, string name)
         {
-            _data = XmlData.Instance.Statuses.FirstOrDefault(x => x.ID == name);
+            _data = XmlData.Instance.Statuses.FirstOrDefault(x => x.Name == name);
             _statuses = allStatuses;
             _name = name;
 
