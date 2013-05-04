@@ -74,7 +74,7 @@ namespace CoCEd.ViewModel
 
             // Statuses
             var obj = file.GetObj("statusAffects");
-            var statuses = obj.Select(x => x.ValueAsObject.GetString("statusAffectName")).Union(XmlData.Instance.Statuses.Select(x => x.ID)).ToArray();
+            var statuses = obj.Select(x => x.ValueAsObject.GetString("statusAffectName")).Union(XmlData.Instance.Statuses.Select(x => x.Name)).ToArray();
             _allStatuses = statuses.OrderBy(x => x).Select(x => new StatusVM(obj, x)).ToArray();
             Statuses = new UpdatableCollection<StatusVM>(_allStatuses.Where(x => x.Match(_searchText)));
 
@@ -115,6 +115,18 @@ namespace CoCEd.ViewModel
                 SetValue("short", value);
                 SetValue("notes", value);
             }
+        }
+
+        public int Days
+        {
+            get { return GetInt("days"); }
+            set { SetValue("days", value); }
+        }
+
+        public int Hours
+        {
+            get { return GetInt("hours"); }
+            set { SetValue("hours", value); }
         }
 
         public int Strength
@@ -207,6 +219,12 @@ namespace CoCEd.ViewModel
         {
             get { return GetString("hairColor"); }
             set { SetValue("hairColor", value); }
+        }
+
+        public int HairType
+        {
+            get { return GetInt("hairType"); }
+            set { SetValue("hairType", value); }
         }
 
         public int FaceType

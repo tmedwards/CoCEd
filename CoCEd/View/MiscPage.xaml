@@ -41,27 +41,33 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <common:AutoGrid Grid.Column="1" Grid.Row="1">
-                <TextBlock              Text="Exgartuan"/>
-                <ComboBox SelectedIndex="{Binding Game.Exagartuan}">
-                    <ComboBoxItem>Not possessed</ComboBoxItem>
-                    <ComboBoxItem>Cock</ComboBoxItem>
-                    <ComboBoxItem>Breasts</ComboBoxItem>
-                </ComboBox>
+            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                <Border Style="{StaticResource HeaderBorder}">
+                    <TextBlock Text="Procreation" Style="{StaticResource Header}" />
+                </Border>
 
-                <TextBlock              Text="Worms"/>
-                <ComboBox SelectedIndex="{Binding Game.WormStatus}">
-                    <ComboBoxItem>Disabled</ComboBoxItem>
-                    <ComboBoxItem>Enabled</ComboBoxItem>
-                    <ComboBoxItem>Infested</ComboBoxItem>
-                </ComboBox>
+                <common:AutoGrid>
+                    <TextBlock              Text="Exgartuan"/>
+                    <ComboBox SelectedIndex="{Binding Game.Exagartuan}">
+                        <ComboBoxItem>Not possessed</ComboBoxItem>
+                        <ComboBoxItem>Cock</ComboBoxItem>
+                        <ComboBoxItem>Breasts</ComboBoxItem>
+                    </ComboBox>
 
-                <TextBlock              Text="Addiction: minotaur cum"/>
-                <common:MyNumericBox    Value="{Binding Game.MinotaurCumAddiction}" Min="0" Max="120" IsInteger="True"/>
+                    <TextBlock              Text="Worms"/>
+                    <ComboBox SelectedIndex="{Binding Game.WormStatus}">
+                        <ComboBoxItem>Disabled</ComboBoxItem>
+                        <ComboBoxItem>Enabled</ComboBoxItem>
+                        <ComboBoxItem>Infested</ComboBoxItem>
+                    </ComboBox>
 
-                <TextBlock              Text="Addiction: marble milk" IsEnabled="{Binding HasMetMarble}"/>
-                <common:MyNumericBox    Value="{Binding Game.MarbleMilkAddiction}" Min="0" Max="120" IsInteger="True" IsEnabled="{Binding Game.HasMetMarble}"/>
-            </common:AutoGrid>
+                    <TextBlock              Text="Addiction: minotaur cum"/>
+                    <common:MyNumericBox    Value="{Binding Game.MinotaurCumAddiction}" Min="0" Max="120" IsInteger="True"/>
+
+                    <TextBlock              Text="Addiction: marble milk" IsEnabled="{Binding Game.HasMetMarble}"/>
+                    <common:MyNumericBox    Value="{Binding Game.MarbleMilkAddiction}" Min="0" Max="120" IsInteger="True" IsEnabled="{Binding Game.HasMetMarble}"/>
+                </common:AutoGrid>
+            </StackPanel>
 
             <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
                 <Border Style="{StaticResource HeaderBorder}">

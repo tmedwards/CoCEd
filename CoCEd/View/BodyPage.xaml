@@ -49,11 +49,11 @@
                     <TextBlock              Text="Frame"/>
                     <common:MyNumericBox    Value="{Binding Game.Frame}" Min="0" Max="100" IsInteger="True" Tip="{Binding Game.FrameTip}"/>
 
+                    <TextBlock              Text="Skin tone"/>
+                    <ComboBox Text="{Binding Game.SkinTone}" ItemsSource="{Binding Data.Body.SkinTones}" Style="{StaticResource EditableTextBox}"/>
+
                     <TextBlock              Text="Skin type"/>
                     <common:MyComboBox SelectedValue="{Binding Game.SkinType}" ItemsSource="{Binding Data.Body.SkinTypes}"/>
-
-                    <TextBlock              Text="Skin tone"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.SkinTone}" ItemsSource="{Binding Data.Body.SkinTones}"/>
 
                     <TextBlock              Text="Wings"/>
                     <common:MyComboBox SelectedValue="{Binding Game.WingType}" ItemsSource="{Binding Data.Body.WingTypes}"/>
