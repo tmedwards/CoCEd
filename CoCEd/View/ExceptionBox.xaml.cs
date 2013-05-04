@@ -52,7 +52,7 @@ namespace CoCEd.View
             return box.ShowDialog();
         }
 
-        public new ExceptionBoxResult ShowDialog(params ExceptionBoxButtons[] buttons)
+        public ExceptionBoxResult ShowDialog(params ExceptionBoxButtons[] buttons)
         {
             // http://forum.fenoxo.com/thread-6324.html
             if (App.Current.MainWindow != this)
