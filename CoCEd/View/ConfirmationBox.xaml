@@ -25,7 +25,6 @@
             <TextBlock Text="This savegame has been changed. Do you still want to close this application?" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Margin="10,0,0,0"/>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <!--Button Click="save_Click">Save</Button-->
             <Button Click="close_Click">Close</Button>
             <Button Click="cancel_Click" IsDefault="True">Cancel</Button>
         </StackPanel>

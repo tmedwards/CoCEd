@@ -15,6 +15,7 @@ using System.Windows.Threading;
 using System.Xml.Serialization;
 using CoCEd.Common;
 using CoCEd.Model;
+using CoCEd.View;
 using CoCEd.ViewModel;
 
 namespace CoCEd
@@ -38,9 +39,19 @@ namespace CoCEd
             e.Handled = true;
             DispatcherUnhandledException -= OnDispatcherUnhandledException;
 
-            MessageBox.Show(
-                "An error occured and the application is going to exit.\n\n The error below will be saved as CoCEd.log. Please report it on CoC's forums (you can also use Ctrl+C):\n" + e.Exception.ToString(),
-                "Unexpected error.", MessageBoxButton.OK, MessageBoxImage.Error);
+            try
+            {
+                ExceptionBox box = new ExceptionBox();
+                box.Title = "Unexpected error";
+                box.Message = "An error occured and the application is going to exit.\nThe error below will be saved as CoCEd.log. Please report it on CoC's forums.";
+                box.ExceptionMessage = e.Exception.ToString();
+                box.Path = "e:\\coc_1.sol";
+                box.ShowDialog(ExceptionBoxButtons.Quit);
+            }
+            catch(Exception e2)
+            {
+                MessageBox.Show(e2.ToString(), "Error in error box ?!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             Logger.Error(e.Exception);
             Shutdown();
@@ -48,6 +59,7 @@ namespace CoCEd
 
         void Initialize()
         {
+            ExceptionBox box;
             var xmlResult = XmlData.LoadXml();
             switch (xmlResult)
             {
@@ -55,12 +67,20 @@ namespace CoCEd
                     break;
 
                 case XmlLoadingResult.MissingFile:
-                    MessageBox.Show("The CoCEd.xml file could not be found.", "Fatal error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    box = new ExceptionBox();
+                    box.Title = "Fatal error";
+                    box.Message = "The CoCEd.xml file could not be found.";
+                    box.Path = Environment.CurrentDirectory;
+                    box.ShowDialog(ExceptionBoxButtons.Quit);
                     Shutdown();
                     return;
 
                 case XmlLoadingResult.NoPermission:
-                    MessageBox.Show("The CoCEd.xml file was already in use or this application does not have the permission to read the folder it is located in.", "Fatal error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    box = new ExceptionBox();
+                    box.Title = "Fatal error";
+                    box.Message = "The CoCEd.xml file was already in use or this application does not have the permission to read the folder it is located in.";
+                    box.Path = Environment.CurrentDirectory;
+                    box.ShowDialog(ExceptionBoxButtons.Quit);
                     Shutdown();
                     return;
 
@@ -74,11 +94,21 @@ namespace CoCEd
             var set = FileManager.CreateSet();
             if (FileManager.MoreThanOneFolderPath != null)
             {
-                MessageBox.Show("There should be only one folder within:\n" + FileManager.MoreThanOneFolderPath + "\n\n Some files won't be displayed in the open/save menus.", "Could not scan some folders", MessageBoxButton.OK, MessageBoxImage.Warning);
+                box = new ExceptionBox();
+                box.Title = "Could not scan some folders.";
+                box.Message = "There should be only one child folder in the folder below.\nSome files won't be displayed in the open/save menus.";
+                box.Path = FileManager.MoreThanOneFolderPath;
+                box.IsWarning = true;
+                box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
             }
             if (FileManager.MissingPermissionPath != null)
             {
-                MessageBox.Show("CoCEd does not have the permission to read a folder or a file:\n" + FileManager.MissingPermissionPath + "\n\n Some files won't be displayed in the open/save menus.", "Could not scan some folders", MessageBoxButton.OK, MessageBoxImage.Warning);
+                box = new ExceptionBox();
+                box.Title = "Could not scan some folders.";
+                box.Message = "CoCEd did not get the permission to read a folder or a file.\nSome files won't be displayed in the open/save menus.";
+                box.Path = FileManager.MissingPermissionPath;
+                box.IsWarning = true;
+                box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
             }
 
 #if DEBUG

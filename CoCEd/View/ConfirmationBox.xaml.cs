@@ -19,7 +19,6 @@ namespace CoCEd.View
     public enum ConfirmationResult
     {
         Quit,
-        Save,
         Cancel,
     }
 
@@ -41,12 +40,6 @@ namespace CoCEd.View
             box.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             box.ShowDialog();
             return box._result;
-        }
-
-        void save_Click(object sender, RoutedEventArgs e)
-        {
-            _result = ConfirmationResult.Save;
-            Close();
         }
 
         void close_Click(object sender, RoutedEventArgs e)
