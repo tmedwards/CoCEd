@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using CoCEd.Model;
+using CoCEd.View;
 
 namespace CoCEd.ViewModel
 {
@@ -84,6 +85,7 @@ namespace CoCEd.ViewModel
 
         public void Save(string path)
         {
+            bool error = false;
             try
             {
                 Game.BeforeSerialization();
@@ -92,14 +94,26 @@ namespace CoCEd.ViewModel
             }
             catch (SecurityException)
             {
-                MessageBox.Show("CoCEd does not have the permission to write over this file or its backup.", "Permissions problem", MessageBoxButton.OK, MessageBoxImage.Warning);
+                error = true;
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("CoCEd does not have the permission to write over this file or its backup.", "Permissions problem", MessageBoxButton.OK, MessageBoxImage.Warning);
+                error = true;
             }
 
-            VM.Instance.NotifySaveRequiredChanged(false);
+            if (error)
+            {
+                var box = new ExceptionBox();
+                box.Title = "Permissions problem";
+                box.Message = "CoCEd does not have the permission to write over this file or its backup.";
+                box.Path = path;
+                box.IsWarning = true;
+                box.ShowDialog(ExceptionBoxButtons.Cancel);
+            }
+            else
+            {
+                VM.Instance.NotifySaveRequiredChanged(false);
+            }
         }
 
         public void NotifySaveRequiredChanged(bool saveRequired = true)
