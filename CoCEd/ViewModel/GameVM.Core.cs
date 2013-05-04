@@ -12,7 +12,7 @@ namespace CoCEd.ViewModel
     {
         public void OnFlagChanged(int index)
         {
-            foreach(var prop in _allFlags[index].GameProperties) OnPropertyChanged(prop);
+            foreach(var prop in _allFlags[index - 1].GameProperties) OnPropertyChanged(prop);
         }
 
         public void OnStatusChanged(string name)
@@ -27,7 +27,7 @@ namespace CoCEd.ViewModel
 
         void RegisterFlagDependency(int index, [CallerMemberName] string propertyName = null)
         {
-            _allFlags[index].GameProperties.Add(propertyName);
+            _allFlags[index - 1].GameProperties.Add(propertyName);
         }
 
         void RegisterStatusDependency(string name, [CallerMemberName] string propertyName = null)
@@ -40,12 +40,12 @@ namespace CoCEd.ViewModel
         int GetFlagInt(int index, [CallerMemberName] string propertyName = null)
         {
             RegisterFlagDependency(index, propertyName);
-            return _allFlags[index].GetInt();
+            return _allFlags[index - 1].GetInt();
         }
 
         void SetFlag(int index, object value)
         {
-            _allFlags[index].SetValue(value);
+            _allFlags[index - 1].SetValue(value);
         }
 
 
