@@ -42,7 +42,7 @@
         
         <DataTemplate x:Key="FileTemplate">
             <StackPanel Orientation="Vertical" Margin="2,0,2,0">
-                <TextBlock Text="{Binding Label}" Foreground="{Binding Foreground}" FontSize="14"/>
+                <TextBlock Text="{Binding Label}" Foreground="{Binding Foreground}" FontSize="12"/>
                 <TextBlock Text="{Binding SubLabel}" Visibility="{Binding SubLabelVisibility}" Foreground="#606060" FontSize="11"/>
             </StackPanel>
         </DataTemplate>
@@ -65,7 +65,7 @@
             <Setter Property="ItemContainerStyle" Value="{StaticResource OpenMenuChildStyle}"/>
             <Setter Property="Visibility" Value="{Binding MenuVisibility}"/>
             <Setter Property="ItemsSource" Value="{Binding Files}"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Padding" Value="4,6"/>
         </Style>
 
@@ -74,7 +74,7 @@
             <Setter Property="ItemContainerStyle" Value="{StaticResource SaveMenuChildStyle}"/>
             <Setter Property="ItemsSource" Value="{Binding Targets}"/>
             <Setter Property="Foreground" Value="{Binding TargetForeground}"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Padding" Value="4,6"/>
         </Style>
 
