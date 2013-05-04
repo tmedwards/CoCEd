@@ -9,8 +9,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Grid Background="{TemplateBinding Background}">
-                        <Path x:Name="up" Fill="{TemplateBinding Foreground}" Data="M 0 0 L 6 -6 L 12 0 Z" HorizontalAlignment="Center" VerticalAlignment="Top" SnapsToDevicePixels="True" Margin="4,14,4,0" Visibility="Hidden"/>
-                        <Path x:Name="down" Fill="{TemplateBinding Foreground}" Data="M 0 0 L 6 6 L 12 0 Z" HorizontalAlignment="Center" VerticalAlignment="Top" SnapsToDevicePixels="True" Margin="4,10,4,0"/>
+                        <Path x:Name="up" Fill="{TemplateBinding Foreground}" Data="M 0 0 L 5 -5 L 10 0 Z" HorizontalAlignment="Center" VerticalAlignment="Top" SnapsToDevicePixels="True" Margin="4,14,4,0" Visibility="Hidden"/>
+                        <Path x:Name="down" Fill="{TemplateBinding Foreground}" Data="M 0 0 L 5 5 L 10 0 Z" HorizontalAlignment="Center" VerticalAlignment="Top" SnapsToDevicePixels="True" Margin="4,10,4,0"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -78,7 +78,7 @@
     <Style TargetType="{x:Type ComboBox}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Margin" Value="8,5,0,5"/>
-        <Setter Property="Width" Value="170"/>
+        <Setter Property="Width" Value="150"/>
     </Style>
 
     <Style x:Key="EditableTextBox" TargetType="{x:Type ComboBox}">
@@ -87,7 +87,7 @@
         <Setter Property="IsTextSearchEnabled" Value="True"/>
         <Setter Property="IsEditable" Value="True"/>
         <Setter Property="Margin" Value="8,5,0,5"/>
-        <Setter Property="Width" Value="170"/>
+        <Setter Property="Width" Value="150"/>
     </Style>
 
 </ResourceDictionary>

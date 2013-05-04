@@ -51,7 +51,7 @@
                 <ControlTemplate TargetType="{x:Type common:MyNumericBox}">
                     <Grid Margin="{TemplateBinding Padding}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="30"/>
                             <ColumnDefinition Width="124"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
@@ -167,7 +167,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type common:MyComboBox}">
-                    <ComboBox x:Name="combo" DisplayMemberPath="Name" SelectedValuePath="ID" Width="170" Margin="0"
+                    <ComboBox x:Name="combo" DisplayMemberPath="Name" SelectedValuePath="ID" Width="150" Margin="0"
                               ItemsSource="{TemplateBinding ItemsSource}"
                               SelectedValue="{Binding Path=SelectedValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
                 </ControlTemplate>
@@ -184,7 +184,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type common:MyPiercingBox}">
                     <Grid>
-                        <ToggleButton x:Name="button" BorderThickness="1" BorderBrush="#ACACAC" Width="170" HorizontalContentAlignment="Stretch">
+                        <ToggleButton x:Name="button" BorderThickness="1" BorderBrush="#ACACAC" Width="150" HorizontalContentAlignment="Stretch">
                             <ToggleButton.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                     <GradientStop Color="#F0F0F0" Offset="0"/>
