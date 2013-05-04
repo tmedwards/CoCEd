@@ -55,11 +55,11 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                            <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical" Margin="0,30,10,0">
                                 <Border Background="Transparent" IsHitTestVisible="False">
                                     <TextBlock Text="{Binding Name}" Margin="4" FontSize="14" FontWeight="Bold"/>
                                 </Border>
-                                <ItemsPresenter x:Name="ItemsHost" Margin="0,0,0,20" />
+                                <ItemsPresenter x:Name="ItemsHost" Margin="0,0,0,0" />
                             </StackPanel>
                         </ControlTemplate>
                     </Setter.Value>
@@ -123,12 +123,12 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TreeView Grid.Column="0" x:Name="leftTree" ItemsSource="{Binding Game.ItemGroups}" ItemContainerStyle="{StaticResource LeftGroupStyle}" Margin="0" Padding="0" BorderThickness="0"
-                  SelectedItemChanged="leftTree_SelectedItemChanged"/>
+        <TreeView Grid.Column="0" x:Name="leftTree" ItemsSource="{Binding Game.ItemGroups}" ItemContainerStyle="{StaticResource LeftGroupStyle}" Margin="30,0,0,0" Padding="0" BorderThickness="0"
+                  SelectedItemChanged="leftTree_SelectedItemChanged" MinWidth="250"/>
 
         <Grid Grid.Column="1" x:Name="rightPanel" Visibility="Collapsed">
             <Grid.RowDefinitions>
