@@ -149,12 +149,14 @@ namespace CoCEd.Common
         {
             if (e.Key == Key.Up)
             {
+                if (Value >= Max) return;
                 if (Value != (int)Value) Value = 1 + (int)Value;
                 else ++Value;
                 e.Handled = true;
             }
             else if (e.Key == Key.Down)
             {
+                if (Value <= Min) return;
                 if (Value != (int)Value) Value = (int)Value;
                 else --Value;
                 e.Handled = true;
