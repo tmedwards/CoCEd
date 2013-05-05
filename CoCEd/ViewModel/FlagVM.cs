@@ -108,6 +108,13 @@ namespace CoCEd.ViewModel
             return true;
         }
 
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            VM.Instance.NotifySaveRequiredChanged(true);
+            VM.Instance.Game.OnFlagChanged(Index);
+        }
+
         public bool Match(string str)
         {
             if (str == null || str.Length < 3) return true;

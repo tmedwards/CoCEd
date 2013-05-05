@@ -75,7 +75,7 @@ namespace CoCEd.ViewModel
         void SetStatusValue(string statusName, string valueIndex, object value)
         {
             var status = _allStatuses.First(x => x.Name == statusName);
-            status.SetValue("value" + valueIndex, value);
+            status.SetValue("value" + valueIndex, value, "Value" + valueIndex);
         }
 
         void RemoveStatus(string name)
