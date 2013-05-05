@@ -32,15 +32,15 @@ namespace CoCEd.ViewModel
             }
         }
 
-        public int Length
+        public double Length
         {
-            get { return GetInt("cockLength"); }
+            get { return GetDouble("cockLength"); }
             set { SetValue("cockLength", value); }
         }
 
-        public int Thickness
+        public double Thickness
         {
-            get { return GetInt("cockThickness"); }
+            get { return GetDouble("cockThickness"); }
             set { SetValue("cockThickness", value); }
         }
 
@@ -55,21 +55,27 @@ namespace CoCEd.ViewModel
             get { return Type == 2 ? Visibility.Visible : Visibility.Collapsed; }
         }
 
-        public string Description
+        public string LabelPart1
+        {
+            get { return Length.ToString("0") + "\""; }
+        }
+
+        public string LabelPart2
         {
             get
             {
                 var type = Type;
                 var cockType = XmlData.Instance.Body.CockTypes.FirstOrDefault(x => x.ID == type);
                 var cockTypeName = cockType != null ? cockType.Name : "unknown";
-                return String.Format("\" long {0} cock", cockTypeName);
+                return String.Format(" long {0} cock", cockTypeName);
             }
         }
 
         protected override void OnPropertyChanged(string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
-            base.OnPropertyChanged("Description");
+            base.OnPropertyChanged("LabelPart1");
+            base.OnPropertyChanged("LabelPart2");
         }
     }
 
