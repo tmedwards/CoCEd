@@ -435,6 +435,18 @@ namespace CoCEd.ViewModel
             set { SetValue("skinTone", value); }
         }
 
+        public string SkinDescription
+        {
+            get { return GetString("skinDesc"); }
+            set { SetValue("skinDesc", value); }
+        }
+
+        public string SkinAdjective
+        {
+            get { return GetString("skinAdj"); }
+            set { SetValue("skinAdj", value); }
+        }
+
         public int LowerBodyType
         {
             get { return GetInt("lowerBody"); }
@@ -450,9 +462,23 @@ namespace CoCEd.ViewModel
         public int WingType
         {
             get { return GetInt("wingType"); }
-            set { SetValue("wingType", value); }
+            set 
+            { 
+                SetValue("wingType", value);
+                OnPropertyChanged("IsWingEnabled");
+            }
         }
 
+        public string WingDescription
+        {
+            get { return GetString("wingDesc"); }
+            set { SetValue("wingDesc", value); }
+        }
+
+        public bool IsWingEnabled
+        {
+            get { return WingType != 0; }
+        }
 
 
         public int Fertility
@@ -586,13 +612,13 @@ namespace CoCEd.ViewModel
             get { return Vaginas.Count == 0 ? Visibility.Collapsed : Visibility.Visible; }
         }
 
-        public int Exagartuan
+        public int Exgartuan
         {
             get { return GetStatusInt("Exgartuan", "1", 0); }
             set 
             {
-                if (value == Exagartuan) return;
-                if (Exagartuan == 0) EnsureStatusExists("Exgartuan", value, 0, 0, 0);
+                if (value == Exgartuan) return;
+                if (Exgartuan == 0) EnsureStatusExists("Exgartuan", value, 0, 0, 0);
                 else if (value == 0) RemoveStatus("Exgartuan");
                 else SetStatusValue("Exgartuan", "1", value);
             }

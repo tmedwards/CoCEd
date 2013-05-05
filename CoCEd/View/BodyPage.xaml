@@ -49,14 +49,23 @@
                     <TextBlock              Text="Frame"/>
                     <common:MyNumericBox    Value="{Binding Game.Frame}" Upper="100" Tip="{Binding Game.FrameTip}"/>
 
-                    <TextBlock              Text="Skin tone"/>
-                    <ComboBox Text="{Binding Game.SkinTone}" ItemsSource="{Binding Data.Body.SkinTones}" Style="{StaticResource EditableTextBox}"/>
-
                     <TextBlock              Text="Skin type"/>
                     <common:MyComboBox SelectedValue="{Binding Game.SkinType}" ItemsSource="{Binding Data.Body.SkinTypes}"/>
 
+                    <TextBlock              Text="Skin tone"/>
+                    <ComboBox Text="{Binding Game.SkinTone}" ItemsSource="{Binding Data.Body.SkinTones}" Style="{StaticResource EditableTextBox}"/>
+
+                    <TextBlock              Text="Skin description"/>
+                    <ComboBox Text="{Binding Game.SkinDescription}" ItemsSource="{Binding Data.Body.SkinDescriptions}" Style="{StaticResource EditableTextBox}"/>
+
+                    <TextBlock              Text="Skin adjective"/>
+                    <ComboBox Text="{Binding Game.SkinAdjective}" ItemsSource="{Binding Data.Body.SkinAdjectives}" Style="{StaticResource EditableTextBox}"/>
+
                     <TextBlock              Text="Wings"/>
                     <common:MyComboBox SelectedValue="{Binding Game.WingType}" ItemsSource="{Binding Data.Body.WingTypes}"/>
+
+                    <TextBlock              Text="Wings description" IsEnabled="{Binding Game.IsWingEnabled}"/>
+                    <ComboBox Text="{Binding Game.WingDescription}" ItemsSource="{Binding Data.Body.WingDescriptions}" Style="{StaticResource EditableTextBox}" IsEnabled="{Binding Game.IsWingEnabled}"/>
                 </common:AutoGrid>
             </StackPanel>
 
