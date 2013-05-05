@@ -7,47 +7,53 @@
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
     
     <UserControl.Resources>
-        <Style x:Key="PerkStyle" TargetType="{x:Type TreeViewItem}">
-            <Setter Property="IsExpanded" Value="False"/>
-            <Setter Property="Focusable" Value="True"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                        <CheckBox Margin="5" IsChecked="{Binding IsOwned}" Focusable="False">
-                            <CheckBox.Content>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="{Binding Name}"/>
-                                    <TextBlock Grid.Row="1" Text="{Binding Description}" Margin="0,2,0,0" Foreground="#808080" TextWrapping="Wrap"/>
-                                </Grid>
-                            </CheckBox.Content>
-                        </CheckBox>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/PageInclude.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
-        <Style x:Key="GroupStyle" TargetType="{x:Type TreeViewItem}">
-            <Setter Property="IsExpanded" Value="True"/>
-            <Setter Property="ItemsSource" Value="{Binding Perks}"/>
-            <Setter Property="ItemContainerStyle" Value="{StaticResource PerkStyle}"/>
-            <Setter Property="Focusable" Value="false"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                        <StackPanel Orientation="Vertical" Margin="0,30,0,0">
-                            <Border Background="Transparent" IsHitTestVisible="False">
-                                <TextBlock Text="{Binding Name}" Margin="4" FontSize="14" FontWeight="Bold"/>
-                            </Border>
-                            <ItemsPresenter x:Name="ItemsHost" Margin="0,0,0,20" />
-                        </StackPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+            <Style x:Key="PerkStyle" TargetType="{x:Type TreeViewItem}">
+                <Setter Property="IsExpanded" Value="False"/>
+                <Setter Property="Focusable" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                            <CheckBox Margin="5" IsChecked="{Binding IsOwned}" Focusable="False">
+                                <CheckBox.Content>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding Name}"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding Description}" Style="{StaticResource StatusText}" Margin="0,2,0,0" IsEnabled="{Binding IsOwned}" TextWrapping="Wrap"/>
+                                    </Grid>
+                                </CheckBox.Content>
+                            </CheckBox>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="GroupStyle" TargetType="{x:Type TreeViewItem}">
+                <Setter Property="IsExpanded" Value="True"/>
+                <Setter Property="ItemsSource" Value="{Binding Perks}"/>
+                <Setter Property="ItemContainerStyle" Value="{StaticResource PerkStyle}"/>
+                <Setter Property="Focusable" Value="false"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                            <StackPanel Orientation="Vertical" Margin="0,30,0,0">
+                                <Border Background="Transparent" IsHitTestVisible="False">
+                                    <TextBlock Text="{Binding Name}" Margin="4" FontSize="14" FontWeight="Bold"/>
+                                </Border>
+                                <ItemsPresenter x:Name="ItemsHost" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
     
     <Grid>
