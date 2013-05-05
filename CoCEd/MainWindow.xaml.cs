@@ -58,6 +58,12 @@ namespace CoCEd
                     throw new NotImplementedException();
             }
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            App.Current.Shutdown();
+        }
 #endif             
     }
 }

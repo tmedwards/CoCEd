@@ -91,6 +91,7 @@ namespace CoCEd
 
             FileManager.BuildPaths();
             var set = FileManager.CreateSet();
+            var result = ExceptionBoxResult.Continue;
             if (FileManager.MoreThanOneFolderPath != null)
             {
                 box = new ExceptionBox();
@@ -98,7 +99,7 @@ namespace CoCEd
                 box.Message = "There should be only one child folder in the folder below.\nSome files won't be displayed in the open/save menus.";
                 box.Path = FileManager.MoreThanOneFolderPath;
                 box.IsWarning = true;
-                box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
+                result = box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
             }
             if (FileManager.MissingPermissionPath != null)
             {
@@ -107,7 +108,12 @@ namespace CoCEd
                 box.Message = "CoCEd did not get the permission to read a folder or a file.\nSome files won't be displayed in the open/save menus.";
                 box.Path = FileManager.MissingPermissionPath;
                 box.IsWarning = true;
-                box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
+                result = box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
+            }
+            if (result == ExceptionBoxResult.Quit)
+            {
+                Shutdown();
+                return;
             }
 
 #if DEBUG
