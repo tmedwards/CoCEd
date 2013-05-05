@@ -64,13 +64,14 @@
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Focusable" Value="false"/>
         <Setter Property="Margin" Value="8,3"/>
+        <Setter Property="Width" Value="250"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type common:MyNumericBox}">
                     <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*" MaxWidth="150"/>
+                            <ColumnDefinition Width="Auto" MaxWidth="100"/>
                         </Grid.ColumnDefinitions>
                         <Border x:Name="root" BorderThickness="1" BorderBrush="#ABADB3" Background="White" SnapsToDevicePixels="True" HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Stretch">
@@ -130,6 +131,7 @@
         <Setter Property="AllowDrop" Value="true"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="3"/>
+        <Setter Property="Margin" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -164,7 +166,7 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                            <Border BorderThickness="0,0,0,1" BorderBrush="#808080" SnapsToDevicePixels="True">
+                        <Border BorderThickness="0,0,0,1" BorderBrush="#808080" SnapsToDevicePixels="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>

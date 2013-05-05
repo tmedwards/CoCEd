@@ -102,7 +102,7 @@
                         <common:MyNumericBox    Value="{Binding LactationMultiplier}" Type="Double" Tip="{Binding MilkVolume}"/>
 
                         <Border/>
-                        <CheckBox Content="Fuckable nipples*" ToolTip="Your nipples do have a hole." IsChecked="{Binding Fuckable}" Margin="54,5,0,0"/>
+                        <CheckBox Content="Fuckable nipples*" ToolTip="Your nipples do have a hole." IsChecked="{Binding Fuckable}" Margin="8,5,0,0"/>
                     </common:AutoGrid>
                 </common:ArrayEditor>
 
