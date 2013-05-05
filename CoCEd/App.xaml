@@ -5,6 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Scrollbars.xaml"/>
                 <ResourceDictionary Source="Themes/Templates.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

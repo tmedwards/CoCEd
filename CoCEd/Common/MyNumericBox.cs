@@ -42,7 +42,7 @@ namespace CoCEd.Common
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(double), typeof(MyNumericBox), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnPropertiesChanged));
         public static readonly DependencyProperty UnitProperty = DependencyProperty.Register("Unit", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
-        public static readonly DependencyProperty TipProperty = DependencyProperty.Register("Tip", typeof(string), typeof(MyNumericBox), new PropertyMetadata(""));
+        public static readonly DependencyProperty TipProperty = DependencyProperty.Register("Tip", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
 
         static readonly DependencyPropertyKey HasErrorPropertyKey = DependencyProperty.RegisterReadOnly("HasError", typeof(bool), typeof(MyNumericBox), new PropertyMetadata(false));
         public static readonly DependencyProperty HasErrorProperty = HasErrorPropertyKey.DependencyProperty;
@@ -207,7 +207,7 @@ namespace CoCEd.Common
         static void OnPropertiesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             MyNumericBox box = (MyNumericBox)obj;
-            if (box._lowerButton == null) return;
+            if (box._textBox == null) return;
             box.Update();
         }
 
@@ -247,27 +247,32 @@ namespace CoCEd.Common
         bool _preserveText;
         bool TrySetValue(bool showError = true)
         {
-            _preserveText = true;
-            try
+            double value;
+            // Do it now for performances reasons
+            if (ValueToText(Value) == _textBox.Text)
             {
-
-                double value;
-                if (TextToValue(_textBox.Text, out value)) return TrySetValue(value, showError);
-                if (showError) HasError = true;
-                return false;
+                HasError = false;
+                return true;
             }
-            finally
-            {
-                _preserveText = false;
-            }
+            if (TextToValue(_textBox.Text, out value)) return TrySetValue(value, showError);
+            if (showError) HasError = true;
+            return false;
         }
 
         bool TrySetValue(double value, bool showError = true)
         {
             if (Validate(value))
             {
-                Value = value;
-                HasError = false;
+                _preserveText = true;
+                try
+                {
+                    Value = value;
+                    HasError = false;
+                }
+                finally
+                {
+                    _preserveText = false;
+                }
                 return true;
             }
             else
@@ -502,7 +507,7 @@ namespace CoCEd.Common
             string str;
 
             if (Type == NumericType.Double) str = value.ToString("0.0");
-            else str = value.ToString("0");
+            else str = ((int)value).ToString();
 
             if (!String.IsNullOrEmpty(Unit)) str += " " + Unit;
 

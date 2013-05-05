@@ -15,43 +15,14 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                            <Grid x:Name="root">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Rectangle Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Fill="White" Width="1"/>
-
-                                <CheckBox IsChecked="{Binding HasItem}" Margin="4,8">
-                                    <CheckBox.Content>
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Text="{Binding Name}" FontSize="12"/>
-                                            <TextBlock Text="{Binding Comment}" IsEnabled="{Binding HasItem}" Visibility="{Binding CommentVisiblity}" Style="{StaticResource StatusText}" TextWrapping="Wrap"/>
-                                            <common:AutoGrid Margin="10,6,0,20" IsEnabled="{Binding HasItem}" Visibility="{Binding DetailsVisibility}" x:Name="details">
-                                                <TextBlock Text="Value1" Style="{StaticResource StatusText}"/>
-                                                <common:MyNumericBox Value="{Binding Value1}" Margin="-30,-1,0,-1" Lower="{x:Null}" Min="{x:Null}" Height="30"/>
-
-                                                <TextBlock Text="Value2" Style="{StaticResource StatusText}"/>
-                                                <common:MyNumericBox Value="{Binding Value2}" Margin="-30,-1,0,-1" Lower="{x:Null}" Min="{x:Null}" Height="30"/>
-
-                                                <TextBlock Text="Value3" Style="{StaticResource StatusText}"/>
-                                                <common:MyNumericBox Value="{Binding Value3}" Margin="-30,-1,0,-1" Lower="{x:Null}" Min="{x:Null}" Height="30"/>
-
-                                                <TextBlock Text="Value4" Style="{StaticResource StatusText}"/>
-                                                <common:MyNumericBox Value="{Binding Value4}" Margin="-30,-1,0,-1" Lower="{x:Null}" Min="{x:Null}" Height="30"/>
-                                            </common:AutoGrid>
-                                        </StackPanel>
-                                    </CheckBox.Content>
-                                </CheckBox>
-
-                                <ToggleButton x:Name="toggle" Grid.Column="1" IsChecked="{Binding IsExpanded}" Style="{StaticResource StatusToggle}" VerticalAlignment="Stretch" Margin="1,0,0,0"/>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="root" Property="Background" Value="#F0F0F0"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
+                            <CheckBox IsChecked="{Binding HasItem}" Margin="4,8">
+                                <CheckBox.Content>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Name}" FontSize="12"/>
+                                        <TextBlock Text="{Binding Comment}" IsEnabled="{Binding HasItem}" Visibility="{Binding CommentVisiblity}" Style="{StaticResource StatusText}" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </CheckBox.Content>
+                            </CheckBox>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -60,7 +31,7 @@
     </UserControl.Resources>
     
     <Grid>
-        <ListBox ItemsSource="{Binding Game.KeyItems}" ItemContainerStyle="{StaticResource KeyItemStyle}" BorderThickness="0" Margin="30,30,0,0" Padding="0"
+        <ListBox ItemsSource="{Binding Game.KeyItems}" ItemContainerStyle="{StaticResource KeyItemStyle}" BorderThickness="0" Margin="30,0,0,0" Padding="0,30,0,0"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False"/>
     </Grid>
 </UserControl>
