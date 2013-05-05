@@ -11,6 +11,42 @@
                 <ResourceDictionary Source="../Themes/PageInclude.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <Style x:Key="StatusToggle" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Foreground" Value="#808080"/>
+                <Setter Property="Background" Value="#00FFFFFF"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Grid Background="{TemplateBinding Background}">
+                                <Path x:Name="up" Fill="{TemplateBinding Foreground}" Data="M 0 0 L 5 -5 L 10 0 Z" HorizontalAlignment="Center" VerticalAlignment="Top" SnapsToDevicePixels="True" Margin="2,14,2,0" Visibility="Hidden"/>
+                                <Path x:Name="down" Fill="{TemplateBinding Foreground}" Data="M 0 0 L 5 5 L 10 0 Z" HorizontalAlignment="Center" VerticalAlignment="Top" SnapsToDevicePixels="True" Margin="2,10,2,0"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="Background" Value="#A0A0A0"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="up" Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="down" Property="Visibility" Value="Hidden"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="StatusText" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="#404040"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=IsEnabled}" Value="False">
+                        <Setter Property="Foreground" Value="#808080"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            
             <Style x:Key="StatusStyle" TargetType="{x:Type ListBoxItem}">
                 <Setter Property="Focusable" Value="False"/>
                 <Setter Property="Template">
@@ -118,7 +154,7 @@
             <TextBlock Text="Statuses" Style="{StaticResource Header}" Margin="4,0,0,0"/>
         </Border>
 
-        <ListBox ItemsSource="{Binding Game.Statuses}" ItemContainerStyle="{StaticResource StatusStyle}" BorderThickness="0" Margin="0,-1,0,0" Padding="0,1,0,0" Background="Transparent" Grid.Column="2" Grid.Row="2"
+        <ListBox ItemsSource="{Binding Game.Statuses}" ItemContainerStyle="{StaticResource StatusStyle}" BorderThickness="0" Margin="0,0,0,0" Padding="0,0,0,0" Background="Transparent" Grid.Column="2" Grid.Row="2"
                  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False"/>
     </Grid>
 </UserControl>
