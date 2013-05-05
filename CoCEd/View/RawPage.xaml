@@ -12,6 +12,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="StatusStyle" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Focusable" Value="False"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -23,7 +24,7 @@
                                 
                                 <Rectangle Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Fill="White" Width="1"/>
 
-                                <CheckBox IsChecked="{Binding HasStatus}" Margin="4,8">
+                                <CheckBox IsChecked="{Binding HasStatus}" Margin="4,8" Focusable="True">
                                     <CheckBox.Content>
                                         <StackPanel Orientation="Vertical">
                                             <TextBlock Text="{Binding Name}" FontSize="12"/>
@@ -72,7 +73,7 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="{Binding Index}" Margin="6" VerticalAlignment="Center" Foreground="#808080"/>
                                     <TextBlock x:Name="text" Text="{Binding Label}" ToolTip="{Binding Comment}" Foreground="#404040" TextWrapping="Wrap" Grid.Column="1" VerticalAlignment="Center" Margin="0,6,4,6"/>
-                                    <TextBox Text="{Binding ValueLabel}" Grid.Column="2" Margin="0,-1,0,-1" Padding="2" BorderThickness="1" BorderBrush="Transparent" Panel.ZIndex="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                                    <TextBox PreviewKeyDown="flagTextBox_PreviewKeyDown" Text="{Binding Path=ValueLabel, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Margin="0,-1,0,-1" Padding="2" BorderThickness="1" BorderBrush="Transparent" Panel.ZIndex="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
                                 </Grid>
                             </Border>
                         </ControlTemplate>
