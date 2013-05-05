@@ -30,16 +30,16 @@
                                             <TextBlock Text="{Binding Comment}" IsEnabled="{Binding HasStatus}" Visibility="{Binding CommentVisiblity}" Style="{StaticResource StatusText}" TextWrapping="Wrap"/>
                                             <common:AutoGrid Columns="4" Margin="10,6,0,20" IsEnabled="{Binding HasStatus}" Visibility="{Binding DetailsVisibility}" x:Name="details">
                                                 <TextBlock Text="Value1" Style="{StaticResource StatusText}"/>
-                                                <common:MyNumericBox Value="{Binding Value1}" IsInteger="False" Margin="-35,-1,0,-1" Height="30"/>
+                                                <common:MyNumericBox Value="{Binding Value1}" Min="{x:Null}" Lower="{x:Null}" Margin="-35,-1,0,-1" Height="30"/>
 
                                                 <TextBlock Text="Value2" Style="{StaticResource StatusText}" Margin="40,0,4,0"/>
-                                                <common:MyNumericBox Value="{Binding Value2}" IsInteger="False" Margin="-35,-1,0,-1" Height="30"/>
+                                                <common:MyNumericBox Value="{Binding Value2}" Min="{x:Null}" Lower="{x:Null}" Margin="-35,-1,0,-1" Height="30"/>
 
                                                 <TextBlock Text="Value3" Style="{StaticResource StatusText}" Margin="0,0,4,0"/>
-                                                <common:MyNumericBox Value="{Binding Value3}" IsInteger="False" Margin="-35,-1,0,-1" Height="30"/>
+                                                <common:MyNumericBox Value="{Binding Value3}" Min="{x:Null}" Lower="{x:Null}" Margin="-35,-1,0,-1" Height="30"/>
 
                                                 <TextBlock Text="Value4" Style="{StaticResource StatusText}" Margin="40,0,4,0"/>
-                                                <common:MyNumericBox Value="{Binding Value4}" IsInteger="False" Margin="-35,-1,0,-1" Height="30"/>
+                                                <common:MyNumericBox Value="{Binding Value4}" Min="{x:Null}" Lower="{x:Null}" Margin="-35,-1,0,-1" Height="30"/>
                                             </common:AutoGrid>
                                         </StackPanel>
                                     </CheckBox.Content>

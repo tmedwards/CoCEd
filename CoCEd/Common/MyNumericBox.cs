@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,72 +18,94 @@ using System.Windows.Shapes;
 
 namespace CoCEd.Common
 {
-    [TemplatePart(Name = "border", Type = typeof(Border))]
+    public enum NumericType
+    {
+        Int,
+        UInt,
+        Double,
+    }
+
+    [TemplatePart(Name = "tipText", Type = typeof(TextBlock))]
     [TemplatePart(Name = "textBox", Type = typeof(TextBox))]
-    [TemplatePart(Name = "toolTip", Type = typeof(TextBlock))]
-    [TemplatePart(Name = "minButton", Type = typeof(Button))]
-    [TemplatePart(Name = "maxButton", Type = typeof(Button))]
+    [TemplatePart(Name = "lowerButton", Type = typeof(Button))]
+    [TemplatePart(Name = "upperButton", Type = typeof(Button))]
     public class MyNumericBox : Control
     {
-        public static readonly DependencyProperty MinProperty = DependencyProperty.Register("Min", typeof(double), typeof(MyNumericBox), new PropertyMetadata(Double.MinValue, OnPropertiesChanged));
-        public static readonly DependencyProperty MaxProperty = DependencyProperty.Register("Max", typeof(double), typeof(MyNumericBox), new PropertyMetadata(Double.MaxValue, OnPropertiesChanged));
-        public static readonly DependencyProperty ShowMinButtonProperty = DependencyProperty.Register("ShowMinButton", typeof(bool), typeof(MyNumericBox), new PropertyMetadata(true, OnPropertiesChanged));
-        public static readonly DependencyProperty ShowMaxButtonProperty = DependencyProperty.Register("ShowMaxButton", typeof(bool), typeof(MyNumericBox), new PropertyMetadata(true, OnPropertiesChanged));
+        public static readonly DependencyProperty MinProperty = DependencyProperty.Register("Min", typeof(double?), typeof(MyNumericBox), new PropertyMetadata(0.0, OnPropertiesChanged));
+        public static readonly DependencyProperty MaxProperty = DependencyProperty.Register("Max", typeof(double?), typeof(MyNumericBox), new PropertyMetadata(null, OnPropertiesChanged));
+        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register("Type", typeof(NumericType), typeof(MyNumericBox), new PropertyMetadata(NumericType.Int, OnPropertiesChanged));
 
-        public static readonly DependencyProperty IsIntegerProperty = DependencyProperty.Register("IsInteger", typeof(bool), typeof(MyNumericBox), new PropertyMetadata(true, OnPropertiesChanged));
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(double), typeof(MyNumericBox), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged));
+        public static readonly DependencyProperty LowerProperty = DependencyProperty.Register("Lower", typeof(double?), typeof(MyNumericBox), new PropertyMetadata(0.0, OnPropertiesChanged));
+        public static readonly DependencyProperty UpperProperty = DependencyProperty.Register("Upper", typeof(double?), typeof(MyNumericBox), new PropertyMetadata(null, OnPropertiesChanged));
+        public static readonly DependencyProperty LowerLabelProperty = DependencyProperty.Register("LowerLabel", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
+        public static readonly DependencyProperty UpperLabelProperty = DependencyProperty.Register("UpperLabel", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
 
-        public static readonly DependencyProperty ErrorBrushProperty = DependencyProperty.Register("ErrorBrush", typeof(Brush), typeof(MyNumericBox), new PropertyMetadata(Brushes.Pink, OnPropertiesChanged));
-        public static readonly DependencyProperty MinLabelProperty = DependencyProperty.Register("MinLabel", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
-        public static readonly DependencyProperty MaxLabelProperty = DependencyProperty.Register("MaxLabel", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(double), typeof(MyNumericBox), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnPropertiesChanged));
         public static readonly DependencyProperty UnitProperty = DependencyProperty.Register("Unit", typeof(string), typeof(MyNumericBox), new PropertyMetadata("", OnPropertiesChanged));
         public static readonly DependencyProperty TipProperty = DependencyProperty.Register("Tip", typeof(string), typeof(MyNumericBox), new PropertyMetadata(""));
+
+        static readonly DependencyPropertyKey HasErrorPropertyKey = DependencyProperty.RegisterReadOnly("HasError", typeof(bool), typeof(MyNumericBox), new PropertyMetadata(false));
+        public static readonly DependencyProperty HasErrorProperty = HasErrorPropertyKey.DependencyProperty;
+
 
         static MyNumericBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MyNumericBox), new FrameworkPropertyMetadata(typeof(MyNumericBox)));
         }
 
-        TextBlock _toolTip;
+        TextBlock _tipText;
         TextBox _textBox;
-        Button _minButton;
-        Button _maxButton;
-        Border _border;
+        Button _lowerButton;
+        Button _upperButton;
 
-        public double Min
+        public double? Min
         {
-            get { return (double)GetValue(MinProperty); }
+            get { return (double?)GetValue(MinProperty); }
             set { SetValue(MinProperty, value); }
         }
 
-        public double Max
+        public double? Max
         {
-            get { return (double)GetValue(MaxProperty); }
+            get { return (double?)GetValue(MaxProperty); }
             set { SetValue(MaxProperty, value); }
         }
+
+        public NumericType Type
+        {
+            get { return (NumericType)GetValue(TypeProperty); }
+            set { SetValue(TypeProperty, value); }
+        }
+
+        public double? Lower
+        {
+            get { return (double?)GetValue(LowerProperty); }
+            set { SetValue(LowerProperty, value); }
+        }
+
+        public double? Upper
+        {
+            get { return (double?)GetValue(UpperProperty); }
+            set { SetValue(UpperProperty, value); }
+        }
+
+        public string LowerLabel
+        {
+            get { return GetValue(LowerLabelProperty) as string; }
+            set { SetValue(LowerLabelProperty, value); }
+        }
+
+        public string UpperLabel
+        {
+            get { return GetValue(UpperLabelProperty) as string; }
+            set { SetValue(UpperLabelProperty, value); }
+        }
+
+
 
         public double Value
         {
             get { return (double)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
-        }
-
-        public bool ShowMinButton
-        {
-            get { return (bool)GetValue(ShowMinButtonProperty); }
-            set { SetValue(ShowMinButtonProperty, value); }
-        }
-
-        public bool ShowMaxButton
-        {
-            get { return (bool)GetValue(ShowMaxButtonProperty); }
-            set { SetValue(ShowMaxButtonProperty, value); }
-        }
-
-        public bool IsInteger
-        {
-            get { return (bool)GetValue(IsIntegerProperty); }
-            set { SetValue(IsIntegerProperty, value); }
         }
 
         public string Unit
@@ -91,236 +114,399 @@ namespace CoCEd.Common
             set { SetValue(UnitProperty, value); }
         }
 
-        public string MinLabel
-        {
-            get { return (string)GetValue(MinLabelProperty); }
-            set { SetValue(MinLabelProperty, value); }
-        }
-
-        public string MaxLabel
-        {
-            get { return (string)GetValue(MaxLabelProperty); }
-            set { SetValue(MaxLabelProperty, value); }
-        }
-
         public string Tip
         {
             get { return (string)GetValue(TipProperty); }
             set { SetValue(TipProperty, value); }
         }
 
-        public Brush ErrorBrush
+
+        public bool HasError
         {
-            get { return (Brush)GetValue(ErrorBrushProperty); }
-            set { SetValue(ErrorBrushProperty, value); }
+            get { return (bool)GetValue(HasErrorProperty); }
+            private set { SetValue(HasErrorPropertyKey, value); }
         }
+
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            if (_minButton != null) _minButton.Click -= minButton_Click;
-            if (_maxButton != null) _maxButton.Click -= maxButton_Click;
+            if (_lowerButton != null) _lowerButton.Click -= lowerButton_Click;
+            if (_upperButton != null) _upperButton.Click -= upperButton_Click;
             if (_textBox != null) _textBox.TextChanged -= textBox_OnTextChanged;
-            if (_textBox != null) _textBox.GotMouseCapture -= textBox_OnFocused;
-            if (_textBox != null) _textBox.GotKeyboardFocus -= textBox_OnFocused;
             if (_textBox != null) _textBox.LostKeyboardFocus -= textBox_LostFocus;
-            if (_textBox != null) _textBox.PreviewKeyDown -= textBox_PreviewKeyDown;
+            if (_textBox != null) _textBox.GotKeyboardFocus -= textBox_GotKeyboardFocus;
             if (_textBox != null) _textBox.PreviewMouseDown -= _textBox_PreviewMouseDown;
+            if (_textBox != null) _textBox.PreviewKeyDown -= textBox_PreviewKeyDown;
 
-            _border = GetTemplateChild("border") as Border;
+            _tipText = GetTemplateChild("tipText") as TextBlock;
             _textBox = GetTemplateChild("textBox") as TextBox;
-            _minButton = GetTemplateChild("minButton") as Button;
-            _maxButton = GetTemplateChild("maxButton") as Button;
-            _toolTip = GetTemplateChild("toolTip") as TextBlock;
+            _lowerButton = GetTemplateChild("lowerButton") as Button;
+            _upperButton = GetTemplateChild("upperButton") as Button;
 
-            if (_minButton != null) _minButton.Click += minButton_Click;
-            if (_maxButton != null) _maxButton.Click += maxButton_Click;
+            if (_lowerButton != null) _lowerButton.Click += lowerButton_Click;
+            if (_upperButton != null) _upperButton.Click += upperButton_Click;
             if (_textBox != null) _textBox.TextChanged += textBox_OnTextChanged;
-            if (_textBox != null) _textBox.GotMouseCapture += textBox_OnFocused;
-            if (_textBox != null) _textBox.GotKeyboardFocus += textBox_OnFocused;
             if (_textBox != null) _textBox.LostKeyboardFocus += textBox_LostFocus;
-            if (_textBox != null) _textBox.PreviewKeyDown += textBox_PreviewKeyDown;
+            if (_textBox != null) _textBox.GotKeyboardFocus += textBox_GotKeyboardFocus;
             if (_textBox != null) _textBox.PreviewMouseDown += _textBox_PreviewMouseDown;
+            if (_textBox != null) _textBox.PreviewKeyDown += textBox_PreviewKeyDown;
 
-            OnTextChanged();
-            OnValueChanged();
+            Update();
+        }
+
+        void textBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (e.OriginalSource != _textBox) return;
+            _textBox.SelectAll();
         }
 
         void _textBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (_textBox.SelectedText == _textBox.Text && _textBox.IsFocused)
-            {
-                _textBox.Select(0,0);
-                e.Handled = true;
-            }
+            if (_textBox.IsKeyboardFocusWithin) return;
+            _textBox.Focus();
+            e.Handled = true;
+        }
+
+        void textBox_LostFocus(object sender, EventArgs e)
+        {
+            if (HasError) return;
+            _textBox.Text = ValueToText(Value);
         }
 
         void textBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up)
             {
-                if (Value >= Max) return;
-                if (Value != (int)Value) Value = 1 + (int)Value;
-                else ++Value;
+                TrySetValue(1 + (int)Value); // 0.5 becomes 1, then 1 becomes 2
                 e.Handled = true;
             }
             else if (e.Key == Key.Down)
             {
-                if (Value <= Min) return;
-                if (Value != (int)Value) Value = (int)Value;
-                else --Value;
+                
+                TrySetValue(-(int)(1 - Value)); // -0.5 becomes -1, then -1 becomes -2
                 e.Handled = true;
             }
         }
 
-        void textBox_PreviewKeyUp(object sender, KeyEventArgs e)
+        void lowerButton_Click(object sender, RoutedEventArgs e)
         {
-            ++Value;
-            e.Handled = true;
+            TrySetValue(Lower.Value);   
         }
-
-        void textBox_OnFocused(object sender, EventArgs e)
+        void upperButton_Click(object sender, RoutedEventArgs e)
         {
-            _textBox.SelectAll();
-        }
-
-        void textBox_LostFocus(object sender, EventArgs e)
-        {
-            if (_hasError) return;
-            DoPrettyFormat();
-        }
-
-        void minButton_Click(object sender, RoutedEventArgs e)
-        {
-            Value = Min;   
-        }
-        void maxButton_Click(object sender, RoutedEventArgs e)
-        {
-            Value = Max;
+            TrySetValue(Upper.Value);
         }
 
         void textBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            OnTextChanged();
+            TrySetValue();
         }
 
         static void OnPropertiesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             MyNumericBox box = (MyNumericBox)obj;
-            if (box._minButton == null) return;
-            box.OnTextChanged();
-            box.OnValueChanged();
+            if (box._lowerButton == null) return;
+            box.Update();
         }
 
-        static void OnValueChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        void Update()
         {
-            MyNumericBox box = (MyNumericBox)obj;
-            if (box._minButton == null) return;
-            box.OnValueChanged();
+            if (!_preserveText) _textBox.Text = ValueToText(Value);
+            UpdateButton(_lowerButton, Lower, LowerLabel);
+            UpdateButton(_upperButton, Upper, UpperLabel);
+            _tipText.Text = GetTip();
         }
 
-        void OnValueChanged()
+        string GetTip()
         {
-            if (!_textChanged) DoPrettyFormat();
-            SetUpButton(_minButton, Min, MinLabel, ShowMinButton);
-            SetUpButton(_maxButton, Max, MaxLabel, ShowMaxButton);
+            if (!String.IsNullOrEmpty(Tip)) return Tip;
+
+            if (Unit == "feet") return String.Format("{0:0}cm", Value * 12 * 2.54);
 
             if (Unit == "inches")
             {
-                if (Value >= 12) _toolTip.Text = String.Format("{0:0} cm ; {1:0}' {2:0}", Value * 2.54, (int)(Value / 12), Value % 12);
-                else if (Value >= 4) _toolTip.Text = String.Format("{0:0} cm", Value * 2.54);
-                else _toolTip.Text = String.Format("{0:0.0} cm", Value * 2.54);
+                if (Value >= 12) return String.Format("{0:0} cm ; {1:0}' {2:0}\"", Value * 2.54, (int)(Value / 12), Value % 12);
+                if (Value >= 4) return String.Format("{0:0} cm", Value * 2.54);
+                return String.Format("{0:0.0} cm", Value * 2.54);
             }
-            else if (Unit == "feet")
-            {
-                _toolTip.Text = String.Format("{0:0}cm", Value * 12 * 2.54);
-            }
-            else _toolTip.Text = Tip;
+
+            return "";
         }
 
-        void SetUpButton(Button button, double value, string label, bool show)
+        void UpdateButton(Button button, double? value, string label)
         {
-            if (!String.IsNullOrEmpty(label)) button.Content = label;
-            else if (value != Double.MinValue && value != Double.MaxValue) button.Content = value.ToString(CultureInfo.InvariantCulture);
-            else button.Content = "";
+            if (String.IsNullOrEmpty(label) && value.HasValue) label = value.Value.ToString();
 
-            button.Visibility = (show && (button.Content as string) != "") ? Visibility.Visible : Visibility.Collapsed;
+            button.Visibility = (value.HasValue && label != "") ? Visibility.Visible : Visibility.Collapsed;
+            button.Content = label;
+
         }
 
-        bool _hasError;
-        bool _textChanged;
-        void OnTextChanged()
+        bool _preserveText;
+        bool TrySetValue(bool showError = true)
         {
-            _textChanged = true;
+            _preserveText = true;
             try
             {
-                if (TrySetValue(_textBox.Text))
-                {
-                    _hasError = false;
-                    _border.Background = Brushes.Transparent;
-                }
-                else
-                {
-                    _hasError = true;
-                    _border.Background = ErrorBrush;
-                }
+
+                double value;
+                if (TextToValue(_textBox.Text, out value)) return TrySetValue(value, showError);
+                if (showError) HasError = true;
+                return false;
             }
             finally
             {
-                _textChanged = false;
+                _preserveText = false;
             }
         }
 
-        bool TrySetValue(string str)
+        bool TrySetValue(double value, bool showError = true)
         {
-            str = str.Trim();
-            if (IsPrettyFormat(str, Value)) return true;
-
-            if (IsInteger)
+            if (Validate(value))
             {
-                // Adobe encoded integer on 29bits (7+7+7+8)
-                const int AmfMax = (1 << 28) - 1;
-                const int AmfMin = -(1 << 28);
-
-                int value;
-                if (!Int32.TryParse(str, NumberStyles.Integer, CultureInfo.InvariantCulture, out value) &&
-                    !Int32.TryParse(str, NumberStyles.Integer, CultureInfo.CurrentCulture, out value)) return false;
-                if (value < AmfMin || value > AmfMax) return false;
-                if (value < Min || value > Max) return false;
-
                 Value = value;
+                HasError = false;
                 return true;
             }
             else
             {
-                double value;
-                if (!Double.TryParse(str, NumberStyles.Float, CultureInfo.InvariantCulture, out value) &&
-                    !Double.TryParse(str, NumberStyles.Float, CultureInfo.CurrentCulture, out value)) return false;
-                if (value < Min || value > Max) return false;
-
-                Value = value;
-                return true;
+                if (showError) HasError = true;
+                return false;
             }
         }
 
-        void DoPrettyFormat()
+        bool Validate(double value)
         {
-            var format = IsInteger ? "0" : "0.0";
-            _textBox.Text = Value.ToString(format, CultureInfo.CurrentCulture);
+            if (Min.HasValue && value < Min.Value) return false;
+            if (Max.HasValue && value > Max.Value) return false;
+
+            if (Type == NumericType.Int)
+            {
+                const int extremum = 1 << 28;
+                if (value < -extremum) return false;
+                if (value >= extremum) return false;
+                if (value != (int)value) return false;
+            }
+            else if (Type == NumericType.UInt)
+            {
+                const int extremum = 1 << 29;
+                if (value < 0) return false;
+                if (value >= extremum) return false;
+                if (value != (int)value) return false;
+            }
+
+            return true;
         }
 
-        bool IsPrettyFormat(string text, double value)
+        bool TextToValue(string str, out double value)
         {
-            //if (value.ToString(CultureInfo.CurrentCulture) == text) return true;
-            if (IsInteger && value.ToString("0", CultureInfo.CurrentCulture) == text) return true;
-            if (!IsInteger && value.ToString("0.0", CultureInfo.CurrentCulture) == text) return true;
+            value = 0;
+            string unit1;
+            string unit2;
+            double value1;
+            double value2;
+            if (!Parse(str, out value1, out unit1, out value2, out unit2)) return false;
 
-            /*if (value.ToString(CultureInfo.InvariantCulture) == text) return true;
-            if (IsInteger && value.ToString("0", CultureInfo.InvariantCulture) == text) return true;
-            if (!IsInteger && value.ToString("0.0", CultureInfo.InvariantCulture) == text) return true;*/
+            var unit = NormalizeUnit(Unit);
+            value = value1;
+
+            // No unit was specified?
+            if (unit1 == null && unit2 == null) return true;
+
+            // Same unit was specified?
+            if (unit1 == unit && unit2 == null) return true;
+
+            //No unit expected?
+            if (unit == null) return false;
+
+            // Unit does not match?
+            if (unit == "%") return false;
+
+            // Inches expected
+            if (unit == "inches")
+            {
+                if (unit1 == "feet" && unit2 == null)
+                {
+                    value = 12 * value1;
+                    return true;
+                }
+                if (unit1 == "feet" && unit2 == "inches")
+                {
+                    value = 12 * value1 + value2;
+                    return true;
+                }
+                if (unit1 == "meters" && unit2 == null)
+                {
+                    value = value1 / 0.0254;
+                    return true;
+                }
+                if (unit1 == "decimeters" && unit2 == null)
+                {
+                    value = value1 / 0.254;
+                    return true;
+                }
+                if (unit1 == "centimeters" && unit2 == null)
+                {
+                    value = value1 / 2.54;
+                    return true;
+                }
+                if (unit1 == "millimeters" && unit2 == null)
+                {
+                    value = value1 / 25.4;
+                    return true;
+                }
+                return false;
+            }
+
+            // Inches expected
+            if (unit == "inches²")
+            {
+                if (unit1 == "feet²" && unit2 == null)
+                {
+                    value = 12 * 12 * value1;
+                    return true;
+                }
+                if (unit1 == "meters²" && unit2 == null)
+                {
+                    value = value1 / (0.0254 * 0.0254);
+                    return true;
+                }
+                if (unit1 == "decimeters²" && unit2 == null)
+                {
+                    value = value1 / (0.254 * 0.254);
+                    return true;
+                }
+                if (unit1 == "centimeters²" && unit2 == null)
+                {
+                    value = value1 / (2.54 * 2.54);
+                    return true;
+                }
+                if (unit1 == "millimeters" && unit2 == null)
+                {
+                    value = value1 / (25.4 * 25.4);
+                    return true;
+                }
+                return false;
+            }
 
             return false;
+        }
+
+        bool Parse(string str, out double value1, out string unit1, out double value2, out string unit2)
+        {
+            value1 = 0;
+            value2 = 0;
+            unit1 = null;
+            unit2 = null;
+
+            var separators = @"\.";
+            if (CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator != ".") separators += CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+
+            var unitFormat = @"[^\d\s" + separators + "]+";
+            var numberFormat = @"[\d" + separators + "]+";
+            var format = @"^\s*(?<value1>" + numberFormat + @")\s*(?<unit1>" + unitFormat + @")?\s*(?<value2>" + numberFormat + @")?\s*(?<unit2>" + unitFormat + @")?\s*$";
+
+            // Match
+            var cultureRegex = new Regex(format);
+            var match = cultureRegex.Match(str);
+            int captures = match.Groups.Cast<Group>().Count(x => x.Success) - 1;
+            if (captures == 0) return false;
+
+            // Value 1
+            var group = match.Groups["value1"];
+            if (!group.Success) return false;
+            if (!Double.TryParse(group.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out value1) && 
+                !Double.TryParse(group.Value, NumberStyles.Float, CultureInfo.CurrentCulture, out value1)) return false;
+            if (captures == 1) return true;
+
+            // Unit 1
+            group = match.Groups["unit1"];
+            if (!group.Success) return false;
+            unit1 = NormalizeUnit(group.Value);
+            if (captures == 2) return true;
+
+            // Value 2
+            group = match.Groups["value2"];
+            if (!group.Success) return false;
+            if (!Double.TryParse(group.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out value2) &&
+                !Double.TryParse(group.Value, NumberStyles.Float, CultureInfo.CurrentCulture, out value2)) return false;
+
+            // Unit 1
+            group = match.Groups["unit2"];
+            if (!group.Success) return false;
+            unit2 = NormalizeUnit(group.Value);
+
+            return true;
+        }
+
+        static string NormalizeUnit(string unit)
+        {
+            if (String.IsNullOrEmpty(unit)) return null;
+
+            unit = unit.ToLowerInvariant();
+            if (unit.EndsWith("²") && unit.Length > 1) return NormalizeUnit(unit.Substring(0, unit.Length - 1)) + "²";
+
+            switch (unit)
+            {
+                case "'":
+                case "ft":
+                case "foot":
+                case "feet":
+                    return "feet";
+
+                case "\"":
+                case "in":
+                case "inch":
+                case "inches":
+                    return "inches";
+
+                case "m":
+                case "meter":
+                case "meters":
+                    return "meters";
+
+                case "dm":
+                case "decimeter":
+                case "decimeters":
+                    return "decimeters";
+
+                case "cm":
+                case "centimeter":
+                case "centimeters":
+                    return "centimeters";
+
+                case "mm":
+                case "millimeter":
+                case "millimeters":
+                    return "millimeters";
+
+                case "d":
+                case "day":
+                case "days":
+                    return "days";
+
+                case "h":
+                case "hour":
+                case "hours":
+                    return "hours";
+
+                default:
+                    return unit;
+            }
+        }
+
+        string ValueToText(double value)
+        {
+            string str;
+
+            if (Type == NumericType.Double) str = value.ToString("0.0");
+            else str = value.ToString("0");
+
+            if (!String.IsNullOrEmpty(Unit)) str += " " + Unit;
+
+            return str;
         }
     }
 }

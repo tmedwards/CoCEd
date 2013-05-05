@@ -5,35 +5,53 @@
     xmlns:common="clr-namespace:CoCEd.Common">
 
     <SolidColorBrush x:Key="NumericBorderBrush" Color="#808080"/>
+    <SolidColorBrush x:Key="NumericDisabledBackground" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="NumericDisabledForeground" Color="#C0C0C0"/>
-    <SolidColorBrush x:Key="NumericDisabledForegroundDark" Color="#808080"/>
+    <SolidColorBrush x:Key="NumericDisabledForegroundDark" Color="#A0A0A0"/>
     <SolidColorBrush x:Key="NumericMouseOverBackground" Color="#DA3610"/>
+    <SolidColorBrush x:Key="NumericMouseOverForeground" Color="#FFFFFF"/>
 
-    <Style x:Key="MinMaxButton" TargetType="{x:Type Button}">
-        <Setter Property="MinWidth" Value="30"/>
-        <Setter Property="Padding" Value="3,3,3,4"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
+    <Style x:Key="NumericExtremumButton" TargetType="{x:Type Button}">
+        <Setter Property="Padding" Value="4,3"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="#303030"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="#808080"/>
         <Setter Property="Focusable" Value="false"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid>
-                        <Border x:Name="mouseOverBorder" Background="White" BorderThickness="{TemplateBinding BorderThickness}"/>
+                    <Border x:Name="root" Background="Transparent" BorderThickness="0" SnapsToDevicePixels="True">
                         <TextBlock x:Name="text" Text="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" Foreground="{TemplateBinding Foreground}" SnapsToDevicePixels="True"
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="mouseOverBorder" Property="Background" Value="{StaticResource NumericMouseOverBackground}" />
-                            <Setter TargetName="text" Property="Foreground" Value="#FFFFFF" />
+                            <Setter TargetName="root" Property="Background" Value="{StaticResource NumericMouseOverBackground}" />
+                            <Setter TargetName="text" Property="Foreground" Value="{StaticResource NumericMouseOverForeground}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="text" Property="Foreground" Value="{StaticResource NumericDisabledForeground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NumericTextBox" TargetType="{x:Type TextBoxBase}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource NumericDisabledForeground}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -45,32 +63,40 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Focusable" Value="false"/>
-        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="8,3"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type common:MyNumericBox}">
-                    <Grid Margin="{TemplateBinding Padding}">
+                    <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="124"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
-                        <Button    Grid.Column="0" x:Name="minButton" Style="{StaticResource MinMaxButton}" HorizontalAlignment="Right" HorizontalContentAlignment="Right" SnapsToDevicePixels="True"/>
-
-                        <Border    Grid.Column="1" x:Name="border" BorderThickness="1" BorderBrush="{StaticResource NumericBorderBrush}" Background="Transparent" SnapsToDevicePixels="True"/>
-                        <TextBox   Grid.Column="1" x:Name="textBox" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="6,0"/>
-                        <TextBlock Grid.Column="1" x:Name="unitText" Text="{TemplateBinding Unit}" Foreground="#808080" VerticalAlignment="Center" Margin="4,0,4,1" HorizontalAlignment="Right"/>
-
-                        <Button    Grid.Column="2" x:Name="maxButton" Style="{StaticResource MinMaxButton}"  HorizontalAlignment="Left" HorizontalContentAlignment="Left" SnapsToDevicePixels="True"/>
-
-                        <TextBlock Grid.Column="3" x:Name="toolTip" HorizontalAlignment="Center" Foreground="#A0A0A0" VerticalAlignment="Center" Margin="6,0,0,0" FontStyle="Italic"/>
+                        <Border x:Name="root" BorderThickness="1" BorderBrush="#ABADB3" Background="White" SnapsToDevicePixels="True" HorizontalAlignment="Stretch">
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="25"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox   Grid.ColumnSpan="3" x:Name="textBox" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource NumericTextBox}"/>
+                                <Button    Grid.Column="0" x:Name="lowerButton" Style="{StaticResource NumericExtremumButton}" HorizontalContentAlignment="Left" SnapsToDevicePixels="True"/>
+                                <Button    Grid.Column="2" x:Name="upperButton" Style="{StaticResource NumericExtremumButton}" HorizontalContentAlignment="Right" SnapsToDevicePixels="True"/>
+                            </Grid>
+                        </Border>
+                        <TextBlock Grid.Column="1" x:Name="tipText" TextTrimming="CharacterEllipsis" Foreground="#A0A0A0" VerticalAlignment="Center" Margin="4,0,0,0" FontStyle="Italic"/>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger SourceName="textBox" Property="IsFocused" Value="true">
+                            <Setter TargetName="root" Property="BorderBrush" Value="#569DE5"/>
+                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="unitText" Property="Foreground" Value="{StaticResource NumericDisabledForeground}" />
                             <Setter TargetName="textBox" Property="Foreground" Value="{StaticResource NumericDisabledForegroundDark}" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource NumericDisabledForeground}" />
+                            <Setter TargetName="root" Property="BorderBrush" Value="{StaticResource NumericDisabledForeground}" />
+                            <Setter TargetName="root" Property="Background" Value="{StaticResource NumericDisabledBackground}" />
+                        </Trigger>
+                        <Trigger Property="HasError" Value="true">
+                            <Setter TargetName="root" Property="Background" Value="Pink"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -175,8 +201,11 @@
         </Setter>
     </Style>
 
-    
-    
+    <LinearGradientBrush x:Key="PiercingBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#F0F0F0" Offset="0"/>
+        <GradientStop Color="#E5E5E5" Offset="1"/>
+    </LinearGradientBrush>
+
     <Style TargetType="{x:Type common:MyPiercingBox}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Margin" Value="8,5"/>
@@ -184,24 +213,20 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type common:MyPiercingBox}">
                     <Grid>
-                        <ToggleButton x:Name="button" BorderThickness="1" BorderBrush="#ACACAC" Width="150" HorizontalContentAlignment="Stretch">
-                            <ToggleButton.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                    <GradientStop Color="#F0F0F0" Offset="0"/>
-                                    <GradientStop Color="#E5E5E5" Offset="1"/>
-                                </LinearGradientBrush>
-                            </ToggleButton.Background>
-                            <Grid Margin="4,2" HorizontalAlignment="Stretch">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                        <ToggleButton x:Name="button" BorderThickness="0" Width="150" HorizontalContentAlignment="Stretch" Background="Transparent" Padding="0">
+                            <Border x:Name="root" BorderThickness="1" BorderBrush="#ACACAC" HorizontalAlignment="Stretch"  Background="{StaticResource PiercingBackground}" SnapsToDevicePixels="True">
+                                <Grid Margin="4,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="{Binding Label}" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left"/>
-                                <Rectangle Grid.Column="1" Fill="#A0A0A0" Width="1" Margin="8,0,4,0" SnapsToDevicePixels="True"/>
-                                <TextBlock Grid.Column="2" Text="..." Margin="2,0"/>
-                            </Grid>
+                                    <TextBlock Text="{Binding Label}" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left"/>
+                                    <Rectangle x:Name="separator" Grid.Column="1" Fill="#A0A0A0" Width="1" Margin="8,0,4,0" SnapsToDevicePixels="True"/>
+                                    <TextBlock x:Name="ellipsis" Grid.Column="2" Text="..." Margin="2,0"/>
+                                </Grid>
+                            </Border>
                         </ToggleButton>
                         <Popup x:Name="popup" StaysOpen="False">
                             <Border BorderThickness="1" BorderBrush="#404040" Background="White">
@@ -233,6 +258,14 @@
                             </Border>
                         </Popup>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="root" Property="Background" Value="#F0F0F0"/>
+                            <Setter TargetName="root" Property="BorderBrush" Value="#D9D9D9"/>
+                            <Setter TargetName="separator" Property="Fill" Value="#C0C0C0"/>
+                            <Setter TargetName="ellipsis" Property="Foreground" Value="#C0C0C0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

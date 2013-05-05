@@ -71,13 +71,13 @@
     </Style>
 
     <Style x:Key="{x:Type CheckBox}" TargetType="{x:Type CheckBox}">
-        <Setter Property="Margin" Value="8,4,0,4"/>
+        <Setter Property="Margin" Value="8,3,0,3"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     
     <Style TargetType="{x:Type ComboBox}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Margin" Value="8,5,0,5"/>
+        <Setter Property="Margin" Value="8,3,0,3"/>
         <Setter Property="Width" Value="150"/>
     </Style>
 
@@ -86,7 +86,7 @@
         <Setter Property="IsTextSearchCaseSensitive" Value="False"/>
         <Setter Property="IsTextSearchEnabled" Value="True"/>
         <Setter Property="IsEditable" Value="True"/>
-        <Setter Property="Margin" Value="8,5,0,5"/>
+        <Setter Property="Margin" Value="8,3,0,3"/>
         <Setter Property="Width" Value="150"/>
     </Style>
 
