@@ -9,10 +9,11 @@
     <UserControl.Resources>
         <Style x:Key="PerkStyle" TargetType="{x:Type TreeViewItem}">
             <Setter Property="IsExpanded" Value="False"/>
+            <Setter Property="Focusable" Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                        <CheckBox Margin="5" IsChecked="{Binding IsOwned}">
+                        <CheckBox Margin="5" IsChecked="{Binding IsOwned}" Focusable="False">
                             <CheckBox.Content>
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -50,7 +51,7 @@
     </UserControl.Resources>
     
     <Grid>
-        <TreeView ItemsSource="{Binding Game.PerkGroups}" ItemContainerStyle="{StaticResource GroupStyle}" BorderThickness="0" Margin="30,0,0,0"
+        <TreeView ItemsSource="{Binding Game.PerkGroups}" ItemContainerStyle="{StaticResource GroupStyle}" Focusable="False" KeyboardNavigation.DirectionalNavigation="Contained" BorderThickness="0" Margin="30,0,0,0"
                   HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
     </Grid>
 </UserControl>

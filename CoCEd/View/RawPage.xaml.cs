@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoCEd.Common;
 
 namespace CoCEd.View
 {
@@ -22,6 +23,23 @@ namespace CoCEd.View
         public RawPage()
         {
             InitializeComponent();
+        }
+
+        void flagTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Up:
+
+                    ((UIElement)Keyboard.FocusedElement).MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
+                    e.Handled = true;
+                    break;
+
+                case Key.Down:
+                    ((UIElement)Keyboard.FocusedElement).MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
+                    e.Handled = true;
+                    break;
+            }
         }
     }
 }

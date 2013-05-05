@@ -12,14 +12,15 @@
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="KeyItemStyle" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Focusable" Value="False"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                            <CheckBox IsChecked="{Binding HasItem}" Margin="4,8">
+                            <CheckBox IsChecked="{Binding HasItem}" Margin="4,8" Focusable="True">
                                 <CheckBox.Content>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="{Binding Name}" FontSize="12"/>
-                                        <TextBlock Text="{Binding Comment}" IsEnabled="{Binding HasItem}" Visibility="{Binding CommentVisiblity}" Style="{StaticResource StatusText}" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding Comment}" IsEnabled="{Binding HasItem}" Visibility="{Binding CommentVisibility}" Style="{StaticResource StatusText}" TextWrapping="Wrap"/>
                                     </StackPanel>
                                 </CheckBox.Content>
                             </CheckBox>
