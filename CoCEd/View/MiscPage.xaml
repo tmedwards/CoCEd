@@ -48,7 +48,7 @@
 
                 <common:AutoGrid>
                     <TextBlock              Text="Exgartuan"/>
-                    <ComboBox SelectedIndex="{Binding Game.Exagartuan}">
+                    <ComboBox SelectedIndex="{Binding Game.Exgartuan}">
                         <ComboBoxItem>Not possessed</ComboBoxItem>
                         <ComboBoxItem>Cock</ComboBoxItem>
                         <ComboBoxItem>Breasts</ComboBoxItem>
