@@ -74,6 +74,10 @@ namespace CoCEd.Model
         public String[] HairColors { get; set; }
         [XmlArray, XmlArrayItem("SkinTone")]
         public String[] SkinTones { get; set; }
+        [XmlArray, XmlArrayItem("SkinAdjective")]
+        public String[] SkinAdjectives { get; set; }
+        [XmlArray, XmlArrayItem("SkinDescription")]
+        public String[] SkinDescriptions { get; set; }
 
 
         [XmlArray, XmlArrayItem("FaceType")]
@@ -95,6 +99,8 @@ namespace CoCEd.Model
         public XmlEnum[] TailTypes { get; set; }
         [XmlArray, XmlArrayItem("WingType")]
         public XmlEnum[] WingTypes { get; set; }
+        [XmlArray, XmlArrayItem("WingDescription")]
+        public String[] WingDescriptions { get; set; }
         [XmlArray, XmlArrayItem("LowerBodyType")]
         public XmlEnum[] LowerBodyTypes { get; set; }
         [XmlArray, XmlArrayItem("PiercingType")]

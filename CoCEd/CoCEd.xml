@@ -9,6 +9,30 @@
       <SkinType ID="3" Name="Goo"/>
     </SkinTypes>
     <!--============================================================================================================================================-->
+    <SkinDescriptions>
+      <SkinDescription>bark</SkinDescription>
+      <SkinDescription>covering</SkinDescription>
+      <SkinDescription>feathers</SkinDescription>
+      <SkinDescription>fur</SkinDescription>
+      <SkinDescription>scales</SkinDescription>
+      <SkinDescription>shaggy fur</SkinDescription>
+      <SkinDescription>skin</SkinDescription>
+      <SkinDescription>skin and scales</SkinDescription>
+    </SkinDescriptions>
+    <!--============================================================================================================================================-->
+    <SkinAdjectives>
+      <SkinAdjective>ashen</SkinAdjective>
+      <SkinAdjective>flick</SkinAdjective>
+      <SkinAdjective>freckled</SkinAdjective>
+      <SkinAdjective>latex</SkinAdjective>
+      <SkinAdjective>silky</SkinAdjective>
+      <SkinAdjective>slimey</SkinAdjective>
+      <SkinAdjective>slimy</SkinAdjective>
+      <SkinAdjective>smooth</SkinAdjective>
+      <SkinAdjective>rubber</SkinAdjective>
+      <SkinAdjective>thick</SkinAdjective>
+    </SkinAdjectives>
+    <!--============================================================================================================================================-->
     <SkinTones>
       <SkinTone>albino</SkinTone>
       <SkinTone>ashen</SkinTone>
@@ -161,6 +185,25 @@
       <WingType ID="12" Name="Giant dragonfly"/>
     </WingTypes>
     <!--============================================================================================================================================-->
+    <WingDescriptions>
+      <WingDescription>non-existant</WingDescription>
+      <WingDescription>fluffy feathery</WingDescription>
+      <WingDescription>giant dragonfly</WingDescription>
+      <WingDescription>huge</WingDescription>
+      <WingDescription>imp wings</WingDescription>
+      <WingDescription>insect-like wings</WingDescription>
+      <WingDescription>large, bat-like</WingDescription>
+      <WingDescription>large, draconic</WingDescription>
+      <WingDescription>large, feathered</WingDescription>
+      <WingDescription>large bee-like</WingDescription>
+      <WingDescription>large feathery wings</WingDescription>
+      <WingDescription>small</WingDescription>
+      <WingDescription>small, draconic</WingDescription>
+      <WingDescription>small bee-like</WingDescription>
+      <WingDescription>tiny, bat-like</WingDescription>
+      <WingDescription>tiny hidden</WingDescription>
+    </WingDescriptions>
+    <!--============================================================================================================================================-->
     <LowerBodyTypes>
       <LowerBodyType ID="0" Name="Human"/>
       <LowerBodyType ID="1" Name="Hoofed"/>
@@ -215,10 +258,10 @@
     <!--============================================================================================================================================-->
     <VaginalWetnessLevels>
       <VaginalWetnessLevel ID="0" Name="Dry"/>
-      <VaginalWetnessLevel ID="1" Name="Wet"/>
-      <VaginalWetnessLevel ID="2" Name="Slick"/>
-      <VaginalWetnessLevel ID="3" Name="Drooling"/>
-      <VaginalWetnessLevel ID="4" Name="Slavering"/>
+      <VaginalWetnessLevel ID="2" Name="Wet"/>
+      <VaginalWetnessLevel ID="3" Name="Slick"/>
+      <VaginalWetnessLevel ID="4" Name="Drooling"/>
+      <VaginalWetnessLevel ID="5" Name="Slavering"/>
     </VaginalWetnessLevels>
     <!--============================================================================================================================================-->
     <VaginalLoosenessLevels>
