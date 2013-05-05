@@ -62,10 +62,10 @@
                     </ComboBox>
 
                     <TextBlock              Text="Addiction: minotaur cum"/>
-                    <common:MyNumericBox    Value="{Binding Game.MinotaurCumAddiction}" Min="0" Max="120" IsInteger="True"/>
+                    <common:MyNumericBox    Value="{Binding Game.MinotaurCumAddiction}" Unit="%" Upper="120"/>
 
                     <TextBlock              Text="Addiction: marble milk" IsEnabled="{Binding Game.HasMetMarble}"/>
-                    <common:MyNumericBox    Value="{Binding Game.MarbleMilkAddiction}" Min="0" Max="120" IsInteger="True" IsEnabled="{Binding Game.HasMetMarble}"/>
+                    <common:MyNumericBox    Value="{Binding Game.MarbleMilkAddiction}" Unit="%" Upper="120" IsEnabled="{Binding Game.HasMetMarble}"/>
                 </common:AutoGrid>
             </StackPanel>
 
@@ -75,7 +75,7 @@
                 </Border>
                 <common:AutoGrid>
                     <TextBlock              Text="Fertility"/>
-                    <common:MyNumericBox    Value="{Binding Game.Fertility}" Min="0" Max="100" IsInteger="True"/>
+                    <common:MyNumericBox    Value="{Binding Game.Fertility}" Upper="100"/>
                 </common:AutoGrid>
 
                 <common:AutoGrid Margin="0,30">
@@ -83,24 +83,24 @@
                     <common:MyComboBox SelectedValue="{Binding Game.PregnancyType}" ItemsSource="{Binding Data.Body.PregnancyTypes}"/>
 
                     <TextBlock              Text="Time remaining*" IsEnabled="{Binding Game.IsPregnancyEnabled}" ToolTip="A virgin vagina will put pregnancy on hold. With the diapause perk it will only progress when you absorb fluids."/>
-                    <common:MyNumericBox    Value="{Binding Game.PregnancyTime}" Min="0" IsInteger="True" Unit="hours" IsEnabled="{Binding Game.IsPregnancyEnabled}"/>
+                    <common:MyNumericBox    Value="{Binding Game.PregnancyTime}" Unit="hours" IsEnabled="{Binding Game.IsPregnancyEnabled}"/>
 
                     <TextBlock              Text="Butt pregnancy"/>
                     <common:MyComboBox SelectedValue="{Binding Game.ButtPregnancyType}" ItemsSource="{Binding Data.Body.AnalPregnancyTypes}"/>
 
                     <TextBlock              Text="Time remaining*" IsEnabled="{Binding Game.IsButtPregnancyEnabled}" ToolTip="With the diapause perk it will only progress when you absorb fluids."/>
-                    <common:MyNumericBox    Value="{Binding Game.ButtPregnancyTime}" Min="0" IsInteger="True" Unit="hours" IsEnabled="{Binding Game.IsButtPregnancyEnabled}"/>
+                    <common:MyNumericBox    Value="{Binding Game.ButtPregnancyTime}" Unit="hours" IsEnabled="{Binding Game.IsButtPregnancyEnabled}"/>
                 </common:AutoGrid>
 
                 <common:AutoGrid Margin="0,15">
                     <TextBlock              Text="Birthed Tamani children*" IsEnabled="{Binding Game.HasMetTamani}" ToolTip="After 24 daughters, enables a new encounter whose level is a factor of the total number."/>
-                    <common:MyNumericBox    Value="{Binding Game.BirthedTamaniChildren}" Min="0" IsInteger="True" IsEnabled="{Binding Game.HasMetTamani}"/>
+                    <common:MyNumericBox    Value="{Binding Game.BirthedTamaniChildren}" IsEnabled="{Binding Game.HasMetTamani}"/>
 
                     <TextBlock              Text="Birthed adult minotaurs*" ToolTip="Affects encounters in the mountain. Past 25 children the minotaur gangbang bad ending is triggered for addicted players in need of minotaur cum."/>
-                    <common:MyNumericBox    Value="{Binding Game.BirthedMinotaurs}" Min="0" IsInteger="True"/>
+                    <common:MyNumericBox    Value="{Binding Game.BirthedMinotaurs}"/>
 
                     <TextBlock              Text="Birthed imps*" ToolTip="Affects the probability of imp gangbang rape at night."/>
-                    <common:MyNumericBox    Value="{Binding Game.BirthedImps}" Min="0" IsInteger="True"/>
+                    <common:MyNumericBox    Value="{Binding Game.BirthedImps}"/>
                 </common:AutoGrid>
             </StackPanel>
         </Grid>

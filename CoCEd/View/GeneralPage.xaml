@@ -34,14 +34,14 @@
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
                 <common:AutoGrid>
                     <TextBlock              Text="Name"/>
-                    <TextBox                Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,4,8,4" 
+                    <TextBox                Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="8,4,8,4" Width="150" HorizontalAlignment="Left"
                                             BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
 
                     <TextBlock              Text="XP"/>
-                    <common:MyNumericBox    Value="{Binding Game.XP}" Min="0" IsInteger="True"/>
+                    <common:MyNumericBox    Value="{Binding Game.XP}"/>
 
                     <TextBlock              Text="Teasing XP"/>
-                    <common:MyNumericBox    Value="{Binding Game.TeaseXP}" Min="0" IsInteger="True"/>
+                    <common:MyNumericBox    Value="{Binding Game.TeaseXP}"/>
 
                 </common:AutoGrid>
             </StackPanel>
@@ -49,13 +49,13 @@
             <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
                 <common:AutoGrid>
                     <TextBlock              Text="Gems"/>
-                    <common:MyNumericBox    Value="{Binding Game.Gems}" Min="0" IsInteger="True"/>
+                    <common:MyNumericBox    Value="{Binding Game.Gems}" Upper="10000" UpperLabel="10k"/>
 
                     <TextBlock              Text="Days"/>
-                    <common:MyNumericBox    Value="{Binding Game.Days}" Min="0" IsInteger="True"/>
+                    <common:MyNumericBox    Value="{Binding Game.Days}" Unit="days"/>
 
                     <TextBlock              Text="Time"/>
-                    <common:MyNumericBox    Value="{Binding Game.Hours}" Min="0" Max="23" IsInteger="True" Unit="hours"/>
+                    <common:MyNumericBox    Value="{Binding Game.Hours}" Upper="23" Max="23" Unit="hours"/>
                 </common:AutoGrid>
             </StackPanel>
 
@@ -74,25 +74,25 @@
                     </Border>
                     <common:AutoGrid>
                         <TextBlock              Text="Strength"/>
-                        <common:MyNumericBox    Value="{Binding Game.Strength}" Min="0" Max="100" IsInteger="True"/>
+                        <common:MyNumericBox    Value="{Binding Game.Strength}" Upper="100"/>
 
                         <TextBlock              Text="Toughness"/>
-                        <common:MyNumericBox    Value="{Binding Game.Toughness}" Min="0" Max="100" IsInteger="True"/>
+                        <common:MyNumericBox    Value="{Binding Game.Toughness}" Upper="100"/>
 
                         <TextBlock              Text="Speed"/>
-                        <common:MyNumericBox    Value="{Binding Game.Speed}" Min="0" Max="100" IsInteger="True"/>
+                        <common:MyNumericBox    Value="{Binding Game.Speed}" Upper="100"/>
 
                         <TextBlock              Text="Intelligence"/>
-                        <common:MyNumericBox    Value="{Binding Game.Intelligence}" Min="0" Max="100" IsInteger="True"/>
+                        <common:MyNumericBox    Value="{Binding Game.Intelligence}" Upper="100"/>
 
                         <TextBlock              Text="Libido"/>
-                        <common:MyNumericBox    Value="{Binding Game.Libido}" Min="0" Max="100" IsInteger="True"/>
+                        <common:MyNumericBox    Value="{Binding Game.Libido}" Upper="100"/>
 
                         <TextBlock              Text="Sensitivity"/>
-                        <common:MyNumericBox    Value="{Binding Game.Sensitivity}" Min="0" Max="100" IsInteger="True"/>
+                        <common:MyNumericBox    Value="{Binding Game.Sensitivity}" Upper="100"/>
 
                         <TextBlock              Text="Corruption"/>
-                        <common:MyNumericBox    Value="{Binding Game.Corruption}" Min="0" Max="100" IsInteger="True"/>
+                        <common:MyNumericBox    Value="{Binding Game.Corruption}" Upper="100"/>
                     </common:AutoGrid>
                 </StackPanel>
 
@@ -103,13 +103,13 @@
                     </Border>
                     <common:AutoGrid>
                         <TextBlock              Text="Current HP"/>
-                        <common:MyNumericBox    Value="{Binding Game.HP}" Min="0" IsInteger="True"/>
+                        <common:MyNumericBox    Value="{Binding Game.HP}"/>
 
                         <TextBlock              Text="Lust"/>
-                        <common:MyNumericBox    Value="{Binding Game.Lust}" Min="0" Max="100" IsInteger="True"/>
+                        <common:MyNumericBox    Value="{Binding Game.Lust}" Upper="100"/>
 
                         <TextBlock              Text="Fatigue"/>
-                        <common:MyNumericBox    Value="{Binding Game.Fatigue}" Min="0" Max="100" IsInteger="True"/>
+                        <common:MyNumericBox    Value="{Binding Game.Fatigue}" Upper="100"/>
                     </common:AutoGrid>
                 </StackPanel>
             </Grid>
@@ -122,7 +122,7 @@
 
                 <common:AutoGrid>
                     <TextBlock              Text="Hair length"/>
-                    <common:MyNumericBox    Value="{Binding Game.HairLength}" Min="0" IsInteger="False" Unit="inches"/>
+                    <common:MyNumericBox    Value="{Binding Game.HairLength}" Type="Double" Unit="inches"/>
 
                     <TextBlock              Text="Hair color"/>
                     <ComboBox Text="{Binding Game.HairColor}" ItemsSource="{Binding Data.Body.HairColors}" Style="{StaticResource EditableTextBox}"/>
@@ -149,7 +149,7 @@
                     <common:MyComboBox SelectedValue="{Binding Game.HornType}" ItemsSource="{Binding Data.Body.HornTypes}"/>
 
                     <TextBlock              Text="{Binding Game.HornsValueLabel}" IsEnabled="{Binding Game.HornsValueEnabled}"/>
-                    <common:MyNumericBox    Value="{Binding Game.HornsValue}" Min="0" IsInteger="False" Unit="{Binding Game.HornsValueUnit}" IsEnabled="{Binding Game.HornsValueEnabled}"/>
+                    <common:MyNumericBox    Value="{Binding Game.HornsValue}" Unit="{Binding Game.HornsValueUnit}" IsEnabled="{Binding Game.HornsValueEnabled}"/>
 
                     <TextBlock              Text="Eyebrow piercing"/>
                     <common:MyPiercingBox DataContext="{Binding Game.EyebrowPiercing}"/>

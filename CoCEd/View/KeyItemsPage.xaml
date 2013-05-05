@@ -30,16 +30,16 @@
                                             <TextBlock Text="{Binding Comment}" IsEnabled="{Binding HasItem}" Visibility="{Binding CommentVisiblity}" Style="{StaticResource StatusText}" TextWrapping="Wrap"/>
                                             <common:AutoGrid Margin="10,6,0,20" IsEnabled="{Binding HasItem}" Visibility="{Binding DetailsVisibility}" x:Name="details">
                                                 <TextBlock Text="Value1" Style="{StaticResource StatusText}"/>
-                                                <common:MyNumericBox Value="{Binding Value1}" IsInteger="False" Margin="-30,-1,0,-1" Height="30"/>
+                                                <common:MyNumericBox Value="{Binding Value1}" Margin="-30,-1,0,-1" Lower="{x:Null}" Min="{x:Null}" Height="30"/>
 
                                                 <TextBlock Text="Value2" Style="{StaticResource StatusText}"/>
-                                                <common:MyNumericBox Value="{Binding Value2}" IsInteger="False" Margin="-30,-1,0,-1" Height="30"/>
+                                                <common:MyNumericBox Value="{Binding Value2}" Margin="-30,-1,0,-1" Lower="{x:Null}" Min="{x:Null}" Height="30"/>
 
                                                 <TextBlock Text="Value3" Style="{StaticResource StatusText}"/>
-                                                <common:MyNumericBox Value="{Binding Value3}" IsInteger="False" Margin="-30,-1,0,-1" Height="30"/>
+                                                <common:MyNumericBox Value="{Binding Value3}" Margin="-30,-1,0,-1" Lower="{x:Null}" Min="{x:Null}" Height="30"/>
 
                                                 <TextBlock Text="Value4" Style="{StaticResource StatusText}"/>
-                                                <common:MyNumericBox Value="{Binding Value4}" IsInteger="False" Margin="-30,-1,0,-1" Height="30"/>
+                                                <common:MyNumericBox Value="{Binding Value4}" Margin="-30,-1,0,-1" Lower="{x:Null}" Min="{x:Null}" Height="30"/>
                                             </common:AutoGrid>
                                         </StackPanel>
                                     </CheckBox.Content>
@@ -58,6 +58,7 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
+    
     <Grid>
         <ListBox ItemsSource="{Binding Game.KeyItems}" ItemContainerStyle="{StaticResource KeyItemStyle}" BorderThickness="0" Margin="30,30,0,0" Padding="0"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False"/>

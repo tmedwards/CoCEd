@@ -48,13 +48,13 @@
 
                 <common:AutoGrid>
                     <TextBlock              Text="Pairs"/>
-                    <common:MyNumericBox    Value="{Binding Game.Balls}" Min="0" IsInteger="True"/>
+                    <common:MyNumericBox    Value="{Binding Game.Balls}"/>
 
                     <TextBlock              Text="Size"/>
-                    <common:MyNumericBox    Value="{Binding Game.BallSize}" Min="0" Unit="inches" IsInteger="False"/>
+                    <common:MyNumericBox    Value="{Binding Game.BallSize}" Type="Double" Unit="inches"/>
 
                     <TextBlock              Text="Cum multiplier"/>
-                    <common:MyNumericBox    Value="{Binding Game.CumMultiplier}" Min="0" IsInteger="False" Tip="{Binding Game.CumVolume}"/>
+                    <common:MyNumericBox    Value="{Binding Game.CumMultiplier}" Type="Double" Tip="{Binding Game.CumVolume}"/>
                 </common:AutoGrid>
             </StackPanel>
 
@@ -76,13 +76,13 @@
                         <common:MyPiercingBox DataContext="{Binding Piercing}"/>
 
                         <TextBlock              Text="Length"/>
-                        <common:MyNumericBox    Value="{Binding Length}" Min="0" IsInteger="True" Unit="inches"/>
+                        <common:MyNumericBox    Value="{Binding Length}" Type="Double" Unit="inches"/>
 
                         <TextBlock              Text="Thickness"/>
-                        <common:MyNumericBox    Value="{Binding Thickness}" Min="0" IsInteger="True" Unit="inches"/>
+                        <common:MyNumericBox    Value="{Binding Thickness}" Type="Double" Unit="inches"/>
 
                         <TextBlock              Text="Knots multiplier" Visibility="{Binding KnotVisibility}"/>
-                        <common:MyNumericBox    Value="{Binding KnotMultiplier}" Min="0" Visibility="{Binding KnotVisibility}"/>
+                        <common:MyNumericBox    Value="{Binding KnotMultiplier}" Visibility="{Binding KnotVisibility}"/>
 
                     </common:AutoGrid>
                 </common:ArrayEditor>
@@ -102,7 +102,7 @@
                     <common:MyComboBox               SelectedValue="{Binding Game.Ass.Wetness}" ItemsSource="{Binding Data.Body.AnalWetnessLevels}"/>
 
                     <TextBlock              Text="Anal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
-                    <common:MyNumericBox    Value="{Binding Game.AnalCapacityBonus}" Min="0" IsInteger="False" Unit="inches²"/>
+                    <common:MyNumericBox    Value="{Binding Game.AnalCapacityBonus}" Type="Double" Unit="inches²"/>
                 </common:AutoGrid>
             </StackPanel>
 
@@ -136,10 +136,10 @@
 
                 <common:AutoGrid Margin="0,30,0,0" Visibility="{Binding Game.ClitVisibility}">
                     <TextBlock              Text="Clit length"/>
-                    <common:MyNumericBox    Value="{Binding Game.ClitLength}" Min="0" IsInteger="False" Unit="inches"/>
+                    <common:MyNumericBox    Value="{Binding Game.ClitLength}" Type="Double" Unit="inches"/>
 
                     <TextBlock              Text="Vaginal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
-                    <common:MyNumericBox    Value="{Binding Game.VaginalCapacityBonus}" Min="0" IsInteger="False" Unit="inches²"/>
+                    <common:MyNumericBox    Value="{Binding Game.VaginalCapacityBonus}" Type="Double" Unit="inches²"/>
                 </common:AutoGrid>
             </StackPanel>
         </Grid>

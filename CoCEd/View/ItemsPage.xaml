@@ -138,7 +138,7 @@
 
             <common:AutoGrid HorizontalAlignment="Center" Margin="0,30,0,0">
                 <TextBlock              Text="Quantity" Width="Auto" Margin="0"/>
-                <common:MyNumericBox    Value="{Binding Path=SelectedItem.Quantity, ElementName=leftTree}" Min="0" IsInteger="True"/>
+                <common:MyNumericBox    Value="{Binding Path=SelectedItem.Quantity, ElementName=leftTree}" Upper="5"/>
             </common:AutoGrid>
 
             <TreeView  Grid.Row="1" ItemContainerStyle="{StaticResource RightGroupStyle}" Margin="30,30,0,0" Padding="0" BorderThickness="0" 
