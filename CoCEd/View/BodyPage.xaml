@@ -99,7 +99,7 @@
                     </common:ArrayEditor.ItemTemplate>
                     <common:AutoGrid>
                         <TextBlock              Text="Rating"/>
-                        <common:MyNumericBox    Value="{Binding Rating}" Min="1" Max="96" Lower="1" Upper="96" Tip="{Binding RatingDescription}" />
+                        <common:MyNumericBox    Value="{Binding Rating}" Min="1" Max="100" Lower="1" Upper="100" Tip="{Binding RatingDescription}" />
 
                         <TextBlock              Text="Breast count"/>
                         <common:MyNumericBox    Value="{Binding BreastCount}" Min="1" Lower="1"/>
