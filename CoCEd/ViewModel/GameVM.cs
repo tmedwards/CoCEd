@@ -722,8 +722,8 @@ namespace CoCEd.ViewModel
                 _searchText = value;
                 Statuses.Update();
                 Flags.Update();
-                OnPropertyChanged("SearchPromptVisibility");
-                OnPropertyChanged();
+                base.OnPropertyChanged("SearchPromptVisibility");
+                base.OnPropertyChanged();
             }
         }
 

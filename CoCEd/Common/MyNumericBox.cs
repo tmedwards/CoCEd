@@ -254,7 +254,18 @@ namespace CoCEd.Common
                 HasError = false;
                 return true;
             }
-            if (TextToValue(_textBox.Text, out value)) return TrySetValue(value, showError);
+            if (TextToValue(_textBox.Text, out value))
+            {
+                _preserveText = true;
+                try
+                {
+                    return TrySetValue(value, showError);
+                }
+                finally
+                {
+                    _preserveText = false;
+                }
+            }
             if (showError) HasError = true;
             return false;
         }
@@ -263,16 +274,8 @@ namespace CoCEd.Common
         {
             if (Validate(value))
             {
-                _preserveText = true;
-                try
-                {
-                    Value = value;
-                    HasError = false;
-                }
-                finally
-                {
-                    _preserveText = false;
-                }
+                Value = value;
+                HasError = false;
                 return true;
             }
             else
