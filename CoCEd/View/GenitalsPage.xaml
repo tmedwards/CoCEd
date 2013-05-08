@@ -101,7 +101,7 @@
                     <TextBlock              Text="Wetness"/>
                     <common:MyComboBox               SelectedValue="{Binding Game.Ass.Wetness}" ItemsSource="{Binding Data.Body.AnalWetnessLevels}"/>
 
-                    <TextBlock              Text="Anal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
+                    <TextBlock              Text="Anal capacity bonus*" ToolTip="In respect of cock length × thickness."/>
                     <common:MyNumericBox    Value="{Binding Game.AnalCapacityBonus}" Type="Double" Unit="inches²"/>
                 </common:AutoGrid>
             </StackPanel>
@@ -138,7 +138,7 @@
                     <TextBlock              Text="Clit length"/>
                     <common:MyNumericBox    Value="{Binding Game.ClitLength}" Type="Double" Unit="inches"/>
 
-                    <TextBlock              Text="Vaginal capacity bonus*" ToolTip="In respect of cock length &times; thickness."/>
+                    <TextBlock              Text="Vaginal capacity bonus*" ToolTip="In respect of cock length × thickness."/>
                     <common:MyNumericBox    Value="{Binding Game.VaginalCapacityBonus}" Type="Double" Unit="inches²"/>
                 </common:AutoGrid>
             </StackPanel>
