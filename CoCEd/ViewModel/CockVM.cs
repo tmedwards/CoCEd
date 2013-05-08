@@ -50,9 +50,9 @@ namespace CoCEd.ViewModel
             set { SetValue("knotMultiplier", value); }
         }
 
-        public Visibility KnotVisibility
+        public bool IsKnotEnabled
         {
-            get { return Type == 2 ? Visibility.Visible : Visibility.Collapsed; }
+            get { return Type == 2; }
         }
 
         public string LabelPart1

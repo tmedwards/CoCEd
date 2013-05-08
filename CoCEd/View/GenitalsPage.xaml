@@ -81,8 +81,8 @@
                         <TextBlock              Text="Thickness"/>
                         <common:MyNumericBox    Value="{Binding Thickness}" Type="Double" Unit="inches"/>
 
-                        <TextBlock              Text="Knots multiplier" Visibility="{Binding KnotVisibility}"/>
-                        <common:MyNumericBox    Value="{Binding KnotMultiplier}" Visibility="{Binding KnotVisibility}"/>
+                        <TextBlock              Text="Knots multiplier" IsEnabled="{Binding IsKnotEnabled}"/>
+                        <common:MyNumericBox    Value="{Binding KnotMultiplier}" IsEnabled="{Binding IsKnotEnabled}"/>
 
                     </common:AutoGrid>
                 </common:ArrayEditor>
