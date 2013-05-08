@@ -735,7 +735,7 @@
       <Perk Name="Cornucopia" Description="Vaginal and Anal capacities increased by 30."/>
       <Perk Name="Diapause" Description="Pregnancy does not advance normally, but develops quickly after taking in fluids."/>
       <Perk Name="Dragonfire" Description="Allows access to a dragon breath attack."/>
-      <Perk Name="Elven Bounty" Description="Increases fertility and cum production by 15%."  Value2="15"/>
+      <Perk Name="Elven Bounty" Description="Increases fertility by 15% and cum production by 250mL and 5%." Value1="250" Value2="15"/>
       <Perk Name="Enlightened Nine-tails" Description="The mystical energy of the nine-tails surges through you, filling you with phenomenal cosmic power!  Your boundless magic allows you to recover quickly after casting spells."/>
       <Perk Name="Feeder" Description="Lactation does not decrease and gives a compulsion to breastfeed others."/>
       <Perk Name="Fera's Boon - Alpha" Description="Increases the rate your cum builds up and cum production in general."/>
@@ -768,7 +768,7 @@
       <Perk Name="Purity Blessing" Description="Reduces the rate at which your corruption, libido, and lust increase."/>
       <Perk Name="Sensual Lover" Description="Your sensual attitude towards love and romance makes your tease ability slightly more effective."/>
       <Perk Name="Slime Core" Description="Moisture craving builds at a greatly reduced rate."/>
-      <Perk Name="Slutty Seduction" Description="Your fetishy nurse outfit allows you access to an improved form of 'Tease'." Value1="8"/>
+      <Perk Name="Slutty Seduction" Description="Your armor or outfit allows you access to an improved form of 'Tease'." Value1="8"/>
       <Perk Name="Spider Ovipositor" Description="Allows you to lay eggs through a special organ on your arachnid abdomen, though you need at least 10 eggs to lay."/>
       <Perk Name="Thick Skin" Description="Your skin is now tough enough to effectively grant you an extra armor!"/>
       <Perk Name="Whispered" Description="Akbal has allowed you to whisper to the minds of your foes, as he does."/>
