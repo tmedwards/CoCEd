@@ -59,7 +59,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
-                <common:ArrayEditor Header="Cocks" Items="{Binding Game.Cocks}">
+                <common:ArrayEditor Header="Cocks" Items="{Binding Game.Cocks}" Capacity="10">
                     <common:ArrayEditor.ItemTemplate>
                         <DataTemplate>
                             <common:AutoGrid Columns="2">
@@ -107,7 +107,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical">
-                <common:ArrayEditor Header="Vaginas" Items="{Binding Game.Vaginas}">
+                <common:ArrayEditor Header="Vaginas" Items="{Binding Game.Vaginas}" Capacity="2">
                     <common:ArrayEditor.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Description}"/>

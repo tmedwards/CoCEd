@@ -36,6 +36,7 @@ namespace CoCEd.Common
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(IArrayVM), typeof(ArrayEditor), new PropertyMetadata(null, OnPropertiesChanged));
         public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(ArrayEditor), new PropertyMetadata(null, OnPropertiesChanged));
         public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register("Header", typeof(string), typeof(ArrayEditor), new PropertyMetadata("", OnPropertiesChanged));
+        public static readonly DependencyProperty CapacityProperty = DependencyProperty.Register("Capacity", typeof(int), typeof(ArrayEditor), new PropertyMetadata(Int32.MaxValue, OnPropertiesChanged));
 
         static ArrayEditor()
         {
@@ -58,6 +59,12 @@ namespace CoCEd.Common
         {
             get { return (DataTemplate)GetValue(ItemTemplateProperty); }
             set { SetValue(ItemTemplateProperty, value); }
+        }
+
+        public int Capacity
+        {
+            get { return (int)GetValue(CapacityProperty); }
+            set { SetValue(CapacityProperty, value); }
         }
 
         ListBox _listBox;
@@ -154,8 +161,10 @@ namespace CoCEd.Common
 
         void addButton_Click(object sender, RoutedEventArgs e)
         {
+            if (Items.Count == Capacity) return;
             Items.Create();
             _listBox.SelectedIndex = Items.Count - 1;
+            OnContentChanged();
         }
 
         void removeButton_Click(object sender, RoutedEventArgs e)
@@ -186,6 +195,7 @@ namespace CoCEd.Common
         void OnContentChanged()
         {
             if (_listBox == null) return;
+            _addButton.IsEnabled = (Items != null && Items.Count < Capacity);
 
             var item = _listBox.SelectedItem;
             if (item != null)

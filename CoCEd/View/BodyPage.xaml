@@ -94,7 +94,7 @@
 
 
             <StackPanel Grid.Column="3" Grid.Row="1" Grid.RowSpan="3" Orientation="Vertical">
-                <common:ArrayEditor Header="Breasts" Items="{Binding Game.Breasts}">
+                <common:ArrayEditor Header="Breasts" Items="{Binding Game.Breasts}" Capacity="10">
                     <common:ArrayEditor.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Description}"/>

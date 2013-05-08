@@ -121,6 +121,9 @@
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="text" Property="Foreground" Value="#DA3810"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="text" Property="Foreground" Value="#C0C0C0"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
