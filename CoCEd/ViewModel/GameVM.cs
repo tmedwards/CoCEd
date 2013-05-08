@@ -447,6 +447,12 @@ namespace CoCEd.ViewModel
             set { SetValue("skinAdj", value); }
         }
 
+        public int ArmType
+        {
+            get { return GetInt("armType"); }
+            set { SetValue("armType", value); }
+        }
+
         public int LowerBodyType
         {
             get { return GetInt("lowerBody"); }
