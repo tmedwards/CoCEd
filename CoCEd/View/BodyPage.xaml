@@ -61,6 +61,9 @@
                     <TextBlock              Text="Skin adjective"/>
                     <ComboBox Text="{Binding Game.SkinAdjective}" ItemsSource="{Binding Data.Body.SkinAdjectives}" Style="{StaticResource EditableTextBox}"/>
 
+                    <TextBlock              Text="Arms"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.ArmType}" ItemsSource="{Binding Data.Body.ArmTypes}"/>
+
                     <TextBlock              Text="Wings"/>
                     <common:MyComboBox SelectedValue="{Binding Game.WingType}" ItemsSource="{Binding Data.Body.WingTypes}"/>
 
