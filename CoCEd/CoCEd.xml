@@ -25,6 +25,7 @@
       <SkinAdjective>flick</SkinAdjective>
       <SkinAdjective>freckled</SkinAdjective>
       <SkinAdjective>latex</SkinAdjective>
+      <SkinAdjective>milky</SkinAdjective>
       <SkinAdjective>silky</SkinAdjective>
       <SkinAdjective>slimey</SkinAdjective>
       <SkinAdjective>slimy</SkinAdjective>
@@ -35,21 +36,37 @@
     <!--============================================================================================================================================-->
     <SkinTones>
       <SkinTone>albino</SkinTone>
+      <SkinTone>aphotic blue-black</SkinTone>
       <SkinTone>ashen</SkinTone>
       <SkinTone>ashen grayish-blue</SkinTone>
+      <SkinTone>black</SkinTone>
+      <SkinTone>blue</SkinTone>
       <SkinTone>brown</SkinTone>
       <SkinTone>dark</SkinTone>
+      <SkinTone>dark green</SkinTone>
       <SkinTone>ebony</SkinTone>
       <SkinTone>ghostly pale</SkinTone>
+      <SkinTone>gray</SkinTone>
       <SkinTone>grayish-blue</SkinTone>
       <SkinTone>green</SkinTone>
+      <SkinTone>indigo</SkinTone>
       <SkinTone>light</SkinTone>
       <SkinTone>olive</SkinTone>
+      <SkinTone>orange</SkinTone>
+      <SkinTone>orange and black striped</SkinTone>
       <SkinTone>pale</SkinTone>
       <SkinTone>pale yellow</SkinTone>
+      <SkinTone>pale white</SkinTone>
       <SkinTone>pink</SkinTone>
+      <SkinTone>purple</SkinTone>
+      <SkinTone>red</SkinTone>
+      <SkinTone>rough gray</SkinTone>
+      <SkinTone>sable</SkinTone>
+      <SkinTone>shiny black</SkinTone>
+      <SkinTone>silver</SkinTone>
       <SkinTone>tan</SkinTone>
       <SkinTone>yellow</SkinTone>
+      <SkinTone>white</SkinTone>
     </SkinTones>
     <!--============================================================================================================================================-->
     <HairTypes>
@@ -82,10 +99,63 @@
       <HairColor>purplish-black</HairColor>
       <HairColor>red</HairColor>
       <HairColor>sandy-blonde</HairColor>
+	  <HairColor>shiny black</HairColor>
       <HairColor>silver</HairColor>
       <HairColor>silver-white</HairColor>
       <HairColor>white</HairColor>
       <HairColor>white and black</HairColor>
+      <HairColor>latex-textured auburn</HairColor>
+      <HairColor>latex-textured black</HairColor>
+      <HairColor>latex-textured black and orange</HairColor>
+      <HairColor>latex-textured black and yellow</HairColor>
+      <HairColor>latex-textured blond</HairColor>
+      <HairColor>latex-textured blonde</HairColor>
+      <HairColor>latex-textured blue</HairColor>
+      <HairColor>latex-textured brown</HairColor>
+      <HairColor>latex-textured deep red</HairColor>
+      <HairColor>latex-textured golden blonde</HairColor>
+      <HairColor>latex-textured gray</HairColor>
+      <HairColor>latex-textured green</HairColor>
+      <HairColor>latex-textured light blonde</HairColor>
+      <HairColor>latex-textured midnight black</HairColor>
+      <HairColor>latex-textured orange</HairColor>
+      <HairColor>latex-textured pink</HairColor>
+      <HairColor>latex-textured platinum blonde</HairColor>
+      <HairColor>latex-textured purple</HairColor>
+      <HairColor>latex-textured purplish-black</HairColor>
+      <HairColor>latex-textured red</HairColor>
+      <HairColor>latex-textured sandy-blonde</HairColor>
+	  <HairColor>latex-textured shiny black</HairColor>
+      <HairColor>latex-textured silver</HairColor>
+      <HairColor>latex-textured silver-white</HairColor>
+      <HairColor>latex-textured white</HairColor>
+      <HairColor>latex-textured white and black</HairColor>
+      <HairColor>rubbery auburn</HairColor>
+      <HairColor>rubbery black</HairColor>
+      <HairColor>rubbery black and orange</HairColor>
+      <HairColor>rubbery black and yellow</HairColor>
+      <HairColor>rubbery blond</HairColor>
+      <HairColor>rubbery blonde</HairColor>
+      <HairColor>rubbery blue</HairColor>
+      <HairColor>rubbery brown</HairColor>
+      <HairColor>rubbery deep red</HairColor>
+      <HairColor>rubbery golden blonde</HairColor>
+      <HairColor>rubbery gray</HairColor>
+      <HairColor>rubbery green</HairColor>
+      <HairColor>rubbery light blonde</HairColor>
+      <HairColor>rubbery midnight black</HairColor>
+      <HairColor>rubbery orange</HairColor>
+      <HairColor>rubbery pink</HairColor>
+      <HairColor>rubbery platinum blonde</HairColor>
+      <HairColor>rubbery purple</HairColor>
+      <HairColor>rubbery purplish-black</HairColor>
+      <HairColor>rubbery red</HairColor>
+      <HairColor>rubbery sandy-blonde</HairColor>
+	  <HairColor>rubbery shiny black</HairColor>
+      <HairColor>rubbery silver</HairColor>
+      <HairColor>rubbery silver-white</HairColor>
+      <HairColor>rubbery white</HairColor>
+      <HairColor>rubbery white and black</HairColor>
     </HairColors>
     <!--============================================================================================================================================-->
     <FaceTypes>
@@ -102,6 +172,8 @@
       <FaceType ID="10" Name="Spider fangs"/>
       <FaceType ID="11" Name="Fox"/>
       <FaceType ID="12" Name="Dragon"/>
+      <FaceType ID="13" Name="Raccoon Mask"/>
+      <FaceType ID="14" Name="Raccoon Face"/>
     </FaceTypes>
     <!--============================================================================================================================================-->
     <TongueTypes>
@@ -129,6 +201,7 @@
       <EarType ID="8" Name="Kangaroo"/>
       <EarType ID="9" Name="Fox"/>
       <EarType ID="10" Name="Dragon"/>
+      <EarType ID="11" Name="Raccoon"/>
     </EarTypes>
     <!--============================================================================================================================================-->
     <HornTypes>
@@ -170,6 +243,7 @@
       <TailType ID="12" Name="Kangaroo"/>
       <TailType ID="13" Name="Fox"/>
       <TailType ID="14" Name="Draconic"/>
+      <TailType ID="15" Name="Raccoon"/>
     </TailTypes>
     <!--============================================================================================================================================-->
     <WingTypes>
@@ -224,6 +298,7 @@
       <LowerBodyType ID="16" Name="Drider lower body"/>
       <LowerBodyType ID="17" Name="Fox"/>
       <LowerBodyType ID="18" Name="Dragon"/>
+      <LowerBodyType ID="18" Name="Raccoon"/>
     </LowerBodyTypes>
     <!--============================================================================================================================================-->
     <PiercingTypes>
@@ -349,6 +424,7 @@
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Consumables" Category="Other">
+		  <Item ID="BimboCh" Name="Bimbo Champagne"/>
 		  <Item ID="BimboLq" Name="Bimbo Liqueur"/>
 		  <Item ID="BC Beer" Name="Black Cat Beer"/>
 		  <Item ID="BroBrew" Name="Bro Brew"/>
@@ -367,6 +443,7 @@
 		  <Item ID="MinoCum" Name="Minotaur Cum"/>
 		  <Item ID="NumbRox" Name="Numb Rocks"/>
 		  <Item ID="OviElix" Name="Oviposition Elixer"/>
+		  <Item ID="PeppWht" Name="Peppermint White"/>
 		  <Item ID="P.Pearl" Name="Pure Pearl"/>
       <Item ID="PurPeac" Name="Pure Peach"/>
       <Item ID="PSDelit" Name="Purified Succubi's Delite"/>
@@ -404,6 +481,7 @@
 		  <Item ID="P.LBova" Name="Purified LaBova"/>
 		  <Item ID="P.S.Mlk" Name="Purified Succubi Milk"/>
 		  <Item ID="Reptlum" Name="Reptilum"/>
+		  <Item ID="RingFig" Name="Ringtail Fig"/>
 		  <Item ID="Shark.T" Name="Shark Tooth"/>
 		  <Item ID="DryTent" Name="Shriveled Tentacle"/>
 		  <Item ID="SnakOil" Name="Snake Oil"/>
