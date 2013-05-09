@@ -138,7 +138,7 @@
         </Grid.ColumnDefinitions>
 
         <Border BorderThickness="0,0,1,0" BorderBrush="#E7E7E5" SnapsToDevicePixels="True"  Background="#F6F5F1">
-            <TreeView Grid.Column="0" x:Name="leftTree" ItemsSource="{Binding Game.ItemGroups}" ItemContainerStyle="{StaticResource LeftGroupStyle}" BorderThickness="0" Margin="0,0,-1,0"
+            <TreeView Grid.Column="0" x:Name="leftTree" ItemsSource="{Binding Game.ItemContainers}" ItemContainerStyle="{StaticResource LeftGroupStyle}" BorderThickness="0" Margin="0,0,-1,0"
                         SelectedItemChanged="leftTree_SelectedItemChanged" MinWidth="280" Style="{StaticResource TreeViewWithLeftScrollBar}"/>
         </Border>
 

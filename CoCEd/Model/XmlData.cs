@@ -17,17 +17,17 @@ namespace CoCEd.Model
         [XmlElement("Body")]
         public XmlBodySet Body { get; set; }
 
-        [XmlElement("Perks")]
-        public XmlPerkSet Perks { get; set; }
+        [XmlArray("Perks"), XmlArrayItem("PerkGroup")]
+        public List<XmlPerkGroup> PerkGroups { get; set; }
 
         [XmlArray("Items"), XmlArrayItem("ItemGroup")]
-        public XmlItemGroup[] ItemGroups { get; set; }
+        public List<XmlItemGroup> ItemGroups { get; set; }
 
         [XmlArray, XmlArrayItem("Status")]
-        public XmlNamedVector4[] Statuses { get; set; }
+        public List<XmlNamedVector4> Statuses { get; set; }
 
         [XmlArray, XmlArrayItem("KeyItem")]
-        public XmlNamedVector4[] KeyItems { get; set; }
+        public List<XmlNamedVector4> KeyItems { get; set; }
 
         [XmlArray, XmlArrayItem("Flag")]
         public XmlEnum[] Flags { get; set; }
@@ -46,6 +46,13 @@ namespace CoCEd.Model
                 {
                     XmlSerializer s = new XmlSerializer(typeof(XmlData));
                     Instance = s.Deserialize(stream) as XmlData;
+
+                    var unknwonPerks = new XmlPerkGroup { Name = "Unknown", Perks = new List<XmlNamedVector4>() };
+                    Instance.PerkGroups.Add(unknwonPerks);
+
+                    var unknwonItems = new XmlItemGroup { Name = "Unknown", Items = new List<XmlItem>(), Category = ItemCategories.Unknown };
+                    Instance.ItemGroups.Add(unknwonItems);
+
                     return XmlLoadingResult.Success;
                 }
             }
@@ -129,29 +136,14 @@ namespace CoCEd.Model
         public XmlEnum[] EggPregnancyTypes { get; set; }
     }
 
-    public sealed class XmlPerkSet
-    {
-        [XmlArray, XmlArrayItem("Perk")]
-        public XmlNamedVector4[] StarterPerks { get; set; }
-        [XmlArray, XmlArrayItem("Perk")]
-        public XmlNamedVector4[] HistoryPerks { get; set; }
-        [XmlArray, XmlArrayItem("Perk")]
-        public XmlNamedVector4[] Tier0Perks { get; set; }
-        [XmlArray, XmlArrayItem("Perk")]
-        public XmlNamedVector4[] Tier1Perks { get; set; }
-        [XmlArray, XmlArrayItem("Perk")]
-        public XmlNamedVector4[] Tier2Perks { get; set; }
-        [XmlArray, XmlArrayItem("Perk")]
-        public XmlNamedVector4[] EventPerks { get; set; }
-    }
-
     [Flags]
     public enum ItemCategories
     {
         Other = 1,
         Weapon = 2,
         Armor = 4,
-        All = Other | Weapon | Armor,
+        Unknown = 8,
+        All = Other | Weapon | Armor | Unknown,
     }
 
     public sealed class XmlItemGroup
@@ -163,7 +155,16 @@ namespace CoCEd.Model
         public ItemCategories Category { get; set; }
 
         [XmlElement("Item")]
-        public XmlEnumWithStringID[] Items { get; set; }
+        public List<XmlItem> Items { get; set; }
+    }
+
+    public sealed class XmlPerkGroup
+    {
+        [XmlAttribute]
+        public string Name { get; set; }
+
+        [XmlElement("Perk")]
+        public List<XmlNamedVector4> Perks { get; set; }
     }
 
     public sealed class XmlEnum
@@ -181,7 +182,7 @@ namespace CoCEd.Model
         }
     }
 
-    public sealed class XmlEnumWithStringID
+    public sealed class XmlItem
     {
         [XmlAttribute]
         public string ID { get; set; }

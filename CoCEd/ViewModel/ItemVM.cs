@@ -7,11 +7,11 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
-    public sealed class ItemSlotGroupVM
+    public sealed class ItemContainerVM
     {
         readonly List<ItemSlotVM> _slots = new List<ItemSlotVM>();
 
-        public ItemSlotGroupVM(string name, ItemCategories categories)
+        public ItemContainerVM(string name, ItemCategories categories)
         {
             Name = name;
             Categories = categories;
@@ -46,6 +46,14 @@ namespace CoCEd.ViewModel
             : base(obj)
         {
             Categories = categories;
+
+            // Add missing items
+            var type = Type;
+            if (!String.IsNullOrEmpty(type) && XmlData.Instance.ItemGroups.SelectMany(x => x.Items).All(x => x.ID != type))
+            {
+                var xml = new XmlItem { ID = type, Name = type };
+                XmlData.Instance.ItemGroups.Last().Items.Add(xml);
+            }
         }
 
         public ItemCategories Categories
@@ -60,7 +68,7 @@ namespace CoCEd.ViewModel
             {
                 foreach (var group in XmlData.Instance.ItemGroups)
                 {
-                    if (Categories.HasFlag(group.Category)) yield return new ItemGroupVM(group, this);
+                    if (Categories.HasFlag(group.Category) && group.Items.Count != 0) yield return new ItemGroupVM(group, this);
                 }
             }
         }
@@ -135,9 +143,9 @@ namespace CoCEd.ViewModel
     public sealed class ItemVM : BindableBase
     {
         readonly ItemSlotVM _slot;
-        readonly XmlEnumWithStringID _item;
+        readonly XmlItem _item;
 
-        public ItemVM(ItemSlotVM slot, XmlEnumWithStringID item)
+        public ItemVM(ItemSlotVM slot, XmlItem item)
         {
             _slot = slot;
             _item = item;

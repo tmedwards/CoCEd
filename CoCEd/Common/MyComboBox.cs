@@ -41,9 +41,9 @@ namespace CoCEd.Common
             if (SelectedValue is string)
             {
                 var value = (string)SelectedValue;
-                var items = ItemsSource.Cast<XmlEnumWithStringID>().ToList();
+                var items = ItemsSource.Cast<XmlItem>().ToList();
                 if (items.Any(x => x.ID == value)) return;
-                items.Add(new XmlEnumWithStringID { ID = value, Name = value });
+                items.Add(new XmlItem { ID = value, Name = value });
                 ItemsSource = items;
             }
             else

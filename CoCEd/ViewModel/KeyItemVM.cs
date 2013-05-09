@@ -11,19 +11,19 @@ namespace CoCEd.ViewModel
 {
     public sealed class KeyItemVM : NamedVector4VM
     {
-        public KeyItemVM(AmfObject keyItems, string name)
-            : base(keyItems, XmlData.Instance.KeyItems.FirstOrDefault(x => x.Name == name), name)
+        public KeyItemVM(AmfObject keyItems, XmlNamedVector4 xml)
+            : base(keyItems, xml)
         {
         }
 
         protected override void InitializeObject(AmfObject obj)
         {
-            obj["keyName"] = _name;
+            obj["keyName"] = _xml.Name;
         }
 
         protected override bool IsObject(AmfObject obj)
         {
-            return obj.GetString("keyName") == _name;
+            return obj.GetString("keyName") == _xml.Name;
         }
 
         protected override void NotifyGameVM()

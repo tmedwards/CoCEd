@@ -11,18 +11,14 @@ namespace CoCEd.ViewModel
 {
     public abstract class NamedVector4VM : BindableBase
     {
-        protected readonly string _name;
         protected readonly AmfObject _items;
         protected readonly XmlNamedVector4 _xml;
         protected readonly HashSet<string> _gameProperties = new HashSet<string>();
 
-        protected NamedVector4VM(AmfObject items, XmlNamedVector4 xml, string name)
+        protected NamedVector4VM(AmfObject items, XmlNamedVector4 xml)
         {
-            _name = name;
-            _items = items;
-
-            if (xml == null) xml = new XmlNamedVector4 { Name = name, Description = GetDefaultComment() };
             _xml = xml;
+            _items = items;
         }
 
         public string Name
@@ -108,7 +104,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (_xml == null || String.IsNullOrEmpty(_xml.Label1)) return "Value 1";
+                if (String.IsNullOrEmpty(_xml.Label1)) return "Value 1";
                 return _xml.Label1;
             }
         }
@@ -117,7 +113,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (_xml == null || String.IsNullOrEmpty(_xml.Label2)) return "Value 2";
+                if (String.IsNullOrEmpty(_xml.Label2)) return "Value 2";
                 return _xml.Label2;
             }
         }
@@ -126,7 +122,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (_xml == null || String.IsNullOrEmpty(_xml.Label3)) return "Value 3";
+                if (String.IsNullOrEmpty(_xml.Label3)) return "Value 3";
                 return _xml.Label3;
             }
         }
@@ -135,7 +131,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (_xml == null || String.IsNullOrEmpty(_xml.Label4)) return "Value 4";
+                if (String.IsNullOrEmpty(_xml.Label4)) return "Value 4";
                 return _xml.Label4;
             }
         }
@@ -194,10 +190,5 @@ namespace CoCEd.ViewModel
         protected abstract void InitializeObject(AmfObject obj);
         protected abstract bool IsObject(AmfObject obj);
         protected abstract void NotifyGameVM();
-
-        protected virtual String GetDefaultComment()
-        {
-            return null;
-        }
     }
 }

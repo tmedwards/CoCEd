@@ -586,7 +586,7 @@
     <ItemGroup Name="Blacksmith" Category="Armor">
 		  <Item ID="ChBikni" Name="Chain Bikini"/>
 		  <Item ID="FullChn" Name="Full Chain"/>
-		  <Item ID="FullPit" Name="Full Plate"/>
+		  <Item ID="FullPlt" Name="Full Plate"/>
 		  <Item ID="IndecSt" Name="Indecent Steel"/>
 		  <Item ID="LthrRob" Name="Leather Robe"/>
 		  <Item ID="ScaleMl" Name="Scale Mail"/>
@@ -657,7 +657,7 @@
 
   <!--============================================================================================================================================-->
   <Perks>
-    <StarterPerks>
+    <PerkGroup Name="Starter">
       <Perk Name="Big Cock" Description="Gain cock size 25% faster and grow larger easier." Value1="1.25"/>
       <Perk Name="Big Clit" Description="Allows your clit to grow larger faster." Value1="1.25"/>
       <Perk Name="Big Tits" Description="Makes your tits grow larger more easily." Value1="1.5"/>
@@ -670,9 +670,9 @@
       <Perk Name="Strong" Description="Gain strength 25% faster." Value1="0.25"/>
       <Perk Name="Tough" Description="Gain toughness 25% faster." Value1="0.25"/>
       <Perk Name="Wet Pussy" Description="Keeps your pussy from ever being anything less than wet." Value1="2"/>
-    </StarterPerks>
-    
-    <HistoryPerks>
+    </PerkGroup>
+
+    <PerkGroup Name="History">
       <Perk Name="History: Alchemist" Description="Alchemical experience makes items more reactive to your body."/>
       <Perk Name="History: Fighter" Description="Past full of conflict increases physical damage dealt by 10%."/>
       <Perk Name="History: Healer" Description="Healing experience increases HP gains by 20%."/>
@@ -682,9 +682,9 @@
       <Perk Name="History: Slut" Description="Sexual experience has made you more able to handle large insertions and more resistant to stretching."/>
       <Perk Name="History: Smith" Description="Knowledge of armor and fitting increases armor effectiveness by roughly 10%."/>
       <Perk Name="History: Whore" Description="Seductive experience causes your tease attacks to be 15% more effective."/>
-    </HistoryPerks>
+    </PerkGroup>
 
-    <Tier0Perks>
+    <PerkGroup Name="Tier 0">
       <Perk Name="Acclimation" Description="Reduces lust gain by 15%."/>
       <Perk Name="Corrupted Libido" Description="Reduces lust gain by 10%." Value1="20"/>
       <Perk Name="Double Attack" Description="Allows you to perform two melee attacks per round."/>
@@ -701,9 +701,9 @@
       <Perk Name="Strong Back" Description="Enables fourth item slot."/>
       <Perk Name="Strong Back 2: Strong Harder" Description="Enables fifth item slot."/>
       <Perk Name="Tank" Description="Raises max HP by 50."/>
-    </Tier0Perks>
+    </PerkGroup>
 
-    <Tier1Perks>
+    <PerkGroup Name="Tier 1">
       <Perk Name="Agility" Description="Boosts armor points by a portion of your speed on light/medium armors."/>
       <Perk Name="Arousing Aura" Description="While your corruption is at or above 70, you exude an aura of lust."/>
       <Perk Name="Brutal Blows" Description="Reduces enemy armor with each hit."/>
@@ -721,16 +721,16 @@
       <Perk Name="Thunderous Strikes" Description="+20% 'Attack' damage while strength is at or above 80."/>
       <Perk Name="Weapon Mastery" Description="Doubles damage bonus of weapons classified as 'Large'."/>
       <Perk Name="Well Adjusted" Description="You gain half as much lust as time passes in Mareth."/>
-    </Tier1Perks>
+    </PerkGroup>
 
-    <Tier2Perks>
+    <PerkGroup Name="Tier 2">
       <Perk Name="Archmage" Description="Increases base spell strength by 50%."/>
       <Perk Name="Berzerker" Description="Grants 'Berzerk' ability."/>
       <Perk Name="Resolute" Description="Grants immunity to stuns and some statuses."/>
       <Perk Name="Lunging Attacks" Description="Grants 50% armor penetration for standard attacks."/>
-    </Tier2Perks>
-    
-    <EventPerks>
+    </PerkGroup>
+
+    <PerkGroup Name="Events">
       <Perk Name="Androgyny" Description="No gender limits on facial masculinity or femininity."/>
       <Perk Name="Basilisk Womb" Description="Enables your eggs to be properly fertilized into basilisks of both genders!"/>
       <Perk Name="Bee Ovipositor" Description="Allows you to lay eggs through a special organ on your insect abdomen, though you need at least 10 eggs to lay."/>
@@ -760,19 +760,30 @@
       <Perk Name="Hellfire" Description="Grants a corrupted fire breath attack, like the hellhounds in the mountains."/>
       <Perk Name="Incorporeality" Description="Allows you to fade into a ghost-like state and temporarily possess others."/>
       <Perk Name="Luststick Adapted" Description="Grants immunity to the lust-increasing effects of lust-stick and allows its use. Minimum lust is permanently raised."/>
-      <Perk Name="Lusty Regeneration" Description="Regenerates 1% of HP per round in combat and 2% of HP per hour."/>
       <Perk Name="Marae's Gift - Buttslut" Description="Makes your anus provide lubrication when aroused."/>
       <Perk Name="Marae's Gift - Fertility" Description="Greatly increases fertility and halves base pregnancy speed."/>
       <Perk Name="Marae's Gift - Profractory" Description="Causes your cum to build up at 3x the normal rate."/>
       <Perk Name="Marae's Gift - Stud" Description="Increases your cum production and potency greatly."/>
       <Perk Name="Marble Resistant" Description="You know how to avoid the addictive qualities of Marble's milk."/>
       <Perk Name="Marble's Milk" Description="You're totally addicted to Marble's milk and can't live without it."/>
-      <Perk Name="Midas Cock" Description="Increases the gems awarded from victory in battle."/>
       <Perk Name="Minotaur Cum Addict" Description="Causes you to crave minotaur cum frequently.  You cannot shake this addiction."/>
       <Perk Name="Misdirection" Description="Grants additional evasion chances while wearing Raphael's red bodysuit."/>
       <Perk Name="Omnibus' Gift" Description="Raises your minimum lust by up to 35 and slightly reduces lust gain."/>
       <Perk Name="One Track Mind" Description="Your constant desire for sex causes your sexual organs to be able to take larger insertions and disgorge greater amounts of fluid."/>
       <Perk Name="Oviposition" Description="Laying eggs has become a normal part of your reptilian body's routine."/>
+      <Perk Name="Pilgrim's Bounty" Description="Causes you to always cum as hard as if you had max lust."/>
+      <Perk Name="Pure and Loving" Description="Your caring attitude towards love and romance makes you slightly more resistant to lust and corruption."/>
+      <Perk Name="Purity Blessing" Description="Reduces the rate at which your corruption, libido, and lust increase."/>
+      <Perk Name="Sensual Lover" Description="Your sensual attitude towards love and romance makes your tease ability slightly more effective."/>
+      <Perk Name="Slime Core" Description="Moisture craving builds at a greatly reduced rate."/>
+      <Perk Name="Spider Ovipositor" Description="Allows you to lay eggs through a special organ on your arachnid abdomen, though you need at least 10 eggs to lay."/>
+      <Perk Name="Thick Skin" Description="Your skin is now tough enough to effectively grant you an extra armor!"/>
+      <Perk Name="Whispered" Description="Akbal has allowed you to whisper to the minds of your foes, as he does."/>
+    </PerkGroup>
+
+    <PerkGroup Name="Items">
+      <Perk Name="Lusty Regeneration" Description="Regenerates 1% of HP per round in combat and 2% of HP per hour."/>
+      <Perk Name="Midas Cock" Description="Increases the gems awarded from victory in battle."/>
       <Perk Name="Pent Up" Description="Increases minimum lust by 10 and makes you more vulnerable to seduction." Value1="10"/>
       <Perk Name="Phallic Potential" Description="Increases the effects of penis-enlarging transformations."/>
       <Perk Name="Phallic Restraint" Description="Reduces the effects of penis-enlarging transformations."/>
@@ -780,18 +791,10 @@
       <Perk Name="Pierced: Fertite" Description="Increases fertility and cum production by 5%." Value1="5"/>
       <Perk Name="Pierced: Furrite" Description="Increases chances of encountering 'furry' foes.."/>
       <Perk Name="Pierced: Lethite" Description="Increases chances of encountering demonic foes."/>
-      <Perk Name="Pilgrim's Bounty" Description="Causes you to always cum as hard as if you had max lust."/>
-      <Perk Name="Pure and Loving" Description="Your caring attitude towards love and romance makes you slightly more resistant to lust and corruption."/>
-      <Perk Name="Purity Blessing" Description="Reduces the rate at which your corruption, libido, and lust increase."/>
-      <Perk Name="Sensual Lover" Description="Your sensual attitude towards love and romance makes your tease ability slightly more effective."/>
-      <Perk Name="Slime Core" Description="Moisture craving builds at a greatly reduced rate."/>
       <Perk Name="Slutty Seduction" Description="Your armor or outfit allows you access to an improved form of 'Tease'." Value1="8"/>
-      <Perk Name="Spider Ovipositor" Description="Allows you to lay eggs through a special organ on your arachnid abdomen, though you need at least 10 eggs to lay."/>
-      <Perk Name="Thick Skin" Description="Your skin is now tough enough to effectively grant you an extra armor!"/>
-      <Perk Name="Whispered" Description="Akbal has allowed you to whisper to the minds of your foes, as he does."/>
       <Perk Name="Wizard's Endurance" Description="Your spellcasting equipment makes it harder for spell-casting to fatigue you!"/>
       <Perk Name="Wizard's Focus" Description="Your wizard's staff grants you additional focus, reducing the use of fatigue for spells."/>
-    </EventPerks>
+    </PerkGroup>
   </Perks>
 
 
