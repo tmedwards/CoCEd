@@ -23,12 +23,10 @@ namespace CoCEd.Common
         {
             if (_popup != null) _popup.Closed -= popup_Closed;
             if (_button != null) _button.Checked -= button_Checked;
-            if (_button != null) _button.Unchecked -= button_Unchecked;
 
             _popup = GetTemplateChild("popup") as Popup;
             _button = GetTemplateChild("button") as ToggleButton;
 
-            if (_button != null) _button.Unchecked += button_Unchecked;
             if (_button != null) _button.Checked += button_Checked;
             if (_popup != null) _popup.Closed += popup_Closed;
         }
@@ -36,16 +34,13 @@ namespace CoCEd.Common
         void popup_Closed(object sender, EventArgs e)
         {
             _button.IsChecked = false;
-        }
-
-        void button_Unchecked(object sender, RoutedEventArgs e)
-        {
-            _popup.IsOpen = false;
+            _button.IsEnabled = true;
         }
 
         void button_Checked(object sender, RoutedEventArgs e)
         {
             _popup.IsOpen = true;
+            _button.IsEnabled = false;
         }
     }
 }

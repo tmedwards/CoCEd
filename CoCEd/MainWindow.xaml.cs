@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoCEd.Common;
 using CoCEd.Model;
 using CoCEd.View;
 using CoCEd.ViewModel;
@@ -27,6 +28,11 @@ namespace CoCEd
         {
             InitializeComponent();
             ((FrameworkElement)Content).QueryContinueDrag += OnQueryContinueDrag;
+        }
+
+        public NamedVector4Popup ValuesPopup
+        {
+            get { return valuesPopup; }
         }
 
         void OnQueryContinueDrag(object sender, QueryContinueDragEventArgs e)
