@@ -775,6 +775,12 @@ namespace CoCEd.ViewModel
                 base.OnPropertyChanged();
             }
         }
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            VM.Instance.NotifySaveRequiredChanged(true);
+        }
     }
 
     public sealed class AssVM : ObjectVM
