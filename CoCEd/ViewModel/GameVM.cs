@@ -85,15 +85,29 @@ namespace CoCEd.ViewModel
             KeyItems = new UpdatableCollection<KeyItemVM>(keyItemsVM.Where(x => x.Match(_keyItemSearchText)));
 
             // Perks
+            obj = file.GetObj("perks");
             PerkGroups = new PerkGroupVM[]
             {
-                new PerkGroupVM("Starter", _obj, XmlData.Instance.Perks.StarterPerks),
-                new PerkGroupVM("History", _obj, XmlData.Instance.Perks.HistoryPerks),
-                new PerkGroupVM("Tier0", _obj, XmlData.Instance.Perks.Tier0Perks),
-                new PerkGroupVM("Tier1", _obj, XmlData.Instance.Perks.Tier1Perks),
-                new PerkGroupVM("Tier2", _obj, XmlData.Instance.Perks.Tier2Perks),
-                new PerkGroupVM("Events", _obj, XmlData.Instance.Perks.EventPerks)
+                new PerkGroupVM("Starter", obj, XmlData.Instance.Perks.StarterPerks),
+                new PerkGroupVM("History", obj, XmlData.Instance.Perks.HistoryPerks),
+                new PerkGroupVM("Tier0", obj, XmlData.Instance.Perks.Tier0Perks),
+                new PerkGroupVM("Tier1", obj, XmlData.Instance.Perks.Tier1Perks),
+                new PerkGroupVM("Tier2", obj, XmlData.Instance.Perks.Tier2Perks),
+                new PerkGroupVM("Events", obj, XmlData.Instance.Perks.EventPerks)
             };
+
+            // Unknown perks: perks found on thc haracter but not in the XML
+            var gamePerks = obj.Select(x => x.ValueAsObject.GetString("perkName")).ToArray();
+            var xmlPerks = PerkGroups.SelectMany(x => x.Perks).Select(x => x.Name).ToArray();
+            var unknownPerks = gamePerks.Except(xmlPerks).ToArray();
+
+            if (unknownPerks.Length != 0)
+            {
+                var perkGroups = PerkGroups;
+                PerkGroups = new PerkGroupVM[perkGroups.Length + 1];
+                Array.Copy(perkGroups, PerkGroups, perkGroups.Length);
+                PerkGroups[PerkGroups.Length - 1] = new PerkGroupVM("Unknown", obj, unknownPerks);
+            }
         }
 
         public CockArrayVM Cocks { get; private set; }

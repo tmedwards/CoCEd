@@ -11,24 +11,28 @@ namespace CoCEd.ViewModel
 {
     public abstract class NamedVector4VM : BindableBase
     {
+        protected readonly string _name;
         protected readonly AmfObject _items;
         protected readonly XmlNamedVector4 _xml;
         protected readonly HashSet<string> _gameProperties = new HashSet<string>();
 
-        protected NamedVector4VM(AmfObject items, XmlNamedVector4 xml)
+        protected NamedVector4VM(AmfObject items, XmlNamedVector4 xml, string name)
         {
-            _xml = xml;
+            _name = name;
             _items = items;
+
+            if (xml == null) xml = new XmlNamedVector4 { Name = name, Description = GetDefaultComment() };
+            _xml = xml;
         }
 
-        public virtual string Name
+        public string Name
         {
             get { return _xml.Name; }
         }
 
-        public virtual string Comment
+        public string Comment
         {
-            get { return _xml == null ? "" : _xml.Description; }
+            get { return _xml.Description; }
         }
 
         public Visibility CommentVisibility
@@ -58,6 +62,10 @@ namespace CoCEd.ViewModel
                 {
                     var obj = new AmfObject(AmfTypes.Array);
                     InitializeObject(obj);
+                    obj["value1"] = _xml.Value1;
+                    obj["value2"] = _xml.Value2;
+                    obj["value3"] = _xml.Value3;
+                    obj["value4"] = _xml.Value4;
                     _items.Push(obj);
                 }
                 else
@@ -186,5 +194,10 @@ namespace CoCEd.ViewModel
         protected abstract void InitializeObject(AmfObject obj);
         protected abstract bool IsObject(AmfObject obj);
         protected abstract void NotifyGameVM();
+
+        protected virtual String GetDefaultComment()
+        {
+            return null;
+        }
     }
 }
