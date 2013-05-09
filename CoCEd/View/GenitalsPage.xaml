@@ -72,9 +72,6 @@
                         <TextBlock              Text="Type"/>
                         <common:MyComboBox               SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
 
-                        <TextBlock              Text="Piercing"/>
-                        <common:MyPiercingBox DataContext="{Binding Piercing}"/>
-
                         <TextBlock              Text="Length"/>
                         <common:MyNumericBox    Value="{Binding Length}" Type="Double" Unit="inches"/>
 
@@ -84,6 +81,11 @@
                         <TextBlock              Text="Knots multiplier" IsEnabled="{Binding IsKnotEnabled}"/>
                         <common:MyNumericBox    Value="{Binding KnotMultiplier}" IsEnabled="{Binding IsKnotEnabled}"/>
 
+                        <TextBlock              Text="Cock-sock"/>
+                        <ComboBox               SelectedValue="{Binding CockSock}" ItemsSource="{Binding AllCockSocks}" Style="{StaticResource EditableTextBox}"/>
+
+                        <TextBlock              Text="Piercing"/>
+                        <common:MyPiercingBox DataContext="{Binding Piercing}"/>
                     </common:AutoGrid>
                 </common:ArrayEditor>
             </StackPanel>
