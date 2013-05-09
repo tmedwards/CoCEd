@@ -1850,5 +1850,30 @@
     <Flag ID="874" Name="ANT_KIDS"/>
     <Flag ID="875" Name="ANT_WAIFU"/>
     <Flag ID="876" Name="PHYLLA_STAY_HOME"/>
+    <Flag ID="877" Name="PHYLLA_CAMP_VISITS"/>
+    <Flag ID="878" Name="DAYS_PHYLLA_IN_CAMP"/>
+    <Flag ID="879" Name="PHYLLLA_EGG_LAYING"/>
+    <Flag ID="880" Name="PHYLLA_BLOWJOBS"/>
+    <Flag ID="881" Name="TALKED_WITH_PHYLLA_ABOUT_HISTORY"/>
+    <Flag ID="882" Name="TIMES_LINKED_BJ_SUCK"/>
+    <Flag ID="883" Name="PHYLLA_FUCKS"/>
+    <Flag ID="884" Name="TIMES_CORRUPT_MALE_ANT_ORGY"/>
+    <Flag ID="885" Name="TIMES_CORRUPT_FEMALE_ANT_ORGY"/>
+    <Flag ID="886" Name="PHYLLA_TIMES_DRIDER_EGG"/>
+    <Flag ID="887" Name="DAYS_PHYLLA_HAS_SPENT_BIRTHING"/>
+    <Flag ID="888" Name="ANTS_BIRTHED_FROM_LICKING"/>
+    <Flag ID="889" Name="PHYLLA_COOLDOWN"/>
+    <Flag ID="890" Name="TIMES_EGG_IMPREGNATING_PHYLLA"/>
+    <Flag ID="891" Name="PHYLLA_DRIDER_INCUBATION"/>
+    <Flag ID="892" Name="HAS_SEEN_MINO_AND_COWGIRL"/>
+    <Flag ID="893" Name="PHYLLA_GEMS_HUNTED_TODAY"/>
+    <Flag ID="894" Name="PHYLLA_DRIDER_BABIES_COUNT"/>
+    <Flag ID="895" Name="SOCK_COUNTER"/>
+    <Flag ID="896" Name="SOCK_HOLDING"/>
+    <Flag ID="897" Name="FOUND_SOCKS"/>
+    <Flag ID="898" Name="SOCKS_BOUGHT"/>
+    <Flag ID="899" Name="MIDAS_JERKED"/>
+    <Flag ID="900" Name="PHYLLA_INHERITED_KNOWLEDGE"/>
+    <Flag ID="901" Name="PHYLLA_IZMA_TALK"/>
   </Flags>  
 </CoCEd>
