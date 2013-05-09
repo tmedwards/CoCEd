@@ -735,7 +735,7 @@
       <Perk Name="Cornucopia" Description="Vaginal and Anal capacities increased by 30."/>
       <Perk Name="Diapause" Description="Pregnancy does not advance normally, but develops quickly after taking in fluids."/>
       <Perk Name="Dragonfire" Description="Allows access to a dragon breath attack."/>
-      <Perk Name="Elven Bounty" Description="Increases fertility by 15% and cum production by 250mL and 5%." Value1="250" Value2="15"/>
+      <Perk Name="Elven Bounty" Description="Increases fertility by 15% and cum production by 250mL and 5%." Value1="250" Value2="15" Label1="Cum volume" Label2="Fertility multiplier"/>
       <Perk Name="Enlightened Nine-tails" Description="The mystical energy of the nine-tails surges through you, filling you with phenomenal cosmic power!  Your boundless magic allows you to recover quickly after casting spells."/>
       <Perk Name="Feeder" Description="Lactation does not decrease and gives a compulsion to breastfeed others."/>
       <Perk Name="Fera's Boon - Alpha" Description="Increases the rate your cum builds up and cum production in general."/>

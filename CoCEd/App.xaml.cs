@@ -174,7 +174,7 @@ namespace CoCEd
             var regexStr = @"player.createPerk\([\s]*QUOTE(?<name>[^QUOTE]*)QUOTE[\s]*,(?<value1>[\s\d\.]*),(?<value2>[\s\d\.]*),(?<value3>[\s\d\.]*),(?<value4>[\s\d\.]*),[\s]*QUOTE(?<desc>[^QUOTE]*)QUOTE";
             Regex regex = new Regex(regexStr.Replace("QUOTE", "\""), RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
-            List<XmlPerk> perks = new List<XmlPerk>();
+            List<XmlNamedVector4> perks = new List<XmlNamedVector4>();
             const string sourceDir = @"e:\downloads\coc\source\";
             foreach (var file in Directory.EnumerateFiles(sourceDir, "*.as", SearchOption.AllDirectories))
             {
@@ -191,7 +191,7 @@ namespace CoCEd
                     var value4 = match.Groups["value4"].Value;
                     var desc = match.Groups["desc"].Value.Replace("\\n", "\n").Replace("\\r", "\r").Replace("\\t", "\t").Replace(quoteSubst, "\""); 
 
-                    var perk = new XmlPerk 
+                    var perk = new XmlNamedVector4 
                     { 
                         Name = name, 
                         Value1 = Double.Parse(value1.Trim(), CultureInfo.InvariantCulture),
@@ -206,7 +206,7 @@ namespace CoCEd
 
             using (var s = File.OpenWrite(@"e:\perks.xml"))
             {
-                XmlSerializer x = new XmlSerializer(typeof(XmlPerk[]));
+                XmlSerializer x = new XmlSerializer(typeof(XmlNamedVector4[]));
                 x.Serialize(s, perks.OrderBy(p => p.Name).ToArray());
             }
         }

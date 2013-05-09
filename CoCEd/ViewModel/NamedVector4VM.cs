@@ -4,18 +4,36 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows;
 using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
     public abstract class NamedVector4VM : BindableBase
     {
-        readonly AmfObject _items;
-        readonly HashSet<string> _gameProperties = new HashSet<string>();
+        protected readonly AmfObject _items;
+        protected readonly XmlNamedVector4 _xml;
+        protected readonly HashSet<string> _gameProperties = new HashSet<string>();
 
-        protected NamedVector4VM(AmfObject items)
+        protected NamedVector4VM(AmfObject items, XmlNamedVector4 xml)
         {
+            _xml = xml;
             _items = items;
+        }
+
+        public virtual string Name
+        {
+            get { return _xml.Name; }
+        }
+
+        public virtual string Comment
+        {
+            get { return _xml == null ? "" : _xml.Description; }
+        }
+
+        public Visibility CommentVisibility
+        {
+            get { return String.IsNullOrEmpty(Comment) ? Visibility.Collapsed : Visibility.Visible; }
         }
 
         public HashSet<string> GameProperties
@@ -78,6 +96,42 @@ namespace CoCEd.ViewModel
             set { SetDoubleOrIntValue("value4", value); }
         }
 
+        public string Label1
+        {
+            get
+            {
+                if (_xml == null || String.IsNullOrEmpty(_xml.Label1)) return "Value 1";
+                return _xml.Label1;
+            }
+        }
+
+        public string Label2
+        {
+            get
+            {
+                if (_xml == null || String.IsNullOrEmpty(_xml.Label2)) return "Value 2";
+                return _xml.Label2;
+            }
+        }
+
+        public string Label3
+        {
+            get
+            {
+                if (_xml == null || String.IsNullOrEmpty(_xml.Label3)) return "Value 3";
+                return _xml.Label3;
+            }
+        }
+
+        public string Label4
+        {
+            get
+            {
+                if (_xml == null || String.IsNullOrEmpty(_xml.Label4)) return "Value 4";
+                return _xml.Label4;
+            }
+        }
+
         public int GetInt(string name)
         {
             var obj = GetObject();
@@ -107,6 +161,19 @@ namespace CoCEd.ViewModel
             obj[key] = value;
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        public bool Match(string str)
+        {
+            if (str == null || str.Length < 3) return true;
+
+            int index = (Name ?? "").IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+            if (index != -1) return true;
+
+            index = (Comment ?? "").IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+            if (index != -1) return true;
+
+            return false;
         }
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
