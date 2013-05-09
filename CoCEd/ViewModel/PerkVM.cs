@@ -13,14 +13,7 @@ namespace CoCEd.ViewModel
         public PerkGroupVM(string name, AmfObject perksArray, IEnumerable<XmlNamedVector4> perks)
         {
             Name = name;
-            var perksVM = perks.OrderBy(x => x.Name).Select(x => new PerkVM(perksArray, x, x.Name)).ToArray();
-            Perks = new UpdatableCollection<PerkVM>(perksVM.Where(x => x.Match(VM.Instance.Game != null ? VM.Instance.Game.PerkSearchText : null)));
-        }
-
-        public PerkGroupVM(string name, AmfObject perksArray, IEnumerable<String> perkNames)
-        {
-            Name = name;
-            var perksVM = perkNames.OrderBy(x => x).Select(x => new PerkVM(perksArray, null, x)).ToArray();
+            var perksVM = perks.OrderBy(x => x.Name).Select(x => new PerkVM(perksArray, x)).ToArray();
             Perks = new UpdatableCollection<PerkVM>(perksVM.Where(x => x.Match(VM.Instance.Game != null ? VM.Instance.Game.PerkSearchText : null)));
         }
 
@@ -50,31 +43,24 @@ namespace CoCEd.ViewModel
 
     public sealed class PerkVM : NamedVector4VM
     {
-        public PerkVM(AmfObject perksArray, XmlNamedVector4 xml, string name)
-            : base(perksArray, xml, name)
+        public PerkVM(AmfObject perksArray, XmlNamedVector4 xml)
+            : base(perksArray, xml)
         {
         }
 
         protected override void InitializeObject(AmfObject obj)
         {
-            obj["perkName"] = _name;
+            obj["perkName"] = _xml.Name;
             obj["perkDesc"] = _xml.Description;
         }
 
         protected override bool IsObject(AmfObject obj)
         {
-            return obj.GetString("perkName") == _name;
+            return obj.GetString("perkName") == _xml.Name;
         }
 
         protected override void NotifyGameVM()
         {
-        }
-
-        protected override string GetDefaultComment()
-        {
-            var help = GetObject().GetString("perkDesc");
-            if (String.IsNullOrEmpty(help)) return "<no description>";
-            return help;
         }
     }
 }

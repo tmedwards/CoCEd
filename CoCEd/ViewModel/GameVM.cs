@@ -40,73 +40,76 @@ namespace CoCEd.ViewModel
             Cocks.CollectionChanged += OnGenitalCollectionChanged;
 
 
-            // Items
-            var groups = new List<ItemSlotGroupVM>();
-            var group = new ItemSlotGroupVM("Inventory", ItemCategories.All);
-            for (int i = 0; i < 5; i++) group.Add(file.GetObj("itemSlot" + (i + 1)));
-            groups.Add(group);
+            // Item containers
+            var containers = new List<ItemContainerVM>();
+            var container = new ItemContainerVM("Inventory", ItemCategories.All);
+            for (int i = 0; i < 5; i++) container.Add(file.GetObj("itemSlot" + (i + 1)));
+            containers.Add(container);
 
-            group = new ItemSlotGroupVM("Chest", ItemCategories.All);
-            foreach(var pair in file.GetObj("itemStorage")) group.Add(pair.ValueAsObject);
-            groups.Add(group);
+            container = new ItemContainerVM("Chest", ItemCategories.All);
+            foreach(var pair in file.GetObj("itemStorage")) container.Add(pair.ValueAsObject);
+            containers.Add(container);
 
             var gearStorage = file.GetObj("gearStorage");
-            group = new ItemSlotGroupVM("Armor rack", ItemCategories.Armor);
-            for (int i = 0; i < 9; i++) group.Add(gearStorage.GetObj(i + 9));
-            groups.Add(group);
+            container = new ItemContainerVM("Armor rack", ItemCategories.Armor | ItemCategories.Unknown);
+            for (int i = 0; i < 9; i++) container.Add(gearStorage.GetObj(i + 9));
+            containers.Add(container);
 
-            group = new ItemSlotGroupVM("Weapon rack", ItemCategories.Weapon);
-            for (int i = 0; i < 9; i++) group.Add(gearStorage.GetObj(i));
-            groups.Add(group);
+            container = new ItemContainerVM("Weapon rack", ItemCategories.Weapon | ItemCategories.Unknown);
+            for (int i = 0; i < 9; i++) container.Add(gearStorage.GetObj(i));
+            containers.Add(container);
 
-            ItemGroups = groups.ToArray();
-
+            ItemContainers = containers.ToArray();
 
             // Flags
-            var flagsObj = GetObj("flags");
-            var flagsData = new XmlEnum[flagsObj.Count];
+            var flagsArray = GetObj("flags");
+            var flagsData = new XmlEnum[flagsArray.Count];
             foreach(var flagData in XmlData.Instance.Flags) flagsData[flagData.ID - 1] = flagData;
 
-            _allFlags = new FlagVM[flagsObj.Count];
-            for (int i = 0; i < _allFlags.Length; ++i) _allFlags[i] = new FlagVM(flagsObj, flagsData[i], i + 1);
+            _allFlags = new FlagVM[flagsArray.Count];
+            for (int i = 0; i < _allFlags.Length; ++i) _allFlags[i] = new FlagVM(flagsArray, flagsData[i], i + 1);
             Flags = new UpdatableCollection<FlagVM>(_allFlags.Where(x => x.Match(_rawDataSearchText)));
 
 
             // Statuses
-            var obj = file.GetObj("statusAffects");
-            var statuses = obj.Select(x => x.ValueAsObject.GetString("statusAffectName")).Union(XmlData.Instance.Statuses.Select(x => x.Name)).ToArray();
-            _allStatuses = statuses.OrderBy(x => x).Select(x => new StatusVM(obj, x)).ToArray();
+            var statusArray = file.GetObj("statusAffects");
+            ImportMissingNamedVector(statusArray, XmlData.Instance.Statuses, "statusAffectName");
+            _allStatuses = XmlData.Instance.Statuses.OrderBy(x => x.Name).Select(x => new StatusVM(statusArray, x)).ToArray();
             Statuses = new UpdatableCollection<StatusVM>(_allStatuses.Where(x => x.Match(_rawDataSearchText)));
 
+
             // KeyItems
-            obj = file.GetObj("keyItems");
-            var keyItems = obj.Select(x => x.ValueAsObject.GetString("keyName")).Union(XmlData.Instance.KeyItems.Select(x => x.Name)).ToArray();
-            var keyItemsVM = keyItems.OrderBy(x => x).Select(x => new KeyItemVM(obj, x)).ToArray();
-            KeyItems = new UpdatableCollection<KeyItemVM>(keyItemsVM.Where(x => x.Match(_keyItemSearchText)));
+            var keyItemArray = file.GetObj("keyItems");
+            ImportMissingNamedVector(keyItemArray, XmlData.Instance.KeyItems, "keyName");
+            var allKeyitems = XmlData.Instance.KeyItems.OrderBy(x => x.Name).Select(x => new KeyItemVM(keyItemArray, x)).ToArray();
+            KeyItems = new UpdatableCollection<KeyItemVM>(allKeyitems.Where(x => x.Match(_keyItemSearchText)));
+
 
             // Perks
-            obj = file.GetObj("perks");
-            PerkGroups = new PerkGroupVM[]
-            {
-                new PerkGroupVM("Starter", obj, XmlData.Instance.Perks.StarterPerks),
-                new PerkGroupVM("History", obj, XmlData.Instance.Perks.HistoryPerks),
-                new PerkGroupVM("Tier0", obj, XmlData.Instance.Perks.Tier0Perks),
-                new PerkGroupVM("Tier1", obj, XmlData.Instance.Perks.Tier1Perks),
-                new PerkGroupVM("Tier2", obj, XmlData.Instance.Perks.Tier2Perks),
-                new PerkGroupVM("Events", obj, XmlData.Instance.Perks.EventPerks)
-            };
+            var perkArray = _obj.GetObj("perks");
+            ImportMissingNamedVector(perkArray, XmlData.Instance.PerkGroups.SelectMany(x => x.Perks), "perkName", x => 
+                {
+                    var help = x.GetString("perkDesc");
+                    return String.IsNullOrEmpty(help) ? "<no description>" : help;
+                }, 
+                XmlData.Instance.PerkGroups.Last().Perks);
+            PerkGroups = XmlData.Instance.PerkGroups.Select(x => new PerkGroupVM(x.Name, perkArray, x.Perks)).ToArray();
+        }
 
-            // Unknown perks: perks found on thc haracter but not in the XML
-            var gamePerks = obj.Select(x => x.ValueAsObject.GetString("perkName")).ToArray();
-            var xmlPerks = PerkGroups.SelectMany(x => x.Perks).Select(x => x.Name).ToArray();
-            var unknownPerks = gamePerks.Except(xmlPerks).ToArray();
+        static void ImportMissingNamedVector(AmfObject array, IEnumerable<XmlNamedVector4> xmlData, string nameKey, Func<AmfObject, String> descriptionGetter = null, IList<XmlNamedVector4> targetList = null)
+        {
+            if (targetList == null) targetList = (IList<XmlNamedVector4>)xmlData;
+            var xmlNames = new HashSet<String>(xmlData.Select(x => x.Name));
 
-            if (unknownPerks.Length != 0)
+            foreach (var pair in array)
             {
-                var perkGroups = PerkGroups;
-                PerkGroups = new PerkGroupVM[perkGroups.Length + 1];
-                Array.Copy(perkGroups, PerkGroups, perkGroups.Length);
-                PerkGroups[PerkGroups.Length - 1] = new PerkGroupVM("Unknown", obj, unknownPerks);
+                var name = pair.ValueAsObject.GetString(nameKey);
+                if (xmlNames.Contains(name)) continue;
+                xmlNames.Add(name);
+
+                var xml = new XmlNamedVector4 { Name = name };
+                if (descriptionGetter != null) xml.Description = descriptionGetter(pair.ValueAsObject);
+                targetList.Add(xml);
             }
         }
 
@@ -117,7 +120,7 @@ namespace CoCEd.ViewModel
         public UpdatableCollection<KeyItemVM> KeyItems { get; private set; }
         public UpdatableCollection<StatusVM> Statuses { get; private set; }
         public UpdatableCollection<FlagVM> Flags { get; private set; }
-        public ItemSlotGroupVM[] ItemGroups { get; private set; }
+        public ItemContainerVM[] ItemContainers { get; private set; }
         public PerkGroupVM[] PerkGroups { get; private set; }
 
         public AssVM Ass { get; private set; }
