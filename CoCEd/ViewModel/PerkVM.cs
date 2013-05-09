@@ -10,7 +10,7 @@ namespace CoCEd.ViewModel
 {
     public sealed class PerkGroupVM
     {
-        public PerkGroupVM(string name, AmfObject character, IEnumerable<XmlPerk> perks)
+        public PerkGroupVM(string name, AmfObject character, IEnumerable<XmlNamedVector4> perks)
         {
             Name = name;
             Perks = perks.OrderBy(x => x.Name).Select(x => new PerkVM(character.GetObj("perks"), x)).ToArray();
@@ -31,27 +31,14 @@ namespace CoCEd.ViewModel
 
     public sealed class PerkVM : NamedVector4VM
     {
-        readonly XmlPerk _xml;
-
-        public PerkVM(AmfObject perksArray, XmlPerk xml)
-            : base(perksArray)
+        public PerkVM(AmfObject perksArray, XmlNamedVector4 xml)
+            : base(perksArray, xml)
         {
-            _xml = xml;
         }
 
-        public string Name
-        {
-            get { return _xml.Name; }
-        }
-
-        public string Comment
+        public override string Comment
         {
             get { return String.IsNullOrEmpty(_xml.Description) ? "<no description>" : _xml.Description; }
-        }
-
-        public Visibility CommentVisibility
-        {
-            get { return Visibility.Visible; }
         }
 
         protected override void InitializeObject(AmfObject obj)

@@ -290,8 +290,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="arrow" Property="Fill" Value="#DA3810"/>
-                            <Setter TargetName="root" Property="BorderBrush" Value="#DA3810"/>
+                            <Setter TargetName="root" Property="BorderBrush" Value="#808080"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -359,17 +358,17 @@
                     <Popup x:Name="popup" Placement="Bottom" StaysOpen="False">
                         <Border Background="White" BorderBrush="Black" BorderThickness="1">
                             <common:AutoGrid Margin="20">
-                                <TextBlock Text="Value1" Foreground="#606060" VerticalAlignment="Center"/>
-                                <common:MyNumericBox Value="{Binding Value1}" Min="{x:Null}" Lower="{x:Null}" Margin="4,2,-100,2"/>
+                                <TextBlock Text="{Binding Label1}" Foreground="#606060" VerticalAlignment="Center"/>
+                                <common:MyNumericBox Value="{Binding Value1}" Min="{x:Null}" Lower="{x:Null}" Margin="6,2,0,2" Width="70"/>
 
-                                <TextBlock Text="Value2" Foreground="#606060" VerticalAlignment="Center"/>
-                                <common:MyNumericBox Value="{Binding Value2}" Min="{x:Null}" Lower="{x:Null}" Margin="4,2,-100,2"/>
+                                <TextBlock Text="{Binding Label2}" Foreground="#606060" VerticalAlignment="Center"/>
+                                <common:MyNumericBox Value="{Binding Value2}" Min="{x:Null}" Lower="{x:Null}" Margin="6,2,0,2" Width="70"/>
 
-                                <TextBlock Text="Value3" Foreground="#606060" VerticalAlignment="Center"/>
-                                <common:MyNumericBox Value="{Binding Value3}" Min="{x:Null}" Lower="{x:Null}" Margin="4,2,-100,2"/>
+                                <TextBlock Text="{Binding Label3}" Foreground="#606060" VerticalAlignment="Center"/>
+                                <common:MyNumericBox Value="{Binding Value3}" Min="{x:Null}" Lower="{x:Null}" Margin="6,2,0,2" Width="70"/>
 
-                                <TextBlock Text="Value4" Foreground="#606060" VerticalAlignment="Center"/>
-                                <common:MyNumericBox Value="{Binding Value4}" Min="{x:Null}" Lower="{x:Null}" Margin="4,2,-100,2"/>
+                                <TextBlock Text="{Binding Label4}" Foreground="#606060" VerticalAlignment="Center"/>
+                                <common:MyNumericBox Value="{Binding Value4}" Min="{x:Null}" Lower="{x:Null}" Margin="6,2,0,2" Width="70"/>
                             </common:AutoGrid>
                         </Border>
                     </Popup>

@@ -24,10 +24,10 @@ namespace CoCEd.Model
         public XmlItemGroup[] ItemGroups { get; set; }
 
         [XmlArray, XmlArrayItem("Status")]
-        public XmlName[] Statuses { get; set; }
+        public XmlNamedVector4[] Statuses { get; set; }
 
         [XmlArray, XmlArrayItem("KeyItem")]
-        public XmlName[] KeyItems { get; set; }
+        public XmlNamedVector4[] KeyItems { get; set; }
 
         [XmlArray, XmlArrayItem("Flag")]
         public XmlEnum[] Flags { get; set; }
@@ -130,17 +130,17 @@ namespace CoCEd.Model
     public sealed class XmlPerkSet
     {
         [XmlArray, XmlArrayItem("Perk")]
-        public XmlPerk[] StarterPerks { get; set; }
+        public XmlNamedVector4[] StarterPerks { get; set; }
         [XmlArray, XmlArrayItem("Perk")]
-        public XmlPerk[] HistoryPerks { get; set; }
+        public XmlNamedVector4[] HistoryPerks { get; set; }
         [XmlArray, XmlArrayItem("Perk")]
-        public XmlPerk[] Tier0Perks { get; set; }
+        public XmlNamedVector4[] Tier0Perks { get; set; }
         [XmlArray, XmlArrayItem("Perk")]
-        public XmlPerk[] Tier1Perks { get; set; }
+        public XmlNamedVector4[] Tier1Perks { get; set; }
         [XmlArray, XmlArrayItem("Perk")]
-        public XmlPerk[] Tier2Perks { get; set; }
+        public XmlNamedVector4[] Tier2Perks { get; set; }
         [XmlArray, XmlArrayItem("Perk")]
-        public XmlPerk[] EventPerks { get; set; }
+        public XmlNamedVector4[] EventPerks { get; set; }
     }
 
     [Flags]
@@ -202,12 +202,13 @@ namespace CoCEd.Model
         public string Description { get; set; }
     }
 
-    public sealed class XmlPerk
+    public sealed class XmlNamedVector4
     {
         [XmlAttribute]
         public string Name { get; set; }
         [XmlAttribute]
         public string Description { get; set; }
+
         [XmlAttribute]
         public double Value1 { get; set; }
         [XmlAttribute]
@@ -216,6 +217,15 @@ namespace CoCEd.Model
         public double Value3 { get; set; }
         [XmlAttribute]
         public double Value4 { get; set; }
+
+        [XmlAttribute]
+        public string Label1 { get; set; }
+        [XmlAttribute]
+        public string Label2 { get; set; }
+        [XmlAttribute]
+        public string Label3 { get; set; }
+        [XmlAttribute]
+        public string Label4 { get; set; }
     }
 
     public enum XmlLoadingResult
