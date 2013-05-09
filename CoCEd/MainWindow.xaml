@@ -57,14 +57,14 @@
             <TabItem Header="Others">
                 <view:MiscPage Background="White"/>
             </TabItem>
-            <TabItem Header="Perks">
-                <view:PerkPage Background="White"/>
+            <TabItem Header="Items">
+                <view:ItemsPage Background="White"/>
             </TabItem>
             <TabItem Header="Key items">
                 <view:KeyItemsPage Background="White"/>
             </TabItem>
-            <TabItem Header="Items">
-                <view:ItemsPage Background="White"/>
+            <TabItem Header="Perks">
+                <view:PerkPage Background="White"/>
             </TabItem>
             <TabItem Header="Raw data" BorderThickness="0">
                 <view:RawPage Background="White"/>
