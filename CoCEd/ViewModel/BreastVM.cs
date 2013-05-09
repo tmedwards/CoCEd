@@ -70,7 +70,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                switch(Rating)
+                switch(Rating + 1)
                 {
                     case 1: return "flat, manly breast";
                     case 2: return "A-cup";
