@@ -185,12 +185,6 @@ namespace CoCEd.ViewModel
         {
             return SetValue(key, value, propertyName);
         }
-
-        protected override void OnPropertyChanged(string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            VM.Instance.NotifySaveRequiredChanged(true);
-        }
     }
 
     public abstract class ArrayVM<TResult> : UpdatableCollection<AmfObject, TResult>, IArrayVM
