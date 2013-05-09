@@ -32,7 +32,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                            <StackPanel Orientation="Vertical" Margin="20,30,0,0">
+                            <StackPanel Orientation="Vertical" Margin="20,0,0,30" Visibility="{Binding Visibility}">
                                 <Border Background="Transparent" IsHitTestVisible="False">
                                     <TextBlock Text="{Binding Name}" Margin="4" FontSize="14" FontWeight="Bold"/>
                                 </Border>
@@ -46,7 +46,13 @@
     </UserControl.Resources>
     
     <Grid>
-        <TreeView ItemsSource="{Binding Game.PerkGroups}" ItemContainerStyle="{StaticResource GroupStyle}" Focusable="False" KeyboardNavigation.DirectionalNavigation="Contained" BorderThickness="0" Margin="10,0,0,0"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <common:SearchBox Text="{Binding Game.PerkSearchText}"/>
+
+        <TreeView Grid.Row="1" ItemsSource="{Binding Game.PerkGroups}" ItemContainerStyle="{StaticResource GroupStyle}" Focusable="False" KeyboardNavigation.DirectionalNavigation="Contained" BorderThickness="0" Margin="10,0,0,0"
                   HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
     </Grid>
 </UserControl>

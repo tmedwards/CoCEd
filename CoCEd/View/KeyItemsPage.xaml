@@ -25,7 +25,13 @@
     </UserControl.Resources>
     
     <Grid>
-        <ListBox ItemsSource="{Binding Game.KeyItems}" ItemContainerStyle="{StaticResource KeyItemStyle}" BorderThickness="0" Margin="10,0,0,0" Padding="0,30,0,0"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <common:SearchBox Text="{Binding Game.KeyItemSearchText}"/>
+        
+        <ListBox Grid.Row="1" ItemsSource="{Binding Game.KeyItems}" ItemContainerStyle="{StaticResource KeyItemStyle}" BorderThickness="0" Margin="10,0,0,0" Padding="0,0,0,0"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False"/>
     </Grid>
 </UserControl>

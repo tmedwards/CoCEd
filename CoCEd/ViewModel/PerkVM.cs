@@ -8,12 +8,13 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
-    public sealed class PerkGroupVM
+    public sealed class PerkGroupVM : BindableBase
     {
         public PerkGroupVM(string name, AmfObject character, IEnumerable<XmlNamedVector4> perks)
         {
             Name = name;
-            Perks = perks.OrderBy(x => x.Name).Select(x => new PerkVM(character.GetObj("perks"), x)).ToArray();
+            var perksVM = perks.OrderBy(x => x.Name).Select(x => new PerkVM(character.GetObj("perks"), x)).ToArray();
+            Perks = new UpdatableCollection<PerkVM>(perksVM.Where(x => x.Match(VM.Instance.Game != null ? VM.Instance.Game.PerkSearchText : null)));
         }
 
         public string Name
@@ -22,10 +23,21 @@ namespace CoCEd.ViewModel
             private set;
         }
 
-        public PerkVM[] Perks
+        public UpdatableCollection<PerkVM> Perks
         {
             get;
             private set;
+        }
+
+        public Visibility Visibility
+        {
+            get { return Perks.Count != 0 ? Visibility.Visible : Visibility.Collapsed; }
+        }
+
+        public void Update()
+        {
+            Perks.Update();
+            OnPropertyChanged("Visibility");
         }
     }
 

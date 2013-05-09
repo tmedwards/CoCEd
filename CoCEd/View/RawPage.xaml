@@ -92,10 +92,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Search..." Foreground="#A0A0A0" Margin="10,0" Padding="0" Width="Auto" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Visibility="{Binding Game.SearchPromptVisibility}"/>
-            <TextBox Width="250" Height="28" VerticalAlignment="Center" VerticalContentAlignment="Center" Padding="6,0" Text="{Binding Path=Game.SearchText, UpdateSourceTrigger=PropertyChanged}" Background="Transparent"/>
-        </Grid>
+        <common:SearchBox Grid.ColumnSpan="3" Text="{Binding Game.RawDataSearchText}"/>
 
         <Border Style="{StaticResource HeaderBorder}" Grid.Column="0" Grid.Row="1">
             <TextBlock Text="Flags" Style="{StaticResource Header}" Margin="4,0,0,0"/>

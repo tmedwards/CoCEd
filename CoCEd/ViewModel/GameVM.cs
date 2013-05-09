@@ -69,19 +69,20 @@ namespace CoCEd.ViewModel
 
             _allFlags = new FlagVM[flagsObj.Count];
             for (int i = 0; i < _allFlags.Length; ++i) _allFlags[i] = new FlagVM(flagsObj, flagsData[i], i + 1);
-            Flags = new UpdatableCollection<FlagVM>(_allFlags.Where(x => x.Match(_searchText)));
+            Flags = new UpdatableCollection<FlagVM>(_allFlags.Where(x => x.Match(_rawDataSearchText)));
 
 
             // Statuses
             var obj = file.GetObj("statusAffects");
             var statuses = obj.Select(x => x.ValueAsObject.GetString("statusAffectName")).Union(XmlData.Instance.Statuses.Select(x => x.Name)).ToArray();
             _allStatuses = statuses.OrderBy(x => x).Select(x => new StatusVM(obj, x)).ToArray();
-            Statuses = new UpdatableCollection<StatusVM>(_allStatuses.Where(x => x.Match(_searchText)));
+            Statuses = new UpdatableCollection<StatusVM>(_allStatuses.Where(x => x.Match(_rawDataSearchText)));
 
             // KeyItems
             obj = file.GetObj("keyItems");
             var keyItems = obj.Select(x => x.ValueAsObject.GetString("keyName")).Union(XmlData.Instance.KeyItems.Select(x => x.Name)).ToArray();
-            KeyItems = keyItems.OrderBy(x => x).Select(x => new KeyItemVM(obj, x)).ToArray();
+            var keyItemsVM = keyItems.OrderBy(x => x).Select(x => new KeyItemVM(obj, x)).ToArray();
+            KeyItems = new UpdatableCollection<KeyItemVM>(keyItemsVM.Where(x => x.Match(_keyItemSearchText)));
 
             // Perks
             PerkGroups = new PerkGroupVM[]
@@ -99,11 +100,11 @@ namespace CoCEd.ViewModel
         public BreastArrayVM Breasts { get; private set; }
         public VaginaArrayVM Vaginas { get; private set; }
 
+        public UpdatableCollection<KeyItemVM> KeyItems { get; private set; }
         public UpdatableCollection<StatusVM> Statuses { get; private set; }
         public UpdatableCollection<FlagVM> Flags { get; private set; }
         public ItemSlotGroupVM[] ItemGroups { get; private set; }
         public PerkGroupVM[] PerkGroups { get; private set; }
-        public KeyItemVM[] KeyItems { get; private set; }
 
         public AssVM Ass { get; private set; }
         public PiercingVM NosePiercing { get; private set; }
@@ -718,24 +719,44 @@ namespace CoCEd.ViewModel
             }
         }
 
-        string _searchText;
-        public string SearchText
+        string _rawDataSearchText;
+        public string RawDataSearchText
         {
-            get { return _searchText; }
+            get { return _rawDataSearchText; }
             set
             {
-                if (_searchText == value) return;
-                _searchText = value;
+                if (_rawDataSearchText == value) return;
+                _rawDataSearchText = value;
                 Statuses.Update();
                 Flags.Update();
-                base.OnPropertyChanged("SearchPromptVisibility");
                 base.OnPropertyChanged();
             }
         }
 
-        public Visibility SearchPromptVisibility
+        string _perkSearchText;
+        public string PerkSearchText
         {
-            get { return String.IsNullOrEmpty(_searchText) ? Visibility.Visible : Visibility.Collapsed; }
+            get { return _perkSearchText; }
+            set
+            {
+                if (_perkSearchText == value) return;
+                _perkSearchText = value;
+                foreach (var group in PerkGroups) group.Update();
+                base.OnPropertyChanged();
+            }
+        }
+
+        string _keyItemSearchText;
+        public string KeyItemSearchText
+        {
+            get { return _keyItemSearchText; }
+            set
+            {
+                if (_keyItemSearchText == value) return;
+                _keyItemSearchText = value;
+                KeyItems.Update();
+                base.OnPropertyChanged();
+            }
         }
     }
 
