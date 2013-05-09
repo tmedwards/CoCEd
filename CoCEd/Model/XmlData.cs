@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security;
@@ -42,7 +43,10 @@ namespace CoCEd.Model
         {
             try
             {
-                using (var stream = File.OpenRead("CoCEd.xml"))
+                var path = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+                path = Path.Combine(path, "CoCEd.xml");
+
+                using (var stream = File.OpenRead(path))
                 {
                     XmlSerializer s = new XmlSerializer(typeof(XmlData));
                     Instance = s.Deserialize(stream) as XmlData;
