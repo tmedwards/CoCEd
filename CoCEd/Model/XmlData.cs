@@ -108,6 +108,8 @@ namespace CoCEd.Model
 
         [XmlArray, XmlArrayItem("CockType")]
         public XmlEnum[] CockTypes { get; set; }
+        [XmlArray, XmlArrayItem("CockSockType")]
+        public String[] CockSockTypes { get; set; }
         [XmlArray, XmlArrayItem("VaginaType")]
         public XmlEnum[] VaginaTypes { get; set; }
         [XmlArray, XmlArrayItem("VaginalWetnessLevel")]

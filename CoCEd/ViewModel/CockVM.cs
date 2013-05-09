@@ -22,6 +22,11 @@ namespace CoCEd.ViewModel
             get { return XmlData.Instance.Body.CockTypes; }
         }
 
+        public string[] AllCockSocks
+        {
+            get { return XmlData.Instance.Body.CockSockTypes; }
+        }
+
         public int Type
         {
             get { return GetInt("cockType"); }
@@ -53,6 +58,12 @@ namespace CoCEd.ViewModel
         public bool IsKnotEnabled
         {
             get { return Type == 2; }
+        }
+
+        public string CockSock
+        {
+            get { return GetString("sock"); }
+            set { SetValue("sock", value); }
         }
 
         public string LabelPart1
@@ -96,6 +107,7 @@ namespace CoCEd.ViewModel
             obj["pierced"] = 0;
             obj["pLong"] = "";
             obj["pShort"] = "";
+            obj["sock"] = "";
             return obj;
         }
     }
