@@ -298,7 +298,7 @@
       <LowerBodyType ID="16" Name="Drider lower body"/>
       <LowerBodyType ID="17" Name="Fox"/>
       <LowerBodyType ID="18" Name="Dragon"/>
-      <LowerBodyType ID="18" Name="Raccoon"/>
+      <LowerBodyType ID="19" Name="Raccoon"/>
     </LowerBodyTypes>
     <!--============================================================================================================================================-->
     <PiercingTypes>
