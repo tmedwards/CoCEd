@@ -18,18 +18,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                            <CheckBox Margin="5" IsChecked="{Binding IsOwned}" Focusable="False">
-                                <CheckBox.Content>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding Name}"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding Description}" Style="{StaticResource StatusText}" Margin="0,2,0,0" IsEnabled="{Binding IsOwned}" TextWrapping="Wrap"/>
-                                    </Grid>
-                                </CheckBox.Content>
-                            </CheckBox>
+                            <common:NamedVector4Control Margin="-20,0,0,0"/>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -43,7 +32,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                            <StackPanel Orientation="Vertical" Margin="0,30,0,0">
+                            <StackPanel Orientation="Vertical" Margin="20,30,0,0">
                                 <Border Background="Transparent" IsHitTestVisible="False">
                                     <TextBlock Text="{Binding Name}" Margin="4" FontSize="14" FontWeight="Bold"/>
                                 </Border>
@@ -57,7 +46,7 @@
     </UserControl.Resources>
     
     <Grid>
-        <TreeView ItemsSource="{Binding Game.PerkGroups}" ItemContainerStyle="{StaticResource GroupStyle}" Focusable="False" KeyboardNavigation.DirectionalNavigation="Contained" BorderThickness="0" Margin="30,0,0,0"
+        <TreeView ItemsSource="{Binding Game.PerkGroups}" ItemContainerStyle="{StaticResource GroupStyle}" Focusable="False" KeyboardNavigation.DirectionalNavigation="Contained" BorderThickness="0" Margin="10,0,0,0"
                   HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
     </Grid>
 </UserControl>

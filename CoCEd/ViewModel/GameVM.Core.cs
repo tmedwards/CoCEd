@@ -20,10 +20,6 @@ namespace CoCEd.ViewModel
             foreach (var prop in _allStatuses.First(x => x.Name == name).GameProperties) OnPropertyChanged(prop);
         }
 
-        public void OnKeyItemChanged(string name)
-        {
-            // Not used right now
-        }
 
         void RegisterFlagDependency(int index, [CallerMemberName] string propertyName = null)
         {
@@ -53,14 +49,14 @@ namespace CoCEd.ViewModel
         bool HasStatus(string name, [CallerMemberName] string propertyName = null)
         {
             RegisterStatusDependency(name, propertyName);
-            return _allStatuses.First(x => x.Name == name).HasStatus;
+            return _allStatuses.First(x => x.Name == name).IsOwned;
         }
 
         int GetStatusInt(string name, string index, int defaultValue = 0, [CallerMemberName] string propertyName = null)
         {
             RegisterStatusDependency(name, propertyName);
             var status = _allStatuses.First(x => x.Name == name);
-            if (!status.HasStatus) return defaultValue;
+            if (!status.IsOwned) return defaultValue;
             return status.GetInt("value" + index);
         }
 
@@ -68,7 +64,7 @@ namespace CoCEd.ViewModel
         {
             RegisterStatusDependency(name, propertyName);
             var status = _allStatuses.First(x => x.Name == name);
-            if (!status.HasStatus) return defaultValue;
+            if (!status.IsOwned) return defaultValue;
             return status.GetDouble("value" + index);
         }
 
@@ -81,15 +77,15 @@ namespace CoCEd.ViewModel
         void RemoveStatus(string name)
         {
             var status = _allStatuses.First(x => x.Name == name);
-            status.HasStatus = false;
+            status.IsOwned = false;
         }
 
         void EnsureStatusExists(string name, double defaultValue1, double defaultValue2, double defaultValue3, double defaultValue4)
         {
             var status = _allStatuses.First(x => x.Name == name);
-            if (status.HasStatus) return;
+            if (status.IsOwned) return;
 
-            status.HasStatus = true;
+            status.IsOwned = true;
             status.Value1 = defaultValue1;
             status.Value2 = defaultValue2;
             status.Value3 = defaultValue3;

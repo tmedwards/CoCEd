@@ -64,9 +64,11 @@
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\MyComboBox.cs" />
     <Compile Include="Common\MyPiercingBox.cs" />
+    <Compile Include="ViewModel\NamedVector4VM.cs" />
     <Compile Include="Common\UpdatableCollection.cs" />
     <Compile Include="Common\UpdatableCollectionHelper.cs" />
     <Compile Include="Common\MyNumericBox.cs" />
+    <Compile Include="Common\NamedVector4Control.cs" />
     <Compile Include="Common\_ext.cs" />
     <Compile Include="Model\AmfFile.cs" />
     <Compile Include="Model\AmfObject.cs" />
@@ -204,6 +206,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\cross.png" />
+    <Resource Include="Assets\search.png" />
     <Content Include="CoCEd.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -42,43 +42,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                            <Grid x:Name="root">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <Rectangle Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Fill="White" Width="1"/>
-
-                                <CheckBox IsChecked="{Binding HasStatus}" Margin="4,8" Focusable="True">
-                                    <CheckBox.Content>
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Text="{Binding Name}" FontSize="12"/>
-                                            <TextBlock Text="{Binding Comment}" IsEnabled="{Binding HasStatus}" Visibility="{Binding CommentVisibility}" Style="{StaticResource StatusText}" TextWrapping="Wrap"/>
-                                            <common:AutoGrid Columns="4" Margin="10,6,0,20" IsEnabled="{Binding HasStatus}" Visibility="{Binding DetailsVisibility}" x:Name="details">
-                                                <TextBlock Text="Value1" Style="{StaticResource StatusText}"/>
-                                                <common:MyNumericBox Value="{Binding Value1}" Min="{x:Null}" Lower="{x:Null}" Width="100"/>
-
-                                                <TextBlock Text="Value2" Style="{StaticResource StatusText}" Margin="40,0,4,0"/>
-                                                <common:MyNumericBox Value="{Binding Value2}" Min="{x:Null}" Lower="{x:Null}" Width="100"/>
-
-                                                <TextBlock Text="Value3" Style="{StaticResource StatusText}" Margin="0,0,4,0"/>
-                                                <common:MyNumericBox Value="{Binding Value3}" Min="{x:Null}" Lower="{x:Null}" Width="100"/>
-
-                                                <TextBlock Text="Value4" Style="{StaticResource StatusText}" Margin="40,0,4,0"/>
-                                                <common:MyNumericBox Value="{Binding Value4}" Min="{x:Null}" Lower="{x:Null}" Width="100"/>
-                                            </common:AutoGrid>
-                                        </StackPanel>
-                                    </CheckBox.Content>
-                                </CheckBox>
-
-                                <ToggleButton x:Name="toggle" Grid.Column="1" IsChecked="{Binding IsExpanded}" Style="{StaticResource StatusToggle}" VerticalAlignment="Stretch" Margin="1,0,0,0"/>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="root" Property="Background" Value="#F0F0F0"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
+                            <common:NamedVector4Control IsRightSided="True"/>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>

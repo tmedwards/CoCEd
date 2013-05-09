@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using CoCEd.Model;
 
 namespace CoCEd.ViewModel
@@ -28,14 +29,13 @@ namespace CoCEd.ViewModel
         }
     }
 
-    public sealed class PerkVM : BindableBase
+    public sealed class PerkVM : NamedVector4VM
     {
-        readonly AmfObject _perksArray;
         readonly XmlPerk _xml;
 
         public PerkVM(AmfObject perksArray, XmlPerk xml)
+            : base(perksArray)
         {
-            _perksArray = perksArray;
             _xml = xml;
         }
 
@@ -44,41 +44,33 @@ namespace CoCEd.ViewModel
             get { return _xml.Name; }
         }
 
-        public string Description
+        public string Comment
         {
             get { return String.IsNullOrEmpty(_xml.Description) ? "<no description>" : _xml.Description; }
         }
 
-        public bool IsOwned
+        public Visibility CommentVisibility
         {
-            get { return Pair != null; }
-            set
-            {
-                var pair = Pair;
-                if (value == (pair != null)) return;
-                if (value)
-                {
-                    AmfObject perk = new AmfObject(AmfTypes.Array);
-                    perk["perkDesc"] = _xml.Description;
-                    perk["perkName"] = _xml.Name;
-                    perk["value1"] = _xml.Value1;
-                    perk["value2"] = _xml.Value2;
-                    perk["value3"] = _xml.Value3;
-                    perk["value4"] = _xml.Value4;
-                    _perksArray.Push(perk);
-                }
-                else
-                {
-                    _perksArray.Pop((int)pair.Key);
-                }
-                OnPropertyChanged("IsOwned");
-                VM.Instance.NotifySaveRequiredChanged();
-            }
+            get { return Visibility.Visible; }
         }
 
-        public AmfPair Pair
+        protected override void InitializeObject(AmfObject obj)
         {
-            get { return _perksArray.FirstOrDefault(x => String.Equals(x.ValueAsObject.GetString("perkName"), _xml.Name, StringComparison.InvariantCultureIgnoreCase)); }
+            obj["perkName"] = _xml.Name;
+            obj["perkDesc"] = _xml.Description;
+            obj["value1"] = _xml.Value1;
+            obj["value2"] = _xml.Value2;
+            obj["value3"] = _xml.Value3;
+            obj["value4"] = _xml.Value4;
+        }
+
+        protected override bool IsObject(AmfObject obj)
+        {
+            return obj.GetString("perkName") == _xml.Name;
+        }
+
+        protected override void NotifyGameVM()
+        {
         }
     }
 }
