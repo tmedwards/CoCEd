@@ -204,7 +204,7 @@ namespace CoCEd.Model
             if (value == null) return defaultValue.Value;
             if (value is string) return Double.Parse((string)value);
             if (value is double) return (double)value;
-            if (value is bool) return (bool)value ? 0 : 1;
+            if (value is bool) return (bool)value ? 1 : 0;
             if (value is uint) return (double)(uint)value;
             if (value is int) return (double)(int)value;
             throw new InvalidOperationException("No conversion available");
@@ -216,7 +216,7 @@ namespace CoCEd.Model
             if (value == null) return defaultValue.Value;
             if (value is string) return Int32.Parse((string)value);
             if (value is double) return (int)(double)value;
-            if (value is bool) return (bool)value ? 0 : 1;
+            if (value is bool) return (bool)value ? 1 : 0;
             if (value is uint) return (int)(uint)value;
             if (value is int) return (int)value;
             throw new InvalidOperationException("No conversion available");
