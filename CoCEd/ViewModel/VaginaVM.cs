@@ -90,7 +90,7 @@ namespace CoCEd.ViewModel
 
             obj["type"] = 0;
             obj["virgin"] = true;
-            obj["vaginalWetness"] = 1;
+            obj["vaginalWetness"] = 2;
             obj["vaginalLooseness"] = 0;
             return obj;
         }
