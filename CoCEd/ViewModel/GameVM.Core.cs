@@ -10,28 +10,30 @@ namespace CoCEd.ViewModel
 {
     public sealed partial class GameVM : ObjectVM
     {
+        // Whenever a FlagVM or StatusVM is modified, it notifies GameVM so that it updates its dependent properties.
+
         public void OnFlagChanged(int index)
         {
-            foreach(var prop in _allFlags[index - 1].GameProperties) OnPropertyChanged(prop);
+            foreach(var prop in _allFlags[index - 1].GameVMProperties) OnPropertyChanged(prop);
         }
 
         public void OnStatusChanged(string name)
         {
-            foreach (var prop in _allStatuses.First(x => x.Name == name).GameProperties) OnPropertyChanged(prop);
+            foreach (var prop in _allStatuses.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
         }
 
 
         FlagVM GetFlag(int index, [CallerMemberName] string propertyName = null)
         {
             var flag = _allFlags[index - 1];
-            flag.GameProperties.Add(propertyName);
+            flag.GameVMProperties.Add(propertyName);
             return flag;
         }
 
         StatusVM GetStatus(string name, [CallerMemberName] string propertyName = null)
         {
             var status = _allStatuses.First(x => x.Name == name);
-            status.GameProperties.Add(propertyName);
+            status.GameVMProperties.Add(propertyName);
             return status;
         }
 
@@ -42,6 +44,7 @@ namespace CoCEd.ViewModel
 
         void OnGenitalCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            // Update gender
             if (Cocks.Count != 0 && Vaginas.Count != 0) SetValue("gender", 3);
             else if (Vaginas.Count != 0) SetValue("gender", 2);
             else if (Cocks.Count != 0) SetValue("gender", 1);
