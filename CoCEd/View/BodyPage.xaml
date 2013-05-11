@@ -89,6 +89,9 @@
 
                     <TextBlock              Text="Tail"/>
                     <common:MyComboBox SelectedValue="{Binding Game.TailType}" ItemsSource="{Binding Data.Body.TailTypes}"/>
+                    
+                    <TextBlock              Text="{Binding Game.TaileValueLabel}" IsEnabled="{Binding Game.IsTailValueEnabled}"/>
+                    <common:MyNumericBox    Value="{Binding Game.TailValue}" IsEnabled="{Binding Game.IsTailValueEnabled}"/>
                 </common:AutoGrid>
             </StackPanel>
 

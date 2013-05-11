@@ -286,10 +286,10 @@ namespace CoCEd.ViewModel
             get { return GetInt("hornType"); }
             set 
             {
-                if (!SetValue("hornType", value)) return;
-                OnPropertyChanged("HornsValueEnabled");
-                OnPropertyChanged("HornsValueLabel");
-                OnPropertyChanged("HornsValueUnit");
+                SetValue("hornType", value);
+                base.OnPropertyChanged("HornsValueEnabled");
+                base.OnPropertyChanged("HornsValueLabel");
+                base.OnPropertyChanged("HornsValueUnit");
             }
         }
 
@@ -333,7 +333,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("hipRating", value);
-                OnPropertyChanged("HipRatingTip");
+                base.OnPropertyChanged("HipRatingTip");
             }
         }
 
@@ -355,7 +355,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("buttRating", value);
-                OnPropertyChanged("ButtRatingTip");
+                base.OnPropertyChanged("ButtRatingTip");
             }
         }
 
@@ -378,7 +378,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("thickness", value);
-                OnPropertyChanged("FrameTip");
+                base.OnPropertyChanged("FrameTip");
             }
         }
 
@@ -400,7 +400,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("tone", value);
-                OnPropertyChanged("MusclesTip");
+                base.OnPropertyChanged("MusclesTip");
             }
         }
 
@@ -422,7 +422,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("femininity", value);
-                OnPropertyChanged("FeminityTip");
+                base.OnPropertyChanged("FeminityTip");
             }
         }
 
@@ -480,7 +480,28 @@ namespace CoCEd.ViewModel
         public int TailType
         {
             get { return GetInt("tailType"); }
-            set { SetValue("tailType", value); }
+            set 
+            { 
+                SetValue("tailType", value);
+                base.OnPropertyChanged("IsTailValueEnabled");
+                base.OnPropertyChanged("TailValueLabel");
+            }
+        }
+
+        public int TailValue
+        {
+            get { return GetInt("tailVenum"); }
+            set { SetValue("tailVenum", value); }
+        }
+
+        public bool IsTailValueEnabled
+        {
+            get { return TailType == 13; }
+        }
+
+        public string TailValueLabel
+        {
+            get { return "Tail count"; }
         }
 
         public int WingType
@@ -489,7 +510,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("wingType", value);
-                OnPropertyChanged("IsWingEnabled");
+                base.OnPropertyChanged("IsWingEnabled");
             }
         }
 
@@ -538,7 +559,7 @@ namespace CoCEd.ViewModel
                     SetStatusValue("eggs", "2", eggSize);
                     SetValue("pregnancyType", 5);
                 }
-                OnPropertyChanged("IsPregnancyEnabled");
+                base.OnPropertyChanged("IsPregnancyEnabled");
             }
         }
 
@@ -558,8 +579,8 @@ namespace CoCEd.ViewModel
             get { return GetInt("buttPregnancyType"); }
             set 
             {
-                if (!SetValue("buttPregnancyType", value)) return;
-                OnPropertyChanged("IsButtPregnancyEnabled");
+                SetValue("buttPregnancyType", value);
+                base.OnPropertyChanged("IsButtPregnancyEnabled");
             }
         }
 
@@ -579,8 +600,8 @@ namespace CoCEd.ViewModel
             get { return GetInt("balls"); }
             set
             {
-                if (!SetValue("balls", value)) return;
-                OnPropertyChanged("CumVolume");
+                SetValue("balls", value);
+                base.OnPropertyChanged("CumVolume");
             }
         }
 
@@ -589,8 +610,8 @@ namespace CoCEd.ViewModel
             get { return GetDouble("ballSize"); }
             set
             {
-                if (!SetValue("ballSize", value)) return;
-                OnPropertyChanged("CumVolume");
+                SetValue("ballSize", value);
+                base.OnPropertyChanged("CumVolume");
             }
         }
 
@@ -599,8 +620,8 @@ namespace CoCEd.ViewModel
             get { return GetDouble("cumMultiplier"); }
             set 
             {
-                if (!SetValue("cumMultiplier", value)) return;
-                OnPropertyChanged("CumVolume");
+                SetValue("cumMultiplier", value);
+                base.OnPropertyChanged("CumVolume");
             }
         }
 
