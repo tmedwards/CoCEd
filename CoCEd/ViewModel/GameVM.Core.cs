@@ -21,77 +21,19 @@ namespace CoCEd.ViewModel
         }
 
 
-        void RegisterFlagDependency(int index, [CallerMemberName] string propertyName = null)
+        FlagVM GetFlag(int index, [CallerMemberName] string propertyName = null)
         {
-            _allFlags[index - 1].GameProperties.Add(propertyName);
+            var flag = _allFlags[index - 1];
+            flag.GameProperties.Add(propertyName);
+            return flag;
         }
 
-        void RegisterStatusDependency(string name, [CallerMemberName] string propertyName = null)
-        {
-            _allStatuses.First(x => x.Name == name).GameProperties.Add(propertyName);
-        }
-
-
-
-        int GetFlagInt(int index, [CallerMemberName] string propertyName = null)
-        {
-            RegisterFlagDependency(index, propertyName);
-            return _allFlags[index - 1].GetInt();
-        }
-
-        void SetFlag(int index, object value)
-        {
-            _allFlags[index - 1].SetValue(value);
-        }
-
-
-
-        bool HasStatus(string name, [CallerMemberName] string propertyName = null)
-        {
-            RegisterStatusDependency(name, propertyName);
-            return _allStatuses.First(x => x.Name == name).IsOwned;
-        }
-
-        int GetStatusInt(string name, string index, int defaultValue = 0, [CallerMemberName] string propertyName = null)
-        {
-            RegisterStatusDependency(name, propertyName);
-            var status = _allStatuses.First(x => x.Name == name);
-            if (!status.IsOwned) return defaultValue;
-            return status.GetInt("value" + index);
-        }
-
-        double GetStatusDouble(string name, string index, double defaultValue = 0, [CallerMemberName] string propertyName = null)
-        {
-            RegisterStatusDependency(name, propertyName);
-            var status = _allStatuses.First(x => x.Name == name);
-            if (!status.IsOwned) return defaultValue;
-            return status.GetDouble("value" + index);
-        }
-
-        void SetStatusValue(string statusName, string valueIndex, object value)
-        {
-            var status = _allStatuses.First(x => x.Name == statusName);
-            status.SetValue("value" + valueIndex, value, "Value" + valueIndex);
-        }
-
-        void RemoveStatus(string name)
+        StatusVM GetStatus(string name, [CallerMemberName] string propertyName = null)
         {
             var status = _allStatuses.First(x => x.Name == name);
-            status.IsOwned = false;
+            status.GameProperties.Add(propertyName);
+            return status;
         }
-
-        void EnsureStatusExists(string name, double defaultValue1, double defaultValue2, double defaultValue3, double defaultValue4)
-        {
-            var status = _allStatuses.First(x => x.Name == name);
-            if (status.IsOwned) return;
-
-            status.IsOwned = true;
-            status.Value1 = defaultValue1;
-            status.Value2 = defaultValue2;
-            status.Value3 = defaultValue3;
-            status.Value4 = defaultValue4;
-        }
-
 
         bool IsMale
         {

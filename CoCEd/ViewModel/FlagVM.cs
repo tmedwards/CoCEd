@@ -40,7 +40,7 @@ namespace CoCEd.ViewModel
             get { return _index; }
         }
 
-        public int GetInt()
+        public int AsInt()
         {
             return _obj.GetInt(_index);
         }
