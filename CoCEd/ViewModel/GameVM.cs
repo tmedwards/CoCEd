@@ -23,12 +23,12 @@ namespace CoCEd.ViewModel
         {
             // Unique children
             Ass = new AssVM(file.GetObj("ass"));
-            LipPiercing = new PiercingVM(_obj, "lip");
-            NosePiercing = new PiercingVM(_obj, "nose");
-            EarsPiercing = new PiercingVM(_obj, "ears");
-            EyebrowPiercing = new PiercingVM(_obj, "eyebrow");
-            NipplesPiercing = new PiercingVM(_obj, "nipples");
-            TonguePiercing = new PiercingVM(_obj, "tongue");
+            LipPiercing = new PiercingVM(file, "lip");
+            NosePiercing = new PiercingVM(file, "nose");
+            EarsPiercing = new PiercingVM(file, "ears");
+            EyebrowPiercing = new PiercingVM(file, "eyebrow");
+            NipplesPiercing = new PiercingVM(file, "nipples");
+            TonguePiercing = new PiercingVM(file, "tongue");
 
 
             // Collections
@@ -539,8 +539,8 @@ namespace CoCEd.ViewModel
                 int type = GetInt("pregnancyType"); 
                 if (type != 5) return type;
 
-                int eggType = GetStatusInt("eggs", "1", 0);
-                int eggSize = GetStatusInt("eggs", "2", 0);
+                int eggType = (int)GetStatus("eggs").Value1;
+                int eggSize = (int)GetStatus("eggs").Value2;
                 return 10000 + eggType * 100 + eggSize;
             }
             set 
@@ -554,9 +554,10 @@ namespace CoCEd.ViewModel
                     value = value % 10000;
                     int eggType = value / 100;
                     int eggSize = value % 100;
-                    EnsureStatusExists("eggs", eggType, eggSize, 6, 0);
-                    SetStatusValue("eggs", "1", eggType);
-                    SetStatusValue("eggs", "2", eggSize);
+
+                    GetStatus("eggs").IsOwned = true;
+                    GetStatus("eggs").Value1 = eggType;
+                    GetStatus("eggs").Value2 = eggSize;
                     SetValue("pregnancyType", 5);
                 }
                 base.OnPropertyChanged("IsPregnancyEnabled");
@@ -659,101 +660,95 @@ namespace CoCEd.ViewModel
 
         public int Exgartuan
         {
-            get { return GetStatusInt("Exgartuan", "1", 0); }
+            get { return (int)GetStatus("Exgartuan").Value1; }
             set 
             {
                 if (value == Exgartuan) return;
-                if (Exgartuan == 0) EnsureStatusExists("Exgartuan", value, 0, 0, 0);
-                else if (value == 0) RemoveStatus("Exgartuan");
-                else SetStatusValue("Exgartuan", "1", value);
+                GetStatus("Exgartuan").IsOwned = (value != 0);
+                GetStatus("Exgartuan").Value1 = value;
             }
         }
 
         public double VaginalCapacityBonus
         {
-            get { return GetStatusDouble("Bonus vCapacity", "1"); }
+            get { return GetStatus("Bonus vCapacity").Value1; }
             set
             {
-                EnsureStatusExists("Bonus vCapacity", value, 0, 0, 0);
-                SetStatusValue("Bonus vCapacity", "1", value);
+                GetStatus("Bonus vCapacity").IsOwned = (value != 0);
+                GetStatus("Bonus vCapacity").Value1 = value;
             }
         }
 
         public double AnalCapacityBonus
         {
-            get { return GetStatusDouble("Bonus aCapacity", "1"); }
-            set 
+            get { return GetStatus("Bonus aCapacity").Value1; }
+            set
             {
-                EnsureStatusExists("Bonus aCapacity", value, 0, 0, 0);
-                SetStatusValue("Bonus aCapacity", "1", value); 
+                GetStatus("Bonus aCapacity").IsOwned = (value != 0);
+                GetStatus("Bonus aCapacity").Value1 = value;
             }
         }
 
         public bool HasMetTamani
         {
-            get { return HasStatus("Tamani"); }
+            get { return GetStatus("Tamani").IsOwned; }
         }
 
         public int BirthedTamaniChildren
         {
-            get { return GetStatusInt("Tamani", "2"); }
-            set { SetStatusValue("Tamani", "2", value); }
+            get { return (int)GetStatus("Tamani").Value2; }
+            set { GetStatus("Tamani").Value2 = value; }
         }
 
         public int BirthedImps
         {
-            get { return GetStatusInt("Birthed Imps", "1"); }
+            get { return (int)GetStatus("Birthed Imps").Value1; }
             set
             {
-                EnsureStatusExists("Birthed Imps", value, 0, 0, 0);
-                SetStatusValue("Birthed Imps", "1", value);
+                GetStatus("Birthed Imps").IsOwned = (value != 0);
+                GetStatus("Birthed Imps").Value1 = value;
             }
         }
 
         public int BirthedMinotaurs
         {
-            get { return GetFlagInt(326); }
-            set { SetFlag(326, value); }
+            get { return GetFlag(326).AsInt(); }
+            set { GetFlag(326).SetValue(value); }
         }
 
         public int MinotaurCumAddiction
         {
-            get { return GetFlagInt(18); }
-            set { SetFlag(18, value); }
+            get { return GetFlag(18).AsInt(); }
+            set { GetFlag(18).SetValue(value); }
         }
 
         public int MarbleMilkAddiction
         {
-            get { return GetStatusInt("Marble", "3", 0); }
-            set { SetStatusValue("Marble", "3", value); }
+            get { return (int)GetStatus("Marble").Value3; }
+            set { GetStatus("Marble").Value3 = value; }
         }
 
         public bool HasMetMarble
         {
-            get { return HasStatus("Marble"); }
+            get { return GetStatus("Marble").IsOwned; }
         }
 
         public int WormStatus
         {
             get
             {
-                if (HasStatus("infested")) return 2;
-                if (HasStatus("wormsOff")) return 0;
-                RegisterStatusDependency("wormsOn");
+                if (GetStatus("infested").IsOwned) return 2;
+                if (GetStatus("wormsOff").IsOwned) return 0;
+                GetStatus("wormsOn");
                 return 1;
             }
             set
             {
                 if (value == WormStatus) return;
 
-                if (value == 0) EnsureStatusExists("wormsOff",0,0,0,0);
-                else RemoveStatus("wormsOff");
-
-                if (value >= 1) EnsureStatusExists("wormsOn", 0, 0, 0, 0);
-                else RemoveStatus("wormsOn");
-
-                if (value == 2) EnsureStatusExists("infested", 0, 0, 0, 0);
-                else RemoveStatus("infested");
+                GetStatus("wormsOn").IsOwned = (value >= 1);
+                GetStatus("wormsOff").IsOwned = (value == 0);
+                GetStatus("infested").IsOwned = (value == 2);
             }
         }
 
