@@ -475,7 +475,8 @@
 		  <Item ID="EctoPls" Name="Ectoplasm"/>
 		  <Item ID="Equinum" Name="Equinum"/>
 		  <Item ID="FoxBery" Name="Fox Berry"/>
-		  <Item ID="Gob.Ale" Name="Goblin Ale"/>
+      <Item ID="FoxJewl" Name="Fox Jewel"/>
+      <Item ID="Gob.Ale" Name="Goblin Ale"/>
 		  <Item ID="GldSeed" Name="Golden Seed"/>
 		  <Item ID="Hummus" Name="Hummus"/>
 		  <Item ID="ImpFood" Name="Imp Food"/>
