@@ -36,7 +36,7 @@ namespace CoCEd.ViewModel
             get { return String.IsNullOrEmpty(Comment) ? Visibility.Collapsed : Visibility.Visible; }
         }
 
-        public HashSet<string> GameProperties
+        public HashSet<string> GameVMProperties
         {
             get { return _gameProperties; }
         }

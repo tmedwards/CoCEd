@@ -26,10 +26,10 @@ namespace CoCEd.ViewModel
             if (!String.IsNullOrEmpty(_comment)) _label = _label + "*";
             _description = flags.GetString(_index);
 
-            GameProperties = new HashSet<string>();
+            GameVMProperties = new HashSet<string>();
         }
 
-        public HashSet<string> GameProperties
+        public HashSet<string> GameVMProperties
         {
             get;
             private set;
