@@ -173,6 +173,8 @@
       <FaceType ID="12" Name="Dragon"/>
       <FaceType ID="13" Name="Raccoon Mask"/>
       <FaceType ID="14" Name="Raccoon Face"/>
+      <FaceType ID="15" Name="Buckteeth"/>
+      <FaceType ID="16" Name="Mouse"/>
     </FaceTypes>
     <!--============================================================================================================================================-->
     <TongueTypes>
@@ -201,6 +203,7 @@
       <EarType ID="9" Name="Fox"/>
       <EarType ID="10" Name="Dragon"/>
       <EarType ID="11" Name="Raccoon"/>
+      <EarType ID="12" Name="Mouse"/>
     </EarTypes>
     <!--============================================================================================================================================-->
     <HornTypes>
@@ -486,7 +489,8 @@
 		  <Item ID="MagSeed" Name="Magic Seed"/>
 		  <Item ID="MghtyVg" Name="Mighty Veggie"/>
 		  <Item ID="MinoBlo" Name="Minotaur Blood"/>
-		  <Item ID="NPnkEgg" Name="Neon Pink Egg"/>
+      <Item ID="MouseCo" Name="Mouse Cocoa"/>
+      <Item ID="NPnkEgg" Name="Neon Pink Egg"/>
 		  <Item ID="ProBova" Name="ProBova"/>
 		  <Item ID="PurHony" Name="Pure Honey"/>
 		  <Item ID="P.Draft" Name="Purified Incubi Draft"/>
