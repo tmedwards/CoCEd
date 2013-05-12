@@ -194,6 +194,7 @@
 
     <Style TargetType="{x:Type common:MyComboBox}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="Margin" Value="8,3,0,3"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -213,6 +214,7 @@
 
     <Style TargetType="{x:Type common:MyPiercingBox}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="Margin" Value="8,5"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -380,6 +382,7 @@
     <Style x:Key="{x:Type common:SearchBox}" TargetType="{x:Type common:SearchBox}">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type common:SearchBox}">
