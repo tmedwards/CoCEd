@@ -841,8 +841,7 @@
     <Status Name="Edryn" Description="You've met Edryn."/>
     <Status Name="eggs" Description="You're pregnant with eggs."/>
     <Status Name="Ever Raped Jojo" Description="Have you ever raped Jojo? If this is here, you have. Congratulations."/>
-    <Status Name="Exgartuan" Description="Possession by Exgartuan(m)"/>
-    <Status Name="Exgartuan" Description="Possession by Exgartuan(f)"/>
+    <Status Name="Exgartuan" Description="Possession by Exgartuan"/>
     <Status Name="exploredDeepwoods"/>
     <Status Name="FactoryIncubusDefeated" Description="You defeated the Incubus Engineer. If you want to fight him again, just remove this status!"/>
     <Status Name="FactoryOmnibusDefeated" Description="You have defeated the Factory Omnibus Overlord."/>
