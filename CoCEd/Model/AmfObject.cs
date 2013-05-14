@@ -408,9 +408,7 @@ namespace CoCEd.Model
 
         public static bool AreSame(object x, object y)
         {
-            if (x == null) return (y == null);
-            if (y == null) return false;
-            return x.Equals(y);
+            return object.Equals(x, y);
         }
     }
 

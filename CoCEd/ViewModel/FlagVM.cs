@@ -15,11 +15,11 @@ namespace CoCEd.ViewModel
         readonly int _index;
         readonly string _label;
         readonly string _comment;
-        readonly AmfObject _obj;
+        readonly AmfObject _flagArray;
 
         public FlagVM(AmfObject flags, XmlEnum data, int index)
         {
-            _obj = flags;
+            _flagArray = flags;
             _index = index;
             _label = data != null ? data.Name : "";
             _comment = data != null ? data.Description : "";
@@ -42,7 +42,7 @@ namespace CoCEd.ViewModel
 
         public int AsInt()
         {
-            return _obj.GetInt(_index);
+            return _flagArray.GetInt(_index);
         }
 
         public string Label
@@ -70,7 +70,7 @@ namespace CoCEd.ViewModel
             }
         }
 
-        object GetValueFromLabel(string value)
+        static object GetValueFromLabel(string value)
         {
             int iValue;
             if (Int32.TryParse(value, NumberStyles.Integer, CultureInfo.CurrentCulture, out iValue)) return iValue;
@@ -90,29 +90,14 @@ namespace CoCEd.ViewModel
         public bool SetValue(object value, bool updateText = true)
         {
             // Update value
-            object currentValue = _obj[_index];
-            if (AmfObject.AreSame(currentValue, value)) return false;
-            _obj[_index] = value;
-
-            // Notify subscribers
-            VM.Instance.Game.OnFlagChanged(Index);
-            if (!updateText) return true;
+            if (!SetValue(_flagArray, _index, value)) return false;
 
             // Update label
-            var newDescription = value.ToString();
-            if (_description == newDescription) return true;
-            _description = newDescription;
-
-            // Notify subscribers
-            OnPropertyChanged("ValueLabel");
+            if (updateText)
+            {
+                SetProperty(ref _description, value.ToString(), "ValueLabel");
+            }
             return true;
-        }
-
-        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            VM.Instance.NotifySaveRequiredChanged(true);
-            VM.Instance.Game.OnFlagChanged(Index);
         }
 
         public bool Match(string str)
@@ -126,6 +111,12 @@ namespace CoCEd.ViewModel
             if (index != -1) return true;
 
             return false;
+        }
+
+        protected override void OnSavePropertyChanged(string propertyName = null)
+        {
+            base.OnSavePropertyChanged(propertyName);
+            VM.Instance.Game.OnFlagChanged(Index);
         }
     }
 }

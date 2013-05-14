@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections.Specialized;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using CoCEd.ViewModel;
 
 namespace System.ComponentModel
 {

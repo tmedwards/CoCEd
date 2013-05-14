@@ -5,8 +5,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using CoCEd.Model;
+using CoCEd.ViewModel;
 
-namespace System.ComponentModel
+namespace CoCEd.ViewModel
 {
     public abstract class BindableBase : INotifyPropertyChanged
     {
@@ -17,7 +19,16 @@ namespace System.ComponentModel
             if (object.Equals(storage, value)) return false;
 
             storage = value;
-            this.OnPropertyChanged(propertyName);
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        public virtual bool SetValue(AmfObject obj, object key, object value, [CallerMemberName] string propertyName = null)
+        {
+            if (AmfObject.AreSame(obj[key], value)) return false;
+            obj[key] = value;
+
+            OnSavePropertyChanged(propertyName);
             return true;
         }
 
@@ -29,5 +40,18 @@ namespace System.ComponentModel
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        protected virtual void OnSavePropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            OnPropertyChanged(propertyName);
+            VM.Instance.NotifySaveRequiredChanged(true);
+        }
+    }
+}
+
+namespace System.Runtime.CompilerServices
+{
+    public class CallerMemberNameAttribute : Attribute
+    {
     }
 }

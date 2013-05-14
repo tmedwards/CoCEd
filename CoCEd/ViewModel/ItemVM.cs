@@ -78,7 +78,7 @@ namespace CoCEd.ViewModel
             get { return GetInt("quantity"); }
             set
             {
-                if (!SetValue("quantity", value)) return;
+                SetValue("quantity", value);
                 OnPropertyChanged("TypeDescription");
                 OnPropertyChanged("QuantityDescription");
             }
@@ -89,7 +89,7 @@ namespace CoCEd.ViewModel
             get { return GetString("shortName").Trim(); }
             set
             {
-                if (!SetValue("shortName", value)) return;
+                SetValue("shortName", value);
                 OnPropertyChanged("TypeDescription");
                 OnPropertyChanged("QuantityDescription");
             }
@@ -161,17 +161,18 @@ namespace CoCEd.ViewModel
             get { return _slot.Type == _item.ID; }
             set
             {
+                // Selecting
                 if (value)
                 {
                     _slot.Type = _item.ID;
                     if (_slot.Quantity == 0) _slot.Quantity = 1;
                 }
-                else if (_slot.Type == _item.ID)
+                // Unselecting
+                else if (_slot.Type == _item.ID && !value)
                 {
                     _slot.Type = "";
                 }
                 OnPropertyChanged();
-                VM.Instance.NotifySaveRequiredChanged();
             }
         }
     }

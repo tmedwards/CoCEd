@@ -59,7 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="Common\ArrayEditor.cs" />
     <Compile Include="Common\AutoGrid.cs" />
-    <Compile Include="Common\BindableBase.cs" />
+    <Compile Include="ViewModel\BindableBase.cs" />
     <Compile Include="Common\ItemPanel.cs" />
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\MyComboBox.cs" />
