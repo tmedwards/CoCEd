@@ -68,11 +68,11 @@ namespace CoCEd.ViewModel
                 {
                     _items.Pop((int)pair.Key);
                 }
-                base.OnPropertyChanged("Value1");
-                base.OnPropertyChanged("Value2");
-                base.OnPropertyChanged("Value3");
-                base.OnPropertyChanged("Value4");
-                OnPropertyChanged();
+                OnPropertyChanged("Value1");
+                OnPropertyChanged("Value2");
+                OnPropertyChanged("Value3");
+                OnPropertyChanged("Value4");
+                OnSavePropertyChanged();
             }
         }
 
@@ -162,10 +162,7 @@ namespace CoCEd.ViewModel
         {
             var obj = GetObject();
             if (obj == null) return false;
-            if (AmfObject.AreSame(obj[key], value)) return false;
-            obj[key] = value;
-            OnPropertyChanged(propertyName);
-            return true;
+            return SetValue(obj, key, value, propertyName);
         }
 
         public bool Match(string str)
@@ -181,10 +178,9 @@ namespace CoCEd.ViewModel
             return false;
         }
 
-        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected override void OnSavePropertyChanged(string propertyName = null)
         {
-            base.OnPropertyChanged(propertyName);
-            VM.Instance.NotifySaveRequiredChanged(true);
+            base.OnSavePropertyChanged(propertyName);
             NotifyGameVM();
         }
 

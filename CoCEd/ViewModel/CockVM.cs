@@ -7,6 +7,28 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
+    public sealed class CockArrayVM : ArrayVM<CockVM>
+    {
+        public CockArrayVM(AmfObject obj)
+            : base(obj, x => new CockVM(x))
+        {
+        }
+
+        protected override AmfObject CreateNewObject()
+        {
+            var obj = new AmfObject(AmfTypes.Array);
+            obj["cockLength"] = 8;
+            obj["cockThickness"] = 2;
+            obj["cockType"] = 0;
+            obj["knotMultiplier"] = 0.0;
+            obj["pierced"] = 0;
+            obj["pLong"] = "";
+            obj["pShort"] = "";
+            obj["sock"] = "";
+            return obj;
+        }
+    }
+
     public class CockVM : ObjectVM
     {
         public CockVM(AmfObject obj)
@@ -32,15 +54,20 @@ namespace CoCEd.ViewModel
             get { return GetInt("cockType"); }
             set
             {
-                if (!SetValue("cockType", value)) return;
-                OnPropertyChanged("KnotVisibility");
+                SetValue("cockType", value);
+                OnPropertyChanged("IsKnotEnabled");
+                OnPropertyChanged("LabelPart2");
             }
         }
 
         public double Length
         {
             get { return GetDouble("cockLength"); }
-            set { SetValue("cockLength", value); }
+            set 
+            { 
+                SetValue("cockLength", value);
+                OnPropertyChanged("LabelPart1");
+            }
         }
 
         public double Thickness
@@ -80,35 +107,6 @@ namespace CoCEd.ViewModel
                 var cockTypeName = cockType != null ? cockType.Name : "unknown";
                 return String.Format(" long {0} cock", cockTypeName);
             }
-        }
-
-        protected override void OnPropertyChanged(string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            base.OnPropertyChanged("LabelPart1");
-            base.OnPropertyChanged("LabelPart2");
-        }
-    }
-
-    public sealed class CockArrayVM : ArrayVM<CockVM>
-    {
-        public CockArrayVM(AmfObject obj)
-            : base(obj, x => new CockVM(x))
-        {
-        }
-
-        protected override AmfObject CreateNewObject()
-        {
-            var obj = new AmfObject(AmfTypes.Array);
-            obj["cockLength"] = 8;
-            obj["cockThickness"] = 2;
-            obj["cockType"] = 0;
-            obj["knotMultiplier"] = 0.0;
-            obj["pierced"] = 0;
-            obj["pLong"] = "";
-            obj["pShort"] = "";
-            obj["sock"] = "";
-            return obj;
         }
     }
 }

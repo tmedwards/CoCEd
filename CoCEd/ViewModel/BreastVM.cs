@@ -1,11 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
+    public sealed class BreastArrayVM : ArrayVM<BreastsVM>
+    {
+        public BreastArrayVM(AmfObject obj)
+            : base(obj, x => new BreastsVM(x))
+        {
+        }
+
+        protected override AmfObject CreateNewObject()
+        {
+            var obj = new AmfObject(AmfTypes.Array);
+            obj["breasts"] = 2;
+            obj["fuckable"] = false;
+            obj["breastRating"] = 3.0;
+            obj["nipplesPerBreast"] = 1;
+            obj["lactationMultiplier"] = 1.0;
+            obj["milkFullness"] = 0;
+            obj["fullness"] = 0;
+            return obj;
+        }
+    }
+
     public class BreastsVM : ObjectVM
     {
         public BreastsVM(AmfObject obj)
@@ -18,8 +40,9 @@ namespace CoCEd.ViewModel
             get { return GetInt("breastRating"); }
             set
             {
-                if (!SetDouble("breastRating", value)) return;
+                SetDouble("breastRating", value);
                 OnPropertyChanged("RatingDescription");
+                OnPropertyChanged("Description");
                 OnPropertyChanged("MilkVolume");
             }
         }
@@ -29,7 +52,8 @@ namespace CoCEd.ViewModel
             get { return GetInt("breasts"); }
             set
             {
-                if (!SetValue("breasts", value)) return;
+                SetValue("breasts", value);
+                OnPropertyChanged("Description");
                 OnPropertyChanged("MilkVolume");
             }
         }
@@ -51,7 +75,7 @@ namespace CoCEd.ViewModel
             get { return GetDouble("lactationMultiplier"); }
             set
             {
-                if (!SetValue("lactationMultiplier", value)) return;
+                SetValue("lactationMultiplier", value);
                 OnPropertyChanged("MilkVolume");
             }
         }
@@ -63,6 +87,21 @@ namespace CoCEd.ViewModel
                 var qty = Rating * 10 * LactationMultiplier * BreastCount;
                 if (qty == 0) return "";
                 return qty < 1000 ? String.Format("{0:0} mL/h (base)", qty) : String.Format("{0:0.00} L/h (base)", qty * 0.001);
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                var rating = RatingDescription;
+                if (BreastCount == 1) return "A " + rating + " breast";
+                if (BreastCount == 2) return "A pair of " + rating + " breasts";
+                if (BreastCount == 3) return "A triad of " + rating + " breasts";
+                if (BreastCount == 4) return "A quartet of " + rating + " breasts";
+                if (BreastCount == 5) return "A quintet of " + rating + " breasts";
+                if (BreastCount == 6) return "A sextet of " + rating + " breasts";
+                return "A bunch of " + rating + "-cup breasts";
             }
         }
 
@@ -175,48 +214,6 @@ namespace CoCEd.ViewModel
                     default: return "game-breaking cup";
                 }
             }
-        }
-
-        public string Description
-        {
-            get
-            {
-                var rating = RatingDescription;
-                if (BreastCount == 1) return "A " + rating + " breast";
-                if (BreastCount == 2) return "A pair of " + rating + " breasts";
-                if (BreastCount == 3) return "A triad of " + rating + " breasts";
-                if (BreastCount == 4) return "A quartet of " + rating + " breasts";
-                if (BreastCount == 5) return "A quintet of " + rating + " breasts";
-                if (BreastCount == 6) return "A sextet of " + rating + " breasts";
-                return "A bunch of " + rating + "-cup breasts";
-            }
-        }
-
-        protected override void OnPropertyChanged(string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            base.OnPropertyChanged("Description");
-        }
-    }
-
-    public sealed class BreastArrayVM : ArrayVM<BreastsVM>
-    {
-        public BreastArrayVM(AmfObject obj)
-            : base(obj, x => new BreastsVM(x))
-        {
-        }
-
-        protected override AmfObject CreateNewObject()
-        {
-            var obj = new AmfObject(AmfTypes.Array);
-            obj["breasts"] = 2;
-            obj["fuckable"] = false;
-            obj["breastRating"] = 3.0;
-            obj["nipplesPerBreast"] = 1;
-            obj["lactationMultiplier"] = 1.0;
-            obj["milkFullness"] = 0;
-            obj["fullness"] = 0;
-            return obj;
         }
     }
 }

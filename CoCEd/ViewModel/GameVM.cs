@@ -287,9 +287,9 @@ namespace CoCEd.ViewModel
             set 
             {
                 SetValue("hornType", value);
-                base.OnPropertyChanged("HornsValueEnabled");
-                base.OnPropertyChanged("HornsValueLabel");
-                base.OnPropertyChanged("HornsValueUnit");
+                OnPropertyChanged("HornsValueEnabled");
+                OnPropertyChanged("HornsValueLabel");
+                OnPropertyChanged("HornsValueUnit");
             }
         }
 
@@ -333,7 +333,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("hipRating", value);
-                base.OnPropertyChanged("HipRatingTip");
+                OnPropertyChanged("HipRatingTip");
             }
         }
 
@@ -355,7 +355,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("buttRating", value);
-                base.OnPropertyChanged("ButtRatingTip");
+                OnPropertyChanged("ButtRatingTip");
             }
         }
 
@@ -378,7 +378,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("thickness", value);
-                base.OnPropertyChanged("FrameTip");
+                OnPropertyChanged("FrameTip");
             }
         }
 
@@ -400,7 +400,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("tone", value);
-                base.OnPropertyChanged("MusclesTip");
+                OnPropertyChanged("MusclesTip");
             }
         }
 
@@ -422,7 +422,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("femininity", value);
-                base.OnPropertyChanged("FeminityTip");
+                OnPropertyChanged("FeminityTip");
             }
         }
 
@@ -483,8 +483,8 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("tailType", value);
-                base.OnPropertyChanged("IsTailValueEnabled");
-                base.OnPropertyChanged("TailValueLabel");
+                OnPropertyChanged("IsTailValueEnabled");
+                OnPropertyChanged("TailValueLabel");
             }
         }
 
@@ -510,7 +510,7 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("wingType", value);
-                base.OnPropertyChanged("IsWingEnabled");
+                OnPropertyChanged("IsWingEnabled");
             }
         }
 
@@ -560,7 +560,7 @@ namespace CoCEd.ViewModel
                     GetStatus("eggs").Value2 = eggSize;
                     SetValue("pregnancyType", 5);
                 }
-                base.OnPropertyChanged("IsPregnancyEnabled");
+                OnPropertyChanged("IsPregnancyEnabled");
             }
         }
 
@@ -581,7 +581,7 @@ namespace CoCEd.ViewModel
             set 
             {
                 SetValue("buttPregnancyType", value);
-                base.OnPropertyChanged("IsButtPregnancyEnabled");
+                OnPropertyChanged("IsButtPregnancyEnabled");
             }
         }
 
@@ -602,7 +602,7 @@ namespace CoCEd.ViewModel
             set
             {
                 SetValue("balls", value);
-                base.OnPropertyChanged("CumVolume");
+                OnPropertyChanged("CumVolume");
             }
         }
 
@@ -612,7 +612,7 @@ namespace CoCEd.ViewModel
             set
             {
                 SetValue("ballSize", value);
-                base.OnPropertyChanged("CumVolume");
+                OnPropertyChanged("CumVolume");
             }
         }
 
@@ -622,7 +622,7 @@ namespace CoCEd.ViewModel
             set 
             {
                 SetValue("cumMultiplier", value);
-                base.OnPropertyChanged("CumVolume");
+                OnPropertyChanged("CumVolume");
             }
         }
 
@@ -713,7 +713,11 @@ namespace CoCEd.ViewModel
         public int BirthedMinotaurs
         {
             get { return GetFlag(326).AsInt(); }
-            set { GetFlag(326).SetValue(value); }
+            set 
+            { 
+                GetFlag(326).SetValue(value);
+                OnPropertyChanged();
+            }
         }
 
         public int MinotaurCumAddiction
@@ -762,7 +766,7 @@ namespace CoCEd.ViewModel
                 _rawDataSearchText = value;
                 Statuses.Update();
                 Flags.Update();
-                base.OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -775,7 +779,7 @@ namespace CoCEd.ViewModel
                 if (_perkSearchText == value) return;
                 _perkSearchText = value;
                 foreach (var group in PerkGroups) group.Update();
-                base.OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -788,14 +792,8 @@ namespace CoCEd.ViewModel
                 if (_keyItemSearchText == value) return;
                 _keyItemSearchText = value;
                 KeyItems.Update();
-                base.OnPropertyChanged();
+                OnPropertyChanged();
             }
-        }
-
-        protected override void OnPropertyChanged(string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            VM.Instance.NotifySaveRequiredChanged(true);
         }
     }
 

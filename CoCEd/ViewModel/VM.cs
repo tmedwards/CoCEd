@@ -175,10 +175,7 @@ namespace CoCEd.ViewModel
 
         public virtual bool SetValue(object key, object value, [CallerMemberName] string propertyName = null)
         {
-            if (AmfObject.AreSame(_obj[key], value)) return false;
-            _obj[key] = value;
-            OnPropertyChanged(propertyName);
-            return true;
+            return SetValue(_obj, key, value, propertyName);
         }
 
         protected bool SetDouble(object key, double value, [CallerMemberName] string propertyName = null)
@@ -233,12 +230,5 @@ namespace CoCEd.ViewModel
         }
 
         protected abstract AmfObject CreateNewObject();
-    }
-}
-
-namespace System.Runtime.CompilerServices
-{
-    public class CallerMemberNameAttribute : Attribute
-    {
     }
 }

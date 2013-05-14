@@ -6,6 +6,33 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
+    public sealed class VaginaArrayVM : ArrayVM<VaginaVM>
+    {
+        public VaginaArrayVM(AmfObject obj)
+            : base(obj, x => new VaginaVM(x))
+        {
+        }
+
+        protected override AmfObject CreateNewObject()
+        {
+            var obj = new AmfObject(AmfTypes.Array);
+
+            obj["clipPLong"] = "";
+            obj["clitPShort"] = "";
+            obj["clitPierced"] = false;
+
+            obj["labiaPLong"] = "";
+            obj["labiaPShort"] = "";
+            obj["labiaPierced"] = false;
+
+            obj["type"] = 0;
+            obj["virgin"] = true;
+            obj["vaginalWetness"] = 2;
+            obj["vaginalLooseness"] = 0;
+            return obj;
+        }
+    }
+
     public class VaginaVM : ObjectVM
     {
         public VaginaVM(AmfObject node)
@@ -60,39 +87,6 @@ namespace CoCEd.ViewModel
         public string Description
         {
             get { return "One Vagina"; }
-        }
-
-        protected override void OnPropertyChanged(string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            base.OnPropertyChanged("Description");
-        }
-    }
-
-    public sealed class VaginaArrayVM : ArrayVM<VaginaVM>
-    {
-        public VaginaArrayVM(AmfObject obj)
-            : base(obj, x => new VaginaVM(x))
-        {
-        }
-
-        protected override AmfObject CreateNewObject()
-        {
-            var obj = new AmfObject(AmfTypes.Array);
-
-            obj["clipPLong"] = "";
-            obj["clitPShort"] = "";
-            obj["clitPierced"] = false;
-
-            obj["labiaPLong"] = "";
-            obj["labiaPShort"] = "";
-            obj["labiaPierced"] = false;
-
-            obj["type"] = 0;
-            obj["virgin"] = true;
-            obj["vaginalWetness"] = 2;
-            obj["vaginalLooseness"] = 0;
-            return obj;
         }
     }
 }
