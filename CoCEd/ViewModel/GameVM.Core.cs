@@ -14,7 +14,7 @@ namespace CoCEd.ViewModel
 
         public void OnFlagChanged(int index)
         {
-            foreach(var prop in _allFlags[index - 1].GameVMProperties) OnPropertyChanged(prop);
+            foreach(var prop in _allFlags[index].GameVMProperties) OnPropertyChanged(prop);
         }
 
         public void OnStatusChanged(string name)
@@ -25,7 +25,7 @@ namespace CoCEd.ViewModel
 
         FlagVM GetFlag(int index, [CallerMemberName] string propertyName = null)
         {
-            var flag = _allFlags[index - 1];
+            var flag = _allFlags[index];
             flag.GameVMProperties.Add(propertyName);
             return flag;
         }
