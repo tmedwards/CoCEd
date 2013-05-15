@@ -61,15 +61,16 @@ namespace CoCEd.ViewModel
 
             ItemContainers = containers.ToArray();
 
+
             // Flags
             int numFlags = XmlData.Instance.Flags.Max(x => x.ID) + 200;
-            var flagDataByID = new XmlEnum[numFlags];
-            foreach(var flagData in XmlData.Instance.Flags) flagDataByID[flagData.ID - 1] = flagData;
+            var xmlFlagByID = new XmlEnum[numFlags];
+            foreach(var xml in XmlData.Instance.Flags) xmlFlagByID[xml.ID] = xml;
 
             var flagsArray = GetObj("flags");
             _allFlags = new FlagVM[numFlags];
-            for (int i = 0; i < _allFlags.Length; ++i) _allFlags[i] = new FlagVM(flagsArray, flagDataByID[i], i + 1);
-            Flags = new UpdatableCollection<FlagVM>(_allFlags.Where(x => x.Match(_rawDataSearchText)));
+            for (int i = 0; i < _allFlags.Length; ++i) _allFlags[i] = new FlagVM(flagsArray, xmlFlagByID[i], i);
+            Flags = new UpdatableCollection<FlagVM>(_allFlags.Where(x => x.Index > 0 && x.Match(_rawDataSearchText)));
 
 
             // Statuses

@@ -113,7 +113,7 @@ namespace CoCEd.ViewModel
             return false;
         }
 
-        protected override void OnSavePropertyChanged(string propertyName = null)
+        protected override void OnSavePropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnSavePropertyChanged(propertyName);
             VM.Instance.Game.OnFlagChanged(Index);
