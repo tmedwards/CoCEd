@@ -1878,5 +1878,13 @@
     <Flag ID="899" Name="MIDAS_JERKED"/>
     <Flag ID="900" Name="PHYLLA_INHERITED_KNOWLEDGE"/>
     <Flag ID="901" Name="PHYLLA_IZMA_TALK"/>
+    <Flag ID="902" Name="AKBAL_TIMES_BITCHED"/>
+    <Flag ID="903" Name="AKBAL_BITCH_Q"/>
+    <Flag ID="904" Name="KELLY_BONUS_BOOB_ROWS"/>
+    <Flag ID="905" Name="KELLY_INCUBATION"/>
+    <Flag ID="906" Name="KELLY_TIMES_PEPPERED"/>
+    <Flag ID="907" Name="KELLY_HEAT_TIME"/>
+    <Flag ID="908" Name="KELLY_KIDS"/>
+    <Flag ID="909" Name="KELLY_FIRST_KID_GENDER"/>
   </Flags>  
 </CoCEd>
