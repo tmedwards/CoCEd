@@ -46,14 +46,12 @@ namespace CoCEd.ViewModel
             : base(obj)
         {
             Categories = categories;
+        }
 
-            // Add missing items
-            var type = Type;
-            if (!String.IsNullOrEmpty(type) && XmlData.Instance.ItemGroups.SelectMany(x => x.Items).All(x => x.ID != type))
-            {
-                var xml = new XmlItem { ID = type, Name = type };
-                XmlData.Instance.ItemGroups.Last().Items.Add(xml);
-            }
+        public void CreateGroups()
+        {
+            var xmlGroups = XmlData.Instance.ItemGroups.Where(group => Categories.HasFlag(group.Category)).ToArray();
+            AllGroups = xmlGroups.Select(group => new ItemGroupVM(group, this)).ToArray();
         }
 
         public ItemCategories Categories
@@ -62,15 +60,10 @@ namespace CoCEd.ViewModel
             private set;
         }
 
-        public IEnumerable<ItemGroupVM> AllGroups
+        public ItemGroupVM[] AllGroups
         {
-            get
-            {
-                foreach (var group in XmlData.Instance.ItemGroups)
-                {
-                    if (Categories.HasFlag(group.Category) && group.Items.Count != 0) yield return new ItemGroupVM(group, this);
-                }
-            }
+            get;
+            private set;
         }
 
         public int Quantity
@@ -86,13 +79,23 @@ namespace CoCEd.ViewModel
 
         public string Type
         {
-            get { return GetString("shortName").Trim(); }
+            get { return GetString("shortName"); }
             set
             {
-                SetValue("shortName", value);
-                OnPropertyChanged("TypeDescription");
+                var oldType = Type;
+                if (!SetValue("shortName", value)) return;
                 OnPropertyChanged("QuantityDescription");
+                OnPropertyChanged("TypeDescription");
+                InvalidateItem(oldType);
+                InvalidateItem(value);
             }
+        }
+
+        void InvalidateItem(string type)
+        {
+            var item = AllGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == type);
+            if (item == null) return;
+            item.NotifyIsSelectedChanged();
         }
 
         public string TypeDescription
@@ -119,13 +122,10 @@ namespace CoCEd.ViewModel
 
     public sealed class ItemGroupVM
     {
-        const int Columns = 3;
-        readonly ItemVM[] _items;
-
         public ItemGroupVM(XmlItemGroup group, ItemSlotVM slot)
         {
             Name = group.Name;
-            _items = group.Items.OrderBy(x => x.Name).Select(x => new ItemVM(slot, x)).ToArray();
+            Items = group.Items.OrderBy(x => x.Name).Select(x => new ItemVM(slot, x)).ToArray();
         }
 
         public string Name
@@ -134,46 +134,48 @@ namespace CoCEd.ViewModel
             private set;
         }
 
-        public IEnumerable<ItemVM> Items
+        public ItemVM[] Items
         {
-            get { return _items; }
+            get;
+            private set;
         }
     }
 
     public sealed class ItemVM : BindableBase
     {
         readonly ItemSlotVM _slot;
-        readonly XmlItem _item;
+        readonly XmlItem _xml;
 
         public ItemVM(ItemSlotVM slot, XmlItem item)
         {
             _slot = slot;
-            _item = item;
+            _xml = item;
+        }
+
+        public string ID
+        {
+            get { return _xml.ID; }
         }
 
         public string Name
         {
-            get { return _item.Name; }
+            get { return _xml.Name; }
         }
 
         public bool IsSelected
         {
-            get { return _slot.Type == _item.ID; }
+            get { return _slot.Type == _xml.ID; }
             set
             {
-                // Selecting
-                if (value)
-                {
-                    _slot.Type = _item.ID;
-                    if (_slot.Quantity == 0) _slot.Quantity = 1;
-                }
-                // Unselecting
-                else if (_slot.Type == _item.ID && !value)
-                {
-                    _slot.Type = "";
-                }
-                OnPropertyChanged();
+                if (!value) return;
+                _slot.Type = _xml.ID;
+                if (_slot.Quantity == 0) _slot.Quantity = 1;
             }
+        }
+
+        public void NotifyIsSelectedChanged()
+        {
+            OnPropertyChanged("IsSelected");
         }
     }
 }
