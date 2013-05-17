@@ -59,6 +59,21 @@ namespace CoCEd.ViewModel
             for (int i = 0; i < 9; i++) container.Add(gearStorage.GetObj(i));
             containers.Add(container);
 
+            // Import missing items
+            foreach (var slot in containers.SelectMany(x => x.Slots))
+            {
+                // Add this item to the DB if it does not exist
+                var type = slot.Type;
+                if (String.IsNullOrEmpty(type)) continue;
+                if (XmlData.Instance.ItemGroups.SelectMany(x => x.Items).Any(x => x.ID == type)) continue;
+
+                var xml = new XmlItem { ID = type, Name = type };
+                XmlData.Instance.ItemGroups.Last().Items.Add(xml);
+            }
+
+            // Complete slots creation
+            foreach (var slot in containers.SelectMany(x => x.Slots)) slot.CreateGroups();
+
             ItemContainers = containers.ToArray();
 
 
