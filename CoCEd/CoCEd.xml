@@ -374,27 +374,27 @@
     </AnalLoosenessLevels>
     <!--============================================================================================================================================-->
     <PregnancyTypes>
-      <PregnancyType ID="0" Name="None"/>
-      <PregnancyType ID="1" Name="Imp"/>
-      <PregnancyType ID="2" Name="Minotaur"/>
-      <PregnancyType ID="4" Name="Mouse-morph (Jojo/Corrupt Amily)"/>
-      <PregnancyType ID="11" Name="Mouse-morph (Amily)"/>
-      <PregnancyType ID="6" Name="Hellhound"/>
-      <PregnancyType ID="7" Name="Centaur (Kelt)"/>
-      <PregnancyType ID="8" Name="Cowgirls (Marble)"/>
-      <PregnancyType ID="9" Name="Bunny"/>
-      <PregnancyType ID="10" Name="Anemone"/>
-      <PregnancyType ID="12" Name="Tiger shark (Izma)"/>
-      <PregnancyType ID="13" Name="Spider-morph"/>
-      <PregnancyType ID="14" Name="Basilisk"/>
-      <PregnancyType ID="18" Name="Basilisk (Benoit)"/>
-      <PregnancyType ID="15" Name="Drider"/>
-      <PregnancyType ID="16" Name="Goo-girl"/>
-      <PregnancyType ID="17" Name="Dragon (Ember)"/>
-      <PregnancyType ID="19" Name="Satyr"/>
-      <PregnancyType ID="20" Name="Equine (Cotton)"/>
-      <PregnancyType ID="21" Name="Fox (Urta)"/>
-      <PregnancyType ID="22" Name="Sand witch"/>
+      <PregnancyType ID="0"   Name="None"/>
+      <PregnancyType ID="10"  Name="Anemone"/>
+      <PregnancyType ID="14"  Name="Basilisk"/>
+      <PregnancyType ID="18"  Name="Basilisk (Benoit)"/>
+      <PregnancyType ID="9"   Name="Bunny"/>
+      <PregnancyType ID="7"   Name="Centaur (Kelt)"/>
+      <PregnancyType ID="8"   Name="Cowgirls (Marble)"/>
+      <PregnancyType ID="17"  Name="Dragon (Ember)"/>
+      <PregnancyType ID="15"  Name="Drider"/>
+      <PregnancyType ID="20"  Name="Equine (Cotton)"/>
+      <PregnancyType ID="21"  Name="Fox (Urta)"/>
+      <PregnancyType ID="16"  Name="Goo-girl"/>
+      <PregnancyType ID="6"   Name="Hellhound"/>
+      <PregnancyType ID="1"   Name="Imp"/>
+      <PregnancyType ID="2"   Name="Minotaur"/>
+      <PregnancyType ID="11"  Name="Mouse-morph (Amily)"/>
+      <PregnancyType ID="4"   Name="Mouse-morph (Jojo/Corrupt Amily)"/>
+      <PregnancyType ID="22"  Name="Sand witch"/>
+      <PregnancyType ID="19"  Name="Satyr"/>
+      <PregnancyType ID="13"  Name="Spider-morph"/>
+      <PregnancyType ID="12"  Name="Tiger shark (Izma)"/>
       <PregnancyType ID="10000" Name="Small brown egg"/>
       <PregnancyType ID="10001" Name="Large brown egg"/>
       <PregnancyType ID="10100" Name="Small purple egg"/>
@@ -413,8 +413,8 @@
       <AnalPregnancyType ID="0" Name="None"/>
       <AnalPregnancyType ID="2" Name="Bee-girl"/>
       <AnalPregnancyType ID="3" Name="Drider"/>
-      <AnalPregnancyType ID="4" Name="Insectoid (Sand Trap)"/>
       <AnalPregnancyType ID="5" Name="Fake pregnancy (Sand Trap)"/>
+      <AnalPregnancyType ID="4" Name="Insectoid (Sand Trap)"/>
       <AnalPregnancyType ID="9" Name="Neon pink egg (Bunny girl)"/>
       <AnalPregnancyType ID="19" Name="Satyr"/>
     </AnalPregnancyTypes>
@@ -423,9 +423,9 @@
   <Items>
     <ItemGroup Name="Misc" Category="Other">
       <Item ID="B.Chitn" Name="Black Chitin"/>
+      <Item ID="B. Book" Name="Black Book"/>
       <Item ID="GreenGl" Name="Green Gel"/>
       <Item ID="T.SSilk" Name="Tough Silk"/>
-      <Item ID="B. Book" Name="Black Book"/>
       <Item ID="W. Book" Name="White Book"/>
     </ItemGroup>
     <!--============================================================================================================================================-->
