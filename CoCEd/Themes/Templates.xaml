@@ -415,7 +415,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type common:SearchBox}">
                     <Grid>
-                        <TextBlock x:Name="prompt" Text="Search..." Foreground="#A0A0A0" Margin="10,0" Padding="0" Width="Auto" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Visibility="{Binding Game.SearchPromptVisibility}"/>
+                        <TextBlock x:Name="prompt" Text="Search..." Foreground="#A0A0A0" Margin="10,0" Padding="0" Width="Auto" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center"/>
                         <TextBox Width="250" Height="28" VerticalAlignment="Center" VerticalContentAlignment="Center" Padding="6,0" Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" Background="Transparent"/>
                     </Grid>
                 </ControlTemplate>
