@@ -320,7 +320,7 @@
       <CockType ID="7" Name="Anemone"/>
       <CockType ID="8" Name="Kangaroo"/>
       <CockType ID="9" Name="Dragon"/>
-      <CockType ID="10" Name="Coerl"/>
+      <CockType ID="10" Name="Cœurl"/>
     </CockTypes>
     <!--============================================================================================================================================-->
     <CockSockTypes>
