@@ -98,7 +98,7 @@
       <HairColor>purplish-black</HairColor>
       <HairColor>red</HairColor>
       <HairColor>sandy blonde</HairColor>
-	    <HairColor>shiny black</HairColor>
+      <HairColor>shiny black</HairColor>
       <HairColor>silver</HairColor>
       <HairColor>silver-white</HairColor>
       <HairColor>white</HairColor>
@@ -124,7 +124,7 @@
       <HairColor>latex-textured purplish-black</HairColor>
       <HairColor>latex-textured red</HairColor>
       <HairColor>latex-textured sandy-blonde</HairColor>
-	    <HairColor>latex-textured shiny black</HairColor>
+      <HairColor>latex-textured shiny black</HairColor>
       <HairColor>latex-textured silver</HairColor>
       <HairColor>latex-textured silver-white</HairColor>
       <HairColor>latex-textured white</HairColor>
@@ -150,7 +150,7 @@
       <HairColor>rubbery purplish-black</HairColor>
       <HairColor>rubbery red</HairColor>
       <HairColor>rubbery sandy-blonde</HairColor>
-	    <HairColor>rubbery shiny black</HairColor>
+      <HairColor>rubbery shiny black</HairColor>
       <HairColor>rubbery silver</HairColor>
       <HairColor>rubbery silver-white</HairColor>
       <HairColor>rubbery white</HairColor>
@@ -187,7 +187,7 @@
     <EyeTypes>
       <EyeType ID="0" Name="Human"/>
       <EyeType ID="1" Name="Four spider eyes"/>
-      <EyeType ID="2" Name="Black eyes (sand trap)"/>
+      <EyeType ID="2" Name="Black eyes (Sand Trap)"/>
     </EyeTypes>
     <!--============================================================================================================================================-->
     <EarTypes>
@@ -219,9 +219,6 @@
       <AntennaeType ID="0" Name="None"/>
       <AntennaeType ID="2" Name="Bee"/>
     </AntennaeTypes>
-  
-  
-  
     <!--============================================================================================================================================-->
     <ArmTypes>
       <ArmType ID="0" Name="Human"/>
@@ -311,9 +308,6 @@
       <PiercingType ID="4" Name="Hoop"/>
       <PiercingType ID="5" Name="Chain"/>
     </PiercingTypes>
-
-
-
     <!--============================================================================================================================================-->
     <CockTypes>
       <CockType ID="0" Name="Human"/>
@@ -326,7 +320,7 @@
       <CockType ID="7" Name="Anemone"/>
       <CockType ID="8" Name="Kangaroo"/>
       <CockType ID="9" Name="Dragon"/>
-      <CockType ID="10" Name="Cœurl"/>
+      <CockType ID="10" Name="Coerl"/>
     </CockTypes>
     <!--============================================================================================================================================-->
     <CockSockTypes>
@@ -342,7 +336,7 @@
     <!--============================================================================================================================================-->
     <VaginaTypes>
       <VaginaType ID="0" Name="Human"/>
-      <VaginaType ID="5" Name="Sand trap black"/>
+      <VaginaType ID="5" Name="Black (Sand Trap)"/>
     </VaginaTypes>
     <!--============================================================================================================================================-->
     <VaginalWetnessLevels>
@@ -380,56 +374,52 @@
     </AnalLoosenessLevels>
     <!--============================================================================================================================================-->
     <PregnancyTypes>
-      <PregnancyType ID="0"  Name="None"/>
-      <PregnancyType ID="1"  Name="Imp"/>
-      <PregnancyType ID="2"  Name="Minotaur"/>
-      <PregnancyType ID="4"  Name="Mouse-morph (Jojo/Corrupt Amily)"/>
+      <PregnancyType ID="0" Name="None"/>
+      <PregnancyType ID="1" Name="Imp"/>
+      <PregnancyType ID="2" Name="Minotaur"/>
+      <PregnancyType ID="4" Name="Mouse-morph (Jojo/Corrupt Amily)"/>
       <PregnancyType ID="11" Name="Mouse-morph (Amily)"/>
-      <PregnancyType ID="6"  Name="Hellhound"/>
-      <PregnancyType ID="7"  Name="Centaur (Kelt)"/>
-      <PregnancyType ID="8"  Name="Cowgirls (Marble)"/>
-      <PregnancyType ID="9"  Name="Bunny"/>
+      <PregnancyType ID="6" Name="Hellhound"/>
+      <PregnancyType ID="7" Name="Centaur (Kelt)"/>
+      <PregnancyType ID="8" Name="Cowgirls (Marble)"/>
+      <PregnancyType ID="9" Name="Bunny"/>
       <PregnancyType ID="10" Name="Anemone"/>
       <PregnancyType ID="12" Name="Tiger shark (Izma)"/>
       <PregnancyType ID="13" Name="Spider-morph"/>
-      <PregnancyType ID="14"  Name="Basilisk"/>
-      <PregnancyType ID="18"  Name="Basilisk (Benoit)"/>
-      <PregnancyType ID="15"  Name="Drider"/>
-      <PregnancyType ID="16"  Name="Goo-girl"/>
-      <PregnancyType ID="17"  Name="Dragon (Ember)"/>
-      <PregnancyType ID="19"  Name="Satyr"/>
-      <PregnancyType ID="20"  Name="Equine (Cotton)"/>
-      <PregnancyType ID="21"  Name="Fox (Urta)"/>
-      <PregnancyType ID="22"  Name="Sand witch"/>
-      <PregnancyType ID="10000"   Name="Small brown egg"/>
-      <PregnancyType ID="10001"   Name="Large brown egg"/>
-      <PregnancyType ID="10100"   Name="Small purple egg"/>
-      <PregnancyType ID="10101"   Name="Large purple egg"/>
-      <PregnancyType ID="10200"   Name="Small blue egg"/>
-      <PregnancyType ID="10201"   Name="Large blue egg"/>
-      <PregnancyType ID="10300"   Name="Small pink egg"/>
-      <PregnancyType ID="10301"   Name="Large pink egg"/>
-      <PregnancyType ID="10400"   Name="Small white egg"/>
-      <PregnancyType ID="10401"   Name="Large white egg"/>
-      <PregnancyType ID="10500"   Name="Small rubbery black egg"/>
-      <PregnancyType ID="10501"   Name="Large rubbery black egg"/>
+      <PregnancyType ID="14" Name="Basilisk"/>
+      <PregnancyType ID="18" Name="Basilisk (Benoit)"/>
+      <PregnancyType ID="15" Name="Drider"/>
+      <PregnancyType ID="16" Name="Goo-girl"/>
+      <PregnancyType ID="17" Name="Dragon (Ember)"/>
+      <PregnancyType ID="19" Name="Satyr"/>
+      <PregnancyType ID="20" Name="Equine (Cotton)"/>
+      <PregnancyType ID="21" Name="Fox (Urta)"/>
+      <PregnancyType ID="22" Name="Sand witch"/>
+      <PregnancyType ID="10000" Name="Small brown egg"/>
+      <PregnancyType ID="10001" Name="Large brown egg"/>
+      <PregnancyType ID="10100" Name="Small purple egg"/>
+      <PregnancyType ID="10101" Name="Large purple egg"/>
+      <PregnancyType ID="10200" Name="Small blue egg"/>
+      <PregnancyType ID="10201" Name="Large blue egg"/>
+      <PregnancyType ID="10300" Name="Small pink egg"/>
+      <PregnancyType ID="10301" Name="Large pink egg"/>
+      <PregnancyType ID="10400" Name="Small white egg"/>
+      <PregnancyType ID="10401" Name="Large white egg"/>
+      <PregnancyType ID="10500" Name="Small rubbery black egg"/>
+      <PregnancyType ID="10501" Name="Large rubbery black egg"/>
     </PregnancyTypes>
     <!--============================================================================================================================================-->
     <AnalPregnancyTypes>
-      <AnalPregnancyType ID="0"  Name="None"/>
-      <AnalPregnancyType ID="2"  Name="Bee-girl"/>
-      <AnalPregnancyType ID="3"  Name="Drider"/>
-      <AnalPregnancyType ID="4"  Name="Insectoid (sand trap)"/>
-      <AnalPregnancyType ID="5"  Name="Fake pregnancy (sand trap"/>
-      <AnalPregnancyType ID="9"  Name="Neon pink egg (Bunny girl)"/>
-      <AnalPregnancyType ID="19"  Name="Satyr"/>
+      <AnalPregnancyType ID="0" Name="None"/>
+      <AnalPregnancyType ID="2" Name="Bee-girl"/>
+      <AnalPregnancyType ID="3" Name="Drider"/>
+      <AnalPregnancyType ID="4" Name="Insectoid (Sand Trap)"/>
+      <AnalPregnancyType ID="5" Name="Fake pregnancy (Sand Trap)"/>
+      <AnalPregnancyType ID="9" Name="Neon pink egg (Bunny girl)"/>
+      <AnalPregnancyType ID="19" Name="Satyr"/>
     </AnalPregnancyTypes>
   </Body>
-  
-  
-
-  
-	<!--============================================================================================================================================-->
+  <!--============================================================================================================================================-->
   <Items>
     <ItemGroup Name="Misc" Category="Other">
       <Item ID="B.Chitn" Name="Black Chitin"/>
@@ -440,101 +430,103 @@
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Consumables" Category="Other">
-		  <Item ID="BimboCh" Name="Bimbo Champagne"/>
-		  <Item ID="BimboLq" Name="Bimbo Liqueur"/>
-		  <Item ID="BC Beer" Name="Black Cat Beer"/>
-		  <Item ID="BroBrew" Name="Bro Brew"/>
-		  <Item ID="Coal" Name="Coal"/>
+      <Item ID="BimboCh" Name="Bimbo Champagne"/>
+      <Item ID="BimboLq" Name="Bimbo Liqueur"/>
+      <Item ID="BC Beer" Name="Black Cat Beer"/>
+      <Item ID="BroBrew" Name="Bro Brew"/>
+      <Item ID="Coal   " Name="Coal"/>
       <Item ID="Debimbo" Name="Debimbo"/>
       <Item ID="F.Draft" Name="Fuck Draft"/>
-		  <Item ID="GodMead" Name="God's Mead"/>
-		  <Item ID="GroPlus" Name="GroPlus"/>
-		  <Item ID="ExtSerm" Name="Hair Extension Serum"/>
-      <Item ID="IzyMilk" Name="Isabella's milk"/>
-		  <Item ID="KitGift" Name="Kitsune's Gift"/>
-		  <Item ID="Lactaid" Name="Lactaid"/>
-		  <Item ID="L.Draft" Name="Lust Draft"/>
-		  <Item ID="LustStk" Name="Lust Stick"/>
-		  <Item ID="M. Milk" Name="Marble's Milk"/>
-		  <Item ID="MinoCum" Name="Minotaur Cum"/>
-		  <Item ID="NumbRox" Name="Numb Rocks"/>
-		  <Item ID="OviElix" Name="Oviposition Elixer"/>
-		  <Item ID="PeppWht" Name="Peppermint White"/>
-		  <Item ID="P.Pearl" Name="Pure Pearl"/>
+      <Item ID="GodMead" Name="God's Mead"/>
+      <Item ID="GroPlus" Name="GroPlus"/>
+      <Item ID="ExtSerm" Name="Hair Extension Serum"/>
+      <Item ID="IzyMilk" Name="Isabella's Milk"/>
+      <Item ID="KitGift" Name="Kitsune's Gift"/>
+      <Item ID="Lactaid" Name="Lactaid"/>
+      <Item ID="L.Draft" Name="Lust Draft"/>
+      <Item ID="LustStk" Name="Lust Stick"/>
+      <Item ID="M. Milk" Name="Marble's Milk"/>
+      <Item ID="MinoCum" Name="Minotaur Cum"/>
+      <Item ID="NumbRox" Name="Numb Rocks"/>
+      <Item ID="OviElix" Name="Oviposition Elixer"/>
+      <Item ID="PeppWht" Name="Peppermint White"/>
+      <Item ID="P.Pearl" Name="Pure Pearl"/>
       <Item ID="PurPeac" Name="Pure Peach"/>
       <Item ID="PSDelit" Name="Purified Succubi's Delite"/>
-		  <Item ID="Reducto" Name="Reducto"/>
-		  <Item ID="SensDrf" Name="Sensitivity Draft"/>
-		  <Item ID="SheepMk" Name="Sheep Milk"/>
-		  <Item ID="SDelite" Name="Succubi's Delight"/>
-		  <Item ID="S.Dream" Name="Succubus' Dream"/>
-		  <Item ID="TScroll" Name="Tattered Scroll"/>
-		  <Item ID="Cerul P" Name="Cerulean Potion"/>
-		  <Item ID="Smart T" Name="Scholar's Tea"/>
-		  <Item ID="Vital T" Name="Vitality Tincture"/>
-	  </ItemGroup>
-	  <!--============================================================================================================================================-->
+      <Item ID="Reducto" Name="Reducto"/>
+      <Item ID="SensDrf" Name="Sensitivity Draft"/>
+      <Item ID="SheepMk" Name="Sheep Milk"/>
+      <Item ID="SDelite" Name="Succubi's Delight"/>
+      <Item ID="S.Dream" Name="Succubus' Dream"/>
+      <Item ID="TScroll" Name="Tattered Scroll"/>
+      <Item ID="Cerul P" Name="Cerulean Potion"/>
+      <Item ID="Smart T" Name="Scholar's Tea"/>
+      <Item ID="Vital T" Name="Vitality Tincture"/>
+    </ItemGroup>
+    <!--============================================================================================================================================-->
     <ItemGroup Name="Transformations" Category="Other">
       <Item ID="BeeHony" Name="Bee Honey"/>
-		  <Item ID="B.Gossr" Name="Black Gossamer"/>
-		  <Item ID="EctoPls" Name="Ectoplasm"/>
-		  <Item ID="Equinum" Name="Equinum"/>
-		  <Item ID="FoxBery" Name="Fox Berry"/>
+      <Item ID="B.Gossr" Name="Black Gossamer"/>
+      <Item ID="EctoPls" Name="Ectoplasm"/>
+      <Item ID="Equinum" Name="Equinum"/>
+      <Item ID="FoxBery" Name="Fox Berry"/>
       <Item ID="FoxJewl" Name="Fox Jewel"/>
       <Item ID="Gob.Ale" Name="Goblin Ale"/>
-		  <Item ID="GldSeed" Name="Golden Seed"/>
-		  <Item ID="Hummus" Name="Hummus"/>
-		  <Item ID="ImpFood" Name="Imp Food"/>
-		  <Item ID="IncubiD" Name="Incubi Draft"/>
-		  <Item ID="KangaFt" Name="Kanga Fruit"/>
-		  <Item ID="LaBova" Name="LaBova"/>
-		  <Item ID="MagSeed" Name="Magic Seed"/>
-		  <Item ID="MghtyVg" Name="Mighty Veggie"/>
-		  <Item ID="MinoBlo" Name="Minotaur Blood"/>
+      <Item ID="GldSeed" Name="Golden Seed"/>
+      <Item ID="Hummus " Name="Hummus"/>
+      <Item ID="ImpFood" Name="Imp Food"/>
+      <Item ID="IncubiD" Name="Incubi Draft"/>
+      <Item ID="KangaFt" Name="Kanga Fruit"/>
+      <Item ID="LaBova " Name="LaBova"/>
+      <Item ID="MagSeed" Name="Magic Seed"/>
+      <Item ID="MghtyVg" Name="Mighty Veggie"/>
+      <Item ID="MinoBlo" Name="Minotaur Blood"/>
       <Item ID="MouseCo" Name="Mouse Cocoa"/>
+      <Item ID="MystJwl" Name="Mystic Jewel"/>
       <Item ID="NPnkEgg" Name="Neon Pink Egg"/>
-		  <Item ID="ProBova" Name="ProBova"/>
-		  <Item ID="PurHony" Name="Pure Honey"/>
-		  <Item ID="P.Draft" Name="Purified Incubi Draft"/>
-		  <Item ID="P.LBova" Name="Purified LaBova"/>
-		  <Item ID="P.S.Mlk" Name="Purified Succubi Milk"/>
-		  <Item ID="Reptlum" Name="Reptilum"/>
-		  <Item ID="RingFig" Name="Ringtail Fig"/>
-		  <Item ID="Shark.T" Name="Shark Tooth"/>
-		  <Item ID="DryTent" Name="Shriveled Tentacle"/>
-		  <Item ID="SnakOil" Name="Snake Oil"/>
-		  <Item ID="SucMilk" Name="Succubi Milk"/>
-		  <Item ID="S.Gossr" Name="Sweet Gossamer"/>
-		  <Item ID="TSTooth" Name="Tiger Shark Tooth"/>
-		  <Item ID="TrapOil" Name="Trap Oil"/>
-		  <Item ID="WetClth" Name="Wet Cloth"/>
-		  <Item ID="W.Fruit" Name="Whisker Fruit"/>
-		  <Item ID="VixVigr" Name="Vixen's Vigor"/>
-	  </ItemGroup>
-	  <!--============================================================================================================================================-->
+      <Item ID="ProBova" Name="ProBova"/>
+      <Item ID="PurHony" Name="Pure Honey"/>
+      <Item ID="P.Draft" Name="Purified Incubi Draft"/>
+      <Item ID="P.LBova" Name="Purified LaBova"/>
+      <Item ID="P.S.Mlk" Name="Purified Succubi Milk"/>
+      <Item ID="PrFruit" Name="Purple Fruit"/>
+      <Item ID="Reptlum" Name="Reptilum"/>
+      <Item ID="RingFig" Name="Ringtail Fig"/>
+      <Item ID="Shark.T" Name="Shark Tooth"/>
+      <Item ID="DryTent" Name="Shriveled Tentacle"/>
+      <Item ID="SnakOil" Name="Snake Oil"/>
+      <Item ID="SucMilk" Name="Succubi Milk"/>
+      <Item ID="S.Gossr" Name="Sweet Gossamer"/>
+      <Item ID="TSTooth" Name="Tiger Shark Tooth"/>
+      <Item ID="TrapOil" Name="Trap Oil"/>
+      <Item ID="WetClth" Name="Wet Cloth"/>
+      <Item ID="W.Fruit" Name="Whisker Fruit"/>
+      <Item ID="VixVigr" Name="Vixen's Vigor"/>
+    </ItemGroup>
+    <!--============================================================================================================================================-->
     <ItemGroup Name="Canine peppers" Category="Other">
       <Item ID="BulbyPp" Name="Bulbous Canine Pepper"/>
-		  <Item ID="CanineP" Name="Canine Pepper"/>
-		  <Item ID="DblPepp" Name="Double Canine Pepper"/>
-		  <Item ID="KnottyP" Name="Knotty Canine Pepper"/>
-		  <Item ID="LargePp" Name="Overly Large Canine Pepper"/>
-		  <Item ID="BlackPp" Name="Solid Black Canine Pepper"/>
-	  </ItemGroup>
-	  <!--============================================================================================================================================-->
+      <Item ID="CanineP" Name="Canine Pepper"/>
+      <Item ID="DblPepp" Name="Double Canine Pepper"/>
+      <Item ID="KnottyP" Name="Knotty Canine Pepper"/>
+      <Item ID="LargePp" Name="Overly Large Canine Pepper"/>
+      <Item ID="BlackPp" Name="Solid Black Canine Pepper"/>
+    </ItemGroup>
+    <!--============================================================================================================================================-->
     <ItemGroup Name="Eggs" Category="Other">
       <Item ID="BlueEgg" Name="Blue and White Mottled Egg"/>
-		  <Item ID="BrownEg" Name="Brown and White Mottled Egg"/>
-		  <Item ID="WhiteEg" Name="Milky-White Egg"/>
-		  <Item ID="PinkEgg" Name="Pink and White Mottled Egg"/>
-		  <Item ID="PurplEg" Name="Purple and White Mottled Egg"/>
-		  <Item ID="BlackEg" Name="Rubbery Black Egg"/>
-		  <Item ID="L.BluEg" Name="Large Blue and White Mottled Egg"/>
-		  <Item ID="L.BrnEg" Name="Large Brown and White Mottled Egg"/>
-		  <Item ID="L.PnkEg" Name="Large Pink and White Mottled Egg"/>
-		  <Item ID="L.PrpEg" Name="Large Purple and White Mottled Egg"/>
-		  <Item ID="L.BlkEg" Name="Large Rubbery Black Egg"/>
-		  <Item ID="L.WhtEg" Name="Large White Egg"/>
-	  </ItemGroup>
+      <Item ID="BrownEg" Name="Brown and White Mottled Egg"/>
+      <Item ID="WhiteEg" Name="Milky-White Egg"/>
+      <Item ID="PinkEgg" Name="Pink and White Mottled Egg"/>
+      <Item ID="PurplEg" Name="Purple and White Mottled Egg"/>
+      <Item ID="BlackEg" Name="Rubbery Black Egg"/>
+      <Item ID="L.BluEg" Name="Large Blue and White Mottled Egg"/>
+      <Item ID="L.BrnEg" Name="Large Brown and White Mottled Egg"/>
+      <Item ID="L.PnkEg" Name="Large Pink and White Mottled Egg"/>
+      <Item ID="L.PrpEg" Name="Large Purple and White Mottled Egg"/>
+      <Item ID="L.BlkEg" Name="Large Rubbery Black Egg"/>
+      <Item ID="L.WhtEg" Name="Large White Egg"/>
+    </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Dyes" Category="Other">
       <Item ID="AuburnD" Name="Auburn Hair Dye"/>
@@ -552,67 +544,64 @@
     <!--============================================================================================================================================-->
     <ItemGroup Name="Weapons" Category="Weapon">
       <Item ID="B.Sword" Name="Beautiful Sword"/>
-		  <Item ID="E.Staff" Name="Eldritch Staff"/>
-		  <Item ID="H.Gaunt" Name="Hooked Gauntlets"/>
-		  <Item ID="S.Blade" Name="Inscribed Spellblade"/>
-		  <Item ID="JRapier" Name="Jeweled Rapier"/>
-		  <Item ID="L. Axe" Name="Large Axe"/>
-		  <Item ID="L.Hammr" Name="Large Hammer"/>
-		  <Item ID="L.Daggr" Name="Lust Dagger"/>
-		  <Item ID="Pipe" Name="Pipe"/>
-		  <Item ID="RidingC" Name="Riding Crop"/>
-		  <Item ID="SucWhip" Name="Succubi Whip"/>
-		  <Item ID="W.Staff" Name="Wizard's Staff"/>
-		  <Item ID="Whip" Name="Coiled Whip"/>
-		  <Item ID="Warhamr" Name="Huge Warhammer"/>
-		  <Item ID="Katana" Name="Katana"/>
-		  <Item ID="Claymor" Name="Large Claymore"/>
-		  <Item ID="Spear" Name="Spear"/>
-		  <Item ID="S.Gaunt" Name="Spiked Gauntlets"/>
-		  <Item ID="W.Stick" Name="Wingstick"/>
-	  </ItemGroup>
-	  <!--============================================================================================================================================-->
+      <Item ID="E.Staff" Name="Eldritch Staff"/>
+      <Item ID="H.Gaunt" Name="Hooked Gauntlets"/>
+      <Item ID="S.Blade" Name="Inscribed Spellblade"/>
+      <Item ID="JRapier" Name="Jeweled Rapier"/>
+      <Item ID="L. Axe " Name="Large Axe"/>
+      <Item ID="L.Hammr" Name="Large Hammer"/>
+      <Item ID="L.Daggr" Name="Lust Dagger"/>
+      <Item ID="Pipe   " Name="Pipe"/>
+      <Item ID="RidingC" Name="Riding Crop"/>
+      <Item ID="SucWhip" Name="Succubi Whip"/>
+      <Item ID="W.Staff" Name="Wizard's Staff"/>
+      <Item ID="Whip   " Name="Coiled Whip"/>
+      <Item ID="Warhamr" Name="Huge Warhammer"/>
+      <Item ID="Katana " Name="Katana"/>
+      <Item ID="Claymor" Name="Large Claymore"/>
+      <Item ID="Spear  " Name="Spear"/>
+      <Item ID="S.Gaunt" Name="Spiked Gauntlets"/>
+      <Item ID="W.Stick" Name="Wingstick"/>
+    </ItemGroup>
+    <!--============================================================================================================================================-->
     <ItemGroup Name="Clothing" Category="Armor">
       <Item ID="BonStrp" Name="Bondage Straps"/>
-		  <Item ID="BeeArmr" Name="Chitin Armor"/>
-		  <Item ID="C.Cloth" Name="Comfortable Clothes"/>
-		  <Item ID="GelArmr" Name="Gel Armor"/>
-		  <Item ID="I.Corst" Name="Inquisitor's Corset"/>
-		  <Item ID="I.Robes" Name="Inquisitor's Robes"/>
-		  <Item ID="LeathrA" Name="Leather Armor"/>
-		  <Item ID="LMArmor" Name="Lusty Maiden's Armor"/>
-		  <Item ID="NurseCl" Name="Nurse's Outfit"/>
-		  <Item ID="R.BdySt" Name="Red Bodysuit"/>
-		  <Item ID="S.Swmwr" Name="Slutty Swimwear"/>
-		  <Item ID="SSArmor" Name="Spider-Silk Armor"/>
-		  <Item ID="SS.Robe" Name="Spider-Silk Robes"/>
-		  <Item ID="W.Robes" Name="Wizard's Robes"/>
-	  </ItemGroup>
-	  <!--============================================================================================================================================-->
+      <Item ID="BeeArmr" Name="Chitin Armor"/>
+      <Item ID="C.Cloth" Name="Comfortable Clothes"/>
+      <Item ID="GelArmr" Name="Gel Armor"/>
+      <Item ID="I.Corst" Name="Inquisitor's Corset"/>
+      <Item ID="I.Robes" Name="Inquisitor's Robes"/>
+      <Item ID="LeathrA" Name="Leather Armor"/>
+      <Item ID="LMArmor" Name="Lusty Maiden's Armor"/>
+      <Item ID="NurseCl" Name="Nurse's Outfit"/>
+      <Item ID="R.BdySt" Name="Red Bodysuit"/>
+      <Item ID="S.Swmwr" Name="Slutty Swimwear"/>
+      <Item ID="SSArmor" Name="Spider-Silk Armor"/>
+      <Item ID="SS.Robe" Name="Spider-Silk Robes"/>
+      <Item ID="W.Robes" Name="Wizard's Robes"/>
+    </ItemGroup>
+    <!--============================================================================================================================================-->
     <ItemGroup Name="Blacksmith" Category="Armor">
-		  <Item ID="ChBikni" Name="Chain Bikini"/>
-		  <Item ID="FullChn" Name="Full Chain"/>
-		  <Item ID="FullPlt" Name="Full Plate"/>
-		  <Item ID="IndecSt" Name="Indecent Steel"/>
-		  <Item ID="LthrRob" Name="Leather Robe"/>
-		  <Item ID="ScaleMl" Name="Scale Mail"/>
-	  </ItemGroup>
-	  <!--============================================================================================================================================-->
+      <Item ID="ChBikni" Name="Chain Bikini"/>
+      <Item ID="FullChn" Name="Full Chain"/>
+      <Item ID="FullPlt" Name="Full Plate"/>
+      <Item ID="IndecSt" Name="Indecent Steel"/>
+      <Item ID="LthrRob" Name="Leather Robe"/>
+      <Item ID="ScaleMl" Name="Scale Mail"/>
+    </ItemGroup>
+    <!--============================================================================================================================================-->
     <ItemGroup Name="Tailor" Category="Armor">
-		  <Item ID="T.BSuit" Name="Bodysuit"/>
-		  <Item ID="AdvClth" Name="Green Adventurer's Clothes"/>
-		  <Item ID="B.Dress" Name="Long Dress"/>
-		  <Item ID="Overall" Name="Overalls"/>
-		  <Item ID="M.Robes" Name="Robes"/>
-		  <Item ID="RbbrClt" Name="Rubber Fetish Outfit"/>
-		  <Item ID="ClssyCl" Name="Suit Clothes"/>
-		  <Item ID="LthrPnt" Name="Tight Leather Pants"/>
-		  <Item ID="TubeTop" Name="Tube Top"/>
-	  </ItemGroup>
+      <Item ID="T.BSuit" Name="Bodysuit"/>
+      <Item ID="AdvClth" Name="Green Adventurer's Clothes"/>
+      <Item ID="B.Dress" Name="Long Dress"/>
+      <Item ID="Overall" Name="Overalls"/>
+      <Item ID="M.Robes" Name="Robes"/>
+      <Item ID="RbbrClt" Name="Rubber Fetish Outfit"/>
+      <Item ID="ClssyCl" Name="Suit Clothes"/>
+      <Item ID="LthrPnt" Name="Tight Leather Pants"/>
+      <Item ID="TubeTop" Name="Tube Top"/>
+    </ItemGroup>
   </Items>
-
-
-
   <!--============================================================================================================================================-->
   <KeyItems>
     <KeyItem Name="All-Natural Onahole" Description="Masturbation aid."/>
@@ -658,9 +647,6 @@
     <KeyItem Name="Yoga Guide" Description=""/>
     <KeyItem Name="Zetaz's Map" Description="Will allow the player to find the final dungeon when it is implemented."/>
   </KeyItems>
-  
-
-
   <!--============================================================================================================================================-->
   <Perks>
     <PerkGroup Name="Starter">
@@ -677,7 +663,6 @@
       <Perk Name="Tough" Description="Gain toughness 25% faster." Value1="0.25"/>
       <Perk Name="Wet Pussy" Description="Keeps your pussy from ever being anything less than wet." Value1="2"/>
     </PerkGroup>
-
     <PerkGroup Name="History">
       <Perk Name="History: Alchemist" Description="Alchemical experience makes items more reactive to your body."/>
       <Perk Name="History: Fighter" Description="Past full of conflict increases physical damage dealt by 10%."/>
@@ -689,7 +674,6 @@
       <Perk Name="History: Smith" Description="Knowledge of armor and fitting increases armor effectiveness by roughly 10%."/>
       <Perk Name="History: Whore" Description="Seductive experience causes your tease attacks to be 15% more effective."/>
     </PerkGroup>
-
     <PerkGroup Name="Tier 0">
       <Perk Name="Acclimation" Description="Reduces lust gain by 15%."/>
       <Perk Name="Corrupted Libido" Description="Reduces lust gain by 10%." Value1="20"/>
@@ -708,7 +692,6 @@
       <Perk Name="Strong Back 2: Strong Harder" Description="Enables fifth item slot."/>
       <Perk Name="Tank" Description="Raises max HP by 50."/>
     </PerkGroup>
-
     <PerkGroup Name="Tier 1">
       <Perk Name="Agility" Description="Boosts armor points by a portion of your speed on light/medium armors."/>
       <Perk Name="Arousing Aura" Description="While your corruption is at or above 70, you exude an aura of lust."/>
@@ -728,14 +711,12 @@
       <Perk Name="Weapon Mastery" Description="Doubles damage bonus of weapons classified as 'Large'."/>
       <Perk Name="Well Adjusted" Description="You gain half as much lust as time passes in Mareth."/>
     </PerkGroup>
-
     <PerkGroup Name="Tier 2">
       <Perk Name="Archmage" Description="Increases base spell strength by 50%."/>
       <Perk Name="Berzerker" Description="Grants 'Berzerk' ability."/>
       <Perk Name="Resolute" Description="Grants immunity to stuns and some statuses."/>
       <Perk Name="Lunging Attacks" Description="Grants 50% armor penetration for standard attacks."/>
     </PerkGroup>
-
     <PerkGroup Name="Events">
       <Perk Name="Androgyny" Description="No gender limits on facial masculinity or femininity."/>
       <Perk Name="Basilisk Womb" Description="Enables your eggs to be properly fertilized into basilisks of both genders!"/>
@@ -786,7 +767,6 @@
       <Perk Name="Thick Skin" Description="Your skin is now tough enough to effectively grant you an extra armor!"/>
       <Perk Name="Whispered" Description="Akbal has allowed you to whisper to the minds of your foes, as he does."/>
     </PerkGroup>
-
     <PerkGroup Name="Items">
       <Perk Name="Lusty Regeneration" Description="Regenerates 1% of HP per round in combat and 2% of HP per hour."/>
       <Perk Name="Midas Cock" Description="Increases the gems awarded from victory in battle."/>
@@ -802,9 +782,6 @@
       <Perk Name="Wizard's Focus" Description="Your wizard's staff grants you additional focus, reducing the use of fatigue for spells."/>
     </PerkGroup>
   </Perks>
-
-
-  
   <!--============================================================================================================================================-->
   <Statuses>
     <Status Name="Akbal Speed" Description="Temporary status; used only during combat with Akbal."/>
@@ -875,7 +852,7 @@
     <Status Name="Kelt" Description="Value 1: Archery skill. Higher skill means lower miss chance and higher damage with the bow. Maxes out at 100."/>
     <Status Name="Kelt Bad End Warning" Description="You're growing far too fond of Kelt and are at risk of falling completely under his corrupted influence."/>
     <Status Name="KeltBJ"/>
-    <Status Name="KeltOff" Description="You did something that really pissed off Kelt�even more so than usual, for the arrogant prick� and now he's stormed off and refuses to teach you ever again. You must have made some sort of egregious affront to his ego. Remove this to bring him back."/>
+    <Status Name="KeltOff" Description="You did something that really pissed off Kelt&#x2014;even more so than usual, for the arrogant prick&#x2014; and now he's stormed off and refuses to teach you ever again. You must have made some sort of egregious affront to his ego. Remove this to bring him back."/>
     <Status Name="Kiss of Death"/>
     <Status Name="Knows Arouse" Description="You know the black-magic lust-raising enticement spell, &quot;Arouse&quot;"/>
     <Status Name="Knows Blind" Description="You know the white-magic vision-impairment spell, &quot;Blind&quot;"/>
@@ -974,10 +951,7 @@
     <Status Name="wormsOn" Description="Gained from choosing 'Aroused' or 'Who Cares?' at the worms sign. Worms are turned on and will appear in the game."/>
     <Status Name="Yara" Description="The PC has asked Yara about herself."/>
   </Statuses>
-  
-  
-  
-<!--============================================================================================================================================-->
+  <!--============================================================================================================================================-->
   <Flags>
     <Flag ID="1" Name="Marble Pregnancy Incubation"/>
     <Flag ID="2" Name="Marble Pregnancy Type" Description="1 = cowgirl"/>
@@ -1035,7 +1009,7 @@
     <Flag ID="54" Name="Met Scylla:   -1 = decline.  0 = not met.  1 = sucked once, 2 = sucked twice, etc"/>
     <Flag ID="55" Name="Times encountered Tamani's Daughters"/>
     <Flag ID="56" Name="Tamani Hypno Level" Description="increases by 1 for each hypno event.  1-3 slight lust raises, 4-9 medium lust raises, 10-19 super high lust raises, 20+ high chance of autorape with special scene. "/>
-    <Flag ID="57" Name="Daughter Pregnancy Counter" Description="they will not return until this countdown timer is 0.  Same length as Tamani's incubation � approx 1 week. "/>
+    <Flag ID="57" Name="Daughter Pregnancy Counter" Description="they will not return until this countdown timer is 0.  Same length as Tamani's incubation &#x2014; approx 1 week. "/>
     <Flag ID="58" Name="Times In Goblin Daughter 'CHAIR'"/>
     <Flag ID="59" Name="TimeSleptWithDaughters"/>
     <Flag ID="60" Name="Fail Masturbation As Centaur?"/>
@@ -1279,7 +1253,7 @@
     <Flag ID="298" Name="Lottie porked count? (1+ = yes)"/>
     <Flag ID="299" Name="Lotties Trainer? (1 = yes)"/>
     <Flag ID="300" Name="LOTTIE: Last encouragement state"/>
-    <Flag ID="301" Name="LOTTIE: encouragement go from 31->30 yet? (1 = yes)"/>
+    <Flag ID="301" Name="LOTTIE: encouragement go from 31-&gt;30 yet? (1 = yes)"/>
     <Flag ID="302" Name="LOTTIE: Encouragement moved from 30 to 31 yet? (1 = yes)"/>
     <Flag ID="303" Name="LOTTIE: Encouragement moved from 80 to 79 yet? (1 = yes)"/>
     <Flag ID="304" Name="LOTTIE: Encouragement moved from 79 to 80 yet? (1=yes)"/>
@@ -1300,7 +1274,7 @@
     <Flag ID="319" Name="LOTTIE: FEMDOM UNLOCKED (1 = yes)"/>
     <Flag ID="320" Name="LOTTIE: REVERSE COWGIRL UNLOCKED (1 = yes)"/>
     <Flag ID="321" Name="LOTTIE: TImes given item"/>
-    <Flag ID="322" Name="LOTTIE: LA BOVA COUNTDOWN - counts down to 1 before she'll use it again.  Also used to track if Labova has ever been used"/>
+    <Flag ID="322" Name="LOTTIE: LA BOVA COUNTDOWN - counts down to 1 before she'll use it again.  Also used to track if LaBova has ever been used"/>
     <Flag ID="323" Name="LOTTIE: HAS SHE USED REDUCTO?"/>
     <Flag ID="324" Name="LOTTIE: HAM SAMMICH"/>
     <Flag ID="325" Name="Times met minotaur mob"/>
@@ -1539,7 +1513,7 @@
     <Flag ID="558" Name="EMBER_BITCHES_ABOUT_PREGNANT_PC"/>
     <Flag ID="559" Name="EMBER_TALKS_TO_PC_ABOUT_PC_MOTHERING_DRAGONS"/>
     <Flag ID="560" Name="EMBER_PREGNANT_TALK"/>
-    <Flag ID="561" Name="[TIMES_MET_CHAMELEON"/>
+    <Flag ID="561" Name="TIMES_MET_CHAMELEON"/>
     <Flag ID="562" Name="TIMES_IN_BENOITS"/>
     <Flag ID="563" Name="BENOIT_AFFECTION"/>
     <Flag ID="564" Name="BENOIT_EXPLAINED_SHOP"/>
@@ -1566,7 +1540,7 @@
     <Flag ID="585" Name="URTA_TIMES_EGG_PREGGED"/>
     <Flag ID="586" Name="URTA_EGG_INCUBATION"/>
     <Flag ID="587" Name="URTA_FLATBELLY_NOTICE"/>
-    <Flag ID="588" Name="EgG_WITCH_COUNTER"/>
+    <Flag ID="588" Name="EGG_WITCH_COUNTER"/>
     <Flag ID="589" Name="EGG_WITCH_TYPE"/>
     <Flag ID="590" Name="TIMES_EGGED_JOJO"/>
     <Flag ID="591" Name="JOJO_EGGCUBATE_COUNT"/>
@@ -1810,7 +1784,7 @@
     <Flag ID="829" Name="GAR_HISTORY"/>
     <Flag ID="830" Name="GAR_CATHEDRAL"/>
     <Flag ID="831" Name="GAR_NAME_TALKS"/>
-    <Flag ID="832" Name="[TIMES_RUBI_MASSAGED"/>
+    <Flag ID="832" Name="TIMES_RUBI_MASSAGED"/>
     <Flag ID="833" Name="SANURA_DISABLED"/>
     <Flag ID="834" Name="MET_SANURA"/>
     <Flag ID="835" Name="BEATEN_SANURA_COUNT"/>
@@ -1888,5 +1862,5 @@
     <Flag ID="907" Name="KELLY_HEAT_TIME"/>
     <Flag ID="908" Name="KELLY_KIDS"/>
     <Flag ID="909" Name="KELLY_FIRST_KID_GENDER"/>
-  </Flags>  
+  </Flags>
 </CoCEd>
