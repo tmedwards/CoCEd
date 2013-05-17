@@ -189,6 +189,7 @@ namespace CoCEd.Common
 
         protected override void OnContentChanged(object oldContent, object newContent)
         {
+            ((FrameworkElement)Content).DataContext = null;
             OnContentChanged();
         }
 
@@ -200,7 +201,7 @@ namespace CoCEd.Common
             var item = _listBox.SelectedItem;
             if (item != null)
             {
-                _contentBorder.DataContext = item;
+                ((FrameworkElement)Content).DataContext = item;
                 _contentBorder.Visibility = Visibility.Visible;
                 _removeButton.IsEnabled = true;
                 return;
@@ -208,7 +209,7 @@ namespace CoCEd.Common
 
             if (Items == null || Items.Count == 0)
             {
-                _contentBorder.DataContext = null;
+                ((FrameworkElement)Content).DataContext = null;
                 _contentBorder.Visibility = Visibility.Collapsed;
                 _removeButton.IsEnabled = false;
                 return;
