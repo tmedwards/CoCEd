@@ -112,7 +112,7 @@ namespace CoCEd.Model
             return new FileGroupVM(path, files);
         }
 
-        public static void StoreExternal(string path)
+        public static void StoreExternalPath(string path)
         {
             path = Canonize(path);
 
