@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +29,10 @@ namespace CoCEd
         {
             InitializeComponent();
             ((FrameworkElement)Content).QueryContinueDrag += OnQueryContinueDrag;
+
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            if (version.Build == 0) versionLabel.Text = version.Major + "." + version.Minor;
+            else versionLabel.Text = version.Major + "." + version.Minor + (char)('a' + (version.Build - 1));
         }
 
         public NamedVector4Popup ValuesPopup
