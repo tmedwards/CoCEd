@@ -219,24 +219,9 @@
   <Target Name="BeforeBuild">
   </Target>-->
   <Target Name="AfterBuild" DependsOnTargets="AssignTargetPaths;Compile;ResolveKeySource" Inputs="$(MSBuildAllProjects);@(IntermediateAssembly)" Outputs="$(OutputPath)$(_SGenDllName)">
-    <Delete
-	  Files="$(TargetDir)$(TargetName).XmlSerializers.dll"
-	  ContinueOnError="true" />
-    <SGen
-	  Types="CoCEd.Model.XmlData"
-	  BuildAssemblyName="$(TargetFileName)"
-	  BuildAssemblyPath="$(OutputPath)"
-	  References="@(ReferencePath)"
-	  ShouldGenerateSerializer="true"
-	  UseProxyTypes="false"
-	  KeyContainer="$(KeyContainerName)"
-	  KeyFile="$(KeyOriginatorFile)"
-	  DelaySign="$(DelaySign)"
-	  ToolPath="$(TargetFrameworkSDKToolsDirectory)"
-	  Platform="$(Platform)">
-	  <Output
-	   TaskParameter="SerializationAssembly"
-	   ItemName="SerializationAssembly" />
-   </SGen>
-   </Target>
+    <Delete Files="$(TargetDir)$(TargetName).XmlSerializers.dll" ContinueOnError="true" />
+    <SGen Types="CoCEd.Model.XmlData" BuildAssemblyName="$(TargetFileName)" BuildAssemblyPath="$(OutputPath)" References="@(ReferencePath)" ShouldGenerateSerializer="true" UseProxyTypes="false" KeyContainer="$(KeyContainerName)" KeyFile="$(KeyOriginatorFile)" DelaySign="$(DelaySign)" ToolPath="$(TargetFrameworkSDKToolsDirectory)" Platform="$(Platform)">
+      <Output TaskParameter="SerializationAssembly" ItemName="SerializationAssembly" />
+    </SGen>
+  </Target>
 </Project>
