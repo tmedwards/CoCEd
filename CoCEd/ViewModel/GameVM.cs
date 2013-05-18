@@ -542,6 +542,13 @@ namespace CoCEd.ViewModel
             get { return WingType != 0; }
         }
 
+        public bool HasGills
+        {
+            get { return GetBool("gills"); }
+            set { SetValue("gills", value); }
+        }
+
+
 
         public int Fertility
         {
