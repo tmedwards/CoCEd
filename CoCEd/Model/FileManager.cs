@@ -76,10 +76,14 @@ namespace CoCEd.Model
             set.StandardOnlineFiles = CreateGroup(StandardOnlinePath);
             set.ChromeOfflineFiles = CreateGroup(ChromeOfflinePath);
             set.ChromeOnlineFiles = CreateGroup(ChromeOnlinePath);
-
-            var externalFiles = _externalPaths.Select(x => new AmfFile(x));
-            set.ExternalFiles = new FileGroupVM("", externalFiles);
+            set.ExternalFiles = CreateExternalGroup();
             return set;
+        }
+
+        static FileGroupVM CreateExternalGroup()
+        {
+            var externalFiles = _externalPaths.Select(x => new AmfFile(x));
+            return new FileGroupVM("", externalFiles, true);
         }
 
         static FileGroupVM CreateGroup(string path)
@@ -112,7 +116,7 @@ namespace CoCEd.Model
             return new FileGroupVM(path, files);
         }
 
-        public static void StoreExternalPath(string path)
+        public static void AddExternalFile(string path)
         {
             path = Canonize(path);
 

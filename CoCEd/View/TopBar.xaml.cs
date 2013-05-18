@@ -86,14 +86,14 @@ namespace CoCEd.View
         void saveMenu_Click(object sender, RoutedEventArgs e)
         {
             var item = (MenuItem)sender;
-            dynamic file = item.DataContext;
-            VM.Instance.Save(file.Path);
+            var target = (ISaveTarget)item.DataContext;
+            VM.Instance.Save(target.Path, target.Format);
         }
 
         void importMenu_Click(object sender, RoutedEventArgs e)
         {
             var dlg = new OpenFileDialog();
-            dlg.Filter = "Flash local shared objects (.sol)|*.sol";
+            dlg.Filter = "Flash objects (.sol)|*.sol|All files|*.*";
             dlg.DefaultExt = ".sol";
             dlg.CheckFileExists = true;
             dlg.Multiselect = false;
@@ -109,7 +109,7 @@ namespace CoCEd.View
         void exportMenu_Click(object sender, RoutedEventArgs e)
         {
             var dlg = new SaveFileDialog();
-            dlg.Filter = "Flash local shared objects (.sol)|*.sol";
+            dlg.Filter = "CoC slot (.sol)|*.sol|CoC exported file|*.*";
             dlg.DefaultExt = ".sol";
             dlg.AddExtension = true;
             dlg.OverwritePrompt = true;
@@ -120,7 +120,8 @@ namespace CoCEd.View
             if (result == false) return;
 
             string path = dlg.FileName;
-            VM.Instance.Save(path);
+            var format = (SerializationFormat)dlg.FilterIndex;
+            VM.Instance.Save(path, format);
         }
     }
 }

@@ -44,7 +44,6 @@ namespace CoCEd
                 box.Title = "Unexpected error";
                 box.Message = "An error occured and the application is going to exit.\nThe error below will be saved as CoCEd.log. Please report it on CoC's forums.";
                 box.ExceptionMessage = e.Exception.ToString();
-                box.Path = "e:\\coc_1.sol";
                 box.ShowDialog(ExceptionBoxButtons.Quit);
             }
             catch(Exception e2)
@@ -118,7 +117,8 @@ namespace CoCEd
 
 #if DEBUG
             var file = AutoLoad(set);
-            //new AmfFile("e:\\invalid.sol").TestSerialization();
+            //new AmfFile("e:\\plainObject.sol").TestSerialization();
+            //new AmfFile("e:\\unicode.sol").TestSerialization();
             //DebugStatuses(file);
             //RunSerializationTest(set);
             //ParsePerks();
@@ -154,7 +154,7 @@ namespace CoCEd
             {
                 var outPath = "e:\\" + first.Source.Name + ".sol";
                 first.Source.TestSerialization();
-                first.Source.Save(outPath);
+                first.Source.Save(outPath, first.Source.Format);
 
                 var input = File.ReadAllBytes(first.Source.FilePath);
                 var output = File.ReadAllBytes(outPath);
