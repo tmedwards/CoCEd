@@ -80,19 +80,6 @@ namespace CoCEd.View
 
             var item = (MenuItem)sender;
             var file = (FileVM)item.DataContext;
-            if (!String.IsNullOrEmpty(file.Source.Error))
-            {
-                var box = new ExceptionBox();
-                box.Title = "Could not scan some folders.";
-                box.Message = "CoCEd could not read this file correctly. Continuing may make CoCEd unstable or cause it to write corrupted files. It is advised that you cancel this operation.";
-                box.Path = file.Source.FilePath;
-                box.ExceptionMessage = file.Source.Error;
-                box.IsWarning = true;
-                var result = box.ShowDialog(ExceptionBoxButtons.Continue, ExceptionBoxButtons.Cancel);
-
-                Logger.Error(file.Source.Error);
-                if (result != ExceptionBoxResult.Continue) return;
-            }
             VM.Instance.Load(file.Source.FilePath);
         }
 
