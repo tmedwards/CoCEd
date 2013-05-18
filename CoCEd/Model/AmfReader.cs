@@ -31,7 +31,7 @@ namespace CoCEd.Model
             if (size + 6 != _reader.BaseStream.Length) throw new InvalidOperationException("Wrong file size");
 
             // Magic signature
-            if (ReadPlainString(4) != "TCSO") throw new InvalidOperationException();
+            if (ReadPlainString(4) != "TCSO") throw new InvalidOperationException("Wrong file tag");
             _reader.BaseStream.Seek(6, SeekOrigin.Current);
 
             // Read name
@@ -40,7 +40,7 @@ namespace CoCEd.Model
 
             // Version
             int version = (int)ReadU32();
-            if (version < 3) throw new NotImplementedException("Wrong version");
+            if (version < 3) throw new NotImplementedException("Wrong AMF version");
 
             // Read content
             while (true)
