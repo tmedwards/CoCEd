@@ -62,6 +62,13 @@ namespace CoCEd.ViewModel
                     var obj2 = y as AmfObject;
                     return String.Compare(obj1.GetString("perkName"), obj2.GetString("perkName"));
                 });
+
+            _obj.GetObj("keyItems").SortDensePart((x, y) =>
+            {
+                var obj1 = x as AmfObject;
+                var obj2 = y as AmfObject;
+                return String.Compare(obj1.GetString("keyName"), obj2.GetString("keyName"));
+            });
         }
     }
 }
