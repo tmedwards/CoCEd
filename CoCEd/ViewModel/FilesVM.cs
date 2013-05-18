@@ -47,11 +47,12 @@ namespace CoCEd.ViewModel
             TargetMenuVisibility = Targets.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
         }
 
-        IEnumerable<Object> EnumerateSaveTargets()
+        IEnumerable<ISaveTarget> EnumerateSaveTargets()
         {
+            // Path not found?
             if (String.IsNullOrEmpty(_path)) yield break;
 
-            // Return either a SaveTargetVM or a FileVM
+            // Return either a SaveTargetVM or a FileVM for every slot
             for (int i = 1; i <= 10; i++)
             {
                 var name = "Coc_" + i + ".sol";
@@ -63,7 +64,7 @@ namespace CoCEd.ViewModel
                 else
                 {
                     var path = Path.Combine(_path, name);
-                    var target = new SaveTargetVM { Label = "Coc_" + i, Path = path };
+                    var target = new SaveSlotVM { Label = "Coc_" + i, Path = path };
                     yield return target;
                 }
             }
@@ -106,7 +107,13 @@ namespace CoCEd.ViewModel
         }
     }
 
-    public class FileVM
+    public interface ISaveTarget
+    {
+        string Path { get; }
+        SerializationFormat Format { get; }
+    }
+
+    public class FileVM : ISaveTarget
     {
         readonly bool _isExternal;
 
@@ -125,6 +132,11 @@ namespace CoCEd.ViewModel
         public string Path
         {
             get { return Source.FilePath; }
+        }
+
+        public SerializationFormat Format 
+        {
+            get { return Source.Format; }
         }
 
         public string Label
@@ -174,8 +186,13 @@ namespace CoCEd.ViewModel
         }
     }
 
-    public class SaveTargetVM
+    public class SaveSlotVM : ISaveTarget
     {
+        public SerializationFormat Format
+        {
+            get { return SerializationFormat.Slot; }
+        }
+
         public string Path
         {
             get;

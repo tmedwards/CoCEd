@@ -24,14 +24,46 @@ namespace CoCEd.Model
             _writer = new BinaryWriter(stream);
         }
 
-        public void Run(AmfFile file, string newName)
+        public void Run(AmfFile file, string newName, SerializationFormat format)
+        {
+            switch (format)
+            {
+                case SerializationFormat.Slot:
+                    WriteStandardFile(file, newName);
+                    break;
+
+                case SerializationFormat.Exported:
+                    WritePlainDataFile(file);
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+
+            // Flush
+            _writer.Flush();
+        }
+
+        void WritePlainDataFile(AmfFile file)
+        {
+            var data = new AmfObject(AmfTypes.Object);
+            foreach(var pair in file) data.Add(pair.Key, pair.Value);
+
+            var dataContainer = new AmfObject(AmfTypes.Object);
+            dataContainer["data"] = data;
+
+            WriteValue(dataContainer);
+        }
+
+        void WriteStandardFile(AmfFile file, string newName)
         {
             // Endianness
-            _writer.Write((byte)0x00);  
+            _writer.Write((byte)0x00);
             _writer.Write((byte)0xBF);
 
             // Placeholder for size
-            _writer.Write((int)0);      
+            _writer.Write((int)0);
 
             // Magic signature
             _writer.Write('T');
@@ -57,7 +89,7 @@ namespace CoCEd.Model
             _writer.Write((byte)0x03);
 
             // Key-value pairs
-            foreach(var pair in file)
+            foreach (var pair in file)
             {
                 WriteString((string)pair.Key);
                 WriteValue(pair.Value);
@@ -68,9 +100,6 @@ namespace CoCEd.Model
             _writer.BaseStream.Seek(2, SeekOrigin.Begin);
             uint dataSize = (uint)_writer.BaseStream.Length - 6;
             WriteU32(dataSize);
-
-            // Flush
-            _writer.Flush();
         }
 
         void WriteValue(Object obj)

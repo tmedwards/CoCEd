@@ -60,7 +60,7 @@ namespace CoCEd.ViewModel
 
         public void Load(string path)
         {
-            FileManager.StoreExternalPath(path);
+            FileManager.AddExternalFile(path);
             var file = new AmfFile(path);
 
             if (!String.IsNullOrEmpty(file.Error))
@@ -87,14 +87,14 @@ namespace CoCEd.ViewModel
             VM.Instance.NotifySaveRequiredChanged(false);
         }
 
-        public void Save(string path)
+        public void Save(string path, SerializationFormat format)
         {
             bool error = false;
             try
             {
                 Game.BeforeSerialization();
-                FileManager.StoreExternalPath(path);
-                _currentFile.Save(path);
+                _currentFile.Save(path, format);
+                FileManager.AddExternalFile(path);
             }
             catch (SecurityException)
             {

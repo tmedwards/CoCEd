@@ -20,7 +20,32 @@ namespace CoCEd.Model
             _reader = new BinaryReader(stream);
         }
 
-        public void Run(AmfFile file, out string name)
+        public void Run(AmfFile file, out string name, out SerializationFormat format)
+        {
+            // Case for "save to file". Fenoxo only serializes ones object and there is no header.
+            if (_reader.PeekChar() == 0x0A)
+            {
+                format = SerializationFormat.Exported;
+                ReadPlainDataFile(file, out name);
+            }
+            // Case for "save to slot". Real AMF3 file with a proper header.
+            else
+            {
+                format = SerializationFormat.Slot;
+                ReadStandardFile(file, out name);
+            }
+        }
+
+        void ReadPlainDataFile(AmfFile file, out string name)
+        {
+            name = Path.GetFileNameWithoutExtension(file.FilePath);
+
+            var dataContainer = (AmfObject)ReadValue();
+            var data = dataContainer.GetObj("data");
+            foreach (var pair in data) file.Add(pair.Key, pair.Value);
+        }
+
+        void ReadStandardFile(AmfFile file, out string name)
         {
             // Endianness
             if (_reader.ReadByte() != 0) throw new NotImplementedException("Unknown endianness");

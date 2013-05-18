@@ -9,6 +9,13 @@ using System.Threading.Tasks;
 
 namespace CoCEd.Model
 {
+    public enum SerializationFormat
+    {
+        Slot = 0,
+        Exported = 1,
+    }
+
+
     public sealed class AmfFile : AmfObject
     {
         static readonly HashSet<String> _backedUpFiles = new HashSet<string>();
@@ -26,7 +33,9 @@ namespace CoCEd.Model
                     using (var reader = new AmfReader(stream))
                     {
                         string name;
-                        reader.Run(this, out name);
+                        SerializationFormat format;
+                        reader.Run(this, out name, out format);
+                        Format = format;
                         Name = name;
                     }
                 }
@@ -59,6 +68,12 @@ namespace CoCEd.Model
             }
         }
 
+        public SerializationFormat Format
+        {
+            get;
+            private set;
+        }
+
         public string FilePath
         {
             get;
@@ -83,7 +98,7 @@ namespace CoCEd.Model
             private set;
         }
 
-        public void Save(string path)
+        public void Save(string path, SerializationFormat format)
         {
             EnsureBackupExists(path);
 
@@ -101,7 +116,7 @@ namespace CoCEd.Model
             {
                 using (var writer = new AmfWriter(stream))
                 {
-                    writer.Run(this, name);
+                    writer.Run(this, name, format);
                     stream.Flush();
                     stream.Close();
                 }
@@ -124,7 +139,7 @@ namespace CoCEd.Model
                 }
 
                 // Create backup
-                var backUpPath = lowerPath.Replace(".sol", ".bak");
+                var backUpPath = lowerPath + ".bak";
                 File.Copy(path, backUpPath, true);
                 _backedUpFiles.Add(lowerPath);
             }
@@ -143,7 +158,7 @@ namespace CoCEd.Model
             {
                 using (var writer = new AmfWriter(stream))
                 {
-                    writer.Run(this, Name);
+                    writer.Run(this, Name, Format);
                 }
                 stream.AssertSameLength();
             }

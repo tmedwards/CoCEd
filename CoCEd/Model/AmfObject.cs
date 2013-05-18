@@ -101,6 +101,7 @@ namespace CoCEd.Model
                     break;
 
                 case AmfTypes.Object:
+                    Trait = new AmfTrait { Name = "", IsDynamic = true, Properties = new string[0] };
                     _associativePairs = new List<AmfPair>(count);
                     _denseValues = new List<object>();
                     break;
