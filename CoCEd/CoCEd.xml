@@ -565,6 +565,7 @@
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Clothing" Category="Armor">
+      <Item ID="BimboSk" Name="Bimbo Skirt"/>
       <Item ID="BonStrp" Name="Bondage Straps"/>
       <Item ID="BeeArmr" Name="Chitin Armor"/>
       <Item ID="C.Cloth" Name="Comfortable Clothes"/>
