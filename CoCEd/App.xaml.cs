@@ -89,7 +89,7 @@ namespace CoCEd
             VM.Create();
 
             FileManager.BuildPaths();
-            var set = FileManager.CreateSet();
+            var directories = FileManager.GetDirectories().ToArray();   // Load all on startup to check for errors
             var result = ExceptionBoxResult.Continue;
             if (FileManager.MoreThanOneFolderPath != null)
             {
@@ -116,7 +116,7 @@ namespace CoCEd
             }
 
 #if DEBUG
-            var file = AutoLoad(set);
+            var file = AutoLoad(directories);
             //new AmfFile("e:\\plainObject.sol").TestSerialization();
             //new AmfFile("e:\\unicode.sol").TestSerialization();
             //DebugStatuses(file);
@@ -129,11 +129,11 @@ namespace CoCEd
 
 
 #if DEBUG
-        static AmfFile AutoLoad(FileGroupSetVM set)
+        static AmfFile AutoLoad(FlashDirectory[] directories)
         {
-            var file = set.StandardOfflineFiles.Files[0];
-            VM.Instance.Load(file.Path);
-            return file.Source;
+            var file = directories[0].Files[0];
+            VM.Instance.Load(file.FilePath);
+            return file;
         }
 
         static void PrintStatuses(AmfFile file)
@@ -146,17 +146,17 @@ namespace CoCEd
             }
         }
 
-        static void RunSerializationTest(FileGroupSetVM set)
+        static void RunSerializationTest(FlashDirectory[] directories)
         {
             Stopwatch s = new Stopwatch();
             s.Start();
-            foreach (var first in set.StandardOfflineFiles.Files)
+            foreach (var first in directories[0].Files)
             {
-                var outPath = "e:\\" + first.Source.Name + ".sol";
-                first.Source.TestSerialization();
-                first.Source.Save(outPath, first.Source.Format);
+                var outPath = "e:\\" + Path.GetFileName(first.FilePath);
+                first.TestSerialization();
+                first.Save(outPath, first.Format);
 
-                var input = File.ReadAllBytes(first.Source.FilePath);
+                var input = File.ReadAllBytes(first.FilePath);
                 var output = File.ReadAllBytes(outPath);
                 if (input.Length != output.Length) throw new InvalidOperationException();
                 for (int i = 0; i < input.Length; i++)

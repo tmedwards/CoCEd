@@ -8,51 +8,75 @@ using CoCEd.ViewModel;
 
 namespace CoCEd.Model
 {
+    public class FlashDirectory
+    {
+        public string Name;
+        public string Path;
+        public bool IsExternal;
+        public bool HasSeparatorBefore;
+        public readonly List<AmfFile> Files = new List<AmfFile>();
+
+        public FlashDirectory(string name, string path, bool hasSeparatorBefore, bool isExternal)
+        {
+            Name = name;
+            Path = path;
+            HasSeparatorBefore = hasSeparatorBefore;
+            IsExternal = isExternal;
+        }
+    }
+
     public static class FileManager
     {
         static readonly List<string> _externalPaths = new List<string>();
+        static readonly List<FlashDirectory> _directories = new List<FlashDirectory>();
 
         public static string MoreThanOneFolderPath { get; private set; }
         public static string MissingPermissionPath { get; private set; }
 
-        public static string StandardOfflinePath { get; private set; }
-        public static string StandardOnlinePath { get; private set; }
-        public static string ChromeOfflinePath { get; private set; }
-        public static string ChromeOnlinePath { get; private set; }
-
         public static void BuildPaths()
         {
+            bool separatorBefore = false;
             const string standardPath = @"Macromedia\Flash Player\#SharedObjects\";
-            StandardOfflinePath = BuildPath(Environment.SpecialFolder.ApplicationData, standardPath, "localhost");
-            StandardOnlinePath = BuildPath(Environment.SpecialFolder.ApplicationData, standardPath, "www.fenoxo.com");
-
             const string chromePath = @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\";
-            ChromeOfflinePath = BuildPath(Environment.SpecialFolder.LocalApplicationData, chromePath, "localhost");
-            ChromeOnlinePath = BuildPath(Environment.SpecialFolder.LocalApplicationData, chromePath, "www.fenoxo.com");
+
+
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Offline (standard)",   standardPath,   "localhost",                        ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Offline (chrome)",     chromePath,     "localhost",                        ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Offline (metro)",      standardPath,   @"#AppContainer\localhost",         ref separatorBefore);
+
+            separatorBefore = true;
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (standard)",   standardPath,    "www.fenoxo.com",                   ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Online (chrome)",      chromePath,     "www.fenoxo.com",                   ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (metro)",      standardPath,    @"#AppContainer\www.fenoxo.com",    ref separatorBefore);
         }
 
-        static string BuildPath(Environment.SpecialFolder root, string middle, string suffix)
+        static void BuildPath(Environment.SpecialFolder root, string name, string middle, string suffix, ref bool separatorBefore)
         {
             var path = "";
             try
             {
                 // User\AppData\Roaming 
                 path = Environment.GetFolderPath(root);
-                if (path == null) return "";
+                if (path == null) return;
 
                 // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\
                 path = Path.Combine(path, middle);
-                if (!Directory.Exists(path)) return "";
+                if (!Directory.Exists(path)) return;
 
                 // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7
                 var subDirectories = Directory.GetDirectories(path);
                 if (subDirectories.Length > 1) MoreThanOneFolderPath = path;
-                if (subDirectories.Length != 1) return "";
+                if (subDirectories.Length != 1) return;
                 path = subDirectories[0];
 
                 // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7\localhost
                 path = Path.Combine(path, suffix);
-                if (Directory.Exists(path)) return path;
+                if (!Directory.Exists(path)) return;
+                
+                // Add
+                var flash = new FlashDirectory(name, path, separatorBefore, false);
+                separatorBefore = false;
+                _directories.Add(flash);
             }
             catch (SecurityException)
             {
@@ -65,39 +89,36 @@ namespace CoCEd.Model
             catch (IOException)
             {
             }
-            return "";
         }
 
-        public static FileGroupSetVM CreateSet()
+        public static IEnumerable<FlashDirectory> GetDirectories()
         {
-            var set = new FileGroupSetVM();
-
-            set.StandardOfflineFiles = CreateGroup(StandardOfflinePath);
-            set.StandardOnlineFiles = CreateGroup(StandardOnlinePath);
-            set.ChromeOfflineFiles = CreateGroup(ChromeOfflinePath);
-            set.ChromeOnlineFiles = CreateGroup(ChromeOnlinePath);
-            set.ExternalFiles = CreateExternalGroup();
-            return set;
+            foreach(var dir in _directories)
+            {
+                yield return CreateDirectory(dir);
+            }
+            yield return CreateExternalDirectory();
         }
 
-        static FileGroupVM CreateExternalGroup()
+        static FlashDirectory CreateExternalDirectory()
         {
-            var externalFiles = _externalPaths.Select(x => new AmfFile(x));
-            return new FileGroupVM("", externalFiles, true);
+            var dir = new FlashDirectory("External", "", true, true);
+            foreach (var path in _externalPaths) dir.Files.Add(new AmfFile(path));
+            return dir;
         }
 
-        static FileGroupVM CreateGroup(string path)
+        static FlashDirectory CreateDirectory(FlashDirectory dir)
         {
-            if (String.IsNullOrEmpty(path)) return new FileGroupVM("", new AmfFile[0]);
+            dir = new FlashDirectory(dir.Name, dir.Path, dir.HasSeparatorBefore, false);
+            if (String.IsNullOrEmpty(dir.Path)) return dir;
 
-            List<AmfFile> files = new List<AmfFile>();
             for (int i = 1; i <= 10; i++)
             {
-                var filePath = Path.Combine(path, "Coc_" + i + ".sol");
+                var filePath = Path.Combine(dir.Path, "Coc_" + i + ".sol");
                 try
                 {
                     if (!File.Exists(filePath)) continue;
-                    files.Add(new AmfFile(filePath));
+                    dir.Files.Add(new AmfFile(filePath));
                 }
                 catch (SecurityException)
                 {
@@ -111,9 +132,7 @@ namespace CoCEd.Model
                 {
                 }
             }
-
-            // Create group
-            return new FileGroupVM(path, files);
+            return dir;
         }
 
         public static void AddExternalFile(string path)
@@ -121,11 +140,10 @@ namespace CoCEd.Model
             path = Canonize(path);
 
             if (_externalPaths.Contains(path)) return;
-            if (AreParentAndChild(StandardOfflinePath, path)) return;
-            if (AreParentAndChild(StandardOnlinePath, path)) return;
-            if (AreParentAndChild(ChromeOfflinePath, path)) return;
-            if (AreParentAndChild(ChromeOnlinePath, path)) return;
-
+            foreach (var dir in _directories)
+            {
+                if (AreParentAndChild(dir.Path, path)) return;
+            }
             _externalPaths.Add(path);
         }
 

@@ -21,6 +21,7 @@ namespace CoCEd.ViewModel
     public sealed class VM : BindableBase
     {
         public event SaveRequiredChanged SaveRequiredChanged;
+        public event EventHandler FileOpened;
 
         const string AppTitle = "CoCEd";
 
@@ -85,6 +86,7 @@ namespace CoCEd.ViewModel
             OnPropertyChanged("FileLabel");
             OnPropertyChanged("FileLabelVisibility");
             VM.Instance.NotifySaveRequiredChanged(false);
+            if (FileOpened != null) FileOpened(null, null);
         }
 
         public void Save(string path, SerializationFormat format)

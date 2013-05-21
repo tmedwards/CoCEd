@@ -39,13 +39,22 @@ namespace CoCEd.View
 
             openMenu.PlacementTarget = openButton;
             saveMenu.PlacementTarget = saveButton;
-            if (!DesignerProperties.GetIsInDesignMode(this)) VM.Instance.SaveRequiredChanged += OnSaveRequiredChanged;
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                VM.Instance.SaveRequiredChanged += OnSaveRequiredChanged;
+                VM.Instance.FileOpened += OnFileOpened;
+            }
         }
 
         void OnSaveRequiredChanged(object sender, bool saveRequired)
         {
             if (saveRequired) saveButton.Style = (Style)Resources["HighlightedButton"];
             else saveButton.Style = _defaultStyle;
+        }
+
+        void OnFileOpened(object sender, EventArgs e)
+        {
+            openButton.Style = _defaultStyle;
         }
 
         void openMenu_Closed(object sender, EventArgs e)
@@ -62,7 +71,7 @@ namespace CoCEd.View
         {
             bool isChecked = (openButton.IsChecked == true);
             openButton.IsHitTestVisible = !isChecked;
-            if (isChecked) openMenu.DataContext = FileManager.CreateSet();
+            if (isChecked) SetItems(openMenu, FileManagerVM.GetOpenMenus());
             openMenu.IsOpen = isChecked;
         }
 
@@ -70,58 +79,42 @@ namespace CoCEd.View
         {
             bool isChecked = (saveButton.IsChecked == true);
             saveButton.IsHitTestVisible = !isChecked;
-            if (isChecked) saveMenu.DataContext = FileManager.CreateSet();
+            if (isChecked) SetItems(saveMenu, FileManagerVM.GetSaveMenus());
             saveMenu.IsOpen = isChecked;
         }
 
-        void openMenu_Click(object sender, RoutedEventArgs e)
+        void SetItems(ContextMenu menu, IEnumerable<IMenuVM> items)
         {
-            openButton.Style = _defaultStyle;
+            menu.Items.Clear();
+            bool needSeparator = false;
+            foreach (var item in items)
+            {
+                needSeparator |= item.HasSeparatorBefore;
+                if (!item.IsVisible) continue;
 
-            var item = (MenuItem)sender;
-            var file = (FileVM)item.DataContext;
-            VM.Instance.Load(file.Source.FilePath);
+                if (needSeparator) menu.Items.Add(new Separator());
+                needSeparator = false;
+
+                var subMenu = new MenuItem();
+                subMenu.Style = (Style)FindResource("RootMenuStyle");
+                subMenu.DataContext = item;
+                menu.Items.Add(subMenu);
+            }
         }
 
-        void saveMenu_Click(object sender, RoutedEventArgs e)
+        void subMenu_Click(object sender, RoutedEventArgs e)
         {
-            var item = (MenuItem)sender;
-            var target = (ISaveTarget)item.DataContext;
-            VM.Instance.Save(target.Path, target.Format);
+            var menu = (MenuItem)sender;
+            var item = (IMenuItemVM)menu.DataContext;
+            item.OnClick();
         }
 
-        void importMenu_Click(object sender, RoutedEventArgs e)
+        void menu_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new OpenFileDialog();
-            dlg.Filter = "Flash objects (.sol)|*.sol|All files|*.*";
-            dlg.DefaultExt = ".sol";
-            dlg.CheckFileExists = true;
-            dlg.Multiselect = false;
-            dlg.RestoreDirectory = true;
-
-            var result = dlg.ShowDialog();
-            if (result == false) return;
-
-            string path = dlg.FileName;
-            VM.Instance.Load(path);
+            var menu = (MenuItem)sender;
+            var item = (IMenuVM)menu.DataContext;
+            item.OnClick();
         }
 
-        void exportMenu_Click(object sender, RoutedEventArgs e)
-        {
-            var dlg = new SaveFileDialog();
-            dlg.Filter = "CoC slot (.sol)|*.sol|CoC exported file|*.*";
-            dlg.DefaultExt = ".sol";
-            dlg.AddExtension = true;
-            dlg.OverwritePrompt = true;
-            dlg.RestoreDirectory = true;
-            dlg.ValidateNames = true;
-
-            var result = dlg.ShowDialog();
-            if (result == false) return;
-
-            string path = dlg.FileName;
-            var format = (SerializationFormat)dlg.FilterIndex;
-            VM.Instance.Save(path, format);
-        }
     }
 }
