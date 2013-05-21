@@ -12,115 +12,265 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using CoCEd.Model;
+using Microsoft.Win32;
 
 namespace CoCEd.ViewModel
 {
-    public sealed class FileGroupSetVM
+    public static class FileManagerVM
     {
-        public FileGroupVM StandardOfflineFiles { get; set; }
-        public FileGroupVM StandardOnlineFiles { get; set; }
-        public FileGroupVM ChromeOfflineFiles { get; set; }
-        public FileGroupVM ChromeOnlineFiles { get; set; }
-        public FileGroupVM ExternalFiles { get; set; }
-
-        // Fake properties for import/export menus in order to avoid binding errors
-        public FileVM[] Files { get { return new FileVM[0]; } }
-        public Object[] Targets { get { return new Object[0]; } }
-        public Visibility MenuVisibility { get { return Visibility.Visible; } }
-    }
-
-    public class FileGroupVM : BindableBase
-    {
-        readonly string _path;
-
-        public FileGroupVM(string path, IEnumerable<AmfFile> files, bool isExternal = false)
+        public static IEnumerable<IMenuVM> GetOpenMenus()
         {
-            _path = path;
-            IsExternal = isExternal;
-            Files = files.Select(x => new FileVM(x, isExternal)).ToArray();
-
-            if (IsExternal) Targets = Files;
-            else Targets = EnumerateSaveTargets().ToArray();
-
-            MenuVisibility = Files.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
-            TargetForeground = Files.Length == 0 ? Brushes.DarkGray : Brushes.Black;
-            TargetMenuVisibility = Targets.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
+            foreach (var dir in FileManager.GetDirectories())
+            {
+                yield return new SourceDirectoryVM(dir);
+            }
+            yield return new ImportRootVM();
         }
 
-        IEnumerable<ISaveTarget> EnumerateSaveTargets()
+        public static IEnumerable<IMenuVM> GetSaveMenus()
         {
-            // Path not found?
-            if (String.IsNullOrEmpty(_path)) yield break;
-
-            // Return either a SaveTargetVM or a FileVM for every slot
-            for (int i = 1; i <= 10; i++)
+            foreach (var dir in FileManager.GetDirectories())
             {
-                var name = "Coc_" + i + ".sol";
-                var file = Files.FirstOrDefault(x => x.Source.FilePath.EndsWith(name, StringComparison.InvariantCultureIgnoreCase));
-                if (file != null)
+                yield return new TargetDirectoryVM(dir);
+            }
+            yield return new ExportRootVM();
+        }
+    }
+
+    public interface IMenuVM
+    {
+        String Label { get; }
+        Brush Foreground { get; }
+        IEnumerable<Object> Children { get; }
+        bool HasSeparatorBefore { get; }
+        bool IsVisible { get; }
+        void OnClick();
+    }
+
+    public interface IMenuItemVM
+    {
+        string Path { get; }
+        string Label { get; }
+        string SubLabel { get; }
+        Brush Foreground { get; }
+        Image Icon { get; }
+        Visibility SubLabelVisibility { get; }
+        void OnClick();
+    }
+
+    public sealed class SourceDirectoryVM : IMenuVM
+    {
+        readonly FlashDirectory _directory;
+
+        public SourceDirectoryVM(FlashDirectory directory)
+        {
+            _directory = directory;
+        }
+
+        public string Label
+        {
+            get { return _directory.Name; }
+        }
+
+        public IEnumerable<Object> Children
+        {
+            get { return _directory.Files.Select(x => new FileVM(x, _directory.IsExternal, true)); }
+        }
+
+        public bool HasSeparatorBefore
+        {
+            get { return _directory.HasSeparatorBefore; }
+        }
+
+        public bool IsVisible
+        {
+            get { return _directory.Files.Count != 0; }
+        }
+
+        public Brush Foreground
+        {
+            get { return Brushes.Black; }
+        }
+
+        public void OnClick()
+        {
+        }
+    }
+
+    public sealed class TargetDirectoryVM : IMenuVM
+    {
+        readonly FlashDirectory _directory;
+
+        public TargetDirectoryVM(FlashDirectory directory)
+        {
+            _directory = directory;
+        }
+
+        public string Label
+        {
+            get { return _directory.Name; }
+        }
+
+        public bool HasSeparatorBefore
+        {
+            get { return _directory.HasSeparatorBefore; }
+        }
+
+        public bool IsVisible
+        {
+            get { return _directory.Files.Count != 0 || !String.IsNullOrEmpty(_directory.Path); }
+        }
+
+        public Brush Foreground
+        {
+            get { return _directory.Files.Count == 0 ? Brushes.DarkGray : Brushes.Black; }
+        }
+
+        public IEnumerable<Object> Children
+        {
+            get
+            {
+                // External
+                if (_directory.IsExternal)
                 {
-                    yield return file;
+                    foreach (var file in _directory.Files) yield return new FileVM(file, _directory.IsExternal, false);
                 }
-                else
+
+                // Path not found or external?
+                if (String.IsNullOrEmpty(_directory.Path)) yield break;
+
+                // Return either a SaveTargetVM or a FileVM for every slot
+                for (int i = 1; i <= 10; i++)
                 {
-                    var path = Path.Combine(_path, name);
-                    var target = new SaveSlotVM { Label = "Coc_" + i, Path = path };
-                    yield return target;
+                    var name = "Coc_" + i + ".sol";
+                    var file = _directory.Files.FirstOrDefault(x => x.FilePath.EndsWith(name, StringComparison.InvariantCultureIgnoreCase));
+                    if (file != null)
+                    {
+                        yield return new FileVM(file, _directory.IsExternal, false);
+                    }
+                    else
+                    {
+                        var path = Path.Combine(_directory.Path, name);
+                        var target = new SaveSlotVM { Label = "Coc_" + i, Path = path };
+                        yield return target;
+                    }
                 }
             }
         }
 
-        public bool IsExternal
+        public void OnClick()
         {
-            get;
-            private set;
-        }
-
-        public FileVM[] Files
-        {
-            get;
-            private set;
-        }
-
-        public Object[] Targets
-        {
-            get;
-            private set;
-        }
-
-        public Visibility MenuVisibility
-        {
-            get;
-            private set;
-        }
-
-        public Visibility TargetMenuVisibility
-        {
-            get;
-            private set;
-        }
-
-        public Brush TargetForeground
-        {
-            get;
-            private set;
         }
     }
 
-    public interface ISaveTarget
+    public sealed class ImportRootVM : IMenuVM
     {
-        string Path { get; }
-        SerializationFormat Format { get; }
+        public ImportRootVM()
+        {
+        }
+
+        public string Label
+        {
+            get { return "Import"; }
+        }
+
+        public IEnumerable<Object> Children
+        {
+            get { yield break; }
+        }
+
+        public bool HasSeparatorBefore
+        {
+            get { return false; }
+        }
+
+        public bool IsVisible
+        {
+            get { return true; }
+        }
+
+        public Brush Foreground
+        {
+            get { return Brushes.Black; }
+        }
+
+        public void OnClick()
+        {
+            var dlg = new OpenFileDialog();
+            dlg.Filter = "Flash objects (.sol)|*.sol|All files|*.*";
+            dlg.DefaultExt = ".sol";
+            dlg.CheckFileExists = true;
+            dlg.Multiselect = false;
+            dlg.RestoreDirectory = true;
+
+            var result = dlg.ShowDialog();
+            if (result == false) return;
+
+            string path = dlg.FileName;
+            VM.Instance.Load(path);
+        }
     }
 
-    public class FileVM : ISaveTarget
+    public sealed class ExportRootVM : IMenuVM
+    {
+        public ExportRootVM()
+        {
+        }
+
+        public string Label
+        {
+            get { return "Export"; }
+        }
+
+        public IEnumerable<Object> Children
+        {
+            get { yield break; }
+        }
+
+        public bool HasSeparatorBefore
+        {
+            get { return false; }
+        }
+
+        public bool IsVisible
+        {
+            get { return true; }
+        }
+
+        public Brush Foreground
+        {
+            get { return Brushes.Black; }
+        }
+
+        public void OnClick()
+        {
+            var dlg = new SaveFileDialog();
+            dlg.Filter = "CoC slot (.sol)|*.sol|CoC exported file|*.*";
+            dlg.DefaultExt = ".sol";
+            dlg.AddExtension = true;
+            dlg.OverwritePrompt = true;
+            dlg.RestoreDirectory = true;
+            dlg.ValidateNames = true;
+
+            var result = dlg.ShowDialog();
+            if (result == false) return;
+
+            string path = dlg.FileName;
+            var format = (SerializationFormat)dlg.FilterIndex;
+            VM.Instance.Save(path, format);
+        }
+    }
+
+    public class FileVM : IMenuItemVM
     {
         readonly bool _isExternal;
+        readonly bool _openOnClick;
 
-        public FileVM(AmfFile source, bool isExternal)
+        public FileVM(AmfFile source, bool isExternal, bool openOnClick)
         {
             Source = source;
             _isExternal = isExternal;
+            _openOnClick = openOnClick;
         }
 
         public AmfFile Source 
@@ -132,11 +282,6 @@ namespace CoCEd.ViewModel
         public string Path
         {
             get { return Source.FilePath; }
-        }
-
-        public SerializationFormat Format 
-        {
-            get { return Source.Format; }
         }
 
         public string Label
@@ -184,9 +329,15 @@ namespace CoCEd.ViewModel
                 return img;
             }
         }
+
+        public void OnClick()
+        {
+            if (_openOnClick) VM.Instance.Load(Source.FilePath);
+            else VM.Instance.Save(Source.FilePath, Source.Format);
+        }
     }
 
-    public class SaveSlotVM : ISaveTarget
+    public class SaveSlotVM : IMenuItemVM
     {
         public SerializationFormat Format
         {
@@ -211,6 +362,11 @@ namespace CoCEd.ViewModel
             set;
         }
 
+        public Image Icon
+        {
+            get { return null; }
+        }
+
         public Brush Foreground
         {
             get { return Brushes.DarkGray; }
@@ -219,6 +375,11 @@ namespace CoCEd.ViewModel
         public Visibility SubLabelVisibility
         {
             get { return Visibility.Collapsed; }
+        }
+
+        void IMenuItemVM.OnClick()
+        {
+            VM.Instance.Save(Path, SerializationFormat.Slot);
         }
     }
 }

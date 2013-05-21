@@ -47,37 +47,24 @@
             </StackPanel>
         </DataTemplate>
 
-        <Style x:Key="OpenMenuChildStyle" TargetType="{x:Type MenuItem}">
-            <EventSetter Event="Click" Handler="openMenu_Click"/>
+        <Style x:Key="SubMenuStyle" TargetType="{x:Type MenuItem}">
+            <EventSetter Event="Click" Handler="subMenu_Click"/>
+            <Setter Property="HeaderTemplate" Value="{StaticResource FileTemplate}"/>
             <Setter Property="ToolTip" Value="{Binding Path}"/>
             <Setter Property="Icon" Value="{Binding Icon}"/>
             <Setter Property="Padding" Value="2,5"/>
         </Style>
 
-        <Style x:Key="SaveMenuChildStyle" TargetType="{x:Type MenuItem}">
-            <Setter Property="Padding" Value="2,5"/>
-            <Setter Property="ToolTip" Value="{Binding Path}"/>
-            <EventSetter Event="Click" Handler="saveMenu_Click"/>
-        </Style>
-
-        <Style x:Key="OpenMenuStyle" TargetType="{x:Type MenuItem}">
-            <Setter Property="ItemTemplate" Value="{StaticResource FileTemplate}"/>
-            <Setter Property="ItemContainerStyle" Value="{StaticResource OpenMenuChildStyle}"/>
-            <Setter Property="Visibility" Value="{Binding MenuVisibility}"/>
-            <Setter Property="ItemsSource" Value="{Binding Files}"/>
+        <Style x:Key="RootMenuStyle" TargetType="{x:Type MenuItem}">
+            <EventSetter Event="Click" Handler="menu_Click"/>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource SubMenuStyle}"/>
+            <Setter Property="Visibility" Value="{Binding Visibility}"/>
+            <Setter Property="Foreground" Value="{Binding Foreground}"/>
+            <Setter Property="ItemsSource" Value="{Binding Children}"/>
+            <Setter Property="Header" Value="{Binding Label}"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Padding" Value="4,6"/>
         </Style>
-
-        <Style x:Key="SaveMenuStyle" TargetType="{x:Type MenuItem}">
-            <Setter Property="ItemTemplate" Value="{StaticResource FileTemplate}"/>
-            <Setter Property="ItemContainerStyle" Value="{StaticResource SaveMenuChildStyle}"/>
-            <Setter Property="ItemsSource" Value="{Binding Targets}"/>
-            <Setter Property="Foreground" Value="{Binding TargetForeground}"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Padding" Value="4,6"/>
-        </Style>
-
     </UserControl.Resources>
 
     <Grid>
@@ -95,27 +82,13 @@
         <StackPanel Orientation="Horizontal" Grid.Column="2">
             <ToggleButton x:Name="openButton" Margin="0,0,0,0" Content="Open" BorderThickness="0" FontSize="12" Checked="openButton_StateChanged" Unchecked="openButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent">
                 <ToggleButton.ContextMenu>
-                    <ContextMenu x:Name="openMenu" Closed="openMenu_Closed" Placement="Bottom" MinWidth="150" ItemContainerStyle="{StaticResource OpenMenuStyle}">
-                        <MenuItem Header="Offline"          DataContext="{Binding StandardOfflineFiles}"  />
-                        <MenuItem Header="Offline (Chrome)" DataContext="{Binding ChromeOfflineFiles}"    />
-                        <MenuItem Header="Online"           DataContext="{Binding StandardOnlineFiles}"   />
-                        <MenuItem Header="Online (Chrome)"  DataContext="{Binding ChromeOnlineFiles}"     />
-                        <MenuItem Header="External"         DataContext="{Binding ExternalFiles}"         />
-                        <MenuItem Header="Import..." x:Name="importMenu" Click="importMenu_Click"/>
-                    </ContextMenu>
+                    <ContextMenu x:Name="openMenu" Closed="openMenu_Closed" Placement="Bottom" MinWidth="150"/>
                 </ToggleButton.ContextMenu>
             </ToggleButton>
 
             <ToggleButton x:Name="saveButton" Margin="5,0,0,0" Content="Save as" BorderThickness="0" FontSize="12" Checked="saveButton_StateChanged" Unchecked="saveButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsEnabled="{Binding HasData}" >
                 <ToggleButton.ContextMenu>
-                    <ContextMenu x:Name="saveMenu" Closed="saveMenu_Closed" Placement="Bottom" MinWidth="150" ItemContainerStyle="{StaticResource SaveMenuStyle}">
-                        <MenuItem Header="Offline"          DataContext="{Binding StandardOfflineFiles}"  />
-                        <MenuItem Header="Offline (Chrome)" DataContext="{Binding ChromeOfflineFiles}"    />
-                        <MenuItem Header="Online"           DataContext="{Binding StandardOnlineFiles}"   />
-                        <MenuItem Header="Online (Chrome)"  DataContext="{Binding ChromeOnlineFiles}"     />
-                        <MenuItem Header="External"         DataContext="{Binding ExternalFiles}" Visibility="{Binding TargetMenuVisibility}"/>
-                        <MenuItem Header="Export..." x:Name="exportMenu" Click="exportMenu_Click"   />
-                    </ContextMenu>
+                    <ContextMenu x:Name="saveMenu" Closed="saveMenu_Closed" Placement="Bottom" MinWidth="150"/>
                 </ToggleButton.ContextMenu>
             </ToggleButton>
         </StackPanel>
