@@ -163,6 +163,10 @@
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Focusable" Value="false"/>
+        <Setter Property="ToolTip" Value="Drag'n drop to reorder."/>
+        <Setter Property="ToolTipService.Placement" Value="Top"/>
+        <Setter Property="ToolTipService.HorizontalOffset" Value="120"/>
+        <Setter Property="ToolTipService.VerticalOffset" Value="20"/>
         <Setter Property="MinWidth" Value="350"/>
         <Setter Property="Margin" Value="0,0,0,0"/>
         <Setter Property="Template">
