@@ -85,6 +85,11 @@ namespace CoCEd.View
 
         void SetItems(ContextMenu menu, IEnumerable<IMenuVM> items)
         {
+            SetItems(menu, items, true);
+        }
+
+        void SetItems(ItemsControl menu, IEnumerable<IMenuBaseVM> items, bool isRoot)
+        {
             menu.Items.Clear();
             bool needSeparator = false;
             foreach (var item in items)
@@ -96,8 +101,16 @@ namespace CoCEd.View
                 needSeparator = false;
 
                 var subMenu = new MenuItem();
-                subMenu.Style = (Style)FindResource("RootMenuStyle");
                 subMenu.DataContext = item;
+                if (isRoot)
+                {
+                    subMenu.Style = (Style)FindResource("RootMenuStyle");
+                    SetItems(subMenu, item.Children, false);
+                }
+                else
+                {
+                    subMenu.Header = item;
+                }
                 menu.Items.Add(subMenu);
             }
         }
