@@ -32,7 +32,7 @@ namespace CoCEd
 
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             if (version.Build == 0) versionLabel.Text = version.Major + "." + version.Minor;
-            else versionLabel.Text = version.Major + "." + version.Minor + (char)('a' + (version.Build - 1));
+            else versionLabel.Text = version.Major + "." + version.Minor + "." + version.Build;
         }
 
         public NamedVector4Popup ValuesPopup
