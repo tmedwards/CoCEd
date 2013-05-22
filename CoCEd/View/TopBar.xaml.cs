@@ -114,14 +114,14 @@ namespace CoCEd.View
         void subMenu_Click(object sender, RoutedEventArgs e)
         {
             var menu = (MenuItem)sender;
-            var item = (IMenuItemVM)menu.DataContext;
+            var item = (IMenuItemVM)menu.Header;
             item.OnClick();
         }
 
         void menu_Click(object sender, RoutedEventArgs e)
         {
             var menu = (MenuItem)sender;
-            var item = (IMenuVM)menu.DataContext;
+            var item = (IMenuVM)menu.Header;
             item.OnClick();
         }
 
