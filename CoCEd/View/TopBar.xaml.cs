@@ -101,6 +101,7 @@ namespace CoCEd.View
                 needSeparator = false;
 
                 var subMenu = new MenuItem();
+                subMenu.DataContext = item;
                 subMenu.Header = item;
                 if (isRoot)
                 {
