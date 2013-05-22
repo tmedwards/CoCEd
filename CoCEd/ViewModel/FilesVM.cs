@@ -47,6 +47,8 @@ namespace CoCEd.ViewModel
     public interface IMenuVM : IMenuBaseVM
     {
         String Label { get; }
+        String ChildrenCount { get; }
+        Visibility ChildrenCountVisibility { get; }
         Brush Foreground { get; }
         void OnClick();
     }
@@ -84,6 +86,16 @@ namespace CoCEd.ViewModel
                 foreach(var file in _directory.Files) yield return new FileVM(file, _directory.IsExternal, true);
                 if (!String.IsNullOrEmpty(_directory.Path)) yield return new OpenDirectoryItemVM(_directory.Path);
             }
+        }
+
+        public string ChildrenCount
+        {
+            get { return _directory.Files.Count.ToString(); }
+        }
+
+        public Visibility ChildrenCountVisibility
+        {
+            get { return Visibility.Visible; }
         }
 
         public bool HasSeparatorBefore
@@ -170,6 +182,16 @@ namespace CoCEd.ViewModel
             }
         }
 
+        public string ChildrenCount
+        {
+            get { return _directory.Files.Count.ToString(); }
+        }
+
+        public Visibility ChildrenCountVisibility
+        {
+            get { return Visibility.Visible; }
+        }
+
         public void OnClick()
         {
         }
@@ -189,6 +211,16 @@ namespace CoCEd.ViewModel
         public IEnumerable<IMenuItemVM> Children
         {
             get { yield break; }
+        }
+
+        public string ChildrenCount
+        {
+            get { return ""; }
+        }
+
+        public Visibility ChildrenCountVisibility
+        {
+            get { return Visibility.Collapsed; }
         }
 
         public bool HasSeparatorBefore
@@ -237,6 +269,16 @@ namespace CoCEd.ViewModel
         public IEnumerable<IMenuItemVM> Children
         {
             get { yield break; }
+        }
+
+        public string ChildrenCount
+        {
+            get { return ""; }
+        }
+
+        public Visibility ChildrenCountVisibility
+        {
+            get { return Visibility.Collapsed; }
         }
 
         public bool HasSeparatorBefore

@@ -47,21 +47,23 @@
             </StackPanel>
         </DataTemplate>
 
+        <DataTemplate x:Key="FolderTemplate">
+            <TextBlock Text="{Binding Label}" Foreground="{Binding Foreground}" FontSize="12"/>
+        </DataTemplate>
+
         <Style x:Key="SubMenuStyle" TargetType="{x:Type MenuItem}">
             <EventSetter Event="Click" Handler="subMenu_Click"/>
             <Setter Property="HeaderTemplate" Value="{StaticResource FileTemplate}"/>
             <Setter Property="ToolTip" Value="{Binding Path}"/>
             <Setter Property="Icon" Value="{Binding Icon}"/>
-            <Setter Property="Header" Value="{Binding}"/>
             <Setter Property="Padding" Value="2,5"/>
         </Style>
 
         <Style x:Key="RootMenuStyle" TargetType="{x:Type MenuItem}">
             <EventSetter Event="Click" Handler="menu_Click"/>
             <Setter Property="ItemContainerStyle" Value="{StaticResource SubMenuStyle}"/>
+            <Setter Property="HeaderTemplate" Value="{StaticResource FolderTemplate}"/>
             <Setter Property="Foreground" Value="{Binding Foreground}"/>
-            <Setter Property="Header" Value="{Binding Label}"/>
-            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Padding" Value="4,6"/>
         </Style>
     </UserControl.Resources>
