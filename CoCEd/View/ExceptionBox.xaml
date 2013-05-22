@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Path" FontWeight="Bold"/>
-            <TextBlock x:Name="folderText" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,5,0,0" Grid.Row="1" FontFamily="Consolas,Courier New,Courier,Arial"/>
+            <TextBlock x:Name="folderText" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,5,0,0" Grid.Row="1"/>
             <Button Click="openFolder_Click" VerticalAlignment="Top" Margin="10,0,0,0"  Grid.Row="1" Grid.Column="1">Open</Button>
         </Grid>
 
@@ -54,7 +54,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="Error message" FontWeight="Bold"/>
             <ScrollViewer Margin="0,5,0,0" Grid.Row="1" >
-                <TextBlock x:Name="exceptionText" VerticalAlignment="Top" TextWrapping="Wrap" FontFamily="Consolas,Courier New,Courier,Arial"/>
+                <TextBlock x:Name="exceptionText" VerticalAlignment="Top" TextWrapping="Wrap"/>
             </ScrollViewer>
             <Button Click="copyException_Click" VerticalAlignment="Top" Margin="10,0,0,0" Grid.Row="1" Grid.Column="1">Copy</Button>
         </Grid>
