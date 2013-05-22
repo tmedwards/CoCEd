@@ -37,24 +37,29 @@ namespace CoCEd.ViewModel
         }
     }
 
-    public interface IMenuVM
+    public interface IMenuBaseVM
+    {
+        bool IsVisible { get; }
+        bool HasSeparatorBefore { get; }
+        IEnumerable<IMenuItemVM> Children { get; }
+    }
+
+    public interface IMenuVM : IMenuBaseVM
     {
         String Label { get; }
         Brush Foreground { get; }
-        IEnumerable<Object> Children { get; }
-        bool HasSeparatorBefore { get; }
-        bool IsVisible { get; }
         void OnClick();
     }
 
-    public interface IMenuItemVM
+    public interface IMenuItemVM : IMenuBaseVM
     {
         string Path { get; }
         string Label { get; }
         string SubLabel { get; }
+        Visibility SubLabelVisibility { get; }
         Brush Foreground { get; }
         Image Icon { get; }
-        Visibility SubLabelVisibility { get; }
+
         void OnClick();
     }
 
@@ -72,9 +77,13 @@ namespace CoCEd.ViewModel
             get { return _directory.Name; }
         }
 
-        public IEnumerable<Object> Children
+        public IEnumerable<IMenuItemVM> Children
         {
-            get { return _directory.Files.Select(x => new FileVM(x, _directory.IsExternal, true)); }
+            get 
+            { 
+                foreach(var file in _directory.Files) yield return new FileVM(file, _directory.IsExternal, true);
+                if (!String.IsNullOrEmpty(_directory.Path)) yield return new OpenDirectoryItemVM(_directory.Path);
+            }
         }
 
         public bool HasSeparatorBefore
@@ -126,7 +135,7 @@ namespace CoCEd.ViewModel
             get { return _directory.Files.Count == 0 ? Brushes.DarkGray : Brushes.Black; }
         }
 
-        public IEnumerable<Object> Children
+        public IEnumerable<IMenuItemVM> Children
         {
             get
             {
@@ -155,6 +164,9 @@ namespace CoCEd.ViewModel
                         yield return target;
                     }
                 }
+
+                // "Open directory" entry
+                yield return new OpenDirectoryItemVM(_directory.Path);
             }
         }
 
@@ -174,7 +186,7 @@ namespace CoCEd.ViewModel
             get { return "Import"; }
         }
 
-        public IEnumerable<Object> Children
+        public IEnumerable<IMenuItemVM> Children
         {
             get { yield break; }
         }
@@ -222,7 +234,7 @@ namespace CoCEd.ViewModel
             get { return "Export"; }
         }
 
-        public IEnumerable<Object> Children
+        public IEnumerable<IMenuItemVM> Children
         {
             get { yield break; }
         }
@@ -277,6 +289,21 @@ namespace CoCEd.ViewModel
         { 
             get; 
             private set; 
+        }
+
+        public bool IsVisible
+        {
+            get { return true; }
+        }
+
+        public bool HasSeparatorBefore
+        {
+            get { return false; }
+        }
+
+        public IEnumerable<IMenuItemVM> Children
+        {
+            get { yield break; }
         }
 
         public string Path
@@ -339,11 +366,6 @@ namespace CoCEd.ViewModel
 
     public class SaveSlotVM : IMenuItemVM
     {
-        public SerializationFormat Format
-        {
-            get { return SerializationFormat.Slot; }
-        }
-
         public string Path
         {
             get;
@@ -360,6 +382,21 @@ namespace CoCEd.ViewModel
         {
             get;
             set;
+        }
+
+        public bool IsVisible
+        {
+            get { return true; }
+        }
+
+        public bool HasSeparatorBefore
+        {
+            get { return false; }
+        }
+
+        public IEnumerable<IMenuItemVM> Children
+        {
+            get { yield break; }
         }
 
         public Image Icon
@@ -380,6 +417,65 @@ namespace CoCEd.ViewModel
         void IMenuItemVM.OnClick()
         {
             VM.Instance.Save(Path, SerializationFormat.Slot);
+        }
+    }
+
+    public sealed class OpenDirectoryItemVM : IMenuItemVM
+    {
+        public OpenDirectoryItemVM(string path)
+        {
+            Path = path;
+        }
+
+        public string Path
+        {
+            get;
+            set;
+        }
+
+        public string Label
+        {
+            get { return "Open directory"; }
+        }
+
+        public string SubLabel
+        {
+            get { return null; }
+        }
+
+        public bool IsVisible
+        {
+            get { return true; }
+        }
+
+        public bool HasSeparatorBefore
+        {
+            get { return true; }
+        }
+
+        public IEnumerable<IMenuItemVM> Children
+        {
+            get { yield break; }
+        }
+
+        public Image Icon
+        {
+            get { return null; }
+        }
+
+        public Brush Foreground
+        {
+            get { return Brushes.Black; }
+        }
+
+        public Visibility SubLabelVisibility
+        {
+            get { return Visibility.Collapsed; }
+        }
+
+        void IMenuItemVM.OnClick()
+        {
+            Process.Start(Path);
         }
     }
 }

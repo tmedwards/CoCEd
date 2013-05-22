@@ -91,15 +91,6 @@ namespace CoCEd
             FileManager.BuildPaths();
             var directories = FileManager.GetDirectories().ToArray();   // Load all on startup to check for errors
             var result = ExceptionBoxResult.Continue;
-            if (FileManager.MoreThanOneFolderPath != null)
-            {
-                box = new ExceptionBox();
-                box.Title = "Could not scan some folders.";
-                box.Message = "There should be only one child folder in the folder below.\nSome files won't be displayed in the open/save menus.\n\nOne of those folders is probably a backup from your old computer, you should delete it or move it elsewhere. If you need to locate your CoC savegames, check out the 'localhost' and 'www.fenoxo.com' subfolders.";
-                box.Path = FileManager.MoreThanOneFolderPath;
-                box.IsWarning = true;
-                result = box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
-            }
             if (FileManager.MissingPermissionPath != null)
             {
                 box = new ExceptionBox();

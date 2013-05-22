@@ -30,7 +30,6 @@ namespace CoCEd.Model
         static readonly List<string> _externalPaths = new List<string>();
         static readonly List<FlashDirectory> _directories = new List<FlashDirectory>();
 
-        public static string MoreThanOneFolderPath { get; private set; }
         public static string MissingPermissionPath { get; private set; }
 
         public static void BuildPaths()
@@ -40,17 +39,17 @@ namespace CoCEd.Model
             const string chromePath = @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\";
 
 
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Offline (standard)",   standardPath,   "localhost",                        ref separatorBefore);
-            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Offline (chrome)",     chromePath,     "localhost",                        ref separatorBefore);
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Offline (metro)",      standardPath,   @"#AppContainer\localhost",         ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Offline (standard{0})",   standardPath,   "localhost",                        ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Offline (chrome{0})",     chromePath,     "localhost",                        ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Offline (metro{0})",      standardPath,   @"#AppContainer\localhost",         ref separatorBefore);
 
             separatorBefore = true;
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (standard)",   standardPath,    "www.fenoxo.com",                   ref separatorBefore);
-            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Online (chrome)",      chromePath,     "www.fenoxo.com",                   ref separatorBefore);
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (metro)",      standardPath,    @"#AppContainer\www.fenoxo.com",    ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (standard{0})",   standardPath,    "www.fenoxo.com",                   ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Online (chrome{0})",      chromePath,     "www.fenoxo.com",                   ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (metro{0})",      standardPath,    @"#AppContainer\www.fenoxo.com",    ref separatorBefore);
         }
 
-        static void BuildPath(Environment.SpecialFolder root, string name, string middle, string suffix, ref bool separatorBefore)
+        static void BuildPath(Environment.SpecialFolder root, string nameFormat, string middle, string suffix, ref bool separatorBefore)
         {
             var path = "";
             try
@@ -64,19 +63,24 @@ namespace CoCEd.Model
                 if (!Directory.Exists(path)) return;
 
                 // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7
-                var subDirectories = Directory.GetDirectories(path);
-                if (subDirectories.Length > 1) MoreThanOneFolderPath = path;
-                if (subDirectories.Length != 1) return;
-                path = subDirectories[0];
+                var profileDirectories = Directory.GetDirectories(path);
 
                 // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7\localhost
-                path = Path.Combine(path, suffix);
-                if (!Directory.Exists(path)) return;
-                
-                // Add
-                var flash = new FlashDirectory(name, path, separatorBefore, false);
-                separatorBefore = false;
-                _directories.Add(flash);
+                var cocDirectories = new List<String>();
+                for (int i = 0; i < profileDirectories.Length; ++i)
+                {
+                    path = Path.Combine(profileDirectories[i], suffix);
+                    if (Directory.Exists(path)) cocDirectories.Add(path);
+                }
+
+                // Create items now that we know how many of them there are.
+                for (int i = 0; i < cocDirectories.Count; ++i)
+                {
+                    var name = cocDirectories.Count > 1 ? String.Format(nameFormat, " #" + (i + 1)) : String.Format(nameFormat, "");
+                    var flash = new FlashDirectory(name, cocDirectories[i], separatorBefore, false);
+                    separatorBefore = false;
+                    _directories.Add(flash);
+                }
             }
             catch (SecurityException)
             {
