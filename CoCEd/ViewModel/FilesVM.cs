@@ -205,7 +205,7 @@ namespace CoCEd.ViewModel
 
         public string Label
         {
-            get { return "Import"; }
+            get { return "Import..."; }
         }
 
         public IEnumerable<IMenuItemVM> Children
@@ -263,7 +263,7 @@ namespace CoCEd.ViewModel
 
         public string Label
         {
-            get { return "Export"; }
+            get { return "Export..."; }
         }
 
         public IEnumerable<IMenuItemVM> Children
@@ -477,7 +477,7 @@ namespace CoCEd.ViewModel
 
         public string Label
         {
-            get { return "Open directory"; }
+            get { return "Open directory..."; }
         }
 
         public string SubLabel
