@@ -101,15 +101,11 @@ namespace CoCEd.View
                 needSeparator = false;
 
                 var subMenu = new MenuItem();
-                subMenu.DataContext = item;
+                subMenu.Header = item;
                 if (isRoot)
                 {
                     subMenu.Style = (Style)FindResource("RootMenuStyle");
                     SetItems(subMenu, item.Children, false);
-                }
-                else
-                {
-                    subMenu.Header = item;
                 }
                 menu.Items.Add(subMenu);
             }
