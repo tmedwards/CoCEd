@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -39,6 +38,28 @@ namespace CoCEd.View
         public ExceptionBox()
         {
             InitializeComponent();
+            SetFontFamily(folderText);
+            SetFontFamily(exceptionText);
+        }
+
+        // Some users have corrupted fonts and WPF crashes in such a case
+        // So we set the font family here, protected.
+        void SetFontFamily(TextBlock block)
+        {
+            if (TrySetFontFamily(block, "Consolas")) return;
+            if (TrySetFontFamily(block, "Courier New")) return;
+            if (TrySetFontFamily(block, "Courier")) return;
+            if (TrySetFontFamily(block, "Segoe UI")) return;
+            if (TrySetFontFamily(block, "Segoe")) return;
+        }
+
+        bool TrySetFontFamily(TextBlock block, string familyName)
+        {
+            var family = new FontFamily(familyName);
+            var typeFace = new Typeface(family, FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
+
+            GlyphTypeface glyphTypeFace;
+            return typeFace.TryGetGlyphTypeface(out glyphTypeFace);
         }
 
         public bool IsWarning { get; set; }
@@ -67,8 +88,8 @@ namespace CoCEd.View
 
             text.Text = Message;
 
-            if (IsWarning) image.Source = Imaging.CreateBitmapSourceFromHIcon(SystemIcons.Error.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            else image.Source = Imaging.CreateBitmapSourceFromHIcon(SystemIcons.Error.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            if (IsWarning) image.Source = Imaging.CreateBitmapSourceFromHIcon(System.Drawing.SystemIcons.Warning.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            else image.Source = Imaging.CreateBitmapSourceFromHIcon(System.Drawing.SystemIcons.Error.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
             if (String.IsNullOrEmpty(Path) && String.IsNullOrEmpty(Path)) folderGrid.Visibility = Visibility.Collapsed;
             else if (!String.IsNullOrEmpty(Path)) folderText.Text = Path;
