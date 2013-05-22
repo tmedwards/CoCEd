@@ -104,14 +104,33 @@ namespace CoCEd.Model
 
             // Delete existing file
             var name = Path.GetFileNameWithoutExtension(path);
-            if (File.Exists(path))
-            {
-                var attribs = File.GetAttributes(path) & ~FileAttributes.ReadOnly;
-                File.SetAttributes(path, attribs);   
-                File.Delete(path);
-            }
 
-            // Create it
+            // Write it to a temporary file, then move it.
+            try
+            {
+                var tempPath = Path.GetTempFileName();
+                Write(tempPath, format, name);
+                EnsureDeleted(path);
+                File.Move(tempPath, path);
+            }
+            // If this fails (no temporary folder access?), save directly
+            catch (UnauthorizedAccessException)
+            {
+                Write(path, format, name);
+            }
+            catch (SecurityException)
+            {
+                Write(path, format, name);
+            }
+            catch (IOException)
+            {
+                Write(path, format, name);
+            }
+        }
+
+        private void Write(string path, SerializationFormat format, string name)
+        {
+            EnsureDeleted(path);
             using (var stream = File.Create(path))
             {
                 using (var writer = new AmfWriter(stream))
@@ -123,7 +142,17 @@ namespace CoCEd.Model
             }
         }
 
-        void EnsureBackupExists(string path)
+        static void EnsureDeleted(string path)
+        {
+            if (File.Exists(path))
+            {
+                var attribs = File.GetAttributes(path) & ~FileAttributes.ReadOnly;
+                File.SetAttributes(path, attribs);
+                File.Delete(path);
+            }
+        }
+
+        static void EnsureBackupExists(string path)
         {
             try
             {
