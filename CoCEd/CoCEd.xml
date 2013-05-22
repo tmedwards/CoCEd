@@ -243,6 +243,7 @@
       <TailType ID="13" Name="Fox"/>
       <TailType ID="14" Name="Draconic"/>
       <TailType ID="15" Name="Raccoon"/>
+      <TailType ID="16" Name="Mouse"/>
     </TailTypes>
     <!--============================================================================================================================================-->
     <WingTypes>
