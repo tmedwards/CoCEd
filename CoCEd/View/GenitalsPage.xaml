@@ -43,11 +43,11 @@
 
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
                 <Border Style="{StaticResource HeaderBorder}">
-                    <TextBlock Text="Balls" Style="{StaticResource Header}"/>
+                    <TextBlock Text="Testicles" Style="{StaticResource Header}"/>
                 </Border>
 
                 <common:AutoGrid>
-                    <TextBlock              Text="Pairs"/>
+                    <TextBlock              Text="Count"/>
                     <common:MyNumericBox    Value="{Binding Game.Balls}"/>
 
                     <TextBlock              Text="Size"/>
@@ -59,7 +59,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
-                <common:ArrayEditor Header="Cocks" Items="{Binding Game.Cocks}" Capacity="10">
+                <common:ArrayEditor Header="Penises" Items="{Binding Game.Cocks}" Capacity="10">
                     <common:ArrayEditor.ItemTemplate>
                         <DataTemplate>
                             <common:AutoGrid Columns="2">
@@ -93,7 +93,7 @@
 
             <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
                 <Border Style="{StaticResource HeaderBorder}">
-                    <TextBlock Text="Ass" Style="{StaticResource Header}"/>
+                    <TextBlock Text="Anus" Style="{StaticResource Header}"/>
                 </Border>
 
                 <common:AutoGrid>
