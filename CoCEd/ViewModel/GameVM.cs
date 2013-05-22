@@ -224,10 +224,36 @@ namespace CoCEd.ViewModel
             set { SetValue("XP", value); }
         }
 
+        public int Level
+        {
+            get { return GetInt("level"); }
+            set 
+            {
+                SetValue("level", value);
+                XP = 0;
+            }
+        }
+
         public int TeaseXP
         {
             get { return GetInt("teaseXP"); }
             set { SetValue("teaseXP", value); }
+        }
+
+        public int TeaseLevel
+        {
+            get { return GetInt("teaseLevel"); }
+            set
+            {
+                SetValue("teaseLevel", value);
+                TeaseXP = 0;
+            }
+        }
+
+        public int PerkPoints
+        {
+            get { return GetInt("perkPoints"); }
+            set { SetValue("perkPoints", value); }
         }
 
         public int Lust
