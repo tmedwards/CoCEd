@@ -78,7 +78,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="28"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox   Grid.ColumnSpan="3" x:Name="textBox" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource NumericTextBox}"/>
                                 <Button    Grid.Column="0" x:Name="lowerButton" Style="{StaticResource NumericExtremumButton}" HorizontalContentAlignment="Left" SnapsToDevicePixels="True"/>
