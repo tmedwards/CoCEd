@@ -109,7 +109,7 @@
                     </Border>
                     <common:AutoGrid>
                         <TextBlock              Text="Current HP"/>
-                        <common:MyNumericBox    Value="{Binding Game.HP}" Upper="700"/>
+                        <common:MyNumericBox    Value="{Binding Game.HP}" Upper="{Binding Game.MaxHP}"/>
 
                         <TextBlock              Text="Lust"/>
                         <common:MyNumericBox    Value="{Binding Game.Lust}" Upper="100"/>

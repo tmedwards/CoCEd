@@ -15,6 +15,7 @@ namespace CoCEd.ViewModel
     // TeaseLevel / XP
     public sealed partial class GameVM : ObjectVM
     {
+        readonly PerkVM[] _allPerks;
         readonly FlagVM[] _allFlags;
         readonly StatusVM[] _allStatuses;
 
@@ -111,6 +112,7 @@ namespace CoCEd.ViewModel
                 }, 
                 XmlData.Instance.PerkGroups.Last().Perks);
             PerkGroups = XmlData.Instance.PerkGroups.Select(x => new PerkGroupVM(x.Name, perkArray, x.Perks)).ToArray();
+            _allPerks = PerkGroups.SelectMany(x => x.Perks).ToArray();
         }
 
         static void ImportMissingNamedVector(AmfObject array, IEnumerable<XmlNamedVector4> xmlData, string nameKey, Func<AmfObject, String> descriptionGetter = null, IList<XmlNamedVector4> targetList = null)
@@ -179,7 +181,11 @@ namespace CoCEd.ViewModel
         public int Toughness
         {
             get { return GetInt("tou"); }
-            set { SetDouble("tou", value); }
+            set 
+            { 
+                SetDouble("tou", value);
+                OnPropertyChanged("MaxHP");
+            }
         }
 
         public int Speed
@@ -218,6 +224,18 @@ namespace CoCEd.ViewModel
             set { SetValue("HP", value); }
         }
 
+        public int MaxHP
+        {
+            get
+            {
+                var max = 50 + Toughness * 2 + Math.Min(20, Level) * 15;
+                if (GetPerk("Tank 2").IsOwned) max += Toughness;
+                if (GetPerk("Tank").IsOwned) max += 50;
+                if (HP > max) HP = max;
+                return max;
+            }
+        }
+
         public int XP
         {
             get { return GetInt("XP"); }
@@ -230,6 +248,7 @@ namespace CoCEd.ViewModel
             set 
             {
                 SetValue("level", value);
+                OnPropertyChanged("MaxHP");
                 XP = 0;
             }
         }
@@ -778,8 +797,8 @@ namespace CoCEd.ViewModel
 
         public int MarbleMilkAddiction
         {
-            get { return (int)GetStatus("Marble").Value3; }
-            set { GetStatus("Marble").Value3 = value; }
+            get { return (int)GetStatus("Marble").Value2; }
+            set { GetStatus("Marble").Value2 = value; }
         }
 
         public bool HasMetMarble
