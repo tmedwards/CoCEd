@@ -839,7 +839,7 @@
     <Status Name="Gnoll Spear"/>
     <Status Name="hairdresser meeting"/>
     <Status Name="Hangover"/>
-    <Status Name="heat" Description="You are in a temporary state of constant feminine need, and are especially fertile. The only way to quench the intense heat in your snatch is to satiate your lust by finding a mate to make you pregnant."/>
+    <Status Name="heat" Description="You are in a temporary state of constant feminine need, and are especially fertile. The only way to quench the intense heat in your snatch is to satiate your lust by finding a mate to make you pregnant." Value1="10" Value2="15" Label1="Fertility bonus" Label2="Libido bonus" Label3="Hours remaining"/>
     <Status Name="horse warning" Description="You've received the warning that precedes the bad end for becoming too horse-like."/>
     <Status Name="Imp GangBang" Description="You have been gangbanged by imps while you were sleeping, and chances are they'll do it again if they can."/>
     <Status Name="IncubusBribed" Description="Determines if you gave the Incubus Mechanic in the Factory the Hentai Comic."/>
@@ -869,7 +869,7 @@
     <Status Name="Lactation Reduc3"/>
     <Status Name="Lactation Reduction" Description="Hours since last milked."/>
     <Status Name="lootEgg"/>
-    <Status Name="Lust Stick Applied" Description="Gained from applying golden lipstick and unlocks the Kiss special attack."/>
+    <Status Name="Lust Stick Applied" Description="Gained from applying golden lipstick and unlocks the Kiss special attack." Label1="Hours remaining"/>
     <Status Name="lust venom"/>
     <Status Name="Luststick"/>
     <Status Name="LustyTongue"/>
@@ -910,7 +910,7 @@
     <Status Name="PureCampJojo" Description="Non-corrupted Jojo has joined your camp."/>
     <Status Name="RathazulArmor" Description="Rathazul has made you a suit of armor with some of the exotic materials you've come across during your adventures."/>
     <Status Name="repeatSuccubi"/>
-    <Status Name="rut" Description="You are in an insatiable state of pure, carnal, masculine need. You just feel the urge to fuck pretty much anything and everything in sight. Unfortunately for you, you can't just beat the meat to beat the heat, so no matter how many living or debatably living things you fuck and manage to impregnate, you won't be able to escape this frenzied bout of lust until it passes of its own accord in due time. But then again, since you're reading this, why would you let it go when you can prolong and augment it indefinitely?"/>
+    <Status Name="rut" Description="You are in an insatiable state of pure, carnal, masculine need. You just feel the urge to fuck pretty much anything and everything in sight. Unfortunately for you, you can't just beat the meat to beat the heat, so no matter how many living or debatably living things you fuck and manage to impregnate, you won't be able to escape this frenzied bout of lust until it passes of its own accord in due time. But then again, since you're reading this, why would you let it go when you can prolong and augment it indefinitely?" Value1="150" Value2="5" Label1="Cum production bonus" Label2="Libido bonus" Label3="Hours remaining"/>
     <Status Name="Shark-Girl"/>
     <Status Name="Slime Craving"/>
     <Status Name="Slime Craving Feed"/>
