@@ -825,6 +825,42 @@ namespace CoCEd.ViewModel
             }
         }
 
+        public int HeatTime
+        {
+            get { return (int)GetStatus("heat").Value3; }
+            set { SetHeatOrRutTime("heat", value); }
+        }
+
+        public int RutTime
+        {
+            get { return (int)GetStatus("rut").Value3; }
+            set { SetHeatOrRutTime("rut", value); }
+        }
+
+        void SetHeatOrRutTime(string name, int time)
+        {
+            bool isOwned = (time > 0);
+            var status = GetStatus(name);
+            if (status.IsOwned != isOwned)
+            {
+                if (!isOwned) Libido -= (int)status.Value2;
+                status.IsOwned = isOwned;
+                if (isOwned) Libido += (int)status.Value2;
+            }
+            status.Value3 = time;
+        }
+
+        public int LustStickTime
+        {
+            get { return (int)GetStatus("Lust Stick Applied").Value1; }
+            set 
+            {
+                var status = GetStatus("Lust Stick Applied");
+                status.IsOwned = (value > 0);
+                status.Value1 = value;
+            }
+        }
+
         string _rawDataSearchText;
         public string RawDataSearchText
         {

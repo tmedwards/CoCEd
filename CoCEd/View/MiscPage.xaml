@@ -66,6 +66,15 @@
 
                     <TextBlock              Text="Addiction: marble milk" IsEnabled="{Binding Game.HasMetMarble}"/>
                     <common:MyNumericBox    Value="{Binding Game.MarbleMilkAddiction}" Unit="%" Upper="120" IsEnabled="{Binding Game.HasMetMarble}"/>
+
+                    <TextBlock              Text="Lust stick time*" ToolTip="Enables the &quot;kiss&quot; attack."/>
+                    <common:MyNumericBox    Value="{Binding Game.LustStickTime}" Upper="24" Unit="hours"/>
+
+                    <TextBlock              Text="Heat time*" ToolTip="Increases libido and fertility."/>
+                    <common:MyNumericBox    Value="{Binding Game.HeatTime}" Upper="48" Unit="hours"/>
+
+                    <TextBlock              Text="Rut time*" ToolTip="Increases libido and cum production."/>
+                    <common:MyNumericBox    Value="{Binding Game.RutTime}" Upper="48" Unit="hours"/>
                 </common:AutoGrid>
             </StackPanel>
 
