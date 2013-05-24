@@ -61,6 +61,7 @@ namespace CoCEd.ViewModel
 
         protected override void NotifyGameVM()
         {
+            VM.Instance.Game.OnPerkChanged(_xml.Name);
         }
     }
 }
