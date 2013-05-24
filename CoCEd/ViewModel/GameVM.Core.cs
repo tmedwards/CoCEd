@@ -11,6 +11,10 @@ namespace CoCEd.ViewModel
     public sealed partial class GameVM : ObjectVM
     {
         // Whenever a FlagVM or StatusVM is modified, it notifies GameVM so that it updates its dependent properties.
+        public void OnPerkChanged(string name)
+        {
+            foreach (var prop in _allPerks.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
+        }
 
         public void OnFlagChanged(int index)
         {
@@ -35,6 +39,13 @@ namespace CoCEd.ViewModel
             var status = _allStatuses.First(x => x.Name == name);
             status.GameVMProperties.Add(propertyName);
             return status;
+        }
+
+        PerkVM GetPerk(string name, [CallerMemberName] string propertyName = null)
+        {
+            var perk = _allPerks.First(x => x.Name == name);
+            perk.GameVMProperties.Add(propertyName);
+            return perk;
         }
 
         bool IsMale
