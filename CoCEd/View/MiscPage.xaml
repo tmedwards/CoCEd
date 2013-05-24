@@ -43,7 +43,7 @@
 
             <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
                 <Border Style="{StaticResource HeaderBorder}">
-                    <TextBlock Text="Procreation" Style="{StaticResource Header}" />
+                    <TextBlock Text="Statuses" Style="{StaticResource Header}" />
                 </Border>
 
                 <common:AutoGrid>
