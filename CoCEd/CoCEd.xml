@@ -716,8 +716,9 @@
     <PerkGroup Name="Tier 2">
       <Perk Name="Archmage" Description="Increases base spell strength by 50%."/>
       <Perk Name="Berzerker" Description="Grants 'Berzerk' ability."/>
-      <Perk Name="Resolute" Description="Grants immunity to stuns and some statuses."/>
+      <Perk Name="Iron Man" Description="Reduces the fatigue cost of physical specials by 50%."/>
       <Perk Name="Lunging Attacks" Description="Grants 50% armor penetration for standard attacks."/>
+      <Perk Name="Resolute" Description="Grants immunity to stuns and some statuses."/>
     </PerkGroup>
     <PerkGroup Name="Events">
       <Perk Name="Androgyny" Description="No gender limits on facial masculinity or femininity."/>
