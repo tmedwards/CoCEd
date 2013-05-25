@@ -1865,5 +1865,10 @@
     <Flag ID="907" Name="KELLY_HEAT_TIME"/>
     <Flag ID="908" Name="KELLY_KIDS"/>
     <Flag ID="909" Name="KELLY_FIRST_KID_GENDER"/>
+    <Flag ID="910" Name="KAIJU_MEETINGS"/>
+    <Flag ID="911" Name="KAIJU_DISABLED"/>
+    <Flag ID="912" Name="KAIJU_TALK_CYCLE"/>
+    <Flag ID="913" Name="KAIJU_COCK"/>
+    <Flag ID="914" Name="KAIJU_BAD_END_COUNTER"/>
   </Flags>
 </CoCEd>
