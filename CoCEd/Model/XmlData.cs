@@ -181,6 +181,8 @@ namespace CoCEd.Model
         public string Name { get; set; }
         [XmlAttribute]
         public string Description { get; set; }
+        [XmlIgnore]
+        public bool IsGrayedOut { get; set; }
 
         public override string ToString()
         {
