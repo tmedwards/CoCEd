@@ -6,14 +6,29 @@ using CoCEd.Model;
 
 namespace CoCEd.ViewModel
 {
+    public enum PiercingLocation
+    {
+        Eyebrow,
+        Tongue,
+        Nose,
+        Ears,
+        Lip,
+        Cock,
+        Nipples,
+        Clitoris,
+        Labia,
+    }
+
     public sealed class PiercingVM : ObjectVM
     {
         readonly string _prefix;
+        readonly PiercingLocation _location;
 
-        public PiercingVM(AmfObject obj, string prefix)
+        public PiercingVM(AmfObject obj, string prefix, PiercingLocation location)
             : base(obj)
         {
             _prefix = prefix;
+            _location = location;
         }
 
         public IEnumerable<XmlEnum> AllTypes
@@ -30,25 +45,25 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                switch(_prefix)
+                switch(_location)
                 {
-                    case "":
+                    case PiercingLocation.Cock:
                         return "Game-allowed cock piercing types are stud, ring, and ladder.";
-                    case "clit":
+                    case PiercingLocation.Clitoris:
                         return "Game-allowed clit piercing types are stud and ring.";
-                    case "ears":
+                    case PiercingLocation.Ears:
                         return "Game-allowed ear piercing types are stud, ring, and hoop.";
-                    case "eyebrow":
+                    case PiercingLocation.Eyebrow:
                         return "Game-allowed eyebrow piercing types are stud and ring.";
-                    case "lip":
+                    case PiercingLocation.Lip:
                         return "Game-allowed lip piercing types are stud and ring.";
-                    case "nose":
+                    case PiercingLocation.Nose:
                         return "Game-allowed nose piercing types are stud and ring.";
-                    case "tongue":
+                    case PiercingLocation.Tongue:
                         return "Game-allowed tongue piercing type is stud.";
-                    case "nipples":
+                    case PiercingLocation.Nipples:
                         return "Game-allowed nipple piercing types are stud, ring, and chain.";
-                    case "labia":
+                    case PiercingLocation.Labia:
                         return "Game-allowed labia piercing types are stud and ring.";
                     default:
                         return "This PiercingVM did not have a prefix passed to its constructor. Please post about this on the forum.";
@@ -103,15 +118,15 @@ namespace CoCEd.ViewModel
             string rest = " ";
 
             //location
-            if (_prefix == "")
+            if (_location == PiercingLocation.Cock)
             {
                 rest += type == 3 ? "" : "cock-";
             }
-            else if (_prefix == "nipples")
+            else if (_location == PiercingLocation.Nipples)
             {
                 rest += "nipple-";
             }
-            else if (_prefix == "ears")
+            else if (_location == PiercingLocation.Ears)
             {
                 rest += "ear";
             }
