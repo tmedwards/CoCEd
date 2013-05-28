@@ -38,8 +38,8 @@ namespace CoCEd.ViewModel
         public VaginaVM(AmfObject node)
             : base(node)
         {
-            ClitPiercing = new PiercingVM(node, "clit");
-            LabiaPiercing = new PiercingVM(node, "labia");
+            ClitPiercing = new PiercingVM(node, "clit", PiercingLocation.Clitoris);
+            LabiaPiercing = new PiercingVM(node, "labia", PiercingLocation.Labia);
         }
 
         public PiercingVM ClitPiercing { get; private set; }

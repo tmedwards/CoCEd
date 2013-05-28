@@ -24,12 +24,12 @@ namespace CoCEd.ViewModel
         {
             // Unique children
             Ass = new AssVM(file.GetObj("ass"));
-            LipPiercing = new PiercingVM(file, "lip");
-            NosePiercing = new PiercingVM(file, "nose");
-            EarsPiercing = new PiercingVM(file, "ears");
-            EyebrowPiercing = new PiercingVM(file, "eyebrow");
-            NipplesPiercing = new PiercingVM(file, "nipples");
-            TonguePiercing = new PiercingVM(file, "tongue");
+            LipPiercing = new PiercingVM(file, "lip", PiercingLocation.Lip);
+            NosePiercing = new PiercingVM(file, "nose", PiercingLocation.Nose);
+            EarsPiercing = new PiercingVM(file, "ears", PiercingLocation.Ears);
+            EyebrowPiercing = new PiercingVM(file, "eyebrow", PiercingLocation.Eyebrow);
+            NipplesPiercing = new PiercingVM(file, "nipples", PiercingLocation.Nipples);
+            TonguePiercing = new PiercingVM(file, "tongue", PiercingLocation.Tongue);
 
 
             // Collections

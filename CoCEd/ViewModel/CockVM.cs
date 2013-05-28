@@ -34,7 +34,7 @@ namespace CoCEd.ViewModel
         public CockVM(AmfObject obj)
             : base(obj)
         {
-            Piercing = new PiercingVM(obj, "");
+            Piercing = new PiercingVM(obj, "", PiercingLocation.Cock);
         }
 
         public PiercingVM Piercing { get; private set; }
