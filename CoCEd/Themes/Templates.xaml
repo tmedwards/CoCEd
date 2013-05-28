@@ -206,7 +206,7 @@
 
     <Style x:Key="MyComboBoxItem" TargetType="{x:Type ComboBoxItem}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding IsGrayedOut}">
+            <DataTrigger Binding="{Binding IsGrayedOut}" Value="True">
                 <Setter Property="Foreground" Value="#808080"/>
             </DataTrigger>
         </Style.Triggers>

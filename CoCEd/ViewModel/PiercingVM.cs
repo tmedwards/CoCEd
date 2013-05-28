@@ -33,7 +33,31 @@ namespace CoCEd.ViewModel
 
         public IEnumerable<XmlEnum> AllTypes
         {
-            get { return XmlData.Instance.Body.PiercingTypes; }
+            get 
+            {
+                foreach (var type in XmlData.Instance.Body.PiercingTypes)
+                {
+                    var type2 = new XmlEnum { ID = type.ID, Name = type.Name };
+                    switch (type.ID)
+                    {
+                        // Ladder
+                        case 3:
+                            type2.IsGrayedOut = (_location != PiercingLocation.Cock);
+                            break;
+
+                        // Hoop
+                        case 4:
+                            type2.IsGrayedOut = (_location != PiercingLocation.Ears);
+                            break;
+
+                        // Chain
+                        case 5:
+                            type2.IsGrayedOut = (_location != PiercingLocation.Nipples);
+                            break;
+                    }
+                    yield return type2;
+                }
+            }
         }
 
         public IEnumerable<String> SuggestedNames
@@ -47,45 +71,15 @@ namespace CoCEd.ViewModel
             }
         }
 
-        public string AllowedTypes
-        {
-            get
-            {
-                switch(_location)
-                {
-                    case PiercingLocation.Cock:
-                        return "Game-allowed cock piercing types are stud, ring, and ladder.";
-                    case PiercingLocation.Clitoris:
-                        return "Game-allowed clit piercing types are stud and ring.";
-                    case PiercingLocation.Ears:
-                        return "Game-allowed ear piercing types are stud, ring, and hoop.";
-                    case PiercingLocation.Eyebrow:
-                        return "Game-allowed eyebrow piercing types are stud and ring.";
-                    case PiercingLocation.Lip:
-                        return "Game-allowed lip piercing types are stud and ring.";
-                    case PiercingLocation.Nose:
-                        return "Game-allowed nose piercing types are stud and ring.";
-                    case PiercingLocation.Tongue:
-                        return "Game-allowed tongue piercing type is stud.";
-                    case PiercingLocation.Nipples:
-                        return "Game-allowed nipple piercing types are stud, ring, and chain.";
-                    case PiercingLocation.Labia:
-                        return "Game-allowed labia piercing types are stud and ring.";
-                    default:
-                        return "This PiercingVM did not have a prefix passed to its constructor. Please post about this on the forum.";
-                }
-            }
-        }
-
         public int Type
         {
             get { return GetInt(_prefix == "" ? "pierced" : _prefix + "Pierced"); }
             set
             {
                 SetValue(_prefix == "" ? "pierced" : _prefix + "Pierced", value);
-                OnPropertyChanged("SuggestedNames");
-                OnPropertyChanged("CanEditName");
                 OnPropertyChanged("Label");
+                OnPropertyChanged("CanEditName");
+                OnPropertyChanged("SuggestedNames");
             }
         }
 
