@@ -36,9 +36,15 @@ namespace CoCEd.ViewModel
             get { return XmlData.Instance.Body.PiercingTypes; }
         }
 
-        public IEnumerable<XmlEnum> AllMaterials
+        public IEnumerable<String> SuggestedNames
         {
-            get { return XmlData.Instance.Body.PiercingMaterials; }
+            get 
+            {
+                foreach (var material in XmlData.Instance.Body.PiercingMaterials)
+                {
+                    yield return GeneratePiercingName(Type, material.ID);
+                }
+            }
         }
 
         public string AllowedTypes
@@ -77,47 +83,18 @@ namespace CoCEd.ViewModel
             set
             {
                 SetValue(_prefix == "" ? "pierced" : _prefix + "Pierced", value);
-                if (value != 0 && Material != 0) GeneratePiercingName(value, Material);
+                OnPropertyChanged("SuggestedNames");
                 OnPropertyChanged("CanEditName");
                 OnPropertyChanged("Label");
             }
         }
 
-        public int Material
+        string GeneratePiercingName(int type, int material)
         {
-            get 
-            {
-                string name = GetString(_prefix == "" ? "pLong" : _prefix + "PLong");
-                if (String.IsNullOrEmpty(name)) return 0;
-
-                string material = name.Substring(0, name.IndexOf(' ')); //does not work well for Ceraph's piercings
-                var xmlMaterial = XmlData.Instance.Body.PiercingMaterials.FirstOrDefault(x => x.Name == material);
-                if (xmlMaterial != null) return xmlMaterial.ID;
-
-                return 0;
-            }
-            set
-            {
-                if (Type != 0 && value != 0) GeneratePiercingName(Type, value);
-                OnPropertyChanged("Label");
-            }
-        }
-
-        private void GeneratePiercingName(int type, int material)
-        {
-            if (type == 0 || material == 0)
-            {
-                UpperName = "";
-                LowerName = "";
-                return;
-            }
-
-            var xmlMaterial = XmlData.Instance.Body.PiercingMaterials.FirstOrDefault(x => x.ID == material);
-            string upper = xmlMaterial.Name;
-            string lower = xmlMaterial.Name.ToLower();
-            string rest = " ";
+            if (type == 0 || material == 0) return "";
 
             //location
+            string rest = " ";
             if (_location == PiercingLocation.Cock)
             {
                 rest += type == 3 ? "" : "cock-";
@@ -134,6 +111,7 @@ namespace CoCEd.ViewModel
             {
                 rest += _prefix + "-";
             }
+
             //type
             if (type == 3)
             {
@@ -152,8 +130,9 @@ namespace CoCEd.ViewModel
                     rest += "s";
                 }
             }
-            UpperName = upper + rest;   // Using those properties is easier to read and trigger OnPropertyChanged trough SetValue's hidden argument
-            LowerName = lower + rest;
+
+            var xmlMaterial = XmlData.Instance.Body.PiercingMaterials.FirstOrDefault(x => x.ID == material);
+            return xmlMaterial.Name + rest;
         }
 
         public string UpperName

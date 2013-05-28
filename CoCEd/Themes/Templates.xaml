@@ -201,11 +201,17 @@
         </Setter>
     </Style>
 
-    
-    
-    
-    
-    
+
+
+
+    <Style x:Key="MyComboBoxItem" TargetType="{x:Type ComboBoxItem}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsGrayedOut}">
+                <Setter Property="Foreground" Value="#808080"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="{x:Type common:MyComboBox}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Focusable" Value="False"/>
@@ -214,19 +220,15 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type common:MyComboBox}">
                     <ComboBox x:Name="combo" DisplayMemberPath="Name" SelectedValuePath="ID" Width="150" Margin="0"
-                              ItemsSource="{TemplateBinding ItemsSource}"
+                              ItemsSource="{TemplateBinding ItemsSource}" ItemContainerStyle="{StaticResource MyComboBoxItem}"
                               SelectedValue="{Binding Path=SelectedValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    
-    
-    
-    
-    
-    
+
+
     <LinearGradientBrush x:Key="PiercingBackground" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#F0F0F0" Offset="0"/>
         <GradientStop Color="#E5E5E5" Offset="1"/>
@@ -267,27 +269,18 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="20"/>
                                         <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="20"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="20"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <TextBlock Text="Material" Grid.Row ="0" VerticalAlignment="Center"/>
-                                    <common:MyComboBox Grid.Column="1" Grid.Row="0" SelectedValue="{Binding Material}" ItemsSource="{Binding AllMaterials}" IsEnabled="{Binding CanEditName}" HorizontalAlignment="Right"/>
-                                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Foreground="#808080" Margin="3,0,0,0" Text="{Binding AllowedTypes}" TextWrapping="Wrap" TextAlignment="Justify" />
-                                    
-                                    <TextBlock Text="Type" Grid.Row="3" VerticalAlignment="Center"/>
-                                    <common:MyComboBox Grid.Column="1" Grid.Row="3" SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}" HorizontalAlignment="Right"/>
-                                    <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Foreground="#808080" Margin="3,0,0,0" Text="Even if you change or remove one of Ceraph's piercings, the game will still consider it is there." TextWrapping="Wrap" TextAlignment="Justify" />
+                                    <TextBlock Text="Type" Grid.Row="0" VerticalAlignment="Center"/>
+                                    <common:MyComboBox Grid.Column="1" Grid.Row="0" SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}" HorizontalAlignment="Right"/>
+                                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Foreground="#808080" Margin="3,0,0,0" Text="Even if you change or remove one of Ceraph's piercings, the game will still consider it is there." TextWrapping="Wrap" TextAlignment="Justify" />
 
-                                    <TextBox Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding UpperName}" IsEnabled="{Binding CanEditName}" Height="26" VerticalContentAlignment="Center"/>
-                                    <TextBlock Grid.Row="7" Grid.ColumnSpan="2" Text="Ex: Diamond eyebrow-stud" IsEnabled="{Binding CanEditName}" Foreground="#808080" VerticalAlignment="Center" Margin="3,2,0,0"/>
+                                    <ComboBox Grid.Row="3" Grid.ColumnSpan="2" IsEditable="True" IsTextSearchCaseSensitive="False" IsTextSearchEnabled="True" Text="{Binding UpperName}" IsEnabled="{Binding CanEditName}" ItemsSource="{Binding SuggestedNames}" Height="26" Margin="0"/>
 
-                                    <TextBox Grid.Row="9" Grid.ColumnSpan="2" Text="{Binding LowerName}" IsEnabled="{Binding CanEditName}" Height="26" VerticalContentAlignment="Center"/>
-                                    <TextBlock Grid.Row="10" Grid.ColumnSpan="2" Text="Ex: diamond eyebrow-stud" IsEnabled="{Binding CanEditName}" Foreground="#808080" VerticalAlignment="Center" Margin="3,2,0,0"/>
+                                    <TextBox Grid.Row="5" Grid.ColumnSpan="2" Text="{Binding LowerName}" IsEnabled="{Binding CanEditName}" Height="26" VerticalContentAlignment="Center"/>
+                                    <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Text="Ex: diamond eyebrow-stud" IsEnabled="{Binding CanEditName}" Foreground="#808080" VerticalAlignment="Center" Margin="3,2,0,0"/>
                                 </Grid>
                             </Border>
                         </Popup>
