@@ -9,13 +9,11 @@ namespace CoCEd.ViewModel
     public sealed class PiercingVM : ObjectVM
     {
         readonly string _prefix;
-        private bool hasChangedMaterial;
 
         public PiercingVM(AmfObject obj, string prefix)
             : base(obj)
         {
             _prefix = prefix;
-            hasChangedMaterial = GetString(_prefix == "" ? "pLong" : _prefix + "PLong").Length > 0;
         }
 
         public IEnumerable<XmlEnum> AllTypes
@@ -64,10 +62,7 @@ namespace CoCEd.ViewModel
             set
             {
                 SetValue(_prefix == "" ? "pierced" : _prefix + "Pierced", value);
-                if (value != 0 && Material != 0)
-                {
-                    GeneratePiercingName(value, Material);
-                }
+                if (value != 0 && Material != 0) GeneratePiercingName(value, Material);
                 OnPropertyChanged("CanEditName");
                 OnPropertyChanged("Label");
             }
@@ -77,22 +72,18 @@ namespace CoCEd.ViewModel
         {
             get 
             {
-                if(hasChangedMaterial)
-                {
-                    string name = GetString(_prefix == "" ? "pLong" : _prefix + "PLong");
-                    string material = name.Substring(0, name.IndexOf(' ')); //does not work well for Ceraph's piercings
-                    var xmlMaterial = XmlData.Instance.Body.PiercingMaterials.FirstOrDefault(x => x.Name == material);
-                    if (xmlMaterial != null) return xmlMaterial.ID;
-                }
+                string name = GetString(_prefix == "" ? "pLong" : _prefix + "PLong");
+                if (String.IsNullOrEmpty(name)) return 0;
+
+                string material = name.Substring(0, name.IndexOf(' ')); //does not work well for Ceraph's piercings
+                var xmlMaterial = XmlData.Instance.Body.PiercingMaterials.FirstOrDefault(x => x.Name == material);
+                if (xmlMaterial != null) return xmlMaterial.ID;
+
                 return 0;
             }
             set
             {
-                if (Type != 0 && value != 0)
-                {
-                    hasChangedMaterial = true;
-                    GeneratePiercingName(Type, value);
-                }
+                if (Type != 0 && value != 0) GeneratePiercingName(Type, value);
                 OnPropertyChanged("Label");
             }
         }
@@ -101,15 +92,16 @@ namespace CoCEd.ViewModel
         {
             if (type == 0 || material == 0)
             {
-                //Set UpperName
-                SetValue(_prefix == "" ? "pLong" : _prefix + "PLong", "");
-                //Set LowerName
-                SetValue(_prefix == "" ? "pShort" : _prefix + "PShort", "");
+                UpperName = "";
+                LowerName = "";
+                return;
             }
+
             var xmlMaterial = XmlData.Instance.Body.PiercingMaterials.FirstOrDefault(x => x.ID == material);
             string upper = xmlMaterial.Name;
             string lower = xmlMaterial.Name.ToLower();
             string rest = " ";
+
             //location
             if (_prefix == "")
             {
@@ -145,10 +137,8 @@ namespace CoCEd.ViewModel
                     rest += "s";
                 }
             }
-            //Set UpperName
-            SetValue(_prefix == "" ? "pLong" : _prefix + "PLong", upper + rest);
-            //Set LowerName
-            SetValue(_prefix == "" ? "pShort" : _prefix + "PShort", lower + rest);
+            UpperName = upper + rest;   // Using those properties is easier to read and trigger OnPropertyChanged trough SetValue's hidden argument
+            LowerName = lower + rest;
         }
 
         public string UpperName
