@@ -168,8 +168,8 @@ namespace CoCEd.ViewModel
             if (Type == 1)
             {
                 if (_location == PiercingLocation.Ears) yield return "Green gem-stone ear-studs";
-                else if (_location == PiercingLocation.Cock) yield return "Diamond cock-stud";
                 else if (_location == PiercingLocation.Nipples) yield return "Seamless black nipple-studs";
+                // Cock would be redundant.
             }
         }
 
