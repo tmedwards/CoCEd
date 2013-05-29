@@ -32,28 +32,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <common:AutoGrid Grid.Row="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="0,20,0,0">
-                <TextBlock              Text="Name" Width="Auto"/>
-                <TextBox                Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="8,4,8,4" Width="150" HorizontalAlignment="Left"
-                                                BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
-            </common:AutoGrid>
-
             <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical">
                 <common:AutoGrid>
-                    <TextBlock              Text="Level"/>
-                    <common:MyNumericBox    Value="{Binding Game.Level}"/>
-
-                    <TextBlock              Text="Tease level"/>
-                    <common:MyNumericBox    Value="{Binding Game.TeaseLevel}" Upper="5"/>
-
-                    <TextBlock              Text="Perk points"/>
-                    <common:MyNumericBox    Value="{Binding Game.PerkPoints}"/>
-
-                </common:AutoGrid>
-            </StackPanel>
-
-            <StackPanel Grid.Column="3" Grid.Row="2" Orientation="Vertical">
-                <common:AutoGrid>
+                    <TextBlock              Text="Name" Width="Auto"/>
+                    <TextBox                Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="8,4,8,4" Width="150" HorizontalAlignment="Left"
+                                                BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
+                    
                     <TextBlock              Text="Gems"/>
                     <common:MyNumericBox    Value="{Binding Game.Gems}" Upper="10000" UpperLabel="10k"/>
 
@@ -62,6 +46,22 @@
 
                     <TextBlock              Text="Time"/>
                     <common:MyNumericBox    Value="{Binding Game.Hours}" Upper="23" Max="23" Unit="hours"/>
+                </common:AutoGrid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" Grid.Row="2" Orientation="Vertical">
+                <common:AutoGrid>
+                    <TextBlock              Text="Level"/>
+                    <common:MyNumericBox    Value="{Binding Game.Level}"/>
+
+                    <TextBlock              Text="Tease level"/>
+                    <common:MyNumericBox    Value="{Binding Game.TeaseLevel}" Upper="5"/>
+
+                    <TextBlock              Text="Archery skill" IsEnabled="{Binding Game.HasMetKelt}"/>
+                    <common:MyNumericBox    Value="{Binding Game.ArcherySkill}" Unit="%" Upper="100" IsEnabled="{Binding Game.HasMetKelt}"/>
+
+                    <TextBlock              Text="Perk points"/>
+                    <common:MyNumericBox    Value="{Binding Game.PerkPoints}"/>
                 </common:AutoGrid>
             </StackPanel>
 
