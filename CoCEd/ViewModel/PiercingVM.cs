@@ -40,6 +40,11 @@ namespace CoCEd.ViewModel
                     var type2 = new XmlEnum { ID = type.ID, Name = type.Name };
                     switch (type.ID)
                     {
+                        // Ring
+                        case 2:
+                            type2.IsGrayedOut = (_location == PiercingLocation.Tongue);
+                            break;
+
                         // Ladder
                         case 3:
                             type2.IsGrayedOut = (_location != PiercingLocation.Cock);
