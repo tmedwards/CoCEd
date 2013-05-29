@@ -117,7 +117,7 @@ namespace CoCEd.Model
         [XmlArray, XmlArrayItem("PiercingType")]
         public XmlEnum[] PiercingTypes { get; set; }
         [XmlArray, XmlArrayItem("PiercingMaterial")]
-        public XmlEnum[] PiercingMaterials { get; set; }
+        public String[] PiercingMaterials { get; set; }
 
         [XmlArray, XmlArrayItem("CockType")]
         public XmlEnum[] CockTypes { get; set; }

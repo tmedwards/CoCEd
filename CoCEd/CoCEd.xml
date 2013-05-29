@@ -314,19 +314,18 @@
     </PiercingTypes>
     <!--============================================================================================================================================-->
     <PiercingMaterials>
-      <PiercingMaterial ID="0" Name="None"/>
-      <PiercingMaterial ID="1" Name="Amethyst"/>
-      <PiercingMaterial ID="2" Name="Diamond"/>
-      <PiercingMaterial ID="3" Name="Gold"/>
-      <PiercingMaterial ID="4" Name="Emerald"/>
-      <PiercingMaterial ID="5" Name="Jade"/>
-      <PiercingMaterial ID="6" Name="Onyx"/>
-      <PiercingMaterial ID="7" Name="Ruby"/>
-      <PiercingMaterial ID="8" Name="Steel"/>
-      <PiercingMaterial ID="9" Name="Lethite"/>
-      <PiercingMaterial ID="10" Name="Fertite"/>
-      <PiercingMaterial ID="11" Name="Furrite"/>
-      <PiercingMaterial ID="12" Name="Crimstone"/>
+      <PiercingMaterial>Amethyst</PiercingMaterial>
+      <PiercingMaterial>Crimstone</PiercingMaterial>
+      <PiercingMaterial>Diamond</PiercingMaterial>
+      <PiercingMaterial>Emerald</PiercingMaterial>
+      <PiercingMaterial>Fertite</PiercingMaterial>
+      <PiercingMaterial>Furrite</PiercingMaterial>
+      <PiercingMaterial>Gold</PiercingMaterial>
+      <PiercingMaterial>Jade</PiercingMaterial>
+      <PiercingMaterial>Lethite</PiercingMaterial>
+      <PiercingMaterial>Onyx</PiercingMaterial>
+      <PiercingMaterial>Ruby</PiercingMaterial>
+      <PiercingMaterial>Steel</PiercingMaterial>
     </PiercingMaterials>
     <!--============================================================================================================================================-->
     <CockTypes>
