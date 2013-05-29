@@ -695,6 +695,12 @@ namespace CoCEd.ViewModel
             }
         }
 
+        public double HoursSinceCum
+        {
+            get { return GetDouble("hoursSinceCum"); }
+            set { SetValue("hoursSinceCum", value); }
+        }
+
         public double ClitLength
         {
             get { return GetDouble("clitLength"); }
@@ -804,6 +810,23 @@ namespace CoCEd.ViewModel
         public bool HasMetMarble
         {
             get { return GetStatus("Marble").IsOwned; }
+        }
+
+        public int ArcherySkill
+        {
+            get { return (int)GetStatus("Kelt").Value1; }
+            set { GetStatus("Kelt").Value1 = value; }
+        }
+
+        public int KeltSubmissiveness
+        {
+            get { return (int)GetStatus("Kelt").Value2; }
+            set { GetStatus("Kelt").Value2 = value; }
+        }
+
+        public bool HasMetKelt
+        {
+            get { return GetStatus("Kelt").IsOwned; }
         }
 
         public int WormStatus
