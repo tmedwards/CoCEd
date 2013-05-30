@@ -64,11 +64,11 @@
                     <TextBlock              Text="Addiction: minotaur cum"/>
                     <common:MyNumericBox    Value="{Binding Game.MinotaurCumAddiction}" Unit="%" Upper="120"/>
 
-                    <TextBlock              Text="Addiction: marble milk" IsEnabled="{Binding Game.HasMetMarble}"/>
+                    <TextBlock              Text="Addiction: marble milk*" ToolTip="Affected by perks: 0% if Marble Resistant, 100% if Marble's Milk." IsEnabled="{Binding Game.HasMetMarble}"/>
                     <common:MyNumericBox    Value="{Binding Game.MarbleMilkAddiction}" Unit="%" Upper="120" IsEnabled="{Binding Game.HasMetMarble}"/>
 
                     <TextBlock              Text="Kelt submissiveness" IsEnabled="{Binding Game.HasMetKelt}"/>
-                    <common:MyNumericBox    Value="{Binding Game.KeltSumbissiveness}" Unit="%" Upper="100" IsEnabled="{Binding Game.HasMetKelt}"/>
+                    <common:MyNumericBox    Value="{Binding Game.KeltSubmissiveness}" Unit="%" Upper="100" IsEnabled="{Binding Game.HasMetKelt}"/>
 
                     <TextBlock              Text="Lust stick time*" ToolTip="Enables the &quot;kiss&quot; attack."/>
                     <common:MyNumericBox    Value="{Binding Game.LustStickTime}" Upper="24" Unit="hours"/>
