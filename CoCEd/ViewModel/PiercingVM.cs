@@ -169,7 +169,9 @@ namespace CoCEd.ViewModel
             {
                 if (_location == PiercingLocation.Ears) yield return "Green gem-stone ear-studs";
                 else if (_location == PiercingLocation.Nipples) yield return "Seamless black nipple-studs";
-                // Cock would be redundant.
+                else if (_location == PiercingLocation.Cock) yield return "Seamless, diamond cock-stud";
+                else if (_location == PiercingLocation.Clitoris) yield return "Seamless, diamond clit-stud";
+                else if (_location == PiercingLocation.Eyebrow) yield return "Seamless, diamond eyebrow-stud";
             }
         }
 

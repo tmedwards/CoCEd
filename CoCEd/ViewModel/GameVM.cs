@@ -378,7 +378,7 @@ namespace CoCEd.ViewModel
 
         public bool HornsValueEnabled
         {
-            get { return (HornType == 1 || HornType == 2 || HornType == 5); }
+            get { return (HornType == 1 || HornType == 2 || HornType == 3 || HornType == 5); }
         }
 
 
@@ -820,8 +820,25 @@ namespace CoCEd.ViewModel
 
         public int KeltSubmissiveness
         {
-            get { return (int)GetStatus("Kelt").Value2; }
-            set { GetStatus("Kelt").Value2 = value; }
+            get 
+            {
+                double sub = GetStatus("Kelt").Value2;
+                sub /= 130.00;
+                sub *= 100.00;
+                sub = Math.Round(sub);
+                //return (int)Math.Round((double)(GetStatus("Kelt").Value2) / 130 * 100);
+                return (int)sub;
+            }
+            set 
+            {
+                //should be the inverse of the previous operation
+                double sub = value;
+                sub /= 100;
+                sub *= 130;
+                sub = Math.Round(sub);
+                //GetStatus("Kelt").Value2 = (int)Math.Round((double)value / 100 * 130); 
+                GetStatus("Kelt").Value2 = (int)sub;
+            }
         }
 
         public bool HasMetKelt
