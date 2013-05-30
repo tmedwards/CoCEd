@@ -56,7 +56,7 @@
                     <TextBlock              Text="Cum multiplier"/>
                     <common:MyNumericBox    Value="{Binding Game.CumMultiplier}" Type="Double" Tip="{Binding Game.CumVolume}"/>
                     
-                    <TextBlock              Text="Hours Since Cum"/>
+                    <TextBlock              Text="Hours since cum"/>
                     <common:MyNumericBox    Value="{Binding Game.HoursSinceCum}" Type="Double" Unit="Hours"/>
                 </common:AutoGrid>
             </StackPanel>
