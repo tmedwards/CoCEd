@@ -73,7 +73,12 @@ namespace CoCEd.ViewModel
                 OnPropertyChanged("Value3");
                 OnPropertyChanged("Value4");
                 OnSavePropertyChanged();
+                OnIsOwnedChanged();
             }
+        }
+
+        protected virtual void OnIsOwnedChanged()
+        {
         }
 
         public double Value1

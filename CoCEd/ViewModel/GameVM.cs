@@ -18,6 +18,12 @@ namespace CoCEd.ViewModel
         readonly PerkVM[] _allPerks;
         readonly FlagVM[] _allFlags;
         readonly StatusVM[] _allStatuses;
+        readonly double _baseArmorDef;
+
+        ItemContainerVM _chest;
+        ItemContainerVM _armorRack;
+        ItemContainerVM _weaponRack;
+        ItemContainerVM _inventory;
 
         public GameVM(AmfFile file)
             : base(file)
@@ -39,43 +45,6 @@ namespace CoCEd.ViewModel
             Vaginas.CollectionChanged += OnGenitalCollectionChanged;
             Breasts.CollectionChanged += OnGenitalCollectionChanged;
             Cocks.CollectionChanged += OnGenitalCollectionChanged;
-
-
-            // Item containers
-            var containers = new List<ItemContainerVM>();
-            var container = new ItemContainerVM("Inventory", ItemCategories.All);
-            for (int i = 0; i < 5; i++) container.Add(file.GetObj("itemSlot" + (i + 1)));
-            containers.Add(container);
-
-            container = new ItemContainerVM("Chest", ItemCategories.All);
-            foreach(var pair in file.GetObj("itemStorage")) container.Add(pair.ValueAsObject);
-            containers.Add(container);
-
-            var gearStorage = file.GetObj("gearStorage");
-            container = new ItemContainerVM("Armor rack", ItemCategories.Armor | ItemCategories.Unknown);
-            for (int i = 0; i < 9; i++) container.Add(gearStorage.GetObj(i + 9));
-            containers.Add(container);
-
-            container = new ItemContainerVM("Weapon rack", ItemCategories.Weapon | ItemCategories.Unknown);
-            for (int i = 0; i < 9; i++) container.Add(gearStorage.GetObj(i));
-            containers.Add(container);
-
-            // Import missing items
-            foreach (var slot in containers.SelectMany(x => x.Slots))
-            {
-                // Add this item to the DB if it does not exist
-                var type = slot.Type;
-                if (String.IsNullOrEmpty(type)) continue;
-                if (XmlData.Instance.ItemGroups.SelectMany(x => x.Items).Any(x => x.ID == type)) continue;
-
-                var xml = new XmlItem { ID = type, Name = type };
-                XmlData.Instance.ItemGroups.Last().Items.Add(xml);
-            }
-
-            // Complete slots creation
-            foreach (var slot in containers.SelectMany(x => x.Slots)) slot.CreateGroups();
-
-            ItemContainers = containers.ToArray();
 
 
             // Flags
@@ -113,6 +82,64 @@ namespace CoCEd.ViewModel
                 XmlData.Instance.PerkGroups.Last().Perks);
             PerkGroups = XmlData.Instance.PerkGroups.Select(x => new PerkGroupVM(x.Name, perkArray, x.Perks)).ToArray();
             _allPerks = PerkGroups.SelectMany(x => x.Perks).ToArray();
+
+
+            // Item containers
+            var containers = new List<ItemContainerVM>();
+            _inventory = new ItemContainerVM("Inventory", ItemCategories.All);
+            containers.Add(_inventory);
+            UpdateInventory();
+
+            _chest = new ItemContainerVM("Chest", ItemCategories.All);
+            containers.Add(_chest);
+            UpdateChest();
+
+            _armorRack = new ItemContainerVM("Armor rack", ItemCategories.Armor | ItemCategories.Unknown);
+            containers.Add(_armorRack);
+            UpdateArmorRack();
+
+            _weaponRack = new ItemContainerVM("Weapon rack", ItemCategories.Weapon | ItemCategories.Unknown);
+            containers.Add(_weaponRack);
+            UpdateWeaponRack();
+
+            // Import missing items
+            foreach (var slot in containers.SelectMany(x => x.Slots))
+            {
+                // Add this item to the DB if it does not exist
+                var type = slot.Type;
+                if (String.IsNullOrEmpty(type)) continue;
+                if (XmlData.Instance.ItemGroups.SelectMany(x => x.Items).Any(x => x.ID == type)) continue;
+
+                var xml = new XmlItem { ID = type, Name = type };
+                XmlData.Instance.ItemGroups.Last().Items.Add(xml);
+            }
+
+            // Complete slots creation
+            foreach (var slot in containers.SelectMany(x => x.Slots)) slot.CreateGroups();
+            ItemContainers = new UpdatableCollection<ItemContainerVM>(containers.Where(x => x.Slots.Count != 0));
+
+
+
+            // Store base armor def
+            _baseArmorDef = GetDouble("armorDef");
+            if (GetPerk("Agility").IsOwned)
+            {
+                var armorPerk = GetString("armorPerk");
+                if (armorPerk == "Light") _baseArmorDef -= Math.Round(Speed / 10.0);
+                else if (armorPerk == "Medium") _baseArmorDef -= Math.Round(Speed / 15.0);
+            }
+        }
+
+        void UpdateArmorDef()
+        {
+            var armorDef = _baseArmorDef;
+            if (GetPerk("Agility").IsOwned)
+            {
+                var armorPerk = GetString("armorPerk");
+                if (armorPerk == "Light") armorDef += Math.Round(Speed / 10.0);
+                else if (armorPerk == "Medium") armorDef += Math.Round(Speed / 15.0);
+            }
+            SetDouble("armorDef", armorDef);
         }
 
         static void ImportMissingNamedVector(AmfObject array, IEnumerable<XmlNamedVector4> xmlData, string nameKey, Func<AmfObject, String> descriptionGetter = null, IList<XmlNamedVector4> targetList = null)
@@ -136,10 +163,10 @@ namespace CoCEd.ViewModel
         public BreastArrayVM Breasts { get; private set; }
         public VaginaArrayVM Vaginas { get; private set; }
 
+        public UpdatableCollection<ItemContainerVM> ItemContainers { get; private set; }
         public UpdatableCollection<KeyItemVM> KeyItems { get; private set; }
         public UpdatableCollection<StatusVM> Statuses { get; private set; }
         public UpdatableCollection<FlagVM> Flags { get; private set; }
-        public ItemContainerVM[] ItemContainers { get; private set; }
         public PerkGroupVM[] PerkGroups { get; private set; }
 
         public AssVM Ass { get; private set; }
@@ -191,7 +218,11 @@ namespace CoCEd.ViewModel
         public int Speed
         {
             get { return GetInt("spe"); }
-            set { SetDouble("spe", value); }
+            set 
+            {
+                SetDouble("spe", value);
+                UpdateArmorDef();
+            }
         }
 
         public int Intelligence
@@ -231,7 +262,6 @@ namespace CoCEd.ViewModel
                 var max = 50 + Toughness * 2 + Math.Min(20, Level) * 15;
                 if (GetPerk("Tank 2").IsOwned) max += Toughness;
                 if (GetPerk("Tank").IsOwned) max += 50;
-                if (HP > max) HP = max;
                 return max;
             }
         }
@@ -822,22 +852,12 @@ namespace CoCEd.ViewModel
         {
             get 
             {
-                double sub = GetStatus("Kelt").Value2;
-                sub /= 130.00;
-                sub *= 100.00;
-                sub = Math.Round(sub);
-                //return (int)Math.Round((double)(GetStatus("Kelt").Value2) / 130 * 100);
-                return (int)sub;
+                double value = GetStatus("Kelt").Value2;
+                return (int)Math.Round(value / 1.3);
             }
             set 
             {
-                //should be the inverse of the previous operation
-                double sub = value;
-                sub /= 100;
-                sub *= 130;
-                sub = Math.Round(sub);
-                //GetStatus("Kelt").Value2 = (int)Math.Round((double)value / 100 * 130); 
-                GetStatus("Kelt").Value2 = (int)sub;
+                GetStatus("Kelt").Value2 = (int)Math.Round(value * 1.3);
             }
         }
 

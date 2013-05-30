@@ -63,5 +63,10 @@ namespace CoCEd.ViewModel
         {
             VM.Instance.Game.OnPerkChanged(_xml.Name);
         }
+
+        protected override void OnIsOwnedChanged()
+        {
+            VM.Instance.Game.OnPerkAddedOrRemoved(_xml.Name, IsOwned);
+        }
     }
 }
