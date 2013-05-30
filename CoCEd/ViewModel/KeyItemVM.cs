@@ -29,5 +29,10 @@ namespace CoCEd.ViewModel
         protected override void NotifyGameVM()
         {
         }
+
+        protected override void OnIsOwnedChanged()
+        {
+            VM.Instance.Game.OnKeyItemAddedOrRemoved(_xml.Name, IsOwned);
+        }
     }
 }

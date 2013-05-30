@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace CoCEd.ViewModel
 {
     public sealed class ItemContainerVM
     {
-        readonly List<ItemSlotVM> _slots = new List<ItemSlotVM>();
+        readonly ObservableCollection<ItemSlotVM> _slots = new ObservableCollection<ItemSlotVM>();
 
         public ItemContainerVM(string name, ItemCategories categories)
         {
@@ -29,7 +30,7 @@ namespace CoCEd.ViewModel
             private set;
         }
 
-        public IEnumerable<ItemSlotVM> Slots
+        public ObservableCollection<ItemSlotVM> Slots
         {
             get { return _slots; }
         }
@@ -37,6 +38,11 @@ namespace CoCEd.ViewModel
         public void Add(AmfObject obj)
         {
             _slots.Add(new ItemSlotVM(obj, Categories));
+        }
+
+        public void Clear()
+        {
+            _slots.Clear();
         }
     }
 
@@ -50,7 +56,7 @@ namespace CoCEd.ViewModel
 
         public void CreateGroups()
         {
-            var xmlGroups = XmlData.Instance.ItemGroups.Where(group => Categories.HasFlag(group.Category)).ToArray();
+            var xmlGroups = XmlData.Instance.ItemGroups.Where(group => Categories.HasFlag(group.Category) && group.Items.Count > 0).ToArray();
             AllGroups = xmlGroups.Select(group => new ItemGroupVM(group, this)).ToArray();
         }
 
