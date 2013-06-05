@@ -162,6 +162,11 @@ namespace CoCEd.Model
 
         [XmlElement("Item")]
         public List<XmlItem> Items { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public sealed class XmlPerkGroup
@@ -171,6 +176,12 @@ namespace CoCEd.Model
 
         [XmlElement("Perk")]
         public List<XmlNamedVector4> Perks { get; set; }
+
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public sealed class XmlEnum
@@ -211,6 +222,11 @@ namespace CoCEd.Model
         public string Name { get; set; }
         [XmlAttribute]
         public string Description { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public sealed class XmlNamedVector4
@@ -237,6 +253,11 @@ namespace CoCEd.Model
         public string Label3 { get; set; }
         [XmlAttribute]
         public string Label4 { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public enum XmlLoadingResult

@@ -192,5 +192,10 @@ namespace CoCEd.ViewModel
         protected abstract void InitializeObject(AmfObject obj);
         protected abstract bool IsObject(AmfObject obj);
         protected abstract void NotifyGameVM();
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

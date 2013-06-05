@@ -44,6 +44,11 @@ namespace CoCEd.ViewModel
         {
             _slots.Clear();
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public sealed class ItemSlotVM : ObjectVM
@@ -145,6 +150,13 @@ namespace CoCEd.ViewModel
             get;
             private set;
         }
+
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
     }
 
     public sealed class ItemVM : BindableBase
@@ -182,6 +194,12 @@ namespace CoCEd.ViewModel
         public void NotifyIsSelectedChanged()
         {
             OnPropertyChanged("IsSelected");
+        }
+
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
