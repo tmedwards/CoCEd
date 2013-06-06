@@ -241,7 +241,7 @@ namespace CoCEd.ViewModel
         public void OnClick()
         {
             var dlg = new OpenFileDialog();
-            dlg.Filter = "Flash objects (.sol)|*.sol|All files|*.*";
+            dlg.Filter = "\"Save to slot\" format|*.sol|\"Save to file\" format|*";
             dlg.DefaultExt = ".sol";
             dlg.CheckFileExists = true;
             dlg.Multiselect = false;
@@ -299,7 +299,7 @@ namespace CoCEd.ViewModel
         public void OnClick()
         {
             var dlg = new SaveFileDialog();
-            dlg.Filter = "CoC slot (.sol)|*.sol|CoC exported file|*.*";
+            dlg.Filter = "\"Save to slot\" format (.sol)|*.sol|\"Save to file\" format|*";
             dlg.DefaultExt = ".sol";
             dlg.AddExtension = true;
             dlg.OverwritePrompt = true;
