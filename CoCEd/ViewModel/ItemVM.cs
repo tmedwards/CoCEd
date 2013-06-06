@@ -57,6 +57,7 @@ namespace CoCEd.ViewModel
             : base(obj)
         {
             Categories = categories;
+            CreateGroups();
         }
 
         public void CreateGroups()
