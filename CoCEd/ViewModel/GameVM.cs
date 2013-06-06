@@ -113,9 +113,9 @@ namespace CoCEd.ViewModel
                 var xml = new XmlItem { ID = type, Name = type };
                 XmlData.Instance.ItemGroups.Last().Items.Add(xml);
             }
+            foreach (var slot in containers.SelectMany(x => x.Slots)) slot.CreateGroups();  // Recreate item groups after new items have been added
 
             // Complete slots creation
-            foreach (var slot in containers.SelectMany(x => x.Slots)) slot.CreateGroups();
             ItemContainers = new UpdatableCollection<ItemContainerVM>(containers.Where(x => x.Slots.Count != 0));
 
 
