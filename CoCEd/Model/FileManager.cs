@@ -118,7 +118,7 @@ namespace CoCEd.Model
 
             for (int i = 1; i <= 10; i++)
             {
-                var filePath = Path.Combine(dir.Path, "Coc_" + i + ".sol");
+                var filePath = Path.Combine(dir.Path, "CoC_" + i + ".sol");
                 try
                 {
                     if (!File.Exists(filePath)) continue;
