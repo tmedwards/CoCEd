@@ -101,18 +101,21 @@ namespace CoCEd.ViewModel
                 }
                 UpdateChest();
                 ItemContainers.Update();
+                if (isOwned) foreach (var slot in _chest.Slots) slot.CreateGroups();
             }
             else if (name == "Equipment Rack - Armor")
             {
                 GetFlag(255).SetValue(isOwned ? 1 : 0);
                 UpdateArmorRack();
                 ItemContainers.Update();
+                if (isOwned) foreach (var slot in _armorRack.Slots) slot.CreateGroups();
             }
             else if (name == "Equipment Rack - Weapons")
             {
                 GetFlag(254).SetValue(isOwned ? 1 : 0);
                 UpdateWeaponRack();
                 ItemContainers.Update();
+                if (isOwned) foreach (var slot in _weaponRack.Slots) slot.CreateGroups();
             }
         }
 
