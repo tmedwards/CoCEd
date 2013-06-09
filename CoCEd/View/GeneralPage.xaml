@@ -70,7 +70,7 @@
             <Grid Grid.Column="1" Grid.Row="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="36"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
@@ -162,6 +162,9 @@
                 
                     <TextBlock              Text="Ears piercing"/>
                     <common:MyPiercingBox DataContext="{Binding Game.EarsPiercing}"/>
+
+                    <TextBlock              Text="Nose piercing"/>
+                    <common:MyPiercingBox DataContext="{Binding Game.NosePiercing}"/>
 
                     <TextBlock              Text="Lip piercing"/>
                     <common:MyPiercingBox DataContext="{Binding Game.LipPiercing}"/>
