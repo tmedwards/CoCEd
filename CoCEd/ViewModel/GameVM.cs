@@ -1025,6 +1025,59 @@ namespace CoCEd.ViewModel
             }
         }
 
+        public int ExploredForest
+        {
+            get { return GetInt("exploredForest"); }
+            set { SetValue("exploredForest", value); }
+        }
+
+        public int ExploredDeepwoods
+        {
+            get { return (int)GetStatus("exploredDeepwoods").Value1; }
+            set
+            {
+                var status = GetStatus("exploredDeepwoods");
+                status.IsOwned = (value > 0);
+                status.Value1 = value;
+            }
+        }
+
+        public int ExploredLake
+        {
+            get { return GetInt("exploredLake"); }
+            set { SetValue("exploredLake", value); }
+        }
+
+        public int ExploredDesert
+        {
+            get { return GetInt("exploredDesert"); }
+            set { SetValue("exploredDesert", value); }
+        }
+
+        public int ExploredMountain
+        {
+            get { return GetInt("exploredMountain"); }
+            set { SetValue("exploredMountain", value); }
+        }
+
+        public int ExploredHighMountain
+        {
+            get { return GetFlag(88).AsInt(); }
+            set { GetFlag(88).SetValue(value); }
+        }
+
+        public int ExploredPlains
+        {
+            get { return GetFlag(131).AsInt(); }
+            set { GetFlag(131).SetValue(value); }
+        }
+
+        public int ExploredSwamp
+        {
+            get { return GetFlag(272).AsInt(); }
+            set { GetFlag(272).SetValue(value); }
+        }
+
         string _rawDataSearchText;
         public string RawDataSearchText
         {
