@@ -786,6 +786,7 @@
       <Perk Name="Purity Blessing" Description="Reduces the rate at which your corruption, libido, and lust increase."/>
       <Perk Name="Sensual Lover" Description="Your sensual attitude towards love and romance makes your tease ability slightly more effective."/>
       <Perk Name="Slime Core" Description="Moisture craving builds at a greatly reduced rate."/>
+      <Perk Name="Spellcasting Affinity" Description="Reduces spell costs by [20&#x2013;50]%. (see value #1 for actual percentage)" Value1="20" Label1="Cost reduction %"/>
       <Perk Name="Spider Ovipositor" Description="Allows you to lay eggs through a special organ on your arachnid abdomen, though you need at least 10 eggs to lay."/>
       <Perk Name="Thick Skin" Description="Your skin is now tough enough to effectively grant you an extra armor!"/>
       <Perk Name="Whispered" Description="Akbal has allowed you to whisper to the minds of your foes, as he does."/>
