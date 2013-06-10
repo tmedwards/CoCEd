@@ -81,51 +81,6 @@
                 </common:AutoGrid>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2">
-                <Border Style="{StaticResource HeaderBorder}">
-                    <TextBlock Text="Explored Locations" Style="{StaticResource Header}" />
-                </Border>
-                <common:AutoGrid>
-                    <TextBlock              Text="Forest*" ToolTip="Times explored. Set to 1 to unlock."/>
-                    <common:MyNumericBox    Value="{Binding Game.ExploredForest}"/>
-                </common:AutoGrid>
-
-                <common:AutoGrid>
-                    <TextBlock              Text="Deepwoods*" ToolTip="Times explored. Set to 1 to unlock."/>
-                    <common:MyNumericBox    Value="{Binding Game.ExploredDeepwoods}"/>
-                </common:AutoGrid>
-
-                <common:AutoGrid>
-                    <TextBlock              Text="Lake*" ToolTip="Times explored. Set to 1 to unlock."/>
-                    <common:MyNumericBox    Value="{Binding Game.ExploredLake}"/>
-                </common:AutoGrid>
-
-                <common:AutoGrid>
-                    <TextBlock              Text="Desert*" ToolTip="Times explored. Set to 1 to unlock."/>
-                    <common:MyNumericBox    Value="{Binding Game.ExploredDesert}"/>
-                </common:AutoGrid>
-
-                <common:AutoGrid>
-                    <TextBlock              Text="Mountain*" ToolTip="Times explored. Set to 1 to unlock."/>
-                    <common:MyNumericBox    Value="{Binding Game.ExploredMountain}"/>
-                </common:AutoGrid>
-
-                <common:AutoGrid>
-                    <TextBlock              Text="High Mountain*" ToolTip="Times explored. Set to 1 to unlock."/>
-                    <common:MyNumericBox    Value="{Binding Game.ExploredHighMountain}"/>
-                </common:AutoGrid>
-
-                <common:AutoGrid>
-                    <TextBlock              Text="Plains*" ToolTip="Times explored. Set to 1 to unlock."/>
-                    <common:MyNumericBox    Value="{Binding Game.ExploredPlains}"/>
-                </common:AutoGrid>
-
-                <common:AutoGrid>
-                    <TextBlock              Text="Swamp*" ToolTip="Times explored. Set to 1 to unlock."/>
-                    <common:MyNumericBox    Value="{Binding Game.ExploredSwamp}"/>
-                </common:AutoGrid>
-            </StackPanel>
-
             <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
                 <Border Style="{StaticResource HeaderBorder}">
                     <TextBlock Text="Procreation" Style="{StaticResource Header}" />
