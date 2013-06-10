@@ -728,7 +728,11 @@ namespace CoCEd.ViewModel
         public double HoursSinceCum
         {
             get { return GetDouble("hoursSinceCum"); }
-            set { SetValue("hoursSinceCum", value); }
+            set 
+            { 
+               SetValue("hoursSinceCum", value);
+               OnPropertyChanged("CumVolume");
+            }
         }
 
         public double ClitLength
@@ -746,9 +750,72 @@ namespace CoCEd.ViewModel
         public string CumVolume
         {
             get 
-            { 
-                var qty = BallSize * Balls * CumMultiplier;
-                if (qty == 0) return "";
+            {
+                var baseQty = (Lust + 50) / 10;
+                foreach (PerkVM perk in _allPerks)
+                {
+                    if (perk.Name == "Pilgrim's Bounty")
+                    {
+                        baseQty = 150 / 10;
+                        break;
+                    }
+                }
+                var qty = Balls == 0 ? (1.25 * 2 * CumMultiplier * 2 * baseQty * (HoursSinceCum + 10) / 24) / 10 : (BallSize * Balls * CumMultiplier * 2 * baseQty * (HoursSinceCum + 10) / 24) / 10;
+                foreach (PerkVM perk in _allPerks)
+                {
+                    if (!perk.IsOwned)
+                    {
+                        continue;
+                    }
+                    if (perk.Name == "Bro Body")
+                    {
+                        qty *= 1.3;
+                    }
+                    else if (perk.Name == "Fertility+")
+                    {
+                        qty *= 1.5;
+                    }
+                    else if (perk.Name == "Messy Orgasms")
+                    {
+                        qty *= 1.5;
+                    }
+                    else if (perk.Name == "One Track Mind")
+                    {
+                        qty *= 1.1;
+                    }
+                    else if (perk.Name == "Marae's Gift - Stud")
+                    {
+                        qty += 350;
+                    }
+                    else if (perk.Name == "Fera's Boon - Alpha")
+                    {
+                        qty += 200;
+                    }
+                    else if (perk.Name == "Magical Virility")
+                    {
+                        qty += 200;
+                    }
+                    else if (perk.Name == "Elven Bounty")
+                    {
+                        qty += perk.Value1;
+                    }
+                    else if (perk.Name == "Bro Body")
+                    {
+                        qty += 200;
+                    }
+                    else if (perk.Name == "Pierced: Fertite")
+                    {
+                        qty *= (1 + 2 * perk.Value1) / 100;
+                    }
+                }
+                foreach (StatusVM status in _allStatuses)
+                {
+                    if(status.Name == "rut")
+                    {
+                        qty += status.Value1;
+                    }
+                }
+                if (qty <= 0) return "";
                 return qty < 1000 ? String.Format("{0:0} mL/h (base)", qty) : String.Format("{0:0.00} L/h (base)", qty * 0.001);
             }
         }
