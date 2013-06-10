@@ -754,13 +754,29 @@ namespace CoCEd.ViewModel
                 var baseQty = (Lust + 50) / 10;
                 foreach (PerkVM perk in _allPerks)
                 {
+                    if (!perk.IsOwned)
+                    {
+                        continue;
+                    }
                     if (perk.Name == "Pilgrim's Bounty")
                     {
                         baseQty = 150 / 10;
                         break;
                     }
                 }
-                var qty = Balls == 0 ? (1.25 * 2 * CumMultiplier * 2 * baseQty * (HoursSinceCum + 10) / 24) / 10 : (BallSize * Balls * CumMultiplier * 2 * baseQty * (HoursSinceCum + 10) / 24) / 10;
+                int balls;
+                double ballSize;
+                if (Balls == 0) //default values, same as CoC
+                {
+                    balls = 2;
+                    ballSize = 1.25;
+                }
+                else
+                {
+                    balls = Balls;
+                    ballSize = BallSize;
+                }
+                var qty = (ballSize * balls * CumMultiplier * 2 * baseQty * (HoursSinceCum + 10) / 24) / 10;
                 foreach (PerkVM perk in _allPerks)
                 {
                     if (!perk.IsOwned)
@@ -803,20 +819,41 @@ namespace CoCEd.ViewModel
                     {
                         qty += 200;
                     }
-                    else if (perk.Name == "Pierced: Fertite")
-                    {
-                        qty *= (1 + 2 * perk.Value1) / 100;
-                    }
                 }
                 foreach (StatusVM status in _allStatuses)
                 {
+                    if (!status.IsOwned)
+                    {
+                        continue;
+                    }
                     if(status.Name == "rut")
                     {
                         qty += status.Value1;
                     }
                 }
+                foreach (PerkVM perk in _allPerks)
+                {
+                    if (!perk.IsOwned)
+                    {
+                        continue;
+                    }
+                    if (perk.Name == "Pierced: Fertite")
+                    {
+                        qty *= 1 + 2 * perk.Value1 / 100;
+                    }
+                }
                 if (qty <= 0) return "";
-                return qty < 1000 ? String.Format("{0:0} mL/h (base)", qty) : String.Format("{0:0.00} L/h (base)", qty * 0.001);
+                return String.Format("{0:0} mL (total)", qty);
+            }
+        }
+
+        public string CumProduction
+        {
+            get
+            {
+                var qty = BallSize * Balls * CumMultiplier;
+                if (qty == 0) return "";
+                return qty < 1000 ? String.Format("+{0:0} mL/h", qty) : String.Format("+{0:0.00} L/h", qty * 0.001);
             }
         }
 
