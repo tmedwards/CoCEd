@@ -57,6 +57,9 @@
             <TabItem Header="Others">
                 <view:MiscPage Background="White"/>
             </TabItem>
+            <TabItem Header="Locations">
+                <view:LocationsPage Background="White"/>
+            </TabItem>
             <TabItem Header="Items">
                 <view:ItemsPage Background="White"/>
             </TabItem>
