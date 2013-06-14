@@ -113,7 +113,7 @@ namespace CoCEd.ViewModel
                 var xml = new XmlItem { ID = type, Name = type };
                 XmlData.Instance.ItemGroups.Last().Items.Add(xml);
             }
-            foreach (var slot in containers.SelectMany(x => x.Slots)) slot.CreateGroups();  // Recreate item groups after new items have been added
+            foreach (var slot in containers.SelectMany(x => x.Slots)) slot.UpdateGroups();  // Recreate item groups after new items have been added
 
             // Complete slots creation
             ItemContainers = new UpdatableCollection<ItemContainerVM>(containers.Where(x => x.Slots.Count != 0));
@@ -1093,6 +1093,19 @@ namespace CoCEd.ViewModel
                 if (_keyItemSearchText == value) return;
                 _keyItemSearchText = value;
                 KeyItems.Update();
+                OnPropertyChanged();
+            }
+        }
+
+        string _itemSearchText;
+        public string ItemSearchText
+        {
+            get { return _itemSearchText; }
+            set
+            {
+                if (_itemSearchText == value) return;
+                _itemSearchText = value;
+                foreach (var slot in ItemContainers.SelectMany(x => x.Slots)) slot.UpdateGroups();
                 OnPropertyChanged();
             }
         }

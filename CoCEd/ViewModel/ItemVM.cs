@@ -53,17 +53,20 @@ namespace CoCEd.ViewModel
 
     public sealed class ItemSlotVM : ObjectVM
     {
+        ItemGroupVM[] _allGroups;
+
         public ItemSlotVM(AmfObject obj, ItemCategories categories)
             : base(obj)
         {
             Categories = categories;
-            CreateGroups();
+            _allGroups = XmlData.Instance.ItemGroups.Where(group => Categories.HasFlag(group.Category) && group.Items.Count > 0).Select(x => new ItemGroupVM(x, this)).ToArray();
+            AllGroups = new UpdatableCollection<ItemGroupVM>(_allGroups.Where(x => x.Items.Count != 0));
         }
 
-        public void CreateGroups()
+        public void UpdateGroups()
         {
-            var xmlGroups = XmlData.Instance.ItemGroups.Where(group => Categories.HasFlag(group.Category) && group.Items.Count > 0).ToArray();
-            AllGroups = xmlGroups.Select(group => new ItemGroupVM(group, this)).ToArray();
+            foreach (var group in _allGroups) group.Items.Update();
+            AllGroups.Update();
         }
 
         public ItemCategories Categories
@@ -72,7 +75,7 @@ namespace CoCEd.ViewModel
             private set;
         }
 
-        public ItemGroupVM[] AllGroups
+        public UpdatableCollection<ItemGroupVM> AllGroups
         {
             get;
             private set;
@@ -137,7 +140,7 @@ namespace CoCEd.ViewModel
         public ItemGroupVM(XmlItemGroup group, ItemSlotVM slot)
         {
             Name = group.Name;
-            Items = group.Items.OrderBy(x => x.Name).Select(x => new ItemVM(slot, x)).ToArray();
+            Items = new UpdatableCollection<ItemVM>(group.Items.Where(x => Match(x)).OrderBy(x => x.Name).Select(x => new ItemVM(slot, x)));
         }
 
         public string Name
@@ -146,12 +149,27 @@ namespace CoCEd.ViewModel
             private set;
         }
 
-        public ItemVM[] Items
+        public UpdatableCollection<ItemVM> Items
         {
             get;
             private set;
         }
 
+        static bool Match(XmlItem item)
+        {
+            if (VM.Instance == null || VM.Instance.Game == null) return true;
+
+            var str = VM.Instance.Game.ItemSearchText;
+            if (str == null || str.Length < 3) return true;
+
+            int index = (item.Name ?? "").IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+            if (index != -1) return true;
+
+            index = (item.Description ?? "").IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+            if (index != -1) return true;
+
+            return false;
+        }
 
         public override string ToString()
         {
