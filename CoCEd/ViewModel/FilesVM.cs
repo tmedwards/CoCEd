@@ -300,7 +300,6 @@ namespace CoCEd.ViewModel
         {
             var dlg = new SaveFileDialog();
             dlg.Filter = "\"Save to slot\" format (.sol)|*.sol|\"Save to file\" format|*";
-            dlg.DefaultExt = ".sol";
             dlg.AddExtension = true;
             dlg.OverwritePrompt = true;
             dlg.RestoreDirectory = true;
@@ -310,7 +309,16 @@ namespace CoCEd.ViewModel
             if (result == false) return;
 
             string path = dlg.FileName;
-            var format = (SerializationFormat)dlg.FilterIndex;
+            var format = (SerializationFormat)(dlg.FilterIndex - 1);
+
+            /*// CoC cannot read files from an external location, so prompt the user for confirmation.
+            if (format == SerializationFormat.Exported && !FileManager.IsCoCPath(path))
+            {
+                var confirmation = MessageBox.Show("The directory you selected is not a CoC folder.\nCoC will cause an error if you try to load this file from this location.\nDo you want to cancel?", "CoC cannot read this location.", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                if (confirmation == MessageBoxResult.Cancel) return;
+            }*/
+            // Ok, so those paths still not work. I wish I could one day manage to load a file through "load file" to understand how what is the prerequisite.
+
             VM.Instance.Save(path, format);
         }
     }
