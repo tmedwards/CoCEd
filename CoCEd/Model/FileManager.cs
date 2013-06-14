@@ -151,6 +151,17 @@ namespace CoCEd.Model
             _externalPaths.Add(path);
         }
 
+        public static bool IsCoCPath(string path)
+        {
+            path = Canonize(path);
+
+            foreach (var dir in _directories)
+            {
+                if (AreParentAndChild(dir.Path, path)) return true;
+            }
+            return false;
+        }
+
         static bool AreParentAndChild(string dirPath, string filePath)
         {
             if (String.IsNullOrEmpty(dirPath)) return false;
