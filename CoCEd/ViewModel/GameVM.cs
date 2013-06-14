@@ -1048,10 +1048,38 @@ namespace CoCEd.ViewModel
         public bool ExploredTelAdre
         {
             get { return GetStatus("Tel'Adre").Value1 >= 1; }
-            set 
+            set
             {
                 GetStatus("Tel'Adre").IsOwned = value;
                 if (value && !ExploredTelAdre) GetStatus("Tel'Adre").Value1 = 1.0;
+            }
+        }
+
+        public bool ExploredBizarreBazaar
+        {
+            get { return GetFlag(211).AsInt() == 1; }
+            set
+            {
+                GetFlag(211).SetValue(value ? 1 : 0);
+            }
+        }
+
+        public bool ExploredFarm
+        {
+            get { return GetStatus("Met Whitney").Value1 == 2; }
+            set
+            {
+                GetStatus("Met Whitney").IsOwned = value;
+                if (value && !ExploredFarm) GetStatus("Met Whitney").Value1 = 2.0;
+            }
+        }
+
+        public bool ExploredOwca
+        {
+            get { return GetFlag(506).AsInt() == 1; }
+            set
+            {
+                GetFlag(506).SetValue(value ? 1 : 0);
             }
         }
 
