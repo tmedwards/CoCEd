@@ -58,6 +58,9 @@
                     
                     <TextBlock              Text="Hours since cum"/>
                     <common:MyNumericBox    Value="{Binding Game.HoursSinceCum}" Unit="Hours" Tip="{Binding Game.CumVolume}"/>
+
+                    <Border/>
+                    <CheckBox Content="Uniball*" ToolTip="Sand trap ball sack. Will be removed by CoC if your balls are bigger than 1 inch" IsChecked="{Binding Game.HasSandTrapBalls}" Margin="8,5,0,0"/>
                 </common:AutoGrid>
             </StackPanel>
 

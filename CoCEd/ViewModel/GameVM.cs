@@ -1045,6 +1045,18 @@ namespace CoCEd.ViewModel
             set { GetFlag(272).SetValue(value); }
         }
 
+        public bool HasSandTrapBalls
+        {
+            get { return GetStatus("Uniball").IsOwned; }
+            set { GetStatus("Uniball").IsOwned = value; }
+        }
+
+        public bool HasSandTrapNipples
+        {
+            get { return GetStatus("Black Nipples").IsOwned; }
+            set { GetStatus("Black Nipples").IsOwned = value; }
+        }
+
         string _rawDataSearchText;
         public string RawDataSearchText
         {
