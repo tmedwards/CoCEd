@@ -1045,6 +1045,22 @@ namespace CoCEd.ViewModel
             set { GetFlag(272).SetValue(value); }
         }
 
+        public bool ExploredTelAdre
+        {
+            get { return GetStatus("Tel'Adre").Value1 >= 1; }
+            set 
+            {
+                GetStatus("Tel'Adre").IsOwned = value;
+                if (value && !ExploredTelAdre) GetStatus("Tel'Adre").Value1 = 1.0;
+            }
+        }
+
+        public bool ExploredBarber
+        {
+            get { return GetStatus("hairdresser meeting").IsOwned; }
+            set { GetStatus("hairdresser meeting").IsOwned = value; }
+        }
+
         public bool HasSandTrapBalls
         {
             get { return GetStatus("Uniball").IsOwned; }
