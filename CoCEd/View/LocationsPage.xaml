@@ -80,6 +80,9 @@
                 </Border>
                 <UniformGrid Columns="2" Width="250">
                     <CheckBox Content="Tel'Adre" IsChecked="{Binding Game.ExploredTelAdre}"/>
+                    <CheckBox Content="Bizarre Bazaar" IsChecked="{Binding Game.ExploredBizarreBazaar}"/>
+                    <CheckBox Content="Whitney's Farm" IsChecked="{Binding Game.ExploredFarm}"/>
+                    <CheckBox Content="Owca" IsChecked="{Binding Game.ExploredOwca}"/>
                     <CheckBox Content="Salon" IsChecked="{Binding Game.ExploredBarber}"/>
                 </UniformGrid>
             </StackPanel>
