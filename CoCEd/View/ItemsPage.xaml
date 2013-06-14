@@ -148,10 +148,21 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <common:AutoGrid HorizontalAlignment="Center" Margin="60,30,0,0">
-                <TextBlock              Text="Quantity" Width="Auto" Margin="0"/>
-                <common:MyNumericBox    Value="{Binding Path=SelectedItem.Quantity, ElementName=leftTree}" Upper="5"/>
-            </common:AutoGrid>
+            <!-- TOP BAR-->
+            <Grid Margin="60,30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <common:AutoGrid Grid.Column="0" HorizontalAlignment="Center">
+                    <TextBlock              Text="Quantity" Width="Auto" Margin="-26,0,0,0"/>
+                    <common:MyNumericBox    Value="{Binding Path=SelectedItem.Quantity, ElementName=leftTree}" Upper="5"/>
+                </common:AutoGrid>
+                
+                <common:SearchBox Grid.Column="2" Text="{Binding Game.ItemSearchText}"/>
+            </Grid>
 
             <TreeView  Grid.Row="1" ItemContainerStyle="{StaticResource RightGroupStyle}" Margin="30,30,0,0" Padding="0" BorderThickness="0" 
                        ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible"
