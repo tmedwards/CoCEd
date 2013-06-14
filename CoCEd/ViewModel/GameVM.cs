@@ -308,7 +308,12 @@ namespace CoCEd.ViewModel
         public int Lust
         {
             get { return GetInt("lust"); }
-            set { SetDouble("lust", value); }
+            set 
+            { 
+                SetDouble("lust", value);
+                OnPropertyChanged("CumProduction");
+                OnPropertyChanged("CumVolume");
+            }
         }
 
         public int Fatigue
@@ -701,6 +706,7 @@ namespace CoCEd.ViewModel
             set
             {
                 SetValue("balls", value);
+                OnPropertyChanged("CumProduction");
                 OnPropertyChanged("CumVolume");
             }
         }
@@ -711,6 +717,7 @@ namespace CoCEd.ViewModel
             set
             {
                 SetValue("ballSize", value);
+                OnPropertyChanged("CumProduction");
                 OnPropertyChanged("CumVolume");
             }
         }
@@ -721,6 +728,7 @@ namespace CoCEd.ViewModel
             set 
             {
                 SetValue("cumMultiplier", value);
+                OnPropertyChanged("CumProduction");
                 OnPropertyChanged("CumVolume");
             }
         }
@@ -752,98 +760,31 @@ namespace CoCEd.ViewModel
             get 
             {
                 var baseQty = (Lust + 50) / 10;
-                foreach (PerkVM perk in _allPerks)
-                {
-                    if (!perk.IsOwned)
-                    {
-                        continue;
-                    }
-                    if (perk.Name == "Pilgrim's Bounty")
-                    {
-                        baseQty = 150 / 10;
-                        break;
-                    }
-                }
-                int balls;
-                double ballSize;
-                if (Balls == 0) //default values, same as CoC
+                if (GetPerk("Pilgrim's Bounty").IsOwned) baseQty = 150 / 10;
+
+                // Default values for balles (same as CoC)
+                int balls = Balls;
+                double ballSize = BallSize;
+                if (balls == 0)
                 {
                     balls = 2;
                     ballSize = 1.25;
                 }
-                else
-                {
-                    balls = Balls;
-                    ballSize = BallSize;
-                }
+
                 var qty = (ballSize * balls * CumMultiplier * 2 * baseQty * (HoursSinceCum + 10) / 24) / 10;
-                foreach (PerkVM perk in _allPerks)
-                {
-                    if (!perk.IsOwned)
-                    {
-                        continue;
-                    }
-                    if (perk.Name == "Bro Body")
-                    {
-                        qty *= 1.3;
-                    }
-                    else if (perk.Name == "Fertility+")
-                    {
-                        qty *= 1.5;
-                    }
-                    else if (perk.Name == "Messy Orgasms")
-                    {
-                        qty *= 1.5;
-                    }
-                    else if (perk.Name == "One Track Mind")
-                    {
-                        qty *= 1.1;
-                    }
-                    else if (perk.Name == "Marae's Gift - Stud")
-                    {
-                        qty += 350;
-                    }
-                    else if (perk.Name == "Fera's Boon - Alpha")
-                    {
-                        qty += 200;
-                    }
-                    else if (perk.Name == "Magical Virility")
-                    {
-                        qty += 200;
-                    }
-                    else if (perk.Name == "Elven Bounty")
-                    {
-                        qty += perk.Value1;
-                    }
-                    else if (perk.Name == "Bro Body")
-                    {
-                        qty += 200;
-                    }
-                }
-                foreach (StatusVM status in _allStatuses)
-                {
-                    if (!status.IsOwned)
-                    {
-                        continue;
-                    }
-                    if(status.Name == "rut")
-                    {
-                        qty += status.Value1;
-                    }
-                }
-                foreach (PerkVM perk in _allPerks)
-                {
-                    if (!perk.IsOwned)
-                    {
-                        continue;
-                    }
-                    if (perk.Name == "Pierced: Fertite")
-                    {
-                        qty *= 1 + 2 * perk.Value1 / 100;
-                    }
-                }
-                if (qty <= 0) return "";
-                return String.Format("{0:0} mL (total)", qty);
+                if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
+                if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
+                if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
+                if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
+                if (GetPerk("Marae's Gift - Stud").IsOwned) qty += 350;
+                if (GetPerk("Fera's Boon - Alpha").IsOwned) qty += 200;
+                if (GetPerk("Magical Virility").IsOwned) qty += 200;
+                if (GetPerk("Bro Body").IsOwned) qty += 200;
+                qty += GetPerk("Elven Bounty").Value1;
+                qty += GetStatus("rut").Value1;
+                qty *= 1 + 0.02 * GetPerk("Pierced: Fertite").Value1;
+
+                return FormatVolume(qty);
             }
         }
 
@@ -851,11 +792,37 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                var qty = BallSize * Balls * CumMultiplier;
-                if (qty == 0) return "";
-                return qty < 1000 ? String.Format("+{0:0} mL/h", qty) : String.Format("+{0:0.00} L/h", qty * 0.001);
+                var baseQty = (Lust + 50) / 10;
+                if (GetPerk("Pilgrim's Bounty").IsOwned) baseQty = 150 / 10;
+
+                // Default values for balles (same as CoC)
+                int balls = Balls;
+                double ballSize = BallSize;
+                if (balls == 0)
+                {
+                    balls = 2;
+                    ballSize = 1.25;
+                }
+
+                var qty = (ballSize * balls * CumMultiplier * 2 * baseQty / 24) / 10;
+                if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
+                if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
+                if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
+                if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
+                qty *= 1 + 0.02 * GetPerk("Pierced: Fertite").Value1;
+
+                return FormatVolume(qty, "/h");
             }
         }
+
+        string FormatVolume(double qty, string suffix = "")
+        {
+            if (qty <= 0) return "";
+            if (qty <= 1000) return String.Format("{0:0} mL", qty) + suffix;
+            if (qty <= 10000) return String.Format("{0:0.0} L", qty * 0.001) + suffix;
+            return String.Format("{0:0} L", qty * 0.001) + suffix;
+        }
+
 
         public Visibility NippleVisibility
         {

@@ -54,10 +54,10 @@
                     <common:MyNumericBox    Value="{Binding Game.BallSize}" Type="Double" Unit="inches"/>
 
                     <TextBlock              Text="Cum multiplier"/>
-                    <common:MyNumericBox    Value="{Binding Game.CumMultiplier}" Type="Double" Tip="{Binding Game.CumVolume}"/>
+                    <common:MyNumericBox    Value="{Binding Game.CumMultiplier}" Type="Double" Tip="{Binding Game.CumProduction}"/>
                     
                     <TextBlock              Text="Hours since cum"/>
-                    <common:MyNumericBox    Value="{Binding Game.HoursSinceCum}" Unit="Hours" Tip="{Binding Game.CumProduction}"/>
+                    <common:MyNumericBox    Value="{Binding Game.HoursSinceCum}" Unit="Hours" Tip="{Binding Game.CumVolume}"/>
                 </common:AutoGrid>
             </StackPanel>
 
