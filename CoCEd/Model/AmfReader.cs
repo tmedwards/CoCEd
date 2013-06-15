@@ -197,9 +197,10 @@ namespace CoCEd.Model
         int ReadI29()
         {
             int result = ReadU29();
-            int maxPositiveInclusive = (1 << 28) - 1;
-            if (result <= maxPositiveInclusive) return result;
+            const int maxPositiveInclusive = (1 << 28) - 1;
+            if (result <= maxPositiveInclusive) return result;  // Postive number
 
+            // Negative number. -x is stored as 2^29 - x
             const int upperExclusiveBound = 1 << 29;
             return result - upperExclusiveBound;
         }
@@ -213,6 +214,11 @@ namespace CoCEd.Model
 
         int ReadU29()
         {
+            // Unseigned integer encoded on 8 to 32 bits, with 7 to 29 significant bits (similar to Unicode).
+            // The most signficant bits are stored on the left (at the beginning).
+            // The fourth byte always have 8 significant bits. 
+            // 7-7-7-8  or  7-7-7   or 7-7  or 7
+
             int numBytes = 0;
             int result = 0;
             while (true)
