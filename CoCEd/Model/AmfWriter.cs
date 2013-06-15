@@ -210,7 +210,7 @@ namespace CoCEd.Model
         void WriteI29(int value)
         {
             const int upperExclusiveBound = 1 << 29;
-            if (value < 0) WriteU29(value + upperExclusiveBound);
+            if (value < 0) WriteU29(value + upperExclusiveBound); // -x is stored as 2^29 - x
             else WriteU29(value);
         }
 
@@ -223,24 +223,38 @@ namespace CoCEd.Model
 
         void WriteU29(int value)
         {
-            // Two possible combinations
-            // 7-7-7-8 (22-15-8-0)
-            // 0-7-7-7 (   14-7-0)
+            // Unseigned integer encoded on 8 to 32 bits, with 7 to 29 significant bits (similar to Unicode).
+            // The most signficant bits are stored on the left (at the beginning).
+            // The fourth byte always have 8 significant bits. 
+            // 7-7-7-8  or  7-7-7   or 7-7  or 7
 
-            bool fourBytes = (value >> 21) != 0;
-            int shift = fourBytes ? 22 : 14;
+            // Say that value == A << 21 | B << 14 | C << 7 | D
+            // We first test whether A is zero, write it or continue. Then B, then C, then D.
+
+
+            // Initial shift to get the 7 most significant bits. 
+            // If we do have four bytes, then we will have 29 bits and need to shift by 22 (29 - 7), 15, 8, 0. 
+            // If we do have up to three bytes, then we will have up to 21 bits and will need to shift by 14 (21 - 7), 7, 0.
+            bool fourBytes = (value >> 21) != 0;    // Shift is not circular in C#
+            int shift = fourBytes ? 22 : 14;        
             int numBytes = 0;
+
             while (shift >= 0)
             {
                 int mask = (numBytes == 3 ? 0xFF : 0x7F);
                 byte b = (byte)((value >> shift) & mask);
 
-                if (shift == 8) shift = 0;
+                if (shift == 8) shift = 0;  // Only happen when there are four bytes to write.
                 else shift -= 7;
 
-                if (b == 0 && numBytes == 0 && shift >= 0) continue;
+                // Skip if:
+                // * No group of bits have been written yet.
+                // * Those 7 most signficant bits so far are zero
+                // * They are not the 7 least significant bits (we always need to write those to store the number 0).
+                if (b == 0 && numBytes == 0 && shift >= 0) continue;    
                 ++numBytes;
 
+                // Write a continuation bit if those are not the least significant bits (shift would be <0 for those ones)
                 if (shift >= 0) b |= 0x80;
                 _writer.Write(b);
             }
