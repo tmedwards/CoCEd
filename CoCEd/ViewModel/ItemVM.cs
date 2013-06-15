@@ -87,6 +87,11 @@ namespace CoCEd.ViewModel
             set
             {
                 SetValue("quantity", value);
+
+                // Fix type
+                if (value == 0) Type = "";
+
+                // Property change
                 OnPropertyChanged("TypeDescription");
                 OnPropertyChanged("QuantityDescription");
             }
@@ -99,6 +104,13 @@ namespace CoCEd.ViewModel
             {
                 var oldType = Type;
                 if (!SetValue("shortName", value)) return;
+
+                // Fix quantity
+                var xml = XmlData.Instance.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == value);
+                if (xml != null && Quantity == 0) Quantity = 1;
+                else if (xml == null && Quantity != 0) Quantity = 0;
+
+                // Property change
                 OnPropertyChanged("QuantityDescription");
                 OnPropertyChanged("TypeDescription");
                 InvalidateItem(oldType);
@@ -117,9 +129,9 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                var type = XmlData.Instance.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
-                if (Quantity == 0 || type == null) return "<empty>";
-                return type.Name;
+                var xml = XmlData.Instance.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
+                if (Quantity == 0 || xml == null) return "<empty>";
+                return xml.Name;
             }
         }
 
@@ -206,7 +218,6 @@ namespace CoCEd.ViewModel
             {
                 if (!value) return;
                 _slot.Type = _xml.ID;
-                if (_slot.Quantity == 0) _slot.Quantity = 1;
             }
         }
 
