@@ -84,8 +84,20 @@
                     <CheckBox Content="Whitney's Farm" IsChecked="{Binding Game.ExploredFarm}"/>
                     <CheckBox Content="Owca" IsChecked="{Binding Game.ExploredOwca}"/>
                     <CheckBox Content="Salon" IsChecked="{Binding Game.ExploredBarber}"/>
+                    <CheckBox Content="Town Ruins" IsChecked="{Binding Game.ExploredTownRuins}"/>
+                    <CheckBox Content="Lake Boat" IsChecked="{Binding Game.ExploredBoat}"/>
+                </UniformGrid>
+
+                <Border Style="{StaticResource HeaderBorder}" Margin="0,30,0,4">
+                    <TextBlock Text="Dungeons Unlocked" Style="{StaticResource Header}"/>
+                </Border>
+                <UniformGrid Columns="2" Width="250">
+                    <CheckBox Content="Factory" IsChecked="{Binding Game.ExploredDungeonFactory}"/>
+                    <CheckBox Content="Deep Cave" IsChecked="{Binding Game.ExploredDungeonDeepCave}"/>
+                    <CheckBox Content="Desert Cave" IsChecked="{Binding Game.ExploredDungeonDesertCave}"/>
                 </UniformGrid>
             </StackPanel>
+            <common:AutoGrid Grid.Column="4" HorizontalAlignment="Left" Height="100" Margin="29,112,-129,-211" Grid.Row="4" VerticalAlignment="Top" Width="100"/>
         </Grid>
     </ScrollViewer>
 </UserControl>
