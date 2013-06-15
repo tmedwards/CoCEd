@@ -1058,10 +1058,7 @@ namespace CoCEd.ViewModel
         public bool ExploredBizarreBazaar
         {
             get { return GetFlag(211).AsInt() == 1; }
-            set
-            {
-                GetFlag(211).SetValue(value ? 1 : 0);
-            }
+            set { GetFlag(211).SetValue(value ? 1 : 0); }
         }
 
         public bool ExploredFarm
@@ -1077,16 +1074,43 @@ namespace CoCEd.ViewModel
         public bool ExploredOwca
         {
             get { return GetFlag(506).AsInt() == 1; }
-            set
-            {
-                GetFlag(506).SetValue(value ? 1 : 0);
-            }
+            set { GetFlag(506).SetValue(value ? 1 : 0); }
+        }
+
+        public bool ExploredTownRuins
+        {
+            get { return GetFlag(44).AsInt() == 1; }
+            set { GetFlag(44).SetValue(value ? 1 : 0); }
         }
 
         public bool ExploredBarber
         {
             get { return GetStatus("hairdresser meeting").IsOwned; }
             set { GetStatus("hairdresser meeting").IsOwned = value; }
+        }
+
+        public bool ExploredBoat
+        {
+            get { return GetStatus("Boat Discovery").IsOwned; }
+            set { GetStatus("Boat Discovery").IsOwned = value; }
+        }
+
+        public bool ExploredDungeonFactory
+        {
+            get { return GetStatus("Found Factory").IsOwned; }
+            set { GetStatus("Found Factory").IsOwned = value; }
+        }
+
+        public bool ExploredDungeonDeepCave
+        {
+            get { return GetFlag(113).AsInt() == 1; }
+            set { GetFlag(113).SetValue(value ? 1 : 0); }
+        }
+
+        public bool ExploredDungeonDesertCave
+        {
+            get { return GetFlag(856).AsInt() == 1; }
+            set { GetFlag(856).SetValue(value ? 1 : 0); }
         }
 
         public bool HasSandTrapBalls
