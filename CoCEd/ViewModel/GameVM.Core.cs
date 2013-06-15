@@ -10,7 +10,8 @@ namespace CoCEd.ViewModel
 {
     public sealed partial class GameVM : ObjectVM
     {
-        // Whenever a FlagVM or StatusVM is modified, it notifies GameVM so that it updates its dependent properties.
+        // Whenever a FlagVM or StatusVM is modified, it notifies GameVM with those functions so that it updates its dependent properties. 
+        // See also GetPerk,  GetFlag and GetStatus.
         public void OnPerkChanged(string name)
         {
             foreach (var prop in _allPerks.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
@@ -27,6 +28,10 @@ namespace CoCEd.ViewModel
         }
 
 
+        /// <summary>
+        /// Returns the flag with the specified index AND registers a dependency between the caller property and this flag. 
+        /// That way, anytime the flag value is changed, OnPropertyChanged will be raised for the caller property.
+        /// </summary>
         FlagVM GetFlag(int index, [CallerMemberName] string propertyName = null)
         {
             var flag = _allFlags[index];
@@ -34,6 +39,10 @@ namespace CoCEd.ViewModel
             return flag;
         }
 
+        /// <summary>
+        /// Returns the status with the specified name (even if not owned by the player) AND registers a dependency between the caller property and this status.
+        /// That way, anytime the status is modified, OnPropertyChanged will be raised for the caller property.
+        /// </summary>
         StatusVM GetStatus(string name, [CallerMemberName] string propertyName = null)
         {
             var status = _allStatuses.First(x => x.Name == name);
@@ -41,6 +50,10 @@ namespace CoCEd.ViewModel
             return status;
         }
 
+        /// <summary>
+        /// Returns the perk with the specified name (even if not owned by the player) AND registers a dependency between the caller property and this perk.
+        /// That way, anytime the perk is modified, OnPropertyChanged will be raised for the caller property.
+        /// </summary>
         PerkVM GetPerk(string name, [CallerMemberName] string propertyName = null)
         {
             var perk = _allPerks.First(x => x.Name == name);
@@ -55,7 +68,8 @@ namespace CoCEd.ViewModel
 
         public void OnPerkAddedOrRemoved(string name, bool isOwned)
         {
-            // We do not care about perks that add stats since the user can already change them easily.
+            // Grants/removes the player the appropriate bonuses when a perk is added or removed.
+            // We do not add stats however since the user can already change them easily.
             if (name == "Strong Back")
             {
                 GetObj("itemSlot4")["unlocked"] = isOwned;
@@ -81,6 +95,7 @@ namespace CoCEd.ViewModel
 
         public void OnKeyItemAddedOrRemoved(string name, bool isOwned)
         {
+            // Creates/destroys the corresponding item slots when a container is added/removed.
             if (name == "Camp - Chest")
             {
                 var array = GetObj("itemStorage");
@@ -154,7 +169,7 @@ namespace CoCEd.ViewModel
 
         void OnGenitalCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            // Update gender
+            // Update gender when cocks or vaginas are added/removed.
             if (Cocks.Count != 0 && Vaginas.Count != 0) SetValue("gender", 3);
             else if (Vaginas.Count != 0) SetValue("gender", 2);
             else if (Cocks.Count != 0) SetValue("gender", 1);
