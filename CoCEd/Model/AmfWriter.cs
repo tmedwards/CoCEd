@@ -263,23 +263,29 @@ namespace CoCEd.Model
         void WriteString(string str)
         {
             int index;
+            // Empty string, special case.
             if (str == "")
             {
                 WriteU29(0, true);
             }
+            // String stored by reference.
             else if (_stringLookup.TryGetValue(str, out index))
             {
                 WriteU29(index, false);
             }
+            // Plain string
             else
             {
                 WritePlainString(str);
-                _stringLookup.Add(str, _stringLookup.Count);
+                _stringLookup.Add(str, _stringLookup.Count);    // Stores reference.
             }
         }
 
         void WritePlainString(string str)
         {
+            // Paint in the butt: strings are stored as length-in-bytes followed by the characters.
+            // This is different from dotnet where strings are stored as number-of-characters followed by the characters.
+            // Hence wny we first write the string in _charSteam, in order to get its length in bytes (and after we only need to copy the buffer).
             _charStream.Position = 0;
             foreach (var c in str) _charWriter.Write(c);
 
@@ -436,6 +442,7 @@ namespace CoCEd.Model
             WritePlainString(xml.Content);
         }
 
+        // Most object types are stored by reference so that they are only serialized once. After that only their reference index is stored.
         bool TryWriteRef(Object obj)
         {
             int index;

@@ -149,8 +149,26 @@ namespace CoCEd.Model
             return BitConverter.ToDouble(_buffer, 0);
         }
 
+        string ReadString()
+        {
+            // Stored by reference?
+            bool isValue;
+            var lengthOrIndex = ReadU29(out isValue);
+            if (!isValue) return _stringLookup[lengthOrIndex];
+
+            // Empty string (never stored by ref) ?
+            if (lengthOrIndex == 0) return "";
+
+            // Read the string
+            var str = ReadPlainString(lengthOrIndex);
+            _stringLookup.Add(str);
+            return str;
+        }
+
         string ReadPlainString(int lengthInBytes)
         {
+            // Paint in the butt: strings are stored as length-in-bytes followed by the characters.
+            // This is different from dotnet where strings are stored as number-of-characters followed by the characters.
             var start = _reader.BaseStream.Position;
             var chars = new char[lengthInBytes];
 
@@ -164,33 +182,21 @@ namespace CoCEd.Model
             return new string(chars, 0, numChars);
         }
 
-        string ReadString()
-        {
-            bool isValue;
-            var lengthOrIndex = ReadU29(out isValue);
-            if (!isValue) return _stringLookup[lengthOrIndex];
-
-            if (lengthOrIndex == 0) return "";
-            var str = ReadPlainString(lengthOrIndex);
-            _stringLookup.Add(str);
-            return str;
-        }
-
         ushort ReadU16()
         {
-            FillBufferReversed(2);
+            FillBufferReversed(2);  // Different endianness
             return BitConverter.ToUInt16(_buffer, 0);
         }
 
         uint ReadU32()
         {
-            FillBufferReversed(4);
+            FillBufferReversed(4);  // Different endianness
             return BitConverter.ToUInt32(_buffer, 0);
         }
 
         int ReadI32()
         {
-            FillBufferReversed(4);
+            FillBufferReversed(4);  // Different endianness
             return BitConverter.ToInt32(_buffer, 0);
         }
 
@@ -235,10 +241,12 @@ namespace CoCEd.Model
 
         DateTime ReadDate()
         {
+            // Stored by ref?
             bool isInstance;
             int refIndex = ReadU29(out isInstance);
             if (!isInstance) return (DateTime)_objectLookup[refIndex];
 
+            // Stored by value
             var elapsed = ReadDouble();
             var result = new DateTime(1970, 1, 1) + TimeSpan.FromMilliseconds(elapsed);
             _objectLookup.Add(result);
@@ -247,10 +255,12 @@ namespace CoCEd.Model
 
         AmfObject ReadArray()
         {
+            // Stored by ref?
             bool isInstance;
             var indexOrCount = ReadU29(out isInstance);
             if (!isInstance) return (AmfObject)_objectLookup[indexOrCount];
 
+            // Stored by value
             var result = new AmfObject(AmfTypes.Array, indexOrCount);
             _objectLookup.Add(result);
 
@@ -276,10 +286,12 @@ namespace CoCEd.Model
 
         AmfObject ReadObject()
         {
+            // Stored by ref?
             bool isInstance;
             int refIndex = ReadU29(out isInstance);
             if (!isInstance) return (AmfObject)_objectLookup[refIndex];
 
+            // Stored by value
             var result = new AmfObject(AmfTypes.Object);
             _objectLookup.Add(result);
 
@@ -308,9 +320,11 @@ namespace CoCEd.Model
 
         AmfTrait ReadTrait(int refIndex)
         {
+            // Stored by ref?
             bool isInstance = PopFlag(ref refIndex);
             if (!isInstance) return _traitLookup[refIndex];
 
+            // Stored by value
             bool isExternalizable = PopFlag(ref refIndex);
             if (isExternalizable) throw new NotImplementedException("Unsupported externalized traits");
 
@@ -331,10 +345,12 @@ namespace CoCEd.Model
 
         byte[] ReadByteArray()
         {
+            // Stored by ref?
             bool isInstance;
             int lengthOrIndex = ReadU29(out isInstance);
             if (!isInstance) return (byte[])_objectLookup[lengthOrIndex];
 
+            // Stored by value
             var result = _reader.ReadBytes(lengthOrIndex);
             _objectLookup.Add(result);
             return result;
@@ -342,10 +358,12 @@ namespace CoCEd.Model
 
         AmfObject ReadVector(AmfTypes type)
         {
+            // Stored by ref?
             bool isInstance;
             int lengthOrIndex = ReadU29(out isInstance);
             if (!isInstance) return (AmfObject)_objectLookup[lengthOrIndex];
 
+            // Stored by value
             var result = new AmfObject(type, lengthOrIndex);
             _objectLookup.Add(result);
 
@@ -381,10 +399,12 @@ namespace CoCEd.Model
 
         AmfObject ReadDictionary()
         {
+            // Stored by ref?
             bool isInstance;
             int lengthOrIndex = ReadU29(out isInstance);
             if (!isInstance) return (AmfObject)_objectLookup[lengthOrIndex];
 
+            // Stored by value
             var result = new AmfObject(AmfTypes.Dictionary, lengthOrIndex);
             _objectLookup.Add(result);
 
@@ -400,10 +420,12 @@ namespace CoCEd.Model
 
         AmfXmlType ReadXML(bool isDocument)
         {
+            // Stored by ref?
             bool isInstance;
             int lengthOrIndex = ReadU29(out isInstance);
             if (!isInstance) return (AmfXmlType)_objectLookup[lengthOrIndex];
 
+            // Stored by value
             var result = new AmfXmlType { IsDocument = isDocument };
             result.Content = ReadPlainString(lengthOrIndex);
             _objectLookup.Add(result);
