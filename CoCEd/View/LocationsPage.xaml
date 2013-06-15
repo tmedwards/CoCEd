@@ -97,7 +97,6 @@
                     <CheckBox Content="Desert Cave" IsChecked="{Binding Game.ExploredDungeonDesertCave}"/>
                 </UniformGrid>
             </StackPanel>
-            <common:AutoGrid Grid.Column="4" HorizontalAlignment="Left" Height="100" Margin="29,112,-129,-211" Grid.Row="4" VerticalAlignment="Top" Width="100"/>
         </Grid>
     </ScrollViewer>
 </UserControl>
