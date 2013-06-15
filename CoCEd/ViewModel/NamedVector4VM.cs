@@ -81,24 +81,36 @@ namespace CoCEd.ViewModel
         {
         }
 
+        /// <summary>
+        /// Gets the first value, or 0 if the perk/status/key item is not owned.
+        /// </summary>
         public double Value1
         {
             get { return GetDouble("value1"); }
             set { SetDoubleOrIntValue("value1", value); }
         }
 
+        /// <summary>
+        /// Gets the second value, or 0 if the perk/status/key item is not owned.
+        /// </summary>
         public double Value2
         {
             get { return GetDouble("value2"); }
             set { SetDoubleOrIntValue("value2", value); }
         }
 
+        /// <summary>
+        /// Gets the third value, or 0 if the perk/status/key item is not owned.
+        /// </summary>
         public double Value3
         {
             get { return GetDouble("value3"); }
             set { SetDoubleOrIntValue("value3", value); }
         }
 
+        /// <summary>
+        /// Gets the fourth value, or 0 if the perk/status/key item is not owned.
+        /// </summary>
         public double Value4
         {
             get { return GetDouble("value4"); }
