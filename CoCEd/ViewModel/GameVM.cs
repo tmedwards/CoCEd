@@ -815,7 +815,7 @@ namespace CoCEd.ViewModel
             }
         }
 
-        string FormatVolume(double qty, string suffix = "")
+        public static string FormatVolume(double qty, string suffix = "")
         {
             if (qty <= 0) return "";
             if (qty <= 1000) return String.Format("{0:0} mL", qty) + suffix;

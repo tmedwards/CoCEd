@@ -85,8 +85,7 @@ namespace CoCEd.ViewModel
             get
             {
                 var qty = Rating * 10 * LactationMultiplier * BreastCount;
-                if (qty == 0) return "";
-                return qty < 1000 ? String.Format("{0:0} mL/h (base)", qty) : String.Format("{0:0.00} L/h (base)", qty * 0.001);
+                return GameVM.FormatVolume(qty, "/h (base)");
             }
         }
 
