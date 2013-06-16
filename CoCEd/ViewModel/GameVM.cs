@@ -913,6 +913,12 @@ namespace CoCEd.ViewModel
             get { return GetStatus("Marble").IsOwned; }
         }
 
+        public int RapierSkill
+        {
+            get { return GetFlag(137).AsInt(); }
+            set { GetFlag(137).SetValue(value); }
+        }
+
         public int ArcherySkill
         {
             get { return (int)GetStatus("Kelt").Value1; }
