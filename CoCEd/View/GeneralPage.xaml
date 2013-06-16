@@ -54,8 +54,11 @@
                     <TextBlock              Text="Level"/>
                     <common:MyNumericBox    Value="{Binding Game.Level}"/>
 
-                    <TextBlock              Text="Tease level"/>
+                    <TextBlock              Text="Tease skill"/>
                     <common:MyNumericBox    Value="{Binding Game.TeaseLevel}" Upper="5"/>
+
+                    <TextBlock              Text="Rapier skill*" ToolTip="+2 damage points per skill point with rapiers."/>
+                    <common:MyNumericBox    Value="{Binding Game.RapierSkill}" Upper="4"/>
 
                     <TextBlock              Text="Archery skill" IsEnabled="{Binding Game.HasMetKelt}"/>
                     <common:MyNumericBox    Value="{Binding Game.ArcherySkill}" Unit="%" Upper="100" IsEnabled="{Binding Game.HasMetKelt}"/>
