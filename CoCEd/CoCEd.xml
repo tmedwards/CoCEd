@@ -621,6 +621,10 @@
       <Item ID="LthrPnt" Name="Tight Leather Pants"/>
       <Item ID="TubeTop" Name="Tube Top"/>
     </ItemGroup>
+    <!--============================================================================================================================================-->
+    <ItemGroup Name="Cursed" Category="Armor">
+      <Item ID="SeductA" Name="Scandalously Seductive Armor"/>
+    </ItemGroup>
   </Items>
   <!--============================================================================================================================================-->
   <KeyItems>
