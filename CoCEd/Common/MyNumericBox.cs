@@ -413,7 +413,7 @@ namespace CoCEd.Common
             if (CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator != ".") separators += CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
             var unitFormat = @"[^\d\s" + separators + "]+";
-            var numberFormat = @"[\d" + separators + "]+";
+            var numberFormat = @"[+-]?[\d" + separators + "]+";
             var format = @"^\s*(?<value1>" + numberFormat + @")\s*(?<unit1>" + unitFormat + @")?\s*(?<value2>" + numberFormat + @")?\s*(?<unit2>" + unitFormat + @")?\s*$";
 
             // Match
