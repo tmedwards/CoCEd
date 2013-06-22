@@ -59,7 +59,7 @@ namespace CoCEd.ViewModel
             : base(obj)
         {
             Categories = categories;
-            _allGroups = XmlData.Instance.ItemGroups.Where(group => Categories.HasFlag(group.Category) && group.Items.Count > 0).Select(x => new ItemGroupVM(x, this)).ToArray();
+            _allGroups = XmlData.Instance.ItemGroups.Where(group => Categories.HasFlag(group.Category)).Select(x => new ItemGroupVM(x, this)).ToArray();
             AllGroups = new UpdatableCollection<ItemGroupVM>(_allGroups.Where(x => x.Items.Count != 0));
         }
 
