@@ -83,7 +83,7 @@
                             <Grid x:Name="root">
                                 <Border x:Name="mouseOverBorder" Background="#20000000" Opacity="0"/>
                                 <Border x:Name="selectionBorder" Background="#DA3100" Opacity="0"/>
-                                <TextBlock x:Name="text" Text="{Binding Name}" TextTrimming="CharacterEllipsis" Margin="4" SnapsToDevicePixels="True"/>
+                                <TextBlock x:Name="text" Text="{Binding Name}" TextTrimming="CharacterEllipsis" Margin="4" SnapsToDevicePixels="True" ToolTip="{Binding ToolTip}"/>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">

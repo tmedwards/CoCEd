@@ -211,6 +211,11 @@ namespace CoCEd.ViewModel
             get { return _xml.Name; }
         }
 
+        public string ToolTip
+        {
+            get { return _xml.Description; }
+        }
+
         public bool IsSelected
         {
             get { return _slot.Type == _xml.ID; }
