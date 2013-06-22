@@ -545,6 +545,7 @@
       <Item ID="L.PrpEg" Name="Large Purple and White Mottled Egg"/>
       <Item ID="L.BlkEg" Name="Large Rubbery Black Egg"/>
       <Item ID="L.WhtEg" Name="Large White Egg"/>
+      <Item ID="DrgnEgg" Name="Unfertilized dragon egg*" Description="Lowers your fatigue after using the dragon breath attack."/>
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Dyes" Category="Other">
