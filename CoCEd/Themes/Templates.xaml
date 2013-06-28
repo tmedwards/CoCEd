@@ -11,6 +11,13 @@
     <SolidColorBrush x:Key="NumericMouseOverBackground" Color="#DA3610"/>
     <SolidColorBrush x:Key="NumericMouseOverForeground" Color="#FFFFFF"/>
 
+    <LinearGradientBrush x:Key="ToolTipBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#FBFBFB" Offset="0.0"/>
+        <GradientStop Color="#F6F6F6" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    
+    
     <Style x:Key="NumericExtremumButton" TargetType="{x:Type Button}">
         <Setter Property="Padding" Value="4,3"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -85,6 +92,11 @@
                                 <Button    Grid.Column="2" x:Name="upperButton" Style="{StaticResource NumericExtremumButton}" HorizontalContentAlignment="Right" SnapsToDevicePixels="True"/>
                             </Grid>
                         </Border>
+                        <Popup IsOpen="{TemplateBinding HasError}" Width="150" Margin="0,24,0,0">
+                            <Border Background="{StaticResource ToolTipBackgroundBrush}" BorderBrush="#909090" BorderThickness="1,0,1,1">
+                                <TextBlock Text="{TemplateBinding ErrorText}" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,3"/>
+                            </Border>
+                        </Popup>
                         <TextBlock Grid.Column="1" x:Name="tipText" TextTrimming="CharacterEllipsis" Foreground="#A0A0A0" VerticalAlignment="Center" Margin="4,0,0,0" FontStyle="Italic"/>
                     </Grid>
                     <ControlTemplate.Triggers>

@@ -47,6 +47,9 @@ namespace CoCEd.Common
         static readonly DependencyPropertyKey HasErrorPropertyKey = DependencyProperty.RegisterReadOnly("HasError", typeof(bool), typeof(MyNumericBox), new PropertyMetadata(false));
         public static readonly DependencyProperty HasErrorProperty = HasErrorPropertyKey.DependencyProperty;
 
+        static readonly DependencyPropertyKey ErrorTextPropertyKey = DependencyProperty.RegisterReadOnly("ErrorText", typeof(string), typeof(MyNumericBox), new PropertyMetadata(null));
+        public static readonly DependencyProperty ErrorTextProperty = ErrorTextPropertyKey.DependencyProperty;
+
 
         static MyNumericBox()
         {
@@ -127,6 +130,11 @@ namespace CoCEd.Common
             private set { SetValue(HasErrorPropertyKey, value); }
         }
 
+        public string ErrorText
+        {
+            get { return (string)GetValue(ErrorTextProperty); }
+            private set { SetValue(ErrorTextPropertyKey, value); }
+        }
 
         public override void OnApplyTemplate()
         {
@@ -144,6 +152,7 @@ namespace CoCEd.Common
             _textBox = GetTemplateChild("textBox") as TextBox;
             _lowerButton = GetTemplateChild("lowerButton") as Button;
             _upperButton = GetTemplateChild("upperButton") as Button;
+
 
             if (_lowerButton != null) _lowerButton.Click += lowerButton_Click;
             if (_upperButton != null) _upperButton.Click += upperButton_Click;
@@ -251,9 +260,10 @@ namespace CoCEd.Common
             // Do it now for performances reasons
             if (ValueToText(Value) == _textBox.Text)
             {
-                HasError = false;
+                SetError(null);
                 return true;
             }
+
             if (TextToValue(_textBox.Text, out value))
             {
                 _preserveText = true;
@@ -266,46 +276,51 @@ namespace CoCEd.Common
                     _preserveText = false;
                 }
             }
-            if (showError) HasError = true;
+            else if (showError) SetError("Invalid format");
             return false;
         }
 
         bool TrySetValue(double value, bool showError = true)
         {
-            if (Validate(value))
+            string error = GetErrorText(value);
+            if (error == null)
             {
+                SetError(null);
                 Value = value;
-                HasError = false;
                 return true;
             }
-            else
-            {
-                if (showError) HasError = true;
-                return false;
-            }
+
+            if (showError) SetError(error);
+
+            return false;
         }
 
-        bool Validate(double value)
+        string GetErrorText(double value)
         {
-            if (Min.HasValue && value < Min.Value) return false;
-            if (Max.HasValue && value > Max.Value) return false;
+            if (Min.HasValue && value < Min.Value) return "Must be greater than " + Min.Value;
+            if (Max.HasValue && value > Max.Value) return "Must be lesser than " + Max.Value;
 
             if (Type == NumericType.Int)
             {
-                const int extremum = 1 << 28;
-                if (value < -extremum) return false;
-                if (value >= extremum) return false;
-                if (value != (int)value) return false;
+                const int extremum = 1 << 28; // Flash limit for int29 encoding
+                if (value < -extremum) return "Must be greater or equal than " + -extremum;
+                if (value >= extremum) return "Must be lesser than " + extremum;
+                if (value != (int)value) return "Must be an integer.";
             }
             else if (Type == NumericType.UInt)
             {
                 const int extremum = 1 << 29;
-                if (value < 0) return false;
-                if (value >= extremum) return false;
-                if (value != (int)value) return false;
+                if (value < 0) return "Must be positive or zero.";
+                if (value >= extremum) return "Must be lesser than" + extremum;
+                if (value != (int)value) return "Must be an integer.";
             }
+            return null;
+        }
 
-            return true;
+        void SetError(string text)
+        {
+            HasError = (text != null);
+            ErrorText = text;
         }
 
         bool TextToValue(string str, out double value)
