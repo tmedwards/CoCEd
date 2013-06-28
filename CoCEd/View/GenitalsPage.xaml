@@ -51,10 +51,10 @@
                     <common:MyNumericBox    Value="{Binding Game.Balls}"/>
 
                     <TextBlock              Text="Size"/>
-                    <common:MyNumericBox    Value="{Binding Game.BallSize}" Type="Double" Unit="inches"/>
+                    <common:MyNumericBox    Value="{Binding Game.BallSize}" Type="Double" Unit="inches" Max="400"/>
 
                     <TextBlock              Text="Cum multiplier"/>
-                    <common:MyNumericBox    Value="{Binding Game.CumMultiplier}" Type="Double" Tip="{Binding Game.CumProduction}"/>
+                    <common:MyNumericBox    Value="{Binding Game.CumMultiplier}" Type="Double" Tip="{Binding Game.CumProduction}" Max="9999"/>
                     
                     <TextBlock              Text="Hours since cum"/>
                     <common:MyNumericBox    Value="{Binding Game.HoursSinceCum}" Unit="Hours" Tip="{Binding Game.CumVolume}"/>
