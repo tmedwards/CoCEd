@@ -53,6 +53,12 @@ namespace CoCEd.ViewModel
             foreach(var xml in XmlData.Instance.Flags) xmlFlagByID[xml.ID] = xml;
 
             var flagsArray = GetObj("flags");
+            if (flagsArray == null) 
+            {
+                // For very old versions of CoC
+                _obj["flags"] = flagsArray = new AmfObject(AmfTypes.Array);
+                for (int i = 0; i < 3000; ++i) flagsArray.Push(0);
+            }
             _allFlags = new FlagVM[numFlags];
             for (int i = 0; i < _allFlags.Length; ++i) _allFlags[i] = new FlagVM(flagsArray, xmlFlagByID[i], i);
             Flags = new UpdatableCollection<FlagVM>(_allFlags.Where(x => x.Index > 0 && x.Match(_rawDataSearchText)));
