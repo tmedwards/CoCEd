@@ -1909,5 +1909,10 @@
     <Flag ID="925" Name="DIDNT_FUCK_PHYLLA_ON_RECRUITMENT"/>
     <Flag ID="926" Name="HELIA_ANAL_TRAINING_OFFERED"/>
     <Flag ID="927" Name="HELIA_ANAL_TRAINING"/>
+    <Flag ID="928" Name="HELIA_BIRTHDAY_OFFERED"/>
+    <Flag ID="929" Name="HELIA_BDAY_DRINKS"/>
+    <Flag ID="930" Name="HELIA_BDAY_HAKON_AND_KIRI"/>
+    <Flag ID="931" Name="HELIA_BDAY_PHOENIXES"/>
+    <Flag ID="932" Name="HELIA_BDAY_FOX_TWINS"/>
   </Flags>
 </CoCEd>
