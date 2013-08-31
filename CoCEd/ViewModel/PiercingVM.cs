@@ -67,7 +67,7 @@ namespace CoCEd.ViewModel
 
         public int Type
         {
-            get { return GetInt(_prefix == "" ? "pierced" : _prefix + "Pierced"); }
+            get { return GetInt(_prefix == "" ? "pierced" : _prefix + "Pierced", 0); }
             set
             {
                 // Upper name is unfortunately changed by the combobox when we do change type, so we store it beforehand.
