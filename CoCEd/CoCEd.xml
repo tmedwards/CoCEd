@@ -1932,5 +1932,30 @@
     <Flag ID="948" Name="ARIAN_FIRST_REPTILUM"/>
     <Flag ID="949" Name="ARIAN_TREATMENT"/>
     <Flag ID="950" Name="ARIAN_HAS_BLOWN"/>
+    <Flag ID="951" Name="ARIAN_MORNING"/>
+    <Flag ID="952" Name="ARIAN_EGG_CHAT"/>
+    <Flag ID="953" Name="ARIAN_EGG_EVENT"/>
+    <Flag ID="954" Name="ARIAN_EGG_COLOR"/>
+    <Flag ID="955" Name="ARIAN_EGG_COUNTER"/>
+    <Flag ID="956" Name="HELSPAWN_NAME"/>
+    <Flag ID="957" Name="HELSPAWN_PERSONALITY"/>
+    <Flag ID="958" Name="HELSPAWN_DADDY"/>
+    <Flag ID="959" Name="HELSPAWN_WEAPON"/>
+    <Flag ID="960" Name="HELSPAWN_AGE"/>
+    <Flag ID="961" Name="HELSPAWN_GROWUP_COUNTER"/>
+    <Flag ID="962" Name="HEL_LOVE"/>
+    <Flag ID="963" Name="HELIA_KIDS_CHAT"/>
+    <Flag ID="964" Name="HELIA_TALK_SEVEN"/>
+    <Flag ID="965" Name="HEL_NTR_TRACKER"/>
+    <Flag ID="966" Name="HEL_BONUS_POINTS"/>
+    <Flag ID="967" Name="HEL_PREGNANCY_INCUBATION"/>
+    <Flag ID="968" Name="HEL_PREGNANCY_NOTICES"/>
+    <Flag ID="969" Name="HAD_FIRST_HELSPAWN_TALK"/>
+    <Flag ID="970" Name="HELSPAWN_INCEST"/>
+    <Flag ID="971" Name="HEL_TALK_EIGHT"/>
+    <Flag ID="972" Name="HELSPAWN_DISCOVER_BOOZE"/>
+    <Flag ID="973" Name="HELSPAWN_FUCK_INTERRUPTUS"/>
+    <Flag ID="974" Name="SPIDER_BRO_GIFT"/>
+    <Flag ID="975" Name="HAKON_AND_KIRI_VISIT"/>
   </Flags>
 </CoCEd>
