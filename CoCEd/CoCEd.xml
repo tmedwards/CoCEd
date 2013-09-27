@@ -1957,5 +1957,13 @@
     <Flag ID="973" Name="HELSPAWN_FUCK_INTERRUPTUS"/>
     <Flag ID="974" Name="SPIDER_BRO_GIFT"/>
     <Flag ID="975" Name="HAKON_AND_KIRI_VISIT"/>
+    <Flag ID="976" Name="KELLY_HAIR_COLOR"/>
+    <Flag ID="977" Name="KELLY_TALK_N_HAND_TIMES"/>
+    <Flag ID="978" Name="KELLY_TIMES_REWARDED"/>
+    <Flag ID="979" Name="KELLY_TIMES_DIED_HAIR"/>
+    <Flag ID="980" Name="KELLY_TIMES_APPLESAUCED"/>
+    <Flag ID="981" Name="KELLY_REWARD_COOLDOWN"/>
+    <Flag ID="982" Name="KIHA_CAMP_WATCH"/>
+    <Flag ID="983" Name="TIMES_ARIAN_DILDOED"/>
   </Flags>
 </CoCEd>
