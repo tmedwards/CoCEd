@@ -1996,5 +1996,8 @@
     <Flag ID="1012" Name="RUBI_BONDAGE_STRAPS"/>
     <Flag ID="1013" Name="RUBI_INQUISITORS_CORSET"/>
     <Flag ID="1014" Name="RUBI_SETUP"/>
+    <Flag ID="1015" Name="EXPLORATION_PAGE"/>
+    <Flag ID="1016" Name="BOG_EXPLORED"/>
+    <Flag ID="1017" Name="TIMES_ENCOUNTERED_FROG"/>
   </Flags>
 </CoCEd>
