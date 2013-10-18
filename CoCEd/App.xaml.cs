@@ -41,9 +41,7 @@ namespace CoCEd
             try
             {
                 ExceptionBox box = new ExceptionBox();
-                box.Title = "Unexpected error";
-                box.Message = "An error occured and the application is going to exit.\nThe error below will be saved as CoCEd.log. Please report it on CoC's forums.";
-                box.ExceptionMessage = e.Exception.ToString();
+                SetError(box, e.Exception);
                 box.ShowDialog(ExceptionBoxButtons.Quit);
             }
             catch(Exception e2)
@@ -53,6 +51,24 @@ namespace CoCEd
 
             Logger.Error(e.Exception);
             Shutdown();
+        }
+
+        void SetError(ExceptionBox box, Exception exception)
+        {
+            var msg = exception.ToString();
+            box.ExceptionMessage = msg;
+
+            // Special case for image codec problem
+            if (msg.Contains("0x88982F04"))
+            {
+                box.Title = "Bad image codec";
+                box.Message = "You do use a non-standard image codec that does not properly handle some PNG files. It's not just CoCEd: other programs may be affected too.\n\nCheck for FastPictureViewer's or Canon's codec packs and try to update them or uninstall them.";
+            }
+            else
+            {
+                box.Title = "Unexpected error";
+                box.Message = "An error occured and the application is going to exit.\nThe error below will be saved as CoCEd.log. Please report it on CoC's forums.";
+            }
         }
 
         void Initialize()
