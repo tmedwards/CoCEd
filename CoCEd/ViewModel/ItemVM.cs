@@ -208,7 +208,11 @@ namespace CoCEd.ViewModel
 
         public string Name
         {
-            get { return _xml.Name; }
+            get
+            {
+                if (ToolTip == null) return _xml.Name;
+                else return _xml.Name + "\u202F*";
+            }
         }
 
         public string ToolTip
