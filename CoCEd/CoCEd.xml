@@ -443,6 +443,7 @@
     <ItemGroup Name="Misc" Category="Other">
       <Item ID="B.Chitn" Name="Black Chitin"/>
       <Item ID="B. Book" Name="Black Book"/>
+      <Item ID="GldStat" Name="Golden Statue" Description="Enables the Meditate action at the kitsune shrine in the Deepwoods.  Can also be stolen and sold for gems."/>
       <Item ID="GreenGl" Name="Green Gel"/>
       <Item ID="T.SSilk" Name="Tough Silk"/>
       <Item ID="W. Book" Name="White Book"/>
@@ -533,19 +534,19 @@
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Eggs" Category="Other">
-      <Item ID="BlueEgg" Name="Blue and White Mottled Egg"/>
-      <Item ID="BrownEg" Name="Brown and White Mottled Egg"/>
-      <Item ID="WhiteEg" Name="Milky-White Egg"/>
-      <Item ID="PinkEgg" Name="Pink and White Mottled Egg"/>
-      <Item ID="PurplEg" Name="Purple and White Mottled Egg"/>
-      <Item ID="BlackEg" Name="Rubbery Black Egg"/>
-      <Item ID="L.BluEg" Name="Large Blue and White Mottled Egg"/>
-      <Item ID="L.BrnEg" Name="Large Brown and White Mottled Egg"/>
-      <Item ID="L.PnkEg" Name="Large Pink and White Mottled Egg"/>
-      <Item ID="L.PrpEg" Name="Large Purple and White Mottled Egg"/>
-      <Item ID="L.BlkEg" Name="Large Rubbery Black Egg"/>
+      <Item ID="BlueEgg" Name="Blue Egg"/>
+      <Item ID="BrownEg" Name="Brown Egg"/>
+      <Item ID="WhiteEg" Name="White Egg"/>
+      <Item ID="PinkEgg" Name="Pink Egg"/>
+      <Item ID="PurplEg" Name="Purple Egg"/>
+      <Item ID="BlackEg" Name="Black Egg"/>
+      <Item ID="L.BluEg" Name="Large Blue Egg"/>
+      <Item ID="L.BrnEg" Name="Large Brown Egg"/>
+      <Item ID="L.PnkEg" Name="Large Pink Egg"/>
+      <Item ID="L.PrpEg" Name="Large Purple Egg"/>
+      <Item ID="L.BlkEg" Name="Large Black Egg"/>
       <Item ID="L.WhtEg" Name="Large White Egg"/>
-      <Item ID="DrgnEgg" Name="Unfertilized dragon egg*" Description="Lowers your fatigue after using the dragon breath attack."/>
+      <Item ID="DrgnEgg" Name="Dragon Egg" Description="Lowers your breath attack fatigue after using the DragonFire breath special attack."/>
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Dyes" Category="Other">
