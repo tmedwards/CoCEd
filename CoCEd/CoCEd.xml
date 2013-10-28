@@ -2000,5 +2000,7 @@
     <Flag ID="1015" Name="EXPLORATION_PAGE"/>
     <Flag ID="1016" Name="BOG_EXPLORED"/>
     <Flag ID="1017" Name="TIMES_ENCOUNTERED_FROG"/>
+    <Flag ID="1018" Name="FERAS_GLADE_EXPLORED_YEAR"/>
+    <Flag ID="1019" Name="FERAS_TRAP_SPRUNG_YEAR"/>
   </Flags>
 </CoCEd>
