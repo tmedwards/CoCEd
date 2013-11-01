@@ -402,8 +402,9 @@
       <PregnancyType ID="8"   Name="Cowgirls (Marble)"/>
       <PregnancyType ID="17"  Name="Dragon (Ember)"/>
       <PregnancyType ID="15"  Name="Drider"/>
-      <PregnancyType ID="20"  Name="Equine (Cotton)"/>
-      <PregnancyType ID="21"  Name="Fox (Urta)"/>
+      <PregnancyType ID="20"  Name="Equine-morph (Cotton)"/>
+      <PregnancyType ID="21"  Name="Fox-morph (Urta)"/>
+      <PregnancyType ID="23"  Name="Frog-girl"/>
       <PregnancyType ID="16"  Name="Goo-girl"/>
       <PregnancyType ID="6"   Name="Hellhound"/>
       <PregnancyType ID="1"   Name="Imp"/>
@@ -413,8 +414,7 @@
       <PregnancyType ID="22"  Name="Sand witch"/>
       <PregnancyType ID="19"  Name="Satyr"/>
       <PregnancyType ID="13"  Name="Spider-morph"/>
-      <PregnancyType ID="12"  Name="Tiger shark (Izma)"/>
-      <PregnancyType ID="23"  Name="Frog-girl"/>
+      <PregnancyType ID="12"  Name="Shark/Tigershark-morph (Izma)"/>
       <PregnancyType ID="10000" Name="Small brown egg"/>
       <PregnancyType ID="10001" Name="Large brown egg"/>
       <PregnancyType ID="10100" Name="Small purple egg"/>
@@ -430,14 +430,14 @@
     </PregnancyTypes>
     <!--============================================================================================================================================-->
     <AnalPregnancyTypes>
-      <AnalPregnancyType ID="0" Name="None"/>
-      <AnalPregnancyType ID="2" Name="Bee-girl"/>
-      <AnalPregnancyType ID="3" Name="Drider"/>
-      <AnalPregnancyType ID="5" Name="Fake pregnancy (Sand Trap)"/>
-      <AnalPregnancyType ID="4" Name="Insectoid (Sand Trap)"/>
-      <AnalPregnancyType ID="9" Name="Neon pink egg (Bunny girl)"/>
-      <AnalPregnancyType ID="19" Name="Satyr"/>
+      <AnalPregnancyType ID="0"  Name="None"/>
+      <AnalPregnancyType ID="2"  Name="Bee-girl"/>
+      <AnalPregnancyType ID="3"  Name="Drider"/>
+      <AnalPregnancyType ID="5"  Name="Fake pregnancy (Sand Trap)"/>
       <AnalPregnancyType ID="23" Name="Frog-girl"/>
+      <AnalPregnancyType ID="4"  Name="Insectoid (Sand Trap)"/>
+      <AnalPregnancyType ID="9"  Name="Neon pink egg (Bunny-girl)"/>
+      <AnalPregnancyType ID="19" Name="Satyr"/>
     </AnalPregnancyTypes>
   </Body>
   <!--============================================================================================================================================-->
