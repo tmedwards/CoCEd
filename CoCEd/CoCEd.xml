@@ -414,6 +414,7 @@
       <PregnancyType ID="19"  Name="Satyr"/>
       <PregnancyType ID="13"  Name="Spider-morph"/>
       <PregnancyType ID="12"  Name="Tiger shark (Izma)"/>
+      <PregnancyType ID="23"  Name="Frog-girl"/>
       <PregnancyType ID="10000" Name="Small brown egg"/>
       <PregnancyType ID="10001" Name="Large brown egg"/>
       <PregnancyType ID="10100" Name="Small purple egg"/>
@@ -436,6 +437,7 @@
       <AnalPregnancyType ID="4" Name="Insectoid (Sand Trap)"/>
       <AnalPregnancyType ID="9" Name="Neon pink egg (Bunny girl)"/>
       <AnalPregnancyType ID="19" Name="Satyr"/>
+      <AnalPregnancyType ID="23" Name="Frog-girl"/>
     </AnalPregnancyTypes>
   </Body>
   <!--============================================================================================================================================-->
