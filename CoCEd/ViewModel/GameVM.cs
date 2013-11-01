@@ -1057,6 +1057,12 @@ namespace CoCEd.ViewModel
             set { GetFlag(272).SetValue(value); }
         }
 
+        public int ExploredBog
+        {
+            get { return GetFlag(1016).AsInt(); }
+            set { GetFlag(1016).SetValue(value); }
+        }
+
         public bool ExploredTelAdre
         {
             get { return GetStatus("Tel'Adre").Value1 >= 1; }

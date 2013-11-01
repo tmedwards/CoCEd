@@ -68,9 +68,12 @@
                 
                     <TextBlock              Text="Plains"/>
                     <common:MyNumericBox    Value="{Binding Game.ExploredPlains}" Upper="1"/>
-                    
+
                     <TextBlock              Text="Swamp"/>
                     <common:MyNumericBox    Value="{Binding Game.ExploredSwamp}" Upper="1"/>
+
+                    <TextBlock              Text="Bog"/>
+                    <common:MyNumericBox    Value="{Binding Game.ExploredBog}" Upper="1"/>
                 </common:AutoGrid>
             </StackPanel>
 
