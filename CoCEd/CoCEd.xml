@@ -763,7 +763,7 @@
       <Perk Name="Cornucopia" Description="Vaginal and Anal capacities increased by 30."/>
       <Perk Name="Diapause" Description="Pregnancy does not advance normally, but develops quickly after taking in fluids."/>
       <Perk Name="Dragonfire" Description="Allows access to a dragon breath attack."/>
-      <Perk Name="Elven Bounty" Description="Increases fertility by 15% and cum production by 250 mL and 5%." Value1="250" Value2="15" Label1="Cum volume" Label2="Fertility multiplier"/>
+      <Perk Name="Elven Bounty" Description="Increases fertility by 15% and cum production by 250 mL." Value1="250" Value2="15" Label1="Cum volume" Label2="Fertility multiplier"/>
       <Perk Name="Enlightened Nine-tails" Description="The mystical energy of the nine-tails surges through you, filling you with phenomenal cosmic power!  Your boundless magic allows you to recover quickly after casting spells."/>
       <Perk Name="Feeder" Description="Lactation does not decrease and gives a compulsion to breastfeed others."/>
       <Perk Name="Fera's Boon - Alpha" Description="Increases the rate your cum builds up and cum production in general."/>
@@ -909,12 +909,12 @@
     <Status Name="Malon Visited Post Addiction" Description="Determines if you went back to tell Marble you got over your addiction to her milk."/>
     <Status Name="Marae Complete" Description="You have finished Marae's quest."/>
     <Status Name="Marae's Quest Start" Description="You have received Marae's quest."/>
-    <Status Name="Marble" Description="the first is the hours you have spend with her x10, the second is for addiction percentage, the third is for how she reacts when you're addicted (0=not addicted yet 1=kind, 2=inlove), the fourth is left untouched."/>
+    <Status Name="Marble" Description="The first is the hours you have spend with her x10, the second is for addiction percentage, the third is for how she reacts when you're addicted (0=not addicted yet, 1=kind, 2=in love), the fourth is left untouched."/>
     <Status Name="Marble Rape Attempted"/>
     <Status Name="MarbleConversation"/>
     <Status Name="MarbleHasItem" Description="Marble has a gift waiting for you back at camp."/>
     <Status Name="MarbleItemCooldown" Description="How long until Marble has another gift for you."/>
-    <Status Name="Marbles Milk" Description="the first is the cooldown until you need more milk, leave untouched the others"/>
+    <Status Name="Marbles Milk" Description="The first is the cooldown until you need more milk, leave untouched the others."/>
     <Status Name="MarbleSpecials"/>
     <Status Name="MarbleWithdrawl"/>
     <Status Name="MeanToNaga" Description="I don't know what this means yet, but it makes me sad :c"/>
