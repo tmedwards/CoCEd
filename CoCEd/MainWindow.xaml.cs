@@ -25,9 +25,13 @@ namespace CoCEd
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool _canSerializeSizeAndState;
+
         public MainWindow()
         {
             InitializeComponent();
+            RestoreSizeAndState();
+
             ((FrameworkElement)Content).QueryContinueDrag += OnQueryContinueDrag;
 
             var version = Assembly.GetExecutingAssembly().GetName().Version;
@@ -70,6 +74,63 @@ namespace CoCEd
             }
         }
 #endif             
+
+
+
+        protected override void OnStateChanged(EventArgs e)
+        {
+            base.OnStateChanged(e);
+            SaveSizeAndState();
+        }
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            base.OnRenderSizeChanged(sizeInfo);
+            SaveSizeAndState();
+        }
+
+        protected override void OnLocationChanged(EventArgs e)
+        {
+            base.OnLocationChanged(e);
+            SaveSizeAndState();
+        }
+
+        void RestoreSizeAndState()
+        {
+            Top = Settings.Default.Location.Y;
+            Left = Settings.Default.Location.X;
+            Width = Settings.Default.Size.Width;
+            Height = Settings.Default.Size.Height;
+
+            if (Settings.Default.State == WindowState.Minimized) WindowState = WindowState.Normal;
+            else WindowState = Settings.Default.State;
+
+            EnsureVisible();
+            _canSerializeSizeAndState = true;
+        }
+
+        void EnsureVisible()
+        {
+            var screenTop = SystemParameters.VirtualScreenTop + 50;
+            var screenLeft = SystemParameters.VirtualScreenLeft + 50;
+            var screenRight = SystemParameters.VirtualScreenLeft + SystemParameters.VirtualScreenWidth - 50;
+            var screenBottom = SystemParameters.VirtualScreenTop + SystemParameters.VirtualScreenHeight - 50;
+
+            Top = Math.Min(Top, screenBottom);
+            Left = Math.Min(Left, screenRight);
+            Width = Math.Max(Left + Width, screenLeft) - Left;
+            Height = Math.Max(Top + Height, screenTop) - Top;
+        }
+
+        void SaveSizeAndState()
+        {
+            if (!_canSerializeSizeAndState) return;
+
+            Settings.Default.Location = RestoreBounds.Location;
+            Settings.Default.Size = RestoreBounds.Size;
+            Settings.Default.State = WindowState;
+            Settings.Default.Save();
+        }
 
         protected override void OnClosed(EventArgs e)
         {
