@@ -80,6 +80,8 @@ namespace CoCEd.ViewModel
 
             // Perks
             var perkArray = _obj.GetObj("perks");
+            int debug_xmlPerksCount = XmlData.Instance.PerkGroups.SelectMany(x => x.Perks).Count();
+            int debug_initialPerksCount = perkArray.Count;
             ImportMissingNamedVector(perkArray, XmlData.Instance.PerkGroups.SelectMany(x => x.Perks), "perkName", x => 
                 {
                     var help = x.GetString("perkDesc");
@@ -127,12 +129,32 @@ namespace CoCEd.ViewModel
 
 
             // Store base armor def for later recomputations, see UpdateArmorDef below.
-            _baseArmorDef = GetDouble("armorDef");
-            if (GetPerk("Agility").IsOwned)
+            try
             {
-                var armorPerk = GetString("armorPerk");
-                if (armorPerk == "Light") _baseArmorDef -= Math.Round(Speed / 10.0);
-                else if (armorPerk == "Medium") _baseArmorDef -= Math.Round(Speed / 15.0);
+                _baseArmorDef = GetDouble("armorDef");
+                if (GetPerk("Agility").IsOwned)
+                {
+                    var armorPerk = GetString("armorPerk");
+                    if (armorPerk == "Light") _baseArmorDef -= Math.Round(Speed / 10.0);
+                    else if (armorPerk == "Medium") _baseArmorDef -= Math.Round(Speed / 15.0);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // Investigation routine for the "Mizu bug"
+                bool xmlContainsAgility1 = XmlData.Instance.PerkGroups.SelectMany(x => x.Perks).Any(x => x.Name == "Agility");
+                var xmlResult = XmlData.LoadXml();
+                bool xmlContainsAgility2 = XmlData.Instance.PerkGroups.SelectMany(x => x.Perks).Any(x => x.Name == "Agility");
+
+                StringBuilder b = new StringBuilder();
+                b.Append("'Mizu's bug report:");
+                b.AppendLine().Append("XML perks count: ").Append(debug_xmlPerksCount);
+                b.AppendLine().Append("initial perk count: ").Append(debug_initialPerksCount);
+                b.AppendLine().Append("XML contains agility 1: ").Append(xmlContainsAgility1);
+                b.AppendLine().Append("XML contains agility 2: ").Append(xmlContainsAgility2);
+                b.AppendLine().Append("XML result: ").Append(xmlResult);
+
+                MessageBox.Show(b.ToString());
             }
         }
 
