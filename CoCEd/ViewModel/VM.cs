@@ -79,7 +79,7 @@ namespace CoCEd.ViewModel
             }
 
             _currentFile = file;
-            Game = new GameVM(_currentFile);
+            Game = new GameVM(_currentFile, Game);
 
             OnPropertyChanged("Game");
             OnPropertyChanged("HasData");

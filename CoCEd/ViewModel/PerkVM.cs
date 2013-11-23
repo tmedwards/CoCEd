@@ -10,11 +10,13 @@ namespace CoCEd.ViewModel
 {
     public sealed class PerkGroupVM : BindableBase
     {
-        public PerkGroupVM(string name, AmfObject perksArray, IEnumerable<XmlNamedVector4> perks)
+        readonly GameVM _game;
+
+        public PerkGroupVM(GameVM game, string name, PerkVM[] perks)
         {
+            _game = game;
             Name = name;
-            var perksVM = perks.OrderBy(x => x.Name).Select(x => new PerkVM(perksArray, x)).ToArray();
-            Perks = new UpdatableCollection<PerkVM>(perksVM.Where(x => x.Match(VM.Instance.Game != null ? VM.Instance.Game.PerkSearchText : null)));
+            Perks = new UpdatableCollection<PerkVM>(perks.Where(x => x.Match(_game.PerkSearchText)));
         }
 
         public string Name
@@ -43,8 +45,8 @@ namespace CoCEd.ViewModel
 
     public sealed class PerkVM : NamedVector4VM
     {
-        public PerkVM(AmfObject perksArray, XmlNamedVector4 xml)
-            : base(perksArray, xml)
+        public PerkVM(GameVM game, AmfObject perksArray, XmlNamedVector4 xml)
+            : base(game, perksArray, xml)
         {
         }
 
@@ -61,12 +63,12 @@ namespace CoCEd.ViewModel
 
         protected override void NotifyGameVM()
         {
-            VM.Instance.Game.OnPerkChanged(_xml.Name);
+            _game.OnPerkChanged(_xml.Name);
         }
 
         protected override void OnIsOwnedChanged()
         {
-            VM.Instance.Game.OnPerkAddedOrRemoved(_xml.Name, IsOwned);
+            _game.OnPerkAddedOrRemoved(_xml.Name, IsOwned);
         }
     }
 }

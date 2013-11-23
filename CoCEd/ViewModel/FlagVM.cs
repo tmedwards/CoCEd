@@ -16,10 +16,12 @@ namespace CoCEd.ViewModel
         readonly string _label;
         readonly string _comment;
         readonly AmfObject _flagArray;
+        readonly GameVM _game;
 
-        public FlagVM(AmfObject flags, XmlEnum data, int index)
+        public FlagVM(GameVM game, AmfObject flags, XmlEnum data, int index)
         {
             _flagArray = flags;
+            _game = game;
             _index = index;
             _label = data != null ? data.Name : "";
             _comment = data != null ? data.Description : "";
@@ -116,7 +118,7 @@ namespace CoCEd.ViewModel
         protected override void OnSavePropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnSavePropertyChanged(propertyName);
-            VM.Instance.Game.OnFlagChanged(Index);
+            _game.OnFlagChanged(Index);
         }
     }
 }

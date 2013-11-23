@@ -11,8 +11,8 @@ namespace CoCEd.ViewModel
 {
     public sealed class StatusVM : NamedVector4VM
     {
-        public StatusVM(AmfObject allStatuses, XmlNamedVector4 xml)
-            : base(allStatuses, xml)
+        public StatusVM(GameVM game, AmfObject allStatuses, XmlNamedVector4 xml)
+            : base(game, allStatuses, xml)
         {
         }
 
@@ -28,7 +28,7 @@ namespace CoCEd.ViewModel
 
         protected override void NotifyGameVM()
         {
-            VM.Instance.Game.OnStatusChanged(_xml.Name);
+            _game.OnStatusChanged(_xml.Name);
         }
     }
 }
