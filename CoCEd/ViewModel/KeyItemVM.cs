@@ -11,8 +11,8 @@ namespace CoCEd.ViewModel
 {
     public sealed class KeyItemVM : NamedVector4VM
     {
-        public KeyItemVM(AmfObject keyItems, XmlNamedVector4 xml)
-            : base(keyItems, xml)
+        public KeyItemVM(GameVM game, AmfObject keyItems, XmlNamedVector4 xml)
+            : base(game, keyItems, xml)
         {
         }
 

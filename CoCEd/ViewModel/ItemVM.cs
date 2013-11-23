@@ -11,10 +11,12 @@ namespace CoCEd.ViewModel
     public sealed class ItemContainerVM
     {
         readonly ObservableCollection<ItemSlotVM> _slots = new ObservableCollection<ItemSlotVM>();
+        readonly GameVM _game;
 
-        public ItemContainerVM(string name, ItemCategories categories)
+        public ItemContainerVM(GameVM game, string name, ItemCategories categories)
         {
             Name = name;
+            _game = game;
             Categories = categories;
         }
 
@@ -37,7 +39,7 @@ namespace CoCEd.ViewModel
 
         public void Add(AmfObject obj)
         {
-            _slots.Add(new ItemSlotVM(obj, Categories));
+            _slots.Add(new ItemSlotVM(_game, obj, Categories));
         }
 
         public void Clear()
@@ -53,13 +55,16 @@ namespace CoCEd.ViewModel
 
     public sealed class ItemSlotVM : ObjectVM
     {
-        ItemGroupVM[] _allGroups;
+        readonly ItemGroupVM[] _allGroups;
+        readonly GameVM _game;
 
-        public ItemSlotVM(AmfObject obj, ItemCategories categories)
+        public ItemSlotVM(GameVM game, AmfObject obj, ItemCategories categories)
             : base(obj)
         {
             Categories = categories;
-            _allGroups = XmlData.Instance.ItemGroups.Where(group => Categories.HasFlag(group.Category)).Select(x => new ItemGroupVM(x, this)).ToArray();
+
+            _game = game;
+            _allGroups = XmlData.Instance.ItemGroups.Where(group => Categories.HasFlag(group.Category)).Select(x => new ItemGroupVM(_game, x, this)).ToArray();
             AllGroups = new UpdatableCollection<ItemGroupVM>(_allGroups.Where(x => x.Items.Count != 0));
         }
 
@@ -149,10 +154,13 @@ namespace CoCEd.ViewModel
 
     public sealed class ItemGroupVM
     {
-        public ItemGroupVM(XmlItemGroup group, ItemSlotVM slot)
+        readonly GameVM _game;
+
+        public ItemGroupVM(GameVM game, XmlItemGroup group, ItemSlotVM slot)
         {
+            _game = game;
             Name = group.Name;
-            Items = new UpdatableCollection<ItemVM>(group.Items.Where(x => Match(x)).OrderBy(x => x.Name).Select(x => new ItemVM(slot, x)));
+            Items = new UpdatableCollection<ItemVM>(group.Items.Where(x => Match(x, _game.ItemSearchText)).OrderBy(x => x.Name).Select(x => new ItemVM(slot, x)));
         }
 
         public string Name
@@ -167,17 +175,14 @@ namespace CoCEd.ViewModel
             private set;
         }
 
-        static bool Match(XmlItem item)
+        static bool Match(XmlItem item, string searchText)
         {
-            if (VM.Instance == null || VM.Instance.Game == null) return true;
+            if (searchText == null || searchText.Length < 3) return true;
 
-            var str = VM.Instance.Game.ItemSearchText;
-            if (str == null || str.Length < 3) return true;
-
-            int index = (item.Name ?? "").IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+            int index = (item.Name ?? "").IndexOf(searchText, StringComparison.InvariantCultureIgnoreCase);
             if (index != -1) return true;
 
-            index = (item.Description ?? "").IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+            index = (item.Description ?? "").IndexOf(searchText, StringComparison.InvariantCultureIgnoreCase);
             if (index != -1) return true;
 
             return false;

@@ -11,13 +11,15 @@ namespace CoCEd.ViewModel
 {
     public abstract class NamedVector4VM : BindableBase
     {
+        protected readonly GameVM _game;
         protected readonly AmfObject _items;
         protected readonly XmlNamedVector4 _xml;
         protected readonly HashSet<string> _gameProperties = new HashSet<string>();
 
-        protected NamedVector4VM(AmfObject items, XmlNamedVector4 xml)
+        protected NamedVector4VM(GameVM game, AmfObject items, XmlNamedVector4 xml)
         {
             _xml = xml;
+            _game = game;
             _items = items;
         }
 
