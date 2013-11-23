@@ -326,13 +326,14 @@ namespace CoCEd.Model
 
             // Stored by value
             bool isExternalizable = PopFlag(ref refIndex);
-            if (isExternalizable) throw new NotImplementedException("Unsupported externalized traits");
+            //if (isExternalizable) throw new NotImplementedException("Unsupported externalized traits");
 
             var result = new AmfTrait();
             _traitLookup.Add(result);
 
             result.IsDynamic = PopFlag(ref refIndex);
             result.Name = ReadString();
+            if (isExternalizable) isExternalizable = false;
 
             result.Properties = new string[refIndex];
             for (var i = 0; i < result.Properties.Length; i++)
