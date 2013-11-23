@@ -326,7 +326,6 @@ namespace CoCEd.Model
 
             // Stored by value
             bool isExternalizable = PopFlag(ref refIndex);
-            //if (isExternalizable) throw new NotImplementedException("Unsupported externalized traits");
 
             var result = new AmfTrait();
             _traitLookup.Add(result);
@@ -340,7 +339,18 @@ namespace CoCEd.Model
                 result.Properties[i] = ReadString();
             }
 
+            // Special hack for serializable traits
+            if (isExternalizable) ReadExternalizableTrait(result);
             return result;
+        }
+
+        void ReadExternalizableTrait(AmfTrait trait)
+        {
+            // No custom data actually.
+            if (trait.Name == "CockTypesEnum") return;
+
+            // Unsupported
+            throw new NotImplementedException("Unsupported externalized trait: " + (trait.Name ?? "<noname>"));
         }
 
         byte[] ReadByteArray()
