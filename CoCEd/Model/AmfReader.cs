@@ -311,7 +311,7 @@ namespace CoCEd.Model
                     if (name == "") break;
 
                     var value = ReadValue();
-                    result.Add(name, value);
+                    result[name] = value;
                 }
             } 
 
