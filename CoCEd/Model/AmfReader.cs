@@ -333,7 +333,6 @@ namespace CoCEd.Model
 
             result.IsDynamic = PopFlag(ref refIndex);
             result.Name = ReadString();
-            if (isExternalizable) isExternalizable = false;
 
             result.Properties = new string[refIndex];
             for (var i = 0; i < result.Properties.Length; i++)
