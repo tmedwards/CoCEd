@@ -2008,5 +2008,6 @@
     <Flag ID="1018" Name="FERAS_GLADE_EXPLORED_YEAR"/>
     <Flag ID="1019" Name="FERAS_TRAP_SPRUNG_YEAR"/>
     <Flag ID="1020" Name="TIMES_VALERIA_GOO_THREESOMED"/>
+    <Flag ID="1021" Name="MORE_TURKEY"/>
   </Flags>
 </CoCEd>
