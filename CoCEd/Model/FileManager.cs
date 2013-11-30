@@ -34,19 +34,24 @@ namespace CoCEd.Model
 
         public static void BuildPaths()
         {
-            bool separatorBefore = false;
+            bool insertSeparatorBeforeInMenu = false;
             const string standardPath = @"Macromedia\Flash Player\#SharedObjects\";
             const string chromePath = @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\";
 
 
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Offline (standard{0})",   standardPath,   "localhost",                        ref separatorBefore);
-            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Offline (chrome{0})",     chromePath,     "localhost",                        ref separatorBefore);
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Offline (metro{0})",      standardPath,   @"#AppContainer\localhost",         ref separatorBefore);
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Offline (standard{0})",   standardPath,   "localhost",                        ref insertSeparatorBeforeInMenu);
+            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Offline (chrome{0})",     chromePath,     "localhost",                        ref insertSeparatorBeforeInMenu);
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Offline (metro{0})",      standardPath,   @"#AppContainer\localhost",         ref insertSeparatorBeforeInMenu);
 
-            separatorBefore = true;
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (standard{0})",   standardPath,    "www.fenoxo.com",                   ref separatorBefore);
-            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Online (chrome{0})",      chromePath,     "www.fenoxo.com",                   ref separatorBefore);
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (metro{0})",      standardPath,    @"#AppContainer\www.fenoxo.com",    ref separatorBefore);
+            insertSeparatorBeforeInMenu = true;
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (standard{0})",   standardPath,    "www.fenoxo.com",                   ref insertSeparatorBeforeInMenu);
+            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Online (chrome{0})",      chromePath,     "www.fenoxo.com",                   ref insertSeparatorBeforeInMenu);
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (metro{0})",      standardPath,    @"#AppContainer\www.fenoxo.com",    ref insertSeparatorBeforeInMenu);
+
+            insertSeparatorBeforeInMenu = true;
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Turkey (standard{0})",   standardPath,   "#localWithNet",                     ref insertSeparatorBeforeInMenu);
+            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Turkey (chrome{0})",     chromePath,     "#localWithNet",                     ref insertSeparatorBeforeInMenu);
+            BuildPath(Environment.SpecialFolder.ApplicationData,        "Turkey (metro{0})",      standardPath,   @"#AppContainer\#localWithNet",      ref insertSeparatorBeforeInMenu);
         }
 
         static void BuildPath(Environment.SpecialFolder root, string nameFormat, string middle, string suffix, ref bool separatorBefore)
