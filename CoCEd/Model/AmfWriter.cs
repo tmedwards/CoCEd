@@ -223,7 +223,7 @@ namespace CoCEd.Model
 
         void WriteU29(int value)
         {
-            // Unseigned integer encoded on 8 to 32 bits, with 7 to 29 significant bits (similar to Unicode).
+            // Unsigned integer encoded on 8 to 32 bits, with 7 to 29 significant bits.
             // The most signficant bits are stored on the left (at the beginning).
             // The fourth byte always have 8 significant bits. 
             // 7-7-7-8  or  7-7-7   or 7-7  or 7
