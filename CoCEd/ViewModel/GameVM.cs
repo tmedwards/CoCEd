@@ -659,6 +659,12 @@ namespace CoCEd.ViewModel
 
 
 
+        public bool UsedContraceptives
+        {
+            get { return GetStatus("Contraceptives").IsOwned; }
+            set { GetStatus("Contraceptives").IsOwned = value; }
+        }
+
         public int Fertility
         {
             get { return GetInt("fertility"); }

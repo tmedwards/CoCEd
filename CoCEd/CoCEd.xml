@@ -844,6 +844,7 @@
     <Status Name="Camp Rathazul" Description="Rathazul has joined your camp."/>
     <Status Name="Charge Weapon" Description="Weapon attack power is currently enhanced by the effects of the &quot;Charge=&quot; spell. Disappears after combat."/>
     <Status Name="Cock Pumped" Description="You've used the cock pump."/>
+    <Status Name="Contraceptives" Description="You've used one of the Sand Witch's contraceptive pills."/>
     <Status Name="CuntStretched" Description="Number of times your cunt has been stretched out larger than normal."/>
     <Status Name="Defense: Canopy" Description="You have the thorn canopy protecting you camp from giving 1/3 of Marae's Lethicite to Rathazul."/>
     <Status Name="deluxe onahole used" Description="You've used the Deluxe Onahole during self-stimulation."/>
@@ -869,6 +870,7 @@
     <Status Name="FirstAttack"/>
     <Status Name="Found Factory" Description="You've found the factory, making it directly available in the &quot;Places&quot; menu."/>
     <Status Name="FuckedMarble"/>
+    <Status Name="gooStuffed" Description="Value 1: Hours remaining until goo-girl comes out. Value 2: Penis stuffed? 0 = no, 1 = yes (penis only), 2 = yes (penis &amp; balls). Value 3: Vagina stuffed? 0 = no, 1 = yes. Your anus is always stuffed."/>
     <Status Name="Gnoll Spear"/>
     <Status Name="hairdresser meeting"/>
     <Status Name="Hangover"/>
