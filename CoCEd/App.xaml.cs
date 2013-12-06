@@ -126,7 +126,6 @@ namespace CoCEd
 
 #if DEBUG
             var file = AutoLoad(directories);
-            new AmfFile("e:\\coc_1.sol").TestSerialization();
             //new AmfFile("e:\\plainObject.sol").TestSerialization();
             //new AmfFile("e:\\unicode.sol").TestSerialization();
             //DebugStatuses(file);

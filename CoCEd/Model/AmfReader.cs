@@ -339,7 +339,7 @@ namespace CoCEd.Model
         void ReadCustomDataForEnum(AmfObject obj)
         {
             obj.Trait.IsEnum = true;
-            obj["value"] = ReadI32();
+            obj.EnumValue = ReadI32();
         }
 
         AmfTrait ReadTrait(int refIndex)
