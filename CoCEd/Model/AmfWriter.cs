@@ -382,7 +382,7 @@ namespace CoCEd.Model
 
         void WriteCustomDataForEnum(AmfObject obj)
         {
-            WriteI32((int)obj["value"]);
+            WriteI32((int)obj.EnumValue);
         }
 
         void WriteTrait(AmfTrait trait)

@@ -142,6 +142,7 @@ namespace CoCEd.Model
         public int EnumValue
         {
             get { return GetInt("value"); }
+            set { this["value"] = value; }
         }
 
         public object this[object key]
