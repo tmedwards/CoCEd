@@ -104,6 +104,8 @@ namespace CoCEd
 
             VM.Create();
 
+            new AmfFile("e:\\coc_1.sol");
+
             FileManager.BuildPaths();
             var directories = FileManager.GetDirectories().ToArray();   // Load all on startup to check for errors
             var result = ExceptionBoxResult.Continue;
@@ -124,6 +126,7 @@ namespace CoCEd
 
 #if DEBUG
             var file = AutoLoad(directories);
+            new AmfFile("e:\\coc_1.sol").TestSerialization();
             //new AmfFile("e:\\plainObject.sol").TestSerialization();
             //new AmfFile("e:\\unicode.sol").TestSerialization();
             //DebugStatuses(file);

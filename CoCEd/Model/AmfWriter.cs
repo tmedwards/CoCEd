@@ -360,6 +360,29 @@ namespace CoCEd.Model
                 }
                 WriteString("");
             }
+
+            if (obj.Trait.IsExternalizable)
+            {
+                WriteCustomData(obj);
+            }
+        }
+
+        void WriteCustomData(AmfObject obj)
+        {
+            switch (obj.Trait.Name)
+            {
+                case "CockTypesEnum":
+                    WriteCustomDataForEnum(obj);
+                    break;
+
+                default:
+                    throw new NotImplementedException("Unsupported externalized trait: " + (obj.Trait.Name ?? "<noname>"));
+            }
+        }
+
+        void WriteCustomDataForEnum(AmfObject obj)
+        {
+            WriteI32((int)obj["value"]);
         }
 
         void WriteTrait(AmfTrait trait)
@@ -374,7 +397,8 @@ namespace CoCEd.Model
             _traitLookup.Add(trait, _traitLookup.Count);
 
             // Index and flags
-            index = 3;                                      // 0b011. From left to right: trait not externalizable, trait by instance, obj by instance
+            index = 3;                                      // 0b0011. trait by instance, obj by instance
+            if (trait.IsExternalizable) index |= 4;         // 0b0100
             if (trait.IsDynamic) index |= 8;                // 0b1000
             index |= (trait.Properties.Length << 4);        
             WriteU29(index);

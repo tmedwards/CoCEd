@@ -18,6 +18,9 @@ namespace CoCEd.ViewModel
         readonly AmfObject _flagArray;
         readonly GameVM _game;
 
+        readonly AmfTrait _valueTrait;
+        string _valueLabel;
+
         public FlagVM(GameVM game, AmfObject flags, XmlEnum data, int index)
         {
             _flagArray = flags;
@@ -26,7 +29,10 @@ namespace CoCEd.ViewModel
             _label = data != null ? data.Name : "";
             _comment = data != null ? data.Description : "";
             if (!String.IsNullOrEmpty(_comment)) _label = _label + "*";
-            _description = flags.GetString(_index);
+
+            var value = flags[_index];
+            if (value is AmfObject) _valueTrait = ((AmfObject)value).Trait;
+            _valueLabel = flags.GetString(_index);
 
             GameVMProperties = new HashSet<string>();
         }
@@ -57,14 +63,18 @@ namespace CoCEd.ViewModel
             get { return _comment; }
         }
 
-        string _description;
+        public bool IsEnum
+        {
+            get { return _valueTrait != null && _valueTrait.IsEnum; }
+        }
+
         public string ValueLabel
         {
-            get { return _description; }
+            get { return _valueLabel; }
             set
             {
-                if (_description == value) return;
-                _description = value;
+                if (_valueLabel == value) return;
+                _valueLabel = value;
                 OnPropertyChanged();
 
                 object transcriptedValue = GetValueFromLabel(value);
@@ -72,9 +82,16 @@ namespace CoCEd.ViewModel
             }
         }
 
-        static object GetValueFromLabel(string value)
+        object GetValueFromLabel(string value)
         {
             int iValue;
+            if (IsEnum)
+            {
+                if (Int32.TryParse(value, NumberStyles.Integer, CultureInfo.CurrentCulture, out iValue)) return ConvertIntegerToEnum(iValue);
+                if (Int32.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out iValue)) return ConvertIntegerToEnum(iValue);
+                return ConvertIntegerToEnum(0);
+            }
+
             if (Int32.TryParse(value, NumberStyles.Integer, CultureInfo.CurrentCulture, out iValue)) return iValue;
             if (Int32.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out iValue)) return iValue;
 
@@ -97,9 +114,17 @@ namespace CoCEd.ViewModel
             // Update label
             if (updateText)
             {
-                SetProperty(ref _description, value.ToString(), "ValueLabel");
+                SetProperty(ref _valueLabel, value.ToString(), "ValueLabel");
             }
             return true;
+        }
+
+        AmfObject ConvertIntegerToEnum(int value)
+        {
+            var result = new AmfObject(AmfTypes.Object);
+            result.Trait = _valueTrait;
+            result["value"] = value;
+            return result;
         }
 
         public bool Match(string str)

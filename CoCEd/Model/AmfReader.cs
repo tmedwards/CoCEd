@@ -313,9 +313,33 @@ namespace CoCEd.Model
                     var value = ReadValue();
                     result[name] = value;
                 }
-            } 
+            }
+
+            if (result.Trait.IsExternalizable)
+            {
+                ReadCustomData(result);
+            }
 
             return result;
+        }
+
+        void ReadCustomData(AmfObject obj)
+        {
+            switch (obj.Trait.Name)
+            {
+                case "CockTypesEnum":
+                    ReadCustomDataForEnum(obj);
+                    break;
+
+                default:
+                    throw new NotImplementedException("Unsupported externalized trait: " + (obj.Trait.Name ?? "<noname>"));
+            }
+        }
+
+        void ReadCustomDataForEnum(AmfObject obj)
+        {
+            obj.Trait.IsEnum = true;
+            obj["value"] = ReadI32();
         }
 
         AmfTrait ReadTrait(int refIndex)
@@ -325,11 +349,10 @@ namespace CoCEd.Model
             if (!isInstance) return _traitLookup[refIndex];
 
             // Stored by value
-            bool isExternalizable = PopFlag(ref refIndex);
-
             var result = new AmfTrait();
             _traitLookup.Add(result);
 
+            result.IsExternalizable = PopFlag(ref refIndex);
             result.IsDynamic = PopFlag(ref refIndex);
             result.Name = ReadString();
 
@@ -340,17 +363,7 @@ namespace CoCEd.Model
             }
 
             // Special hack for serializable traits
-            if (isExternalizable) ReadExternalizableTrait(result);
             return result;
-        }
-
-        void ReadExternalizableTrait(AmfTrait trait)
-        {
-            // No custom data actually.
-            if (trait.Name == "CockTypesEnum") return;
-
-            // Unsupported
-            throw new NotImplementedException("Unsupported externalized trait: " + (trait.Name ?? "<noname>"));
         }
 
         byte[] ReadByteArray()
