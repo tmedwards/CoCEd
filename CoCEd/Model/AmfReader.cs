@@ -72,9 +72,9 @@ namespace CoCEd.Model
             {
                 var key = ReadString();
                 var value = ReadValue();
-                file.Add(key, value);
+                file[key] = value;
 
-                if (_reader.ReadByte() != 0) throw new InvalidOperationException();
+                _reader.ReadByte(); // Trailer. No official documentation. Usually zero.
                 if (_reader.BaseStream.Position == _reader.BaseStream.Length) break;
             }
         }
