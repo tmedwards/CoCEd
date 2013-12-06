@@ -163,7 +163,7 @@ namespace CoCEd.ViewModel
                 // Return either a SaveTargetVM or a FileVM for every slot
                 for (int i = 1; i <= 10; i++)
                 {
-                    var name = "Coc_" + i + ".sol";
+                    var name = "CoC_" + i + ".sol";
                     var file = _directory.Files.FirstOrDefault(x => x.FilePath.EndsWith(name, StringComparison.InvariantCultureIgnoreCase));
                     if (file != null)
                     {
@@ -172,7 +172,7 @@ namespace CoCEd.ViewModel
                     else
                     {
                         var path = Path.Combine(_directory.Path, name);
-                        var target = new SaveSlotVM { Label = "Coc_" + i, Path = path };
+                        var target = new SaveSlotVM { Label = "CoC_" + i, Path = path };
                         yield return target;
                     }
                 }
