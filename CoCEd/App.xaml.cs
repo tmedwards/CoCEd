@@ -26,7 +26,9 @@ namespace CoCEd
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Settings.Default.Upgrade();
             base.OnStartup(e);
+
 #if !DEBUG
             DispatcherUnhandledException += OnDispatcherUnhandledException;
 #endif
