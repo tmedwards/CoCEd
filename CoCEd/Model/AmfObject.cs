@@ -50,7 +50,9 @@ namespace CoCEd.Model
         }
 
         public String[] Properties { get; set; }
+        public bool IsExternalizable { get; set; }
         public bool IsDynamic { get; set; }
+        public bool IsEnum { get; set; }
         public string Name { get; set; }
     }
 
@@ -130,6 +132,16 @@ namespace CoCEd.Model
         public int Count
         {
             get { return _associativePairs.Count + _denseValues.Count; }
+        }
+
+        public bool IsEnum
+        {
+            get { return Trait != null && Trait.IsEnum; }
+        }
+
+        public int EnumValue
+        {
+            get { return GetInt("value"); }
         }
 
         public object this[object key]
@@ -229,6 +241,11 @@ namespace CoCEd.Model
             if (value == null) return null;
             if (value is AmfNull) return null;
             if (value is string) return (string)value;
+            if (value is AmfObject)
+            {
+                var obj = (AmfObject)value;
+                if (obj.IsEnum) return obj.EnumValue.ToString();
+            }
             return value.ToString();
         }
 
