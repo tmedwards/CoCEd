@@ -50,7 +50,7 @@ namespace CoCEd.ViewModel
 
         public int AsInt()
         {
-            return _flagArray.GetInt(_index);
+            return _flagArray.GetInt(_index, 0);
         }
 
         public string Label
