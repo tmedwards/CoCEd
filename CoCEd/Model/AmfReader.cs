@@ -42,7 +42,7 @@ namespace CoCEd.Model
 
             var dataContainer = (AmfObject)ReadValue();
             var data = dataContainer.GetObj("data");
-            foreach (var pair in data) file.Add(pair.Key, pair.Value);
+            foreach (var pair in data) file[pair.Key] = pair.Value;
         }
 
         void ReadStandardFile(AmfFile file, out string name)
@@ -261,7 +261,7 @@ namespace CoCEd.Model
             if (!isInstance) return (AmfObject)_objectLookup[indexOrCount];
 
             // Stored by value
-            var result = new AmfObject(AmfTypes.Array, indexOrCount);
+            var result = new AmfObject(AmfTypes.Array);
             _objectLookup.Add(result);
 
             // Associative part (key-value pairs)
@@ -271,7 +271,7 @@ namespace CoCEd.Model
                 if (key == "") break;
 
                 var value = ReadValue();
-                result.Add(key, value);
+                result[key] = value;
             }
 
             // Dense part (consecutive indices >=0 and <count)
@@ -300,7 +300,7 @@ namespace CoCEd.Model
             foreach (var name in result.Trait.Properties)
             {
                 var value = ReadValue();
-                result.Add(name, value);
+                result[name] = value;
             }
 
             if (result.Trait.IsDynamic)
@@ -387,7 +387,7 @@ namespace CoCEd.Model
             if (!isInstance) return (AmfObject)_objectLookup[lengthOrIndex];
 
             // Stored by value
-            var result = new AmfObject(type, lengthOrIndex);
+            var result = new AmfObject(type);
             _objectLookup.Add(result);
 
             result.IsFixedVector = _reader.ReadBoolean();
@@ -428,7 +428,7 @@ namespace CoCEd.Model
             if (!isInstance) return (AmfObject)_objectLookup[lengthOrIndex];
 
             // Stored by value
-            var result = new AmfObject(AmfTypes.Dictionary, lengthOrIndex);
+            var result = new AmfObject(AmfTypes.Dictionary);
             _objectLookup.Add(result);
 
             result.HasWeakKeys = _reader.ReadBoolean();
@@ -436,7 +436,7 @@ namespace CoCEd.Model
             {
                 var key = ReadValue();
                 var value = ReadValue();
-                result.Add(key, value);
+                result[key] = value;
             }
             return result;
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoCEd.Common;
 
 namespace CoCEd.Model
 {
@@ -80,36 +81,17 @@ namespace CoCEd.Model
 
     public class AmfObject : IEnumerable<AmfPair>
     {
-        readonly List<AmfPair> _associativePairs;
-        readonly List<Object> _denseValues;
+        readonly Dictionary<Object, Object> _associativePart = new Dictionary<Object, Object>();
+        readonly Dictionary<Int32, Object> _sparsePart = new Dictionary<Int32, Object>();
+        readonly List<Object> _densePart = new List<Object>();
 
-        public AmfObject(AmfTypes type, int count = 0)
+        public AmfObject(AmfTypes type)
         {
             Type = type;
-            switch (type)
+
+            if (type == AmfTypes.Object)
             {
-                case AmfTypes.Dictionary:
-                    _associativePairs = new List<AmfPair>(count);
-                    _denseValues = new List<object>();
-                    break;
-
-                case AmfTypes.Array:
-                case AmfTypes.VectorInt:
-                case AmfTypes.VectorUInt:
-                case AmfTypes.VectorDouble:
-                case AmfTypes.VectorGeneric:
-                    _associativePairs = new List<AmfPair>();
-                    _denseValues = new List<object>(count);
-                    break;
-
-                case AmfTypes.Object:
-                    Trait = new AmfTrait { Name = "", IsDynamic = true, Properties = new string[0] };
-                    _associativePairs = new List<AmfPair>(count);
-                    _denseValues = new List<object>();
-                    break;
-
-                default:
-                    throw new NotImplementedException();
+                Trait = new AmfTrait { Name = "", IsDynamic = true, Properties = new string[0] };
             }
         }
 
@@ -121,17 +103,17 @@ namespace CoCEd.Model
 
         public int DenseCount
         {
-            get { return _denseValues.Count; }
-        }
-
-        public int AssociativeCount
-        {
-            get { return _associativePairs.Count; }
+            get { return _densePart.Count; }
         }
 
         public int Count
         {
-            get { return _associativePairs.Count + _denseValues.Count; }
+            get { return _associativePart.Count + _sparsePart.Count + _densePart.Count; }
+        }
+
+        public bool IsSparse
+        {
+            get { return _associativePart.Count != 0 || _sparsePart.Count != 0; }
         }
 
         public bool IsEnum
@@ -150,11 +132,16 @@ namespace CoCEd.Model
             get
             {
                 int index;
-                if (IsIndex(key, out index) && index >= 0 && index < _denseValues.Count) return _denseValues[index];
-
-                var pair = GetAssociativePair(key);
-                if (pair != null) return pair.Value;
-                return null;
+                if (IsIndex(key, out index))
+                {
+                    if (IsDenseIndex(index)) return _densePart[index];
+                    else return _sparsePart.GetValueOrDefault(index);
+                }
+                else
+                {
+                    key = NormalizeAssociativeKey(key);
+                    return _associativePart.GetValueOrDefault(key);
+                }
             }
             set
             {
@@ -167,21 +154,15 @@ namespace CoCEd.Model
                 int index;
                 if (IsIndex(key, out index))
                 {
-                    if (index == _denseValues.Count)
-                    {
-                        Push(value);
-                        return;
-                    }
-                    if (index >= 0 && index < _denseValues.Count)
-                    {
-                        _denseValues[index] = value;
-                        return;
-                    }
+                    if (IsDenseIndex(index)) _densePart[index] = value;
+                    else if (index == _densePart.Count) Push(value);
+                    else _sparsePart[index] = value;
                 }
-
-                var pair = GetAssociativePair(key);
-                if (pair != null) pair.Value = value;
-                else _associativePairs.Add(new AmfPair(key, value));
+                else
+                {
+                    key = NormalizeAssociativeKey(key);
+                    _associativePart[key] = value;
+                }
             }
         }
 
@@ -190,26 +171,33 @@ namespace CoCEd.Model
             int index;
             if (IsIndex(key, out index))
             {
-                if (index >= 0 && index < _denseValues.Count)
+                if (IsDenseIndex(index))
                 {
-                    // We're going to remove 4, so we need to add 5 and higher to the associative part
-                    for (int i = index + 1; i < _denseValues.Count; ++i)
-                    {
-                        _associativePairs.Add(new AmfPair(i, _denseValues[i]));
-                    }
-
-                    // Remove 4 and higher from the dense part
-                    _denseValues.RemoveRange(index, _denseValues.Count - index);
+                    RemoveDenseIndex(index);
                     return true;
                 }
+                else
+                {
+                    return _sparsePart.Remove(index);
+                }
+            }
+            else
+            {
+                key = NormalizeAssociativeKey(key);
+                return _associativePart.Remove(key);
+            }
+        }
+
+        void RemoveDenseIndex(int index)
+        {
+            // We're going to remove 4, so we need to add 5 and higher to the associative part
+            for (int i = index + 1; i < _densePart.Count; ++i)
+            {
+                _sparsePart.Add(i, _densePart[i]);
             }
 
-            // Remove from associative index
-            var pair = GetAssociativePair(key);
-            if (pair == null) return false;
-
-            _associativePairs.Remove(pair);
-            return true;
+            // Remove 4 and higher from the dense part
+            _densePart.RemoveRange(index, _densePart.Count - index);
         }
 
         public double GetDouble(Object key, double? defaultValue = null)
@@ -263,56 +251,71 @@ namespace CoCEd.Model
 
         public AmfObject GetObj(Object key)
         {
+            key = NormalizeAssociativeKey(key);
             return this[key] as AmfObject;
         }
 
         public bool Contains(Object key)
         {
             int index;
-            if (IsIndex(key, out index) && index >= 0 && index < _denseValues.Count) return true;
-
-            return GetAssociativePair(key) != null;
+            if (IsIndex(key, out index))
+            {
+                if (IsDenseIndex(index)) return true;
+                else return _sparsePart.ContainsKey(index);
+            }
+            else
+            {
+                key = NormalizeAssociativeKey(key);
+                return _associativePart.ContainsKey(key);
+            }
         }
 
         public bool Pop(int index)
         {
             // Remove from dense part
-            if (index >= 0 && index < _denseValues.Count)
+            if (IsDenseIndex(index))
             {
-                _denseValues.RemoveAt(index);
+                _densePart.RemoveAt(index);
                 return true;
             }
 
-            // Remove from associative part
-            var pair = GetAssociativePair(index);
-            if (pair == null) return false;
-            _associativePairs.Remove(pair);
+            // Remove from sparse part
+            if (!_sparsePart.Remove(index)) return false;
 
-            // Shuffle following items
-            while (true)
-            {
-                pair = GetAssociativePair(index + 1);
-                if (pair == null) break;
-                pair.Key = index;
-                ++index;
-            }
+            // Shift following items
+            DecrementSparseIndicesGreaterThan(index);
             return true;
+        }
+
+        void DecrementSparseIndicesGreaterThan(int index)
+        {
+            if (_sparsePart.Count == 0) return;
+
+            var pairsToShift = _sparsePart.Where(x => x.Key > index).ToArray();
+            foreach (var pair in pairsToShift) _sparsePart.Remove(pair.Key);
+            foreach (var pair in pairsToShift) _sparsePart.Add(pair.Key - 1, pair.Value);
         }
 
         public void Push(object value)
         {
             // Note: thanks to consistency, we know that there is no item in the associative part at index #DenseCount
-            _denseValues.Add(value);
-            if (_associativePairs.Count == 0) return;   // Optimization for deserialization
+            _densePart.Add(value);
+            if (_sparsePart.Count == 0) return;   // Optimization for deserialization
 
+            MergeSparsePartIntoDensePart();
+        }
+
+        void MergeSparsePartIntoDensePart()
+        {
             // Before we had 0-4 and 6, we added 5, so we merge 6 and higher into the dense part
-            while (true)
-            {
-                var pair = GetAssociativePair(_denseValues.Count);
-                if (pair == null) return;
+            object nextDenseValue;
+            int nextDenseKey = _densePart.Count;
 
-                _associativePairs.Remove(pair);
-                _denseValues.Add(pair.Value);
+            while (_sparsePart.TryGetValue(nextDenseKey, out nextDenseValue))
+            {
+                _sparsePart.Remove(nextDenseKey);
+                _densePart.Add(nextDenseValue);
+                nextDenseKey++;
             }
         }
 
@@ -321,58 +324,35 @@ namespace CoCEd.Model
             if (destIndex == sourceIndex) return;
             // No change on the index: the shift caused by the removal is compensated by the fact that we need to increment the index since we want to insert "after".
 
-            if (sourceIndex < 0 || sourceIndex >= _denseValues.Count) throw new ArgumentOutOfRangeException();
-            if (destIndex < 0 || destIndex >= _denseValues.Count) throw new ArgumentOutOfRangeException();
+            if (sourceIndex < 0 || sourceIndex >= _densePart.Count) throw new ArgumentOutOfRangeException();
+            if (destIndex < 0 || destIndex >= _densePart.Count) throw new ArgumentOutOfRangeException();
 
-            var value = _denseValues[sourceIndex];
-            _denseValues.RemoveAt(sourceIndex);
-            _denseValues.Insert(destIndex, value);
-        }
-
-        public void Add(Object key, Object value)
-        {
-            int index;
-            if (IsIndex(key, out index))
-            {
-                if (index == _denseValues.Count)
-                {
-                    _denseValues.Add(value);
-                    return;
-                }
-                else if (index >= 0 && index < _denseValues.Count)
-                {
-                    throw new InvalidOperationException();
-                }
-            }
-
-            if (GetAssociativePair(key) != null) throw new InvalidOperationException();
-            _associativePairs.Add(new AmfPair(key, value));
+            var value = _densePart[sourceIndex];
+            _densePart.RemoveAt(sourceIndex);
+            _densePart.Insert(destIndex, value);
         }
 
         public void SortDensePart(Comparison<Object> comparison)
         {
-            _denseValues.Sort(comparison);
+            _densePart.Sort(comparison);
         }
-
-        /*public dynamic D()
-        {
-            return this;
-        }*/
 
         public Object[] GetDensePart()
         {
-            return _denseValues.ToArray();
+            return _densePart.ToArray();
         }
 
-        public IEnumerable<AmfPair> GetAssociativePart()
+        public IEnumerable<AmfPair> GetSparseAndAssociativePairs()
         {
-            foreach(var pair in _associativePairs) yield return pair;
+            foreach (var entry in _sparsePart) yield return new AmfPair(entry.Key, entry.Value);
+            foreach (var entry in _associativePart) yield return new AmfPair(entry.Key, entry.Value);
         }
 
         protected IEnumerable<AmfPair> Enumerate()
         {
-            for (int i = 0; i < _denseValues.Count; i++) yield return new AmfPair(i, _denseValues[i]);
-            foreach (var pair in _associativePairs) yield return pair;
+            foreach (var entry in _sparsePart) yield return new AmfPair(entry.Key, entry.Value);
+            foreach (var entry in _associativePart) yield return new AmfPair(entry.Key, entry.Value);
+            for (int i = 0; i < _densePart.Count; i++) yield return new AmfPair(i, _densePart[i]);
         }
 
         IEnumerator<AmfPair> IEnumerable<AmfPair>.GetEnumerator()
@@ -385,8 +365,18 @@ namespace CoCEd.Model
             return Enumerate().GetEnumerator();
         }
 
+        bool IsDenseIndex(int index)
+        {
+            return index >= 0 && index < _densePart.Count;
+        }
+
         bool IsIndex(object key, out int index)
         {
+            if (key == null)
+            {
+                index = 0;
+                return false;
+            }
             if (key is int)
             {
                 index = (int)key;
@@ -396,38 +386,65 @@ namespace CoCEd.Model
             {
                 return Int32.TryParse((string)key, out index);
             }
-            if (key == null)
+            if (key is bool)
             {
-                index = 0;
-                return false;
+                index = (bool)key ? 1 : 0;
+                return true;
             }
 
             var str = key.ToString();
             return Int32.TryParse(str, out index);
         }
 
-        AmfPair GetAssociativePair(object key)
-        {
-            int index = 0;
-            foreach (var pair in _associativePairs)
-            {
-                if (AreSameKey(pair.Key, key)) return pair;
-                ++index;
-            }
-            return null;
-        }
-
-        bool AreSameKey(object x, object y)
+        public static bool AreSame(Object x, Object y)
         {
             if (x == null) return (y == null);
             if (y == null) return false;
-            if (Type == AmfTypes.Object) return x.ToString() == y.ToString();
-            return x.Equals(y);
+
+            var xType = System.Type.GetTypeCode(x.GetType());
+            var yType = System.Type.GetTypeCode(y.GetType());
+
+            if (xType == yType) return object.Equals(x, y);
+            if (TryConvertForEqualityComparison(ref x, xType)) return AreSame(x, y);
+            if (TryConvertForEqualityComparison(ref y, yType)) return AreSame(x, y);
+            return false;
         }
 
-        public static bool AreSame(object x, object y)
+        static bool TryConvertForEqualityComparison(ref object x, TypeCode type)
         {
-            return object.Equals(x, y);
+            switch(type)
+            {
+                case TypeCode.Boolean:
+                    x = (bool)x ? 1 : 0;
+                    return true;
+
+                case TypeCode.Char:
+                case TypeCode.DateTime:
+
+                case TypeCode.Byte:
+                case TypeCode.SByte:
+                case TypeCode.Int16:
+                case TypeCode.UInt16:
+                case TypeCode.Int32:
+                case TypeCode.UInt32:
+                case TypeCode.Int64:
+                case TypeCode.UInt64:
+
+                case TypeCode.Decimal:
+                case TypeCode.Double:
+                case TypeCode.Single:
+                    x = x.ToString();
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        object NormalizeAssociativeKey(Object key)
+        {
+            if (Type == AmfTypes.Dictionary) return key;
+            return key.ToString();
         }
     }
 

@@ -48,7 +48,7 @@ namespace CoCEd.Model
         void WritePlainDataFile(AmfFile file)
         {
             var data = new AmfObject(AmfTypes.Object);
-            foreach(var pair in file) data.Add(pair.Key, pair.Value);
+            foreach(var pair in file) data[pair.Key] = pair.Value;
 
             var dataContainer = new AmfObject(AmfTypes.Object);
             dataContainer["data"] = data;
@@ -321,7 +321,7 @@ namespace CoCEd.Model
             WriteU29(array.DenseCount, true);
 
             // Associative part (key-value pairs)
-            foreach(var pair in array.GetAssociativePart())
+            foreach(var pair in array.GetSparseAndAssociativePairs())
             {
                 WriteString(pair.Key.ToString());
                 WriteValue(pair.Value);
@@ -426,7 +426,7 @@ namespace CoCEd.Model
 
         void WriteVector(AmfObject vector)
         {
-            if (vector.AssociativeCount != 0) throw new InvalidOperationException("AssociativeCount was not zero.");
+            if (vector.IsSparse) throw new InvalidOperationException("Vectors must be dense.");
 
             if (TryWriteRef(vector)) return;
             WriteU29(vector.DenseCount, true);
