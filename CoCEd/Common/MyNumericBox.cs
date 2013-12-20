@@ -236,7 +236,7 @@ namespace CoCEd.Common
 
             if (Unit == "inches")
             {
-                if (Value >= 12) return String.Format("{0:0} cm ; {1:0}' {2:0}\"", Value * 2.54, (int)(Value / 12), Value % 12);
+                if (Value >= 12) return String.Format("{0:0} cm ; {1:0}\u2032 {2:0}\u2033", Value * 2.54, (int)(Value / 12), Value % 12);
                 if (Value >= 4) return String.Format("{0:0} cm", Value * 2.54);
                 return String.Format("{0:0.0} cm", Value * 2.54);
             }
@@ -474,12 +474,14 @@ namespace CoCEd.Common
             switch (unit)
             {
                 case "'":
+                case "\u2032":
                 case "ft":
                 case "foot":
                 case "feet":
                     return "feet";
 
                 case "\"":
+                case "\u2033":
                 case "in":
                 case "inch":
                 case "inches":

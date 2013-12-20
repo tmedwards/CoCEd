@@ -120,7 +120,7 @@
                         <common:MyNumericBox    Value="{Binding LactationMultiplier}" Type="Double" Tip="{Binding MilkVolume}"/>
 
                         <Border/>
-                        <CheckBox Content="Fuckable nipples*" ToolTip="Your nipples are now pussies." IsChecked="{Binding Fuckable}" Margin="8,5,0,0"/>
+                        <CheckBox Content="Fuckable nipples&#x202F;*" ToolTip="Your nipples are now pussies." IsChecked="{Binding Fuckable}" Margin="8,5,0,0"/>
                     </common:AutoGrid>
                 </common:ArrayEditor>
 
@@ -132,7 +132,7 @@
                     <common:MyPiercingBox DataContext="{Binding Game.NipplesPiercing}"/>
 
                     <Border/>
-                    <CheckBox Content="Black nipples*" ToolTip="Sand trap effect." IsChecked="{Binding Game.HasSandTrapNipples}" Margin="8,5,0,0"/>
+                    <CheckBox Content="Black nipples&#x202F;*" ToolTip="Sand trap effect." IsChecked="{Binding Game.HasSandTrapNipples}" Margin="8,5,0,0"/>
                 </common:AutoGrid>
             </StackPanel>
         </Grid>

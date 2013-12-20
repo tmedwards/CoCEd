@@ -64,19 +64,19 @@
                     <TextBlock              Text="Addiction: minotaur cum"/>
                     <common:MyNumericBox    Value="{Binding Game.MinotaurCumAddiction}" Unit="%" Upper="120"/>
 
-                    <TextBlock              Text="Addiction: marble milk*" ToolTip="Affected by perks: 0% if Marble Resistant, 100% if Marble's Milk." IsEnabled="{Binding Game.HasMetMarble}"/>
+                    <TextBlock              Text="Addiction: marble milk&#x202F;*" ToolTip="Affected by perks: 0% if Marble Resistant, 100% if Marble's Milk." IsEnabled="{Binding Game.HasMetMarble}"/>
                     <common:MyNumericBox    Value="{Binding Game.MarbleMilkAddiction}" Unit="%" Upper="120" IsEnabled="{Binding Game.HasMetMarble}"/>
 
                     <TextBlock              Text="Kelt submissiveness" IsEnabled="{Binding Game.HasMetKelt}"/>
                     <common:MyNumericBox    Value="{Binding Game.KeltSubmissiveness}" Unit="%" Upper="100" IsEnabled="{Binding Game.HasMetKelt}"/>
 
-                    <TextBlock              Text="Lust stick time*" ToolTip="Enables the &quot;kiss&quot; attack."/>
+                    <TextBlock              Text="Lust stick time&#x202F;*" ToolTip="Enables the &quot;kiss&quot; attack."/>
                     <common:MyNumericBox    Value="{Binding Game.LustStickTime}" Upper="24" Unit="hours"/>
 
-                    <TextBlock              Text="Heat time*" ToolTip="Increases libido and fertility."/>
+                    <TextBlock              Text="Heat time&#x202F;*" ToolTip="Increases libido and fertility."/>
                     <common:MyNumericBox    Value="{Binding Game.HeatTime}" Upper="48" Unit="hours"/>
 
-                    <TextBlock              Text="Rut time*" ToolTip="Increases libido and cum production."/>
+                    <TextBlock              Text="Rut time&#x202F;*" ToolTip="Increases libido and cum production."/>
                     <common:MyNumericBox    Value="{Binding Game.RutTime}" Upper="48" Unit="hours"/>
                 </common:AutoGrid>
             </StackPanel>
@@ -90,31 +90,31 @@
                     <common:MyNumericBox    Value="{Binding Game.Fertility}" Upper="100"/>
 
                     <Border/>
-                    <CheckBox Content="Contraceptives*" ToolTip="Sand Witch contraceptives. Will prevent new pregnancies, but does not terminate existing ones." IsChecked="{Binding Game.UsedContraceptives}" Margin="8,5,0,0"/>
+                    <CheckBox Content="Contraceptives&#x202F;*" ToolTip="Sand Witch contraceptives. Will prevent new pregnancies, but does not terminate existing ones." IsChecked="{Binding Game.UsedContraceptives}" Margin="8,5,0,0"/>
                 </common:AutoGrid>
 
                 <common:AutoGrid Margin="0,30">
                     <TextBlock              Text="Pregnancy"/>
                     <common:MyComboBox SelectedValue="{Binding Game.PregnancyType}" ItemsSource="{Binding Data.Body.PregnancyTypes}"/>
 
-                    <TextBlock              Text="Time remaining*" IsEnabled="{Binding Game.IsPregnancyEnabled}" ToolTip="A virgin vagina will put pregnancy on hold. With the diapause perk it will only progress when you absorb fluids."/>
+                    <TextBlock              Text="Time remaining&#x202F;*" IsEnabled="{Binding Game.IsPregnancyEnabled}" ToolTip="A virgin vagina will put pregnancy on hold. With the diapause perk it will only progress when you absorb fluids."/>
                     <common:MyNumericBox    Value="{Binding Game.PregnancyTime}" Unit="hours" IsEnabled="{Binding Game.IsPregnancyEnabled}"/>
 
                     <TextBlock              Text="Butt pregnancy"/>
                     <common:MyComboBox SelectedValue="{Binding Game.ButtPregnancyType}" ItemsSource="{Binding Data.Body.AnalPregnancyTypes}"/>
 
-                    <TextBlock              Text="Time remaining*" IsEnabled="{Binding Game.IsButtPregnancyEnabled}" ToolTip="With the diapause perk it will only progress when you absorb fluids."/>
+                    <TextBlock              Text="Time remaining&#x202F;*" IsEnabled="{Binding Game.IsButtPregnancyEnabled}" ToolTip="With the diapause perk it will only progress when you absorb fluids."/>
                     <common:MyNumericBox    Value="{Binding Game.ButtPregnancyTime}" Unit="hours" IsEnabled="{Binding Game.IsButtPregnancyEnabled}"/>
                 </common:AutoGrid>
 
                 <common:AutoGrid Margin="0,15">
-                    <TextBlock              Text="Birthed Tamani children*" IsEnabled="{Binding Game.HasMetTamani}" ToolTip="After 24 daughters, enables a new encounter whose level is a factor of the total number."/>
+                    <TextBlock              Text="Birthed Tamani children&#x202F;*" IsEnabled="{Binding Game.HasMetTamani}" ToolTip="After 24 daughters, enables a new encounter whose level is a factor of the total number."/>
                     <common:MyNumericBox    Value="{Binding Game.BirthedTamaniChildren}" IsEnabled="{Binding Game.HasMetTamani}"/>
 
-                    <TextBlock              Text="Birthed adult minotaurs*" ToolTip="Affects encounters in the mountain. Past 25 children the minotaur gangbang bad ending is triggered for addicted players in need of minotaur cum."/>
+                    <TextBlock              Text="Birthed adult minotaurs&#x202F;*" ToolTip="Affects encounters in the mountain. Past 25 children the minotaur gangbang bad ending is triggered for addicted players in need of minotaur cum."/>
                     <common:MyNumericBox    Value="{Binding Game.BirthedMinotaurs}"/>
 
-                    <TextBlock              Text="Birthed imps*" ToolTip="Affects the probability of imp gangbang rape at night."/>
+                    <TextBlock              Text="Birthed imps&#x202F;*" ToolTip="Affects the probability of imp gangbang rape at night."/>
                     <common:MyNumericBox    Value="{Binding Game.BirthedImps}"/>
                 </common:AutoGrid>
             </StackPanel>

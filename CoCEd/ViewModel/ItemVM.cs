@@ -146,7 +146,7 @@ namespace CoCEd.ViewModel
             {
                 var type = XmlData.Instance.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
                 if (Quantity == 0 || type == null) return "";
-                return "x" + Quantity.ToString();
+                return "\u00D7" + Quantity.ToString();
             }
         }
     }

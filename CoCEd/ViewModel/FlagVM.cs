@@ -28,7 +28,7 @@ namespace CoCEd.ViewModel
             _index = index;
             _label = data != null ? data.Name : "";
             _comment = data != null ? data.Description : "";
-            if (!String.IsNullOrEmpty(_comment)) _label = _label + "*";
+            if (!String.IsNullOrEmpty(_comment)) _label = _label + "\u202F*";
 
             var value = flags[_index];
             if (value is AmfObject) _valueTrait = ((AmfObject)value).Trait;
