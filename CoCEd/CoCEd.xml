@@ -1010,15 +1010,15 @@
     <Flag ID="11"   Name="TIMES_FUCKED_URTA"/>
     <Flag ID="12"   Name="URTA_COMFORTABLE_WITH_OWN_BODY"               Description="Urta's horsecock comfort level: -1 = hates self"/>
     <Flag ID="13"   Name="URTA_TIME_SINCE_LAST_CAME"                    Description="Hours until Urta can be horny again"/>
-    <Flag ID="14"   Name="PC_SEEN_URTA_SEX_TOYS"                        Description="PC seen Urta's toyz?"/>
+    <Flag ID="14"   Name="PC_SEEN_URTA_SEX_TOYS"/>
     <Flag ID="15"   Name="PLAYER_RESISTED_AKBAL"                        Description="1 = PC has resisted at least once"/>
     <Flag ID="16"   Name="AKBAL_SUBMISSION_COUNTER"/>
     <Flag ID="17"   Name="AKBAL_SUBMISSION_STATE"                       Description="-1 = lost to him, 1 = beat him, 2 = Akbal is your bitch"/>
     <Flag ID="18"   Name="MINOTAUR_CUM_ADDICTION_TRACKER"/>
     <Flag ID="19"   Name="TIME_SINCE_LAST_CONSUMED_MINOTAUR_CUM"/>
     <Flag ID="20"   Name="MINOTAUR_CUM_ADDICTION_STATE"                 Description="0 = normal, 1 = addicted, 1 = needy, 2 = withdrawal"/>
-    <Flag ID="21"   Name="MINOTAUR_CUM_REALLY_ADDICTED_STATE"           Description="Lust status affect timer"/>
-    <Flag ID="22"   Name="IN_COMBAT_USE_PLAYER_WAITED_FLAG"             Description="Did PC wait in combat?"/>
+    <Flag ID="21"   Name="MINOTAUR_CUM_REALLY_ADDICTED_STATE"           Description="Lust status effect timer"/>
+    <Flag ID="22"   Name="IN_COMBAT_USE_PLAYER_WAITED_FLAG"/>
     <Flag ID="23"   Name="PC_FETISH"                                    Description="Fetish level: 1 = exhibitionism, 2 = bondage, 3 = pacifism"/>
     <Flag ID="24"   Name="PC_MET_CERAPH"/>
     <Flag ID="25"   Name="INCREASED_HAIR_GROWTH_TIME_REMAINING"         Description="In days"/>
@@ -1061,7 +1061,7 @@
     <Flag ID="62"   Name="CERULEAN_POTION_NEUTER_ATTEMPTED"/>
     <Flag ID="63"   Name="TEMP_STORAGE_SAVE_DELETION"                   Description="Used as temp storage for deleting save slots"/>
     <Flag ID="64"   Name="MARBLE_GROSSED_OUT_BECAUSE_WORM_INFESTATION"  Description="Marble not sleeping with you due to worms"/>
-    <Flag ID="65"   Name="FORCE_BEE_TO_PRODUCE_HONEY"                   Description="Force Bee honey drop. 1 = found"/>
+    <Flag ID="65"   Name="FORCE_BEE_TO_PRODUCE_HONEY"                   Description="1 = found"/>
     <Flag ID="66"   Name="HAIR_GROWTH_STOPPED_BECAUSE_LIZARD"/>
     <Flag ID="67"   Name="TIMES_AUTOFELLATIO_DUE_TO_CAT_FLEXABILITY"/>
     <Flag ID="68"   Name="EDRYN_PREGNANCY_INCUBATION"                   Description="Starts at 500 hours"/>
@@ -1096,19 +1096,19 @@
     <Flag ID="97"   Name="TIMES_PISSED_OFF_SOPHIE_COUNTER"/>
     <Flag ID="98"   Name="TIMES_FUCKED_SOPHIE_LESBIAN"/>
     <Flag ID="99"   Name="EASY_MODE_ENABLE_FLAG"                        Description="0 = false, 1 = true"/>
-    <Flag ID="100"  Name="CORRUPT_MARAE_FOLLOWUP_ENCOUNTER_STATE"       Description="Corrupt Marae followups"/>
-    <Flag ID="101"  Name="FOUND_WIZARD_STAFF"                           Description="Found Wizard Staff"/>
-    <Flag ID="102"  Name="UNKNOWN_FLAG_NUMBER_00102"                    Description="Has extra jojo time been cleared? - Jojo Debug Flag"/>
-    <Flag ID="103"  Name="TIMES_AUTOFELLATIOED_EXGARTUAN"               Description="Times Autofellated Exgartuan"/>
-    <Flag ID="104"  Name="WHITNEY_GEMS_PAID_THIS_WEEK"                  Description="Whitney Gems Paid Out That Week"/>
-    <Flag ID="105"  Name="TIMES_MET_SCYLLA_IN_ADDICTION_GROUP"          Description="SCYLLA: Times met Addiction Group"/>
-    <Flag ID="106"  Name="TIMES_SCYLLA_ADDICT_GROUP_EXPLOITED"          Description="SCYLLA: Times addict group taken advantage of"/>
-    <Flag ID="107"  Name="SCYLLA_TIMES_SHARED_IN_ADDICT_GROUP"          Description="SCYLLA: Times given the option to &quot;share&quot; something"/>
-    <Flag ID="108"  Name="SCYLLA_MILK_THERAPY_TIMES"                    Description="SCYLLA: Milk therapy times"/>
-    <Flag ID="109"  Name="SCYLLA_CUM_THERAPY_TIMES"                     Description="SCYLLA: Cum therapy times"/>
-    <Flag ID="110"  Name="SCYLLA_SEX_THERAPY_TIMES"                     Description="SCYLLA: Sex therapy times"/>
+    <Flag ID="100"  Name="CORRUPT_MARAE_FOLLOWUP_ENCOUNTER_STATE"/>
+    <Flag ID="101"  Name="FOUND_WIZARD_STAFF"/>
+    <Flag ID="102"  Name="UNKNOWN_FLAG_NUMBER_00102"                    Description="Has extra Jojo time been cleared? - Jojo Debug Flag"/>
+    <Flag ID="103"  Name="TIMES_AUTOFELLATIOED_EXGARTUAN"/>
+    <Flag ID="104"  Name="WHITNEY_GEMS_PAID_THIS_WEEK"/>
+    <Flag ID="105"  Name="TIMES_MET_SCYLLA_IN_ADDICTION_GROUP"/>
+    <Flag ID="106"  Name="TIMES_SCYLLA_ADDICT_GROUP_EXPLOITED"/>
+    <Flag ID="107"  Name="SCYLLA_TIMES_SHARED_IN_ADDICT_GROUP"/>
+    <Flag ID="108"  Name="SCYLLA_MILK_THERAPY_TIMES"/>
+    <Flag ID="109"  Name="SCYLLA_CUM_THERAPY_TIMES"/>
+    <Flag ID="110"  Name="SCYLLA_SEX_THERAPY_TIMES"/>
     <Flag ID="111"  Name="UNKNOWN_FLAG_NUMBER_00111"                    Description="Cerulean Succubus: Herm times used"/>
-    <Flag ID="112"  Name="USED_MILKER_TODAY"                            Description="Used milkers today?"/>
+    <Flag ID="112"  Name="USED_MILKER_TODAY"/>
     <Flag ID="113"  Name="DISCOVERED_DUNGEON_2_ZETAZ"                   Description="Discovered Dungeon 2 (Zetaz's Lair)"/>
     <Flag ID="114"  Name="DEFEATED_ZETAZ"/>
     <Flag ID="115"  Name="ZETAZ_DOOR_UNLOCKED"/>
@@ -1119,8 +1119,8 @@
     <Flag ID="120"  Name="WEEKLY_FAIRY_ORGY_COUNTDOWN"/>
     <Flag ID="121"  Name="ENCOUNTERED_VALA_AT_BAR"/>
     <Flag ID="122"  Name="FUCKED_VALA_AT_BAR_TODAY"/>
-    <Flag ID="123"  Name="TIMES_FUCKED_VALA_IN_DUNGEON"                 Description="Times Vala Used IN Dungeon"/>
-    <Flag ID="124"  Name="INVESTIGATED_VALA_AFTER_ZETAZ_DEFEATED"       Description="Investigated Vala Since Zetaz downed?"/>
+    <Flag ID="123"  Name="TIMES_FUCKED_VALA_IN_DUNGEON"/>
+    <Flag ID="124"  Name="INVESTIGATED_VALA_AFTER_ZETAZ_DEFEATED"/>
     <Flag ID="125"  Name="TIME_SINCE_VALA_ATTEMPTED_RAPE_PC"/>
     <Flag ID="126"  Name="TIMES_PC_DEFEATED_VALA"/>
     <Flag ID="127"  Name="TIMES_PC_DEFEATED_VALA_AND_RAEPED"/>
@@ -1128,15 +1128,15 @@
     <Flag ID="129"  Name="ZETAZ_LAIR_TOOK_BONDAGE_STRAPS"/>
     <Flag ID="130"  Name="ZETAZ_LAIR_DEMON_VENDOR_PRESENT"/>
     <Flag ID="131"  Name="TIMES_EXPLORED_PLAINS"/>
-    <Flag ID="132"  Name="MET_BUNBUN"                                   Description="Met Bunbun"/>
-    <Flag ID="133"  Name="RAPHEAL_COUNTDOWN_TIMER"                      Description="Raphael countdown (time till Quiksilver Fawkes). -1 = betrayed, -2 = if covered for"/>
-    <Flag ID="134"  Name="RAPHAEL_MET"                                  Description="Raphael met? 1 = yes"/>
-    <Flag ID="135"  Name="RAPHAEL_DRESS_TIMER"                          Description="Dress timer (set when dress acquired, will proc event when dress is worn to bed or when counter is up (Quiksilver Fawkes!))"/>
-    <Flag ID="136"  Name="REJECTED_RAPHAEL"                             Description="Raphael reject?"/>
+    <Flag ID="132"  Name="MET_BUNBUN"/>
+    <Flag ID="133"  Name="RAPHEAL_COUNTDOWN_TIMER"                      Description="-1 = betrayed, -2 = if covered for"/>
+    <Flag ID="134"  Name="RAPHAEL_MET"                                  Description="0 = no, 1 = yes"/>
+    <Flag ID="135"  Name="RAPHAEL_DRESS_TIMER"                          Description="Set when dress acquired, will proc event when dress is worn to bed or when counter is up."/>
+    <Flag ID="136"  Name="REJECTED_RAPHAEL"/>
     <Flag ID="137"  Name="RAPHAEL_RAPIER_TRANING"                       Description="Raphael rapier training - OR? - Weapon strength post-newgame."/>
-    <Flag ID="138"  Name="RAPHAEL_INTELLIGENCE_TRAINING"                Description="Raphael intelligence training"/>
-    <Flag ID="139"  Name="RAPHAEL_DISGUSTED_BY_PC_APPEARANCE"           Description="Raphael disgusted by PC appearance?"/>
-    <Flag ID="140"  Name="RAPHAEL_SECOND_DATE"                          Description="Raphael 2nd date happen?"/>
+    <Flag ID="138"  Name="RAPHAEL_INTELLIGENCE_TRAINING"/>
+    <Flag ID="139"  Name="RAPHAEL_DISGUSTED_BY_PC_APPEARANCE"/>
+    <Flag ID="140"  Name="RAPHAEL_SECOND_DATE"/>
     <Flag ID="141"  Name="UNKNOWN_FLAG_NUMBER_00141"                    Description="Hellhound progression"/>
     <Flag ID="142"  Name="UNKNOWN_FLAG_NUMBER_00142"                    Description="Can buy minotaur cum from goblins?"/>
     <Flag ID="143"  Name="UNKNOWN_FLAG_NUMBER_00143"                    Description="How many times have you caught Urta + Scylla?"/>
@@ -1158,13 +1158,13 @@
     <Flag ID="159"  Name="AMILY_CONFESSED_LESBIAN"                      Description="1 = yes, 2 = yes + accepted"/>
     <Flag ID="160"  Name="AMILY_TIMES_FUCKED_FEMPC"/>
     <Flag ID="161"  Name="AMILY_HERM_TIMES_FUCKED_BY_FEMPC"/>
-    <Flag ID="162"  Name="PC_TIMES_BIRTHED_AMILYKIDS"                   Description="Times PC has birthed Amily's brood"/>
+    <Flag ID="162"  Name="PC_TIMES_BIRTHED_AMILYKIDS"/>
     <Flag ID="163"  Name="PC_PENDING_PREGGERS"                          Description="1 = yes,2 = finished"/>
     <Flag ID="164"  Name="AMILY_PC_GENDER"/>
     <Flag ID="165"  Name="AMILY_HERM_QUEST"                             Description="1 = Amily flipped out, 2 = accepted as Amily's dad"/>
     <Flag ID="166"  Name="AMILY_ALLOWS_FERTILITY"/>
     <Flag ID="167"  Name="UNKNOWN_FLAG_NUMBER_00167"                    Description="Permanent Gym Membership? 1 = yes"/>
-    <Flag ID="168"  Name="AMILY_CORRUPT_FLIPOUT"                        Description="Amily flip out about corruption yet?"/>
+    <Flag ID="168"  Name="AMILY_CORRUPT_FLIPOUT"/>
     <Flag ID="169"  Name="UNKNOWN_FLAG_NUMBER_00169"                    Description="Times cooked Amily's corruption drug"/>
     <Flag ID="170"  Name="UNKNOWN_FLAG_NUMBER_00170"                    Description="Amily's corruption value"/>
     <Flag ID="171"  Name="AMILY_HAS_BALLS_AND_SIZE"                     Description="Amily's balls: 1 = yes, higher numbers = bigger balls"/>
@@ -1179,40 +1179,40 @@
     <Flag ID="180"  Name="UNKNOWN_FLAG_NUMBER_00180"                    Description="Times fucked Jasun"/>
     <Flag ID="181"  Name="UNKNOWN_FLAG_NUMBER_00181"                    Description="Jasun name learned"/>
     <Flag ID="182"  Name="UNKNOWN_FLAG_NUMBER_00182"                    Description="Gym Sex Machine Status: 0 = not encountered, 1 = encountered, 2 = used"/>
-    <Flag ID="183"  Name="TIMES_USED_SEX_MACHINE_AS_MALE"               Description="Times Used Sex Machine As Male"/>
-    <Flag ID="184"  Name="TIMES_USED_SEX_MACHINE_AS_FEMALE"             Description="Times Used Sex Machine As Female"/>
-    <Flag ID="185"  Name="TIMES_USED_SEX_MACHINE_AS_EUNUCH"             Description="Times Used Sex Machine As Genderless"/>
-    <Flag ID="186"  Name="TIMES_USED_SEX_MACHINE_AS_HERM"               Description="Times Used Sex Machine As Herm"/>
-    <Flag ID="187"  Name="NEW_GAME_PLUS_BONUS_STORED_XP"                Description="New Game Plus - Stored XP"/>
-    <Flag ID="188"  Name="NEW_GAME_PLUS_BONUS_STORED_ITEMS"             Description="New Game Plus - Stored Gems"/>
-    <Flag ID="189"  Name="NEW_GAME_PLUS_BONUS_WEAPON_NAME"              Description="NG+ Weapon name"/>
-    <Flag ID="190"  Name="NEW_GAME_PLUS_BONUS_WEAPON_VALUE"             Description="NG+ Weapon Value"/>
-    <Flag ID="191"  Name="NEW_GAME_PLUS_BONUS_WEAPON_PERK"              Description="NG+ Weapon Perk"/>
-    <Flag ID="192"  Name="NEW_GAME_PLUS_BONUS_WEAPON_VERB"              Description="NG+ Weapon Verb"/>
-    <Flag ID="193"  Name="NEW_GAME_PLUS_BONUS_WEAPON_ATTACK"            Description="NG+ Weapon Attack"/>
-    <Flag ID="194"  Name="NEW_GAME_PLUS_BONUS_ARMOR_NAME"               Description="NG+ Armor Name"/>
-    <Flag ID="195"  Name="NEW_GAME_PLUS_BONUS_ARMOR_PERK"               Description="NG+ Armor Perk"/>
-    <Flag ID="196"  Name="NEW_GAME_PLUS_BONUS_ARMOR_DEFENSE"            Description="NG+ ArmorDef"/>
-    <Flag ID="197"  Name="NEW_GAME_PLUS_BONUS_ARMOR_VALUE"              Description="NG + Armor Value"/>
-    <Flag ID="198"  Name="TEMP_STORAGE_PASTRY_NAME"                     Description="Holding pattern for pastry name"/>
-    <Flag ID="199"  Name="TEMP_STORAGE_PASTRY_PRICE"                    Description="Holding pattern for price"/>
-    <Flag ID="200"  Name="MINOTAUR_CUM_ECLAIR_UNLOCKED"                 Description="Unlocked mino cum eclair"/>
-    <Flag ID="201"  Name="TIMES_VISITED_BAKERY"                         Description="Times visited bakery"/>
-    <Flag ID="202"  Name="TIMES_FUCKED_HECKEL_BLOWJOB"                  Description="Times Heckel BJ"/>
-    <Flag ID="203"  Name="TIMES_FUCKED_HECKEL_ANAL"                     Description="Times Heckel Anal"/>
-    <Flag ID="204"  Name="MET_HECKEL"                                   Description="Met Heckel"/>
-    <Flag ID="205"  Name="MET_IFRIS"                                    Description="Met Ifris"/>
-    <Flag ID="206"  Name="TIMES_FUCKED_IFRIS_BLOWJOB"                   Description="Ifris sucked?"/>
-    <Flag ID="207"  Name="TIMES_FUCKED_IFRIS_LICKED"                    Description="Ifris licked?"/>
-    <Flag ID="208"  Name="IFRIS_SHOWED_OFF"                             Description="Shown off for ifris"/>
+    <Flag ID="183"  Name="TIMES_USED_SEX_MACHINE_AS_MALE"/>
+    <Flag ID="184"  Name="TIMES_USED_SEX_MACHINE_AS_FEMALE"/>
+    <Flag ID="185"  Name="TIMES_USED_SEX_MACHINE_AS_EUNUCH"/>
+    <Flag ID="186"  Name="TIMES_USED_SEX_MACHINE_AS_HERM"/>
+    <Flag ID="187"  Name="NEW_GAME_PLUS_BONUS_STORED_XP"/>
+    <Flag ID="188"  Name="NEW_GAME_PLUS_BONUS_STORED_ITEMS"             Description="NG+ Stored Gems, actually?"/>
+    <Flag ID="189"  Name="NEW_GAME_PLUS_BONUS_WEAPON_NAME"/>
+    <Flag ID="190"  Name="NEW_GAME_PLUS_BONUS_WEAPON_VALUE"/>
+    <Flag ID="191"  Name="NEW_GAME_PLUS_BONUS_WEAPON_PERK"/>
+    <Flag ID="192"  Name="NEW_GAME_PLUS_BONUS_WEAPON_VERB"/>
+    <Flag ID="193"  Name="NEW_GAME_PLUS_BONUS_WEAPON_ATTACK"/>
+    <Flag ID="194"  Name="NEW_GAME_PLUS_BONUS_ARMOR_NAME"/>
+    <Flag ID="195"  Name="NEW_GAME_PLUS_BONUS_ARMOR_PERK"/>
+    <Flag ID="196"  Name="NEW_GAME_PLUS_BONUS_ARMOR_DEFENSE"/>
+    <Flag ID="197"  Name="NEW_GAME_PLUS_BONUS_ARMOR_VALUE"/>
+    <Flag ID="198"  Name="TEMP_STORAGE_PASTRY_NAME"/>
+    <Flag ID="199"  Name="TEMP_STORAGE_PASTRY_PRICE"/>
+    <Flag ID="200"  Name="MINOTAUR_CUM_ECLAIR_UNLOCKED"/>
+    <Flag ID="201"  Name="TIMES_VISITED_BAKERY"/>
+    <Flag ID="202"  Name="TIMES_FUCKED_HECKEL_BLOWJOB"/>
+    <Flag ID="203"  Name="TIMES_FUCKED_HECKEL_ANAL"/>
+    <Flag ID="204"  Name="MET_HECKEL"/>
+    <Flag ID="205"  Name="MET_IFRIS"/>
+    <Flag ID="206"  Name="TIMES_FUCKED_IFRIS_BLOWJOB"/>
+    <Flag ID="207"  Name="TIMES_FUCKED_IFRIS_LICKED"/>
+    <Flag ID="208"  Name="IFRIS_SHOWED_OFF"/>
     <Flag ID="209"  Name="HAVE_ENCOUNTERED_GNOLL_PLAINS"                Description="New gnoll met?"/>
-    <Flag ID="210"  Name="BAZAAR_SLIPPERY_SQUEEZE_VISITED"              Description="Visited the Slippery Squeeze?"/>
-    <Flag ID="211"  Name="BAZAAR_ENTERED"                               Description="Entered the bizarre bazaar?"/>
-    <Flag ID="212"  Name="BAZAAR_ENCOUNTERED"                           Description="Found the bazaar previously?"/>
-    <Flag ID="213"  Name="CINNABAR_HOUSE_VISITED"                       Description="Been to Cinnabar's House?"/>
-    <Flag ID="214"  Name="CINNABAR_NUMBER_ENCOUNTERS"                   Description="CINNABAR Introduced?"/>
-    <Flag ID="215"  Name="CINNABAR_NUMBER_TIMES_FUCKED"                 Description="CINNABAR Times Fucked"/>
-    <Flag ID="216"  Name="CINNABAR_FUCKED_CORRUPT_PREVIOUSLY"           Description="CINNABARWas last fuck corrupt fuck? - Cinnabar Hard Fucked. 0 = no, 1 = yes"/>
+    <Flag ID="210"  Name="BAZAAR_SLIPPERY_SQUEEZE_VISITED"/>
+    <Flag ID="211"  Name="BAZAAR_ENTERED"/>
+    <Flag ID="212"  Name="BAZAAR_ENCOUNTERED"/>
+    <Flag ID="213"  Name="CINNABAR_HOUSE_VISITED"/>
+    <Flag ID="214"  Name="CINNABAR_NUMBER_ENCOUNTERS"/>
+    <Flag ID="215"  Name="CINNABAR_NUMBER_TIMES_FUCKED"/>
+    <Flag ID="216"  Name="CINNABAR_FUCKED_CORRUPT_PREVIOUSLY"           Description="Was last fuck corrupt? 0 = no, 1 = yes"/>
     <Flag ID="217"  Name="UNKNOWN_FLAG_NUMBER_00217"                    Description="Ceraph's genital stealing choice is stored here between functions"/>
     <Flag ID="218"  Name="UNKNOWN_FLAG_NUMBER_00218"                    Description="Number of Dicks Ceraph owns"/>
     <Flag ID="219"  Name="UNKNOWN_FLAG_NUMBER_00219"                    Description="Number of Pussies Ceraph owns"/>
@@ -1227,7 +1227,7 @@
     <Flag ID="228"  Name="UNKNOWN_FLAG_NUMBER_00228"                    Description="Diapause fluid store"/>
     <Flag ID="229"  Name="UNKNOWN_FLAG_NUMBER_00229"                    Description="Diapause gain need displayed?"/>
     <Flag ID="230"  Name="UNKNOWN_FLAG_NUMBER_00230"                    Description="Sharkgirls met? (Izma counter)"/>
-    <Flag ID="231"  Name="IZMA_TIMES_FOUGHT_AND_WON"                    Description="Izma fight"/>
+    <Flag ID="231"  Name="IZMA_TIMES_FOUGHT_AND_WON"/>
     <Flag ID="232"  Name="UNKNOWN_FLAG_NUMBER_00232"                    Description="Times talked at shark pussy"/>
     <Flag ID="233"  Name="UNKNOWN_FLAG_NUMBER_00233"                    Description="Izma worm scare? 1 = Izma has been scared off by worms"/>
     <Flag ID="234"  Name="UNKNOWN_FLAG_NUMBER_00234"                    Description="Izma loot storage"/>
@@ -1269,7 +1269,7 @@
     <Flag ID="270"  Name="UNKNOWN_FLAG_NUMBER_00270"                    Description="Times encountered spiderbitches"/>
     <Flag ID="271"  Name="UNKNOWN_FLAG_NUMBER_00271"                    Description="Spider Preggo Timer"/>
     <Flag ID="272"  Name="UNKNOWN_FLAG_NUMBER_00272"                    Description="Times Explored Swamp"/>
-    <Flag ID="273"  Name="SHOW_SPRITES_FLAG"                            Description="Sprites off? toggle"/>
+    <Flag ID="273"  Name="SHOW_SPRITES_FLAG"/>
     <Flag ID="274"  Name="UNKNOWN_FLAG_NUMBER_00274"                    Description="Rathazul silk armor queue: 1 = armor done"/>
     <Flag ID="275"  Name="UNKNOWN_FLAG_NUMBER_00275"                    Description="Rathazul armor type selector: 1 = armor, 2 = robes"/>
     <Flag ID="276"  Name="UNKNOWN_FLAG_NUMBER_00276"                    Description="Times Encountered Basilisk"/>
@@ -1293,31 +1293,31 @@
     <Flag ID="294"  Name="UNKNOWN_FLAG_NUMBER_00294"                    Description="Times done &quot;SWEETIE NO!&quot; Ceraph Marble RP"/>
     <Flag ID="295"  Name="UNKNOWN_FLAG_NUMBER_00295"                    Description="In Ceraph's &quot;SWEETIE NO!&quot;, is Utter Moo disabled?"/>
     <Flag ID="296"  Name="UNKNOWN_FLAG_NUMBER_00296"                    Description="In Ceraph's &quot;SWEETIE NO!&quot;, has udders? 0 = no, 1 = yes"/>
-    <Flag ID="297"  Name="UNKNOWN_FLAG_NUMBER_00297"                    Description="Lottie love her bodY? (1 = yes)"/>
-    <Flag ID="298"  Name="UNKNOWN_FLAG_NUMBER_00298"                    Description="Lottie porked count? (1+ = yes)"/>
-    <Flag ID="299"  Name="UNKNOWN_FLAG_NUMBER_00299"                    Description="Lotties Trainer? (1 = yes)"/>
+    <Flag ID="297"  Name="UNKNOWN_FLAG_NUMBER_00297"                    Description="Lottie love her body? 1 = yes"/>
+    <Flag ID="298"  Name="UNKNOWN_FLAG_NUMBER_00298"                    Description="Lottie porked count? 1+ = yes"/>
+    <Flag ID="299"  Name="UNKNOWN_FLAG_NUMBER_00299"                    Description="Lotties trainer? 1 = yes"/>
     <Flag ID="300"  Name="UNKNOWN_FLAG_NUMBER_00300"                    Description="LOTTIE: Last encouragement state"/>
-    <Flag ID="301"  Name="UNKNOWN_FLAG_NUMBER_00301"                    Description="LOTTIE: encouragement go from 31-&amp;gt;30 yet? (1 = yes)"/>
-    <Flag ID="302"  Name="UNKNOWN_FLAG_NUMBER_00302"                    Description="LOTTIE: Encouragement moved from 30 to 31 yet? (1 = yes)"/>
-    <Flag ID="303"  Name="UNKNOWN_FLAG_NUMBER_00303"                    Description="LOTTIE: Encouragement moved from 80 to 79 yet? (1 = yes)"/>
-    <Flag ID="304"  Name="UNKNOWN_FLAG_NUMBER_00304"                    Description="LOTTIE: Encouragement moved from 79 to 80 yet? (1=yes)"/>
-    <Flag ID="305"  Name="SILLY_MODE_ENABLE_FLAG"                       Description="SILLY MODE ON?"/>
+    <Flag ID="301"  Name="UNKNOWN_FLAG_NUMBER_00301"                    Description="LOTTIE: encouragement go from 31-&amp;gt;30 yet? 1 = yes"/>
+    <Flag ID="302"  Name="UNKNOWN_FLAG_NUMBER_00302"                    Description="LOTTIE: Encouragement moved from 30 to 31 yet? 1 = yes"/>
+    <Flag ID="303"  Name="UNKNOWN_FLAG_NUMBER_00303"                    Description="LOTTIE: Encouragement moved from 80 to 79 yet? 1 = yes"/>
+    <Flag ID="304"  Name="UNKNOWN_FLAG_NUMBER_00304"                    Description="LOTTIE: Encouragement moved from 79 to 80 yet? 1 = yes"/>
+    <Flag ID="305"  Name="SILLY_MODE_ENABLE_FLAG"/>
     <Flag ID="306"  Name="UNKNOWN_FLAG_NUMBER_00306"                    Description="LOTTIE: Need to talk about Oral?"/>
     <Flag ID="307"  Name="UNKNOWN_FLAG_NUMBER_00307"                    Description="LOTTIE: Need to talk about Anal?"/>
     <Flag ID="308"  Name="UNKNOWN_FLAG_NUMBER_00308"                    Description="LOTTIE: WEIGHT AT CONCLUSION OF LAST TALK EVENT"/>
-    <Flag ID="309"  Name="UNKNOWN_FLAG_NUMBER_00309"                    Description="LOTTIE: FATASS LOW SELF-ESTEEM SPECIAL EVENT TRIGGER YET? (1 = yes)"/>
-    <Flag ID="310"  Name="UNKNOWN_FLAG_NUMBER_00310"                    Description="LOTTIE: DOGGYSTYLE UNLOCKED? (1 = yes)"/>
-    <Flag ID="311"  Name="UNKNOWN_FLAG_NUMBER_00311"                    Description="LOTTIE: WALKIES UNLOCKED? (1 = yes)"/>
-    <Flag ID="312"  Name="UNKNOWN_FLAG_NUMBER_00312"                    Description="LOTTIE: LOVING FAT BITCH 1TIME EVENT TRIGGER? (1 = yes)"/>
-    <Flag ID="313"  Name="UNKNOWN_FLAG_NUMBER_00313"                    Description="LOTTIE: COWGIRL UNLOCKED? (1 = yes)"/>
-    <Flag ID="314"  Name="UNKNOWN_FLAG_NUMBER_00314"                    Description="LOTTIE: QUICKIE UNLOCKED (1 = yes)"/>
-    <Flag ID="315"  Name="UNKNOWN_FLAG_NUMBER_00315"                    Description="LOTTIE: CHARLOTTES WEB 1TIME HAPPEN (1 = yes)"/>
-    <Flag ID="316"  Name="UNKNOWN_FLAG_NUMBER_00316"                    Description="LOTTIE: THREESOME UNLOCKED (1 = yes)"/>
-    <Flag ID="317"  Name="UNKNOWN_FLAG_NUMBER_00317"                    Description="LOTTIE: ELLE NTR UNLOCKED (1 = yes)"/>
-    <Flag ID="318"  Name="UNKNOWN_FLAG_NUMBER_00318"                    Description="LOTTIE: MAX GOALS AND MAX LOVE REACHED (1 = yes)"/>
-    <Flag ID="319"  Name="UNKNOWN_FLAG_NUMBER_00319"                    Description="LOTTIE: FEMDOM UNLOCKED (1 = yes)"/>
-    <Flag ID="320"  Name="UNKNOWN_FLAG_NUMBER_00320"                    Description="LOTTIE: REVERSE COWGIRL UNLOCKED (1 = yes)"/>
-    <Flag ID="321"  Name="UNKNOWN_FLAG_NUMBER_00321"                    Description="LOTTIE: TImes given item"/>
+    <Flag ID="309"  Name="UNKNOWN_FLAG_NUMBER_00309"                    Description="LOTTIE: FATASS LOW SELF-ESTEEM SPECIAL EVENT TRIGGER YET? 1 = yes"/>
+    <Flag ID="310"  Name="UNKNOWN_FLAG_NUMBER_00310"                    Description="LOTTIE: DOGGYSTYLE UNLOCKED? 1 = yes"/>
+    <Flag ID="311"  Name="UNKNOWN_FLAG_NUMBER_00311"                    Description="LOTTIE: WALKIES UNLOCKED? 1 = yes"/>
+    <Flag ID="312"  Name="UNKNOWN_FLAG_NUMBER_00312"                    Description="LOTTIE: LOVING FAT BITCH 1TIME EVENT TRIGGER? 1 = yes"/>
+    <Flag ID="313"  Name="UNKNOWN_FLAG_NUMBER_00313"                    Description="LOTTIE: COWGIRL UNLOCKED? 1 = yes"/>
+    <Flag ID="314"  Name="UNKNOWN_FLAG_NUMBER_00314"                    Description="LOTTIE: QUICKIE UNLOCKED? 1 = yes"/>
+    <Flag ID="315"  Name="UNKNOWN_FLAG_NUMBER_00315"                    Description="LOTTIE: CHARLOTTES WEB 1TIME HAPPEN? 1 = yes"/>
+    <Flag ID="316"  Name="UNKNOWN_FLAG_NUMBER_00316"                    Description="LOTTIE: THREESOME UNLOCKED? 1 = yes"/>
+    <Flag ID="317"  Name="UNKNOWN_FLAG_NUMBER_00317"                    Description="LOTTIE: ELLE NTR UNLOCKED? 1 = yes"/>
+    <Flag ID="318"  Name="UNKNOWN_FLAG_NUMBER_00318"                    Description="LOTTIE: MAX GOALS AND MAX LOVE REACHED? 1 = yes"/>
+    <Flag ID="319"  Name="UNKNOWN_FLAG_NUMBER_00319"                    Description="LOTTIE: FEMDOM UNLOCKED? 1 = yes"/>
+    <Flag ID="320"  Name="UNKNOWN_FLAG_NUMBER_00320"                    Description="LOTTIE: REVERSE COWGIRL UNLOCKED? 1 = yes"/>
+    <Flag ID="321"  Name="UNKNOWN_FLAG_NUMBER_00321"                    Description="LOTTIE: Times given item"/>
     <Flag ID="322"  Name="UNKNOWN_FLAG_NUMBER_00322"                    Description="LOTTIE: LA BOVA COUNTDOWN - counts down to 1 before she'll use it again. Also used to track if LaBova has ever been used"/>
     <Flag ID="323"  Name="UNKNOWN_FLAG_NUMBER_00323"                    Description="LOTTIE: HAS SHE USED REDUCTO?"/>
     <Flag ID="324"  Name="UNKNOWN_FLAG_NUMBER_00324"                    Description="LOTTIE: HAM SAMMICH"/>
@@ -1325,16 +1325,16 @@
     <Flag ID="326"  Name="UNKNOWN_FLAG_NUMBER_00326"                    Description="Number of grown up minotaur offspring - TRIBE SIZE"/>
     <Flag ID="327"  Name="UNKNOWN_FLAG_NUMBER_00327"                    Description="Number of minotaur sons pending growing up"/>
     <Flag ID="328"  Name="UNKNOWN_FLAG_NUMBER_00328"                    Description="Grow up countdown"/>
-    <Flag ID="329"  Name="UNKNOWN_FLAG_NUMBER_00329"                    Description="Minos wasting a turn? (1 = yes)"/>
+    <Flag ID="329"  Name="UNKNOWN_FLAG_NUMBER_00329"                    Description="Minos wasting a turn? 1 = yes"/>
     <Flag ID="330"  Name="UNKNOWN_FLAG_NUMBER_00330"                    Description="Cooldown on minotaur cum repeat messages"/>
     <Flag ID="331"  Name="UNKNOWN_FLAG_NUMBER_00331"                    Description="Times Jojo Milked"/>
     <Flag ID="332"  Name="UNKNOWN_FLAG_NUMBER_00332"                    Description="Jojo milk cooldown 4 hours"/>
     <Flag ID="333"  Name="UNKNOWN_FLAG_NUMBER_00333"                    Description="Times PC been cock milked"/>
     <Flag ID="334"  Name="UNKNOWN_FLAG_NUMBER_00334"                    Description="Times fap arena'ed"/>
     <Flag ID="335"  Name="UNKNOWN_FLAG_NUMBER_00335"                    Description="Fap Arena victories"/>
-    <Flag ID="336"  Name="AMILY_OFFERED_DEFURRY"                        Description="1 = Offered to defurry Amily"/>
-    <Flag ID="337"  Name="AMILY_NOT_FURRY"                              Description="1 = Amily is no longer a flea-ridden furry who stinks up your carpet."/>
-    <Flag ID="338"  Name="AMILY_IS_BATMAN"                              Description="1 = You turned Amily into a human and then pissed all over her happy thoughts. She now stalks you from rooftops while buying graphite helmets, utility belts, and a sweet, jetpowered car in the theme of a rat."/>
+    <Flag ID="336"  Name="AMILY_OFFERED_DEFURRY"                        Description="1 = yes"/>
+    <Flag ID="337"  Name="AMILY_NOT_FURRY"                              Description="1 = yes"/>
+    <Flag ID="338"  Name="AMILY_IS_BATMAN"                              Description="1 = yes (You turned Amily into a human and then pissed all over her happy thoughts. She now stalks you from rooftops while buying graphite helmets, utility belts, and a sweet, jetpowered car in the theme of a rat.)"/>
     <Flag ID="339"  Name="UNKNOWN_FLAG_NUMBER_00339"                    Description="Fap Arena - rules been explaned?"/>
     <Flag ID="340"  Name="UNKNOWN_FLAG_NUMBER_00340"                    Description="came in with minotaur cum"/>
     <Flag ID="341"  Name="KIHA_TOLL"/>
@@ -1697,7 +1697,7 @@
     <Flag ID="698"  Name="MINO_SONS_HAVE_SOPHIE"/>
     <Flag ID="699"  Name="KEEP_HELIA_AND_SOPHIE"/>
     <Flag ID="700"  Name="FOLLOWER_HEL_TALKS"/>
-    <Flag ID="701"  Name="SLEEP_WITH"                                   Description="related to who you sleep with in camp"/>
+    <Flag ID="701"  Name="SLEEP_WITH"                                   Description="Related to who you sleep with in camp"/>
     <Flag ID="702"  Name="COTTON_OLDEST_KID_GENDER"/>
     <Flag ID="703"  Name="HEL_CAN_SWIM"/>
     <Flag ID="704"  Name="HEL_GUARDING"/>
@@ -1930,7 +1930,7 @@
     <Flag ID="931"  Name="HELIA_BDAY_PHOENIXES"/>
     <Flag ID="932"  Name="HELIA_BDAY_FOX_TWINS"/>
     <Flag ID="933"  Name="ARIAN_FOLLOWER"/>
-    <Flag ID="934"  Name="ARIAN_PARK"                                   Description="-1 = disabled, 1 = helped."/>
+    <Flag ID="934"  Name="ARIAN_PARK"                                   Description="-1 = disabled, 1+ = helped"/>
     <Flag ID="935"  Name="ARIAN_HEALTH"                                 Description="Higher is better."/>
     <Flag ID="936"  Name="ARIAN_ANAL_XP"/>
     <Flag ID="937"  Name="ARIAN_CAPACITY"/>
