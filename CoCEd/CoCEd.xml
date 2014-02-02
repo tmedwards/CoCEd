@@ -2030,6 +2030,15 @@
     <Flag ID="1031" Name="UMA_TIMES_ACUPUNCTURE_UNDO"/>
     <Flag ID="1032" Name="UMA_TIMES_SUCKED_YOU"/>
     <Flag ID="1033" Name="TIMES_RUT_FUCKED_URTAS_CUNT"/>
+    <Flag ID="1034" Name="TIMES_KIHA_ANALED"/>
+    <Flag ID="1035" Name="TIMES_ENCOUNTERED_GOBLIN_ASSASSIN"/>
+    <Flag ID="1036" Name="IZUMI_MET"/>
+    <Flag ID="1037" Name="IZUMI_LAST_ENCOUNTER"                         Description="0 = unset, 1 = PC lost, 2 = PC ran away, 3 = PC won"/>
+    <Flag ID="1038" Name="IZUMI_TIMES_SUBMITTED"/>
+    <Flag ID="1039" Name="IZUMI_TIMES_GRABBED_THE_HORN"/>
+    <Flag ID="1040" Name="IZUMI_TIMES_LOST_FIGHT"                       Description="Times the PC has been beaten by Izumi"/>
+    <Flag ID="1041" Name="IZUMI_SEEN_PC_GENDER"                         Description="(Value is the last gender int that Izumi knows the player was.)"/>
+    <Flag ID="1042" Name="CUSTOM_FONT_SIZE"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->

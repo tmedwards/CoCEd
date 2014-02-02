@@ -22,12 +22,23 @@ namespace CoCEd.ViewModel
     public sealed class PiercingVM : ObjectVM
     {
         readonly string _prefix;
+        readonly string _suffix;
         readonly PiercingLocation _location;
 
         public PiercingVM(AmfObject obj, string prefix, PiercingLocation location)
             : base(obj)
         {
             _prefix = prefix;
+            _suffix = "";
+            _location = location;
+        }
+
+        // new constructor for cock piercings, which require a suffix
+        public PiercingVM(AmfObject obj, string prefix, string suffix, PiercingLocation location)
+            : base(obj)
+        {
+            _prefix = prefix;
+            _suffix = suffix;
             _location = location;
         }
 
@@ -98,10 +109,10 @@ namespace CoCEd.ViewModel
 
         public string UpperName
         {
-            get { return GetString(_prefix == "" ? "pLong" : _prefix + "PLong"); }
+            get { return GetString((_prefix == "" ? "pLong" : _prefix + "PLong") + _suffix); }
             set
             {
-                if (!SetValue(_prefix == "" ? "pLong" : _prefix + "PLong", value)) return;
+                if (!SetValue((_prefix == "" ? "pLong" : _prefix + "PLong") + _suffix, value)) return;
                 OnPropertyChanged("Label");
 
                 // Update lower name
@@ -122,10 +133,10 @@ namespace CoCEd.ViewModel
 
         public string LowerName
         {
-            get { return GetString(_prefix == "" ? "pShort" : _prefix + "PShort"); }
+            get { return GetString((_prefix == "" ? "pShort" : _prefix + "PShort") + _suffix); }
             set
             {
-                SetValue(_prefix == "" ? "pShort" : _prefix + "PShort", value);
+                SetValue((_prefix == "" ? "pShort" : _prefix + "PShort") + _suffix, value);
                 OnPropertyChanged("Label");
             }
         }
