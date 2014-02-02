@@ -94,7 +94,11 @@ namespace CoCEd.ViewModel
                 SetValue("quantity", value);
 
                 // Fix type
+#if !PRE_SAVE_REFACTOR
+                if (value == 0) Type = "NOTHING!";
+#else
                 if (value == 0) Type = "";
+#endif
 
                 // Property change
                 OnPropertyChanged("TypeDescription");
@@ -104,11 +108,19 @@ namespace CoCEd.ViewModel
 
         public string Type
         {
+#if !PRE_SAVE_REFACTOR
+            get { return GetString("id"); }
+#else
             get { return GetString("shortName"); }
+#endif
             set
             {
                 var oldType = Type;
+#if !PRE_SAVE_REFACTOR
+                if (!SetValue("id", value)) return;
+#else
                 if (!SetValue("shortName", value)) return;
+#endif
 
                 // Fix quantity
                 var xml = XmlData.Instance.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == value);

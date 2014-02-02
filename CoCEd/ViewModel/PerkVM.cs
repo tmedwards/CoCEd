@@ -52,13 +52,21 @@ namespace CoCEd.ViewModel
 
         protected override void InitializeObject(AmfObject obj)
         {
+#if !PRE_SAVE_REFACTOR
+            obj["id"] = _xml.Name;
+#else
             obj["perkName"] = _xml.Name;
             obj["perkDesc"] = _xml.Description;
+#endif
         }
 
         protected override bool IsObject(AmfObject obj)
         {
+#if !PRE_SAVE_REFACTOR
+            return obj.GetString("id") == _xml.Name;
+#else
             return obj.GetString("perkName") == _xml.Name;
+#endif
         }
 
         protected override void NotifyGameVM()

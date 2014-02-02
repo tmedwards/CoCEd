@@ -22,8 +22,8 @@ namespace CoCEd.ViewModel
             obj["cockType"] = 0;
             obj["knotMultiplier"] = 0.0;
             obj["pierced"] = 0;
-            obj["pLong"] = "";
-            obj["pShort"] = "";
+            obj["pLongDesc"] = "";
+            obj["pShortDesc"] = "";
             obj["sock"] = "";
             return obj;
         }
@@ -34,7 +34,7 @@ namespace CoCEd.ViewModel
         public CockVM(AmfObject obj)
             : base(obj)
         {
-            Piercing = new PiercingVM(obj, "", PiercingLocation.Cock);
+            Piercing = new PiercingVM(obj, "", "Desc", PiercingLocation.Cock);
         }
 
         public PiercingVM Piercing { get; private set; }

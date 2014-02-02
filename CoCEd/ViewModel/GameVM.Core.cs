@@ -87,10 +87,12 @@ namespace CoCEd.ViewModel
                 var modifier = isOwned ? 2.0 : 0.5;
                 if (GetString("weaponPerk") == "Large") SetDouble("weaponAttack", GetDouble("weaponAttack") * modifier);
             }
+#if PRE_SAVE_REFACTOR
             else if (name == "Agility")
             {
                 UpdateArmorDef();
             }
+#endif
         }
 
         public void OnKeyItemAddedOrRemoved(string name, bool isOwned)
@@ -104,9 +106,15 @@ namespace CoCEd.ViewModel
                     while (array.DenseCount < 6)
                     {
                         var slot = new AmfObject(AmfTypes.Object);
+#if !PRE_SAVE_REFACTOR
+                        slot["id"] = "";
+                        slot["quantity"] = 0;
+                        slot["unlocked"] = true;
+#else
                         slot["unlocked"] = true;
                         slot["shortName"] = "";
                         slot["quantity"] = 0;
+#endif
                         array.Push(slot);
                     }
                 }
@@ -185,7 +193,11 @@ namespace CoCEd.ViewModel
                 {
                     var obj1 = x as AmfObject;
                     var obj2 = y as AmfObject;
+#if !PRE_SAVE_REFACTOR
+                    return String.Compare(obj1.GetString("id"), obj2.GetString("id"));
+#else
                     return String.Compare(obj1.GetString("perkName"), obj2.GetString("perkName"));
+#endif
                 });
 
             _obj.GetObj("keyItems").SortDensePart((x, y) =>

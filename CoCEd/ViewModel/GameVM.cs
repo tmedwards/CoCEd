@@ -18,7 +18,9 @@ namespace CoCEd.ViewModel
         readonly FlagVM[] _allFlags;
         readonly StatusVM[] _allStatuses;
         readonly List<PerkVM> _allPerks = new List<PerkVM>();
+#if PRE_SAVE_REFACTOR
         readonly double _baseArmorDef;
+#endif
 
         ItemContainerVM _chest;
         ItemContainerVM _armorRack;
@@ -92,7 +94,11 @@ namespace CoCEd.ViewModel
             var cocPerks = _obj.GetObj("perks");
             var xmlPerks = XmlData.Instance.PerkGroups.SelectMany(x => x.Perks).ToArray();
             var unknownPerkGroup = XmlData.Instance.PerkGroups.Last();
+#if !PRE_SAVE_REFACTOR
+            ImportMissingNamedVectors(cocPerks, xmlPerks, "id", GetPerkDescription, unknownPerkGroup.Perks);
+#else
             ImportMissingNamedVectors(cocPerks, xmlPerks, "perkName", GetPerkDescription, unknownPerkGroup.Perks);
+#endif
 
             PerkGroups = new List<PerkGroupVM>();
             foreach (var xmlGroup in XmlData.Instance.PerkGroups)
@@ -141,8 +147,7 @@ namespace CoCEd.ViewModel
             // Complete slots creation
             ItemContainers = new UpdatableCollection<ItemContainerVM>(containers.Where(x => x.Slots.Count != 0));
 
-
-
+#if PRE_SAVE_REFACTOR
             // Store base armor def for later recomputations, see UpdateArmorDef below.
             _baseArmorDef = GetDouble("armorDef");
             if (GetPerk("Agility").IsOwned)
@@ -151,14 +156,20 @@ namespace CoCEd.ViewModel
                 if (armorPerk == "Light") _baseArmorDef -= Math.Round(Speed / 10.0);
                 else if (armorPerk == "Medium") _baseArmorDef -= Math.Round(Speed / 15.0);
             }
+#endif
         }
 
         string GetPerkDescription(AmfObject perk)
         {
+#if !PRE_SAVE_REFACTOR
+            return "<no description>";
+#else
             var help = perk.GetString("perkDesc");
             return String.IsNullOrEmpty(help) ? "<no description>" : help;
+#endif
         }
 
+#if PRE_SAVE_REFACTOR
         void UpdateArmorDef()
         {
             var armorDef = _baseArmorDef;
@@ -170,6 +181,7 @@ namespace CoCEd.ViewModel
             }
             SetDouble("armorDef", armorDef);
         }
+#endif
 
         static void ImportMissingNamedVectors(AmfObject cocItems, IEnumerable<XmlNamedVector4> xmlItems, string cocNameProperty, Func<AmfObject, String> descriptionGetter = null, IList<XmlNamedVector4> targetXmlList = null)
         {
@@ -250,7 +262,9 @@ namespace CoCEd.ViewModel
             set 
             {
                 SetDouble("spe", value);
+#if PRE_SAVE_REFACTOR
                 UpdateArmorDef();
+#endif
             }
         }
 
