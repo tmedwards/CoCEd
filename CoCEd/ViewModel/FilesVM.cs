@@ -161,7 +161,7 @@ namespace CoCEd.ViewModel
                 if (String.IsNullOrEmpty(_directory.Path)) yield break;
 
                 // Return either a SaveTargetVM or a FileVM for every slot
-                for (int i = 1; i <= 10; i++)
+                for (int i = FileManager.SaveSlotsLowerBound; i <= FileManager.SaveSlotsUpperBound; i++)
                 {
                     var name = "CoC_" + i + ".sol";
                     var file = _directory.Files.FirstOrDefault(x => x.FilePath.EndsWith(name, StringComparison.InvariantCultureIgnoreCase));
@@ -205,7 +205,7 @@ namespace CoCEd.ViewModel
 
         public string Label
         {
-            get { return "Import..."; }
+            get { return "Import…"; }
         }
 
         public IEnumerable<IMenuItemVM> Children
@@ -263,7 +263,7 @@ namespace CoCEd.ViewModel
 
         public string Label
         {
-            get { return "Export..."; }
+            get { return "Export…"; }
         }
 
         public IEnumerable<IMenuItemVM> Children
@@ -485,7 +485,7 @@ namespace CoCEd.ViewModel
 
         public string Label
         {
-            get { return "Open directory..."; }
+            get { return "Open directory…"; }
         }
 
         public string SubLabel
