@@ -82,12 +82,12 @@ namespace CoCEd.ViewModel
                 UpdateInventory();
                 ItemContainers.Update();
             }
+#if PRE_SAVE_REFACTOR
             else if (name == "Weapon Mastery")
             {
                 var modifier = isOwned ? 2.0 : 0.5;
                 if (GetString("weaponPerk") == "Large") SetDouble("weaponAttack", GetDouble("weaponAttack") * modifier);
             }
-#if PRE_SAVE_REFACTOR
             else if (name == "Agility")
             {
                 UpdateArmorDef();

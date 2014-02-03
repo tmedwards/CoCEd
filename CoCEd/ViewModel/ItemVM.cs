@@ -109,7 +109,11 @@ namespace CoCEd.ViewModel
         public string Type
         {
 #if !PRE_SAVE_REFACTOR
-            get { return GetString("id"); }
+            get
+            {
+                var type = GetString("id");
+                return type == "NOTHING!" ? "" : type;
+            }
 #else
             get { return GetString("shortName"); }
 #endif
@@ -117,6 +121,7 @@ namespace CoCEd.ViewModel
             {
                 var oldType = Type;
 #if !PRE_SAVE_REFACTOR
+                if (value == "") value = "NOTHING!";
                 if (!SetValue("id", value)) return;
 #else
                 if (!SetValue("shortName", value)) return;
