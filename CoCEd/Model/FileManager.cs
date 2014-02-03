@@ -30,6 +30,9 @@ namespace CoCEd.Model
         static readonly List<string> _externalPaths = new List<string>();
         static readonly List<FlashDirectory> _directories = new List<FlashDirectory>();
 
+        public const int SaveSlotsLowerBound = 1;
+        public const int SaveSlotsUpperBound = 9;
+
         public static string MissingPermissionPath { get; private set; }
 
         public static void BuildPaths()
@@ -121,7 +124,7 @@ namespace CoCEd.Model
             dir = new FlashDirectory(dir.Name, dir.Path, dir.HasSeparatorBefore, false);
             if (String.IsNullOrEmpty(dir.Path)) return dir;
 
-            for (int i = 1; i <= 10; i++)
+            for (int i = SaveSlotsLowerBound; i <= SaveSlotsUpperBound; i++)
             {
                 var filePath = Path.Combine(dir.Path, "CoC_" + i + ".sol");
                 try
