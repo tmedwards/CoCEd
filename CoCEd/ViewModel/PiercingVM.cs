@@ -26,14 +26,8 @@ namespace CoCEd.ViewModel
         readonly PiercingLocation _location;
 
         public PiercingVM(AmfObject obj, string prefix, PiercingLocation location)
-            : base(obj)
-        {
-            _prefix = prefix;
-            _suffix = "";
-            _location = location;
-        }
+            : this(obj, prefix, "", location) { }
 
-        // new constructor for cock piercings, which require a suffix
         public PiercingVM(AmfObject obj, string prefix, string suffix, PiercingLocation location)
             : base(obj)
         {

@@ -1230,7 +1230,7 @@
     <Flag ID="231"  Name="IZMA_TIMES_FOUGHT_AND_WON"/>
     <Flag ID="232"  Name="UNKNOWN_FLAG_NUMBER_00232"                    Description="Times talked at shark pussy"/>
     <Flag ID="233"  Name="UNKNOWN_FLAG_NUMBER_00233"                    Description="Izma worm scare? 1 = Izma has been scared off by worms"/>
-    <Flag ID="234"  Name="UNKNOWN_FLAG_NUMBER_00234"                    Description="Izma loot storage"/>
+    <Flag ID="234"  Name="BONUS_ITEM_AFTER_COMBAT_ID"                   Description="Izma loot storage"/>
     <Flag ID="235"  Name="UNKNOWN_FLAG_NUMBER_00235"                    Description="Taken Izma gloves"/>
     <Flag ID="236"  Name="UNKNOWN_FLAG_NUMBER_00236"                    Description="Izma + Amily freakout status: -1 = done, 0 = nothing yet, 1 = queued"/>
     <Flag ID="237"  Name="UNKNOWN_FLAG_NUMBER_00237"                    Description="Izma + Marble freakout status: (same as for #236)"/>
@@ -1258,14 +1258,14 @@
     <Flag ID="259"  Name="UNKNOWN_FLAG_NUMBER_00259"                    Description="Has Isabella ever met the PC while PC is short?"/>
     <Flag ID="260"  Name="UNKNOWN_FLAG_NUMBER_00260"                    Description="Isabella angry counter"/>
     <Flag ID="261"  Name="UNKNOWN_FLAG_NUMBER_00261"                    Description="Isabella Sleep rape counter"/>
-    <Flag ID="262"  Name="UNKNOWN_FLAG_NUMBER_00262"                    Description="TImes talked with Isabella"/>
+    <Flag ID="262"  Name="UNKNOWN_FLAG_NUMBER_00262"                    Description="Times talked with Isabella"/>
     <Flag ID="263"  Name="UNKNOWN_FLAG_NUMBER_00263"                    Description="Met Nancy"/>
     <Flag ID="264"  Name="UNKNOWN_FLAG_NUMBER_00264"                    Description="Nancy relationship level"/>
     <Flag ID="265"  Name="UNKNOWN_FLAG_NUMBER_00265"                    Description="Talk Nancy"/>
     <Flag ID="266"  Name="UNKNOWN_FLAG_NUMBER_00266"                    Description="Times boned"/>
     <Flag ID="267"  Name="UNKNOWN_FLAG_NUMBER_00267"                    Description="Lilium Timed Boned"/>
-    <Flag ID="268"  Name="UNKNOWN_FLAG_NUMBER_00268"                    Description="weapon storage"/>
-    <Flag ID="269"  Name="UNKNOWN_FLAG_NUMBER_00269"                    Description="weapon damage"/>
+    <Flag ID="268"  Name="PLAYER_DISARMED_WEAPON_ID"                    Description="weapon storage"/>
+    <Flag ID="269"  Name="PLAYER_DISARMED_WEAPON_ATTACK"                Description="weapon damage"/>
     <Flag ID="270"  Name="UNKNOWN_FLAG_NUMBER_00270"                    Description="Times encountered spiderbitches"/>
     <Flag ID="271"  Name="UNKNOWN_FLAG_NUMBER_00271"                    Description="Spider Preggo Timer"/>
     <Flag ID="272"  Name="UNKNOWN_FLAG_NUMBER_00272"                    Description="Times Explored Swamp"/>
@@ -1453,7 +1453,7 @@
     <Flag ID="454"  Name="ANEMONE_KID"/>
     <Flag ID="455"  Name="KID_ITEM_FIND_HOURS"/>
     <Flag ID="456"  Name="ANEMONE_WATCH"/>
-    <Flag ID="457"  Name="ANEMONE_WEAPON"/>
+    <Flag ID="457"  Name="ANEMONE_WEAPON_ID"/>
     <Flag ID="458"  Name="MURBLE_FARM_TALK_LEVELS"/>
     <Flag ID="459"  Name="BROKE_UP_WITH_MARBLE"/>
     <Flag ID="460"  Name="MARBLE_PLAYED_WITH_KIDS_TODAY"/>
