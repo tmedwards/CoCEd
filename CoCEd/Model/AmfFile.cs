@@ -168,7 +168,7 @@ namespace CoCEd.Model
                 }
 
                 // Create backup
-                var backUpPath = lowerPath + ".bak";
+                var backUpPath = path + ".bak";
                 File.Copy(path, backUpPath, true);
                 _backedUpFiles.Add(lowerPath);
             }

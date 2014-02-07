@@ -111,8 +111,17 @@ namespace CoCEd.ViewModel
 #if !PRE_SAVE_REFACTOR
             get
             {
-                var type = GetString("id");
-                return type == "NOTHING!" ? "" : type;
+                var id = GetString("id");
+
+                // Save format fixup, only needed when editing older saves
+                if (id == null && _obj.Contains("shortName"))
+                {
+                    _obj["id"] = _obj["shortName"];
+                    _obj["shortName"] = null;
+                    id = GetString("id");
+                }
+
+                return id == "NOTHING!" ? "" : id;
             }
 #else
             get { return GetString("shortName"); }

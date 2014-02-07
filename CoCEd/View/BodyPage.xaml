@@ -71,7 +71,7 @@
                     <ComboBox Text="{Binding Game.WingDescription}" ItemsSource="{Binding Data.Body.WingDescriptions}" Style="{StaticResource EditableTextBox}" IsEnabled="{Binding Game.IsWingEnabled}"/>
 
                     <Border/>
-                    <CheckBox Content="Has gills" IsChecked="{Binding Game.HasGills}" Margin="8,5,0,0"/>
+                    <CheckBox Content="Gills" IsChecked="{Binding Game.HasGills}" Margin="8,5,0,0"/>
                 </common:AutoGrid>
             </StackPanel>
 

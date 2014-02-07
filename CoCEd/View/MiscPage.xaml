@@ -60,24 +60,48 @@
                         <ComboBoxItem>Enabled</ComboBoxItem>
                         <ComboBoxItem>Infested</ComboBoxItem>
                     </ComboBox>
+                </common:AutoGrid>
 
+                <common:AutoGrid Margin="0,30,0,0">
                     <TextBlock              Text="Addiction: minotaur cum"/>
                     <common:MyNumericBox    Value="{Binding Game.MinotaurCumAddiction}" Unit="%" Upper="120"/>
 
-                    <TextBlock              Text="Addiction: marble milk&#x202F;*" ToolTip="Affected by perks: 0% if Marble Resistant, 100% if Marble's Milk." IsEnabled="{Binding Game.HasMetMarble}"/>
+                    <TextBlock              Text="Addiction: Marble's milk&#x202F;*" ToolTip="Affected by perks: 0% if Marble Resistant, 100% if Marble's Milk." IsEnabled="{Binding Game.HasMetMarble}"/>
                     <common:MyNumericBox    Value="{Binding Game.MarbleMilkAddiction}" Unit="%" Upper="120" IsEnabled="{Binding Game.HasMetMarble}"/>
 
                     <TextBlock              Text="Kelt submissiveness" IsEnabled="{Binding Game.HasMetKelt}"/>
                     <common:MyNumericBox    Value="{Binding Game.KeltSubmissiveness}" Unit="%" Upper="100" IsEnabled="{Binding Game.HasMetKelt}"/>
+                </common:AutoGrid>
 
-                    <TextBlock              Text="Lust stick time&#x202F;*" ToolTip="Enables the &quot;kiss&quot; attack."/>
+                <common:AutoGrid Margin="0,30,0,0">
+                    <TextBlock              Text="Lust stick remaining&#x202F;*" ToolTip="Enables the &quot;kiss&quot; attack."/>
                     <common:MyNumericBox    Value="{Binding Game.LustStickTime}" Upper="24" Unit="hours"/>
 
-                    <TextBlock              Text="Heat time&#x202F;*" ToolTip="Increases libido and fertility."/>
+                    <TextBlock              Text="Heat remaining&#x202F;*" ToolTip="Increases libido and fertility."/>
                     <common:MyNumericBox    Value="{Binding Game.HeatTime}" Upper="48" Unit="hours"/>
 
-                    <TextBlock              Text="Rut time&#x202F;*" ToolTip="Increases libido and cum production."/>
+                    <TextBlock              Text="Rut remaining&#x202F;*" ToolTip="Increases libido and cum production."/>
                     <common:MyNumericBox    Value="{Binding Game.RutTime}" Upper="48" Unit="hours"/>
+                </common:AutoGrid>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="3">
+                <Border Style="{StaticResource HeaderBorder}">
+                    <TextBlock Text="Equipment" Style="{StaticResource Header}" />
+                </Border>
+
+                <common:AutoGrid>
+                    <TextBlock              Text="Equipped armor"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.Armor}" ItemsSource="{Binding Game.ArmorList}"/>
+
+                    <TextBlock              Text="Modified name&#x202F;*" ToolTip="Used by fetish cultists and Exgartuan to modify the name of certain armors."/>
+                    <TextBox                Text="{Binding Game.ArmorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="8,4,8,4" Width="150" HorizontalAlignment="Left"
+                                                BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
+                </common:AutoGrid>
+
+                <common:AutoGrid Margin="0,30,0,0">
+                    <TextBlock              Text="Equipped weapon"/>
+                    <common:MyComboBox SelectedValue="{Binding Game.Weapon}" ItemsSource="{Binding Game.WeaponList}"/>
                 </common:AutoGrid>
             </StackPanel>
 
@@ -93,21 +117,21 @@
                     <CheckBox Content="Contraceptives&#x202F;*" ToolTip="Sand Witch contraceptives. Will prevent new pregnancies, but does not terminate existing ones." IsChecked="{Binding Game.UsedContraceptives}" Margin="8,5,0,0"/>
                 </common:AutoGrid>
 
-                <common:AutoGrid Margin="0,30">
+                <common:AutoGrid Margin="0,30,0,0">
                     <TextBlock              Text="Pregnancy"/>
                     <common:MyComboBox SelectedValue="{Binding Game.PregnancyType}" ItemsSource="{Binding Data.Body.PregnancyTypes}"/>
 
-                    <TextBlock              Text="Time remaining&#x202F;*" IsEnabled="{Binding Game.IsPregnancyEnabled}" ToolTip="A virgin vagina will put pregnancy on hold. With the diapause perk it will only progress when you absorb fluids."/>
+                    <TextBlock              Text="Remaining&#x202F;*" IsEnabled="{Binding Game.IsPregnancyEnabled}" ToolTip="A virgin vagina will put pregnancy on hold. With the diapause perk it will only progress when you absorb fluids."/>
                     <common:MyNumericBox    Value="{Binding Game.PregnancyTime}" Unit="hours" IsEnabled="{Binding Game.IsPregnancyEnabled}"/>
 
                     <TextBlock              Text="Butt pregnancy"/>
                     <common:MyComboBox SelectedValue="{Binding Game.ButtPregnancyType}" ItemsSource="{Binding Data.Body.AnalPregnancyTypes}"/>
 
-                    <TextBlock              Text="Time remaining&#x202F;*" IsEnabled="{Binding Game.IsButtPregnancyEnabled}" ToolTip="With the diapause perk it will only progress when you absorb fluids."/>
+                    <TextBlock              Text="Remaining&#x202F;*" IsEnabled="{Binding Game.IsButtPregnancyEnabled}" ToolTip="With the diapause perk it will only progress when you absorb fluids."/>
                     <common:MyNumericBox    Value="{Binding Game.ButtPregnancyTime}" Unit="hours" IsEnabled="{Binding Game.IsButtPregnancyEnabled}"/>
                 </common:AutoGrid>
 
-                <common:AutoGrid Margin="0,15">
+                <common:AutoGrid Margin="0,30,0,0">
                     <TextBlock              Text="Birthed Tamani children&#x202F;*" IsEnabled="{Binding Game.HasMetTamani}" ToolTip="After 24 daughters, enables a new encounter whose level is a factor of the total number."/>
                     <common:MyNumericBox    Value="{Binding Game.BirthedTamaniChildren}" IsEnabled="{Binding Game.HasMetTamani}"/>
 

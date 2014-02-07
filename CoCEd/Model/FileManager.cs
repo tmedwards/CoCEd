@@ -179,7 +179,7 @@ namespace CoCEd.Model
 
         static string Canonize(string path)
         {
-            return path.ToLowerInvariant().Replace("/", "\\");
+            return path.Replace("/", "\\");
         }
     }
 }
