@@ -63,7 +63,24 @@ namespace CoCEd.ViewModel
         protected override bool IsObject(AmfObject obj)
         {
 #if !PRE_SAVE_REFACTOR
-            return obj.GetString("id") == _xml.Name;
+            var id = obj.GetString("id");
+
+            // Save format fixup, only needed when editing older saves
+            if (id == null && obj.Contains("perkName"))
+            {
+                obj["id"] = obj["perkName"];
+                obj["perkName"] = null;
+                obj["perkDesc"] = null;
+                id = obj.GetString("id");
+            }
+
+            // Fixes saves which have NaNs for some perk values, which crashes CoC
+            if (double.IsNaN(obj.GetDouble("value1"))) obj["value1"] = 0;
+            if (double.IsNaN(obj.GetDouble("value2"))) obj["value2"] = 0;
+            if (double.IsNaN(obj.GetDouble("value3"))) obj["value3"] = 0;
+            if (double.IsNaN(obj.GetDouble("value4"))) obj["value4"] = 0;
+
+            return id == _xml.Name;
 #else
             return obj.GetString("perkName") == _xml.Name;
 #endif

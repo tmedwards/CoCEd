@@ -121,7 +121,7 @@ namespace CoCEd.ViewModel
             containers.Add(_chest);
             UpdateChest();
 
-            _armorRack = new ItemContainerVM(this, "Armor rack", ItemCategories.Armor | ItemCategories.Unknown);
+            _armorRack = new ItemContainerVM(this, "Armor rack", ItemCategories.Armor | ItemCategories.ArmorCursed | ItemCategories.Unknown);
             containers.Add(_armorRack);
             UpdateArmorRack();
 
@@ -147,7 +147,13 @@ namespace CoCEd.ViewModel
             // Complete slots creation
             ItemContainers = new UpdatableCollection<ItemContainerVM>(containers.Where(x => x.Slots.Count != 0));
 
+
+            // Create the armor/weapon lists for equipment selection
+            ArmorList = XmlData.Instance.ItemGroups.Where(group => ItemCategories.Armor.HasFlag(group.Category)).SelectMany(x => x.Items).OrderBy(x => x.Name, StringComparer.InvariantCultureIgnoreCase);
+            WeaponList = XmlData.Instance.ItemGroups.Where(group => ItemCategories.Weapon.HasFlag(group.Category)).SelectMany(x => x.Items).OrderBy(x => x.Name, StringComparer.InvariantCultureIgnoreCase);
 #if PRE_SAVE_REFACTOR
+
+            
             // Store base armor def for later recomputations, see UpdateArmorDef below.
             _baseArmorDef = GetDouble("armorDef");
             if (GetPerk("Agility").IsOwned)
@@ -209,6 +215,9 @@ namespace CoCEd.ViewModel
         public UpdatableCollection<StatusVM> Statuses { get; private set; }
         public UpdatableCollection<FlagVM> Flags { get; private set; }
         public List<PerkGroupVM> PerkGroups { get; private set; }
+
+        public IEnumerable<XmlItem> ArmorList { get; private set; }
+        public IEnumerable<XmlItem> WeaponList { get; private set; }
 
         public AssVM Ass { get; private set; }
         public PiercingVM NosePiercing { get; private set; }
@@ -371,6 +380,28 @@ namespace CoCEd.ViewModel
             set { SetValue("gems", value); }
         }
 
+
+        public string Armor
+        {
+            get { return GetString("armorId"); }
+            set { SetValue("armorId", value); }
+        }
+
+        public string ArmorName
+        {
+            get { return GetString("armorName"); }
+            set
+            {
+                if (value == "") SetValue("armorName", AmfNull.Instance);   // yes, AmfNull
+                else SetValue("armorName", value);
+            }
+        }
+
+        public string Weapon
+        {
+            get { return GetString("weaponId"); }
+            set { SetValue("weaponId", value); }
+        }
 
 
         public double HairLength

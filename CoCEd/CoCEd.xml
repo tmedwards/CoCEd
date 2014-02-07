@@ -485,6 +485,7 @@
       <Item ID="Cerul P" Name="Cerulean Potion"/>
       <Item ID="Smart T" Name="Scholar's Tea"/>
       <Item ID="Vital T" Name="Vitality Tincture"/>
+      <Item ID="W.Stick" Name="Wingstick"/>
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Transformations" Category="Other">
@@ -496,7 +497,7 @@
       <Item ID="FoxJewl" Name="Fox Jewel"/>
       <Item ID="Gob.Ale" Name="Goblin Ale"/>
       <Item ID="GldSeed" Name="Golden Seed"/>
-      <Item ID="Hummus " Name="Hummus"/>
+      <Item ID="Hummus " Name="Hummus" Description="In-game cheat item.  Reverts PC to a basic human form."/>
       <Item ID="ImpFood" Name="Imp Food"/>
       <Item ID="IncubiD" Name="Incubi Draft"/>
       <Item ID="KangaFt" Name="Kanga Fruit"/>
@@ -567,68 +568,61 @@
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Weapons" Category="Weapon">
-      <Item ID="B.Sword" Name="Beautiful Sword"/>
+      <Item ID="B.Sword" Name="Beautiful Sword" Description="Has a maximum PC corruption tolerance of 34."/>
+      <Item ID="Whip   " Name="Coiled Whip"/>
       <Item ID="E.Staff" Name="Eldritch Staff"/>
       <Item ID="H.Gaunt" Name="Hooked Gauntlets"/>
+      <Item ID="Warhamr" Name="Huge Warhammer"/>
       <Item ID="S.Blade" Name="Inscribed Spellblade"/>
       <Item ID="JRapier" Name="Jeweled Rapier"/>
-      <Item ID="L. Axe " Name="Large Axe"/>
+      <Item ID="Katana " Name="Katana"/>
+      <Item ID="L. Axe " Name="Large Axe" Description="Has a PC height requirement of 6&#x2032;6&#x2033; (198.12 cm)."/>
+      <Item ID="Claymor" Name="Large Claymore"/>
       <Item ID="L.Hammr" Name="Large Hammer"/>
       <Item ID="L.Daggr" Name="Lust Dagger"/>
       <Item ID="Pipe   " Name="Pipe"/>
       <Item ID="RidingC" Name="Riding Crop"/>
-      <Item ID="SucWhip" Name="Succubi Whip"/>
-      <Item ID="W.Staff" Name="Wizard's Staff"/>
-      <Item ID="Whip   " Name="Coiled Whip"/>
-      <Item ID="Warhamr" Name="Huge Warhammer"/>
-      <Item ID="Katana " Name="Katana"/>
-      <Item ID="Claymor" Name="Large Claymore"/>
       <Item ID="Spear  " Name="Spear"/>
       <Item ID="S.Gaunt" Name="Spiked Gauntlets"/>
-      <Item ID="W.Stick" Name="Wingstick"/>
+      <Item ID="SucWhip" Name="Succubi Whip"/>
+      <Item ID="W.Staff" Name="Wizard's Staff"/>
     </ItemGroup>
     <!--============================================================================================================================================-->
-    <ItemGroup Name="Clothing" Category="Armor">
+    <ItemGroup Name="Armors" Category="Armor">
       <Item ID="BimboSk" Name="Bimbo Skirt"/>
       <Item ID="BonStrp" Name="Bondage Straps"/>
+      <Item ID="ChBikni" Name="Chain Bikini"/>
       <Item ID="BeeArmr" Name="Chitin Armor"/>
       <Item ID="C.Cloth" Name="Comfortable Clothes"/>
+      <Item ID="FullChn" Name="Full Chain"/>
+      <Item ID="FullPlt" Name="Full Plate"/>
       <Item ID="GelArmr" Name="Gel Armor"/>
+      <Item ID="AdvClth" Name="Green Adventurer's Clothes"/>
+      <Item ID="IndecSt" Name="Indecent Steel"/>
       <Item ID="I.Corst" Name="Inquisitor's Corset"/>
       <Item ID="I.Robes" Name="Inquisitor's Robes"/>
       <Item ID="LeathrA" Name="Leather Armor"/>
+      <Item ID="LthrRob" Name="Leather Robe"/>
+      <Item ID="B.Dress" Name="Long Dress"/>
       <Item ID="LMArmor" Name="Lusty Maiden's Armor"/>
       <Item ID="NurseCl" Name="Nurse's Outfit"/>
-      <Item ID="R.BdySt" Name="Red Bodysuit"/>
+      <Item ID="Overall" Name="Overalls"/>
+      <Item ID="R.BdySt" Name="Red, High-Society Bodysuit"/>
+      <Item ID="M.Robes" Name="Robes"/>
+      <Item ID="RbbrClt" Name="Rubber Fetish Outfit"/>
+      <Item ID="ScaleMl" Name="Scale Mail"/>
+      <Item ID="T.BSuit" Name="Semi-Transparent Bodysuit"/>
       <Item ID="S.Swmwr" Name="Slutty Swimwear"/>
       <Item ID="SSArmor" Name="Spider-Silk Armor"/>
       <Item ID="SS.Robe" Name="Spider-Silk Robes"/>
-      <Item ID="W.Robes" Name="Wizard's Robes"/>
-    </ItemGroup>
-    <!--============================================================================================================================================-->
-    <ItemGroup Name="Blacksmith" Category="Armor">
-      <Item ID="ChBikni" Name="Chain Bikini"/>
-      <Item ID="FullChn" Name="Full Chain"/>
-      <Item ID="FullPlt" Name="Full Plate"/>
-      <Item ID="IndecSt" Name="Indecent Steel"/>
-      <Item ID="LthrRob" Name="Leather Robe"/>
-      <Item ID="ScaleMl" Name="Scale Mail"/>
-    </ItemGroup>
-    <!--============================================================================================================================================-->
-    <ItemGroup Name="Tailor" Category="Armor">
-      <Item ID="T.BSuit" Name="Bodysuit"/>
-      <Item ID="AdvClth" Name="Green Adventurer's Clothes"/>
-      <Item ID="B.Dress" Name="Long Dress"/>
-      <Item ID="Overall" Name="Overalls"/>
-      <Item ID="M.Robes" Name="Robes"/>
-      <Item ID="RbbrClt" Name="Rubber Fetish Outfit"/>
       <Item ID="ClssyCl" Name="Suit Clothes"/>
       <Item ID="LthrPnt" Name="Tight Leather Pants"/>
       <Item ID="TubeTop" Name="Tube Top"/>
+      <Item ID="W.Robes" Name="Wizard's Robes"/>
     </ItemGroup>
     <!--============================================================================================================================================-->
-    <ItemGroup Name="Cursed" Category="Armor">
-      <Item ID="SeductA" Name="Scandalously Seductive Armor"/>
+    <ItemGroup Name="Armors, Cursed" Category="ArmorCursed">
+      <Item ID="SeductA" Name="Scandalously Seductive Armor" Description="A suit of cursed armor created by Ceraph.  Upon equipping the armor it transforms into black nipple-studs and gives the bondage fetish."/>
     </ItemGroup>
   </Items>
   <!--============================================================================================================================================-->
@@ -1231,15 +1225,15 @@
     <Flag ID="232"  Name="UNKNOWN_FLAG_NUMBER_00232"                    Description="Times talked at shark pussy"/>
     <Flag ID="233"  Name="UNKNOWN_FLAG_NUMBER_00233"                    Description="Izma worm scare? 1 = Izma has been scared off by worms"/>
     <Flag ID="234"  Name="BONUS_ITEM_AFTER_COMBAT_ID"                   Description="Izma loot storage"/>
-    <Flag ID="235"  Name="UNKNOWN_FLAG_NUMBER_00235"                    Description="Taken Izma gloves"/>
+    <Flag ID="235"  Name="UNKNOWN_FLAG_NUMBER_00235"                    Description="Taken Izma's gloves"/>
     <Flag ID="236"  Name="UNKNOWN_FLAG_NUMBER_00236"                    Description="Izma + Amily freakout status: -1 = done, 0 = nothing yet, 1 = queued"/>
-    <Flag ID="237"  Name="UNKNOWN_FLAG_NUMBER_00237"                    Description="Izma + Marble freakout status: (same as for #236)"/>
+    <Flag ID="237"  Name="UNKNOWN_FLAG_NUMBER_00237"                    Description="Izma + Marble freakout status: -1 = done, 0 = nothing yet, 1 = queued"/>
     <Flag ID="238"  Name="UNKNOWN_FLAG_NUMBER_00238"                    Description="Izma follower toggle: -1 = stay at lake, 0 = neutral, 1 = live in camp"/>
     <Flag ID="239"  Name="UNKNOWN_FLAG_NUMBER_00239"                    Description="Izma talk level"/>
     <Flag ID="240"  Name="UNKNOWN_FLAG_NUMBER_00240"                    Description="Mino chef first meeting happen?"/>
     <Flag ID="241"  Name="UNKNOWN_FLAG_NUMBER_00241"                    Description="Mino chef explained what he needs yet?"/>
     <Flag ID="242"  Name="UNKNOWN_FLAG_NUMBER_00242"                    Description="Baking happaned? 1 = yes, -1 = snuck out, -2 = seen her escorted out, 3 = stayed, 4 = epilogue'd"/>
-    <Flag ID="243"  Name="UNKNOWN_FLAG_NUMBER_00243"                    Description="Counter for minotaur chef baker procs - Maddie present at bakery. Mod%8=0, present"/>
+    <Flag ID="243"  Name="UNKNOWN_FLAG_NUMBER_00243"                    Description="Counter for minotaur chef baker procs.  Maddie present at bakery: (Mod%8) 0 = present"/>
     <Flag ID="244"  Name="UNKNOWN_FLAG_NUMBER_00244"                    Description="Cotton Unusual Yoga Guidebook tracker"/>
     <Flag ID="245"  Name="UNKNOWN_FLAG_NUMBER_00245"                    Description="Cotton breakfast club"/>
     <Flag ID="246"  Name="UNKNOWN_FLAG_NUMBER_00246"                    Description="Tiger tooth countdown"/>
@@ -1297,10 +1291,10 @@
     <Flag ID="298"  Name="UNKNOWN_FLAG_NUMBER_00298"                    Description="Lottie porked count? 1+ = yes"/>
     <Flag ID="299"  Name="UNKNOWN_FLAG_NUMBER_00299"                    Description="Lotties trainer? 1 = yes"/>
     <Flag ID="300"  Name="UNKNOWN_FLAG_NUMBER_00300"                    Description="LOTTIE: Last encouragement state"/>
-    <Flag ID="301"  Name="UNKNOWN_FLAG_NUMBER_00301"                    Description="LOTTIE: encouragement go from 31-&amp;gt;30 yet? 1 = yes"/>
-    <Flag ID="302"  Name="UNKNOWN_FLAG_NUMBER_00302"                    Description="LOTTIE: Encouragement moved from 30 to 31 yet? 1 = yes"/>
-    <Flag ID="303"  Name="UNKNOWN_FLAG_NUMBER_00303"                    Description="LOTTIE: Encouragement moved from 80 to 79 yet? 1 = yes"/>
-    <Flag ID="304"  Name="UNKNOWN_FLAG_NUMBER_00304"                    Description="LOTTIE: Encouragement moved from 79 to 80 yet? 1 = yes"/>
+    <Flag ID="301"  Name="UNKNOWN_FLAG_NUMBER_00301"                    Description="LOTTIE: Encouragement dropped to &lt;=30 yet? 1 = yes"/>
+    <Flag ID="302"  Name="UNKNOWN_FLAG_NUMBER_00302"                    Description="LOTTIE: Encouragement increased to &gt;=31 yet? 1 = yes"/>
+    <Flag ID="303"  Name="UNKNOWN_FLAG_NUMBER_00303"                    Description="LOTTIE: Encouragement dropped to &lt;=79 yet? 1 = yes"/>
+    <Flag ID="304"  Name="UNKNOWN_FLAG_NUMBER_00304"                    Description="LOTTIE: Encouragement increased to &gt;=80 yet? 1 = yes"/>
     <Flag ID="305"  Name="SILLY_MODE_ENABLE_FLAG"/>
     <Flag ID="306"  Name="UNKNOWN_FLAG_NUMBER_00306"                    Description="LOTTIE: Need to talk about Oral?"/>
     <Flag ID="307"  Name="UNKNOWN_FLAG_NUMBER_00307"                    Description="LOTTIE: Need to talk about Anal?"/>
@@ -1454,7 +1448,7 @@
     <Flag ID="455"  Name="KID_ITEM_FIND_HOURS"/>
     <Flag ID="456"  Name="ANEMONE_WATCH"/>
     <Flag ID="457"  Name="ANEMONE_WEAPON_ID"/>
-    <Flag ID="458"  Name="MURBLE_FARM_TALK_LEVELS"/>
+    <Flag ID="458"  Name="MARBLE_FARM_TALK_LEVELS"/>
     <Flag ID="459"  Name="BROKE_UP_WITH_MARBLE"/>
     <Flag ID="460"  Name="MARBLE_PLAYED_WITH_KIDS_TODAY"/>
     <Flag ID="461"  Name="MARBLE_CAMPTALK_LEVEL"/>

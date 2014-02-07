@@ -148,8 +148,9 @@ namespace CoCEd.Model
         Other = 1,
         Weapon = 2,
         Armor = 4,
-        Unknown = 8,
-        All = Other | Weapon | Armor | Unknown,
+        ArmorCursed = 8,
+        Unknown = 16,
+        All = Other | Weapon | Armor | ArmorCursed | Unknown,
     }
 
     public sealed class XmlItemGroup

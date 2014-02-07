@@ -107,9 +107,9 @@ namespace CoCEd.ViewModel
                     {
                         var slot = new AmfObject(AmfTypes.Object);
 #if !PRE_SAVE_REFACTOR
-                        slot["id"] = "";
+                        slot["id"] = "NOTHING!";    // having to set this to "NOTHING!" is daft
                         slot["quantity"] = 0;
-                        slot["unlocked"] = true;
+                        slot["unlocked"] = false;   // must now be false or the camp chest will break in CoC
 #else
                         slot["unlocked"] = true;
                         slot["shortName"] = "";
