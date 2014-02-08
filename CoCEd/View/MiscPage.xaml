@@ -85,26 +85,6 @@
                 </common:AutoGrid>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="3">
-                <Border Style="{StaticResource HeaderBorder}">
-                    <TextBlock Text="Equipment" Style="{StaticResource Header}" />
-                </Border>
-
-                <common:AutoGrid>
-                    <TextBlock              Text="Equipped armor"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.Armor}" ItemsSource="{Binding Game.ArmorList}"/>
-
-                    <TextBlock              Text="Modified name&#x202F;*" ToolTip="Used by fetish cultists and Exgartuan to modify the name of certain armors."/>
-                    <TextBox                Text="{Binding Game.ArmorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="8,4,8,4" Width="150" HorizontalAlignment="Left"
-                                                BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
-                </common:AutoGrid>
-
-                <common:AutoGrid Margin="0,30,0,0">
-                    <TextBlock              Text="Equipped weapon"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.Weapon}" ItemsSource="{Binding Game.WeaponList}"/>
-                </common:AutoGrid>
-            </StackPanel>
-
             <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
                 <Border Style="{StaticResource HeaderBorder}">
                     <TextBlock Text="Procreation" Style="{StaticResource Header}" />
