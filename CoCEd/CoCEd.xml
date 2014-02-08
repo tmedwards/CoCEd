@@ -463,6 +463,7 @@
       <Item ID="GodMead" Name="God's Mead"/>
       <Item ID="GroPlus" Name="GroPlus"/>
       <Item ID="ExtSerm" Name="Hair Extension Serum"/>
+      <Item ID="FishFil" Name="Fish Fillet"/>
       <Item ID="IzyMilk" Name="Isabella's Milk"/>
       <Item ID="KitGift" Name="Kitsune's Gift"/>
       <Item ID="Lactaid" Name="Lactaid"/>
@@ -589,33 +590,34 @@
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Armors" Category="Armor">
+      <Item ID="BeeArmr" Name="Bee Chitin Armor"/>
       <Item ID="BimboSk" Name="Bimbo Skirt"/>
       <Item ID="BonStrp" Name="Bondage Straps"/>
       <Item ID="ChBikni" Name="Chain Bikini"/>
-      <Item ID="BeeArmr" Name="Chitin Armor"/>
+      <Item ID="ClssyCl" Name="Classy Suitclothes"/>
       <Item ID="C.Cloth" Name="Comfortable Clothes"/>
       <Item ID="FullChn" Name="Full Chain"/>
       <Item ID="FullPlt" Name="Full Plate"/>
+      <Item ID="FurLoin" Name="Fur Loincloths"/>
       <Item ID="GelArmr" Name="Gel Armor"/>
       <Item ID="AdvClth" Name="Green Adventurer's Clothes"/>
       <Item ID="IndecSt" Name="Indecent Steel"/>
       <Item ID="I.Corst" Name="Inquisitor's Corset"/>
       <Item ID="I.Robes" Name="Inquisitor's Robes"/>
       <Item ID="LeathrA" Name="Leather Armor"/>
-      <Item ID="LthrRob" Name="Leather Robe"/>
+      <Item ID="LthrRob" Name="Leather Robes"/>
       <Item ID="B.Dress" Name="Long Dress"/>
       <Item ID="LMArmor" Name="Lusty Maiden's Armor"/>
       <Item ID="NurseCl" Name="Nurse's Outfit"/>
       <Item ID="Overall" Name="Overalls"/>
       <Item ID="R.BdySt" Name="Red, High-Society Bodysuit"/>
       <Item ID="M.Robes" Name="Robes"/>
-      <Item ID="RbbrClt" Name="Rubber Fetish Outfit"/>
+      <Item ID="RbbrClt" Name="Rubber Fetish Clothes"/>
       <Item ID="ScaleMl" Name="Scale Mail"/>
       <Item ID="T.BSuit" Name="Semi-Transparent Bodysuit"/>
       <Item ID="S.Swmwr" Name="Slutty Swimwear"/>
       <Item ID="SSArmor" Name="Spider-Silk Armor"/>
       <Item ID="SS.Robe" Name="Spider-Silk Robes"/>
-      <Item ID="ClssyCl" Name="Suit Clothes"/>
       <Item ID="LthrPnt" Name="Tight Leather Pants"/>
       <Item ID="TubeTop" Name="Tube Top"/>
       <Item ID="W.Robes" Name="Wizard's Robes"/>
@@ -629,46 +631,50 @@
   <KeyItems>
     <KeyItem Name="All-Natural Onahole" Description="Masturbation aid."/>
     <KeyItem Name="All-Natural Self-Stimulation Belt" Description="Masturbation aid for hermaphrodites."/>
+    <KeyItem Name="Arian's Talisman" Description="Arian's Talisman, uncharged version."/>
+    <KeyItem Name="Arian's Charged Talisman" Description="Arian's Talisman, spell charged version.  You'll have to add the appropriate status effect yourself (either: Shielding Spell or Immolation Spell)."/>
     <KeyItem Name="Bow" Description="Grants a special attack."/>
-    <KeyItem Name="Breast Milker" Description="To be installed at the farm."/>
-    <KeyItem Name="Breast Milker - Installed At Whitney's Farm" Description="Allows the character to milk their breasts at the farm."/>
+    <KeyItem Name="Breast Milker" Description="To be installed at Whitney's Farm."/>
+    <KeyItem Name="Breast Milker - Installed At Whitney's Farm" Description="Allows the character to milk their breasts at the farm.  Also, possibly, used by Isabella."/>
     <KeyItem Name="Camp - Chest" Description="Item storage to be put at the camp."/>
-    <KeyItem Name="Carrot" Description="Masturbation aid."/>
+    <KeyItem Name="Carrot" Description="[Seasonal] Obtained from Whitney's Farm or Oswald in Tel'Adre.  One of the components used to make a body for the ice spirit, Nieve."/>
     <KeyItem Name="Centaur Pole" Description="A masturbatory aid suited for female centaur's needs."/>
-    <KeyItem Name="Cock Milker" Description="To be installed at the farm."/>
+    <KeyItem Name="Cock Milker" Description="To be installed at Whitney's Farm."/>
     <KeyItem Name="Cock Milker - Installed At Whitney's Farm" Description="Allows the character to milk their or Jojo's cock(s) at the farm."/>
-    <KeyItem Name="Dangerous Plants" Description="As explained by the title, this tome is filled with information on all manner of dangerous plants from this realm."/>
+    <KeyItem Name="Dangerous Plants" Description="Bought from Giacomo.  Gives you the option to avoid the Tentacle Beast encounter."/>
     <KeyItem Name="Deluxe Dildo" Description="Masturbation aid."/>
     <KeyItem Name="Deluxe Onahole" Description="Masturbation aid."/>
     <KeyItem Name="Demonic Strap-On" Description="Masturbation aid."/>
     <KeyItem Name="Dildo" Description="Masturbation aid."/>
-    <KeyItem Name="Dragon Egg"/>
-    <KeyItem Name="Dragon Eggshell"/>
+    <KeyItem Name="Dragon Egg" Description="Ember's egg, before hatching."/>
+    <KeyItem Name="Dragon Eggshell" Description="Obtained by breaking Ember's egg open and eating it.  You monster."/>
     <KeyItem Name="Dual Belt" Description="Masturbation aid for hermaphrodites."/>
     <KeyItem Name="Equipment Rack - Armor" Description="Item storage to be put at the camp."/>
     <KeyItem Name="Equipment Rack - Weapons" Description="Item storage to be put at the camp."/>
     <KeyItem Name="Fake Mare" Description="A masturbatory aid suited for male centaur's needs."/>
-    <KeyItem Name="Harpy Key A"/>
-    <KeyItem Name="Harpy Key B"/>
-    <KeyItem Name="Hentai Comic" Description="Can be given to a demon in the factory. "/>
+    <KeyItem Name="Harpy Key A" Description="Obtained from Brigid the Jailer in Helia's (phoenix) dungeon."/>
+    <KeyItem Name="Harpy Key B" Description="Obtained from the Harpy Queen in Helia's (phoenix) dungeon."/>
+    <KeyItem Name="Hentai Comic" Description="Can be given to the incubus mechanic in the factory."/>
+    <KeyItem Name="Holli's Ashes" Description="Obtained by killing Holli.  You monster."/>
     <KeyItem Name="Iron Key" Description="Allows further progression into the Demon Factory."/>
     <KeyItem Name="Jojo's Talisman" Description="Given to the player by Jojo if a follower and Hollicynthea is allowed to grow to maturity. Jojo then leaves the camp."/>
-    <KeyItem Name="Marae's Lethicite"/>
-    <KeyItem Name="Nieve's Tear" Description="Given as a memento after your snow lover melts after the winter event."/>
-    <KeyItem Name="North Star Key"/>
-    <KeyItem Name="Onyx Token - Ceraph's" Description="Obtains from Ceraph when she is a follower, if the PC chose to carry the token instead of a belly-button piercing."/>
-    <KeyItem Name="Opal Ring"/>
+    <KeyItem Name="Marae's Lethicite" Description="Can be stolen from Corrupt Marae by quick PCs."/>
+    <KeyItem Name="Nieve's Tear" Description="[Seasonal] Given as a memento after your ice spirit lover melts after the winter event."/>
+    <KeyItem Name="North Star Key" Description="[Seasonal] Winding-key for the clockwork-man, North."/>
+    <KeyItem Name="Onyx Token - Ceraph's" Description="Obtained from Ceraph when she is a follower, if the PC chose to carry the token instead of a belly-button piercing."/>
+    <KeyItem Name="Opal Ring" Description="Obtained from Scylla if the PC has high cum production and has agreed to be Scylla's sole source of cum."/>
     <KeyItem Name="Plain Onahole" Description="Masturbation aid."/>
     <KeyItem Name="Potent Mixture" Description="Used to corrupt Amily in the town ruins."/>
-    <KeyItem Name="Ruby Heart"/>
+    <KeyItem Name="Ruby Heart" Description="Inactive remnant of PC's goo-girl Slime Core.  Will reactivate if the PC becomes a goo-girl again."/>
     <KeyItem Name="Self-Stimulation Belt" Description="Masturbation aid."/>
-    <KeyItem Name="Sheila's Lethicite"/>
-    <KeyItem Name="Silver Kitty-Bell" Description="Obtained from the vagrant cats, is used to call Katherine."/>
-    <KeyItem Name="Spare Key to Urta's House"/>
-    <KeyItem Name="Supervisor's Key"/>
-    <KeyItem Name="Traveler's Guide"/>
-    <KeyItem Name="Yoga Guide"/>
-    <KeyItem Name="Zetaz's Map" Description="Will allow the player to find the final dungeon when it is implemented."/>
+    <KeyItem Name="Sheila's Lethicite" Description="Obtained from Corrupt Sheila."/>
+    <KeyItem Name="Silver Kitty-Bell" Description="Obtained after the vagrant cats encounter.  Enables a scene with Scylla which unlocks the cat-morph, Katherine."/>
+    <KeyItem Name="Spare Key to Urta's House" Description="Obtained from Urta after her fertility quest."/>
+    <KeyItem Name="Super Reducto" Description="Obtained from Rathazul after the Milk Slave becomes a follower."/>
+    <KeyItem Name="Supervisor's Key" Description="Obtained from the Omnibus Overseer's desk in the demon factory.  Used to unlock the Premium Products room there."/>
+    <KeyItem Name="Traveler's Guide" Description="Bought from Giacomo.  Gives you the option to avoid the Bee-girl encounter."/>
+    <KeyItem Name="Yoga Guide" Description="Bought from Giacomo.  Needed by Centaur and Naga PCs before they can join Cotton for yoga."/>
+    <KeyItem Name="Zetaz's Map" Description="Will allow the PC to find the final dungeon when it is implemented."/>
   </KeyItems>
   <!--============================================================================================================================================-->
   <Perks>
@@ -819,15 +825,13 @@
   </Perks>
   <!--============================================================================================================================================-->
   <Statuses>
-    <Status Name="Akbal Speed" Description="Temporary status; used only during combat with Akbal."/>
     <Status Name="all-natural onahole used" Description="You've used the All-Natural Onahole during self-stimulation."/>
-    <Status Name="Amily Venom" Description="Temporary status; used only during combat with Amily."/>
-    <Status Name="Anemone Arousal" Description="Temporary status; used only during combat with Anemone."/>
-    <Status Name="Anemone Venom" Description="Temporary status; used only during combat with Anemone."/>
-    <Status Name="Basilisk Compulsion" Description="Temporary status; used only during combat with Basilisk."/>
-    <Status Name="BasiliskSlow" Description="Temporary status; used only during combat with Basilisk."/>
+    <Status Name="ateEgg" Description="How many times you've eaten Oviposition Elixir pregnancy eggs."/>
+    <Status Name="Anemone Arousal" Description="Temporary status; used only for a variable duration after an anemone pregnancy, if you already have 10+ anemone cocks."/>
+    <Status Name="Bimbo Champagne"/>
     <Status Name="Birthed" Description="The number of times you have given birth. At 9, the next pregnancy results in acquiring the Brood Mother perk"/>
     <Status Name="Birthed Imps" Description="The number of times you have given birth to imps. This affects the chance of an imp gang bang. Sometimes the affect does not occur until the next time you give birth to an imp in-game."/>
+    <Status Name="Black Cat Beer"/>
     <Status Name="Black Nipples" Description="You have black nipples. Obtained by consuming Trap Oil."/>
     <Status Name="Blind" Description="This status affect means you are blind. It will disappear the next time you leave combat. Changing unwanted statuses to this is an effective way to cure yourself."/>
     <Status Name="BlowjobOn" Description="Kelt-related status. Gained from eagerly giving Kelt a blowjob, or submitting to a later blowjob requirement with high (90+) submissiveness. The character will automatically give Kelt a blowjob when he asks, without a player choice."/>
@@ -835,28 +839,31 @@
     <Status Name="Bonus aCapacity" Description="Bonus anal capacity. Added to the base capacity (determined from looseness and wetness) to determine how much the character can take. Characters with capacity larger than the object they're taking will not be stretched. Gained normally from coal."/>
     <Status Name="Bonus vCapacity" Description="Bonus vaginal capacity. Added to the base capacity (determined from looseness and wetness) to determine how much the character can take. Characters with capacity larger than the object they're taking will not be stretched. Gained normally from goblin ale or wet cloths."/>
     <Status Name="Bottled Milk"/>
-    <Status Name="Bound"/>
     <Status Name="Breasts Milked" Description="You've used the milker."/>
     <Status Name="BSwordBroken" Description="Determines if you went to the lake and found an old, dead tree with the rusted, broken Beautiful Sword. Occurs if you overload the factory valves before retrieving the sword."/>
     <Status Name="BUILT: Milker" Description="Whitney's built a milking machine for you at her farm."/>
+    <Status Name="Burp Changed"/>
     <Status Name="ButtStretched" Description="The amount your butt has been stretched in the past relative to cock value. If you were fucked by a horse dick, this value is probably pretty high. This affects nothing as of yet. It is only statistical."/>
+    <Status Name="Camp Anemone Trigger"/>
     <Status Name="Camp Marble" Description="Marble has joined your camp."/>
     <Status Name="Camp Rathazul" Description="Rathazul has joined your camp."/>
-    <Status Name="Charge Weapon" Description="Weapon attack power is currently enhanced by the effects of the &quot;Charge&quot; spell. Disappears after combat."/>
     <Status Name="Cock Pumped" Description="You've used the cock pump."/>
     <Status Name="Contraceptives" Description="You've used one of the Sand Witch's contraceptive pills."/>
     <Status Name="CuntStretched" Description="Number of times your cunt has been stretched out larger than normal."/>
     <Status Name="Defense: Canopy" Description="You have the thorn canopy protecting you camp from giving 1/3 of Marae's Lethicite to Rathazul."/>
     <Status Name="deluxe onahole used" Description="You've used the Deluxe Onahole during self-stimulation."/>
-    <Status Name="DemonSeed"/>
-    <Status Name="Disarmed" Description="Tracks if you have been disarmed during combat. Disappears after combat."/>
     <Status Name="dog warning" Description="You've received the warning that precedes the bad end for becoming too dog-like."/>
+    <Status Name="Dragon Breath Boost"/>
+    <Status Name="Dragon Breath Cooldown"/>
     <Status Name="DungeonShutDown" Description="You shut down the Factory properly, rather than overloading it and blowing it to bits."/>
     <Status Name="dysfunction" Description="You are unable to masturbate."/>
     <Status Name="Edryn" Description="You've met Edryn."/>
+    <Status Name="eggchest"/>
     <Status Name="eggs" Description="You're pregnant with eggs."/>
+    <Status Name="ember fuck cooldown"/>
+    <Status Name="Ember Napping"/>
     <Status Name="Ever Raped Jojo" Description="Have you ever raped Jojo? If this is here, you have. Congratulations."/>
-    <Status Name="Exgartuan" Description="Possession by Exgartuan"/>
+    <Status Name="Exgartuan" Description="Possession by Exgartuan."/>
     <Status Name="exploredDeepwoods"/>
     <Status Name="FactoryIncubusDefeated" Description="You defeated the Incubus Engineer. If you want to fight him again, just remove this status!"/>
     <Status Name="FactoryOmnibusDefeated" Description="You have defeated the Factory Omnibus Overlord."/>
@@ -865,23 +872,23 @@
     <Status Name="Faerie Fem Fuck" Description="Number of times you have raped the Fairy as a female. The higher the value, the further along she is at being the equivalent of a marijuana drug abuser. Lol."/>
     <Status Name="Faerie Fucked" Description="Number of times you have raped the Fairy as a male. The higher the value, the more of an alcoholic she is."/>
     <Status Name="fapped genderless" Description="You have already masturbated while genderless. If you want to see the discovery scene for genderless anal masturbation once again, just remove this."/>
-    <Status Name="Feeder"/>
+    <Status Name="Feeder" Description="Feeder perk companion.  Value 1: Number of times you've breastfed others.  Value 2: Hours since last breastfed someone."/>
+    <Status Name="Fertilized"/>
     <Status Name="fetishON" Description="Fetish Cultists may now be encountered by the lake."/>
-    <Status Name="FirstAttack"/>
     <Status Name="Found Factory" Description="You've found the factory, making it directly available in the &quot;Places&quot; menu."/>
     <Status Name="FuckedMarble"/>
     <Status Name="gooStuffed" Description="Value 1: Hours remaining until goo-girl comes out. Value 2: Penis stuffed? 0 = no, 1 = yes (penis only), 2 = yes (penis &amp; balls). Value 3: Vagina stuffed? 0 = no, 1 = yes. Your anus is always stuffed."/>
-    <Status Name="Gnoll Spear"/>
+    <Status Name="Groundpound"/>
     <Status Name="hairdresser meeting"/>
     <Status Name="Hangover"/>
     <Status Name="heat" Description="You are in a temporary state of constant feminine need, and are especially fertile. The only way to quench the intense heat in your snatch is to satiate your lust by finding a mate to make you pregnant." Value1="10" Value2="15" Label1="Fertility bonus" Label2="Libido bonus" Label3="Hours remaining"/>
     <Status Name="horse warning" Description="You've received the warning that precedes the bad end for becoming too horse-like."/>
+    <Status Name="Immolation Spell" Description="Arian's Charged Talisman has been imbued with his Immolation spell, which deals damage over time."/>
     <Status Name="Imp GangBang" Description="You have been gangbanged by imps while you were sleeping, and chances are they'll do it again if they can."/>
     <Status Name="IncubusBribed" Description="Determines if you gave the Incubus Mechanic in the Factory the Hentai Comic."/>
-    <Status Name="infestAttempted"/>
+    <Status Name="Infest"/>
     <Status Name="infested"/>
-    <Status Name="Isabella Stunned" Description="The stun Isabella can inflict. Disappears after a round of combat."/>
-    <Status Name="Izma Bleed" Description="The Izma bleed effect she can inflict. Disappears after combat."/>
+    <Status Name="Izumis Pipe Smoke"/>
     <Status Name="Jizzpants"/>
     <Status Name="Jojo Meditation Count" Description="Number of times you've meditated with Jojo."/>
     <Status Name="JojoNightWatch" Description="Is Jojo protecting you from getting raped by demons while you sleep?"/>
@@ -890,7 +897,6 @@
     <Status Name="Kelt Bad End Warning" Description="You're growing far too fond of Kelt and are at risk of falling completely under his corrupted influence."/>
     <Status Name="KeltBJ"/>
     <Status Name="KeltOff" Description="You did something that really pissed off Kelt&#x2014;even more so than usual, for the arrogant prick&#x2014; and now he's stormed off and refuses to teach you ever again. You must have made some sort of egregious affront to his ego. Remove this to bring him back."/>
-    <Status Name="Kiss of Death"/>
     <Status Name="Knows Arouse" Description="You know the black-magic lust-raising enticement spell, &quot;Arouse&quot;"/>
     <Status Name="Knows Blind" Description="You know the white-magic vision-impairment spell, &quot;Blind&quot;"/>
     <Status Name="Knows Charge" Description="You know the white-magic weapon-enhancement spell, &quot;Charge&quot;"/>
@@ -905,11 +911,11 @@
     <Status Name="Lactation Reduction" Description="Hours since last milked."/>
     <Status Name="lootEgg"/>
     <Status Name="Lust Stick Applied" Description="Gained from applying golden lipstick and unlocks the Kiss special attack." Label1="Hours remaining"/>
-    <Status Name="lust venom"/>
     <Status Name="Luststick"/>
     <Status Name="LustyTongue"/>
     <Status Name="Malon Visited Post Addiction" Description="Determines if you went back to tell Marble you got over your addiction to her milk."/>
     <Status Name="Marae Complete" Description="You have finished Marae's quest."/>
+    <Status Name="Marae's Lethicite"/>
     <Status Name="Marae's Quest Start" Description="You have received Marae's quest."/>
     <Status Name="Marble" Description="The first is the hours you have spend with her x10, the second is for addiction percentage, the third is for how she reacts when you're addicted (0=not addicted yet, 1=kind, 2=in love), the fourth is left untouched."/>
     <Status Name="Marble Rape Attempted"/>
@@ -919,38 +925,33 @@
     <Status Name="Marbles Milk" Description="The first is the cooldown until you need more milk, leave untouched the others."/>
     <Status Name="MarbleSpecials"/>
     <Status Name="MarbleWithdrawl"/>
-    <Status Name="MeanToNaga" Description="I don't know what this means yet, but it makes me sad :c"/>
-    <Status Name="Meditated" Description="Only first value is used. If 1 daily meditation session already done. Set to 0 for for meditate again."/>
+    <Status Name="MeanToNaga" Description="Defeat and rape the desert Naga with a female or genderless PC and corruption of 50+."/>
+    <Status Name="Meditated" Description="Status of daily meditation session with Jojo.  Value 1: 0 = not yet, 1 = done."/>
     <Status Name="meet wanderer" Description="First met Marcus and Lucia while wandering the desert."/>
     <Status Name="Met Corrupt Marae"/>
     <Status Name="Met Marae"/>
     <Status Name="Met Whitney" Description="Value 1: The number of times the character has met Whitney while exploring the lake - 1. When this value hits 2, Whitney will no longer be encounterable at the lake and the farm will be unlocked as a place."/>
     <Status Name="metRathazul" Description="You've met Rathazul."/>
     <Status Name="metWorms"/>
-    <Status Name="Might" Description="You are under the effect of Might, boosting your Strength. Adding this manually without also manually raising Strength will reduce your Strength at the end of the next combat instance."/>
     <Status Name="Milked" Description="Number of times you've been milked."/>
     <Status Name="Mino + Cowgirl"/>
     <Status Name="Naga"/>
-    <Status Name="Naga Bind" Description="Temporary status; used only during combat with Naga."/>
-    <Status Name="Naga Venom" Description="Temporary status; used only during combat with Naga."/>
     <Status Name="NakedOn"/>
     <Status Name="No More Marble" Description="After overcoming your addiction, Marble has threatened to leave forever out of shame for having gotten you addicted in the first place. If your relationship with her is good enough, however, you'll be able to convince her to move in to your camp with you."/>
-    <Status Name="NoFlee"/>
     <Status Name="noJojo" Description="Jojo has left the game."/>
     <Status Name="Oswald" Description="You've met Oswald from the Pawn Shop."/>
-    <Status Name="paralyze venom"/>
     <Status Name="plain onahole used" Description="You've used the Plain Onahole during self-stimulation."/>
-    <Status Name="Poison"/>
     <Status Name="Post Akbal Submission"/>
+    <Status Name="Post Anemone Beatdown"/>
     <Status Name="PureCampJojo" Description="Non-corrupted Jojo has joined your camp."/>
     <Status Name="RathazulArmor" Description="Rathazul has made you a suit of armor with some of the exotic materials you've come across during your adventures."/>
     <Status Name="repeatSuccubi"/>
     <Status Name="rut" Description="You are in an insatiable state of pure, carnal, masculine need. You just feel the urge to fuck pretty much anything and everything in sight. Unfortunately for you, you can't just beat the meat to beat the heat, so no matter how many living or debatably living things you fuck and manage to impregnate, you won't be able to escape this frenzied bout of lust until it passes of its own accord in due time. But then again, since you're reading this, why would you let it go when you can prolong and augment it indefinitely?" Value1="150" Value2="5" Label1="Cum production bonus" Label2="Libido bonus" Label3="Hours remaining"/>
     <Status Name="Shark-Girl"/>
+    <Status Name="Shielding Spell" Description="Arian's Charged Talisman has been imbued with his Shielding spell, which increases defense for the duration of a battle."/>
     <Status Name="Slime Craving"/>
     <Status Name="Slime Craving Feed"/>
     <Status Name="Slime Craving Output"/>
-    <Status Name="Stone Lust"/>
     <Status Name="SuccubiFirst"/>
     <Status Name="succubiNight"/>
     <Status Name="TakenGro+"/>
@@ -964,13 +965,10 @@
     <Status Name="Tamani Female Encounter"/>
     <Status Name="Tel'Adre" Description="The status is created when the character attempts to enter Tel'Adre."/>
     <Status Name="TEMP" Description="Temporary status affect used while loading saves. If you see this in your save, something has likely gone wrong somewhere."/>
-    <Status Name="Temporary Heat"/>
     <Status Name="TensionReleased"/>
     <Status Name="Tentacle Jojo"/>
     <Status Name="TentacleBadEndCounter"/>
-    <Status Name="TentacleBind"/>
     <Status Name="TF2" Description="Silly Toggle one-time event in the mountains (must be level 1 &amp; strength = 40). &quot;As zey say, everyone gets ONE.&quot;"/>
-    <Status Name="Throat Punch" Description="This means you got punched in the throat. Way to go. Now you can't cast spells. Disappears after combat."/>
     <Status Name="Took Blessed Sword" Description="This means you took the Beautiful Sword from the Lake. Remove this to re-enable that scene."/>
     <Status Name="Uma's Massage" Description="Value 1: Type (0 = relief, 1 = lust, 2 = modelling, 3 = relaxation, 4 = power). Value 2: Bonus value (based on type). Value 3: Hours remaining until effect wears off."/>
     <Status Name="Uniball" Description="You have a &quot;trap&quot; ball sack. Obtained by consuming Trap Oil."/>
@@ -980,8 +978,6 @@
     <Status Name="Voluntary Demonpack" Description="The number of times you agreed to stay with the Oasis demons."/>
     <Status Name="wanderer demon" Description="The character has advised Marcus to go demon."/>
     <Status Name="wanderer human" Description="The character has advised Marcus to stay human, against Lucia's wishes."/>
-    <Status Name="Web"/>
-    <Status Name="Web-Silence" Description="You have been silenced from casting spells due to webs on your face. Disappears after combat."/>
     <Status Name="worm plugged"/>
     <Status Name="WormOffer"/>
     <Status Name="wormsHalf" Description="Gained from choosing 'Who Cares?' at the worms sign. Halves the chance that worms will be encountered."/>
@@ -1408,7 +1404,7 @@
     <Flag ID="415"  Name="GOTTEN_INQUISITOR_ARMOR"/>
     <Flag ID="416"  Name="DOMINIKAS_SWORD_GIVEN"/>
     <Flag ID="417"  Name="HEL_FOXY_FOURSOME_WARNED"/>
-    <Flag ID="418"  Name="UNKNOWN_FLAG_NUMBER_00418"                    Description="HISTORY PERK SET - tail, fur, or scales. 0 = nothing"/>
+    <Flag ID="418"  Name="UNKNOWN_FLAG_NUMBER_00418"                    Description="History perk status.  0 = select new History perk, 1 = perk set"/>
     <Flag ID="419"  Name="AMILY_TIMES_BUTTFUCKED_PC"/>
     <Flag ID="420"  Name="TIMES_FUCKED_AMILYBUTT"/>
     <Flag ID="421"  Name="KIHA_AFFECTION_LEVEL"/>

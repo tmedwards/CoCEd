@@ -82,6 +82,10 @@ namespace CoCEd.ViewModel
                 UpdateInventory();
                 ItemContainers.Update();
             }
+            else if (name == "Feeder")
+            {
+                GetStatus(name).IsOwned = isOwned;
+            }
 #if PRE_SAVE_REFACTOR
             else if (name == "Weapon Mastery")
             {

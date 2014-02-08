@@ -146,11 +146,6 @@ namespace CoCEd.ViewModel
 
             // Complete slots creation
             ItemContainers = new UpdatableCollection<ItemContainerVM>(containers.Where(x => x.Slots.Count != 0));
-
-
-            // Create the armor/weapon lists for equipment selection
-            ArmorList = XmlData.Instance.ItemGroups.Where(group => ItemCategories.Armor.HasFlag(group.Category)).SelectMany(x => x.Items).OrderBy(x => x.Name, StringComparer.InvariantCultureIgnoreCase);
-            WeaponList = XmlData.Instance.ItemGroups.Where(group => ItemCategories.Weapon.HasFlag(group.Category)).SelectMany(x => x.Items).OrderBy(x => x.Name, StringComparer.InvariantCultureIgnoreCase);
 #if PRE_SAVE_REFACTOR
 
             
@@ -215,9 +210,6 @@ namespace CoCEd.ViewModel
         public UpdatableCollection<StatusVM> Statuses { get; private set; }
         public UpdatableCollection<FlagVM> Flags { get; private set; }
         public List<PerkGroupVM> PerkGroups { get; private set; }
-
-        public IEnumerable<XmlItem> ArmorList { get; private set; }
-        public IEnumerable<XmlItem> WeaponList { get; private set; }
 
         public AssVM Ass { get; private set; }
         public PiercingVM NosePiercing { get; private set; }
@@ -378,29 +370,6 @@ namespace CoCEd.ViewModel
         {
             get { return GetInt("gems"); }
             set { SetValue("gems", value); }
-        }
-
-
-        public string Armor
-        {
-            get { return GetString("armorId"); }
-            set { SetValue("armorId", value); }
-        }
-
-        public string ArmorName
-        {
-            get { return GetString("armorName"); }
-            set
-            {
-                if (value == "") SetValue("armorName", AmfNull.Instance);   // yes, AmfNull
-                else SetValue("armorName", value);
-            }
-        }
-
-        public string Weapon
-        {
-            get { return GetString("weaponId"); }
-            set { SetValue("weaponId", value); }
         }
 
 
