@@ -178,6 +178,8 @@
       <FaceType ID="14" Name="Raccoon Face"/>
       <FaceType ID="15" Name="Buckteeth"/>
       <FaceType ID="16" Name="Mouse"/>
+      <FaceType ID="17" Name="Ferret Mask"/>
+      <FaceType ID="18" Name="Ferret Face"/>
     </FaceTypes>
     <!--============================================================================================================================================-->
     <TongueTypes>
@@ -207,6 +209,7 @@
       <EarType ID="10" Name="Dragon"/>
       <EarType ID="11" Name="Raccoon"/>
       <EarType ID="12" Name="Mouse"/>
+      <EarType ID="13" Name="Ferret"/>
     </EarTypes>
     <!--============================================================================================================================================-->
     <HornTypes>
@@ -247,6 +250,7 @@
       <TailType ID="14" Name="Draconic"/>
       <TailType ID="15" Name="Raccoon"/>
       <TailType ID="16" Name="Mouse"/>
+      <TailType ID="17" Name="Ferret"/>
     </TailTypes>
     <!--============================================================================================================================================-->
     <WingTypes>
@@ -302,6 +306,7 @@
       <LowerBodyType ID="17" Name="Fox"/>
       <LowerBodyType ID="18" Name="Dragon"/>
       <LowerBodyType ID="19" Name="Raccoon"/>
+      <LowerBodyType ID="20" Name="Ferret"/>
     </LowerBodyTypes>
     <!--============================================================================================================================================-->
     <PiercingTypes>
@@ -494,6 +499,7 @@
       <Item ID="B.Gossr" Name="Black Gossamer"/>
       <Item ID="EctoPls" Name="Ectoplasm"/>
       <Item ID="Equinum" Name="Equinum"/>
+      <Item ID="Frrtfrt" Name="Ferret Fruit"/>
       <Item ID="FoxBery" Name="Fox Berry"/>
       <Item ID="FoxJewl" Name="Fox Jewel"/>
       <Item ID="Gob.Ale" Name="Goblin Ale"/>
@@ -551,7 +557,7 @@
       <Item ID="L.PrpEg" Name="Large Purple Egg"/>
       <Item ID="L.BlkEg" Name="Large Black Egg"/>
       <Item ID="L.WhtEg" Name="Large White Egg"/>
-      <Item ID="DrgnEgg" Name="Dragon Egg" Description="Lowers your breath attack fatigue after using the DragonFire breath special attack."/>
+      <Item ID="DrgnEgg" Name="Dragon Egg" Description="Reduces fatigue by 20 and, for the DragonFire breath special attack, either removes the existing cooldown or gives a 50% bonus on your next use."/>
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Dyes" Category="Other">
@@ -598,7 +604,7 @@
       <Item ID="C.Cloth" Name="Comfortable Clothes"/>
       <Item ID="FullChn" Name="Full Chain"/>
       <Item ID="FullPlt" Name="Full Plate"/>
-      <Item ID="FurLoin" Name="Fur Loincloths"/>
+      <!-- Item ID="FurLoin" Name="Fur Loincloths"/ -->
       <Item ID="GelArmr" Name="Gel Armor"/>
       <Item ID="AdvClth" Name="Green Adventurer's Clothes"/>
       <Item ID="IndecSt" Name="Indecent Steel"/>
@@ -816,9 +822,9 @@
       <Perk Name="Phallic Restraint" Description="Reduces the effects of penis-enlarging transformations."/>
       <Perk Name="Pierced: Crimstone" Description="Increases minimum lust by 5." Value1="5"/>
       <Perk Name="Pierced: Fertite" Description="Increases fertility and cum production by 5%." Value1="5"/>
-      <Perk Name="Pierced: Furrite" Description="Increases chances of encountering 'furry' foes.."/>
+      <Perk Name="Pierced: Furrite" Description="Increases chances of encountering &quot;furry&quot; foes."/>
       <Perk Name="Pierced: Lethite" Description="Increases chances of encountering demonic foes."/>
-      <Perk Name="Slutty Seduction" Description="Your armor or outfit allows you access to an improved form of 'Tease'." Value1="8"/>
+      <Perk Name="Slutty Seduction" Description="Your armor allows you access to an improved form of the Tease attack.  (see value #1 for the bonus)" Value1="8" Label1="Tease bonus"/>
       <Perk Name="Wizard's Endurance" Description="Your spellcasting equipment makes it harder for spell-casting to fatigue you!"/>
       <Perk Name="Wizard's Focus" Description="Your wizard's staff grants you additional focus, reducing the use of fatigue for spells."/>
     </PerkGroup>
@@ -827,24 +833,22 @@
   <Statuses>
     <Status Name="all-natural onahole used" Description="You've used the All-Natural Onahole during self-stimulation."/>
     <Status Name="ateEgg" Description="How many times you've eaten Oviposition Elixir pregnancy eggs."/>
-    <Status Name="Anemone Arousal" Description="Temporary status; used only for a variable duration after an anemone pregnancy, if you already have 10+ anemone cocks."/>
-    <Status Name="Bimbo Champagne"/>
+    <Status Name="Anemone Arousal" Description="Temporary status; used only for a variable duration after an anemone pregnancy if you already have 10+ anemone cocks."/>
+    <Status Name="Bimbo Champagne" Description="Temporary status; used only when under the effects of Bimbo Champagne."/>
     <Status Name="Birthed" Description="The number of times you have given birth. At 9, the next pregnancy results in acquiring the Brood Mother perk"/>
     <Status Name="Birthed Imps" Description="The number of times you have given birth to imps. This affects the chance of an imp gang bang. Sometimes the affect does not occur until the next time you give birth to an imp in-game."/>
-    <Status Name="Black Cat Beer"/>
+    <Status Name="Black Cat Beer" Description="Temporary status; used only when under the effects of Black Cat Beer."/>
     <Status Name="Black Nipples" Description="You have black nipples. Obtained by consuming Trap Oil."/>
     <Status Name="Blind" Description="This status affect means you are blind. It will disappear the next time you leave combat. Changing unwanted statuses to this is an effective way to cure yourself."/>
     <Status Name="BlowjobOn" Description="Kelt-related status. Gained from eagerly giving Kelt a blowjob, or submitting to a later blowjob requirement with high (90+) submissiveness. The character will automatically give Kelt a blowjob when he asks, without a player choice."/>
     <Status Name="Boat Discovery" Description="You have discovered the boat on the shore of the Lake, making it directly available in the &quot;Places&quot; menu."/>
     <Status Name="Bonus aCapacity" Description="Bonus anal capacity. Added to the base capacity (determined from looseness and wetness) to determine how much the character can take. Characters with capacity larger than the object they're taking will not be stretched. Gained normally from coal."/>
     <Status Name="Bonus vCapacity" Description="Bonus vaginal capacity. Added to the base capacity (determined from looseness and wetness) to determine how much the character can take. Characters with capacity larger than the object they're taking will not be stretched. Gained normally from goblin ale or wet cloths."/>
-    <Status Name="Bottled Milk"/>
+    <Status Name="Bottled Milk" Description="Temporary status; used only when under the effects of Marble's bottled milk."/>
     <Status Name="Breasts Milked" Description="You've used the milker."/>
     <Status Name="BSwordBroken" Description="Determines if you went to the lake and found an old, dead tree with the rusted, broken Beautiful Sword. Occurs if you overload the factory valves before retrieving the sword."/>
     <Status Name="BUILT: Milker" Description="Whitney's built a milking machine for you at her farm."/>
-    <Status Name="Burp Changed"/>
     <Status Name="ButtStretched" Description="The amount your butt has been stretched in the past relative to cock value. If you were fucked by a horse dick, this value is probably pretty high. This affects nothing as of yet. It is only statistical."/>
-    <Status Name="Camp Anemone Trigger"/>
     <Status Name="Camp Marble" Description="Marble has joined your camp."/>
     <Status Name="Camp Rathazul" Description="Rathazul has joined your camp."/>
     <Status Name="Cock Pumped" Description="You've used the cock pump."/>
@@ -853,18 +857,13 @@
     <Status Name="Defense: Canopy" Description="You have the thorn canopy protecting you camp from giving 1/3 of Marae's Lethicite to Rathazul."/>
     <Status Name="deluxe onahole used" Description="You've used the Deluxe Onahole during self-stimulation."/>
     <Status Name="dog warning" Description="You've received the warning that precedes the bad end for becoming too dog-like."/>
-    <Status Name="Dragon Breath Boost"/>
-    <Status Name="Dragon Breath Cooldown"/>
     <Status Name="DungeonShutDown" Description="You shut down the Factory properly, rather than overloading it and blowing it to bits."/>
     <Status Name="dysfunction" Description="You are unable to masturbate."/>
     <Status Name="Edryn" Description="You've met Edryn."/>
-    <Status Name="eggchest"/>
     <Status Name="eggs" Description="You're pregnant with eggs."/>
-    <Status Name="ember fuck cooldown"/>
-    <Status Name="Ember Napping"/>
     <Status Name="Ever Raped Jojo" Description="Have you ever raped Jojo? If this is here, you have. Congratulations."/>
     <Status Name="Exgartuan" Description="Possession by Exgartuan."/>
-    <Status Name="exploredDeepwoods"/>
+    <Status Name="exploredDeepwoods" Description="Number of times you've explored Deepwoods." Label1="Count"/>
     <Status Name="FactoryIncubusDefeated" Description="You defeated the Incubus Engineer. If you want to fight him again, just remove this status!"/>
     <Status Name="FactoryOmnibusDefeated" Description="You have defeated the Factory Omnibus Overlord."/>
     <Status Name="FactoryOverload" Description="You overloaded the Factory and blew it to bits, rather than shutting it down."/>
@@ -873,23 +872,19 @@
     <Status Name="Faerie Fucked" Description="Number of times you have raped the Fairy as a male. The higher the value, the more of an alcoholic she is."/>
     <Status Name="fapped genderless" Description="You have already masturbated while genderless. If you want to see the discovery scene for genderless anal masturbation once again, just remove this."/>
     <Status Name="Feeder" Description="Feeder perk companion.  Value 1: Number of times you've breastfed others.  Value 2: Hours since last breastfed someone."/>
-    <Status Name="Fertilized"/>
     <Status Name="fetishON" Description="Fetish Cultists may now be encountered by the lake."/>
     <Status Name="Found Factory" Description="You've found the factory, making it directly available in the &quot;Places&quot; menu."/>
-    <Status Name="FuckedMarble"/>
-    <Status Name="gooStuffed" Description="Value 1: Hours remaining until goo-girl comes out. Value 2: Penis stuffed? 0 = no, 1 = yes (penis only), 2 = yes (penis &amp; balls). Value 3: Vagina stuffed? 0 = no, 1 = yes. Your anus is always stuffed."/>
-    <Status Name="Groundpound"/>
-    <Status Name="hairdresser meeting"/>
-    <Status Name="Hangover"/>
+    <Status Name="FuckedMarble" Description="You've had sex with Marble."/>
+    <Status Name="gooStuffed" Description="Value 1: Hours remaining until goo-girl comes out. Value 2: Penis stuffed? 0 = no, 1 = yes (penis only), 2 = yes (penis &amp; balls). Value 3: Vagina stuffed? 0 = no, 1 = yes. Your anus is always stuffed." Label1="Hours remaining" Label2="Penis too?" Label3="Vagina too?"/>
+    <Status Name="hairdresser meeting" Description="You've found Lynnette's hair salon in the mountains."/>
     <Status Name="heat" Description="You are in a temporary state of constant feminine need, and are especially fertile. The only way to quench the intense heat in your snatch is to satiate your lust by finding a mate to make you pregnant." Value1="10" Value2="15" Label1="Fertility bonus" Label2="Libido bonus" Label3="Hours remaining"/>
     <Status Name="horse warning" Description="You've received the warning that precedes the bad end for becoming too horse-like."/>
     <Status Name="Immolation Spell" Description="Arian's Charged Talisman has been imbued with his Immolation spell, which deals damage over time."/>
     <Status Name="Imp GangBang" Description="You have been gangbanged by imps while you were sleeping, and chances are they'll do it again if they can."/>
     <Status Name="IncubusBribed" Description="Determines if you gave the Incubus Mechanic in the Factory the Hentai Comic."/>
+    <!-- CHECKPOINT -->
     <Status Name="Infest"/>
     <Status Name="infested"/>
-    <Status Name="Izumis Pipe Smoke"/>
-    <Status Name="Jizzpants"/>
     <Status Name="Jojo Meditation Count" Description="Number of times you've meditated with Jojo."/>
     <Status Name="JojoNightWatch" Description="Is Jojo protecting you from getting raped by demons while you sleep?"/>
     <Status Name="JojoTFOffer" Description="You have approached the idea of tranforming Jojo into Tentacle Jojo. If you chose No and wish to change your mind, remove this. Otherwise you are stuck with the choice."/>
@@ -963,14 +958,14 @@
     <Status Name="talked with marble about marae"/>
     <Status Name="Tamani" Description="Value 2: corresponds with the number of daughters you have with her (but is somehow not always exactly the same)"/>
     <Status Name="Tamani Female Encounter"/>
-    <Status Name="Tel'Adre" Description="The status is created when the character attempts to enter Tel'Adre."/>
-    <Status Name="TEMP" Description="Temporary status affect used while loading saves. If you see this in your save, something has likely gone wrong somewhere."/>
+    <Status Name="Tel'Adre" Description="You've found the city of Tel'Adre in the desert.  Value 1: 0 = found only, 1 = allowed to enter."/>
+    <Status Name="TEMP" Description="Temporary status affect used while loading saves.  If you see this in your save, something has likely gone wrong somewhere."/>
     <Status Name="TensionReleased"/>
     <Status Name="Tentacle Jojo"/>
     <Status Name="TentacleBadEndCounter"/>
     <Status Name="TF2" Description="Silly Toggle one-time event in the mountains (must be level 1 &amp; strength = 40). &quot;As zey say, everyone gets ONE.&quot;"/>
     <Status Name="Took Blessed Sword" Description="This means you took the Beautiful Sword from the Lake. Remove this to re-enable that scene."/>
-    <Status Name="Uma's Massage" Description="Value 1: Type (0 = relief, 1 = lust, 2 = modelling, 3 = relaxation, 4 = power). Value 2: Bonus value (based on type). Value 3: Hours remaining until effect wears off."/>
+    <Status Name="Uma's Massage" Description="Value 1: Type (0 = relief, 1 = lust, 2 = modelling, 3 = relaxation, 4 = power). Value 2: Bonus value (based on type). Value 3: Hours remaining until effect wears off." Label1="Type" Label2="Bonus value" Label3="Hours remaining"/>
     <Status Name="Uniball" Description="You have a &quot;trap&quot; ball sack. Obtained by consuming Trap Oil."/>
     <Status Name="used natural self-stim"/>
     <Status Name="used self-stim"/>

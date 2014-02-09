@@ -52,17 +52,11 @@ namespace CoCEd.ViewModel
 
         protected override void InitializeObject(AmfObject obj)
         {
-#if !PRE_SAVE_REFACTOR
             obj["id"] = _xml.Name;
-#else
-            obj["perkName"] = _xml.Name;
-            obj["perkDesc"] = _xml.Description;
-#endif
         }
 
         protected override bool IsObject(AmfObject obj)
         {
-#if !PRE_SAVE_REFACTOR
             var id = obj.GetString("id");
 
             // Save format fixup, only needed when editing older saves
@@ -81,9 +75,6 @@ namespace CoCEd.ViewModel
             if (double.IsNaN(obj.GetDouble("value4"))) obj["value4"] = 0;
 
             return id == _xml.Name;
-#else
-            return obj.GetString("perkName") == _xml.Name;
-#endif
         }
 
         protected override void NotifyGameVM()
