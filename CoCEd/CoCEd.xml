@@ -2024,6 +2024,7 @@
     <Flag ID="1040" Name="IZUMI_TIMES_LOST_FIGHT"                       Description="Times the PC has been beaten by Izumi"/>
     <Flag ID="1041" Name="IZUMI_SEEN_PC_GENDER"                         Description="(Value is the last gender int that Izumi knows the player was.)"/>
     <Flag ID="1042" Name="CUSTOM_FONT_SIZE"/>
+    <Flag ID="1043" Name="FERRET_BAD_END_WARNING"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
