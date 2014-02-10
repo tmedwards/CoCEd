@@ -435,11 +435,13 @@ namespace CoCEd.ViewModel
         {
             get 
             {
-                if (HipRating >= 20) return IsMale ? "extended" : "breeder";
-                if (HipRating >= 15) return IsMale ? "large" : "mother";
-                if (HipRating >= 10) return IsMale ? "feminine" : "sexy";
-                if (HipRating >= 6) return "graceful";
-                return "unremarkable";
+                if (HipRating >= 20) return IsMale ? "inhumanly-wide" : "broodmother";
+                if (HipRating >= 15) return IsMale ? "voluptuous" : "child-bearing";
+                if (HipRating >= 10) return IsMale ? "wide" : "curvy";
+                if (HipRating >= 6)  return IsMale ? "ample" : "girly";
+                if (HipRating >= 4)  return "well-formed";
+                if (HipRating >= 2)  return "slender";
+                return "boyish";
             }
         }
 
@@ -457,12 +459,15 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (ButtRating >= 20) return "obscene";
-                if (ButtRating >= 15) return "bust out";
-                if (ButtRating >= 10) return "enticing";
-                if (ButtRating >= 6) return "nice";
-                if (ButtRating >= 4) return "decent";
-                return "unremarkable";
+                if (ButtRating >= 20) return "colossal";
+                if (ButtRating >= 16) return "huge";
+                if (ButtRating >= 13) return "voluminous";
+                if (ButtRating >= 10) return "spacious";
+                if (ButtRating >= 8)  return "substantial";
+                if (ButtRating >= 6)  return "shapely";
+                if (ButtRating >= 4)  return "regular";
+                if (ButtRating >= 2)  return "compact";
+                return "very small";
             }
         }
 
@@ -480,11 +485,13 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (Frame >= 90) return "wide";
-                if (Frame >= 60) return "thick";
+                if (Frame >= 90) return "very wide";
+                if (Frame >= 75) return "wide";
+                if (Frame >= 60) return "slightly wide";
                 if (Frame >= 40) return "average";
-                if (Frame >= 25) return "narrow";
-                return "thin";
+                if (Frame >= 25) return "moderately thin";
+                if (Frame >= 10) return "narrow";
+                return "lithe";
             }
         }
 
@@ -502,11 +509,11 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (Muscles > 90) return "rippling muscles";
-                if (Muscles > 75) return "showing off";
+                if (Muscles > 90) return "perfectly defined";
+                if (Muscles > 75) return "great";
                 if (Muscles > 50) return "visible";
                 if (Muscles > 25) return "average";
-                return "soft";
+                return "untoned";
             }
         }
 
@@ -524,13 +531,16 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (Feminity > 90) return "hyper-feminine";
-                if (Feminity >= 80) return "gorgeous";
-                if (Feminity >= 70) return "feminine";
-                if (Feminity >= 55) return "feminine touch";
+                if (Feminity >= 91) return "hyper-feminine";
+                if (Feminity >= 81) return "gorgeous";
+                if (Feminity >= 73) return "feminine";
+                if (Feminity >= 66) return "nicely feminine";
+                if (Feminity >= 56) return "feminine touch";
                 if (Feminity >= 45) return "androgeneous";
                 if (Feminity >= 35) return "barely masculine";
-                if (Feminity >= 20) return "handsome";
+                if (Feminity >= 28) return "fairly masculine";
+                if (Feminity >= 20) return "masculine";
+                if (Feminity >= 10) return "handsome";
                 return "hyper-masculine";
             }
         }
@@ -762,10 +772,9 @@ namespace CoCEd.ViewModel
         {
             get 
             {
-                var baseQty = (Lust + 50) / 10;
-                if (GetPerk("Pilgrim's Bounty").IsOwned) baseQty = 150 / 10;
+                double lustCoefficient = (GetPerk("Pilgrim's Bounty").IsOwned ? 150 : (Lust + 50)) / 10;
 
-                // Default values for balles (same as CoC)
+                // Default values for balls (same as CoC)
                 int balls = Balls;
                 double ballSize = BallSize;
                 if (balls == 0)
@@ -774,18 +783,24 @@ namespace CoCEd.ViewModel
                     ballSize = 1.25;
                 }
 
-                var qty = (ballSize * balls * CumMultiplier * 2 * baseQty * (HoursSinceCum + 10) / 24) / 10;
+                double qty = ((int)(ballSize * balls * CumMultiplier * 2 * lustCoefficient * (HoursSinceCum + 10) / 24)) / 10;
+
                 if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
                 if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
-                if (GetPerk("Marae's Gift - Stud").IsOwned) qty += 350;
-                if (GetPerk("Fera's Boon - Alpha").IsOwned) qty += 200;
-                if (GetPerk("Magical Virility").IsOwned) qty += 200;
+
                 if (GetPerk("Bro Body").IsOwned) qty += 200;
+                if (GetPerk("Fera's Boon - Alpha").IsOwned) qty += 200;
+                if (GetPerk("Fera's Boon - Seeder").IsOwned) qty += 1000;
+                if (GetPerk("Magical Virility").IsOwned) qty += 200;
+                if (GetPerk("Marae's Gift - Stud").IsOwned) qty += 350;
                 qty += GetPerk("Elven Bounty").Value1;
                 qty += GetStatus("rut").Value1;
-                qty *= 1 + 0.02 * GetPerk("Pierced: Fertite").Value1;
+
+                qty *= (1 + (2 * GetPerk("Pierced: Fertite").Value1)) / 100;
+
+                if (qty < 2) qty = 2;
 
                 return FormatVolume(qty);
             }
@@ -795,10 +810,9 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                var baseQty = (Lust + 50) / 10;
-                if (GetPerk("Pilgrim's Bounty").IsOwned) baseQty = 150 / 10;
+                double lustCoefficient = (GetPerk("Pilgrim's Bounty").IsOwned ? 150 : (Lust + 50)) / 10;
 
-                // Default values for balles (same as CoC)
+                // Default values for balls (same as CoC)
                 int balls = Balls;
                 double ballSize = BallSize;
                 if (balls == 0)
@@ -807,12 +821,16 @@ namespace CoCEd.ViewModel
                     ballSize = 1.25;
                 }
 
-                var qty = (ballSize * balls * CumMultiplier * 2 * baseQty / 24) / 10;
+                double qty = ((int)(ballSize * balls * CumMultiplier * 2 * lustCoefficient / 24)) / 10;
+
                 if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
                 if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
-                qty *= 1 + 0.02 * GetPerk("Pierced: Fertite").Value1;
+
+                qty *= (1 + (2 * GetPerk("Pierced: Fertite").Value1)) / 100;
+
+                // unsure if (qty < 2) clamping should be done here
 
                 return FormatVolume(qty, "/h");
             }
