@@ -366,6 +366,7 @@
     <!--============================================================================================================================================-->
     <VaginalWetnessLevels>
       <VaginalWetnessLevel ID="0" Name="Dry"/>
+      <VaginalWetnessLevel ID="1" Name="Normal"/>
       <VaginalWetnessLevel ID="2" Name="Wet"/>
       <VaginalWetnessLevel ID="3" Name="Slick"/>
       <VaginalWetnessLevel ID="4" Name="Drooling"/>
@@ -378,6 +379,7 @@
       <VaginalLoosenessLevel ID="2" Name="Loose"/>
       <VaginalLoosenessLevel ID="3" Name="Gaping"/>
       <VaginalLoosenessLevel ID="4" Name="Gaping-wide"/>
+      <VaginalLoosenessLevel ID="5" Name="Clown-car level"/>
     </VaginalLoosenessLevels>
     <!--============================================================================================================================================-->
     <AnalWetnessLevels>
