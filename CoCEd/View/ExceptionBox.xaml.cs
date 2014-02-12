@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,6 +34,7 @@ namespace CoCEd.View
 
     public partial class ExceptionBox : Window
     {
+        string _exceptionMsg;
         ExceptionBoxResult _result;
 
         public ExceptionBox()
@@ -63,7 +65,19 @@ namespace CoCEd.View
         }
 
         public bool IsWarning { get; set; }
-        public string ExceptionMessage { get; set; }
+        public string ExceptionMessage
+        {
+            get { return _exceptionMsg; }
+            set
+            {
+                // make CoCEd's version an integral part of the exception message, so we don't
+                // have to rely on users' claims of being up to date anymore
+                _exceptionMsg = String.Format("[{0}, Version: {1}]\n{2}",
+                    Assembly.GetExecutingAssembly().GetName().Name,
+                    Assembly.GetExecutingAssembly().GetName().Version.ToString(),
+                    value);
+            }
+        }
         public string Message { get; set; }
         public string Path { get; set; }
 
