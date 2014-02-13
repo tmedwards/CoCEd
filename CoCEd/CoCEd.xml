@@ -985,7 +985,7 @@
   <!--============================================================================================================================================-->
   <Flags>
     <Flag ID="1"    Name="MARBLE_PREGNACY_INCUBATION"/>
-    <Flag ID="2"    Name="MARBLE_PREGNACY_TYPE"                         Description="1 = cowgirl"/>
+    <Flag ID="2"    Name="MARBLE_PREGNACY_TYPE"                         Description="1 = cow-girl"/>
     <Flag ID="3"    Name="MARBLE_LUST"/>
     <Flag ID="4"    Name="MARBLE_DICK_TYPE"/>
     <Flag ID="5"    Name="MARBLE_DICK_LENGTH"/>
@@ -993,7 +993,7 @@
     <Flag ID="7"    Name="UNUSED_FLAG_MARBLE_DUTY"                      Description="(unused)"/>
     <Flag ID="8"    Name="MARBLE_KIDS"/>
     <Flag ID="9"    Name="MARBLE_NURSERY_CONSTRUCTION"                  Description="0 = not started, &lt;100 = in progress, 100 = finished"/>
-    <Flag ID="10"   Name="PLAYER_PREGGO_WITH_WORMS"                     Description="(I think) HAS WORM CUM DISPLAYED YET?"/>
+    <Flag ID="10"   Name="PLAYER_PREGGO_WITH_WORMS"/>
     <Flag ID="11"   Name="TIMES_FUCKED_URTA"/>
     <Flag ID="12"   Name="URTA_COMFORTABLE_WITH_OWN_BODY"               Description="Urta's horsecock comfort level: -1 = hates self"/>
     <Flag ID="13"   Name="URTA_TIME_SINCE_LAST_CAME"                    Description="Hours until Urta can be horny again"/>
@@ -1017,12 +1017,12 @@
     <Flag ID="31"   Name="URTA_ANGRY_AT_PC_COUNTDOWN"/>
     <Flag ID="32"   Name="URTA_KNOWS_PC_HAS_MARBLE_FOLLOWER"            Description="Marble cockblock happened: 0 = no, 1 = yes"/>
     <Flag ID="33"   Name="PC_SEEN_URTA_BADASS_FIGHT"/>
-    <Flag ID="34"   Name="PC_ENCOUNTERED_CHRISTMAS_ELF_BEFORE"          Description="0 = false, 1 = true"/>
-    <Flag ID="35"   Name="AMILY_MET"                                    Description="0 = false, 1 = true"/>
-    <Flag ID="36"   Name="AMILY_VILLAGE_ENCOUNTERS_DISABLED"            Description="0 = false, 1 = true, 44 = village button?"/>
-    <Flag ID="37"   Name="AMILY_GROSSED_OUT_BY_WORMS"                   Description="0 = false, 1 = true"/>
+    <Flag ID="34"   Name="PC_ENCOUNTERED_CHRISTMAS_ELF_BEFORE"          Description="0 = no, &gt;0 = last year Xmas Elf encountered"/>
+    <Flag ID="35"   Name="AMILY_MET"                                    Description="0 = no, 1 = yes"/>
+    <Flag ID="36"   Name="AMILY_VILLAGE_ENCOUNTERS_DISABLED"            Description="0 = no, 1 = yes, 44 = village button?"/>
+    <Flag ID="37"   Name="AMILY_GROSSED_OUT_BY_WORMS"                   Description="0 = no, 1 = yes"/>
     <Flag ID="38"   Name="AMILY_AFFECTION"                              Description="&#x2264;15 = low, 16&#x2013;39 = medium, &#x2265;40 = high"/>
-    <Flag ID="39"   Name="AMILY_OFFER_ACCEPTED"                         Description="0 = false, 1 = true"/>
+    <Flag ID="39"   Name="AMILY_OFFER_ACCEPTED"                         Description="0 = no, 1 = yes"/>
     <Flag ID="40"   Name="AMILY_BIRTH_TOTAL"/>
     <Flag ID="41"   Name="AMILY_INCUBATION"                             Description="0 = not pregnant, otherwise hours till birth (starts at 168 hours)"/>
     <Flag ID="42"   Name="AMILY_FUCK_COUNTER"/>
@@ -1053,12 +1053,12 @@
     <Flag ID="67"   Name="TIMES_AUTOFELLATIO_DUE_TO_CAT_FLEXABILITY"/>
     <Flag ID="68"   Name="EDRYN_PREGNANCY_INCUBATION"                   Description="Starts at 500 hours"/>
     <Flag ID="69"   Name="EDRYN_NUMBER_OF_KIDS"/>
-    <Flag ID="70"   Name="EDRYN_NEVER_SEE_AGAIN"                        Description="0 = false, 1 = true"/>
-    <Flag ID="71"   Name="EDRYN_PREGNAT_AND_NOT_TOLD_PC_YET"            Description="0 = false, 1 = true"/>
-    <Flag ID="72"   Name="EDRYN_NEEDS_TO_TALK_ABOUT_KID"                Description="0 = false, 1 = true"/>
+    <Flag ID="70"   Name="EDRYN_NEVER_SEE_AGAIN"                        Description="0 = no, 1 = yes"/>
+    <Flag ID="71"   Name="EDRYN_PREGNAT_AND_NOT_TOLD_PC_YET"            Description="0 = no, 1 = yes"/>
+    <Flag ID="72"   Name="EDRYN_NEEDS_TO_TALK_ABOUT_KID"                Description="0 = no, 1 = yes"/>
     <Flag ID="73"   Name="EDRYN_GIFT_COUNTER"/>
-    <Flag ID="74"   Name="AMILY_MET_PURE_JOJO"                          Description="0 = false, 1 = true"/>
-    <Flag ID="75"   Name="AMILY_SPAR_WITH_PURE_JOJO"                    Description="0 = false, 1 = true"/>
+    <Flag ID="74"   Name="AMILY_MET_PURE_JOJO"                          Description="0 = no, 1 = yes"/>
+    <Flag ID="75"   Name="AMILY_SPAR_WITH_PURE_JOJO"                    Description="0 = no, 1 = yes"/>
     <Flag ID="76"   Name="AMILY_PISSED_PC_CORRUPED_JOJO"                Description="Amily knew pure Jojo and is pissed that you &quot;broke&quot; him."/>
     <Flag ID="77"   Name="AMILY_WAIT_FOR_PC_FIX_JOJO"                   Description="PC agreed to &quot;fix&quot; Jojo. No sex until this is reset to 0."/>
     <Flag ID="78"   Name="AMILY_BLOCK_COUNTDOWN_BECAUSE_CORRUPTED_JOJO" Description="Jojo fixing countdown. No encounters with Amily until this reaches 0."/>
@@ -1066,7 +1066,7 @@
     <Flag ID="80"   Name="JOJO_DEAD_OR_GONE"                            Description="0 = no, 1 = dead or gone"/>
     <Flag ID="81"   Name="AMILY_DISCOVERED_TENTATLE_JOJO"/>
     <Flag ID="82"   Name="AMILY_MET_RATHAZUL"/>
-    <Flag ID="83"   Name="RATHAZUL_CORRUPT_JOJO_FREAKOUT"               Description="0 = false, 1 = true"/>
+    <Flag ID="83"   Name="RATHAZUL_CORRUPT_JOJO_FREAKOUT"               Description="0 = no, 1 = yes"/>
     <Flag ID="84"   Name="JOJO_RATHAZUL_INTERACTION_COUNTER"/>
     <Flag ID="85"   Name="MARBLE_OR_AMILY_FIRST_FOR_FREAKOUT"           Description="Which came first? 1 = Marble, 2 = Amily"/>
     <Flag ID="86"   Name="AMILY_NOT_FREAKED_OUT"                        Description="Freakout at camp if both Marble and Amily present. 1 = true, 2 = no freakout"/>
@@ -1078,11 +1078,11 @@
     <Flag ID="92"   Name="BREASTFEAD_SOPHIE_COUNTER"/>
     <Flag ID="93"   Name="SOPHIE_WILD_EGG_COUNTDOWN_TIMER"/>
     <Flag ID="94"   Name="SOPHIE_EGGS_LAID"/>
-    <Flag ID="95"   Name="PC_CURRENTLY_LUSTSTICK_AFFECTED"              Description="0 = false, 1 = true"/>
+    <Flag ID="95"   Name="PC_CURRENTLY_LUSTSTICK_AFFECTED"              Description="0 = no, 1 = yes"/>
     <Flag ID="96"   Name="SOPHIE_ANGRY_AT_PC_COUNTER"/>
     <Flag ID="97"   Name="TIMES_PISSED_OFF_SOPHIE_COUNTER"/>
     <Flag ID="98"   Name="TIMES_FUCKED_SOPHIE_LESBIAN"/>
-    <Flag ID="99"   Name="EASY_MODE_ENABLE_FLAG"                        Description="0 = false, 1 = true"/>
+    <Flag ID="99"   Name="EASY_MODE_ENABLE_FLAG"                        Description="0 = no, 1 = yes"/>
     <Flag ID="100"  Name="CORRUPT_MARAE_FOLLOWUP_ENCOUNTER_STATE"/>
     <Flag ID="101"  Name="FOUND_WIZARD_STAFF"/>
     <Flag ID="102"  Name="UNKNOWN_FLAG_NUMBER_00102"                    Description="Has extra Jojo time been cleared? - Jojo Debug Flag"/>
@@ -1152,11 +1152,11 @@
     <Flag ID="166"  Name="AMILY_ALLOWS_FERTILITY"/>
     <Flag ID="167"  Name="UNKNOWN_FLAG_NUMBER_00167"                    Description="Permanent Gym Membership? 1 = yes"/>
     <Flag ID="168"  Name="AMILY_CORRUPT_FLIPOUT"/>
-    <Flag ID="169"  Name="UNKNOWN_FLAG_NUMBER_00169"                    Description="Times cooked Amily's corruption drug"/>
-    <Flag ID="170"  Name="UNKNOWN_FLAG_NUMBER_00170"                    Description="Amily's corruption value"/>
-    <Flag ID="171"  Name="AMILY_HAS_BALLS_AND_SIZE"                     Description="Amily's balls: 1 = yes, higher numbers = bigger balls"/>
-    <Flag ID="172"  Name="AMILY_VAGINAL_WETNESS"                        Description="Amily's wetness"/>
-    <Flag ID="173"  Name="UNKNOWN_FLAG_NUMBER_00173"                    Description="Amily freaked out about your corruption. 0 = not freaked out, 1 = freaked out"/>
+    <Flag ID="169"  Name="TIMES_PC_MADE_AMILYS_CORRUPTION_DRUG"/>
+    <Flag ID="170"  Name="AMILY_CORRUPTION_COUNTER"                     Description="0 = untainted, &gt;0 = times drugged and raped"/>
+    <Flag ID="171"  Name="AMILY_HAS_BALLS_AND_SIZE"                     Description="0 = no, &gt;0 = yes and higher numbers mean bigger balls"/>
+    <Flag ID="172"  Name="AMILY_VAGINAL_WETNESS"/>
+    <Flag ID="173"  Name="AMILY_WARNED_PC_ABOUT_CORRUPTION"             Description="0 = no, 1 = yes"/>
     <Flag ID="174"  Name="UNKNOWN_FLAG_NUMBER_00174"                    Description="Times Dominika sucked off horsecocks"/>
     <Flag ID="175"  Name="UNKNOWN_FLAG_NUMBER_00175"                    Description="Dominika drama: 1 = yes, 2 = no"/>
     <Flag ID="176"  Name="UNKNOWN_FLAG_NUMBER_00176"                    Description="Times PC has done yoga with Cotton"/>
@@ -1364,7 +1364,7 @@
     <Flag ID="378"  Name="ISABELLA_TIME_SINCE_LAST_HOTDOGGING"/>
     <Flag ID="379"  Name="ISABELLA_TIMES_HOTDOGGED"/>
     <Flag ID="380"  Name="ISABELLA_MILK_COOLDOWN"/>
-    <Flag ID="381"  Name="ISABELLA_MURBLE_BLEH"/>
+    <Flag ID="381"  Name="ISABELLA_MARBLE_BLEH"/>
     <Flag ID="382"  Name="ISABELLA_SPARRING_INTRO"/>
     <Flag ID="383"  Name="ISABELLA_PROBOVA_BURP_COUNT"/>
     <Flag ID="384"  Name="GOOGIRL_BIRTHS"/>
