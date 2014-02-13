@@ -65,6 +65,7 @@ namespace CoCEd.View
         }
 
         public bool IsWarning { get; set; }
+        public bool ShowReportInstructions { get; set; }
         public string ExceptionMessage
         {
             get { return _exceptionMsg; }
@@ -89,7 +90,8 @@ namespace CoCEd.View
 
         public ExceptionBoxResult ShowDialog(params ExceptionBoxButtons[] buttons)
         {
-            // http://forum.fenoxo.com/thread-6324.html
+            // CoCEd thread  : http://forum.fenoxo.com/thread-6324.html
+            // CoCEd tracker : https://sourceforge.net/p/coced/tickets/
             if (App.Current.MainWindow != this)
             {
                 Owner = App.Current.MainWindow;
@@ -105,8 +107,19 @@ namespace CoCEd.View
             if (IsWarning) image.Source = Imaging.CreateBitmapSourceFromHIcon(System.Drawing.SystemIcons.Warning.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             else image.Source = Imaging.CreateBitmapSourceFromHIcon(System.Drawing.SystemIcons.Error.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
+            // This isn't currently tied to ExceptionMessage because there are some instances where exceptions are shown
+            // that probably are not very report worthy... decisions, decisions
+            if (ShowReportInstructions) reportingGrid.Visibility = Visibility.Visible;
+            else reportingGrid.Visibility = Visibility.Collapsed;
+
+            // Why the heck were the checks against Path doubled?  Were two different paths being checked at one time
+            // and this simply wasn't cleaned up when that was changed maybe?  I don't know, but I'm excising it for now.
+            /*
             if (String.IsNullOrEmpty(Path) && String.IsNullOrEmpty(Path)) folderGrid.Visibility = Visibility.Collapsed;
             else if (!String.IsNullOrEmpty(Path)) folderText.Text = Path;
+            else if (!String.IsNullOrEmpty(Path)) folderText.Text = Path;
+            */
+            if (String.IsNullOrEmpty(Path)) folderGrid.Visibility = Visibility.Collapsed;
             else if (!String.IsNullOrEmpty(Path)) folderText.Text = Path;
 
             if (String.IsNullOrEmpty(ExceptionMessage)) exceptionGrid.Visibility = Visibility.Collapsed;

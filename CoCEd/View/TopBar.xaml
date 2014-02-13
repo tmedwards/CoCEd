@@ -93,7 +93,7 @@
                 </ToggleButton.ContextMenu>
             </ToggleButton>
 
-            <Button Content="Update?" Click="checkForUpdates_Click" Margin="20,-1,0,0" BorderThickness="0" FontSize="12" HorizontalContentAlignment="Left" VerticalAlignment="Top" ToolTip="Check for update to CoCEd…"/>
+            <Button Content="Update?" Click="checkForUpdates_Click" Margin="20,-1,0,0" BorderThickness="0" FontSize="12" HorizontalContentAlignment="Left" VerticalAlignment="Top" ToolTip="Check for updates to CoCEd…"/>
         </StackPanel>
 
         <!--TextBlock Text="{Binding FileLabel}" Margin="0,2,0,0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="14" Foreground="#A0A0A0" VerticalAlignment="Top" FontStretch="Expanded" FontWeight="Thin"/-->

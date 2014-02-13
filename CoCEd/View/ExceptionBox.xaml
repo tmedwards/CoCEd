@@ -16,6 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -29,7 +30,24 @@
             <TextBlock x:Name="text" FontSize="14" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Margin="10,0,0,0"/>
         </Grid>
 
-        <Grid x:Name="folderGrid" Margin="20,30,10,10" Grid.Row="1">
+        <Grid x:Name="reportingGrid" Margin="20,20,10,10" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" MaxHeight="200"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Reporting the error" FontWeight="Bold"/>
+            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,5,0,0" Grid.Row="1">
+                Please report this error by copying it and either posting a message in
+                <Hyperlink NavigateUri="http://forum.fenoxo.com/thread-6324.html" RequestNavigate="requestNavigate">CoCEd's forum thread</Hyperlink>,
+                at fenoxo.com, or opening a ticket in
+                <Hyperlink NavigateUri="https://sourceforge.net/p/coced/tickets/" RequestNavigate="requestNavigate">CoCEd's issue tracker</Hyperlink>.
+                (Error also saved to the CoCEd.log file.)
+                <LineBreak/><LineBreak/>
+                Please <TextBlock FontStyle="Italic">do not</TextBlock> sumbit reports to CoC's issue tracker, as the projects are separate.
+            </TextBlock>
+        </Grid>
+
+        <Grid x:Name="folderGrid" Margin="20,20,10,10" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto" MaxHeight="200"/>
@@ -43,7 +61,7 @@
             <Button Click="openFolder_Click" VerticalAlignment="Top" Margin="10,0,0,0"  Grid.Row="1" Grid.Column="1">Open</Button>
         </Grid>
 
-        <Grid x:Name="exceptionGrid" Margin="20,30,10,10" Grid.Row="2">
+        <Grid x:Name="exceptionGrid" Margin="20,20,10,10" Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -59,8 +77,13 @@
             <Button Click="copyException_Click" VerticalAlignment="Top" Margin="10,0,0,0" Grid.Row="1" Grid.Column="1">Copy</Button>
         </Grid>
 
-        <Grid Background="#F0F0F0" Margin="0,10,0,0" Grid.Row="3">
-            <TextBlock VerticalAlignment="Center" Margin="20,0,10,0"><Hyperlink NavigateUri="http://forum.fenoxo.com/thread-6324.html" RequestNavigate="requestNavigate">Official thread at fenoxo.com</Hyperlink></TextBlock>
+        <Grid Background="#F0F0F0" Margin="0,10,0,0" Grid.Row="4">
+            <TextBlock VerticalAlignment="Center" Margin="20,0,10,0">
+                <TextBlock Text="Links:" FontWeight="Bold"/>
+                <Hyperlink NavigateUri="http://forum.fenoxo.com/thread-6324.html" RequestNavigate="requestNavigate">CoCEd's forum thread</Hyperlink>
+                &amp;
+                <Hyperlink NavigateUri="https://sourceforge.net/p/coced/tickets/" RequestNavigate="requestNavigate">CoCEd's issue tracker</Hyperlink>
+            </TextBlock>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" x:Name="buttonStack"/>
         </Grid>
