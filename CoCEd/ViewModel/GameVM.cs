@@ -414,7 +414,6 @@ namespace CoCEd.ViewModel
         }
 
 
-
         public double Height
         {
             get { return GetDouble("tallness"); }

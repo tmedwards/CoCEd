@@ -35,11 +35,11 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <Style x:Key="HighlightedButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
             <Setter Property="Foreground" Value="#FFF56F12"/>
         </Style>
-        
+
         <DataTemplate x:Key="FileTemplate">
             <StackPanel Orientation="Vertical" Margin="2,0,2,0">
                 <TextBlock Text="{Binding Label}" Foreground="{Binding Foreground}" FontSize="12"/>
@@ -81,17 +81,19 @@
         </StackPanel-->
         
         <StackPanel Orientation="Horizontal" Grid.Column="2">
-            <ToggleButton x:Name="openButton" Margin="0,0,0,0" Content="Open" BorderThickness="0" FontSize="12" Checked="openButton_StateChanged" Unchecked="openButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent">
+            <ToggleButton x:Name="openButton" Margin="0,1,0,0" Content="Open" BorderThickness="0" FontSize="12" Checked="openButton_StateChanged" Unchecked="openButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent">
                 <ToggleButton.ContextMenu>
                     <ContextMenu x:Name="openMenu" Closed="openMenu_Closed" Placement="Bottom" MinWidth="150"/>
                 </ToggleButton.ContextMenu>
             </ToggleButton>
 
-            <ToggleButton x:Name="saveButton" Margin="5,0,0,0" Content="Save as" BorderThickness="0" FontSize="12" Checked="saveButton_StateChanged" Unchecked="saveButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsEnabled="{Binding HasData}" >
+            <ToggleButton x:Name="saveButton" Margin="5,1,0,0" Content="Save as" BorderThickness="0" FontSize="12" Checked="saveButton_StateChanged" Unchecked="saveButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsEnabled="{Binding HasData}">
                 <ToggleButton.ContextMenu>
                     <ContextMenu x:Name="saveMenu" Closed="saveMenu_Closed" Placement="Bottom" MinWidth="150"/>
                 </ToggleButton.ContextMenu>
             </ToggleButton>
+
+            <Button Content="Update?" Click="checkForUpdates_Click" Margin="20,-1,0,0" BorderThickness="0" FontSize="12" HorizontalContentAlignment="Left" VerticalAlignment="Top" ToolTip="Check for update to CoCEd…"/>
         </StackPanel>
 
         <!--TextBlock Text="{Binding FileLabel}" Margin="0,2,0,0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="14" Foreground="#A0A0A0" VerticalAlignment="Top" FontStretch="Expanded" FontWeight="Thin"/-->

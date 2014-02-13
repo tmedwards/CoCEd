@@ -46,6 +46,13 @@ namespace CoCEd.View
             }
         }
 
+        private void checkForUpdates_Click(object sender, RoutedEventArgs e)
+        {
+            (new CheckForUpdateBox()).ShowDialog();
+            //var box = new CheckForUpdateBox();
+            //box.ShowDialog();
+        }
+
         void OnSaveRequiredChanged(object sender, bool saveRequired)
         {
             if (saveRequired) saveButton.Style = (Style)Resources["HighlightedButton"];

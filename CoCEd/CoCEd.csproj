@@ -99,6 +99,10 @@
     <Compile Include="View\BodyPage.xaml.cs">
       <DependentUpon>BodyPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CheckForUpdateBox.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>CheckForUpdateBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ConfirmationBox.xaml.cs">
       <DependentUpon>ConfirmationBox.xaml</DependentUpon>
     </Compile>
@@ -159,6 +163,10 @@
     <Page Include="View\BodyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CheckForUpdateBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ConfirmationBox.xaml">
       <SubType>Designer</SubType>
