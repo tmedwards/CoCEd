@@ -39,17 +39,22 @@ namespace CoCEd.View
             InitializeComponent();
             Owner = App.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            checkingGrid.Visibility = Visibility.Visible;
+            statusGrid.Visibility = Visibility.Collapsed;
         }
 
-        void Window_Loaded(object sender, RoutedEventArgs e)
+        void CheckForUpdateBox_Loaded(object sender, RoutedEventArgs e)
         {
             //_updateCheckTask = Task.Factory.StartNew(new Action(() =>
             Task.Factory.StartNew(new Action(() =>
             {
-                var status = this.checkForUpdate();
-                this.Dispatcher.BeginInvoke(new Action(() =>
+                // check for an update
+                var status = CheckForUpdate();
+
+                // update the UI with the results
+                Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    this.UpdateStatus(status);
+                    UpdateStatus(status);
                 }), DispatcherPriority.Input);
             }));
         }
@@ -67,25 +72,21 @@ namespace CoCEd.View
 
         void UpdateStatus(UpdateCheckResult status)
         {
-            // check for an update
-            progressBar.IsEnabled = false;
-            progressBar.Visibility = Visibility.Collapsed;
             switch (status)
             {
+                // nothing to do for UpdateCheckResult.Yes, the correct hyperlinked text is in the XAML as the default
                 case UpdateCheckResult.No:
                     statusText.Text = "CoCEd is up to date.";
                     break;
-                case UpdateCheckResult.Yes:
-                    statusText.Visibility = Visibility.Collapsed;
-                    downloadLink.Visibility = Visibility.Visible;
-                    break;
                 case UpdateCheckResult.Unknown:
-                    statusText.Text = "Unknown.  There was a problem during the update check.";
+                    statusText.Text = "Check failed. An unexpected problem occurred.";
                     break;
             }
+            checkingGrid.Visibility = Visibility.Collapsed;
+            statusGrid.Visibility = Visibility.Visible;
         }
 
-        UpdateCheckResult checkForUpdate()
+        UpdateCheckResult CheckForUpdate()
         {
             HttpWebRequest request;
             HttpWebResponse response;
@@ -119,9 +120,13 @@ namespace CoCEd.View
                 readStream.Close();
 
                 // Parse the contents and make the comparison
-                var latest = parseVersion(contents);
+                var latest = ParseVersion(contents);
                 var local = Assembly.GetExecutingAssembly().GetName().Version;
-                if (latest[0] > local.Major || latest[1] > local.Minor || latest[2] > local.Build) result = UpdateCheckResult.Yes;
+                if (latest[0] > local.Major) result = UpdateCheckResult.Yes;
+                else if (latest[0] == local.Major)
+                    if (latest[1] > local.Minor) result = UpdateCheckResult.Yes;
+                    else if (latest[1] == local.Minor)
+                        if (latest[2] > local.Build) result = UpdateCheckResult.Yes;
             }
 
             // Close the response
@@ -130,7 +135,7 @@ namespace CoCEd.View
             return result;
         }
 
-        int[] parseVersion(string verString)
+        int[] ParseVersion(string verString)
         {
             string[] parts = verString.TrimEnd('\r', '\n', ' ').Split('.');
             int[] latestVersion = new int[3];

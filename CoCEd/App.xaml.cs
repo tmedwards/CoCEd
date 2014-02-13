@@ -64,12 +64,13 @@ namespace CoCEd
             if (msg.Contains("0x88982F04"))
             {
                 box.Title = "Bad image codec";
-                box.Message = "You do use a non-standard image codec that does not properly handle some PNG files. It's not just CoCEd: other programs may be affected too.\n\nCheck for FastPictureViewer's or Canon's codec packs and try to update them or uninstall them.";
+                box.Message = "You use a non-standard image codec that does not properly handle some PNG files. It's not just CoCEd: other programs may be affected too.\n\nCheck for FastPictureViewer's or Canon's codec packs and try to update or uninstall them.";
             }
             else
             {
                 box.Title = "Unexpected error";
-                box.Message = "An error occured and the application is going to exit.\nThe error below will be saved as CoCEd.log. Please report it on CoC's forums.";
+                box.Message = "An unexpected error occured and the application is going to exit.";
+                box.ShowReportInstructions = true;
             }
         }
 
@@ -94,7 +95,7 @@ namespace CoCEd
                 case XmlLoadingResult.NoPermission:
                     box = new ExceptionBox();
                     box.Title = "Fatal error";
-                    box.Message = "The CoCEd.xml file was already in use or this application does not have the permission to read from the folder where it is located.";
+                    box.Message = "The CoCEd.xml file was already in use or this application does not have permission to read from the folder where it is located.";
                     box.Path = Environment.CurrentDirectory;
                     box.ShowDialog(ExceptionBoxButtons.Quit);
                     Shutdown();
@@ -113,7 +114,7 @@ namespace CoCEd
             {
                 box = new ExceptionBox();
                 box.Title = "Could not scan some folders.";
-                box.Message = "CoCEd did not get the permission to read a folder or a file.\nSome files won't be displayed in the open/save menus.";
+                box.Message = "CoCEd did not get permission to read a folder or a file.\nSome files won't be displayed in the open/save menus.";
                 box.Path = FileManager.MissingPermissionPath;
                 box.IsWarning = true;
                 result = box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
