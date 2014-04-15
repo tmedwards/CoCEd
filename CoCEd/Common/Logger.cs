@@ -19,11 +19,18 @@ namespace CoCEd.Common
         {
             try
             {
-                // make CoCEd's version an integral part of the exception message, so we don't
-                // have to rely on users' claims of being up to date anymore
-                msg = String.Format("[{0}, Version: {1}]\n{2}",
+                string dataVersion = CoCEd.ViewModel.VM.Instance != null ? CoCEd.ViewModel.VM.Instance.FileVersion : "";
+                if (!String.IsNullOrEmpty(dataVersion))
+                {
+                    dataVersion = String.Format(", CoC Data: {0}", dataVersion);
+                }
+
+                // if possible, make CoCEd's and CoC's versions an integral part of the exception message,
+                // so we don't have to rely on users' claims of being up to date anymore
+                msg = String.Format("[{0}: {1}{2}]\n{3}",
                     Assembly.GetExecutingAssembly().GetName().Name,
                     Assembly.GetExecutingAssembly().GetName().Version.ToString(),
+                    dataVersion,
                     msg);
 
                 if (File.Exists("CoCEd.log")) File.Delete("CoCEd.log");

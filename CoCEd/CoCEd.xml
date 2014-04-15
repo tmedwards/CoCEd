@@ -2033,6 +2033,23 @@
     <Flag ID="1044" Name="TIMES_TALKED_WITH_JOJO"/>
     <Flag ID="1045" Name="TIMES_TRAINED_WITH_JOJO"/>
     <Flag ID="1046" Name="UNLOCKED_JOJO_TRAINING"/>
+    <Flag ID="1047" Name="MET_FROSTY"/>
+    <Flag ID="1048" Name="SIGNED_FROSTYS_CONTRACT"/>
+    <Flag ID="1049" Name="FROSTY_POINTS"/>
+    <Flag ID="1050" Name="SEEN_GENDERLESS_FROSTY_REJECTION"/>
+    <Flag ID="1051" Name="MARBLE_PURIFIED"/>
+    <Flag ID="1052" Name="MARBLE_BOYS"/>
+    <Flag ID="1053" Name="CLARA_IMPRISONED"/>
+    <Flag ID="1054" Name="CLARA_PURIFIED"/>
+    <Flag ID="1055" Name="MARBLE_TIME_SINCE_NURSED_IN_HOURS"/>
+    <Flag ID="1056" Name="MARBLE_BREAST_SIZE"/>
+    <Flag ID="1057" Name="TIMES_GIVEN_MARBLE_PURE_LABOVA"/>
+    <Flag ID="1058" Name="MARBLE_RATHAZUL_COUNTER_1"/>
+    <Flag ID="1059" Name="MARBLE_PURIFICATION_STAGE"/>
+    <Flag ID="1060" Name="MURBLE_TEA_DRINKER_COUNT"/>
+    <Flag ID="1061" Name="MARBLE_RATHAZUL_COUNTER_2"/>
+    <Flag ID="1062" Name="MARBLE_WARNED_ABOUT_CORRUPTION"/>
+    <Flag ID="1063" Name="MARBLE_LEFT_OVER_CORRUPTION"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
