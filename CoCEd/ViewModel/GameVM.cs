@@ -1083,7 +1083,7 @@ namespace CoCEd.ViewModel
             set
             {
                 GetStatus("Tel'Adre").IsOwned = value;
-                if (value && !ExploredTelAdre) GetStatus("Tel'Adre").Value1 = 1.0;
+                if (value && !ExploredTelAdre) GetStatus("Tel'Adre").Value1 = 1;
             }
         }
 
@@ -1099,7 +1099,7 @@ namespace CoCEd.ViewModel
             set
             {
                 GetStatus("Met Whitney").IsOwned = value;
-                if (value && !ExploredFarm) GetStatus("Met Whitney").Value1 = 2.0;
+                if (value && !ExploredFarm) GetStatus("Met Whitney").Value1 = 2;
             }
         }
 

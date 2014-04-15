@@ -71,11 +71,18 @@ namespace CoCEd.View
             get { return _exceptionMsg; }
             set
             {
-                // make CoCEd's version an integral part of the exception message, so we don't
-                // have to rely on users' claims of being up to date anymore
-                _exceptionMsg = String.Format("[{0}, Version: {1}]\n{2}",
+                string dataVersion = CoCEd.ViewModel.VM.Instance != null ? CoCEd.ViewModel.VM.Instance.FileVersion : "";
+                if (!String.IsNullOrEmpty(dataVersion))
+                {
+                    dataVersion = String.Format(", CoC Data: {0}", dataVersion);
+                }
+
+                // if possible, make CoCEd's and CoC's versions an integral part of the exception message,
+                // so we don't have to rely on users' claims of being up to date anymore
+                _exceptionMsg = String.Format("[{0}: {1}{2}]\n{3}",
                     Assembly.GetExecutingAssembly().GetName().Name,
                     Assembly.GetExecutingAssembly().GetName().Version.ToString(),
+                    dataVersion,
                     value);
             }
         }
@@ -124,6 +131,9 @@ namespace CoCEd.View
 
             if (String.IsNullOrEmpty(ExceptionMessage)) exceptionGrid.Visibility = Visibility.Collapsed;
             else exceptionText.Text = ExceptionMessage;
+
+            if (!String.IsNullOrEmpty(ExceptionMessage) || !IsWarning || ShowReportInstructions) linkBar.Visibility = Visibility.Visible;
+            else linkBar.Visibility = Visibility.Collapsed;
 
             Button lastButton = null;
             foreach (var choice in buttons)
