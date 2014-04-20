@@ -2050,6 +2050,7 @@
     <Flag ID="1061" Name="MARBLE_RATHAZUL_COUNTER_2"/>
     <Flag ID="1062" Name="MARBLE_WARNED_ABOUT_CORRUPTION"/>
     <Flag ID="1063" Name="MARBLE_LEFT_OVER_CORRUPTION"/>
+    <Flag ID="1064" Name="MARBLE_COUNTUP_TO_PURIFYING"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
