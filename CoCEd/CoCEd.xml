@@ -481,6 +481,7 @@
       <Item ID="NumbRox" Name="Numb Rocks"/>
       <Item ID="OviElix" Name="Oviposition Elixir"/>
       <Item ID="PeppWht" Name="Peppermint White"/>
+      <Item ID="PrnsPkr" Name="Princess Pucker" Description="Reduces lust and either libido or sensitivity.  Also has a random chance to change hair color to pink."/>
       <Item ID="P.Pearl" Name="Pure Pearl"/>
       <Item ID="PurPeac" Name="Pure Peach"/>
       <Item ID="PSDelit" Name="Purified Succubi's Delite"/>
