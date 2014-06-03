@@ -97,7 +97,7 @@ namespace CoCEd.ViewModel
 
             // I would like to test dataVersion here some day to ensure that it's not too old of a version,
             // however, as long as Fen keeps occasionally pushing crappy version strings (e.g. 0.8.4.8d),
-            // that can't happen.  Ideally, I'd like to see them switch to segmented version system.
+            // that can't happen.  Ideally, I'd like to see them switch to a segmented version system.
 
             _currentFile = file;
             Game = new GameVM(_currentFile, Game);
