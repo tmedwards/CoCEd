@@ -761,7 +761,6 @@
       <Perk Name="Bee Ovipositor" Description="Allows you to lay eggs through a special organ on your insect abdomen, though you need at least 10 eggs to lay."/>
       <Perk Name="Bimbo Body" Description="Gives the body of a bimbo.  Tits will never stay below a 'DD' cup, libido is raised, lust resistance is raised, and upgrades tease."/>
       <Perk Name="Bimbo Brains" Description="Now that you've drank bimbo liquer, you'll never, like, have the attention span and intelligence you once did!  But it's okay, 'cause you get to be so horny an' stuff!"/>
-      <Perk Name="Blood Mage" Description="Spellcasting now consumes health instead of fatigue!"/>
       <Perk Name="Brawler" Description="Brawling experience allows you to make two unarmed attacks in a turn."/>
       <Perk Name="Bro Body" Description="You have the body of a muscled, sex-addicted hunk.  Your cock cannot be shorter than 10&#x2033;, you're much lustier, more accustomed to being turned on, and you gain a bonus to using your body to arouse your enemies in combat!"/>
       <Perk Name="Bro Brains" Description="After drinking a 'Bro Brew', your maximum capacity for intellect is greatly decreased."/>
@@ -820,6 +819,7 @@
       <Perk Name="Whispered" Description="Akbal has allowed you to whisper to the minds of your foes, as he does."/>
     </PerkGroup>
     <PerkGroup Name="Items">
+      <Perk Name="Blood Mage" Description="Spellcasting now consumes health instead of fatigue!"/>
       <Perk Name="Lusty Regeneration" Description="Regenerates 1% of HP per round in combat and 2% of HP per hour."/>
       <Perk Name="Midas Cock" Description="Increases the gems awarded from victory in battle."/>
       <Perk Name="Pent Up" Description="Increases minimum lust by 10 and makes you more vulnerable to seduction." Value1="10"/>
@@ -2051,6 +2051,11 @@
     <Flag ID="1062" Name="MARBLE_WARNED_ABOUT_CORRUPTION"/>
     <Flag ID="1063" Name="MARBLE_LEFT_OVER_CORRUPTION"/>
     <Flag ID="1064" Name="MARBLE_COUNTUP_TO_PURIFYING"/>
+    <Flag ID="1065" Name="TIMES_ENCOUNTERED_PRINCESS_GWYNN"/>
+    <Flag ID="1066" Name="WILD_HUNT_ENCOUNTERS"/>
+    <Flag ID="1067" Name="ERLKING_DISABLED"/>
+    <Flag ID="1068" Name="ERLKING_ENCOUNTER_COUNTER"/>
+    <Flag ID="1069" Name="KATHERINE_MET_SCYLLA"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
