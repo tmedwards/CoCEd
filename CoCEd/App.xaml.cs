@@ -110,12 +110,12 @@ namespace CoCEd
             FileManager.BuildPaths();
             var directories = FileManager.GetDirectories().ToArray();   // Load all on startup to check for errors
             var result = ExceptionBoxResult.Continue;
-            if (FileManager.MissingPermissionPath != null)
+            if (FileManager.PathWithMissingPermissions != null)
             {
                 box = new ExceptionBox();
                 box.Title = "Could not scan some folders.";
                 box.Message = "CoCEd did not get permission to read a folder or a file.\nSome files won't be displayed in the open/save menus.";
-                box.Path = FileManager.MissingPermissionPath;
+                box.Path = FileManager.PathWithMissingPermissions;
                 box.IsWarning = true;
                 result = box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
             }
@@ -142,7 +142,7 @@ namespace CoCEd
         static AmfFile AutoLoad(FlashDirectory[] directories)
         {
             var file = directories[0].Files[0];
-            VM.Instance.Load(file.FilePath);
+            VM.Instance.Load(file.FilePath, createBackup: true);
             return file;
         }
 

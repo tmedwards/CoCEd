@@ -100,8 +100,6 @@ namespace CoCEd.Model
 
         public void Save(string path, SerializationFormat format)
         {
-            EnsureBackupExists(path);
-
             // Delete existing file
             var name = Path.GetFileNameWithoutExtension(path);
 
@@ -149,34 +147,6 @@ namespace CoCEd.Model
                 var attribs = File.GetAttributes(path) & ~FileAttributes.ReadOnly;
                 File.SetAttributes(path, attribs);
                 File.Delete(path);
-            }
-        }
-
-        static void EnsureBackupExists(string path)
-        {
-            try
-            {
-                // Backups are only done once per file throughout the lifetime of this process.
-                var lowerPath = path.ToLowerInvariant();
-                if (_backedUpFiles.Contains(lowerPath)) return;
-
-                // Does not backup files created by us during the liftime of this process.
-                if (!File.Exists(path))
-                {
-                    _backedUpFiles.Add(lowerPath);
-                    return;
-                }
-
-                // Create backup
-                var backUpPath = path + ".bak";
-                File.Copy(path, backUpPath, true);
-                _backedUpFiles.Add(lowerPath);
-            }
-            catch (UnauthorizedAccessException)
-            {
-            }
-            catch (SecurityException)
-            {
             }
         }
 
