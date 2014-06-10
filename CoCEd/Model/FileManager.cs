@@ -8,20 +8,27 @@ using CoCEd.ViewModel;
 
 namespace CoCEd.Model
 {
+    public enum DirectoryKind
+    {
+        Regular,
+        External,
+        Backup,
+    }
+
     public class FlashDirectory
     {
         public string Name;
         public string Path;
-        public bool IsExternal;
         public bool HasSeparatorBefore;
+        public readonly DirectoryKind Kind;
         public readonly List<AmfFile> Files = new List<AmfFile>();
 
-        public FlashDirectory(string name, string path, bool hasSeparatorBefore, bool isExternal)
+        public FlashDirectory(string name, string path, bool hasSeparatorBefore, DirectoryKind kind)
         {
             Name = name;
             Path = path;
+            Kind = kind;
             HasSeparatorBefore = hasSeparatorBefore;
-            IsExternal = isExternal;
         }
     }
 
@@ -30,10 +37,23 @@ namespace CoCEd.Model
         static readonly List<string> _externalPaths = new List<string>();
         static readonly List<FlashDirectory> _directories = new List<FlashDirectory>();
 
+
+        const int MaxBackupFiles = 10;
         public const int SaveSlotsLowerBound = 1;
         public const int SaveSlotsUpperBound = 9;
 
-        public static string MissingPermissionPath { get; private set; }
+        public static string PathWithMissingPermissions { get; private set; }
+
+        public static string BackupPath
+        {
+            get 
+            {
+                var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                return Path.Combine(path, "CoCEd");
+            }
+        }
+
+
 
         public static void BuildPaths()
         {
@@ -41,23 +61,22 @@ namespace CoCEd.Model
             const string standardPath = @"Macromedia\Flash Player\#SharedObjects\";
             const string chromePath = @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\";
 
-
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Local (standard{0})",   standardPath,   "localhost",                        ref insertSeparatorBeforeInMenu);
-            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Local (chrome{0})",     chromePath,     "localhost",                        ref insertSeparatorBeforeInMenu);
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Local (metro{0})",      standardPath,   @"#AppContainer\localhost",         ref insertSeparatorBeforeInMenu);
-
-            insertSeparatorBeforeInMenu = true;
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "LocalWithNet (standard{0})",   standardPath,   "#localWithNet",                     ref insertSeparatorBeforeInMenu);
-            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "LocalWithNet (chrome{0})",     chromePath,     "#localWithNet",                     ref insertSeparatorBeforeInMenu);
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "LocalWithNet (metro{0})",      standardPath,   @"#AppContainer\#localWithNet",      ref insertSeparatorBeforeInMenu);
+            BuildPath("Local (standard{0})",        Environment.SpecialFolder.ApplicationData,      standardPath,   "localhost",                    ref insertSeparatorBeforeInMenu);
+            BuildPath("Local (chrome{0})",          Environment.SpecialFolder.LocalApplicationData, chromePath,     "localhost",                    ref insertSeparatorBeforeInMenu);
+            BuildPath("Local (metro{0})",           Environment.SpecialFolder.ApplicationData,      standardPath,   @"#AppContainer\localhost",     ref insertSeparatorBeforeInMenu);
 
             insertSeparatorBeforeInMenu = true;
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (standard{0})",   standardPath,    "www.fenoxo.com",                   ref insertSeparatorBeforeInMenu);
-            BuildPath(Environment.SpecialFolder.LocalApplicationData,   "Online (chrome{0})",      chromePath,     "www.fenoxo.com",                   ref insertSeparatorBeforeInMenu);
-            BuildPath(Environment.SpecialFolder.ApplicationData,        "Online (metro{0})",      standardPath,    @"#AppContainer\www.fenoxo.com",    ref insertSeparatorBeforeInMenu);
+            BuildPath("LocalWithNet (standard{0})", Environment.SpecialFolder.ApplicationData,      standardPath,   "#localWithNet",                ref insertSeparatorBeforeInMenu);
+            BuildPath("LocalWithNet (chrome{0})",   Environment.SpecialFolder.LocalApplicationData, chromePath,     "#localWithNet",                ref insertSeparatorBeforeInMenu);
+            BuildPath("LocalWithNet (metro{0})",    Environment.SpecialFolder.ApplicationData,      standardPath,   @"#AppContainer\#localWithNet", ref insertSeparatorBeforeInMenu);
+
+            insertSeparatorBeforeInMenu = true;
+            BuildPath("Online (standard{0})",       Environment.SpecialFolder.ApplicationData,      standardPath,   "www.fenoxo.com",               ref insertSeparatorBeforeInMenu);
+            BuildPath("Online (chrome{0})",         Environment.SpecialFolder.LocalApplicationData, chromePath,     "www.fenoxo.com",               ref insertSeparatorBeforeInMenu);
+            BuildPath("Online (metro{0})",          Environment.SpecialFolder.ApplicationData,      standardPath,   @"#AppContainer\www.fenoxo.com", ref insertSeparatorBeforeInMenu);
         }
 
-        static void BuildPath(Environment.SpecialFolder root, string nameFormat, string middle, string suffix, ref bool separatorBefore)
+        static void BuildPath(string nameFormat, Environment.SpecialFolder root, string middle, string suffix, ref bool separatorBefore)
         {
             var path = "";
             try
@@ -85,18 +104,18 @@ namespace CoCEd.Model
                 for (int i = 0; i < cocDirectories.Count; ++i)
                 {
                     var name = cocDirectories.Count > 1 ? String.Format(nameFormat, " #" + (i + 1)) : String.Format(nameFormat, "");
-                    var flash = new FlashDirectory(name, cocDirectories[i], separatorBefore, false);
+                    var flash = new FlashDirectory(name, cocDirectories[i], separatorBefore, DirectoryKind.Regular);
                     separatorBefore = false;
                     _directories.Add(flash);
                 }
             }
             catch (SecurityException)
             {
-                MissingPermissionPath = path;
+                PathWithMissingPermissions = path;
             }
             catch (UnauthorizedAccessException)
             {
-                MissingPermissionPath = path;
+                PathWithMissingPermissions = path;
             }
             catch (IOException)
             {
@@ -105,23 +124,32 @@ namespace CoCEd.Model
 
         public static IEnumerable<FlashDirectory> GetDirectories()
         {
-            foreach(var dir in _directories)
+            foreach (var dir in _directories)
             {
                 yield return CreateDirectory(dir);
             }
             yield return CreateExternalDirectory();
         }
 
+        public static FlashDirectory CreateBackupDirectory()
+        {
+            var dir = new FlashDirectory("Backup", BackupPath, true, DirectoryKind.Backup);
+            
+            var dirInfo = new DirectoryInfo(BackupPath);
+            foreach (var file in dirInfo.GetFiles("*.bak").OrderByDescending(x => x.LastWriteTimeUtc)) dir.Files.Add(new AmfFile(file.FullName));
+            return dir;
+        }
+
         static FlashDirectory CreateExternalDirectory()
         {
-            var dir = new FlashDirectory("External", "", true, true);
+            var dir = new FlashDirectory("External", "", true, DirectoryKind.Backup);
             foreach (var path in _externalPaths) dir.Files.Add(new AmfFile(path));
             return dir;
         }
 
         static FlashDirectory CreateDirectory(FlashDirectory dir)
         {
-            dir = new FlashDirectory(dir.Name, dir.Path, dir.HasSeparatorBefore, false);
+            dir = new FlashDirectory(dir.Name, dir.Path, dir.HasSeparatorBefore, DirectoryKind.Regular);
             if (String.IsNullOrEmpty(dir.Path)) return dir;
 
             for (int i = SaveSlotsLowerBound; i <= SaveSlotsUpperBound; i++)
@@ -134,11 +162,11 @@ namespace CoCEd.Model
                 }
                 catch (SecurityException)
                 {
-                    MissingPermissionPath = filePath;
+                    PathWithMissingPermissions = filePath;
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    MissingPermissionPath = filePath;
+                    PathWithMissingPermissions = filePath;
                 }
                 catch (IOException)
                 {
@@ -147,15 +175,22 @@ namespace CoCEd.Model
             return dir;
         }
 
-        public static void AddExternalFile(string path)
+        public static void TryRegisterExternalFile(string path)
         {
             path = Canonize(path);
 
-            if (_externalPaths.Contains(path)) return;
+            // Is it a regular file?
             foreach (var dir in _directories)
             {
                 if (AreParentAndChild(dir.Path, path)) return;
             }
+
+            // Is it a backup?
+            if (Path.GetDirectoryName(path) == BackupPath) return;
+
+            // Is this file already known?
+            if (_externalPaths.Contains(path)) return;
+
             _externalPaths.Add(path);
         }
 
@@ -180,6 +215,57 @@ namespace CoCEd.Model
         static string Canonize(string path)
         {
             return path.Replace("/", "\\");
+        }
+
+        public static void CreateBackup(string sourcePath)
+        {
+            var backupDir = new DirectoryInfo(BackupPath);
+
+            var existingFiles = backupDir.GetFiles("*.bak").OrderByDescending(x => x.LastWriteTimeUtc).ToArray();
+            CopyToBackupPath(sourcePath);
+
+            if (TryDeleteIdenticalFile(sourcePath, existingFiles)) return;
+
+            for (int i = MaxBackupFiles; i < existingFiles.Length; ++i)
+            {
+                existingFiles[i].Delete();
+            }
+        }
+
+        static void CopyToBackupPath(string sourcePath)
+        {
+            var targetName = DateTime.UtcNow.Ticks + ".bak";
+            var targetPath = Path.Combine(BackupPath, targetName);
+            File.Copy(sourcePath, targetPath, true);
+            File.SetLastWriteTimeUtc(targetPath, DateTime.UtcNow);
+        }
+
+        static bool TryDeleteIdenticalFile(string sourcePath, FileInfo[] existingFiles)
+        {
+            var sourceData = File.ReadAllBytes(sourcePath);
+
+            foreach (var file in existingFiles)
+            {
+                if (AreIdentical(file, sourceData))
+                {
+                    file.Delete();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        static bool AreIdentical(FileInfo x, byte[] yData)
+        {
+            if (x.Length != yData.Length) return false;
+
+            var xData = File.ReadAllBytes(x.FullName);
+            for (int i = 0; i < xData.Length; ++i)
+            {
+                if (xData[i] != yData[i]) return false;
+            }
+
+            return true;
         }
     }
 }

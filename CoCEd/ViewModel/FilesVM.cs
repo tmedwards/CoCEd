@@ -24,6 +24,7 @@ namespace CoCEd.ViewModel
             {
                 yield return new SourceDirectoryVM(dir);
             }
+            yield return new SourceDirectoryVM(FileManager.CreateBackupDirectory());
             yield return new ImportRootVM();
         }
 
@@ -83,7 +84,7 @@ namespace CoCEd.ViewModel
         {
             get 
             { 
-                foreach(var file in _directory.Files) yield return new FileVM(file, _directory.IsExternal, true);
+                foreach(var file in _directory.Files) yield return new FileVM(file, _directory.Kind, true);
                 if (!String.IsNullOrEmpty(_directory.Path)) yield return new OpenDirectoryItemVM(_directory.Path);
             }
         }
@@ -151,13 +152,20 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                // External
-                if (_directory.IsExternal)
+                if (_directory.Kind == DirectoryKind.External)
                 {
-                    foreach (var file in _directory.Files) yield return new FileVM(file, _directory.IsExternal, false);
+                    foreach (var file in _directory.Files) yield return new FileVM(file, _directory.Kind, false);
+                    yield break;
                 }
 
-                // Path not found or external?
+                if (_directory.Kind == DirectoryKind.Backup)
+                {
+                    foreach (var file in _directory.Files) yield return new FileVM(file, _directory.Kind, false);
+                    yield return new OpenDirectoryItemVM(_directory.Path);  // Open directory
+                    yield break;
+                }
+
+                // Path not found?
                 if (String.IsNullOrEmpty(_directory.Path)) yield break;
 
                 // Return either a SaveTargetVM or a FileVM for every slot
@@ -167,7 +175,7 @@ namespace CoCEd.ViewModel
                     var file = _directory.Files.FirstOrDefault(x => x.FilePath.EndsWith(name, StringComparison.InvariantCultureIgnoreCase));
                     if (file != null)
                     {
-                        yield return new FileVM(file, _directory.IsExternal, false);
+                        yield return new FileVM(file, _directory.Kind, false);
                     }
                     else
                     {
@@ -199,10 +207,6 @@ namespace CoCEd.ViewModel
 
     public sealed class ImportRootVM : IMenuVM
     {
-        public ImportRootVM()
-        {
-        }
-
         public string Label
         {
             get { return "Import…"; }
@@ -251,7 +255,7 @@ namespace CoCEd.ViewModel
             if (result == false) return;
 
             string path = dlg.FileName;
-            VM.Instance.Load(path);
+            VM.Instance.Load(path, createBackup: true);
         }
     }
 
@@ -325,14 +329,14 @@ namespace CoCEd.ViewModel
 
     public class FileVM : IMenuItemVM
     {
-        readonly bool _isExternal;
+        readonly DirectoryKind _directoryKind;
         readonly bool _openOnClick;
 
-        public FileVM(AmfFile source, bool isExternal, bool openOnClick)
+        public FileVM(AmfFile source, DirectoryKind directoryKind, bool openOnClick)
         {
             Source = source;
-            _isExternal = isExternal;
             _openOnClick = openOnClick;
+            _directoryKind = directoryKind;
         }
 
         public AmfFile Source 
@@ -363,7 +367,16 @@ namespace CoCEd.ViewModel
 
         public string Label
         {
-            get { return _isExternal ? System.IO.Path.GetFileNameWithoutExtension(Source.FilePath) : Source.Name; }
+            get 
+            {
+                switch (_directoryKind)
+                {
+                    case DirectoryKind.External: return System.IO.Path.GetFileNameWithoutExtension(Source.FilePath);
+                    case DirectoryKind.Regular: return Source.Name;
+                    case DirectoryKind.Backup: return Source.Name + " (" + Source.Date.ToString() + ")";
+                    default: throw new NotImplementedException();
+                }
+            }
         }
 
         public string SubLabel
@@ -409,7 +422,7 @@ namespace CoCEd.ViewModel
 
         public void OnClick()
         {
-            if (_openOnClick) VM.Instance.Load(Source.FilePath);
+            if (_openOnClick) VM.Instance.Load(Source.FilePath, createBackup: _directoryKind != DirectoryKind.Backup);
             else VM.Instance.Save(Source.FilePath, Source.Format);
         }
     }
