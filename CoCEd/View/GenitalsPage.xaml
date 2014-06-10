@@ -88,7 +88,7 @@
                         <common:MyNumericBox    Value="{Binding KnotMultiplier}" IsEnabled="{Binding IsKnotEnabled}"/>
 
                         <TextBlock              Text="Cock-sock"/>
-                        <ComboBox               SelectedValue="{Binding CockSock}" ItemsSource="{Binding AllCockSocks}" Style="{StaticResource EditableTextBox}"/>
+                        <common:MyComboBox      SelectedValue="{Binding CockSock}" ItemsSource="{Binding AllCockSocks}"/>
 
                         <TextBlock              Text="Piercing"/>
                         <common:MyPiercingBox DataContext="{Binding Piercing}"/>
