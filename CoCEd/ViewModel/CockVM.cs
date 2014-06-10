@@ -44,7 +44,7 @@ namespace CoCEd.ViewModel
             get { return XmlData.Instance.Body.CockTypes; }
         }
 
-        public string[] AllCockSocks
+        public XmlItem[] AllCockSocks
         {
             get { return XmlData.Instance.Body.CockSockTypes; }
         }

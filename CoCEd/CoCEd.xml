@@ -349,14 +349,15 @@
     </CockTypes>
     <!--============================================================================================================================================-->
     <CockSockTypes>
-      <CockSockType>wool</CockSockType>
-      <CockSockType>alabaster</CockSockType>
-      <CockSockType>cockring</CockSockType>
-      <CockSockType>viridian</CockSockType>
-      <CockSockType>scarlet</CockSockType>
-      <CockSockType>cobalt</CockSockType>
-      <CockSockType>gilded</CockSockType>
-      <CockSockType>amaranthine</CockSockType>
+      <CockSockType ID=""            Name="None"/>
+      <CockSockType ID="wool"        Name="Wool"/>
+      <CockSockType ID="alabaster"   Name="Alabaster"/>
+      <CockSockType ID="cockring"    Name="Cockring"/>
+      <CockSockType ID="viridian"    Name="Viridian"/>
+      <CockSockType ID="scarlet"     Name="Scarlet"/>
+      <CockSockType ID="cobalt"      Name="Cobalt"/>
+      <CockSockType ID="gilded"      Name="Gilded"/>
+      <CockSockType ID="amaranthine" Name="Purple"/>
     </CockSockTypes>
     <!--============================================================================================================================================-->
     <VaginaTypes>
