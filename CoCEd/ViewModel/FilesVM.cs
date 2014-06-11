@@ -373,7 +373,7 @@ namespace CoCEd.ViewModel
                 {
                     case DirectoryKind.External: return System.IO.Path.GetFileNameWithoutExtension(Source.FilePath);
                     case DirectoryKind.Regular: return Source.Name;
-                    case DirectoryKind.Backup: return Source.Name + " (" + Source.Date.ToString() + ")";
+                    case DirectoryKind.Backup: return Source.Name + " - " + Source.Date.ToString();
                     default: throw new NotImplementedException();
                 }
             }

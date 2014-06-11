@@ -26,6 +26,7 @@ namespace CoCEd
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            if (!Directory.Exists(FileManager.BackupPath)) Directory.CreateDirectory(FileManager.BackupPath);
             Settings.Default.Upgrade();
             base.OnStartup(e);
 

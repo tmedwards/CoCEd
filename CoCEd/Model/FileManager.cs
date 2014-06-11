@@ -237,7 +237,6 @@ namespace CoCEd.Model
             var targetName = DateTime.UtcNow.Ticks + ".bak";
             var targetPath = Path.Combine(BackupPath, targetName);
             File.Copy(sourcePath, targetPath, true);
-            File.SetLastWriteTimeUtc(targetPath, DateTime.UtcNow);
         }
 
         static bool TryDeleteIdenticalFile(string sourcePath, FileInfo[] existingFiles)
