@@ -471,6 +471,7 @@
       <Item ID="GodMead" Name="God's Mead"/>
       <Item ID="GroPlus" Name="GroPlus"/>
       <Item ID="ExtSerm" Name="Hair Extension Serum"/>
+      <Item ID="HrblCnt" Name="Herbal Contraceptive"/>
       <Item ID="FishFil" Name="Fish Fillet"/>
       <Item ID="IzyMilk" Name="Isabella's Milk"/>
       <Item ID="KitGift" Name="Kitsune's Gift"/>
@@ -2059,6 +2060,105 @@
     <Flag ID="1067" Name="ERLKING_DISABLED"/>
     <Flag ID="1068" Name="ERLKING_ENCOUNTER_COUNTER"/>
     <Flag ID="1069" Name="KATHERINE_MET_SCYLLA"/>
+    <Flag ID="1070" Name="WHITNEY_TALK_MURBLE_AND_KELT"/>
+    <Flag ID="1071" Name="WHITNEY_TALK_TELADRE"/>
+    <Flag ID="1072" Name="WHITNEY_TALK_HIGH_MOUNTAIN"/>
+    <Flag ID="1073" Name="WHITNEY_TALK_DUNGEON"/>
+    <Flag ID="1074" Name="WHITNEY_TALK_DUNGEON_FOLLOWUP"/>
+    <Flag ID="1075" Name="FARM_CORRUPTION_DISABLED"/>
+    <Flag ID="1076" Name="FARM_CORRUPT_PROMPT_DISPLAY"/>
+    <Flag ID="1077" Name="FARM_CORRUPTION_STARTED"/>
+    <Flag ID="1078" Name="WHITNEY_CORRUPTION"/>
+    <Flag ID="1079" Name="FOLLOWER_AT_FARM_AMILY"/>
+    <Flag ID="1080" Name="FOLLOWER_AT_FARM_JOJO"/>
+    <Flag ID="1081" Name="FOLLOWER_AT_FARM_SOPHIE"/>
+    <Flag ID="1082" Name="FOLLOWER_AT_FARM_IZMA"/>
+    <Flag ID="1083" Name="FOLLOWER_AT_FARM_ISABELLA"/>
+    <Flag ID="1084" Name="FOLLOWER_AT_FARM_VAPULA"/>
+    <Flag ID="1085" Name="FOLLOWER_AT_FARM_LATEXY"/>
+    <Flag ID="1086" Name="FOLLOWER_AT_FARM_CERAPH"                      Description="Ceraph's corruption/protection: -1 = done, 0 = not started, 1&#x2013;7 = protection running"/>
+    <Flag ID="1087" Name="FOLLOWER_AT_FARM_HOLLI"                       Description="Holli's corruption/fertilization: -1 = done, 0 = not started, 1&#x2013;20 = fertilization running"/>
+    <Flag ID="1088" Name="FOLLOWER_AT_FARM_KELLY"/>
+    <Flag ID="1089" Name="FOLLOWER_AT_FARM_BATH_GIRL"/>
+    <Flag ID="1090" Name="FARM_CORRUPTION_FIRST_DATE"                   Description="(unused)"/><!-- Description="Day that the Farm completed the corruption process" -->
+    <Flag ID="1091" Name="FOLLOWER_AT_FARM_MARBLE"/>
+    <Flag ID="1092" Name="FARM_CORRUPTION_DAYS_SINCE_LAST_PAYOUT"/>
+    <Flag ID="1093" Name="FARM_CORRUPTION_GEMS_WAITING"/>
+    <Flag ID="1094" Name="FARM_UPGRADES_REFINERY"/>
+    <Flag ID="1095" Name="WHITNEY_CORRUPTION_COMPLETE"/>
+    <Flag ID="1096" Name="FOLLOWER_PRODUCTION_AMILY"/>
+    <Flag ID="1097" Name="FARM_SUCCUMILK_STORED"/>
+    <Flag ID="1098" Name="FOLLOWER_PRODUCTION_JOJO"/>
+    <Flag ID="1099" Name="FARM_INCUDRAFT_STORED"/>
+    <Flag ID="1100" Name="FOLLOWER_AT_FARM_AMILY_GIBS_MILK"/>
+    <Flag ID="1101" Name="FOLLOWER_AT_FARM_JOJO_GIBS_DRAFT"/>
+    <Flag ID="1102" Name="FOLLOWER_PRODUCTION_SOPHIE"/>
+    <Flag ID="1103" Name="FOLLOWER_PRODUCTION_SOPHIE_COLOURCHOICE"/>
+    <Flag ID="1104" Name="FARM_EGG_STORED"/>
+    <Flag ID="1105" Name="FARM_EGG_COUNTDOWN"/>
+    <Flag ID="1106" Name="FOLLOWER_PRODUCTION_VAPULA"/>
+    <Flag ID="1107" Name="FOLLOWER_AT_FARM_VAPULA_GIBS_MILK"/>
+    <Flag ID="1108" Name="HOLLI_FUCKED_TODAY"/>
+    <Flag ID="1109" Name="FARM_UPGRADES_CONTRACEPTIVE"/>
+    <Flag ID="1110" Name="KELT_TALKED_FARM_MANAGEMENT"/>
+    <Flag ID="1111" Name="FARM_CONTRACEPTIVE_STORED"/>
+    <Flag ID="1112" Name="WHITNEY_CORRUPTION_HIGHEST"/>
+    <Flag ID="1113" Name="WHITNEY_CORRUPTION_0_30_DROP_MESSAGE"/>
+    <Flag ID="1114" Name="FARM_CORRUPTION_APPROACHED_WHITNEY"/>
+    <Flag ID="1115" Name="WHITNEY_LEAVE_0_60"/>
+    <Flag ID="1116" Name="WHITNEY_MENU_31_60"/>
+    <Flag ID="1117" Name="WHITNEY_MENU_61_90"/>
+    <Flag ID="1118" Name="WHITNEY_LEAVE_61_90"/>
+    <Flag ID="1119" Name="WHITNEY_MENU_91_119"/>
+    <Flag ID="1120" Name="WHITNEY_DISABLED_FOR_DAY"/>
+    <Flag ID="1121" Name="WHITNEY_DEFURRED"/>
+    <Flag ID="1122" Name="WHITNEY_DOM"/>
+    <Flag ID="1123" Name="FARM_UPGRADES_MILKTANK"/>
+    <Flag ID="1124" Name="QUEUE_BREASTMILKER_UPGRADE"/>
+    <Flag ID="1125" Name="QUEUE_COCKMILKER_UPGRADE"/>
+    <Flag ID="1126" Name="QUEUE_REFINERY_UPGRADE"/>
+    <Flag ID="1127" Name="QUEUE_CONTRACEPTIVE_UPGRADE"/>
+    <Flag ID="1128" Name="QUEUE_MILKTANK_UPGRADE"/>
+    <Flag ID="1129" Name="WHITNEY_TATTOO_COLLARBONE"/>
+    <Flag ID="1130" Name="WHITNEY_TATTOO_SHOULDERS"/>
+    <Flag ID="1131" Name="WHITNEY_TATTOO_LOWERBACK"/>
+    <Flag ID="1132" Name="WHITNEY_TATTOO_BUTT"/>
+    <Flag ID="1133" Name="FARM_CORRUPTION_BRANDING_MENU_UNLOCKED"/>
+    <Flag ID="1134" Name="QUEUE_BRANDING_UPGRADE"/>
+    <Flag ID="1135" Name="QUEUE_BRANDING_AVAILABLE_TALK"/>
+    <Flag ID="1136" Name="WHITNEY_ORAL_TRAINING"/>
+    <Flag ID="1137" Name="AMILY_TATTOO_COLLARBONE"/>
+    <Flag ID="1138" Name="AMILY_TATTOO_SHOULDERS"/>
+    <Flag ID="1139" Name="AMILY_TATTOO_LOWERBACK"/>
+    <Flag ID="1140" Name="AMILY_TATTOO_BUTT"/>
+    <Flag ID="1141" Name="JOJO_TATTOO_COLLARBONE"/>
+    <Flag ID="1142" Name="JOJO_TATTOO_SHOULDERS"/>
+    <Flag ID="1143" Name="JOJO_TATTOO_LOWERBACK"/>
+    <Flag ID="1144" Name="JOJO_TATTOO_BUTT"/>
+    <Flag ID="1145" Name="SOPHIE_TATTOO_COLLARBONE"/>
+    <Flag ID="1146" Name="SOPHIE_TATTOO_SHOULDERS"/>
+    <Flag ID="1147" Name="SOPHIE_TATTOO_LOWERBACK"/>
+    <Flag ID="1148" Name="SOPHIE_TATTOO_BUTT"/>
+    <Flag ID="1149" Name="VAPULA_TATTOO_COLLARBONE"/>
+    <Flag ID="1150" Name="VAPULA_TATTOO_SHOULDERS"/>
+    <Flag ID="1151" Name="VAPULA_TATTOO_LOWERBACK"/>
+    <Flag ID="1152" Name="VAPULA_TATTOO_BUTT"/>
+    <Flag ID="1153" Name="KELLY_TATTOO_COLLARBONE"/>
+    <Flag ID="1154" Name="KELLY_TATTOO_SHOULDERS"/>
+    <Flag ID="1155" Name="KELLY_TATTOO_LOWERBACK"/>
+    <Flag ID="1156" Name="KELLY_TATTOO_BUTT"/>
+    <Flag ID="1157" Name="MILKY_TATTOO_COLLARBONE"/>
+    <Flag ID="1158" Name="MILKY_TATTOO_SHOULDERS"/>
+    <Flag ID="1159" Name="MILKY_TATTOO_LOWERBACK"/>
+    <Flag ID="1160" Name="MILKY_TATTOO_BUTT"/>
+    <Flag ID="1161" Name="WHITNEY_DOM_FIRST_PLEASURE"/>
+    <Flag ID="1162" Name="FARM_UPGRADES_ORGYROOM"/>
+    <Flag ID="1163" Name="MASSAGE_HAPPY_ENDINGS"/>
+    <Flag ID="1164" Name="QUEUE_ORGYROOM_UPGRADE"/>
+    <Flag ID="1165" Name="FOUND_CATHEDRAL"/>
+    <Flag ID="1166" Name="PLACES_PAGE"/>
+    <Flag ID="1167" Name="FUCK_YOU_GOT_MINE_RAPHAEL"/>
+    <Flag ID="1168" Name="MARBLE_MILKED_BEFORE"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
