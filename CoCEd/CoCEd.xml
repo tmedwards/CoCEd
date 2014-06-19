@@ -2165,4 +2165,12 @@
     <!-- Flag ID="2997" Name="LOW_STANDARDS_FOR_ALL"/ -->
     <!-- Flag ID="2998" Name="HYPER_HAPPY"/ -->
   </Flags>
+  <!--============================================================================================================================================-->
+  <PropertyCounts>
+    <!-- taken from CoC (line ~30): Corruption-of-Champions\classes\classes\Saves.as -->
+    <PropertyCount Version="latest"  Count="119"/>
+    <PropertyCount Version="0.8.4.3" Count="119"/>
+    <PropertyCount Version="0.8.3f8" Count="125"/>
+    <PropertyCount Version="0.8.3f7" Count="124"/>
+  </PropertyCounts>
 </CoCEd>
