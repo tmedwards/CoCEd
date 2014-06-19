@@ -32,7 +32,10 @@ namespace CoCEd.Model
 
         [XmlArray, XmlArrayItem("Flag")]
         public XmlEnum[] Flags { get; set; }
-       
+
+        [XmlArray, XmlArrayItem("PropertyCount")]
+        public XmlPropCount[] PropertyCounts { get; set; }
+
         public static XmlData Instance
         {
             get;
@@ -258,6 +261,19 @@ namespace CoCEd.Model
         public override string ToString()
         {
             return Name;
+        }
+    }
+
+    public sealed class XmlPropCount
+    {
+        [XmlAttribute]
+        public string Version { get; set; }
+        [XmlAttribute]
+        public int Count { get; set; }
+
+        public override string ToString()
+        {
+            return Version + " - " + Count;
         }
     }
 

@@ -20,6 +20,7 @@ namespace CoCEd.View
 {
     public enum ExceptionBoxResult
     {
+        OK,
         Continue,
         Cancel,
         Quit,
@@ -27,6 +28,7 @@ namespace CoCEd.View
 
     public enum ExceptionBoxButtons
     {
+        OK,
         Continue,
         Cancel,
         Quit,
@@ -157,6 +159,11 @@ namespace CoCEd.View
                         _result = ExceptionBoxResult.Continue;
                         break;
 
+                    case ExceptionBoxButtons.OK:
+                        lastButton.Click += ok_Click;
+                        _result = ExceptionBoxResult.OK;
+                        break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -179,6 +186,12 @@ namespace CoCEd.View
         void copyException_Click(object sender, RoutedEventArgs e)
         {
             Clipboard.SetData(DataFormats.Text, ExceptionMessage);
+        }
+
+        void ok_Click(object sender, RoutedEventArgs e)
+        {
+            _result = ExceptionBoxResult.OK;
+            Close();
         }
 
         void continue_Click(object sender, RoutedEventArgs e)
