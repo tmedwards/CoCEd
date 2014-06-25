@@ -1145,6 +1145,14 @@ namespace CoCEd.ViewModel
             set { GetFlag(856).SetValue(value ? 1 : 0); }
         }
 
+        public bool ExploredCathedral
+        {
+            get { return GetFlag(1165).AsInt() == 1; }
+            set { GetFlag(1165).SetValue(value ? 1 : 0); }
+        }
+
+
+
         public bool HasSandTrapBalls
         {
             get { return GetStatus("Uniball").IsOwned; }

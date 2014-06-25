@@ -86,6 +86,7 @@
                     <CheckBox Content="Bizarre Bazaar" IsChecked="{Binding Game.ExploredBizarreBazaar}"/>
                     <CheckBox Content="Whitney's Farm" IsChecked="{Binding Game.ExploredFarm}"/>
                     <CheckBox Content="Owca" IsChecked="{Binding Game.ExploredOwca}"/>
+                    <CheckBox Content="Cathedral" IsChecked="{Binding Game.ExploredCathedral}"/>
                     <CheckBox Content="Salon" IsChecked="{Binding Game.ExploredBarber}"/>
                     <CheckBox Content="Town Ruins" IsChecked="{Binding Game.ExploredTownRuins}"/>
                     <CheckBox Content="Lake Boat" IsChecked="{Binding Game.ExploredBoat}"/>
