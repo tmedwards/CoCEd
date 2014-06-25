@@ -20,7 +20,7 @@ namespace CoCEd.ViewModel
             obj["cockLength"] = 8;
             obj["cockThickness"] = 2;
             obj["cockType"] = 0;
-            obj["knotMultiplier"] = 0.0;
+            obj["knotMultiplier"] = 1.0;
             obj["pierced"] = 0;
             obj["pLongDesc"] = "";
             obj["pShortDesc"] = "";
@@ -84,7 +84,8 @@ namespace CoCEd.ViewModel
 
         public bool IsKnotEnabled
         {
-            get { return Type == 2; }
+            // 2 is Dog and 11 is Fox
+            get { return Type == 2 || Type == 11; }
         }
 
         public string CockSock

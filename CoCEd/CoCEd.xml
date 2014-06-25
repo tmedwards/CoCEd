@@ -2159,6 +2159,7 @@
     <Flag ID="1166" Name="PLACES_PAGE"/>
     <Flag ID="1167" Name="FUCK_YOU_GOT_MINE_RAPHAEL"/>
     <Flag ID="1168" Name="MARBLE_MILKED_BEFORE"/>
+    <Flag ID="1169" Name="TATTOO_SAVEFIX_APPLIED"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
@@ -2167,7 +2168,7 @@
   </Flags>
   <!--============================================================================================================================================-->
   <PropertyCounts>
-    <!-- taken from CoC (line ~30): Corruption-of-Champions\classes\classes\Saves.as -->
+    <!-- Taken from Corruption-of-Champions\classes\classes\Saves.as (line ~30) -->
     <PropertyCount Version="latest"  Count="119"/>
     <PropertyCount Version="0.8.4.3" Count="119"/>
     <PropertyCount Version="0.8.3f8" Count="125"/>
