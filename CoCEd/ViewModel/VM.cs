@@ -102,7 +102,7 @@ namespace CoCEd.ViewModel
             // check the number of properties in an attempt to sniff out corrupted saves before CoCEd explodes in the user's face
             Dictionary<string, int> propertyCounts = VM.Instance.Data.PropertyCounts.ToDictionary(p => p.Version, p => p.Count);
             int expectedCount = propertyCounts.ContainsKey(dataVersion) ? propertyCounts[dataVersion] : propertyCounts["latest"];
-            if (file.Count != expectedCount)
+            if (file.Count < expectedCount)
             {
                 var box = new ExceptionBox();
                 box.Title = "File has an unexpected number of properties.";
