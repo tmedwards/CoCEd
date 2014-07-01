@@ -412,6 +412,7 @@
       <PregnancyType ID="17"    Name="Dragon (Ember)"/>
       <PregnancyType ID="15"    Name="Drider"/>
       <PregnancyType ID="20"    Name="Equine-morph (Cotton)"/>
+      <PregnancyType ID="24"    Name="Faerie/Phouka"/>
       <PregnancyType ID="21"    Name="Fox-morph (Urta)"/>
       <PregnancyType ID="23"    Name="Frog-girl"/>
       <PregnancyType ID="16"    Name="Goo-girl"/>
@@ -483,6 +484,7 @@
       <Item ID="NumbRox" Name="Numb Rocks"/>
       <Item ID="OviElix" Name="Oviposition Elixir"/>
       <Item ID="PeppWht" Name="Peppermint White"/>
+      <Item ID="P_Whsky" Name="Phouka Whiskey" Description="Increases Faerie/Phouka pregnancy corruption."/>
       <Item ID="PrnsPkr" Name="Princess Pucker" Description="Reduces lust and either libido or sensitivity.  Also has a random chance to change hair color to pink."/>
       <Item ID="P.Pearl" Name="Pure Pearl"/>
       <Item ID="PurPeac" Name="Pure Peach"/>
@@ -521,13 +523,14 @@
       <Item ID="MystJwl" Name="Mystic Jewel"/>
       <Item ID="NPnkEgg" Name="Neon Pink Egg"/>
       <Item ID="ProBova" Name="ProBova"/>
-      <Item ID="PurHony" Name="Pure Honey"/>
+      <Item ID="PurHony" Name="Pure Honey" Description="If pregnant with Faerie/Phouka, will decrease pregnancy corruption rather than giving its normal effect."/>
       <Item ID="P.Draft" Name="Purified Incubi Draft"/>
       <Item ID="P.LBova" Name="Purified LaBova"/>
       <Item ID="P.S.Mlk" Name="Purified Succubi Milk"/>
       <Item ID="PrFruit" Name="Purple Fruit"/>
       <Item ID="Reptlum" Name="Reptilum"/>
       <Item ID="RingFig" Name="Ringtail Fig"/>
+      <Item ID="RizzaRt" Name="Rizza Root"/>
       <Item ID="Shark.T" Name="Shark Tooth"/>
       <Item ID="DryTent" Name="Shriveled Tentacle"/>
       <Item ID="SnakOil" Name="Snake Oil"/>
@@ -907,7 +910,7 @@
     <Status Name="Knows Heal" Description="You know the black-magic healing spell, &quot;Heal&quot;"/>
     <Status Name="Knows Might" Description="You know the black-magic Strength-enhancing spell, &quot;Might&quot;"/>
     <Status Name="Knows Whitefire" Description="You know the white-magic holy fire spell, &quot;Whitefire&quot;"/>
-    <Status Name="Lactaction Endurance"/>
+    <Status Name="Lactation Endurance"/>
     <Status Name="Lactation Reduc0"/>
     <Status Name="Lactation Reduc1"/>
     <Status Name="Lactation Reduc2"/>
@@ -944,6 +947,7 @@
     <Status Name="No More Marble" Description="After overcoming your addiction, Marble has threatened to leave forever out of shame for having gotten you addicted in the first place. If your relationship with her is good enough, however, you'll be able to convince her to move in to your camp with you."/>
     <Status Name="noJojo" Description="Jojo has left the game."/>
     <Status Name="Oswald" Description="You've met Oswald from the Pawn Shop."/>
+    <Status Name="PhoukaWhiskeyAffect" Description="You've drank some Phouka Whiskey."/>
     <Status Name="plain onahole used" Description="You've used the Plain Onahole during self-stimulation."/>
     <Status Name="Post Akbal Submission"/>
     <Status Name="Post Anemone Beatdown"/>
@@ -2160,6 +2164,16 @@
     <Flag ID="1167" Name="FUCK_YOU_GOT_MINE_RAPHAEL"/>
     <Flag ID="1168" Name="MARBLE_MILKED_BEFORE"/>
     <Flag ID="1169" Name="TATTOO_SAVEFIX_APPLIED"/>
+    <Flag ID="1170" Name="BIRTHS_PHOUKA"/>
+    <Flag ID="1171" Name="BIRTHS_FAERIE"/>
+    <Flag ID="1172" Name="PHOUKA_ENCOUNTER_STATUS"                      Description="0 = never encountered, 1 = encountered, other values may be used later if you're doing something for one"/>
+    <Flag ID="1173" Name="PHOUKA_LORE"                                  Description="0 = no lore known, 1 = know their name, 2+ = more lore learned"/>
+    <Flag ID="1174" Name="PREGNANCY_CORRUPTION"                         Description="Faerie/Phouka baby corruption (Faerie if &lt;= 0, Phouka if &gt; 0): new pregnancy initializes to 2, lowered by Pure Honey, raised by Phouka Whiskey"/>
+    <Flag ID="1175" Name="TREACLE_MINE_YEAR_DONE"/>
+
+    <!-- They skipped some flags, how wonderful... -->
+
+    <Flag ID="1184" Name="KATHERINE_RANDOM_RECRUITMENT_DISABLED"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
