@@ -64,7 +64,7 @@
                     <TextBlock              Text="Arms"/>
                     <common:MyComboBox SelectedValue="{Binding Game.ArmType}" ItemsSource="{Binding Data.Body.ArmTypes}"/>
 
-                    <TextBlock              Text="Wings"/>
+                    <TextBlock              Text="Wings/Fins"/>
                     <common:MyComboBox SelectedValue="{Binding Game.WingType}" ItemsSource="{Binding Data.Body.WingTypes}"/>
 
                     <TextBlock              Text="Wings description" IsEnabled="{Binding Game.IsWingEnabled}"/>
@@ -95,6 +95,9 @@
                     
                     <TextBlock              Text="{Binding Game.TailValueLabel}" IsEnabled="{Binding Game.IsTailValueEnabled}"/>
                     <common:MyNumericBox    Value="{Binding Game.TailValue}" IsEnabled="{Binding Game.IsTailValueEnabled}"/>
+
+                    <TextBlock              Text="Tail recharge" IsEnabled="{Binding Game.IsTailRechargeEnabled}"/>
+                    <common:MyNumericBox    Value="{Binding Game.TailRecharge}" IsEnabled="{Binding Game.IsTailRechargeEnabled}"/>
                 </common:AutoGrid>
             </StackPanel>
 

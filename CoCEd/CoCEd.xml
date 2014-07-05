@@ -596,6 +596,7 @@
       <Item ID="L.Hammr" Name="Large Hammer"/>
       <Item ID="L.Daggr" Name="Lust Dagger"/>
       <Item ID="Pipe   " Name="Pipe"/>
+      <Item ID="RRapier" Name="Raphael's Rapier"/>
       <Item ID="RidingC" Name="Riding Crop"/>
       <Item ID="Spear  " Name="Spear"/>
       <Item ID="S.Gaunt" Name="Spiked Gauntlets"/>
@@ -694,22 +695,34 @@
   <!--============================================================================================================================================-->
   <Perks>
     <PerkGroup Name="Starter">
-      <Perk Name="Big Cock" Description="Gain cock size 25% faster and grow larger easier." Value1="1.25"/>
-      <Perk Name="Big Clit" Description="Allows your clit to grow larger faster." Value1="1.25"/>
-      <Perk Name="Big Tits" Description="Makes your tits grow larger more easily." Value1="1.5"/>
-      <Perk Name="Fast" Description="Gain speed 25% faster." Value1="0.25"/>
-      <Perk Name="Fertile" Description="Makes you 15% more likely to become pregnant." Value1="1.5"/>
-      <Perk Name="Lusty" Description="Gain lust 25% faster." Value1="0.25"/>
-      <Perk Name="Messy Orgasms" Description="Produces 50% more cum volume." Value1="1.25"/>
-      <Perk Name="Sensitive" Description="Gain sensitivity 25% faster." Value1="0.25"/>
-      <Perk Name="Smart" Description="Gain intelligence 25% faster." Value1="0.25"/>
-      <Perk Name="Strong" Description="Gain strength 25% faster." Value1="0.25"/>
-      <Perk Name="Tough" Description="Gain toughness 25% faster." Value1="0.25"/>
-      <Perk Name="Wet Pussy" Description="Keeps your pussy from ever being anything less than wet." Value1="2"/>
+      <Perk Name="Big Cock" Description="Gains cock size 25% faster and with less limitations."
+            Value1="1.25" Type1="Double"/>
+      <Perk Name="Big Clit" Description="Allows your clit to grow larger more easily and faster."
+            Value1="1.25" Type1="Double"/>
+      <Perk Name="Big Tits" Description="Makes your tits grow larger more easily."
+            Value1="1.5" Type1="Double"/>
+      <Perk Name="Fast" Description="Gains speed 25% faster."
+            Value1="0.25" Type1="Double"/>
+      <Perk Name="Fertile" Description="Makes you 15% more likely to become pregnant."
+            Value1="1.5" Type1="Double"/>
+      <Perk Name="Lusty" Description="Gains lust 25% faster."
+            Value1="0.25" Type1="Double"/>
+      <Perk Name="Messy Orgasms" Description="Produces 50% more cum volume."
+            Value1="1.25" Type1="Double"/>
+      <Perk Name="Sensitive" Description="Gains sensitivity 25% faster."
+            Value1="0.25" Type1="Double"/>
+      <Perk Name="Smart" Description="Gains intelligence 25% faster."
+            Value1="0.25" Type1="Double"/>
+      <Perk Name="Strong" Description="Gains strength 25% faster."
+            Value1="0.25" Type1="Double"/>
+      <Perk Name="Tough" Description="Gains toughness 25% faster."
+            Value1="0.25" Type1="Double"/>
+      <Perk Name="Wet Pussy" Description="Keeps your pussy wet and provides a bonus to capacity."
+            Value1="2"/>
     </PerkGroup>
     <PerkGroup Name="History">
       <Perk Name="History: Alchemist" Description="Alchemical experience makes items more reactive to your body."/>
-      <Perk Name="History: Fighter" Description="Past full of conflict increases physical damage dealt by 10%."/>
+      <Perk Name="History: Fighter" Description="A past full of conflict increases physical damage dealt by 10%."/>
       <Perk Name="History: Healer" Description="Healing experience increases HP gains by 20%."/>
       <Perk Name="History: Religious" Description="Replaces masturbate with meditate when corruption less than or equal to 66."/>
       <Perk Name="History: Scholar" Description="Time spent focusing your mind makes spellcasting 20% less fatiguing."/>
@@ -720,15 +733,19 @@
     </PerkGroup>
     <PerkGroup Name="Tier 0">
       <Perk Name="Acclimation" Description="Reduces lust gain by 15%."/>
-      <Perk Name="Corrupted Libido" Description="Reduces lust gain by 10%." Value1="20"/>
+      <Perk Name="Corrupted Libido" Description="Reduces lust gain by 10%."
+            Value1="20"/>
       <Perk Name="Double Attack" Description="Allows you to perform two melee attacks per round."/>
       <Perk Name="Evade" Description="Increases chances of evading enemy attacks."/>
-      <Perk Name="Fertility+" Description="Increases pregnancy chance by 15% and cum volume by up to 50%." Value1="15" Value2="1.75"/>
-      <Perk Name="Hot Blooded" Description="Raises minimum lust by up to 20." Value1="20"/>
+      <Perk Name="Fertility+" Description="Increases fertility rating by 15 and cum volume by up to 50%."
+            Value1="15"
+            Value2="1.75" Type2="Double"/>
+      <Perk Name="Hot Blooded" Description="Raises minimum lust by up to 20."
+            Value1="20"/>
       <Perk Name="Mage" Description="Increases base spell strength by 50%."/>
       <Perk Name="Nymphomania" Description="Raises minimum lust by up to 30."/>
-      <Perk Name="Precision" Description="Reduces enemy damage resistance by 10."/>
-      <Perk Name="Regeneration" Description="Regenerates 2 HP/hour and 1 HP/round."/>
+      <Perk Name="Precision" Description="Reduces enemy armor by 10. (Req's 25+ Intelligence)"/>
+      <Perk Name="Regeneration" Description="Regenerates 2% of max HP/hour and 1% of max HP/round."/>
       <Perk Name="Runner" Description="Increases chances of escaping combat."/>
       <Perk Name="Seduction" Description="Upgrades your tease attack, making it more effective."/>
       <Perk Name="Spellpower" Description="Increases base spell strength by 50%."/>
@@ -738,19 +755,19 @@
     </PerkGroup>
     <PerkGroup Name="Tier 1">
       <Perk Name="Agility" Description="Boosts armor points by a portion of your speed on light/medium armors."/>
-      <Perk Name="Arousing Aura" Description="While your corruption is at or above 70, you exude an aura of lust."/>
+      <Perk Name="Arousing Aura" Description="Exude a lust-inducing aura. (Req's corruption of 70 or more)"/>
       <Perk Name="Brutal Blows" Description="Reduces enemy armor with each hit."/>
       <Perk Name="Channeling" Description="Increases base spell strength by 50%."/>
       <Perk Name="Immovable Object" Description="Grants 20% physical damage reduction."/>
       <Perk Name="Lightning Strikes" Description="Increases the attack damage for non-heavy weapons."/>
-      <Perk Name="Masochist" Description="Take 30% less physical damage but gain lust when damage."/>
+      <Perk Name="Masochist" Description="Take 30% less physical damage but gain lust when damaged."/>
       <Perk Name="Medicine" Description="Grants 15% chance per round of cleansing poisons/drugs from your body."/>
-      <Perk Name="Regeneration 2" Description="Gain 3HP per round of combat and heal faster out of combat."/>
+      <Perk Name="Regeneration 2" Description="Gain 2% of max HP per round of combat and 4% of max HP per hour out of combat."/>
       <Perk Name="Resistance" Description="Reduces lust gain by 10%."/>
       <Perk Name="Sadist" Description="Deal 20% more damage, but gain lust at the same time."/>
-      <Perk Name="Speedy Recovery" Description="Thanks to your impressive metabolism you regain fatigue 50% faster."/>
+      <Perk Name="Speedy Recovery" Description="Regain fatigue 50% faster."/>
       <Perk Name="Tactician" Description="Increases critical hit chance by up to 10% (Intelligence-based)."/>
-      <Perk Name="Tank 2" Description="Your maximum HP is raised by an extra 1 point per point of toughness!"/>
+      <Perk Name="Tank 2" Description="+1 extra HP per point of toughness."/>
       <Perk Name="Thunderous Strikes" Description="+20% 'Attack' damage while strength is at or above 80."/>
       <Perk Name="Weapon Mastery" Description="Doubles damage bonus of weapons classified as 'Large'."/>
       <Perk Name="Well Adjusted" Description="You gain half as much lust as time passes in Mareth."/>
@@ -769,8 +786,8 @@
       <Perk Name="Bimbo Body" Description="Gives the body of a bimbo.  Tits will never stay below a 'DD' cup, libido is raised, lust resistance is raised, and upgrades tease."/>
       <Perk Name="Bimbo Brains" Description="Now that you've drank bimbo liquer, you'll never, like, have the attention span and intelligence you once did!  But it's okay, 'cause you get to be so horny an' stuff!"/>
       <Perk Name="Brawler" Description="Brawling experience allows you to make two unarmed attacks in a turn."/>
-      <Perk Name="Bro Body" Description="You have the body of a muscled, sex-addicted hunk.  Your cock cannot be shorter than 10&#x2033;, you're much lustier, more accustomed to being turned on, and you gain a bonus to using your body to arouse your enemies in combat!"/>
-      <Perk Name="Bro Brains" Description="After drinking a 'Bro Brew', your maximum capacity for intellect is greatly decreased."/>
+      <Perk Name="Bro Body" Description="Grants an ubermasculine body that's sure to impress.  Cocks will never stay below 10&#x2033;, libido is raised, lust resistance is raised, and upgrades tease."/>
+      <Perk Name="Bro Brains" Description="Makes thou... thin... fuck, that shit's for nerds."/>
       <Perk Name="Brood Mother" Description="Pregnancy moves twice as fast as a normal woman's."/>
       <Perk Name="Bulge Armor" Description="Grants a 5 point damage bonus to dick-based tease attacks."/>
       <Perk Name="Bunny Eggs" Description="Laying eggs has become a normal part of your bunny-body's routine."/>
@@ -785,7 +802,9 @@
       <Perk Name="Cornucopia" Description="Vaginal and Anal capacities increased by 30."/>
       <Perk Name="Diapause" Description="Pregnancy does not advance normally, but develops quickly after taking in fluids."/>
       <Perk Name="Dragonfire" Description="Allows access to a dragon breath attack."/>
-      <Perk Name="Elven Bounty" Description="Increases fertility by 15% and cum production by 250 mL." Value1="250" Value2="15" Label1="Cum volume" Label2="Fertility multiplier"/>
+      <Perk Name="Elven Bounty" Description="Increases fertility by 15% and cum production by 250 mL."
+            Label1="Cum volume" Value1="250"
+            Label2="Fertility multiplier" Value2="15"/>
       <Perk Name="Enlightened" Description="Jojo's tutelage has given you a master's focus and you can feel the universe in all its glory spread out before you.  You've finally surpassed your teacher.  (Jojo's third technique, requires corruption &lt;10)"/>
       <Perk Name="Enlightened Nine-tails" Description="The mystical energy of the nine-tails surges through you, filling you with phenomenal cosmic power!  Your boundless magic allows you to recover quickly after casting spells."/>
       <Perk Name="Feeder" Description="Lactation does not decrease and gives a compulsion to breastfeed others."/>
@@ -808,37 +827,44 @@
       <Perk Name="Marae's Gift - Fertility" Description="Greatly increases fertility and halves base pregnancy speed."/>
       <Perk Name="Marae's Gift - Profractory" Description="Causes your cum to build up at 3x the normal rate."/>
       <Perk Name="Marae's Gift - Stud" Description="Increases your cum production and potency greatly."/>
-      <Perk Name="Marble Resistant" Description="You know how to avoid the addictive qualities of Marble's milk."/>
-      <Perk Name="Marble's Milk" Description="You're totally addicted to Marble's milk and can't live without it."/>
+      <Perk Name="Marble Resistant" Description="Provides resistance to the addictive effects of bottled LaBova milk."/>
+      <Perk Name="Marble's Milk" Description="Requires you to drink LaBova milk frequently or eventually die.  You cannot shake this addiction."/>
       <Perk Name="Minotaur Cum Addict" Description="Causes you to crave minotaur cum frequently.  You cannot shake this addiction."/>
       <Perk Name="Misdirection" Description="Grants additional evasion chances while wearing Raphael's red bodysuit."/>
-      <Perk Name="Omnibus' Gift" Description="Raises your minimum lust by up to 35 and slightly reduces lust gain."/>
+      <Perk Name="Omnibus' Gift" Description="Increases minimum lust (by up to 35) but provides some lust resistance."/>
       <Perk Name="One Track Mind" Description="Your constant desire for sex causes your sexual organs to be able to take larger insertions and disgorge greater amounts of fluid."/>
-      <Perk Name="Oviposition" Description="Laying eggs has become a normal part of your reptilian body's routine."/>
+      <Perk Name="Oviposition" Description="Causes you to regularly lay eggs when not otherwise pregnant."/>
       <Perk Name="Pilgrim's Bounty" Description="Causes you to always cum as hard as if you had max lust."/>
       <Perk Name="Pure and Loving" Description="Your caring attitude towards love and romance makes you slightly more resistant to lust and corruption."/>
       <Perk Name="Purity Blessing" Description="Reduces the rate at which your corruption, libido, and lust increase."/>
       <Perk Name="Sensual Lover" Description="Your sensual attitude towards love and romance makes your tease ability slightly more effective."/>
-      <Perk Name="Slime Core" Description="Moisture craving builds at a greatly reduced rate."/>
-      <Perk Name="Spellcasting Affinity" Description="Reduces spell costs by [20&#x2013;50]%. (see value #1 for actual percentage)" Value1="20" Label1="Cost reduction %"/>
+      <Perk Name="Slime Core" Description="Grants more control over your slimy body, allowing you to go twice as long without fluids."/>
+      <Perk Name="Spellcasting Affinity" Description="Reduces spell costs by [20&#x2013;50]%. (see value #1 for actual percentage)"
+            Label1="Cost reduction %" Value1="50"/>
       <Perk Name="Spider Ovipositor" Description="Allows you to lay eggs through a special organ on your arachnid abdomen, though you need at least 10 eggs to lay."/>
-      <Perk Name="Thick Skin" Description="Your skin is now tough enough to effectively grant you an extra armor!"/>
-      <Perk Name="Whispered" Description="Akbal has allowed you to whisper to the minds of your foes, as he does."/>
+      <Perk Name="Thick Skin" Description="Toughens your dermis to provide 2 points of armor."/>
+      <Perk Name="Whispered" Description="Akbal's blessings grant limited telepathy that can induce fear."/>
     </PerkGroup>
     <PerkGroup Name="Items">
       <Perk Name="Blood Mage" Description="Spellcasting now consumes health instead of fatigue!"/>
       <Perk Name="Lusty Regeneration" Description="Regenerates 1% of HP per round in combat and 2% of HP per hour."/>
       <Perk Name="Midas Cock" Description="Increases the gems awarded from victory in battle."/>
-      <Perk Name="Pent Up" Description="Increases minimum lust by 10 and makes you more vulnerable to seduction." Value1="10"/>
+      <Perk Name="Pent Up" Description="Increases minimum lust by 10 and makes you more vulnerable to seduction."
+            Value1="10"/>
       <Perk Name="Phallic Potential" Description="Increases the effects of penis-enlarging transformations."/>
       <Perk Name="Phallic Restraint" Description="Reduces the effects of penis-enlarging transformations."/>
-      <Perk Name="Pierced: Crimstone" Description="Increases minimum lust by 5." Value1="5"/>
-      <Perk Name="Pierced: Fertite" Description="Increases fertility and cum production by 5%." Value1="5"/>
+      <Perk Name="Pierced: Crimstone" Description="Increases minimum lust by 5."
+            Value1="5"/>
+      <Perk Name="Pierced: Fertite" Description="Increases fertility and cum production by 5%."
+            Value1="5"/>
       <Perk Name="Pierced: Furrite" Description="Increases chances of encountering &quot;furry&quot; foes."/>
       <Perk Name="Pierced: Lethite" Description="Increases chances of encountering demonic foes."/>
-      <Perk Name="Slutty Seduction" Description="Your armor allows you access to an improved form of the Tease attack.  (see value #1 for the bonus)" Value1="8" Label1="Tease bonus"/>
-      <Perk Name="Wizard's Endurance" Description="Your spellcasting equipment makes it harder for spell-casting to fatigue you!"/>
-      <Perk Name="Wizard's Focus" Description="Your wizard's staff grants you additional focus, reducing the use of fatigue for spells."/>
+      <Perk Name="Slutty Seduction" Description="Increases odds of successfully teasing and lust damage of successful teases by [5&#x2013;18] points. (see value #1 for actual bonus)"
+            Label1="Tease bonus" Value1="10"/>
+      <Perk Name="Wizard's Endurance" Description="Reduces fatigue cost of spells by [25&#x2013;30]%. (see value #1 for actual percentage)"
+            Label1="Cost reduction %" Value1="30"/>
+      <Perk Name="Wizard's Focus" Description="Increases your spell effect modifier by [40&#x2013;60]%. (see value #1 for actual percentage, as a decimal number)"
+            Label1="Effect modifier" Value1="0.6" Type1="Double"/>
     </PerkGroup>
   </Perks>
   <!--============================================================================================================================================-->
@@ -875,7 +901,8 @@
     <Status Name="eggs" Description="You're pregnant with eggs."/>
     <Status Name="Ever Raped Jojo" Description="Have you ever raped Jojo? If this is here, you have. Congratulations."/>
     <Status Name="Exgartuan" Description="Possession by Exgartuan."/>
-    <Status Name="exploredDeepwoods" Description="Number of times you've explored Deepwoods." Label1="Count"/>
+    <Status Name="exploredDeepwoods" Description="Number of times you've explored Deepwoods."
+            Label1="Count"/>
     <Status Name="FactoryIncubusDefeated" Description="You defeated the Incubus Engineer. If you want to fight him again, just remove this status!"/>
     <Status Name="FactoryOmnibusDefeated" Description="You have defeated the Factory Omnibus Overlord."/>
     <Status Name="FactoryOverload" Description="You overloaded the Factory and blew it to bits, rather than shutting it down."/>
@@ -887,9 +914,15 @@
     <Status Name="fetishON" Description="Fetish Cultists may now be encountered by the lake."/>
     <Status Name="Found Factory" Description="You've found the factory, making it directly available in the &quot;Places&quot; menu."/>
     <Status Name="FuckedMarble" Description="You've had sex with Marble."/>
-    <Status Name="gooStuffed" Description="Value 1: Hours remaining until goo-girl comes out. Value 2: Penis stuffed? 0 = no, 1 = yes (penis only), 2 = yes (penis &amp; balls). Value 3: Vagina stuffed? 0 = no, 1 = yes. Your anus is always stuffed." Label1="Hours remaining" Label2="Penis too?" Label3="Vagina too?"/>
+    <Status Name="gooStuffed" Description="Value 1: Hours remaining until goo-girl comes out. Value 2: Penis stuffed? 0 = no, 1 = yes (penis only), 2 = yes (penis &amp; balls). Value 3: Vagina stuffed? 0 = no, 1 = yes. Your anus is always stuffed."
+            Label1="Hours remaining"
+            Label2="Penis too?"
+            Label3="Vagina too?"/>
     <Status Name="hairdresser meeting" Description="You've found Lynnette's hair salon in the mountains."/>
-    <Status Name="heat" Description="You are in a temporary state of constant feminine need, and are especially fertile. The only way to quench the intense heat in your snatch is to satiate your lust by finding a mate to make you pregnant." Value1="10" Value2="15" Label1="Fertility bonus" Label2="Libido bonus" Label3="Hours remaining"/>
+    <Status Name="heat" Description="You are in a temporary state of constant feminine need, and are especially fertile. The only way to quench the intense heat in your snatch is to satiate your lust by finding a mate to make you pregnant."
+            Label1="Fertility bonus" Value1="10"
+            Label2="Libido bonus" Value2="15"
+            Label3="Hours remaining"/>
     <Status Name="horse warning" Description="You've received the warning that precedes the bad end for becoming too horse-like."/>
     <Status Name="Immolation Spell" Description="Arian's Charged Talisman has been imbued with his Immolation spell, which deals damage over time."/>
     <Status Name="Imp GangBang" Description="You have been gangbanged by imps while you were sleeping, and chances are they'll do it again if they can."/>
@@ -917,7 +950,8 @@
     <Status Name="Lactation Reduc3"/>
     <Status Name="Lactation Reduction" Description="Hours since last milked."/>
     <Status Name="lootEgg"/>
-    <Status Name="Lust Stick Applied" Description="Gained from applying golden lipstick and unlocks the Kiss special attack." Label1="Hours remaining"/>
+    <Status Name="Lust Stick Applied" Description="Gained from applying golden lipstick and unlocks the Kiss special attack."
+            Label1="Hours remaining"/>
     <Status Name="Luststick"/>
     <Status Name="LustyTongue"/>
     <Status Name="Malon Visited Post Addiction" Description="Determines if you went back to tell Marble you got over your addiction to her milk."/>
@@ -954,7 +988,10 @@
     <Status Name="PureCampJojo" Description="Non-corrupted Jojo has joined your camp."/>
     <Status Name="RathazulArmor" Description="Rathazul has made you a suit of armor with some of the exotic materials you've come across during your adventures."/>
     <Status Name="repeatSuccubi"/>
-    <Status Name="rut" Description="You are in an insatiable state of pure, carnal, masculine need. You just feel the urge to fuck pretty much anything and everything in sight. Unfortunately for you, you can't just beat the meat to beat the heat, so no matter how many living or debatably living things you fuck and manage to impregnate, you won't be able to escape this frenzied bout of lust until it passes of its own accord in due time. But then again, since you're reading this, why would you let it go when you can prolong and augment it indefinitely?" Value1="150" Value2="5" Label1="Cum production bonus" Label2="Libido bonus" Label3="Hours remaining"/>
+    <Status Name="rut" Description="You are in an insatiable state of pure, carnal, masculine need. You just feel the urge to fuck pretty much anything and everything in sight. Unfortunately for you, you can't just beat the meat to beat the heat, so no matter how many living or debatably living things you fuck and manage to impregnate, you won't be able to escape this frenzied bout of lust until it passes of its own accord in due time. But then again, since you're reading this, why would you let it go when you can prolong and augment it indefinitely?"
+            Label1="Cum production bonus" Value1="150"
+            Label2="Libido bonus" Value2="5"
+            Label3="Hours remaining"/>
     <Status Name="Shark-Girl"/>
     <Status Name="Shielding Spell" Description="Arian's Charged Talisman has been imbued with his Shielding spell, which increases defense for the duration of a battle."/>
     <Status Name="Slime Craving"/>
@@ -978,7 +1015,10 @@
     <Status Name="TentacleBadEndCounter"/>
     <Status Name="TF2" Description="Silly Toggle one-time event in the mountains (must be level 1 &amp; strength = 40). &quot;As zey say, everyone gets ONE.&quot;"/>
     <Status Name="Took Blessed Sword" Description="This means you took the Beautiful Sword from the Lake. Remove this to re-enable that scene."/>
-    <Status Name="Uma's Massage" Description="Value 1: Type (0 = relief, 1 = lust, 2 = modelling, 3 = relaxation, 4 = power). Value 2: Bonus value (based on type). Value 3: Hours remaining until effect wears off." Label1="Type" Label2="Bonus value" Label3="Hours remaining"/>
+    <Status Name="Uma's Massage" Description="Value 1: Type (0 = relief, 1 = lust, 2 = modelling, 3 = relaxation, 4 = power). Value 2: Bonus value (based on type). Value 3: Hours remaining until effect wears off."
+            Label1="Type"
+            Label2="Bonus value"
+            Label3="Hours remaining"/>
     <Status Name="Uniball" Description="You have a &quot;trap&quot; ball sack. Obtained by consuming Trap Oil."/>
     <Status Name="used natural self-stim"/>
     <Status Name="used self-stim"/>
@@ -1127,7 +1167,7 @@
     <Flag ID="130"  Name="ZETAZ_LAIR_DEMON_VENDOR_PRESENT"/>
     <Flag ID="131"  Name="TIMES_EXPLORED_PLAINS"/>
     <Flag ID="132"  Name="MET_BUNBUN"/>
-    <Flag ID="133"  Name="RAPHEAL_COUNTDOWN_TIMER"                      Description="-1 = betrayed, -2 = if covered for"/>
+    <Flag ID="133"  Name="RAPHAEL_COUNTDOWN_TIMER"                      Description="-1 = betrayed, -2 = if covered for"/>
     <Flag ID="134"  Name="RAPHAEL_MET"                                  Description="0 = no, 1 = yes"/>
     <Flag ID="135"  Name="RAPHAEL_DRESS_TIMER"                          Description="Set when dress acquired, will proc event when dress is worn to bed or when counter is up."/>
     <Flag ID="136"  Name="REJECTED_RAPHAEL"/>

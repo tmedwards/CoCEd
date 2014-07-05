@@ -18,12 +18,12 @@ namespace CoCEd.ViewModel
         {
             var obj = new AmfObject(AmfTypes.Array);
             obj["breasts"] = 2;
-            obj["fuckable"] = false;
-            obj["breastRating"] = 3.0;
             obj["nipplesPerBreast"] = 1;
-            obj["lactationMultiplier"] = 1.0;
-            obj["milkFullness"] = 0;
-            obj["fullness"] = 0;
+            obj["breastRating"] = 3.0;
+            obj["lactationMultiplier"] = 0.0;
+            obj["milkFullness"] = 0.0;
+            obj["fullness"] = 0.0;
+            obj["fuckable"] = false;
             return obj;
         }
     }
@@ -84,7 +84,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                var qty = Rating * 10 * LactationMultiplier * BreastCount;
+                var qty = Rating * 10 * LactationMultiplier * BreastCount;  // this is missing Lactation Endurance value1
                 return GameVM.FormatVolume(qty, "/h (base)");
             }
         }

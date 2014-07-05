@@ -119,6 +119,42 @@ namespace CoCEd.ViewModel
             set { SetDoubleOrIntValue("value4", value); }
         }
 
+        public string Type1
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_xml.Type1)) return "Int";
+                return _xml.Type1;
+            }
+        }
+
+        public string Type2
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_xml.Type2)) return "Int";
+                return _xml.Type2;
+            }
+        }
+
+        public string Type3
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_xml.Type3)) return "Int";
+                return _xml.Type3;
+            }
+        }
+
+        public string Type4
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_xml.Type4)) return "Int";
+                return _xml.Type4;
+            }
+        }
+
         public string Label1
         {
             get

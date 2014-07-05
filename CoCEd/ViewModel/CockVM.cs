@@ -84,8 +84,8 @@ namespace CoCEd.ViewModel
 
         public bool IsKnotEnabled
         {
-            // 2 is Dog and 11 is Fox
-            get { return Type == 2 || Type == 11; }
+            // Dog, Coeurl, Fox
+            get { return (Type == 2 || Type == 10 || Type == 11); }
         }
 
         public string CockSock
