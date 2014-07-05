@@ -250,6 +250,15 @@ namespace CoCEd.Model
         public double Value4 { get; set; }
 
         [XmlAttribute]
+        public string Type1 { get; set; }
+        [XmlAttribute]
+        public string Type2 { get; set; }
+        [XmlAttribute]
+        public string Type3 { get; set; }
+        [XmlAttribute]
+        public string Type4 { get; set; }
+
+        [XmlAttribute]
         public string Label1 { get; set; }
         [XmlAttribute]
         public string Label2 { get; set; }

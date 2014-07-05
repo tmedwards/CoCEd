@@ -526,7 +526,7 @@ namespace CoCEd.Common
         {
             string str;
 
-            if (Type == NumericType.Double) str = value.ToString("0.0");
+            if (Type == NumericType.Double) str = value.ToString("0.00");
             else str = ((int)value).ToString();
 
             if (!String.IsNullOrEmpty(Unit)) str += " " + Unit;

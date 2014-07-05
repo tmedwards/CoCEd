@@ -179,11 +179,18 @@ namespace CoCEd.ViewModel
         public string Name
         {
             get { return GetString("short"); }
-            set 
-            { 
-                SetValue("short", value);
-                SetValue("notes", value);
+            set { SetValue("short", value); }
+        }
+
+        public string Notes
+        {
+            get
+            {
+                var notes = GetString("notes");
+                // unfortunately, CoC uses two different cases of this same text
+                return notes.Equals("no notes available.", StringComparison.OrdinalIgnoreCase) ? "" : notes;
             }
+            set { SetValue("notes", String.IsNullOrWhiteSpace(value) ? "No notes available." : value); }
         }
 
         public int Days
@@ -257,10 +264,12 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                var max = 50 + Toughness * 2 + Math.Min(20, Level) * 15;
-                if (GetPerk("Tank 2").IsOwned) max += Toughness;
+                double tou = GetDouble("tou");
+                double max = 50 + tou * 2 + Math.Min(20, Level) * 15;
                 if (GetPerk("Tank").IsOwned) max += 50;
-                return max;
+                if (GetPerk("Tank 2").IsOwned) max += (int)Math.Round(tou);
+                if (GetPerk("Chi Reflow - Defense").IsOwned) max += 50;  // value: .\classes\classes\Scenes\Places\TelAdre\UmasShop.as:NEEDLEWORK_DEFENSE_EXTRA_HP
+                return (int)Math.Round(max);
             }
         }
 
@@ -586,9 +595,15 @@ namespace CoCEd.ViewModel
             set 
             { 
                 SetValue("tailType", value);
-                OnPropertyChanged("IsTailValueEnabled");
                 OnPropertyChanged("TailValueLabel");
+                OnPropertyChanged("IsTailValueEnabled");
+                OnPropertyChanged("IsTailRechargeEnabled");
             }
+        }
+
+        public string TailValueLabel
+        {
+            get { return TailType == 13 ? "Tail count" : "Tail venom"; }
         }
 
         public int TailValue
@@ -597,14 +612,20 @@ namespace CoCEd.ViewModel
             set { SetValue("tailVenum", value); }
         }
 
-        public bool IsTailValueEnabled
+        public int TailRecharge
         {
-            get { return TailType == 13; }
+            get { return GetInt("tailRecharge"); }
+            set { SetValue("tailRecharge", value); }
         }
 
-        public string TailValueLabel
+        public bool IsTailValueEnabled
         {
-            get { return "Tail count"; }
+            get { return (TailType == 5 || TailType == 6 || TailType == 13); }
+        }
+
+        public bool IsTailRechargeEnabled
+        {
+            get { return (TailType == 5 || TailType == 6); }
         }
 
         public int WingType
@@ -797,7 +818,7 @@ namespace CoCEd.ViewModel
                 qty += GetPerk("Elven Bounty").Value1;
                 qty += GetStatus("rut").Value1;
 
-                qty *= (1 + (2 * GetPerk("Pierced: Fertite").Value1)) / 100;
+                qty *= 1 + (2 * GetPerk("Pierced: Fertite").Value1) / 100;
 
                 if (qty < 2) qty = 2;
 
@@ -827,7 +848,7 @@ namespace CoCEd.ViewModel
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
 
-                qty *= (1 + (2 * GetPerk("Pierced: Fertite").Value1)) / 100;
+                qty *= 1 + (2 * GetPerk("Pierced: Fertite").Value1) / 100;
 
                 // unsure if (qty < 2) clamping should be done here
 

@@ -37,7 +37,11 @@
                     <TextBlock              Text="Name" Width="Auto"/>
                     <TextBox                Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="8,4,8,4" Width="150" HorizontalAlignment="Left"
                                                 BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
-                    
+
+                    <TextBlock              Text="Notes" Width="Auto"/>
+                    <TextBox                Text="{Binding Game.Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="8,4,8,4" Width="150" HorizontalAlignment="Left"
+                                                BorderBrush="{StaticResource NumericBorderBrush}" Height="22" VerticalContentAlignment="Center" Padding="3,0"/>
+
                     <TextBlock              Text="Gems"/>
                     <common:MyNumericBox    Value="{Binding Game.Gems}" Upper="10000" UpperLabel="10k"/>
 
@@ -54,6 +58,9 @@
                     <TextBlock              Text="Level"/>
                     <common:MyNumericBox    Value="{Binding Game.Level}"/>
 
+                    <TextBlock              Text="Perk points"/>
+                    <common:MyNumericBox    Value="{Binding Game.PerkPoints}"/>
+
                     <TextBlock              Text="Tease skill"/>
                     <common:MyNumericBox    Value="{Binding Game.TeaseLevel}" Upper="5"/>
 
@@ -62,9 +69,6 @@
 
                     <TextBlock              Text="Archery skill" IsEnabled="{Binding Game.HasMetKelt}"/>
                     <common:MyNumericBox    Value="{Binding Game.ArcherySkill}" Unit="%" Upper="100" IsEnabled="{Binding Game.HasMetKelt}"/>
-
-                    <TextBlock              Text="Perk points"/>
-                    <common:MyNumericBox    Value="{Binding Game.PerkPoints}"/>
                 </common:AutoGrid>
             </StackPanel>
 
