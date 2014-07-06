@@ -103,8 +103,6 @@ namespace CoCEd.Common
             set { SetValue(UpperLabelProperty, value); }
         }
 
-
-
         public double Value
         {
             get { return (double)GetValue(ValueProperty); }
@@ -122,7 +120,6 @@ namespace CoCEd.Common
             get { return (string)GetValue(TipProperty); }
             set { SetValue(TipProperty, value); }
         }
-
 
         public bool HasError
         {
@@ -152,7 +149,6 @@ namespace CoCEd.Common
             _textBox = GetTemplateChild("textBox") as TextBox;
             _lowerButton = GetTemplateChild("lowerButton") as Button;
             _upperButton = GetTemplateChild("upperButton") as Button;
-
 
             if (_lowerButton != null) _lowerButton.Click += lowerButton_Click;
             if (_upperButton != null) _upperButton.Click += upperButton_Click;
@@ -526,7 +522,7 @@ namespace CoCEd.Common
         {
             string str;
 
-            if (Type == NumericType.Double) str = value.ToString("0.00");
+            if (Type == NumericType.Double) str = value.ToString("0.0#");
             else str = ((int)value).ToString();
 
             if (!String.IsNullOrEmpty(Unit)) str += " " + Unit;
