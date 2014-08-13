@@ -53,57 +53,66 @@ namespace CoCEd.Model
             }
         }
 
-
-
         public static void BuildPaths()
         {
-            bool insertSeparatorBeforeInMenu = false;
             const string standardPath = @"Macromedia\Flash Player\#SharedObjects\";
-            const string chromePath = @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\";
+            const string chromePath1 = @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\";
+            const string chromePath2 = @"Google\Chrome\User Data\Profile 1\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\"; // Win 8/8.1 thing, apparently
 
-            BuildPath("Local (standard{0})",        Environment.SpecialFolder.ApplicationData,      standardPath,   "localhost",                    ref insertSeparatorBeforeInMenu);
-            BuildPath("Local (chrome{0})",          Environment.SpecialFolder.LocalApplicationData, chromePath,     "localhost",                    ref insertSeparatorBeforeInMenu);
-            BuildPath("Local (metro{0})",           Environment.SpecialFolder.ApplicationData,      standardPath,   @"#AppContainer\localhost",     ref insertSeparatorBeforeInMenu);
+            string[] standardPaths = { standardPath };
+            string[] chromePaths = { chromePath1, chromePath2 };
+
+            bool insertSeparatorBeforeInMenu = false;
+
+            BuildPath("Local (standard{0})",        Environment.SpecialFolder.ApplicationData,      standardPaths,  "localhost",                     ref insertSeparatorBeforeInMenu);
+            BuildPath("Local (chrome{0})",          Environment.SpecialFolder.LocalApplicationData, chromePaths,    "localhost",                     ref insertSeparatorBeforeInMenu);
+            BuildPath("Local (metro{0})",           Environment.SpecialFolder.ApplicationData,      standardPaths,  @"#AppContainer\localhost",      ref insertSeparatorBeforeInMenu);
 
             insertSeparatorBeforeInMenu = true;
-            BuildPath("LocalWithNet (standard{0})", Environment.SpecialFolder.ApplicationData,      standardPath,   "#localWithNet",                ref insertSeparatorBeforeInMenu);
-            BuildPath("LocalWithNet (chrome{0})",   Environment.SpecialFolder.LocalApplicationData, chromePath,     "#localWithNet",                ref insertSeparatorBeforeInMenu);
-            BuildPath("LocalWithNet (metro{0})",    Environment.SpecialFolder.ApplicationData,      standardPath,   @"#AppContainer\#localWithNet", ref insertSeparatorBeforeInMenu);
+            BuildPath("LocalWithNet (standard{0})", Environment.SpecialFolder.ApplicationData,      standardPaths,  "#localWithNet",                 ref insertSeparatorBeforeInMenu);
+            BuildPath("LocalWithNet (chrome{0})",   Environment.SpecialFolder.LocalApplicationData, chromePaths,    "#localWithNet",                 ref insertSeparatorBeforeInMenu);
+            BuildPath("LocalWithNet (metro{0})",    Environment.SpecialFolder.ApplicationData,      standardPaths,  @"#AppContainer\#localWithNet",  ref insertSeparatorBeforeInMenu);
 
             insertSeparatorBeforeInMenu = true;
-            BuildPath("Online (standard{0})",       Environment.SpecialFolder.ApplicationData,      standardPath,   "www.fenoxo.com",               ref insertSeparatorBeforeInMenu);
-            BuildPath("Online (chrome{0})",         Environment.SpecialFolder.LocalApplicationData, chromePath,     "www.fenoxo.com",               ref insertSeparatorBeforeInMenu);
-            BuildPath("Online (metro{0})",          Environment.SpecialFolder.ApplicationData,      standardPath,   @"#AppContainer\www.fenoxo.com", ref insertSeparatorBeforeInMenu);
+            BuildPath("Online (standard{0})",       Environment.SpecialFolder.ApplicationData,      standardPaths,  "www.fenoxo.com",                ref insertSeparatorBeforeInMenu);
+            BuildPath("Online (chrome{0})",         Environment.SpecialFolder.LocalApplicationData, chromePaths,    "www.fenoxo.com",                ref insertSeparatorBeforeInMenu);
+            BuildPath("Online (metro{0})",          Environment.SpecialFolder.ApplicationData,      standardPaths,  @"#AppContainer\www.fenoxo.com", ref insertSeparatorBeforeInMenu);
         }
 
-        static void BuildPath(string nameFormat, Environment.SpecialFolder root, string middle, string suffix, ref bool separatorBefore)
+        static void BuildPath(string nameFormat, Environment.SpecialFolder root, string[] middle, string suffix, ref bool separatorBefore)
         {
             var path = "";
             try
             {
-                // User\AppData\Roaming 
-                path = Environment.GetFolderPath(root);
-                if (path == null) return;
+                // User\AppData\Roaming
+                var basePath = Environment.GetFolderPath(root);
+                if (basePath == null) return;
 
-                // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\
-                path = Path.Combine(path, middle);
-                if (!Directory.Exists(path)) return;
-
-                // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7
-                var profileDirectories = Directory.GetDirectories(path);
-
-                // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7\localhost
                 var cocDirectories = new List<String>();
-                for (int i = 0; i < profileDirectories.Length; ++i)
+                for (int i = 0; i < middle.Length; ++i)
                 {
-                    path = Path.Combine(profileDirectories[i], suffix);
-                    if (Directory.Exists(path)) cocDirectories.Add(path);
+                    path = basePath;
+
+                    // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\
+                    path = Path.Combine(path, middle[i]);
+                    if (!Directory.Exists(path)) continue;
+
+                    // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7
+                    var profileDirectories = Directory.GetDirectories(path);
+
+                    // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7\localhost
+                    for (int j = 0; j < profileDirectories.Length; ++j)
+                    {
+                        path = Path.Combine(profileDirectories[j], suffix);
+                        if (Directory.Exists(path)) cocDirectories.Add(path);
+                    }
+
                 }
 
                 // Create items now that we know how many of them there are.
                 for (int i = 0; i < cocDirectories.Count; ++i)
                 {
-                    var name = cocDirectories.Count > 1 ? String.Format(nameFormat, " #" + (i + 1)) : String.Format(nameFormat, "");
+                    var name = String.Format(nameFormat, cocDirectories.Count > 1 ? " #" + (i + 1) : "");
                     var flash = new FlashDirectory(name, cocDirectories[i], separatorBefore, DirectoryKind.Regular);
                     separatorBefore = false;
                     _directories.Add(flash);

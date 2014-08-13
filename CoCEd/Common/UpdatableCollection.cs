@@ -154,7 +154,7 @@ namespace System.ComponentModel
 
         private void ThrowReadOnlyException()
         {
-            throw new InvalidOperationException("Celle liste est en lecture seule.");
+            throw new InvalidOperationException("This list is read-only.");
         }
 
         bool ICollection<TResult>.IsReadOnly
