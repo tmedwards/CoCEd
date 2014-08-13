@@ -293,21 +293,21 @@ namespace CoCEd.Common
 
         string GetErrorText(double value)
         {
-            if (Min.HasValue && value < Min.Value) return "Must be greater than " + Min.Value;
-            if (Max.HasValue && value > Max.Value) return "Must be lesser than " + Max.Value;
+            if (Min.HasValue && value < Min.Value) return "Must be " + Min.Value + " or greater.";
+            if (Max.HasValue && value > Max.Value) return "Must be " + Max.Value + " or less.";
 
             if (Type == NumericType.Int)
             {
                 const int extremum = 1 << 28; // Flash limit for int29 encoding
-                if (value < -extremum) return "Must be greater or equal than " + -extremum;
-                if (value >= extremum) return "Must be lesser than " + extremum;
+                if (value < -extremum) return "Must be " + -extremum + " or greater.";
+                if (value >= extremum) return "Must be " + (extremum - 1) + " or less.";
                 if (value != (int)value) return "Must be an integer.";
             }
             else if (Type == NumericType.UInt)
             {
                 const int extremum = 1 << 29;
-                if (value < 0) return "Must be positive or zero.";
-                if (value >= extremum) return "Must be lesser than" + extremum;
+                if (value < 0) return "Must be 0 or greater.";
+                if (value >= extremum) return "Must be " + (extremum - 1) + " or less.";
                 if (value != (int)value) return "Must be an integer.";
             }
             return null;

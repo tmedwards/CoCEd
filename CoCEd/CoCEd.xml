@@ -1201,7 +1201,7 @@
     <Flag ID="164"  Name="AMILY_PC_GENDER"/>
     <Flag ID="165"  Name="AMILY_HERM_QUEST"                             Description="1 = Amily flipped out, 2 = accepted as Amily's dad"/>
     <Flag ID="166"  Name="AMILY_ALLOWS_FERTILITY"/>
-    <Flag ID="167"  Name="UNKNOWN_FLAG_NUMBER_00167"                    Description="Permanent Gym Membership? 1 = yes"/>
+    <Flag ID="167"  Name="LIFETIME_GYM_MEMBER"                          Description="0 = no, 1 = yes"/>
     <Flag ID="168"  Name="AMILY_CORRUPT_FLIPOUT"/>
     <Flag ID="169"  Name="TIMES_PC_MADE_AMILYS_CORRUPTION_DRUG"/>
     <Flag ID="170"  Name="AMILY_CORRUPTION_COUNTER"                     Description="0 = untainted, &gt;0 = times drugged and raped"/>
@@ -1210,8 +1210,8 @@
     <Flag ID="173"  Name="AMILY_WARNED_PC_ABOUT_CORRUPTION"             Description="0 = no, 1 = yes"/>
     <Flag ID="174"  Name="UNKNOWN_FLAG_NUMBER_00174"                    Description="Times Dominika sucked off horsecocks"/>
     <Flag ID="175"  Name="UNKNOWN_FLAG_NUMBER_00175"                    Description="Dominika drama: 1 = yes, 2 = no"/>
-    <Flag ID="176"  Name="UNKNOWN_FLAG_NUMBER_00176"                    Description="Times PC has done yoga with Cotton"/>
-    <Flag ID="177"  Name="UNKNOWN_FLAG_NUMBER_00177"                    Description="Cotton interaction status: 0 = never met, 1 = met but not fucked, 2 = fucked"/>
+    <Flag ID="176"  Name="TIMES_HAD_YOGA"                               Description="Times PC has done yoga with Cotton"/>
+    <Flag ID="177"  Name="COTTON_MET_FUCKED"                            Description="Cotton interaction status: 0 = never met, 1 = met but not fucked, 2 = fucked"/>
     <Flag ID="178"  Name="UNKNOWN_FLAG_NUMBER_00178"                    Description="Gym paid fees today?"/>
     <Flag ID="179"  Name="UNKNOWN_FLAG_NUMBER_00179"                    Description="Met Jasun"/>
     <Flag ID="180"  Name="UNKNOWN_FLAG_NUMBER_00180"                    Description="Times fucked Jasun"/>
@@ -1278,8 +1278,8 @@
     <Flag ID="241"  Name="UNKNOWN_FLAG_NUMBER_00241"                    Description="Mino chef explained what he needs yet?"/>
     <Flag ID="242"  Name="UNKNOWN_FLAG_NUMBER_00242"                    Description="Baking happaned? 1 = yes, -1 = snuck out, -2 = seen her escorted out, 3 = stayed, 4 = epilogue'd"/>
     <Flag ID="243"  Name="UNKNOWN_FLAG_NUMBER_00243"                    Description="Counter for minotaur chef baker procs.  Maddie present at bakery: (Mod%8) 0 = present"/>
-    <Flag ID="244"  Name="UNKNOWN_FLAG_NUMBER_00244"                    Description="Cotton Unusual Yoga Guidebook tracker"/>
-    <Flag ID="245"  Name="UNKNOWN_FLAG_NUMBER_00245"                    Description="Cotton breakfast club"/>
+    <Flag ID="244"  Name="COTTON_UNUSUAL_YOGA_BOOK_TRACKER"/>
+    <Flag ID="245"  Name="COTTON_BREAKFAST_CLUB"/>
     <Flag ID="246"  Name="UNKNOWN_FLAG_NUMBER_00246"                    Description="Tiger tooth countdown"/>
     <Flag ID="247"  Name="UNKNOWN_FLAG_NUMBER_00247"                    Description="Genderless centaur madness"/>
     <Flag ID="248"  Name="UNKNOWN_FLAG_NUMBER_00248"                    Description="Izma preggers Discussion"/>
