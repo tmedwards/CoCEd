@@ -146,7 +146,7 @@ namespace CoCEd.Model
             {
                 var x = (AmfXmlType)obj;
                 if (x.IsDocument) _writer.Write((byte)AmfTypes.XmlDoc);
-                else _writer.Write((byte)AmfTypes.XmlMarker);
+                else _writer.Write((byte)AmfTypes.Xml);
                 WriteXML(x);
             }
             else if (obj is AmfObject)

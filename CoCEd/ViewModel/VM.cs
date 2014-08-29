@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using CoCEd.Common;
@@ -99,7 +100,20 @@ namespace CoCEd.ViewModel
             // however, as long as Fen keeps occasionally pushing crappy version strings (e.g. 0.8.4.8d),
             // that can't happen.  Ideally, I'd like to see them switch to a segmented version system.
 
-            // check the number of properties in an attempt to sniff out corrupted saves before CoCEd explodes in the user's face
+            // Sanity checks: see if the save can be re-saved as-is OR if any of the top-level property names are invalid as identifiers
+            if (!file.CanBeSaved(SerializationFormat.Slot) || HasBadPropertyNames(file))
+            {
+                var box = new ExceptionBox();
+                box.Title = "File could not be read correctly.";
+                box.Message = "CoCEd could not read this file correctly, it is likely corrupted. Cancelling this operation.";
+                box.IsWarning = true;
+                var result = box.ShowDialog(ExceptionBoxButtons.OK);
+
+                Logger.Error(String.Format("{0} CoC data version: {1}.", box.Title, dataVersion));
+                return;
+            }
+
+            // Sanity check: count the number of top-level properties
             Dictionary<string, int> propertyCounts = VM.Instance.Data.PropertyCounts.ToDictionary(p => p.Version, p => p.Count);
             int expectedCount = propertyCounts.ContainsKey(dataVersion) ? propertyCounts[dataVersion] : propertyCounts["latest"];
             if (file.Count < expectedCount)
@@ -107,7 +121,7 @@ namespace CoCEd.ViewModel
                 var box = new ExceptionBox();
                 box.Title = "File has an unexpected number of properties.";
                 box.Message = "CoCEd may not be able to read this file correctly as it has an unexpected number of properties (expected: " + expectedCount + ", found: " + file.Count
-                    + "). Continuing may make CoCEd unstable or cause it to corrupt the file. It is strongly advised that you cancel this operation.\n\nThis may be a false alarm, and CoCEd's property counts may simply need to be updated. If the file loads in CoC without issue, then this is likely the case.";
+                    + "). Continuing may make CoCEd unstable or cause it to corrupt the file. It is strongly advised that you cancel this operation.\n\nThis may be a false alarm, and CoCEd's property counts may simply need to be updated. If the file loads in CoC without apparent issue, then this may be the case.";
                 box.IsWarning = true;
                 var result = box.ShowDialog(ExceptionBoxButtons.Continue, ExceptionBoxButtons.Cancel);
 
@@ -125,6 +139,18 @@ namespace CoCEd.ViewModel
             OnPropertyChanged("FileLabelVisibility");
             VM.Instance.NotifySaveRequiredChanged(false);
             if (FileOpened != null) FileOpened(null, null);
+        }
+
+        // More file corruption testing
+        private bool HasBadPropertyNames(AmfFile file)
+        {
+            var identiferRe = new Regex(@"^[$A-Za-z_][$A-Za-z0-9_]*$");
+            foreach (var pair in file)
+            {
+                if (pair.Key.GetType() != typeof(string)) return true;
+                else if (!identiferRe.IsMatch((string)pair.Key)) return true;
+            }
+            return false;
         }
 
         public void Save(string path, SerializationFormat format)

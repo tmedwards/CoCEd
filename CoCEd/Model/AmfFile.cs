@@ -98,6 +98,27 @@ namespace CoCEd.Model
             private set;
         }
 
+        public bool CanBeSaved(SerializationFormat format)
+        {
+            try
+            {
+                using (var stream = new MemoryStream())
+                {
+                    using (var writer = new AmfWriter(stream))
+                    {
+                        writer.Run(this, "Test", format);
+                        stream.Flush();
+                        stream.Close();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public void Save(string path, SerializationFormat format)
         {
             // Delete existing file

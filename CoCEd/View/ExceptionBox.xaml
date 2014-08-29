@@ -43,6 +43,8 @@
                 <Hyperlink NavigateUri="https://sourceforge.net/p/coced/tickets/" RequestNavigate="requestNavigate">CoCEd's issue tracker</Hyperlink>.
                 (Error also saved to the CoCEd.log file.)
                 <LineBreak/><LineBreak/>
+                Providing the save file which caused the error could also be helpful.
+                <LineBreak/><LineBreak/>
                 Please <TextBlock FontStyle="Italic">do not</TextBlock> sumbit reports to CoC's issue tracker, as the projects are separate.
             </TextBlock>
         </Grid>

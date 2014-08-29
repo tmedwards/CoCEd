@@ -129,7 +129,7 @@ namespace CoCEd.Model
                 case AmfTypes.XmlDoc:
                     return ReadXML(true);
 
-                case AmfTypes.XmlMarker:
+                case AmfTypes.Xml:
                     return ReadXML(false);
 
                 default:
