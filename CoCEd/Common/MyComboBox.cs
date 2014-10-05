@@ -51,7 +51,7 @@ namespace CoCEd.Common
                 var value = (int)SelectedValue;
                 var items = ItemsSource.Cast<XmlEnum>().ToList();
                 if (items.Any(x => x.ID == value)) return;
-                items.Add(new XmlEnum { ID = value, Name = "<unknown>" });
+                items.Add(new XmlEnum { ID = value, Name = "[ID#: " + value + "] <unknown>" });
                 ItemsSource = items;
             }
         }
