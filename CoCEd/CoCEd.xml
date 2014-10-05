@@ -406,13 +406,16 @@
       <PregnancyType ID="10"    Name="Anemone"/>
       <PregnancyType ID="14"    Name="Basilisk"/>
       <PregnancyType ID="18"    Name="Basilisk (Benoit)"/>
-      <PregnancyType ID="9"     Name="Bunny"/>
-      <PregnancyType ID="7"     Name="Centaur (Kelt)"/>
-      <PregnancyType ID="8"     Name="Cowgirls (Marble)"/>
+      <PregnancyType ID="9"     Name="Bunny-girl eggs"/>
+      <PregnancyType ID="7"     Name="Centaur"/>
+      <PregnancyType ID="30"    Name="Centaur (Kelt)"/>
+      <PregnancyType ID="8"     Name="Cow-girls (Marble)"/>
       <PregnancyType ID="17"    Name="Dragon (Ember)"/>
       <PregnancyType ID="15"    Name="Drider"/>
       <PregnancyType ID="20"    Name="Equine-morph (Cotton)"/>
       <PregnancyType ID="24"    Name="Faerie/Phouka"/>
+      <PregnancyType ID="32"    Name="&#x25CA;&#x202F; Fake (&quot;Goo-stuffed&quot;)"/>
+      <PregnancyType ID="33"    Name="&#x25CA;&#x202F; Fake (&quot;Worm-stuffed&quot;)"/>
       <PregnancyType ID="21"    Name="Fox-morph (Urta)"/>
       <PregnancyType ID="23"    Name="Frog-girl"/>
       <PregnancyType ID="16"    Name="Goo-girl"/>
@@ -420,11 +423,14 @@
       <PregnancyType ID="1"     Name="Imp"/>
       <PregnancyType ID="2"     Name="Minotaur"/>
       <PregnancyType ID="11"    Name="Mouse-morph (Amily)"/>
-      <PregnancyType ID="4"     Name="Mouse-morph (Jojo/Corrupt Amily)"/>
+      <PregnancyType ID="29"    Name="Mouse-morph (Jojo)"/>
+      <PregnancyType ID="4"     Name="Mouse-morph (Corrupt &amp; Other)"/>
       <PregnancyType ID="22"    Name="Sand witch"/>
       <PregnancyType ID="19"    Name="Satyr"/>
-      <PregnancyType ID="13"    Name="Spider-morph"/>
       <PregnancyType ID="12"    Name="Shark/Tigershark-morph (Izma)"/>
+      <PregnancyType ID="13"    Name="Spider-morph"/>
+      <PregnancyType ID="31"    Name="&#x25CA;&#x202F; Taoth (&quot;Urta Quest&quot;)"/>
+      <!-- Ovielixir egg "pregnancies" are unchanged, I think. -->
       <PregnancyType ID="10000" Name="Small brown egg"/>
       <PregnancyType ID="10001" Name="Large brown egg"/>
       <PregnancyType ID="10100" Name="Small purple egg"/>
@@ -437,15 +443,17 @@
       <PregnancyType ID="10401" Name="Large white egg"/>
       <PregnancyType ID="10500" Name="Small rubbery black egg"/>
       <PregnancyType ID="10501" Name="Large rubbery black egg"/>
+
     </PregnancyTypes>
     <!--============================================================================================================================================-->
     <AnalPregnancyTypes>
       <AnalPregnancyType ID="0"  Name="None"/>
-      <AnalPregnancyType ID="2"  Name="Bee-girl"/>
-      <AnalPregnancyType ID="3"  Name="Drider"/>
-      <AnalPregnancyType ID="5"  Name="Fake pregnancy (Sand Trap)"/>
+      <AnalPregnancyType ID="26" Name="Bee-girl"/>
+      <AnalPregnancyType ID="15" Name="Drider"/>
+      <AnalPregnancyType ID="32" Name="&#x25CA;&#x202F; Fake (&quot;Goo-stuffed&quot;)"/>
+      <AnalPregnancyType ID="28" Name="Fake (Sand Trap)"/>
       <AnalPregnancyType ID="23" Name="Frog-girl"/>
-      <AnalPregnancyType ID="4"  Name="Insectoid (Sand Trap)"/>
+      <AnalPregnancyType ID="27" Name="Insectoid (Sand Trap)"/>
       <AnalPregnancyType ID="9"  Name="Neon pink egg (Bunny-girl)"/>
       <AnalPregnancyType ID="19" Name="Satyr"/>
     </AnalPregnancyTypes>
@@ -1035,8 +1043,8 @@
   </Statuses>
   <!--============================================================================================================================================-->
   <Flags>
-    <Flag ID="1"    Name="MARBLE_PREGNACY_INCUBATION"/>
-    <Flag ID="2"    Name="MARBLE_PREGNACY_TYPE"                         Description="1 = cow-girl"/>
+    <Flag ID="1"    Name="MARBLE_PREGNANCY_INCUBATION"/>
+    <Flag ID="2"    Name="MARBLE_PREGNANCY_TYPE"                         Description="1 = cow-girl"/>
     <Flag ID="3"    Name="MARBLE_LUST"/>
     <Flag ID="4"    Name="MARBLE_DICK_TYPE"/>
     <Flag ID="5"    Name="MARBLE_DICK_LENGTH"/>
@@ -1105,7 +1113,7 @@
     <Flag ID="68"   Name="EDRYN_PREGNANCY_INCUBATION"                   Description="Starts at 500 hours"/>
     <Flag ID="69"   Name="EDRYN_NUMBER_OF_KIDS"/>
     <Flag ID="70"   Name="EDRYN_NEVER_SEE_AGAIN"                        Description="0 = no, 1 = yes"/>
-    <Flag ID="71"   Name="EDRYN_PREGNAT_AND_NOT_TOLD_PC_YET"            Description="0 = no, 1 = yes"/>
+    <Flag ID="71"   Name="EDRYN_PREGNANT_AND_NOT_TOLD_PC_YET"           Description="0 = no, 1 = yes"/>
     <Flag ID="72"   Name="EDRYN_NEEDS_TO_TALK_ABOUT_KID"                Description="0 = no, 1 = yes"/>
     <Flag ID="73"   Name="EDRYN_GIFT_COUNTER"/>
     <Flag ID="74"   Name="AMILY_MET_PURE_JOJO"                          Description="0 = no, 1 = yes"/>
@@ -1127,7 +1135,7 @@
     <Flag ID="90"   Name="MET_SOPHIE_COUNTER"/>
     <Flag ID="91"   Name="FUCKED_SOPHIE_COUNTER"/>
     <Flag ID="92"   Name="BREASTFEAD_SOPHIE_COUNTER"/>
-    <Flag ID="93"   Name="SOPHIE_WILD_EGG_COUNTDOWN_TIMER"/>
+    <Flag ID="93"   Name="SOPHIE_PREGNANCY_TYPE"/>
     <Flag ID="94"   Name="SOPHIE_EGGS_LAID"/>
     <Flag ID="95"   Name="PC_CURRENTLY_LUSTSTICK_AFFECTED"              Description="0 = no, 1 = yes"/>
     <Flag ID="96"   Name="SOPHIE_ANGRY_AT_PC_COUNTER"/>
@@ -1284,10 +1292,10 @@
     <Flag ID="247"  Name="UNKNOWN_FLAG_NUMBER_00247"                    Description="Genderless centaur madness"/>
     <Flag ID="248"  Name="UNKNOWN_FLAG_NUMBER_00248"                    Description="Izma preggers Discussion"/>
     <Flag ID="249"  Name="UNKNOWN_FLAG_NUMBER_00249"                    Description="Izma pregnancy enabled? 1 = yes"/>
-    <Flag ID="250"  Name="UNKNOWN_FLAG_NUMBER_00250"                    Description="Izma incubation timer"/>
-    <Flag ID="251"  Name="UNKNOWN_FLAG_NUMBER_00251"                    Description="Izma sharkgirls counter"/>
-    <Flag ID="252"  Name="UNKNOWN_FLAG_NUMBER_00252"                    Description="Izma tigersharks counter"/>
-    <Flag ID="253"  Name="UNKNOWN_FLAG_NUMBER_00253"                    Description="Izma new book countdown"/>
+    <Flag ID="250"  Name="IZMA_INCUBATION"/>
+    <Flag ID="251"  Name="IZMA_CHILDREN_SHARKGIRLS"/>
+    <Flag ID="252"  Name="IZMA_CHILDREN_TIGERSHARKS"/>
+    <Flag ID="253"  Name="IZMA_TIME_TILL_NEW_BOOK_AVAILABLE"/>
     <Flag ID="254"  Name="UNKNOWN_FLAG_NUMBER_00254"                    Description="Weapon Rack owned? 1 = yes"/>
     <Flag ID="255"  Name="UNKNOWN_FLAG_NUMBER_00255"                    Description="Armor Rack owned? 2 = yes (should this be 1 = yes ?)"/>
     <Flag ID="256"  Name="UNKNOWN_FLAG_NUMBER_00256"                    Description="PC decided to approach Isabella's camp yet? 1"/>
@@ -1305,10 +1313,10 @@
     <Flag ID="268"  Name="PLAYER_DISARMED_WEAPON_ID"                    Description="weapon storage"/>
     <Flag ID="269"  Name="PLAYER_DISARMED_WEAPON_ATTACK"                Description="weapon damage"/>
     <Flag ID="270"  Name="UNKNOWN_FLAG_NUMBER_00270"                    Description="Times encountered spiderbitches"/>
-    <Flag ID="271"  Name="UNKNOWN_FLAG_NUMBER_00271"                    Description="Spider Preggo Timer"/>
+    <Flag ID="271"  Name="FEMALE_SPIDERMORPH_PREGNANCY_INCUBATION"      Description="Spider Preggo Timer"/>
     <Flag ID="272"  Name="UNKNOWN_FLAG_NUMBER_00272"                    Description="Times Explored Swamp"/>
     <Flag ID="273"  Name="SHOW_SPRITES_FLAG"/>
-    <Flag ID="274"  Name="UNKNOWN_FLAG_NUMBER_00274"                    Description="Rathazul silk armor queue: 1 = armor done"/>
+    <Flag ID="274"  Name="RATHAZUL_SILK_ARMOR_COUNTDOWN"                Description="Rathazul silk armor queue: 1 = armor done"/>
     <Flag ID="275"  Name="UNKNOWN_FLAG_NUMBER_00275"                    Description="Rathazul armor type selector: 1 = armor, 2 = robes"/>
     <Flag ID="276"  Name="UNKNOWN_FLAG_NUMBER_00276"                    Description="Times Encountered Basilisk"/>
     <Flag ID="277"  Name="UNKNOWN_FLAG_NUMBER_00277"                    Description="Times Encountered Drider"/>
@@ -1316,9 +1324,9 @@
     <Flag ID="279"  Name="UNKNOWN_FLAG_NUMBER_00279"                    Description="LOTTIE FIGURE (HIGHER = SLIMMER)"/>
     <Flag ID="280"  Name="UNKNOWN_FLAG_NUMBER_00280"                    Description="LOTTIE CONFIDENCE (HIGHER = AWESOMER)"/>
     <Flag ID="281"  Name="UNKNOWN_FLAG_NUMBER_00281"                    Description="TIMES ENCOUNTERED LOTTIE"/>
-    <Flag ID="282"  Name="UNKNOWN_FLAG_NUMBER_00282"                    Description="Sophie Bimbo Follower?"/>
-    <Flag ID="283"  Name="UNKNOWN_FLAG_NUMBER_00283"                    Description="Sophie Disabled Forever"/>
-    <Flag ID="284"  Name="UNKNOWN_FLAG_NUMBER_00284"                    Description="Has Ovi Event Procced?"/>
+    <Flag ID="282"  Name="UNKNOWN_FLAG_NUMBER_00282"                    Description="Is Sophie Bimbo Follower?"/>
+    <Flag ID="283"  Name="UNKNOWN_FLAG_NUMBER_00283"                    Description="Is Sophie Disabled Forever?"/>
+    <Flag ID="284"  Name="TIMES_SOPHIE_HAS_DRUNK_OVI_ELIXIR"            Description="Has Sophie's Ovi Event Procced?"/>
     <Flag ID="285"  Name="UNKNOWN_FLAG_NUMBER_00285"                    Description="Luststick Resistance builder - decrements by 1 every day, incremented by 1 for every 2 hours of luststick"/>
     <Flag ID="286"  Name="UNKNOWN_FLAG_NUMBER_00286"                    Description="Have Ceraph's belly-button piercing"/>
     <Flag ID="287"  Name="UNKNOWN_FLAG_NUMBER_00287"                    Description="Carrying Careph's token?"/>
@@ -1366,7 +1374,7 @@
     <Flag ID="329"  Name="UNKNOWN_FLAG_NUMBER_00329"                    Description="Minos wasting a turn? 1 = yes"/>
     <Flag ID="330"  Name="UNKNOWN_FLAG_NUMBER_00330"                    Description="Cooldown on minotaur cum repeat messages"/>
     <Flag ID="331"  Name="UNKNOWN_FLAG_NUMBER_00331"                    Description="Times Jojo Milked"/>
-    <Flag ID="332"  Name="UNKNOWN_FLAG_NUMBER_00332"                    Description="Jojo milk cooldown 4 hours"/>
+    <Flag ID="332"  Name="JOJO_COCK_MILKING_COOLDOWN"                   Description="Jojo milk cooldown 4 hours"/>
     <Flag ID="333"  Name="UNKNOWN_FLAG_NUMBER_00333"                    Description="Times PC been cock milked"/>
     <Flag ID="334"  Name="UNKNOWN_FLAG_NUMBER_00334"                    Description="Times fap arena'ed"/>
     <Flag ID="335"  Name="UNKNOWN_FLAG_NUMBER_00335"                    Description="Fap Arena victories"/>
@@ -1532,7 +1540,7 @@
     <Flag ID="495"  Name="HEL_KNOWS_ABOUT_HAKON"/>
     <Flag ID="496"  Name="FOUGHT_WITH_HEL_IN_DUNGEON"/>
     <Flag ID="497"  Name="TOOK_QUEEN_STAFF"/>
-    <Flag ID="498"  Name="VALARIA_AT_CAMP"/>
+    <Flag ID="498"  Name="VELARIA_AT_CAMP"/>
     <Flag ID="499"  Name="VELARIA_FUTA"/>
     <Flag ID="500"  Name="DECLINED_TO_VISIT_REBECCS_VILLAGE"/>
     <Flag ID="501"  Name="TIMES_IN_DEMON_PIT"/>
@@ -1620,7 +1628,7 @@
     <Flag ID="583"  Name="URTA_FERTILE_EGGS"/>
     <Flag ID="584"  Name="URTA_EGG_FORCE_EVENT"/>
     <Flag ID="585"  Name="URTA_TIMES_EGG_PREGGED"/>
-    <Flag ID="586"  Name="URTA_EGG_INCUBATION"/>
+    <Flag ID="586"  Name="URTA_PREGNANCY_TYPE"/>
     <Flag ID="587"  Name="URTA_FLATBELLY_NOTICE"/>
     <Flag ID="588"  Name="EGG_WITCH_COUNTER"/>
     <Flag ID="589"  Name="EGG_WITCH_TYPE"/>
@@ -1756,7 +1764,7 @@
     <Flag ID="719"  Name="URTA_IS_VULQUINE_MENACE"/>
     <Flag ID="720"  Name="URTA_RAPED_MINO_LORD"/>
     <Flag ID="721"  Name="URTA_MINO_AND_SUCCUBI_SLAVE"/>
-    <Flag ID="722"  Name="EDRYN_BIRF_COUNTDOWN"/>
+    <Flag ID="722"  Name="EDRYN_PREGNANCY_TYPE"/>
     <Flag ID="723"  Name="URTA_FERTILE"/>
     <Flag ID="724"  Name="URTA_PREG_EVERYBODY"/>
     <Flag ID="725"  Name="KELT_BREAK_LEVEL"/>
@@ -1796,7 +1804,7 @@
     <Flag ID="759"  Name="CUSTOM_PC_ENABLED"/>
     <Flag ID="760"  Name="SHEILA_CORRUPTION"/>
     <Flag ID="761"  Name="SHEILA_XP"/>
-    <Flag ID="762"  Name="SHEILA_PREG"/>
+    <Flag ID="762"  Name="SHEILA_PREGNANCY_INCUBATION"/>
     <Flag ID="763"  Name="SHEILA_JOEYS"/>
     <Flag ID="764"  Name="SHEILA_DEMON"/>
     <Flag ID="765"  Name="SHEILA_CITE"/>
@@ -2002,7 +2010,7 @@
     <Flag ID="965"  Name="HEL_NTR_TRACKER"/>
     <Flag ID="966"  Name="HEL_BONUS_POINTS"/>
     <Flag ID="967"  Name="HEL_PREGNANCY_INCUBATION"/>
-    <Flag ID="968"  Name="HEL_PREGNANCY_NOTICES"/>
+    <Flag ID="968"  Name="HELIA_PREGNANCY_TYPE"/>
     <Flag ID="969"  Name="HAD_FIRST_HELSPAWN_TALK"/>
     <Flag ID="970"  Name="HELSPAWN_INCEST"/>
     <Flag ID="971"  Name="HEL_TALK_EIGHT"/>
@@ -2210,10 +2218,45 @@
     <Flag ID="1173" Name="PHOUKA_LORE"                                  Description="0 = no lore known, 1 = know their name, 2+ = more lore learned"/>
     <Flag ID="1174" Name="PREGNANCY_CORRUPTION"                         Description="Faerie/Phouka baby corruption (Faerie if &lt;= 0, Phouka if &gt; 0): new pregnancy initializes to 2, lowered by Pure Honey, raised by Phouka Whiskey"/>
     <Flag ID="1175" Name="TREACLE_MINE_YEAR_DONE"/>
-
-    <!-- They skipped some flags, how wonderful... -->
-
+    <Flag ID="1176" Name="PLAYER_INFECTED_HELLHOUNDS"/>
+    <Flag ID="1177" Name="PLAYER_INFECTED_MINOTAURS"/>
+    <Flag ID="1178" Name="PLAYER_INFECTED_IMPS"/>
+    <Flag ID="1179" Name="FEMOIT_UNLOCKED"                              Description="Unlocked the option to feminise Benoit."/>
+    <Flag ID="1180" Name="BIMBO_FEMOIT_UNLOCKED"                        Description="Unlocked the option to bimbofy Benoit."/>
+    <Flag ID="1181" Name="BENOIT_STATUS"                                Description="0 = male, 1 = female, 2 = bimbo"/>
+    <Flag ID="1182" Name="FEMOIT_NEXTDAY_EVENT"                         Description="Proc the event the following day when you visit. Stores the minimum day number that the event can proc on."/>
+    <Flag ID="1183" Name="FEMOIT_TALKED_TO"/>
     <Flag ID="1184" Name="KATHERINE_RANDOM_RECRUITMENT_DISABLED"/>
+    <Flag ID="1185" Name="TIMES_FUCKED_FEMOIT"/>
+    <Flag ID="1186" Name="FEMOIT_EGGS"/>
+    <Flag ID="1187" Name="FEMOIT_INCUBATION"/>
+    <Flag ID="1188" Name="FEMOIT_READY_FOR_EGGS"/>
+    <Flag ID="1189" Name="FEMOIT_FIRST_CLUTCH_MISSED"/>
+    <Flag ID="1190" Name="FEMOIT_EGGS_LAID"/>
+    <Flag ID="1191" Name="FEMOIT_HELPED_LAY"/>
+    <Flag ID="1192" Name="FEMOIT_SPOONED"/>
+    <Flag ID="1193" Name="FEMOIT_NEXTDAY_EVENT_DONE"/>
+    <Flag ID="1194" Name="VALA_HEALED_HONEY"/>
+    <Flag ID="1195" Name="AMILY_PREGNANCY_TYPE"/>
+    <Flag ID="1196" Name="AMILY_BUTT_PREGNANCY_TYPE"/>
+    <Flag ID="1197" Name="FEMALE_SPIDERMORPH_PREGNANCY_TYPE"/>
+    <Flag ID="1198" Name="PHYLLA_VAGINAL_PREGNANCY_TYPE"/>
+    <Flag ID="1199" Name="TAMANI_PREGNANCY_TYPE"/>
+    <Flag ID="1200" Name="TAMANI_PREGNANCY_INCUBATION"/>
+    <Flag ID="1201" Name="TAMANI_PREGNANCY_COUNT"                       Description="Just how many has she got stuffed in there?"/>
+    <Flag ID="1202" Name="TAMANI_TIMES_IMPREGNATED"/>
+    <Flag ID="1203" Name="TAMANI_MET"/>
+    <Flag ID="1204" Name="TAMANI_NUMBER_OF_DAUGHTERS"/>
+    <Flag ID="1205" Name="TAMANI_DAUGHTERS_PREGNANCY_TYPE"/>
+    <Flag ID="1206" Name="TAMANI_DAUGHTERS_PREGNANCY_COUNT"/>
+    <Flag ID="1207" Name="IZMA_PREGNANCY_TYPE"/>
+    <Flag ID="1208" Name="EMBER_PREGNANCY_TYPE"/>
+    <Flag ID="1209" Name="JOJO_BUTT_PREGNANCY_TYPE"/>
+    <Flag ID="1210" Name="SHEILA_DISABLED"                              Description="1 = told to avoid or you refused apology, 2 = baby issues, 3 = worm infested, 4 = Jojo's 'wife'"/>
+    <Flag ID="1211" Name="SHEILA_PREGNANCY_TYPE"/>
+    <Flag ID="1212" Name="KELLY_PREGNANCY_TYPE"/>
+    <Flag ID="1213" Name="KELLY_KIDS_MALE"                              Description="Tracks number of sons with Kelly. Total number of children is stored in KELLY_KIDS (FLAG: 908)."/>
+    <Flag ID="1214" Name="FUCK_OFF_THEIVING_RAPHAEL"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
@@ -2222,7 +2265,7 @@
   </Flags>
   <!--============================================================================================================================================-->
   <PropertyCounts>
-    <!-- Taken from Corruption-of-Champions\classes\classes\Saves.as (line ~30) -->
+    <!-- Taken from Corruption-of-Champions\classes\classes\Saves.as (line ~41) -->
     <PropertyCount Version="latest"  Count="119"/>
     <PropertyCount Version="0.8.4.3" Count="119"/>
     <PropertyCount Version="0.8.3f8" Count="125"/>

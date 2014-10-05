@@ -98,13 +98,13 @@
                 </common:AutoGrid>
 
                 <common:AutoGrid Margin="0,30,0,0">
-                    <TextBlock              Text="Pregnancy"/>
+                    <TextBlock              Text="Pregnancy&#x202F;*" ToolTip="A &#x25CA; denotes special pregnancies.  Do not set these manually."/>
                     <common:MyComboBox SelectedValue="{Binding Game.PregnancyType}" ItemsSource="{Binding Data.Body.PregnancyTypes}"/>
 
                     <TextBlock              Text="Remaining&#x202F;*" IsEnabled="{Binding Game.IsPregnancyEnabled}" ToolTip="A virgin vagina will put pregnancy on hold. With the diapause perk it will only progress when you absorb fluids."/>
                     <common:MyNumericBox    Value="{Binding Game.PregnancyTime}" Unit="hours" IsEnabled="{Binding Game.IsPregnancyEnabled}"/>
 
-                    <TextBlock              Text="Butt pregnancy"/>
+                    <TextBlock              Text="Butt pregnancy&#x202F;*" ToolTip="A &#x25CA; denotes special pregnancies.  Do not set these manually."/>
                     <common:MyComboBox SelectedValue="{Binding Game.ButtPregnancyType}" ItemsSource="{Binding Data.Body.AnalPregnancyTypes}"/>
 
                     <TextBlock              Text="Remaining&#x202F;*" IsEnabled="{Binding Game.IsButtPregnancyEnabled}" ToolTip="With the diapause perk it will only progress when you absorb fluids."/>
