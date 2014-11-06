@@ -2257,6 +2257,44 @@
     <Flag ID="1212" Name="KELLY_PREGNANCY_TYPE"/>
     <Flag ID="1213" Name="KELLY_KIDS_MALE"                              Description="Tracks number of sons with Kelly. Total number of children is stored in KELLY_KIDS (FLAG: 908)."/>
     <Flag ID="1214" Name="FUCK_OFF_THEIVING_RAPHAEL"/>
+    <Flag ID="1215" Name="VALA_TIMES_CONSENSUAL_SEX"/>
+    <Flag ID="1216" Name="KATHERINE_DICK_FORM"/>
+    <Flag ID="1217" Name="KATHERINE_BREAST_SIZE"/>
+    <Flag ID="1218" Name="KATHERINE_HOURS_SINCE_CUM"/>
+    <Flag ID="1219" Name="KATHERINE_SEXUAL_EXPERIENCE"/>
+    <Flag ID="1220" Name="KATHERINE_CLOTHES"/>
+    <Flag ID="1221" Name="KATHERINE_CLOTHES_PREF"/>
+    <Flag ID="1222" Name="KATHERINE_CLOTHES_WORN"/>
+    <Flag ID="1223" Name="KATHERINE_HAIR_COLOR"/>
+    <Flag ID="1224" Name="KATHERINE_IS_CAT_GIRL"/>
+    <Flag ID="1225" Name="KATHERINE_LOCATION"/>
+    <Flag ID="1226" Name="KATHERINE_TRAINING"/>
+    <Flag ID="1227" Name="KATHERINE_SUB_FLAGS"/>
+    <Flag ID="1228" Name="KATHERINE_AMILY_AFFECTION"/>
+    <Flag ID="1229" Name="KATHERINE_COTTON_AFFECTION"/>
+    <Flag ID="1230" Name="KATHERINE_EDRYN_AFFECTION"/>
+    <Flag ID="1231" Name="KATHERINE_HELIA_AFFECTION"/>
+    <Flag ID="1232" Name="KATHERINE_URTA_AFFECTION"/>
+    <Flag ID="1233" Name="KATHERINE_URTA_DATE"/>
+    <Flag ID="1234" Name="KATHERINE_URTA_TIMES_SEX"/>
+    <Flag ID="1235" Name="KATHERINE_VALA_AFFECTION"/>
+    <Flag ID="1236" Name="KATHERINE_VALA_DATE"/>
+    <Flag ID="1237" Name="KATHERINE_VALA_TIMES_SEX"/>
+    <Flag ID="1238" Name="SAVE_FILE_INTEGER_FORMAT_VERSION"/>
+    <Flag ID="1239" Name="D3_DISCOVERED"/>
+    <Flag ID="1240" Name="D3_ENTERED_MAGPIEHALL"/>
+    <Flag ID="1241" Name="D3_BASILISKS_REMOVED_FROM_MAGPIE_HALL"/>
+    <Flag ID="1242" Name="D3_MIRRORS_SHATTERED"/>
+    <Flag ID="1243" Name="D3_JEAN_CLAUDE_DEFEATED"/>
+    <Flag ID="1244" Name="D3_DOPPLEGANGER_DEFEATED"/>
+    <Flag ID="1245" Name="D3_MECHANIC_LAST_GREET"/>
+    <Flag ID="1246" Name="D3_MECHANIC_FIGHT_RESULT"/>
+    <Flag ID="1247" Name="D3_MECHANIC_COCK_TYPE_SELECTION"/>
+    <Flag ID="1248" Name="D3_STATUE_DEFEATED"/>
+    <Flag ID="1249" Name="D3_GARDENER_DEFEATED"/>
+    <Flag ID="1250" Name="D1_OMNIBUS_KILLED"/>
+    <Flag ID="1251" Name="D3_CENTAUR_DEFEATED"/>
+    <Flag ID="1252" Name="D3_EGGS_AVAILABLE"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
