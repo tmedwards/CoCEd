@@ -41,9 +41,11 @@
       <SkinTone>black</SkinTone>
       <SkinTone>blue</SkinTone>
       <SkinTone>brown</SkinTone>
+      <SkinTone>cerulean</SkinTone>
       <SkinTone>dark</SkinTone>
       <SkinTone>dark green</SkinTone>
       <SkinTone>ebony</SkinTone>
+      <SkinTone>emerald</SkinTone>
       <SkinTone>ghostly pale</SkinTone>
       <SkinTone>gray</SkinTone>
       <SkinTone>grayish-blue</SkinTone>
@@ -85,7 +87,9 @@
       <HairColor>blonde</HairColor>
       <HairColor>blue</HairColor>
       <HairColor>brown</HairColor>
+      <HairColor>cerulean</HairColor>
       <HairColor>deep red</HairColor>
+      <HairColor>emerald</HairColor>
       <HairColor>golden blonde</HairColor>
       <HairColor>gray</HairColor>
       <HairColor>green</HairColor>
