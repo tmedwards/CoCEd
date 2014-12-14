@@ -1098,78 +1098,84 @@ namespace CoCEd.ViewModel
             set { GetFlag(1016).SetValue(value); }
         }
 
-        public bool ExploredTelAdre
+        public bool UnlockedTelAdre
         {
             get { return GetStatus("Tel'Adre").Value1 >= 1; }
             set
             {
                 GetStatus("Tel'Adre").IsOwned = value;
-                if (value && !ExploredTelAdre) GetStatus("Tel'Adre").Value1 = 1;
+                if (value && !UnlockedTelAdre) GetStatus("Tel'Adre").Value1 = 1;
             }
         }
 
-        public bool ExploredBizarreBazaar
+        public bool UnlockedBizarreBazaar
         {
             get { return GetFlag(211).AsInt() == 1; }
             set { GetFlag(211).SetValue(value ? 1 : 0); }
         }
 
-        public bool ExploredFarm
+        public bool UnlockedFarm
         {
             get { return GetStatus("Met Whitney").Value1 == 2; }
             set
             {
                 GetStatus("Met Whitney").IsOwned = value;
-                if (value && !ExploredFarm) GetStatus("Met Whitney").Value1 = 2;
+                if (value && !UnlockedFarm) GetStatus("Met Whitney").Value1 = 2;
             }
         }
 
-        public bool ExploredOwca
+        public bool UnlockedOwca
         {
             get { return GetFlag(506).AsInt() == 1; }
             set { GetFlag(506).SetValue(value ? 1 : 0); }
         }
 
-        public bool ExploredTownRuins
+        public bool UnlockedTownRuins
         {
             get { return GetFlag(44).AsInt() == 1; }
             set { GetFlag(44).SetValue(value ? 1 : 0); }
         }
 
-        public bool ExploredBarber
+        public bool UnlockedSalon
         {
             get { return GetStatus("hairdresser meeting").IsOwned; }
             set { GetStatus("hairdresser meeting").IsOwned = value; }
         }
 
-        public bool ExploredBoat
+        public bool UnlockedBoat
         {
             get { return GetStatus("Boat Discovery").IsOwned; }
             set { GetStatus("Boat Discovery").IsOwned = value; }
         }
 
-        public bool ExploredDungeonFactory
+        public bool UnlockedCathedral
+        {
+            get { return GetFlag(1165).AsInt() == 1; }
+            set { GetFlag(1165).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedDungeonFactory
         {
             get { return GetStatus("Found Factory").IsOwned; }
             set { GetStatus("Found Factory").IsOwned = value; }
         }
 
-        public bool ExploredDungeonDeepCave
+        public bool UnlockedDungeonDeepCave
         {
             get { return GetFlag(113).AsInt() == 1; }
             set { GetFlag(113).SetValue(value ? 1 : 0); }
         }
 
-        public bool ExploredDungeonDesertCave
+        public bool UnlockedDungeonStronghold
+        {
+            get { return GetFlag(1239).AsInt() == 1; }
+            set { GetFlag(1239).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedDungeonDesertCave
         {
             get { return GetFlag(856).AsInt() == 1; }
             set { GetFlag(856).SetValue(value ? 1 : 0); }
-        }
-
-        public bool ExploredCathedral
-        {
-            get { return GetFlag(1165).AsInt() == 1; }
-            set { GetFlag(1165).SetValue(value ? 1 : 0); }
         }
 
 

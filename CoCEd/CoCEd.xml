@@ -693,7 +693,7 @@
     <KeyItem Name="Opal Ring" Description="Obtained from Scylla if the PC has high cum production and has agreed to be Scylla's sole source of cum."/>
     <KeyItem Name="Plain Onahole" Description="Masturbation aid."/>
     <KeyItem Name="Potent Mixture" Description="Used to corrupt Amily in the town ruins."/>
-    <KeyItem Name="Ruby Heart" Description="Inactive remnant of PC's goo-girl Slime Core.  Will reactivate if the PC becomes a goo-girl again."/>
+    <KeyItem Name="Ruby Heart" Description="Inactive remnant of the PC's goo-girl Slime Core.  Will reactivate if the PC becomes a goo-girl again."/>
     <KeyItem Name="Self-Stimulation Belt" Description="Masturbation aid."/>
     <KeyItem Name="Sheila's Lethicite" Description="Obtained from Corrupt Sheila."/>
     <KeyItem Name="Silver Kitty-Bell" Description="Obtained after the vagrant cats encounter.  Enables a scene with Scylla which unlocks the cat-morph, Katherine."/>
@@ -702,7 +702,7 @@
     <KeyItem Name="Supervisor's Key" Description="Obtained from the Omnibus Overseer's desk in the demon factory.  Used to unlock the Premium Products room there."/>
     <KeyItem Name="Traveler's Guide" Description="Bought from Giacomo.  Gives you the option to avoid the Bee-girl encounter."/>
     <KeyItem Name="Yoga Guide" Description="Bought from Giacomo.  Needed by Centaur and Naga PCs before they can join Cotton for yoga."/>
-    <KeyItem Name="Zetaz's Map" Description="Will allow the PC to find the final dungeon when it is implemented."/>
+    <KeyItem Name="Zetaz's Map" Description="Allows the PC to find Lethice's Stronghold (D3) in the High Mountains."/>
   </KeyItems>
   <!--============================================================================================================================================-->
   <Perks>
@@ -2299,6 +2299,7 @@
     <Flag ID="1250" Name="D1_OMNIBUS_KILLED"/>
     <Flag ID="1251" Name="D3_CENTAUR_DEFEATED"/>
     <Flag ID="1252" Name="D3_EGGS_AVAILABLE"/>
+    <Flag ID="1253" Name="NOT_HELPED_ARIAN_TODAY"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
