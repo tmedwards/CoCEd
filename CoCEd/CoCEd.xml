@@ -447,7 +447,6 @@
       <PregnancyType ID="10401" Name="Large white egg"/>
       <PregnancyType ID="10500" Name="Small rubbery black egg"/>
       <PregnancyType ID="10501" Name="Large rubbery black egg"/>
-
     </PregnancyTypes>
     <!--============================================================================================================================================-->
     <AnalPregnancyTypes>
@@ -685,20 +684,22 @@
     <KeyItem Name="Hentai Comic" Description="Can be given to the incubus mechanic in the factory."/>
     <KeyItem Name="Holli's Ashes" Description="Obtained by killing Holli.  You monster."/>
     <KeyItem Name="Iron Key" Description="Allows further progression into the Demon Factory."/>
-    <KeyItem Name="Jojo's Talisman" Description="Given to the player by Jojo if a follower and Hollicynthea is allowed to grow to maturity. Jojo then leaves the camp."/>
+    <KeyItem Name="Jojo's Talisman" Description="Given to the player by Jojo, if a follower and Hollicynthea is allowed to grow to maturity.  Jojo then leaves the camp."/>
+    <KeyItem Name="Laybans" Description="Obtained from Doppleganger in Lethice's Stronghold (D3).  Gives some protection against basilisk gazes (in stronghold only)."/>
     <KeyItem Name="Marae's Lethicite" Description="Can be stolen from Corrupt Marae by quick PCs."/>
     <KeyItem Name="Nieve's Tear" Description="[Seasonal] Given as a memento after your ice spirit lover melts after the winter event."/>
     <KeyItem Name="North Star Key" Description="[Seasonal] Winding-key for the clockwork-man, North."/>
-    <KeyItem Name="Onyx Token - Ceraph's" Description="Obtained from Ceraph when she is a follower, if the PC chose to carry the token instead of a belly-button piercing."/>
-    <KeyItem Name="Opal Ring" Description="Obtained from Scylla if the PC has high cum production and has agreed to be Scylla's sole source of cum."/>
+    <KeyItem Name="Onyx Token - Ceraph's" Description="Obtained from Ceraph, if a follower and the PC chooses to carry her token instead of using it as a belly-button piercing."/>
+    <KeyItem Name="Opal Ring" Description="Obtained from Scylla, if the PC has high cum production and has agreed to be Scylla's sole source of cum."/>
     <KeyItem Name="Plain Onahole" Description="Masturbation aid."/>
     <KeyItem Name="Potent Mixture" Description="Used to corrupt Amily in the town ruins."/>
     <KeyItem Name="Ruby Heart" Description="Inactive remnant of the PC's goo-girl Slime Core.  Will reactivate if the PC becomes a goo-girl again."/>
     <KeyItem Name="Self-Stimulation Belt" Description="Masturbation aid."/>
     <KeyItem Name="Sheila's Lethicite" Description="Obtained from Corrupt Sheila."/>
     <KeyItem Name="Silver Kitty-Bell" Description="Obtained after the vagrant cats encounter.  Enables a scene with Scylla which unlocks the cat-morph, Katherine."/>
-    <KeyItem Name="Spare Key to Urta's House" Description="Obtained from Urta after her fertility quest."/>
-    <KeyItem Name="Super Reducto" Description="Obtained from Rathazul after the Milk Slave becomes a follower."/>
+    <KeyItem Name="Spare Key to Urta's House" Description="Obtained from Urta, after her fertility quest."/>
+    <KeyItem Name="Stone Statue Lethicite" Description="Obtained from Stone Statue in Lethice's Stronghold (D3)."/>
+    <KeyItem Name="Super Reducto" Description="Obtained from Rathazul, after the Milk Slave becomes a follower."/>
     <KeyItem Name="Supervisor's Key" Description="Obtained from the Omnibus Overseer's desk in the demon factory.  Used to unlock the Premium Products room there."/>
     <KeyItem Name="Traveler's Guide" Description="Bought from Giacomo.  Gives you the option to avoid the Bee-girl encounter."/>
     <KeyItem Name="Yoga Guide" Description="Bought from Giacomo.  Needed by Centaur and Naga PCs before they can join Cotton for yoga."/>
