@@ -93,7 +93,7 @@ namespace CoCEd.Model
                 {
                     path = basePath;
 
-                    // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\
+                    // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects
                     path = Path.Combine(path, middle[i]);
                     if (!Directory.Exists(path)) continue;
 

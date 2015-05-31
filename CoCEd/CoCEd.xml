@@ -10,40 +10,34 @@
     </SkinTypes>
     <!--============================================================================================================================================-->
     <SkinDescriptions>
-      <SkinDescription>bark</SkinDescription>
-      <SkinDescription>covering</SkinDescription>
-      <SkinDescription>feathers</SkinDescription>
       <SkinDescription>fur</SkinDescription>
       <SkinDescription>scales</SkinDescription>
-      <SkinDescription>shaggy fur</SkinDescription>
       <SkinDescription>skin</SkinDescription>
-      <SkinDescription>skin and scales</SkinDescription>
     </SkinDescriptions>
     <!--============================================================================================================================================-->
     <SkinAdjectives>
+      <SkinAdjective></SkinAdjective>
       <SkinAdjective>ashen</SkinAdjective>
-      <SkinAdjective>flick</SkinAdjective>
       <SkinAdjective>freckled</SkinAdjective>
       <SkinAdjective>latex</SkinAdjective>
       <SkinAdjective>milky</SkinAdjective>
-      <SkinAdjective>silky</SkinAdjective>
+      <SkinAdjective>rubber</SkinAdjective>
       <SkinAdjective>slimy</SkinAdjective>
       <SkinAdjective>smooth</SkinAdjective>
-      <SkinAdjective>rubber</SkinAdjective>
       <SkinAdjective>thick</SkinAdjective>
     </SkinAdjectives>
     <!--============================================================================================================================================-->
     <SkinTones>
       <SkinTone>albino</SkinTone>
       <SkinTone>aphotic blue-black</SkinTone>
-      <SkinTone>ashen</SkinTone>
       <SkinTone>ashen grayish-blue</SkinTone>
+      <SkinTone>ashen</SkinTone>
       <SkinTone>black</SkinTone>
       <SkinTone>blue</SkinTone>
       <SkinTone>brown</SkinTone>
       <SkinTone>cerulean</SkinTone>
-      <SkinTone>dark</SkinTone>
       <SkinTone>dark green</SkinTone>
+      <SkinTone>dark</SkinTone>
       <SkinTone>ebony</SkinTone>
       <SkinTone>emerald</SkinTone>
       <SkinTone>ghostly pale</SkinTone>
@@ -52,21 +46,22 @@
       <SkinTone>green</SkinTone>
       <SkinTone>indigo</SkinTone>
       <SkinTone>light</SkinTone>
+      <SkinTone>milky white</SkinTone>
       <SkinTone>olive</SkinTone>
-      <SkinTone>orange</SkinTone>
       <SkinTone>orange and black striped</SkinTone>
-      <SkinTone>pale</SkinTone>
-      <SkinTone>pale yellow</SkinTone>
+      <SkinTone>orange</SkinTone>
       <SkinTone>pale white</SkinTone>
+      <SkinTone>pale yellow</SkinTone>
+      <SkinTone>pale</SkinTone>
       <SkinTone>pink</SkinTone>
       <SkinTone>purple</SkinTone>
       <SkinTone>red</SkinTone>
       <SkinTone>rough gray</SkinTone>
       <SkinTone>sable</SkinTone>
+      <SkinTone>sanguine</SkinTone>
       <SkinTone>shiny black</SkinTone>
       <SkinTone>silver</SkinTone>
       <SkinTone>tan</SkinTone>
-      <SkinTone>yellow</SkinTone>
       <SkinTone>white</SkinTone>
     </SkinTones>
     <!--============================================================================================================================================-->
@@ -80,17 +75,20 @@
     <!--============================================================================================================================================-->
     <HairColors>
       <HairColor>auburn</HairColor>
-      <HairColor>black</HairColor>
       <HairColor>black and orange</HairColor>
+      <HairColor>black and white spotted</HairColor>
       <HairColor>black and yellow</HairColor>
+      <HairColor>black</HairColor>
       <HairColor>blond</HairColor>
       <HairColor>blonde</HairColor>
       <HairColor>blue</HairColor>
       <HairColor>brown</HairColor>
       <HairColor>cerulean</HairColor>
+      <HairColor>dark blue</HairColor>
       <HairColor>deep red</HairColor>
       <HairColor>emerald</HairColor>
       <HairColor>golden blonde</HairColor>
+      <HairColor>golden-blonde</HairColor>
       <HairColor>gray</HairColor>
       <HairColor>green</HairColor>
       <HairColor>light blonde</HairColor>
@@ -99,25 +97,31 @@
       <HairColor>pink</HairColor>
       <HairColor>platinum blonde</HairColor>
       <HairColor>purple</HairColor>
-      <HairColor>purplish-black</HairColor>
       <HairColor>red</HairColor>
+      <HairColor>reddish-orange</HairColor>
       <HairColor>sandy blonde</HairColor>
+      <HairColor>sandy brown</HairColor>
       <HairColor>shiny black</HairColor>
-      <HairColor>silver</HairColor>
       <HairColor>silver blonde</HairColor>
       <HairColor>silver-white</HairColor>
-      <HairColor>white</HairColor>
+      <HairColor>silver</HairColor>
       <HairColor>white and black</HairColor>
+      <HairColor>white</HairColor>
       <HairColor>latex-textured auburn</HairColor>
-      <HairColor>latex-textured black</HairColor>
       <HairColor>latex-textured black and orange</HairColor>
+      <HairColor>latex-textured black and white spotted</HairColor>
       <HairColor>latex-textured black and yellow</HairColor>
+      <HairColor>latex-textured black</HairColor>
       <HairColor>latex-textured blond</HairColor>
       <HairColor>latex-textured blonde</HairColor>
       <HairColor>latex-textured blue</HairColor>
       <HairColor>latex-textured brown</HairColor>
+      <HairColor>latex-textured cerulean</HairColor>
+      <HairColor>latex-textured dark blue</HairColor>
       <HairColor>latex-textured deep red</HairColor>
+      <HairColor>latex-textured emerald</HairColor>
       <HairColor>latex-textured golden blonde</HairColor>
+      <HairColor>latex-textured golden-blonde</HairColor>
       <HairColor>latex-textured gray</HairColor>
       <HairColor>latex-textured green</HairColor>
       <HairColor>latex-textured light blonde</HairColor>
@@ -126,25 +130,31 @@
       <HairColor>latex-textured pink</HairColor>
       <HairColor>latex-textured platinum blonde</HairColor>
       <HairColor>latex-textured purple</HairColor>
-      <HairColor>latex-textured purplish-black</HairColor>
       <HairColor>latex-textured red</HairColor>
+      <HairColor>latex-textured reddish-orange</HairColor>
       <HairColor>latex-textured sandy blonde</HairColor>
+      <HairColor>latex-textured sandy brown</HairColor>
       <HairColor>latex-textured shiny black</HairColor>
-      <HairColor>latex-textured silver</HairColor>
       <HairColor>latex-textured silver blonde</HairColor>
       <HairColor>latex-textured silver-white</HairColor>
-      <HairColor>latex-textured white</HairColor>
+      <HairColor>latex-textured silver</HairColor>
       <HairColor>latex-textured white and black</HairColor>
+      <HairColor>latex-textured white</HairColor>
       <HairColor>rubbery auburn</HairColor>
-      <HairColor>rubbery black</HairColor>
       <HairColor>rubbery black and orange</HairColor>
+      <HairColor>rubbery black and white spotted</HairColor>
       <HairColor>rubbery black and yellow</HairColor>
+      <HairColor>rubbery black</HairColor>
       <HairColor>rubbery blond</HairColor>
       <HairColor>rubbery blonde</HairColor>
       <HairColor>rubbery blue</HairColor>
       <HairColor>rubbery brown</HairColor>
+      <HairColor>rubbery cerulean</HairColor>
+      <HairColor>rubbery dark blue</HairColor>
       <HairColor>rubbery deep red</HairColor>
+      <HairColor>rubbery emerald</HairColor>
       <HairColor>rubbery golden blonde</HairColor>
+      <HairColor>rubbery golden-blonde</HairColor>
       <HairColor>rubbery gray</HairColor>
       <HairColor>rubbery green</HairColor>
       <HairColor>rubbery light blonde</HairColor>
@@ -153,15 +163,16 @@
       <HairColor>rubbery pink</HairColor>
       <HairColor>rubbery platinum blonde</HairColor>
       <HairColor>rubbery purple</HairColor>
-      <HairColor>rubbery purplish-black</HairColor>
       <HairColor>rubbery red</HairColor>
+      <HairColor>rubbery reddish-orange</HairColor>
       <HairColor>rubbery sandy blonde</HairColor>
+      <HairColor>rubbery sandy brown</HairColor>
       <HairColor>rubbery shiny black</HairColor>
-      <HairColor>rubbery silver</HairColor>
       <HairColor>rubbery silver blonde</HairColor>
       <HairColor>rubbery silver-white</HairColor>
-      <HairColor>rubbery white</HairColor>
+      <HairColor>rubbery silver</HairColor>
       <HairColor>rubbery white and black</HairColor>
+      <HairColor>rubbery white</HairColor>
     </HairColors>
     <!--============================================================================================================================================-->
     <FaceTypes>
@@ -271,22 +282,15 @@
     </WingTypes>
     <!--============================================================================================================================================-->
     <WingDescriptions>
-      <WingDescription>non-existant</WingDescription>
-      <WingDescription>fluffy feathery</WingDescription>
+      <WingDescription>non-existent</WingDescription>
       <WingDescription>giant dragonfly</WingDescription>
-      <WingDescription>huge</WingDescription>
-      <WingDescription>imp wings</WingDescription>
-      <WingDescription>insect-like wings</WingDescription>
+      <WingDescription>large bee-like</WingDescription>
       <WingDescription>large, bat-like</WingDescription>
       <WingDescription>large, draconic</WingDescription>
       <WingDescription>large, feathered</WingDescription>
-      <WingDescription>large bee-like</WingDescription>
-      <WingDescription>large feathery wings</WingDescription>
-      <WingDescription>small</WingDescription>
-      <WingDescription>small, draconic</WingDescription>
       <WingDescription>small bee-like</WingDescription>
+      <WingDescription>small, draconic</WingDescription>
       <WingDescription>tiny, bat-like</WingDescription>
-      <WingDescription>tiny hidden</WingDescription>
     </WingDescriptions>
     <!--============================================================================================================================================-->
     <LowerBodyTypes>
@@ -466,7 +470,7 @@
     <ItemGroup Name="Misc" Category="Other">
       <Item ID="B.Chitn" Name="Black Chitin"/>
       <Item ID="B. Book" Name="Black Book"/>
-      <Item ID="GldStat" Name="Golden Statue" Description="Enables the Meditate action at the kitsune shrine in the Deepwoods.  Can also be stolen and sold for gems."/>
+      <Item ID="GldStat" Name="Golden Statue"  Description="Enables the Meditate action at the kitsune shrine in the Deepwoods.  Can also be stolen and sold for gems."/>
       <Item ID="GreenGl" Name="Green Gel"/>
       <Item ID="T.SSilk" Name="Tough Silk"/>
       <Item ID="W. Book" Name="White Book"/>
@@ -477,14 +481,15 @@
       <Item ID="BimboLq" Name="Bimbo Liqueur"/>
       <Item ID="BC Beer" Name="Black Cat Beer"/>
       <Item ID="BroBrew" Name="Bro Brew"/>
+      <Item ID="Cerul P" Name="Cerulean Potion"/>
       <Item ID="Coal   " Name="Coal"/>
       <Item ID="Debimbo" Name="Debimbo"/>
+      <Item ID="FishFil" Name="Fish Fillet"/>
       <Item ID="F.Draft" Name="Fuck Draft"/>
       <Item ID="GodMead" Name="God's Mead"/>
       <Item ID="GroPlus" Name="GroPlus"/>
       <Item ID="ExtSerm" Name="Hair Extension Serum"/>
       <Item ID="HrblCnt" Name="Herbal Contraceptive"/>
-      <Item ID="FishFil" Name="Fish Fillet"/>
       <Item ID="IzyMilk" Name="Isabella's Milk"/>
       <Item ID="KitGift" Name="Kitsune's Gift"/>
       <Item ID="Lactaid" Name="Lactaid"/>
@@ -495,19 +500,18 @@
       <Item ID="NumbRox" Name="Numb Rocks"/>
       <Item ID="OviElix" Name="Oviposition Elixir"/>
       <Item ID="PeppWht" Name="Peppermint White"/>
-      <Item ID="P_Whsky" Name="Phouka Whiskey" Description="Increases Faerie/Phouka pregnancy corruption."/>
-      <Item ID="PrnsPkr" Name="Princess Pucker" Description="Reduces lust and either libido or sensitivity.  Also has a random chance to change hair color to pink."/>
-      <Item ID="P.Pearl" Name="Pure Pearl"/>
+      <Item ID="P_Whsky" Name="Phouka Whiskey"              Description="Increases Faerie/Phouka pregnancy corruption."/>
+      <Item ID="PrnsPkr" Name="Princess Pucker"             Description="Reduces lust and either libido or sensitivity.  Also has a random chance to change hair color to pink."/>
       <Item ID="PurPeac" Name="Pure Peach"/>
+      <Item ID="P.Pearl" Name="Pure Pearl"/>
       <Item ID="PSDelit" Name="Purified Succubi's Delite"/>
       <Item ID="Reducto" Name="Reducto"/>
+      <Item ID="Smart T" Name="Scholar's Tea"/>
       <Item ID="SensDrf" Name="Sensitivity Draft"/>
       <Item ID="SheepMk" Name="Sheep Milk"/>
       <Item ID="SDelite" Name="Succubi's Delight"/>
       <Item ID="S.Dream" Name="Succubus' Dream"/>
       <Item ID="TScroll" Name="Tattered Scroll"/>
-      <Item ID="Cerul P" Name="Cerulean Potion"/>
-      <Item ID="Smart T" Name="Scholar's Tea"/>
       <Item ID="Vital T" Name="Vitality Tincture"/>
       <Item ID="W.Stick" Name="Wingstick"/>
     </ItemGroup>
@@ -522,7 +526,7 @@
       <Item ID="FoxJewl" Name="Fox Jewel"/>
       <Item ID="Gob.Ale" Name="Goblin Ale"/>
       <Item ID="GldSeed" Name="Golden Seed"/>
-      <Item ID="Hummus " Name="Hummus" Description="In-game cheat item.  Reverts PC to a basic human form."/>
+      <Item ID="Hummus " Name="Hummus"                  Description="In-game cheat item.  Reverts PC to a basic human form."/>
       <Item ID="ImpFood" Name="Imp Food"/>
       <Item ID="IncubiD" Name="Incubi Draft"/>
       <Item ID="KangaFt" Name="Kanga Fruit"/>
@@ -534,7 +538,7 @@
       <Item ID="MystJwl" Name="Mystic Jewel"/>
       <Item ID="NPnkEgg" Name="Neon Pink Egg"/>
       <Item ID="ProBova" Name="ProBova"/>
-      <Item ID="PurHony" Name="Pure Honey" Description="If pregnant with Faerie/Phouka, will decrease pregnancy corruption rather than giving its normal effect."/>
+      <Item ID="PurHony" Name="Pure Honey"              Description="If pregnant with Faerie/Phouka, will decrease pregnancy corruption rather than giving its normal effect."/>
       <Item ID="P.Draft" Name="Purified Incubi Draft"/>
       <Item ID="P.LBova" Name="Purified LaBova"/>
       <Item ID="P.S.Mlk" Name="Purified Succubi Milk"/>
@@ -576,7 +580,7 @@
       <Item ID="L.PrpEg" Name="Large Purple Egg"/>
       <Item ID="L.BlkEg" Name="Large Black Egg"/>
       <Item ID="L.WhtEg" Name="Large White Egg"/>
-      <Item ID="DrgnEgg" Name="Dragon Egg" Description="Reduces fatigue by 20 and, for the DragonFire breath special attack, either removes the existing cooldown or gives a 50% bonus on your next use."/>
+      <Item ID="DrgnEgg" Name="Dragon Egg"         Description="Reduces fatigue by 20 and, for the DragonFire breath special attack, either removes the existing cooldown or gives a 50% bonus on your next use."/>
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Dyes" Category="Other">
@@ -594,7 +598,7 @@
     </ItemGroup>
     <!--============================================================================================================================================-->
     <ItemGroup Name="Weapons" Category="Weapon">
-      <Item ID="B.Sword" Name="Beautiful Sword" Description="Has a maximum PC corruption tolerance of 34."/>
+      <Item ID="B.Sword" Name="Beautiful Sword"        Description="Has a maximum PC corruption tolerance of 34."/>
       <Item ID="Whip   " Name="Coiled Whip"/>
       <Item ID="E.Staff" Name="Eldritch Staff"/>
       <Item ID="H.Gaunt" Name="Hooked Gauntlets"/>
@@ -602,7 +606,7 @@
       <Item ID="S.Blade" Name="Inscribed Spellblade"/>
       <Item ID="JRapier" Name="Jeweled Rapier"/>
       <Item ID="Katana " Name="Katana"/>
-      <Item ID="L. Axe " Name="Large Axe" Description="Has a PC height requirement of 6&#x2032;6&#x2033; (198.12 cm)."/>
+      <Item ID="L. Axe " Name="Large Axe"              Description="Has a PC height requirement of 6&#x2032;6&#x2033; (198.12 cm)."/>
       <Item ID="Claymor" Name="Large Claymore"/>
       <Item ID="L.Hammr" Name="Large Hammer"/>
       <Item ID="L.Daggr" Name="Lust Dagger"/>
@@ -655,55 +659,55 @@
   </Items>
   <!--============================================================================================================================================-->
   <KeyItems>
-    <KeyItem Name="All-Natural Onahole" Description="Masturbation aid."/>
-    <KeyItem Name="All-Natural Self-Stimulation Belt" Description="Masturbation aid for hermaphrodites."/>
-    <KeyItem Name="Arian's Talisman" Description="Arian's Talisman, uncharged version."/>
-    <KeyItem Name="Arian's Charged Talisman" Description="Arian's Talisman, spell charged version.  You'll have to add the appropriate status effect yourself (either: Shielding Spell or Immolation Spell)."/>
-    <KeyItem Name="Bow" Description="Grants a special attack."/>
-    <KeyItem Name="Breast Milker" Description="To be installed at Whitney's Farm."/>
+    <KeyItem Name="All-Natural Onahole"                         Description="Masturbation aid."/>
+    <KeyItem Name="All-Natural Self-Stimulation Belt"           Description="Masturbation aid for hermaphrodites."/>
+    <KeyItem Name="Arian's Talisman"                            Description="Arian's Talisman, uncharged version."/>
+    <KeyItem Name="Arian's Charged Talisman"                    Description="Arian's Talisman, spell charged version.  You'll have to add the appropriate status effect yourself (either: Shielding Spell or Immolation Spell)."/>
+    <KeyItem Name="Bow"                                         Description="Grants a special attack."/>
+    <KeyItem Name="Breast Milker"                               Description="To be installed at Whitney's Farm."/>
     <KeyItem Name="Breast Milker - Installed At Whitney's Farm" Description="Allows the character to milk their breasts at the farm.  Also, possibly, used by Isabella."/>
-    <KeyItem Name="Camp - Chest" Description="Item storage to be put at the camp."/>
-    <KeyItem Name="Carrot" Description="[Seasonal] Obtained from Whitney's Farm or Oswald in Tel'Adre.  One of the components used to make a body for the ice spirit, Nieve."/>
-    <KeyItem Name="Centaur Pole" Description="A masturbatory aid suited for female centaur's needs."/>
-    <KeyItem Name="Cock Milker" Description="To be installed at Whitney's Farm."/>
-    <KeyItem Name="Cock Milker - Installed At Whitney's Farm" Description="Allows the character to milk their or Jojo's cock(s) at the farm."/>
-    <KeyItem Name="Dangerous Plants" Description="Bought from Giacomo.  Gives you the option to avoid the Tentacle Beast encounter."/>
-    <KeyItem Name="Deluxe Dildo" Description="Masturbation aid."/>
-    <KeyItem Name="Deluxe Onahole" Description="Masturbation aid."/>
-    <KeyItem Name="Demonic Strap-On" Description="Masturbation aid."/>
-    <KeyItem Name="Dildo" Description="Masturbation aid."/>
-    <KeyItem Name="Dragon Egg" Description="Ember's egg, before hatching."/>
-    <KeyItem Name="Dragon Eggshell" Description="Obtained by breaking Ember's egg open and eating it.  You monster."/>
-    <KeyItem Name="Dual Belt" Description="Masturbation aid for hermaphrodites."/>
-    <KeyItem Name="Equipment Rack - Armor" Description="Item storage to be put at the camp."/>
-    <KeyItem Name="Equipment Rack - Weapons" Description="Item storage to be put at the camp."/>
-    <KeyItem Name="Fake Mare" Description="A masturbatory aid suited for male centaur's needs."/>
-    <KeyItem Name="Golden Antlers" Description="Obtained from the Erlking, if you decide to turn the tables on him."/>
-    <KeyItem Name="Harpy Key A" Description="Obtained from Brigid the Jailer in Helia's (phoenix) dungeon."/>
-    <KeyItem Name="Harpy Key B" Description="Obtained from the Harpy Queen in Helia's (phoenix) dungeon."/>
-    <KeyItem Name="Hentai Comic" Description="Can be given to the incubus mechanic in the factory."/>
-    <KeyItem Name="Holli's Ashes" Description="Obtained by killing Holli.  You monster."/>
-    <KeyItem Name="Iron Key" Description="Allows further progression into the Demon Factory."/>
-    <KeyItem Name="Jojo's Talisman" Description="Given to the player by Jojo, if a follower and Hollicynthea is allowed to grow to maturity.  Jojo then leaves the camp."/>
-    <KeyItem Name="Laybans" Description="Obtained from Doppleganger in Lethice's Stronghold (D3).  Gives some protection against basilisk gazes (in stronghold only)."/>
-    <KeyItem Name="Marae's Lethicite" Description="Can be stolen from Corrupt Marae by quick PCs."/>
-    <KeyItem Name="Nieve's Tear" Description="[Seasonal] Given as a memento after your ice spirit lover melts after the winter event."/>
-    <KeyItem Name="North Star Key" Description="[Seasonal] Winding-key for the clockwork-man, North."/>
-    <KeyItem Name="Onyx Token - Ceraph's" Description="Obtained from Ceraph, if a follower and the PC chooses to carry her token instead of using it as a belly-button piercing."/>
-    <KeyItem Name="Opal Ring" Description="Obtained from Scylla, if the PC has high cum production and has agreed to be Scylla's sole source of cum."/>
-    <KeyItem Name="Plain Onahole" Description="Masturbation aid."/>
-    <KeyItem Name="Potent Mixture" Description="Used to corrupt Amily in the town ruins."/>
-    <KeyItem Name="Ruby Heart" Description="Inactive remnant of the PC's goo-girl Slime Core.  Will reactivate if the PC becomes a goo-girl again."/>
-    <KeyItem Name="Self-Stimulation Belt" Description="Masturbation aid."/>
-    <KeyItem Name="Sheila's Lethicite" Description="Obtained from Corrupt Sheila."/>
-    <KeyItem Name="Silver Kitty-Bell" Description="Obtained after the vagrant cats encounter.  Enables a scene with Scylla which unlocks the cat-morph, Katherine."/>
-    <KeyItem Name="Spare Key to Urta's House" Description="Obtained from Urta, after her fertility quest."/>
-    <KeyItem Name="Stone Statue Lethicite" Description="Obtained from Stone Statue in Lethice's Stronghold (D3)."/>
-    <KeyItem Name="Super Reducto" Description="Obtained from Rathazul, after the Milk Slave becomes a follower."/>
-    <KeyItem Name="Supervisor's Key" Description="Obtained from the Omnibus Overseer's desk in the demon factory.  Used to unlock the Premium Products room there."/>
-    <KeyItem Name="Traveler's Guide" Description="Bought from Giacomo.  Gives you the option to avoid the Bee-girl encounter."/>
-    <KeyItem Name="Yoga Guide" Description="Bought from Giacomo.  Needed by Centaur and Naga PCs before they can join Cotton for yoga."/>
-    <KeyItem Name="Zetaz's Map" Description="Allows the PC to find Lethice's Stronghold (D3) in the High Mountains."/>
+    <KeyItem Name="Camp - Chest"                                Description="Item storage to be put at the camp."/>
+    <KeyItem Name="Carrot"                                      Description="[Seasonal] Obtained from Whitney's Farm or Oswald in Tel'Adre.  One of the components used to make a body for the ice spirit, Nieve."/>
+    <KeyItem Name="Centaur Pole"                                Description="A masturbatory aid suited for female centaur's needs."/>
+    <KeyItem Name="Cock Milker"                                 Description="To be installed at Whitney's Farm."/>
+    <KeyItem Name="Cock Milker - Installed At Whitney's Farm"   Description="Allows the character to milk their or Jojo's cock(s) at the farm."/>
+    <KeyItem Name="Dangerous Plants"                            Description="Bought from Giacomo.  Gives you the option to avoid the Tentacle Beast encounter."/>
+    <KeyItem Name="Deluxe Dildo"                                Description="Masturbation aid."/>
+    <KeyItem Name="Deluxe Onahole"                              Description="Masturbation aid."/>
+    <KeyItem Name="Demonic Strap-On"                            Description="Masturbation aid."/>
+    <KeyItem Name="Dildo"                                       Description="Masturbation aid."/>
+    <KeyItem Name="Dragon Egg"                                  Description="Ember's egg, before hatching."/>
+    <KeyItem Name="Dragon Eggshell"                             Description="Obtained by breaking Ember's egg open and eating it.  You monster."/>
+    <KeyItem Name="Dual Belt"                                   Description="Masturbation aid for hermaphrodites."/>
+    <KeyItem Name="Equipment Rack - Armor"                      Description="Item storage to be put at the camp."/>
+    <KeyItem Name="Equipment Rack - Weapons"                    Description="Item storage to be put at the camp."/>
+    <KeyItem Name="Fake Mare"                                   Description="A masturbatory aid suited for male centaur's needs."/>
+    <KeyItem Name="Golden Antlers"                              Description="Obtained from the Erlking, if you decide to turn the tables on him."/>
+    <KeyItem Name="Harpy Key A"                                 Description="Obtained from Brigid the Jailer in Helia's (phoenix) dungeon."/>
+    <KeyItem Name="Harpy Key B"                                 Description="Obtained from the Harpy Queen in Helia's (phoenix) dungeon."/>
+    <KeyItem Name="Hentai Comic"                                Description="Can be given to the incubus mechanic in the factory."/>
+    <KeyItem Name="Holli's Ashes"                               Description="Obtained by killing Holli.  You monster."/>
+    <KeyItem Name="Iron Key"                                    Description="Allows further progression into the Demon Factory."/>
+    <KeyItem Name="Jojo's Talisman"                             Description="Given to the player by Jojo, if a follower and Hollicynthea is allowed to grow to maturity.  Jojo then leaves the camp."/>
+    <KeyItem Name="Laybans"                                     Description="Obtained from Doppleganger in Lethice's Stronghold (D3).  Gives some protection against basilisk gazes (in stronghold only)."/>
+    <KeyItem Name="Marae's Lethicite"                           Description="Can be stolen from Corrupt Marae by quick PCs."/>
+    <KeyItem Name="Nieve's Tear"                                Description="[Seasonal] Given as a memento after your ice spirit lover melts after the winter event."/>
+    <KeyItem Name="North Star Key"                              Description="[Seasonal] Winding-key for the clockwork-man, North."/>
+    <KeyItem Name="Onyx Token - Ceraph's"                       Description="Obtained from Ceraph, if a follower and the PC chooses to carry her token instead of using it as a belly-button piercing."/>
+    <KeyItem Name="Opal Ring"                                   Description="Obtained from Scylla, if the PC has high cum production and has agreed to be Scylla's sole source of cum."/>
+    <KeyItem Name="Plain Onahole"                               Description="Masturbation aid."/>
+    <KeyItem Name="Potent Mixture"                              Description="Used to corrupt Amily in the town ruins."/>
+    <KeyItem Name="Ruby Heart"                                  Description="Inactive remnant of the PC's goo-girl Slime Core.  Will reactivate if the PC becomes a goo-girl again."/>
+    <KeyItem Name="Self-Stimulation Belt"                       Description="Masturbation aid."/>
+    <KeyItem Name="Sheila's Lethicite"                          Description="Obtained from Corrupt Sheila."/>
+    <KeyItem Name="Silver Kitty-Bell"                           Description="Obtained after the vagrant cats encounter.  Enables a scene with Scylla which unlocks the cat-morph, Katherine."/>
+    <KeyItem Name="Spare Key to Urta's House"                   Description="Obtained from Urta, after her fertility quest."/>
+    <KeyItem Name="Stone Statue Lethicite"                      Description="Obtained from Stone Statue in Lethice's Stronghold (D3)."/>
+    <KeyItem Name="Super Reducto"                               Description="Obtained from Rathazul, after the Milk Slave becomes a follower."/>
+    <KeyItem Name="Supervisor's Key"                            Description="Obtained from the Omnibus Overseer's desk in the demon factory.  Used to unlock the Premium Products room there."/>
+    <KeyItem Name="Traveler's Guide"                            Description="Bought from Giacomo.  Gives you the option to avoid the Bee-girl encounter."/>
+    <KeyItem Name="Yoga Guide"                                  Description="Bought from Giacomo.  Needed by Centaur and Naga PCs before they can join Cotton for yoga."/>
+    <KeyItem Name="Zetaz's Map"                                 Description="Allows the PC to find Lethice's Stronghold (D3) in the High Mountains."/>
   </KeyItems>
   <!--============================================================================================================================================-->
   <Perks>
@@ -735,14 +739,14 @@
     </PerkGroup>
     <PerkGroup Name="History">
       <Perk Name="History: Alchemist" Description="Alchemical experience makes items more reactive to your body."/>
-      <Perk Name="History: Fighter" Description="A past full of conflict increases physical damage dealt by 10%."/>
-      <Perk Name="History: Healer" Description="Healing experience increases HP gains by 20%."/>
+      <Perk Name="History: Fighter"   Description="A past full of conflict increases physical damage dealt by 10%."/>
+      <Perk Name="History: Healer"    Description="Healing experience increases HP gains by 20%."/>
       <Perk Name="History: Religious" Description="Replaces masturbate with meditate when corruption less than or equal to 66."/>
-      <Perk Name="History: Scholar" Description="Time spent focusing your mind makes spellcasting 20% less fatiguing."/>
-      <Perk Name="History: Slacker" Description="Regenerate fatigue 20% faster."/>
-      <Perk Name="History: Slut" Description="Sexual experience has made you more able to handle large insertions and more resistant to stretching."/>
-      <Perk Name="History: Smith" Description="Knowledge of armor and fitting increases armor effectiveness by roughly 10%."/>
-      <Perk Name="History: Whore" Description="Seductive experience causes your tease attacks to be 15% more effective."/>
+      <Perk Name="History: Scholar"   Description="Time spent focusing your mind makes spellcasting 20% less fatiguing."/>
+      <Perk Name="History: Slacker"   Description="Regenerate fatigue 20% faster."/>
+      <Perk Name="History: Slut"      Description="Sexual experience has made you more able to handle large insertions and more resistant to stretching."/>
+      <Perk Name="History: Smith"     Description="Knowledge of armor and fitting increases armor effectiveness by roughly 10%."/>
+      <Perk Name="History: Whore"     Description="Seductive experience causes your tease attacks to be 15% more effective."/>
     </PerkGroup>
     <PerkGroup Name="Tier 0">
       <Perk Name="Acclimation" Description="Reduces lust gain by 15%."/>
@@ -838,7 +842,7 @@
       <Perk Name="Magical Virility" Description="200 mL more cum per orgasm and enhanced virility."/>
       <Perk Name="Marae's Gift - Buttslut" Description="Makes your anus provide lubrication when aroused."/>
       <Perk Name="Marae's Gift - Fertility" Description="Greatly increases fertility and halves base pregnancy speed."/>
-      <Perk Name="Marae's Gift - Profractory" Description="Causes your cum to build up at 3x the normal rate."/>
+      <Perk Name="Marae's Gift - Profractory" Description="Causes your cum to build up at 3&#x00D7; the normal rate."/>
       <Perk Name="Marae's Gift - Stud" Description="Increases your cum production and potency greatly."/>
       <Perk Name="Marble Resistant" Description="Provides resistance to the addictive effects of bottled LaBova milk."/>
       <Perk Name="Marble's Milk" Description="Requires you to drink LaBova milk frequently or eventually die.  You cannot shake this addiction."/>
@@ -2285,7 +2289,7 @@
     <Flag ID="1235" Name="KATHERINE_VALA_AFFECTION"/>
     <Flag ID="1236" Name="KATHERINE_VALA_DATE"/>
     <Flag ID="1237" Name="KATHERINE_VALA_TIMES_SEX"/>
-    <Flag ID="1238" Name="SAVE_FILE_INTEGER_FORMAT_VERSION"/>
+    <Flag ID="1238" Name="SAVE_FILE_INTEGER_FORMAT_VERSION"             Description="WARNING: Do NOT modify this value."/>
     <Flag ID="1239" Name="D3_DISCOVERED"/>
     <Flag ID="1240" Name="D3_ENTERED_MAGPIEHALL"/>
     <Flag ID="1241" Name="D3_BASILISKS_REMOVED_FROM_MAGPIE_HALL"/>
@@ -2301,9 +2305,14 @@
     <Flag ID="1251" Name="D3_CENTAUR_DEFEATED"/>
     <Flag ID="1252" Name="D3_EGGS_AVAILABLE"/>
     <Flag ID="1253" Name="NOT_HELPED_ARIAN_TODAY"/>
+    <Flag ID="1254" Name="BEE_GIRL_STATUS"                              Description="Player Attitude + Conversation Stage"/>
+    <Flag ID="1255" Name="BEE_GIRL_COMBAT_WINS_WITH_RAPE"/>
+    <Flag ID="1256" Name="BEE_GIRL_COMBAT_WINS_WITHOUT_RAPE"/>
+    <Flag ID="1257" Name="BEE_GIRL_COMBAT_LOSSES"/>
+    <Flag ID="1258" Name="KATHERINE_MILK_OPTIONS"/>
 
     <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
-    <!-- Flag ID="2996" Name="ITS_EVERY_DAY"/ -->
+    <!-- Flag ID="2996" Name="ITS_EVERY_DAY"                                Description="Eternal holiday!"/ -->
     <!-- Flag ID="2997" Name="LOW_STANDARDS_FOR_ALL"/ -->
     <!-- Flag ID="2998" Name="HYPER_HAPPY"/ -->
   </Flags>
