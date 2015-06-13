@@ -65,7 +65,7 @@ namespace CoCEd.ViewModel
             get { return _currentFile != null; }
         }
 
-        public void Load(string path, bool createBackup)
+        public void Load(string path, SerializationFormat expectedFormat, bool createBackup)
         {
             FileManager.TryRegisterExternalFile(path);
             var file = new AmfFile(path);
@@ -107,7 +107,7 @@ namespace CoCEd.ViewModel
                 box.Title = "File could not be read correctly.";
                 box.Message = "CoCEd could not read this file correctly, it is likely corrupted. Cancelling this operation.";
                 box.IsWarning = true;
-                var result = box.ShowDialog(ExceptionBoxButtons.OK);
+                box.ShowDialog(ExceptionBoxButtons.OK);
 
                 Logger.Error(String.Format("{0} CoC data version: {1}.", box.Title, dataVersion));
                 return;
@@ -127,6 +127,16 @@ namespace CoCEd.ViewModel
 
                 Logger.Error(String.Format("{0} CoC data version: {1}.", box.Title, dataVersion));
                 if (result != ExceptionBoxResult.Continue) return;
+            }
+
+            // Sanity check: ensure the actual format matches the expected format (just a warning to the user about mixing up the formats)
+            if (file.Format != expectedFormat)
+            {
+                var box = new ExceptionBox();
+                box.Title = "File format different from expected format.";
+                box.Message = "The file is actually a " + (file.Format == SerializationFormat.Slot ? "\"Slot\"" : "\"Save to File\"") + " format save, but it was loaded as though it were a " + (expectedFormat == SerializationFormat.Slot ? "\"Slot\"" : "\"Save to File\"") + " format save.\n\nThe two formats are not compatible, so care should be taken to ensure you do not confuse the two, since CoC can only load each format in a specific way.  Attempting to load a \"Slot\" save as though it were a \"Save to File\" save, or vice versa, will cause CoC to think the save is corrupt, at best, or see the save deleted, at worse. Do not mix them up.";
+                box.IsWarning = true;
+                box.ShowDialog(ExceptionBoxButtons.OK);
             }
 
             if (createBackup) FileManager.CreateBackup(path);
