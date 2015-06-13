@@ -245,7 +245,7 @@ namespace CoCEd.ViewModel
         public void OnClick()
         {
             var dlg = new OpenFileDialog();
-            dlg.Filter = "\"Save to slot\" format|*.sol|\"Save to file\" format|*";
+            dlg.Filter = "\"Slot\" format|*.sol|\"Save to File\" format|*";
             dlg.DefaultExt = ".sol";
             dlg.CheckFileExists = true;
             dlg.Multiselect = false;
@@ -255,7 +255,7 @@ namespace CoCEd.ViewModel
             if (result == false) return;
 
             string path = dlg.FileName;
-            VM.Instance.Load(path, createBackup: true);
+            VM.Instance.Load(path, dlg.FilterIndex == 1 ? SerializationFormat.Slot : SerializationFormat.Exported, createBackup: true);
         }
     }
 
@@ -303,7 +303,7 @@ namespace CoCEd.ViewModel
         public void OnClick()
         {
             var dlg = new SaveFileDialog();
-            dlg.Filter = "\"Save to slot\" format (.sol)|*.sol|\"Save to file\" format|*";
+            dlg.Filter = "\"Slot\" format (.sol)|*.sol|\"Save to File\" format|*";
             dlg.AddExtension = true;
             dlg.OverwritePrompt = true;
             dlg.RestoreDirectory = true;
@@ -422,7 +422,7 @@ namespace CoCEd.ViewModel
 
         public void OnClick()
         {
-            if (_openOnClick) VM.Instance.Load(Source.FilePath, createBackup: _directoryKind != DirectoryKind.Backup);
+            if (_openOnClick) VM.Instance.Load(Source.FilePath, SerializationFormat.Slot, createBackup: _directoryKind != DirectoryKind.Backup);
             else VM.Instance.Save(Source.FilePath, Source.Format);
         }
     }
