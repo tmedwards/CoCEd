@@ -10,35 +10,6 @@ namespace CoCEd.ViewModel
 {
     public sealed partial class GameVM : ObjectVM
     {
-        // Whenever a FlagVM or StatusVM is modified, it notifies GameVM with those functions so that it updates its dependent properties. 
-        // See also GetPerk,  GetFlag and GetStatus.
-        public void OnPerkChanged(string name)
-        {
-            foreach (var prop in _allPerks.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
-        }
-
-        public void OnFlagChanged(int index)
-        {
-            foreach(var prop in _allFlags[index].GameVMProperties) OnPropertyChanged(prop);
-        }
-
-        public void OnStatusChanged(string name)
-        {
-            foreach (var prop in _allStatuses.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
-        }
-
-
-        /// <summary>
-        /// Returns the flag with the specified index AND registers a dependency between the caller property and this flag. 
-        /// That way, anytime the flag value is changed, OnPropertyChanged will be raised for the caller property.
-        /// </summary>
-        FlagVM GetFlag(int index, [CallerMemberName] string propertyName = null)
-        {
-            var flag = _allFlags[index];
-            flag.GameVMProperties.Add(propertyName);
-            return flag;
-        }
-
         /// <summary>
         /// Returns the status with the specified name (even if not owned by the player) AND registers a dependency between the caller property and this status.
         /// That way, anytime the status is modified, OnPropertyChanged will be raised for the caller property.
@@ -48,6 +19,17 @@ namespace CoCEd.ViewModel
             var status = _allStatuses.First(x => x.Name == name);
             status.GameVMProperties.Add(propertyName);
             return status;
+        }
+
+        /// <summary>
+        /// Returns the key item with the specified name (even if not owned by the player) AND registers a dependency between the caller property and this key item.
+        /// That way, anytime the key item is modified, OnPropertyChanged will be raised for the caller property.
+        /// </summary>
+        KeyItemVM GetKeyItem(string name, [CallerMemberName] string propertyName = null)
+        {
+            var keyItem = _allKeyitems.First(x => x.Name == name);
+            keyItem.GameVMProperties.Add(propertyName);
+            return keyItem;
         }
 
         /// <summary>
@@ -61,78 +43,158 @@ namespace CoCEd.ViewModel
             return perk;
         }
 
+        /// <summary>
+        /// Returns the flag with the specified index AND registers a dependency between the caller property and this flag. 
+        /// That way, anytime the flag value is changed, OnPropertyChanged will be raised for the caller property.
+        /// </summary>
+        FlagVM GetFlag(int index, [CallerMemberName] string propertyName = null)
+        {
+            var flag = _allFlags[index];
+            flag.GameVMProperties.Add(propertyName);
+            return flag;
+        }
+
         bool IsMale
         {
             get { return GetInt("gender", 0) <= 1; }
+        }
+
+        // Whenever a PerkVM, FlagVM, or StatusVM is modified, it notifies GameVM with those functions so that it updates its dependent properties. 
+        // See also GetPerk, GetFlag, and GetStatus.
+        public void OnPerkChanged(string name)
+        {
+            foreach (var prop in _allPerks.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
+        }
+
+        public void OnFlagChanged(int index)
+        {
+            if (index == 2008) // CAMP_CABIN_FURNITURE_DRESSER
+            {
+                UpdateDresser();
+                ItemContainers.Update();
+            }
+
+            foreach(var prop in _allFlags[index].GameVMProperties) OnPropertyChanged(prop);
+        }
+
+        public void OnStatusChanged(string name)
+        {
+            foreach (var prop in _allStatuses.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
+        }
+
+        public void OnKeyItemChanged(string name)
+        {
+            // Must be here, rather than in OnKeyItemAddedOrRemoved(), to catch property value changes,
+            // specifically "value1", which determines how many slots are available.
+            if (name == "Backpack") // itemSlot# [6, 10]
+            {
+                var backpack = GetKeyItem("Backpack");
+                for (int i = 0; i < 5; i++) GetObj("itemSlot" + (i + 6))["unlocked"] = false;
+                if (backpack.IsOwned)
+                {
+                    int count = backpack.GetInt("value1");
+                    if (count < 1 || count > 5)
+                    {
+                        count = Math.Max(1, Math.Min(5, count));
+                        backpack.Value1 = count; // clamp value to [1, 5], so the CoC-Revamp-Mod doesn't assplode
+                    }
+                    for (int i = 0; i < count; i++) GetObj("itemSlot" + (i + 6))["unlocked"] = true;
+                }
+                UpdateInventory();
+                ItemContainers.Update();
+            }
+
+            foreach (var prop in _allKeyitems.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
         }
 
         public void OnPerkAddedOrRemoved(string name, bool isOwned)
         {
             // Grants/removes the player the appropriate bonuses when a perk is added or removed.
             // We do not add stats however since the user can already change them easily.
-            if (name == "Strong Back")
+            switch (name)
             {
-                GetObj("itemSlot4")["unlocked"] = isOwned;
-                UpdateInventory();
-                ItemContainers.Update();
-            }
-            else if (name == "Strong Back 2: Strong Harder")
-            {
-                GetObj("itemSlot5")["unlocked"] = isOwned;
-                UpdateInventory();
-                ItemContainers.Update();
-            }
-            else if (name == "Feeder")
-            {
-                GetStatus(name).IsOwned = isOwned;
+                case "Strong Back":
+                    GetObj("itemSlot4")["unlocked"] = isOwned;
+                    UpdateInventory();
+                    ItemContainers.Update();
+                    break;
+
+                case "Strong Back 2: Strong Harder":
+                    GetObj("itemSlot5")["unlocked"] = isOwned;
+                    UpdateInventory();
+                    ItemContainers.Update();
+                    break;
+
+                case "Feeder":
+                    GetStatus(name).IsOwned = isOwned;
+                    break;
             }
         }
 
         public void OnKeyItemAddedOrRemoved(string name, bool isOwned)
         {
             // Creates/destroys the corresponding item slots when a container is added/removed.
-            if (name == "Camp - Chest")
+            switch (name)
             {
-                var array = GetObj("itemStorage");
-                if (isOwned)
-                {
-                    while (array.DenseCount < 6)
+                case "Camp - Chest":
+                case "Camp - Murky Chest":
+                case "Camp - Ornate Chest":
+                    if (name == "Camp - Chest" || _isRevampMod)
                     {
-                        var slot = new AmfObject(AmfTypes.Object);
-                        slot["id"] = "NOTHING!";    // having to set this to "NOTHING!" is daft
-                        slot["quantity"] = 0;
-                        slot["unlocked"] = false;   // must now be false or the camp chest will break in CoC
-                        array.Push(slot);
+                        var array = GetObj("itemStorage"); // max chest slots are 6 in CoC and 14 in CoC-Revamp-Mod
+                        int count = name == "Camp - Chest" ? 6 : 4; // the CoC-Revamp-Mod chests add 4 slots a piece
+                        if (isOwned)
+                        {
+                            for (int i = 0; i < count; i++)
+                            {
+                                var slot = new AmfObject(AmfTypes.Object);
+                                slot["id"] = "NOTHING!";  // having to set this to "NOTHING!" is daft
+                                slot["quantity"] = 0;
+                                slot["unlocked"] = false; // must now be false or the camp chest will break in-game
+                                array.Push(slot);
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < count; i++) array.Pop(array.DenseCount - 1);
+                        }
+                        UpdateChest();
+                        ItemContainers.Update();
                     }
-                }
-                else
-                {
-                    while (array.DenseCount > 0) array.Pop(array.DenseCount - 1);
-                }
-                UpdateChest();
-                ItemContainers.Update();
-            }
-            else if (name == "Equipment Rack - Armor")
-            {
-                GetFlag(255).SetValue(isOwned ? 1 : 0);
-                UpdateArmorRack();
-                ItemContainers.Update();
-            }
-            else if (name == "Equipment Rack - Weapons")
-            {
-                GetFlag(254).SetValue(isOwned ? 1 : 0);
-                UpdateWeaponRack();
-                ItemContainers.Update();
+                    break;
+
+                case "Equipment Rack - Weapons":
+                    GetFlag(254).SetValue(isOwned ? 1 : 0);
+                    UpdateWeaponRack();
+                    ItemContainers.Update();
+                    break;
+
+                case "Equipment Rack - Armor":
+                    GetFlag(255).SetValue(isOwned ? 1 : 0);
+                    UpdateArmorRack();
+                    ItemContainers.Update();
+                    break;
+
+                case "Equipment Storage - Jewelry Box":
+                    UpdateJewelryBox();
+                    ItemContainers.Update();
+                    break;
+
+                case "Equipment Rack - Shields":
+                    UpdateShieldRack();
+                    ItemContainers.Update();
+                    break;
             }
         }
 
         void UpdateInventory()
         {
             _inventory.Clear();
-            for (int i = 0; i < 5; i++)
+            int count = _isRevampMod ? 10 : 5; // max inventory slots are 5 in CoC and 10 in CoC-Revamp-Mod
+            for (int i = 0; i < count; i++)
             {
                 var slot = GetObj("itemSlot" + (i + 1));
-                if (slot.GetBool("unlocked")) _inventory.Add(slot);
+                if (slot != null && slot.GetBool("unlocked")) _inventory.Add(slot);
             }
         }
 
@@ -142,23 +204,55 @@ namespace CoCEd.ViewModel
             foreach (var pair in GetObj("itemStorage")) _chest.Add(pair.ValueAsObject);
         }
 
-        void UpdateArmorRack()
+        void UpdateWeaponRack() // gearStorage [0, 8]
+        {
+            _weaponRack.Clear();
+            bool hasWeaponRack = _isRevampMod ? GetKeyItem("Equipment Rack - Weapons").IsOwned : GetFlag(254).AsInt() == 1;
+            if (hasWeaponRack)
+            {
+                var gearStorage = GetObj("gearStorage");
+                for (int i = 0; i < 9; i++) _weaponRack.Add(gearStorage.GetObj(i));
+            }
+        }
+
+        void UpdateArmorRack() // gearStorage [9, 17]
         {
             _armorRack.Clear();
-            if (GetFlag(255).AsInt() == 1)
+            bool hasArmorRack = _isRevampMod ? GetKeyItem("Equipment Rack - Armor").IsOwned : GetFlag(255).AsInt() == 1;
+            if (hasArmorRack)
             {
                 var gearStorage = GetObj("gearStorage");
                 for (int i = 0; i < 9; i++) _armorRack.Add(gearStorage.GetObj(i + 9));
             }
         }
 
-        void UpdateWeaponRack()
+        void UpdateJewelryBox() // gearStorage [18, 26]
         {
-            _weaponRack.Clear();
-            if (GetFlag(254).AsInt() == 1)
+            _jewelryBox.Clear();
+            if (GetKeyItem("Equipment Storage - Jewelry Box").IsOwned)
             {
                 var gearStorage = GetObj("gearStorage");
-                for (int i = 0; i < 9; i++) _weaponRack.Add(gearStorage.GetObj(i));
+                for (int i = 0; i < 9; i++) _jewelryBox.Add(gearStorage.GetObj(i + 18));
+            }
+        }
+
+        void UpdateDresser() // gearStorage [27, 35]
+        {
+            _dresser.Clear();
+            if (GetFlag(2008).AsInt() == 1)
+            {
+                var gearStorage = GetObj("gearStorage");
+                for (int i = 0; i < 9; i++) _dresser.Add(gearStorage.GetObj(i + 27));
+            }
+        }
+
+        void UpdateShieldRack() // gearStorage [36, 44]
+        {
+            _shieldRack.Clear();
+            if (GetKeyItem("Equipment Rack - Shields").IsOwned)
+            {
+                var gearStorage = GetObj("gearStorage");
+                for (int i = 0; i < 9; i++) _shieldRack.Add(gearStorage.GetObj(i + 36));
             }
         }
 

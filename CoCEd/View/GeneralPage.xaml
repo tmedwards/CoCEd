@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:common="clr-namespace:CoCEd.Common"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignWidth="1024" d:DesignHeight="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -24,7 +24,6 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -32,7 +31,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical">
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
                 <common:AutoGrid>
                     <TextBlock              Text="Name" Width="Auto"/>
                     <TextBox                Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="8,4,8,4" Width="150" HorizontalAlignment="Left"
@@ -53,7 +52,45 @@
                 </common:AutoGrid>
             </StackPanel>
 
-            <StackPanel Grid.Column="3" Grid.Row="2" Orientation="Vertical">
+            <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
+                <Border Style="{StaticResource HeaderBorder}">
+                    <TextBlock Text="Stats" Style="{StaticResource Header}"/>
+                </Border>
+                <common:AutoGrid>
+                    <TextBlock              Text="Strength"/>
+                    <common:MyNumericBox    Value="{Binding Game.Strength}" Upper="100"/>
+
+                    <TextBlock              Text="Toughness"/>
+                    <common:MyNumericBox    Value="{Binding Game.Toughness}" Upper="100"/>
+
+                    <TextBlock              Text="Speed"/>
+                    <common:MyNumericBox    Value="{Binding Game.Speed}" Upper="100"/>
+
+                    <TextBlock              Text="Intelligence"/>
+                    <common:MyNumericBox    Value="{Binding Game.Intelligence}" Upper="100"/>
+
+                    <TextBlock              Text="Libido"/>
+                    <common:MyNumericBox    Value="{Binding Game.Libido}" Upper="100"/>
+
+                    <TextBlock              Text="Sensitivity"/>
+                    <common:MyNumericBox    Value="{Binding Game.Sensitivity}" Upper="100"/>
+
+                    <TextBlock              Text="Corruption"/>
+                    <common:MyNumericBox    Value="{Binding Game.Corruption}" Upper="100"/>
+                </common:AutoGrid>
+                <common:AutoGrid Margin="0,30,0,0">
+                    <TextBlock              Text="Current HP"/>
+                    <common:MyNumericBox    Value="{Binding Game.HP}" Upper="{Binding Game.MaxHP}"/>
+
+                    <TextBlock              Text="Lust"/>
+                    <common:MyNumericBox    Value="{Binding Game.Lust}" Upper="100"/>
+
+                    <TextBlock              Text="Fatigue"/>
+                    <common:MyNumericBox    Value="{Binding Game.Fatigue}" Upper="100"/>
+                </common:AutoGrid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
                 <common:AutoGrid>
                     <TextBlock              Text="Level"/>
                     <common:MyNumericBox    Value="{Binding Game.Level}"/>
@@ -72,63 +109,7 @@
                 </common:AutoGrid>
             </StackPanel>
 
-
-
-            <Grid Grid.Column="1" Grid.Row="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="36"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <StackPanel Orientation="Vertical">
-                    <Border Style="{StaticResource HeaderBorder}">
-                        <TextBlock Text="Core stats" Style="{StaticResource Header}"/>
-                    </Border>
-                    <common:AutoGrid>
-                        <TextBlock              Text="Strength"/>
-                        <common:MyNumericBox    Value="{Binding Game.Strength}" Upper="100"/>
-
-                        <TextBlock              Text="Toughness"/>
-                        <common:MyNumericBox    Value="{Binding Game.Toughness}" Upper="100"/>
-
-                        <TextBlock              Text="Speed"/>
-                        <common:MyNumericBox    Value="{Binding Game.Speed}" Upper="100"/>
-
-                        <TextBlock              Text="Intelligence"/>
-                        <common:MyNumericBox    Value="{Binding Game.Intelligence}" Upper="100"/>
-
-                        <TextBlock              Text="Libido"/>
-                        <common:MyNumericBox    Value="{Binding Game.Libido}" Upper="100"/>
-
-                        <TextBlock              Text="Sensitivity"/>
-                        <common:MyNumericBox    Value="{Binding Game.Sensitivity}" Upper="100"/>
-
-                        <TextBlock              Text="Corruption"/>
-                        <common:MyNumericBox    Value="{Binding Game.Corruption}" Upper="100"/>
-                    </common:AutoGrid>
-                </StackPanel>
-
-            
-                <StackPanel Orientation="Vertical" Grid.Row="2">
-                    <Border Style="{StaticResource HeaderBorder}" Margin="0,30,0,0">
-                        <TextBlock Text="Combat stats" Style="{StaticResource Header}"/>
-                    </Border>
-                    <common:AutoGrid>
-                        <TextBlock              Text="Current HP"/>
-                        <common:MyNumericBox    Value="{Binding Game.HP}" Upper="{Binding Game.MaxHP}"/>
-
-                        <TextBlock              Text="Lust"/>
-                        <common:MyNumericBox    Value="{Binding Game.Lust}" Upper="100"/>
-
-                        <TextBlock              Text="Fatigue"/>
-                        <common:MyNumericBox    Value="{Binding Game.Fatigue}" Upper="100"/>
-                    </common:AutoGrid>
-                </StackPanel>
-            </Grid>
-
-
-            <StackPanel Grid.Column="3" Grid.Row="4" Orientation="Vertical">
+            <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical">
                 <Border Style="{StaticResource HeaderBorder}">
                     <TextBlock Text="Face" Style="{StaticResource Header}"/>
                 </Border>

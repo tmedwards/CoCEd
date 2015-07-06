@@ -65,6 +65,11 @@ namespace CoCEd.ViewModel
             get { return _currentFile != null; }
         }
 
+        public bool IsRevampMod
+        {
+            get { return FileVersion.Contains("_mod_"); }
+        }
+
         public void Load(string path, SerializationFormat expectedFormat, bool createBackup)
         {
             FileManager.TryRegisterExternalFile(path);
@@ -100,7 +105,7 @@ namespace CoCEd.ViewModel
             // however, as long as Fen keeps occasionally pushing crappy version strings (e.g. 0.8.4.8d),
             // that can't happen.  Ideally, I'd like to see them switch to a segmented version system.
 
-            // Sanity checks: see if the save can be re-saved as-is OR if any of the top-level property names are invalid as identifiers
+            // Sanity checks: see if the save can be re-saved as-is OR if any of the top-level property names are invalid as identifiers.
             if (!file.CanBeSaved(SerializationFormat.Slot) || HasBadPropertyNames(file))
             {
                 var box = new ExceptionBox();
@@ -113,7 +118,7 @@ namespace CoCEd.ViewModel
                 return;
             }
 
-            // Sanity check: count the number of top-level properties
+            // Sanity check: count the number of top-level properties.
             Dictionary<string, int> propertyCounts = VM.Instance.Data.PropertyCounts.ToDictionary(p => p.Version, p => p.Count);
             int expectedCount = propertyCounts.ContainsKey(dataVersion) ? propertyCounts[dataVersion] : propertyCounts["latest"];
             if (file.Count < expectedCount)
@@ -129,7 +134,7 @@ namespace CoCEd.ViewModel
                 if (result != ExceptionBoxResult.Continue) return;
             }
 
-            // Sanity check: ensure the actual format matches the expected format (just a warning to the user about mixing up the formats)
+            // Sanity check: ensure the actual format matches the expected format (just a warning to the user about mixing up the formats).
             if (file.Format != expectedFormat)
             {
                 var box = new ExceptionBox();
@@ -141,12 +146,13 @@ namespace CoCEd.ViewModel
 
             if (createBackup) FileManager.CreateBackup(path);
             _currentFile = file;
-            Game = new GameVM(_currentFile, Game);
+            Game = new GameVM(_currentFile, Game, IsRevampMod);
 
             OnPropertyChanged("Game");
             OnPropertyChanged("HasData");
             OnPropertyChanged("FileLabel");
             OnPropertyChanged("FileLabelVisibility");
+            UpdateAppTitle();
             VM.Instance.NotifySaveRequiredChanged(false);
             if (FileOpened != null) FileOpened(null, null);
         }
@@ -196,12 +202,25 @@ namespace CoCEd.ViewModel
             }
         }
 
+        public void UpdateAppTitle()
+        {
+            string title = HasData ? Game.Name : "<unknown>";
+            if (SaveRequired) title += "\u202F*";
+            if (IsRevampMod) title += "  [Revamp-Mod]";
+            title += "  |  " + AppTitle;
+            Application.Current.MainWindow.Title = title; // Databinding does not work for this
+        }
+
         public void NotifySaveRequiredChanged(bool saveRequired = true)
         {
-            if (saveRequired == SaveRequired) return;
+            if (saveRequired == SaveRequired)
+            {
+                UpdateAppTitle();
+                return;
+            }
 
             SaveRequired = saveRequired;
-            Application.Current.MainWindow.Title = saveRequired ? AppTitle + "*" : AppTitle;  // Databinding does not work for this
+            UpdateAppTitle();
             if (SaveRequiredChanged != null) SaveRequiredChanged(null, saveRequired);
         }
     }
