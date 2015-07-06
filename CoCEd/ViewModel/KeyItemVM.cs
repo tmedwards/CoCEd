@@ -28,6 +28,7 @@ namespace CoCEd.ViewModel
 
         protected override void NotifyGameVM()
         {
+            _game.OnKeyItemChanged(_xml.Name);
         }
 
         protected override void OnIsOwnedChanged()

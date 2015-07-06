@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top" VerticalAlignment="Top" HorizontalAlignment="Stretch"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignWidth="1024" d:DesignHeight="200">
     
     <UserControl.Resources>
         <Style x:Key="{x:Type ToggleButton}" TargetType="{x:Type ToggleButton}" >

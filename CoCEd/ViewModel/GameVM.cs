@@ -15,16 +15,22 @@ namespace CoCEd.ViewModel
     // TeaseLevel / XP
     public sealed partial class GameVM : ObjectVM
     {
+        readonly bool _isRevampMod = false;
+
         readonly FlagVM[] _allFlags;
         readonly StatusVM[] _allStatuses;
+        readonly KeyItemVM[] _allKeyitems;
         readonly List<PerkVM> _allPerks = new List<PerkVM>();
 
         ItemContainerVM _chest;
-        ItemContainerVM _armorRack;
         ItemContainerVM _weaponRack;
+        ItemContainerVM _armorRack;
+        ItemContainerVM _jewelryBox;
+        ItemContainerVM _dresser;
+        ItemContainerVM _shieldRack;
         ItemContainerVM _inventory;
 
-        public GameVM(AmfFile file, GameVM previousVM)
+        public GameVM(AmfFile file, GameVM previousVM, bool isRevampMod = false)
             : base(file)
         {
             if (previousVM != null)
@@ -34,6 +40,11 @@ namespace CoCEd.ViewModel
                 _rawDataSearchText = previousVM._rawDataSearchText;
                 _keyItemSearchText = previousVM._keyItemSearchText;
             }
+
+
+            // Is this save from vanilla CoC or the CoC-Revamp-Mod?
+            _isRevampMod = isRevampMod;
+
 
             // Unique children
             Ass = new AssVM(file.GetObj("ass"));
@@ -60,7 +71,7 @@ namespace CoCEd.ViewModel
             foreach(var xml in XmlData.Instance.Flags) xmlFlagByID[xml.ID] = xml;
 
             var flagsArray = GetObj("flags");
-            if (flagsArray == null) 
+            if (flagsArray == null)
             {
                 // For very old versions of CoC
                 _obj["flags"] = flagsArray = new AmfObject(AmfTypes.Array);
@@ -83,8 +94,8 @@ namespace CoCEd.ViewModel
             var cocKeys = file.GetObj("keyItems");
             var xmlKeys = XmlData.Instance.KeyItems;
             ImportMissingNamedVectors(cocKeys, xmlKeys, "keyName");
-            var allKeyitems = XmlData.Instance.KeyItems.OrderBy(x => x.Name).Select(x => new KeyItemVM(this, cocKeys, x)).ToArray();
-            KeyItems = new UpdatableCollection<KeyItemVM>(allKeyitems.Where(x => x.Match(_keyItemSearchText)));
+            _allKeyitems = XmlData.Instance.KeyItems.OrderBy(x => x.Name).Select(x => new KeyItemVM(this, cocKeys, x)).ToArray();
+            KeyItems = new UpdatableCollection<KeyItemVM>(_allKeyitems.Where(x => x.Match(_keyItemSearchText)));
 
 
             // Perks
@@ -110,17 +121,32 @@ namespace CoCEd.ViewModel
             containers.Add(_inventory);
             UpdateInventory();
 
-            _chest = new ItemContainerVM(this, "Chest", ItemCategories.All);
+            _chest = new ItemContainerVM(this, _isRevampMod ? "Chest(s)" : "Chest", ItemCategories.All);
             containers.Add(_chest);
             UpdateChest();
+
+            _weaponRack = new ItemContainerVM(this, "Weapon rack", ItemCategories.Weapon | ItemCategories.Unknown);
+            containers.Add(_weaponRack);
+            UpdateWeaponRack();
 
             _armorRack = new ItemContainerVM(this, "Armor rack", ItemCategories.Armor | ItemCategories.ArmorCursed | ItemCategories.Unknown);
             containers.Add(_armorRack);
             UpdateArmorRack();
 
-            _weaponRack = new ItemContainerVM(this, "Weapon rack", ItemCategories.Weapon | ItemCategories.Unknown);
-            containers.Add(_weaponRack);
-            UpdateWeaponRack();
+            if (_isRevampMod)
+            {
+                _shieldRack = new ItemContainerVM(this, "Shield rack", ItemCategories.Shield | ItemCategories.Unknown);
+                containers.Add(_shieldRack);
+                UpdateShieldRack();
+
+                _dresser = new ItemContainerVM(this, "Dresser", ItemCategories.Undergarment | ItemCategories.Unknown);
+                containers.Add(_dresser);
+                UpdateDresser();
+
+                _jewelryBox = new ItemContainerVM(this, "Jewelry box", ItemCategories.Jewelry | ItemCategories.Unknown);
+                containers.Add(_jewelryBox);
+                UpdateJewelryBox();
+            }
 
             // Import missing items
             var unknownItemGroup = XmlData.Instance.ItemGroups.Last();
@@ -135,7 +161,7 @@ namespace CoCEd.ViewModel
                 var xml = new XmlItem { ID = type, Name = type };
                 unknownItemGroup.Items.Add(xml);
             }
-            foreach (var slot in containers.SelectMany(x => x.Slots)) slot.UpdateGroups();  // Update item groups after new items have been added
+            foreach (var slot in containers.SelectMany(x => x.Slots)) slot.UpdateGroups(); // Update item groups after new items have been added
 
             // Complete slots creation
             ItemContainers = new UpdatableCollection<ItemContainerVM>(containers.Where(x => x.Slots.Count != 0));
@@ -187,7 +213,7 @@ namespace CoCEd.ViewModel
             get
             {
                 var notes = GetString("notes");
-                // unfortunately, CoC uses two different cases of this same text
+                // unfortunately, CoC uses two different cases for this same text
                 return notes.Equals("no notes available.", StringComparison.OrdinalIgnoreCase) ? "" : notes;
             }
             set { SetValue("notes", String.IsNullOrWhiteSpace(value) ? "No notes available." : value); }
@@ -214,8 +240,8 @@ namespace CoCEd.ViewModel
         public int Toughness
         {
             get { return GetInt("tou"); }
-            set 
-            { 
+            set
+            {
                 SetDouble("tou", value);
                 OnPropertyChanged("MaxHP");
             }
@@ -224,7 +250,7 @@ namespace CoCEd.ViewModel
         public int Speed
         {
             get { return GetInt("spe"); }
-            set 
+            set
             {
                 SetDouble("spe", value);
             }
@@ -268,7 +294,7 @@ namespace CoCEd.ViewModel
                 double max = 50 + tou * 2 + Math.Min(20, Level) * 15;
                 if (GetPerk("Tank").IsOwned) max += 50;
                 if (GetPerk("Tank 2").IsOwned) max += (int)Math.Round(tou);
-                if (GetPerk("Chi Reflow - Defense").IsOwned) max += 50;  // value: .\classes\classes\Scenes\Places\TelAdre\UmasShop.as:NEEDLEWORK_DEFENSE_EXTRA_HP
+                if (GetPerk("Chi Reflow - Defense").IsOwned) max += 50; // value: .\classes\classes\Scenes\Places\TelAdre\UmasShop.as:NEEDLEWORK_DEFENSE_EXTRA_HP
                 return (int)Math.Round(max);
             }
         }
@@ -282,7 +308,7 @@ namespace CoCEd.ViewModel
         public int Level
         {
             get { return GetInt("level"); }
-            set 
+            set
             {
                 SetValue("level", value);
                 OnPropertyChanged("MaxHP");
@@ -315,8 +341,8 @@ namespace CoCEd.ViewModel
         public int Lust
         {
             get { return GetInt("lust"); }
-            set 
-            { 
+            set
+            {
                 SetDouble("lust", value);
                 OnPropertyChanged("CumProduction");
                 OnPropertyChanged("CumVolume");
@@ -387,7 +413,7 @@ namespace CoCEd.ViewModel
         public int HornType
         {
             get { return GetInt("hornType"); }
-            set 
+            set
             {
                 SetValue("hornType", value);
                 OnPropertyChanged("HornsValueEnabled");
@@ -408,7 +434,7 @@ namespace CoCEd.ViewModel
             {
                 if (HornType == 5) return "Antlers' branches";
                 if (HornType == 1) return "Horn count";
-                return "Horns length";  // 2
+                return "Horns' length"; // 2
             }
         }
 
@@ -432,8 +458,8 @@ namespace CoCEd.ViewModel
         public int HipRating
         {
             get { return GetInt("hipRating"); }
-            set 
-            { 
+            set
+            {
                 SetValue("hipRating", value);
                 OnPropertyChanged("HipRatingTip");
             }
@@ -441,7 +467,7 @@ namespace CoCEd.ViewModel
 
         public string HipRatingTip
         {
-            get 
+            get
             {
                 if (HipRating >= 20) return IsMale ? "inhumanly-wide" : "broodmother";
                 if (HipRating >= 15) return IsMale ? "voluptuous" : "child-bearing";
@@ -456,8 +482,8 @@ namespace CoCEd.ViewModel
         public int ButtRating
         {
             get { return GetInt("buttRating"); }
-            set 
-            { 
+            set
+            {
                 SetValue("buttRating", value);
                 OnPropertyChanged("ButtRatingTip");
             }
@@ -482,8 +508,8 @@ namespace CoCEd.ViewModel
         public int Frame
         {
             get { return GetInt("thickness"); }
-            set 
-            { 
+            set
+            {
                 SetValue("thickness", value);
                 OnPropertyChanged("FrameTip");
             }
@@ -506,8 +532,8 @@ namespace CoCEd.ViewModel
         public int Muscles
         {
             get { return GetInt("tone"); }
-            set 
-            { 
+            set
+            {
                 SetValue("tone", value);
                 OnPropertyChanged("MusclesTip");
             }
@@ -528,8 +554,8 @@ namespace CoCEd.ViewModel
         public int Feminity
         {
             get { return GetInt("femininity"); }
-            set 
-            { 
+            set
+            {
                 SetValue("femininity", value);
                 OnPropertyChanged("FeminityTip");
             }
@@ -592,8 +618,8 @@ namespace CoCEd.ViewModel
         public int TailType
         {
             get { return GetInt("tailType"); }
-            set 
-            { 
+            set
+            {
                 SetValue("tailType", value);
                 OnPropertyChanged("TailValueLabel");
                 OnPropertyChanged("IsTailValueEnabled");
@@ -631,8 +657,8 @@ namespace CoCEd.ViewModel
         public int WingType
         {
             get { return GetInt("wingType"); }
-            set 
-            { 
+            set
+            {
                 SetValue("wingType", value);
                 OnPropertyChanged("IsWingEnabled");
             }
@@ -655,6 +681,17 @@ namespace CoCEd.ViewModel
             set { SetValue("gills", value); }
         }
 
+        public bool HasSandTrapBalls
+        {
+            get { return GetStatus("Uniball").IsOwned; }
+            set { GetStatus("Uniball").IsOwned = value; }
+        }
+
+        public bool HasSandTrapNipples
+        {
+            get { return GetStatus("Black Nipples").IsOwned; }
+            set { GetStatus("Black Nipples").IsOwned = value; }
+        }
 
 
         public bool UsedContraceptives
@@ -671,16 +708,16 @@ namespace CoCEd.ViewModel
 
         public int PregnancyType
         {
-            get 
-            { 
-                int type = GetInt("pregnancyType"); 
+            get
+            {
+                int type = GetInt("pregnancyType");
                 if (type != 5) return type;
 
                 int eggType = (int)GetStatus("eggs").Value1;
                 int eggSize = (int)GetStatus("eggs").Value2;
                 return 10000 + eggType * 100 + eggSize;
             }
-            set 
+            set
             {
                 if (value < 10000)
                 {
@@ -715,7 +752,7 @@ namespace CoCEd.ViewModel
         public int ButtPregnancyType
         {
             get { return GetInt("buttPregnancyType"); }
-            set 
+            set
             {
                 SetValue("buttPregnancyType", value);
                 OnPropertyChanged("IsButtPregnancyEnabled");
@@ -758,7 +795,7 @@ namespace CoCEd.ViewModel
         public double CumMultiplier
         {
             get { return GetDouble("cumMultiplier"); }
-            set 
+            set
             {
                 SetValue("cumMultiplier", value);
                 OnPropertyChanged("CumProduction");
@@ -769,8 +806,8 @@ namespace CoCEd.ViewModel
         public double HoursSinceCum
         {
             get { return GetDouble("hoursSinceCum"); }
-            set 
-            { 
+            set
+            {
                SetValue("hoursSinceCum", value);
                OnPropertyChanged("CumVolume");
             }
@@ -788,9 +825,9 @@ namespace CoCEd.ViewModel
             set { SetValue("nippleLength", value); }
         }
 
-        public string CumVolume
+        public string CumVolume // See: Creature.as:cumQ()
         {
-            get 
+            get
             {
                 double lustCoefficient = (GetPerk("Pilgrim's Bounty").IsOwned ? 150 : (Lust + 50)) / 10;
 
@@ -807,6 +844,7 @@ namespace CoCEd.ViewModel
 
                 if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
                 if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
+                if (_isRevampMod && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
 
@@ -819,14 +857,16 @@ namespace CoCEd.ViewModel
                 qty += GetStatus("rut").Value1;
 
                 qty *= 1 + (2 * GetPerk("Pierced: Fertite").Value1) / 100;
+                //if (_isRevampMod && jewelryEffectId == JewelryLib.MODIFIER_FERTILITY) qty *= 1 + jewelryEffectMagnitude / 100;
 
                 if (qty < 2) qty = 2;
+                if (_isRevampMod && qty > Int32.MaxValue) qty = Int32.MaxValue;
 
                 return FormatVolume(qty);
             }
         }
 
-        public string CumProduction
+        public string CumProduction // TME: Clearly based on CumVolume, but I'm unsure how Perdev came up with this
         {
             get
             {
@@ -845,12 +885,16 @@ namespace CoCEd.ViewModel
 
                 if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
                 if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
+                if (_isRevampMod && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
 
                 qty *= 1 + (2 * GetPerk("Pierced: Fertite").Value1) / 100;
+                //if (_isRevampMod && jewelryEffectId == JewelryLib.MODIFIER_FERTILITY) qty *= 1 + jewelryEffectMagnitude / 100;
 
-                // unsure if (qty < 2) clamping should be done here
+                // unsure if clamping should be done here
+                //if (qty < 2) qty = 2;
+                //if (_isRevampMod && qty > Int32.MaxValue) qty = Int32.MaxValue;
 
                 return FormatVolume(qty, "/h");
             }
@@ -878,7 +922,7 @@ namespace CoCEd.ViewModel
         public int Exgartuan
         {
             get { return (int)GetStatus("Exgartuan").Value1; }
-            set 
+            set
             {
                 if (value == Exgartuan) return;
                 GetStatus("Exgartuan").IsOwned = (value != 0);
@@ -930,8 +974,8 @@ namespace CoCEd.ViewModel
         public int BirthedMinotaurs
         {
             get { return GetFlag(326).AsInt(); }
-            set 
-            { 
+            set
+            {
                 GetFlag(326).SetValue(value);
                 OnPropertyChanged();
             }
@@ -968,12 +1012,12 @@ namespace CoCEd.ViewModel
 
         public int KeltSubmissiveness
         {
-            get 
+            get
             {
                 double value = GetStatus("Kelt").Value2;
                 return (int)Math.Round(value / 1.3);
             }
-            set 
+            set
             {
                 GetStatus("Kelt").Value2 = (int)Math.Round(value * 1.3);
             }
@@ -1031,13 +1075,14 @@ namespace CoCEd.ViewModel
         public int LustStickTime
         {
             get { return (int)GetStatus("Lust Stick Applied").Value1; }
-            set 
+            set
             {
                 var status = GetStatus("Lust Stick Applied");
                 status.IsOwned = (value > 0);
                 status.Value1 = value;
             }
         }
+
 
         public int ExploredForest
         {
@@ -1116,7 +1161,18 @@ namespace CoCEd.ViewModel
 
         public bool UnlockedFarm
         {
-            get { return GetStatus("Met Whitney").Value1 == 2; }
+            get
+            {
+                if (_isRevampMod)
+                {
+                    // CoC-Revamp-Mod uses this to track achievement progress as well, so values ≥ 2 are inevitable
+                    return GetStatus("Met Whitney").Value1 >= 2;
+                }
+                else // is vanilla CoC
+                {
+                    return GetStatus("Met Whitney").Value1 == 2;
+                }
+            }
             set
             {
                 GetStatus("Met Whitney").IsOwned = value;
@@ -1156,8 +1212,28 @@ namespace CoCEd.ViewModel
 
         public bool UnlockedDungeonFactory
         {
-            get { return GetStatus("Found Factory").IsOwned; }
-            set { GetStatus("Found Factory").IsOwned = value; }
+            get
+            {
+                if (_isRevampMod)
+                {
+                    return GetFlag(2020).AsInt() == 1;
+                }
+                else // is vanilla CoC
+                {
+                    return GetStatus("Found Factory").IsOwned;
+                }
+            }
+            set
+            {
+                if (_isRevampMod)
+                {
+                    GetFlag(2020).SetValue(value ? 1 : 0);
+                }
+                else // is vanilla CoC
+                {
+                    GetStatus("Found Factory").IsOwned = value;
+                }
+            }
         }
 
         public bool UnlockedDungeonDeepCave
@@ -1179,18 +1255,6 @@ namespace CoCEd.ViewModel
         }
 
 
-
-        public bool HasSandTrapBalls
-        {
-            get { return GetStatus("Uniball").IsOwned; }
-            set { GetStatus("Uniball").IsOwned = value; }
-        }
-
-        public bool HasSandTrapNipples
-        {
-            get { return GetStatus("Black Nipples").IsOwned; }
-            set { GetStatus("Black Nipples").IsOwned = value; }
-        }
 
         string _rawDataSearchText;
         public string RawDataSearchText

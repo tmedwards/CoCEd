@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:common="clr-namespace:CoCEd.Common"
-             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d"
+             d:DesignWidth="1024" d:DesignHeight="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -63,11 +64,11 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                            <StackPanel Orientation="Vertical" Margin="0,30,0,0">
+                            <StackPanel Orientation="Vertical" Margin="0,20,0,0">
                                 <Border Background="Transparent" IsHitTestVisible="False">
                                     <TextBlock Text="{Binding Name}" Margin="20,4,4,4" FontSize="14" FontWeight="Bold" Foreground="#404040" SnapsToDevicePixels="True"/>
                                 </Border>
-                                <ItemsPresenter x:Name="ItemsHost" Margin="0,0,0,0" />
+                                <ItemsPresenter x:Name="ItemsHost" Margin="0,0,0,0"/>
                             </StackPanel>
                         </ControlTemplate>
                     </Setter.Value>
@@ -87,14 +88,14 @@
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter TargetName="mouseOverBorder" Property="Opacity" Value="1" />
+                                    <Setter TargetName="mouseOverBorder" Property="Opacity" Value="1"/>
                                 </Trigger>
                                 <Trigger Property="IsSelected" Value="true">
-                                    <Setter TargetName="selectionBorder" Property="Opacity" Value="1" />
-                                    <Setter TargetName="text" Property="Foreground" Value="White" />
+                                    <Setter TargetName="selectionBorder" Property="Opacity" Value="1"/>
+                                    <Setter TargetName="text" Property="Foreground" Value="White"/>
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="false">
-                                    <Setter TargetName="text" Property="Foreground" Value="Gray" />
+                                    <Setter TargetName="text" Property="Foreground" Value="Gray"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
