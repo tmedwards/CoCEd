@@ -61,7 +61,7 @@
                     <common:MyNumericBox    Value="{Binding Game.HoursSinceCum}" Unit="Hours" Tip="{Binding Game.CumVolume}"/>
 
                     <Border/>
-                    <CheckBox Content="Uniball&#x202F;*" ToolTip="Sand trap ball sack. Will be removed by CoC if your balls are bigger than 1 inch." IsChecked="{Binding Game.HasSandTrapBalls}" Margin="8,5,0,0"/>
+                    <CheckBox Content="Uniball&#x202F;*" ToolTip="Sand trap ball sack.  Will be removed by CoC if your balls are bigger than 1 inch." IsChecked="{Binding Game.HasSandTrapBalls}" Margin="8,5,0,0"/>
                 </common:AutoGrid>
             </StackPanel>
 
@@ -77,7 +77,7 @@
                     </common:ArrayEditor.ItemTemplate>
                     <common:AutoGrid>
                         <TextBlock              Text="Type"/>
-                        <common:MyComboBox               SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
+                        <common:MyComboBox      SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
 
                         <TextBlock              Text="Length"/>
                         <common:MyNumericBox    Value="{Binding Length}" Type="Double" Unit="inches"/>
@@ -92,7 +92,7 @@
                         <common:MyComboBox      SelectedValue="{Binding CockSock}" ItemsSource="{Binding AllCockSocks}"/>
 
                         <TextBlock              Text="Piercing"/>
-                        <common:MyPiercingBox DataContext="{Binding Piercing}"/>
+                        <common:MyPiercingBox   DataContext="{Binding Piercing}"/>
                     </common:AutoGrid>
                 </common:ArrayEditor>
             </StackPanel>
@@ -105,10 +105,10 @@
 
                 <common:AutoGrid>
                     <TextBlock              Text="Loosness"/>
-                    <common:MyComboBox               SelectedValue="{Binding Game.Ass.Looseness}" ItemsSource="{Binding Data.Body.AnalLoosenessLevels}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.Ass.Looseness}" ItemsSource="{Binding Data.Body.AnalLoosenessLevels}"/>
 
                     <TextBlock              Text="Wetness"/>
-                    <common:MyComboBox               SelectedValue="{Binding Game.Ass.Wetness}" ItemsSource="{Binding Data.Body.AnalWetnessLevels}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.Ass.Wetness}" ItemsSource="{Binding Data.Body.AnalWetnessLevels}"/>
 
                     <TextBlock              Text="Capacity bonus&#x202F;*" ToolTip="In respect of cock length &#x00D7; thickness."/>
                     <common:MyNumericBox    Value="{Binding Game.AnalCapacityBonus}" Type="Double" Unit="inches²"/>
@@ -124,19 +124,19 @@
                     </common:ArrayEditor.ItemTemplate>
                     <common:AutoGrid>
                         <TextBlock              Text="Type"/>
-                        <common:MyComboBox               SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
+                        <common:MyComboBox      SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
 
                         <TextBlock              Text="Loosness"/>
-                        <common:MyComboBox               SelectedValue="{Binding Looseness}" ItemsSource="{Binding AllLoosenessLevels}"/>
+                        <common:MyComboBox      SelectedValue="{Binding Looseness}" ItemsSource="{Binding AllLoosenessLevels}"/>
 
                         <TextBlock              Text="Wetness"/>
-                        <common:MyComboBox               SelectedValue="{Binding Wetness}" ItemsSource="{Binding AllWetnessLevels}"/>
+                        <common:MyComboBox      SelectedValue="{Binding Wetness}" ItemsSource="{Binding AllWetnessLevels}"/>
 
                         <TextBlock              Text="Labia piercing"/>
-                        <common:MyPiercingBox DataContext="{Binding LabiaPiercing}"/>
+                        <common:MyPiercingBox   DataContext="{Binding LabiaPiercing}"/>
 
                         <TextBlock              Text="Clit piercing"/>
-                        <common:MyPiercingBox DataContext="{Binding ClitPiercing}"/>
+                        <common:MyPiercingBox   DataContext="{Binding ClitPiercing}"/>
 
                         <Border/>
                         <CheckBox Content="Virgin" IsChecked="{Binding Virgin}"/>

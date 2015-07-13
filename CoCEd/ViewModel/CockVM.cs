@@ -9,8 +9,8 @@ namespace CoCEd.ViewModel
 {
     public sealed class CockArrayVM : ArrayVM<CockVM>
     {
-        public CockArrayVM(AmfObject obj)
-            : base(obj, x => new CockVM(x))
+        public CockArrayVM(GameVM game, AmfObject obj)
+            : base(obj, x => new CockVM(game, x))
         {
         }
 
@@ -31,22 +31,26 @@ namespace CoCEd.ViewModel
 
     public class CockVM : ObjectVM
     {
-        public CockVM(AmfObject obj)
+        public CockVM(GameVM game, AmfObject obj)
             : base(obj)
         {
             Piercing = new PiercingVM(obj, "", "Desc", PiercingLocation.Cock);
+
+            _game = game;
         }
+
+        private GameVM _game { get; set; }
 
         public PiercingVM Piercing { get; private set; }
 
         public XmlEnum[] AllTypes
         {
-            get { return XmlData.Instance.Body.CockTypes; }
+            get { return XmlData.Current.Body.CockTypes; }
         }
 
         public XmlItem[] AllCockSocks
         {
-            get { return XmlData.Instance.Body.CockSockTypes; }
+            get { return XmlData.Current.Body.CockSockTypes; }
         }
 
         public int Type
@@ -91,12 +95,25 @@ namespace CoCEd.ViewModel
         public string CockSock
         {
             get { return GetString("sock"); }
-            set { SetValue("sock", value); }
+            set
+            {
+                bool greenSockChanged = false;
+                if (_game.IsRevampMod)
+                {
+                    if (CockSock == "green")
+                    {
+                        if (value != "green") greenSockChanged = true;
+                    }
+                    else if (value == "green") greenSockChanged = true;
+                }
+                SetValue("sock", value);
+                if (greenSockChanged) _game.NotifyPropertyChanged("MaxHP");
+            }
         }
 
         public string LabelPart1
         {
-            get { return Length.ToString("0") + "\""; }
+            get { return Length.ToString("0") + "\u2033"; }
         }
 
         public string LabelPart2
@@ -104,8 +121,8 @@ namespace CoCEd.ViewModel
             get
             {
                 var type = Type;
-                var cockType = XmlData.Instance.Body.CockTypes.FirstOrDefault(x => x.ID == type);
-                var cockTypeName = cockType != null ? cockType.Name : "unknown";
+                var cockType = XmlData.Current.Body.CockTypes.FirstOrDefault(x => x.ID == type);
+                var cockTypeName = cockType != null ? cockType.Name : "<unknown>";
                 return String.Format(" long {0} cock", cockTypeName);
             }
         }

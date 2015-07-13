@@ -36,24 +36,15 @@ namespace CoCEd.ViewModel
         public static void Create()
         {
             Instance = new VM();
-            Instance.Data = XmlData.Instance;
         }
 
         public static VM Instance { get; private set; }
 
-        public bool SaveRequired { get; private set; }
-        public XmlData Data { get; private set; }
+        public XmlDataSet Data { get; private set; }
+
         public GameVM Game { get; private set; }
 
-        public Visibility FileLabelVisibility 
-        {
-            get { return _currentFile == null ? Visibility.Collapsed : Visibility.Visible; }
-        }
-
-        public string FileLabel 
-        {
-            get { return _currentFile == null ? "" : Path.GetFileNameWithoutExtension(_currentFile.FilePath); }
-        }
+        public bool SaveRequired { get; private set; }
 
         public string FileVersion
         {
@@ -67,7 +58,7 @@ namespace CoCEd.ViewModel
 
         public bool IsRevampMod
         {
-            get { return FileVersion.Contains("_mod_"); }
+            get { return _currentFile != null && _currentFile.Contains("hunger"); }
         }
 
         public void Load(string path, SerializationFormat expectedFormat, bool createBackup)
@@ -118,22 +109,6 @@ namespace CoCEd.ViewModel
                 return;
             }
 
-            // Sanity check: count the number of top-level properties.
-            Dictionary<string, int> propertyCounts = VM.Instance.Data.PropertyCounts.ToDictionary(p => p.Version, p => p.Count);
-            int expectedCount = propertyCounts.ContainsKey(dataVersion) ? propertyCounts[dataVersion] : propertyCounts["latest"];
-            if (file.Count < expectedCount)
-            {
-                var box = new ExceptionBox();
-                box.Title = "File has an unexpected number of properties.";
-                box.Message = "CoCEd may not be able to read this file correctly as it has an unexpected number of properties (expected: " + expectedCount + ", found: " + file.Count
-                    + "). Continuing may make CoCEd unstable or cause it to corrupt the file. It is strongly advised that you cancel this operation.\n\nThis may be a false alarm, and CoCEd's property counts may simply need to be updated. If the file loads in CoC without apparent issue, then this may be the case.";
-                box.IsWarning = true;
-                var result = box.ShowDialog(ExceptionBoxButtons.Continue, ExceptionBoxButtons.Cancel);
-
-                Logger.Error(String.Format("{0} CoC data version: {1}.", box.Title, dataVersion));
-                if (result != ExceptionBoxResult.Continue) return;
-            }
-
             // Sanity check: ensure the actual format matches the expected format (just a warning to the user about mixing up the formats).
             if (file.Format != expectedFormat)
             {
@@ -146,12 +121,14 @@ namespace CoCEd.ViewModel
 
             if (createBackup) FileManager.CreateBackup(path);
             _currentFile = file;
+
+            XmlData.Select(IsRevampMod ? XmlData.Files.RevampMod : XmlData.Files.CoC);
+            Data = XmlData.Current;
             Game = new GameVM(_currentFile, Game, IsRevampMod);
 
+            OnPropertyChanged("Data");
             OnPropertyChanged("Game");
             OnPropertyChanged("HasData");
-            OnPropertyChanged("FileLabel");
-            OnPropertyChanged("FileLabelVisibility");
             UpdateAppTitle();
             VM.Instance.NotifySaveRequiredChanged(false);
             if (FileOpened != null) FileOpened(null, null);

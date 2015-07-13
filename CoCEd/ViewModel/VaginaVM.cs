@@ -47,17 +47,17 @@ namespace CoCEd.ViewModel
 
         public XmlEnum[] AllTypes
         {
-            get { return XmlData.Instance.Body.VaginaTypes; }
+            get { return XmlData.Current.Body.VaginaTypes; }
         }
 
         public XmlEnum[] AllLoosenessLevels
         {
-            get { return XmlData.Instance.Body.VaginalLoosenessLevels; }
+            get { return XmlData.Current.Body.VaginalLoosenessLevels; }
         }
 
         public XmlEnum[] AllWetnessLevels
         {
-            get { return XmlData.Instance.Body.VaginalWetnessLevels; }
+            get { return XmlData.Current.Body.VaginalWetnessLevels; }
         }
 
         public int Type

@@ -12,8 +12,66 @@ using System.Xml.Serialization;
 
 namespace CoCEd.Model
 {
-    [XmlRoot("CoCEd")]
     public sealed class XmlData
+    {
+        // Kind of hacky I suppose, but for something this simple it beats creating a discriminated union
+        // or juggling a filename list/enum pair
+        public static class Files
+        {
+            public static string CoC = "CoCEd.Data.xml";
+            public static string RevampMod = "CoCEd.DataRevampMod.xml";
+            public static readonly IEnumerable<string> All = new string[] { CoC, RevampMod };
+        }
+
+        private static Dictionary<string, XmlDataSet> _files = new Dictionary<string, XmlDataSet>();
+
+        private static string _selectedFile { get; set; }
+
+        public static void Select(string xmlFile) { _selectedFile = xmlFile; }
+
+        public static XmlDataSet Current { get { return _files[_selectedFile]; } }
+
+        public static XmlLoadingResult LoadXml(string xmlFile)
+        {
+            try
+            {
+                var path = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+                path = Path.Combine(path, xmlFile);
+
+                using (var stream = File.OpenRead(path))
+                {
+                    XmlSerializer s = new XmlSerializer(typeof(XmlDataSet));
+                    var fileData = s.Deserialize(stream) as XmlDataSet;
+
+                    var unknownPerks = new XmlPerkGroup { Name = "Unknown", Perks = new List<XmlNamedVector4>() };
+                    fileData.PerkGroups.Add(unknownPerks);
+
+                    var unknownItems = new XmlItemGroup { Name = "Unknown", Items = new List<XmlItem>(), Category = ItemCategories.Unknown };
+                    fileData.ItemGroups.Add(unknownItems);
+
+                    _files.Add(xmlFile, fileData);
+                    if (_files.Count == 1) Select(xmlFile);
+
+                    return XmlLoadingResult.Success;
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return XmlLoadingResult.NoPermission;
+            }
+            catch (SecurityException)
+            {
+                return XmlLoadingResult.NoPermission;
+            }
+            catch (FileNotFoundException)
+            {
+                return XmlLoadingResult.MissingFile;
+            }
+        }
+    }
+
+    [XmlRoot("CoCEd")]
+    public sealed class XmlDataSet
     {
         [XmlElement("Body")]
         public XmlBodySet Body { get; set; }
@@ -35,47 +93,6 @@ namespace CoCEd.Model
 
         [XmlArray, XmlArrayItem("PropertyCount")]
         public XmlPropCount[] PropertyCounts { get; set; }
-
-        public static XmlData Instance
-        {
-            get;
-            private set;
-        }
-
-        public static XmlLoadingResult LoadXml()
-        {
-            try
-            {
-                var path = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-                path = Path.Combine(path, "CoCEd.xml");
-
-                using (var stream = File.OpenRead(path))
-                {
-                    XmlSerializer s = new XmlSerializer(typeof(XmlData));
-                    Instance = s.Deserialize(stream) as XmlData;
-
-                    var unknwonPerks = new XmlPerkGroup { Name = "Unknown", Perks = new List<XmlNamedVector4>() };
-                    Instance.PerkGroups.Add(unknwonPerks);
-
-                    var unknwonItems = new XmlItemGroup { Name = "Unknown", Items = new List<XmlItem>(), Category = ItemCategories.Unknown };
-                    Instance.ItemGroups.Add(unknwonItems);
-
-                    return XmlLoadingResult.Success;
-                }
-            }
-            catch(UnauthorizedAccessException)
-            {
-                return XmlLoadingResult.NoPermission;
-            }
-            catch (SecurityException)
-            {
-                return XmlLoadingResult.NoPermission;
-            }
-            catch (FileNotFoundException)
-            {
-                return XmlLoadingResult.MissingFile;
-            }
-        }
     }
 
     public sealed class XmlBodySet

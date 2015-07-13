@@ -78,32 +78,36 @@ namespace CoCEd
         void Initialize()
         {
             ExceptionBox box;
-            var xmlResult = XmlData.LoadXml();
-            switch (xmlResult)
+
+            foreach (string xmlFile in XmlData.Files.All)
             {
-                case XmlLoadingResult.Success:
-                    break;
+                var xmlResult = XmlData.LoadXml(xmlFile);
+                switch (xmlResult)
+                {
+                    case XmlLoadingResult.Success:
+                        break;
 
-                case XmlLoadingResult.MissingFile:
-                    box = new ExceptionBox();
-                    box.Title = "Fatal error";
-                    box.Message = "The CoCEd.xml file could not be found. Did you try to run the program from the archive without extracting all the files first?";
-                    box.Path = Environment.CurrentDirectory;
-                    box.ShowDialog(ExceptionBoxButtons.Quit);
-                    Shutdown();
-                    return;
+                    case XmlLoadingResult.MissingFile:
+                        box = new ExceptionBox();
+                        box.Title = "Fatal error";
+                        box.Message = "The " + xmlFile + " file could not be found. Did you try to run the program from the archive without extracting all the files first?";
+                        box.Path = Environment.CurrentDirectory;
+                        box.ShowDialog(ExceptionBoxButtons.Quit);
+                        Shutdown();
+                        return;
 
-                case XmlLoadingResult.NoPermission:
-                    box = new ExceptionBox();
-                    box.Title = "Fatal error";
-                    box.Message = "The CoCEd.xml file was already in use or this application does not have permission to read from the folder where it is located.";
-                    box.Path = Environment.CurrentDirectory;
-                    box.ShowDialog(ExceptionBoxButtons.Quit);
-                    Shutdown();
-                    return;
+                    case XmlLoadingResult.NoPermission:
+                        box = new ExceptionBox();
+                        box.Title = "Fatal error";
+                        box.Message = "The " + xmlFile + " file was already in use or this application does not have permission to read from the folder where it is located.";
+                        box.Path = Environment.CurrentDirectory;
+                        box.ShowDialog(ExceptionBoxButtons.Quit);
+                        Shutdown();
+                        return;
 
-                default:
-                    throw new NotImplementedException();
+                    default:
+                        throw new NotImplementedException();
+                }
             }
 
             VM.Create();

@@ -74,11 +74,11 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <!--StackPanel Orientation="Horizontal" Margin="5">
+        <!-- StackPanel Orientation="Horizontal" Margin="5">
             <TextBlock Text="CoCEd" FontSize="48" Margin="0,-16,0,0" FontWeight="Thin" Foreground="White"/>
 
             <TextBlock Text="0.9e" Margin="0,-4" VerticalAlignment="Top"/>
-        </StackPanel-->
+        </StackPanel -->
         
         <StackPanel Orientation="Horizontal" Grid.Column="2">
             <ToggleButton x:Name="openButton" Margin="0,1,0,0" Content="Open" BorderThickness="0" FontSize="12" Checked="openButton_StateChanged" Unchecked="openButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent">
@@ -95,7 +95,5 @@
 
             <Button Content="Update?" Click="checkForUpdates_Click" Margin="20,-1,0,0" BorderThickness="0" FontSize="12" HorizontalContentAlignment="Left" VerticalAlignment="Top" ToolTip="Check for updates to CoCEd…"/>
         </StackPanel>
-
-        <!--TextBlock Text="{Binding FileLabel}" Margin="0,2,0,0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="14" Foreground="#A0A0A0" VerticalAlignment="Top" FontStretch="Expanded" FontWeight="Thin"/-->
     </Grid>
 </UserControl>

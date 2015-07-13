@@ -14,7 +14,7 @@ namespace CoCEd.ViewModel
         /// Returns the status with the specified name (even if not owned by the player) AND registers a dependency between the caller property and this status.
         /// That way, anytime the status is modified, OnPropertyChanged will be raised for the caller property.
         /// </summary>
-        StatusVM GetStatus(string name, [CallerMemberName] string propertyName = null)
+        public StatusVM GetStatus(string name, [CallerMemberName] string propertyName = null)
         {
             var status = _allStatuses.First(x => x.Name == name);
             status.GameVMProperties.Add(propertyName);
@@ -25,7 +25,7 @@ namespace CoCEd.ViewModel
         /// Returns the key item with the specified name (even if not owned by the player) AND registers a dependency between the caller property and this key item.
         /// That way, anytime the key item is modified, OnPropertyChanged will be raised for the caller property.
         /// </summary>
-        KeyItemVM GetKeyItem(string name, [CallerMemberName] string propertyName = null)
+        public KeyItemVM GetKeyItem(string name, [CallerMemberName] string propertyName = null)
         {
             var keyItem = _allKeyitems.First(x => x.Name == name);
             keyItem.GameVMProperties.Add(propertyName);
@@ -36,7 +36,7 @@ namespace CoCEd.ViewModel
         /// Returns the perk with the specified name (even if not owned by the player) AND registers a dependency between the caller property and this perk.
         /// That way, anytime the perk is modified, OnPropertyChanged will be raised for the caller property.
         /// </summary>
-        PerkVM GetPerk(string name, [CallerMemberName] string propertyName = null)
+        public PerkVM GetPerk(string name, [CallerMemberName] string propertyName = null)
         {
             var perk = _allPerks.First(x => x.Name == name);
             perk.GameVMProperties.Add(propertyName);
@@ -47,7 +47,7 @@ namespace CoCEd.ViewModel
         /// Returns the flag with the specified index AND registers a dependency between the caller property and this flag. 
         /// That way, anytime the flag value is changed, OnPropertyChanged will be raised for the caller property.
         /// </summary>
-        FlagVM GetFlag(int index, [CallerMemberName] string propertyName = null)
+        public FlagVM GetFlag(int index, [CallerMemberName] string propertyName = null)
         {
             var flag = _allFlags[index];
             flag.GameVMProperties.Add(propertyName);
@@ -59,10 +59,22 @@ namespace CoCEd.ViewModel
             get { return GetInt("gender", 0) <= 1; }
         }
 
+        // Public helper for the various subordinate body part view models (e.g. CockVM)
+        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            OnPropertyChanged(propertyName);
+        }
+
         // Whenever a PerkVM, FlagVM, or StatusVM is modified, it notifies GameVM with those functions so that it updates its dependent properties. 
         // See also GetPerk, GetFlag, and GetStatus.
         public void OnPerkChanged(string name)
         {
+            // Must be here, rather than in OnPerkAddedOrRemoved(), to catch property value changes.
+            if (name == "Milk Maid")
+            {
+                foreach (var breast in Breasts) breast.UpdateMilkVolume();
+            }
+
             foreach (var prop in _allPerks.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
         }
 
@@ -84,8 +96,7 @@ namespace CoCEd.ViewModel
 
         public void OnKeyItemChanged(string name)
         {
-            // Must be here, rather than in OnKeyItemAddedOrRemoved(), to catch property value changes,
-            // specifically "value1", which determines how many slots are available.
+            // Must be here, rather than in OnKeyItemAddedOrRemoved(), to catch property value changes.
             if (name == "Backpack") // itemSlot# [6, 10]
             {
                 var backpack = GetKeyItem("Backpack");
@@ -95,8 +106,8 @@ namespace CoCEd.ViewModel
                     int count = backpack.GetInt("value1");
                     if (count < 1 || count > 5)
                     {
-                        count = Math.Max(1, Math.Min(5, count));
-                        backpack.Value1 = count; // clamp value to [1, 5], so the CoC-Revamp-Mod doesn't assplode
+                        count = Math.Max(1, Math.Min(5, count)); // clamp value to [1, 5], so CoC-Revamp-Mod doesn't assplode
+                        backpack.Value1 = count;
                     }
                     for (int i = 0; i < count; i++) GetObj("itemSlot" + (i + 6))["unlocked"] = true;
                 }
@@ -113,6 +124,10 @@ namespace CoCEd.ViewModel
             // We do not add stats however since the user can already change them easily.
             switch (name)
             {
+                case "Feeder":
+                    GetStatus(name).IsOwned = isOwned;
+                    break;
+
                 case "Strong Back":
                     GetObj("itemSlot4")["unlocked"] = isOwned;
                     UpdateInventory();
@@ -123,10 +138,6 @@ namespace CoCEd.ViewModel
                     GetObj("itemSlot5")["unlocked"] = isOwned;
                     UpdateInventory();
                     ItemContainers.Update();
-                    break;
-
-                case "Feeder":
-                    GetStatus(name).IsOwned = isOwned;
                     break;
             }
         }
@@ -139,7 +150,7 @@ namespace CoCEd.ViewModel
                 case "Camp - Chest":
                 case "Camp - Murky Chest":
                 case "Camp - Ornate Chest":
-                    if (name == "Camp - Chest" || _isRevampMod)
+                    if (IsRevampMod || name == "Camp - Chest")
                     {
                         var array = GetObj("itemStorage"); // max chest slots are 6 in CoC and 14 in CoC-Revamp-Mod
                         int count = name == "Camp - Chest" ? 6 : 4; // the CoC-Revamp-Mod chests add 4 slots a piece
@@ -190,7 +201,7 @@ namespace CoCEd.ViewModel
         void UpdateInventory()
         {
             _inventory.Clear();
-            int count = _isRevampMod ? 10 : 5; // max inventory slots are 5 in CoC and 10 in CoC-Revamp-Mod
+            int count = IsRevampMod ? 10 : 5; // max inventory slots are 5 in CoC and 10 in CoC-Revamp-Mod
             for (int i = 0; i < count; i++)
             {
                 var slot = GetObj("itemSlot" + (i + 1));
@@ -207,7 +218,7 @@ namespace CoCEd.ViewModel
         void UpdateWeaponRack() // gearStorage [0, 8]
         {
             _weaponRack.Clear();
-            bool hasWeaponRack = _isRevampMod ? GetKeyItem("Equipment Rack - Weapons").IsOwned : GetFlag(254).AsInt() == 1;
+            bool hasWeaponRack = IsRevampMod ? GetKeyItem("Equipment Rack - Weapons").IsOwned : GetFlag(254).AsInt() == 1;
             if (hasWeaponRack)
             {
                 var gearStorage = GetObj("gearStorage");
@@ -218,7 +229,7 @@ namespace CoCEd.ViewModel
         void UpdateArmorRack() // gearStorage [9, 17]
         {
             _armorRack.Clear();
-            bool hasArmorRack = _isRevampMod ? GetKeyItem("Equipment Rack - Armor").IsOwned : GetFlag(255).AsInt() == 1;
+            bool hasArmorRack = IsRevampMod ? GetKeyItem("Equipment Rack - Armor").IsOwned : GetFlag(255).AsInt() == 1;
             if (hasArmorRack)
             {
                 var gearStorage = GetObj("gearStorage");
