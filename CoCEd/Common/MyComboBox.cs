@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +15,10 @@ namespace CoCEd.Common
     [TemplatePart(Name = "combo", Type = typeof(ComboBox))]
     public class MyComboBox : Control
     {
-        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(MyComboBox), new PropertyMetadata(null, OnPropertiesChanged));
-        public static readonly DependencyProperty SelectedValueProperty = DependencyProperty.Register("SelectedValue", typeof(Object), typeof(MyComboBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnPropertiesChanged));
+        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(MyComboBox), new PropertyMetadata(null, OnItemsSourceChanged));
+        public static readonly DependencyProperty SelectedValueProperty = DependencyProperty.Register("SelectedValue", typeof(Object), typeof(MyComboBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedValueChanged));
+
+        readonly ObservableCollection<Object> InternalItems = new ObservableCollection<Object>();
 
         static MyComboBox()
         {
@@ -33,7 +37,40 @@ namespace CoCEd.Common
             set { SetValue(SelectedValueProperty, value); }
         }
 
-        void OnPropertiesChanged()
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            
+            var combo = Template.FindName("combo", this) as ComboBox;
+            combo.ItemsSource = InternalItems;
+        }
+
+
+        static void OnItemsSourceChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            MyComboBox box = (MyComboBox)obj;
+            box.PopulateInternalItems();
+            box.AddUnknownItem();
+        }
+
+        static void OnSelectedValueChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            MyComboBox box = (MyComboBox)obj;
+            box.AddUnknownItem();
+        }
+
+        void PopulateInternalItems()
+        {
+            if (ItemsSource == null) return;
+            var selectedValue = SelectedValue;
+
+            InternalItems.Clear();
+            foreach (var item in ItemsSource) InternalItems.Add(item);
+
+            SelectedValue = selectedValue;
+        }
+
+        void AddUnknownItem()
         {
             if (ItemsSource == null) return;
             if (SelectedValue == null) return;
@@ -41,25 +78,17 @@ namespace CoCEd.Common
             if (SelectedValue is string)
             {
                 var value = (string)SelectedValue;
-                var items = ItemsSource.Cast<XmlItem>().ToList();
-                if (items.Any(x => x.ID == value)) return;
-                items.Add(new XmlItem { ID = value, Name = value });
-                ItemsSource = items;
+                if (InternalItems.Cast<XmlItem>().Any(x => x.ID == value)) return;
+
+                InternalItems.Add(new XmlItem { ID = value, Name = value });
             }
             else
             {
                 var value = (int)SelectedValue;
-                var items = ItemsSource.Cast<XmlEnum>().ToList();
-                if (items.Any(x => x.ID == value)) return;
-                items.Add(new XmlEnum { ID = value, Name = "[ID#: " + value + "] <unknown>" });
-                ItemsSource = items;
-            }
-        }
+                if (InternalItems.Cast<XmlEnum>().Any(x => x.ID == value)) return;
 
-        static void OnPropertiesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
-        {
-            MyComboBox box = (MyComboBox)obj;
-            box.OnPropertiesChanged();
+                InternalItems.Add(new XmlEnum { ID = value, Name = "[ID#: " + value + "] <unknown>" });
+            }
         }
     }
 }
