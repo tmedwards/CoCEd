@@ -64,7 +64,7 @@ namespace CoCEd.ViewModel
             Categories = categories;
 
             _game = game;
-            _allGroups = XmlData.Instance.ItemGroups.Where(group => Categories.HasFlag(group.Category)).Select(x => new ItemGroupVM(_game, x, this)).ToArray();
+            _allGroups = XmlData.Current.ItemGroups.Where(group => Categories.HasFlag(group.Category)).Select(x => new ItemGroupVM(_game, x, this)).ToArray();
             AllGroups = new UpdatableCollection<ItemGroupVM>(_allGroups.Where(x => x.Items.Count != 0));
         }
 
@@ -125,7 +125,7 @@ namespace CoCEd.ViewModel
                 if (!SetValue("id", value)) return;
 
                 // Fix quantity
-                var xml = XmlData.Instance.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == value);
+                var xml = XmlData.Current.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == value);
                 if (xml != null && Quantity == 0) Quantity = 1;
                 else if (xml == null && Quantity != 0) Quantity = 0;
 
@@ -148,7 +148,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                var xml = XmlData.Instance.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
+                var xml = XmlData.Current.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
                 if (Quantity == 0 || xml == null) return "<empty>";
                 return xml.Name;
             }
@@ -158,7 +158,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                var type = XmlData.Instance.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
+                var type = XmlData.Current.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
                 if (Quantity == 0 || type == null) return "";
                 return "\u00D7" + Quantity.ToString();
             }

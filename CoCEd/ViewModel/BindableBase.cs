@@ -26,8 +26,8 @@ namespace CoCEd.ViewModel
         public virtual bool SetValue(AmfObject obj, object key, object value, [CallerMemberName] string propertyName = null)
         {
             if (AreSame(obj[key], value)) return false;
-            obj[key] = value;
 
+            obj[key] = value;
             OnSavePropertyChanged(propertyName);
             return true;
         }

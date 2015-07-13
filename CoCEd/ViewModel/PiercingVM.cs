@@ -26,7 +26,9 @@ namespace CoCEd.ViewModel
         readonly PiercingLocation _location;
 
         public PiercingVM(AmfObject obj, string prefix, PiercingLocation location)
-            : this(obj, prefix, "", location) { }
+            : this(obj, prefix, "", location)
+        {
+        }
 
         public PiercingVM(AmfObject obj, string prefix, string suffix, PiercingLocation location)
             : base(obj)
@@ -40,7 +42,7 @@ namespace CoCEd.ViewModel
         {
             get 
             {
-                foreach (var type in XmlData.Instance.Body.PiercingTypes)
+                foreach (var type in XmlData.Current.Body.PiercingTypes)
                 {
                     var type2 = new XmlEnum { ID = type.ID, Name = type.Name };
                     switch (type.ID)
@@ -144,7 +146,7 @@ namespace CoCEd.ViewModel
                 if (!String.IsNullOrEmpty(UpperName)) return UpperName;
                 if (!String.IsNullOrEmpty(LowerName)) return LowerName;
 
-                var xmlType = XmlData.Instance.Body.PiercingTypes.FirstOrDefault(x => x.ID == Type);
+                var xmlType = XmlData.Current.Body.PiercingTypes.FirstOrDefault(x => x.ID == Type);
                 if (xmlType != null) return xmlType.Name;
 
                 return "<unknown>";
@@ -165,7 +167,7 @@ namespace CoCEd.ViewModel
         {
             if (Type == 0) yield break;
 
-            foreach (var material in XmlData.Instance.Body.PiercingMaterials)
+            foreach (var material in XmlData.Current.Body.PiercingMaterials)
             {
                 yield return GeneratePiercingName(Type, material);
             }
@@ -212,7 +214,7 @@ namespace CoCEd.ViewModel
             }
             else
             {
-                var xmlType = XmlData.Instance.Body.PiercingTypes.FirstOrDefault(x => x.ID == Type);
+                var xmlType = XmlData.Current.Body.PiercingTypes.FirstOrDefault(x => x.ID == Type);
                 if (xmlType != null) rest += xmlType.Name.ToLower();
                 if (_prefix == "ears" || _prefix == "nipples" || _prefix == "labia")
                 {

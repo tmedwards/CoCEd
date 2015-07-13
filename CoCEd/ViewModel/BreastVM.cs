@@ -9,8 +9,8 @@ namespace CoCEd.ViewModel
 {
     public sealed class BreastArrayVM : ArrayVM<BreastsVM>
     {
-        public BreastArrayVM(AmfObject obj)
-            : base(obj, x => new BreastsVM(x))
+        public BreastArrayVM(GameVM game, AmfObject obj)
+            : base(obj, x => new BreastsVM(game, x))
         {
         }
 
@@ -30,10 +30,13 @@ namespace CoCEd.ViewModel
 
     public class BreastsVM : ObjectVM
     {
-        public BreastsVM(AmfObject obj)
+        public BreastsVM(GameVM game, AmfObject obj)
             : base(obj)
         {
+            _game = game;
         }
+
+        private GameVM _game { get; set; }
 
         public int Rating
         {
@@ -84,9 +87,24 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                var qty = Rating * 10 * LactationMultiplier * BreastCount;  // this is missing Lactation Endurance value1
-                return GameVM.FormatVolume(qty, "/h (base)");
+                double endurance = _game.GetStatus("Lactation Endurance").IsOwned ? _game.GetStatus("Lactation Endurance").Value1 : 1.0;
+                double reduction = _game.GetStatus("Lactation Reduction").IsOwned ? _game.GetStatus("Lactation Reduction").Value1 : 0.0;
+                double qty = Rating * 10 * LactationMultiplier * endurance * BreastCount;
+                if (_game.IsRevampMod)
+                {
+                    var milkMaid = _game.GetPerk("Milk Maid");
+                    if (milkMaid.IsOwned) qty += 200 + milkMaid.Value1 * 100;
+                }
+                if (reduction >= 48) qty *= 1.5;
+                if (_game.IsRevampMod && qty > Int32.MaxValue) qty = Int32.MaxValue;
+                //return GameVM.FormatVolume(qty, "/h (base)");
+                return GameVM.FormatVolume(qty);
             }
+        }
+
+        public void UpdateMilkVolume()
+        {
+            OnPropertyChanged("MilkVolume");
         }
 
         public string Description

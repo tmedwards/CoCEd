@@ -15,7 +15,12 @@ namespace CoCEd.ViewModel
     // TeaseLevel / XP
     public sealed partial class GameVM : ObjectVM
     {
-        readonly bool _isRevampMod = false;
+        //public readonly bool IsRevampMod = false;
+        public bool IsRevampMod { get; private set; }
+        public Visibility RevampModVisibility
+        {
+            get { return IsRevampMod ? Visibility.Visible : Visibility.Collapsed; }
+        }
 
         readonly FlagVM[] _allFlags;
         readonly StatusVM[] _allStatuses;
@@ -43,7 +48,7 @@ namespace CoCEd.ViewModel
 
 
             // Is this save from vanilla CoC or the CoC-Revamp-Mod?
-            _isRevampMod = isRevampMod;
+            IsRevampMod = isRevampMod;
 
 
             // Unique children
@@ -57,18 +62,18 @@ namespace CoCEd.ViewModel
 
 
             // Collections
-            Cocks = new CockArrayVM(file.GetObj("cocks"));
+            Cocks = new CockArrayVM(this, file.GetObj("cocks"));
             Vaginas = new VaginaArrayVM(file.GetObj("vaginas"));
-            Breasts = new BreastArrayVM(file.GetObj("breastRows"));
+            Breasts = new BreastArrayVM(this, file.GetObj("breastRows"));
             Vaginas.CollectionChanged += OnGenitalCollectionChanged;
             Breasts.CollectionChanged += OnGenitalCollectionChanged;
             Cocks.CollectionChanged += OnGenitalCollectionChanged;
 
 
             // Flags
-            int numFlags = XmlData.Instance.Flags.Max(x => x.ID) + 200;
+            int numFlags = XmlData.Current.Flags.Max(x => x.ID) + 25; // was 200; I'm unsure if there's really a need for a buffer at all anymore
             var xmlFlagByID = new XmlEnum[numFlags];
-            foreach(var xml in XmlData.Instance.Flags) xmlFlagByID[xml.ID] = xml;
+            foreach(var xml in XmlData.Current.Flags) xmlFlagByID[xml.ID] = xml;
 
             var flagsArray = GetObj("flags");
             if (flagsArray == null)
@@ -84,28 +89,28 @@ namespace CoCEd.ViewModel
 
             // Statuses
             var cocStatuses = file.GetObj("statusAffects");
-            var xmlStatuses = XmlData.Instance.Statuses;
+            var xmlStatuses = XmlData.Current.Statuses;
             ImportMissingNamedVectors(cocStatuses, xmlStatuses, "statusAffectName");
-            _allStatuses = XmlData.Instance.Statuses.OrderBy(x => x.Name).Select(x => new StatusVM(this, cocStatuses, x)).ToArray();
+            _allStatuses = XmlData.Current.Statuses.OrderBy(x => x.Name).Select(x => new StatusVM(this, cocStatuses, x)).ToArray();
             Statuses = new UpdatableCollection<StatusVM>(_allStatuses.Where(x => x.Match(_rawDataSearchText)));
 
 
             // KeyItems
             var cocKeys = file.GetObj("keyItems");
-            var xmlKeys = XmlData.Instance.KeyItems;
+            var xmlKeys = XmlData.Current.KeyItems;
             ImportMissingNamedVectors(cocKeys, xmlKeys, "keyName");
-            _allKeyitems = XmlData.Instance.KeyItems.OrderBy(x => x.Name).Select(x => new KeyItemVM(this, cocKeys, x)).ToArray();
+            _allKeyitems = XmlData.Current.KeyItems.OrderBy(x => x.Name).Select(x => new KeyItemVM(this, cocKeys, x)).ToArray();
             KeyItems = new UpdatableCollection<KeyItemVM>(_allKeyitems.Where(x => x.Match(_keyItemSearchText)));
 
 
             // Perks
             var cocPerks = _obj.GetObj("perks");
-            var xmlPerks = XmlData.Instance.PerkGroups.SelectMany(x => x.Perks).ToArray();
-            var unknownPerkGroup = XmlData.Instance.PerkGroups.Last();
+            var xmlPerks = XmlData.Current.PerkGroups.SelectMany(x => x.Perks).ToArray();
+            var unknownPerkGroup = XmlData.Current.PerkGroups.Last();
             ImportMissingNamedVectors(cocPerks, xmlPerks, "id", null, unknownPerkGroup.Perks);
 
             PerkGroups = new List<PerkGroupVM>();
-            foreach (var xmlGroup in XmlData.Instance.PerkGroups)
+            foreach (var xmlGroup in XmlData.Current.PerkGroups)
             {
                 var perksVM = xmlGroup.Perks.OrderBy(x => x.Name).Select(x => new PerkVM(this, cocPerks, x)).ToArray();
                 _allPerks.AddRange(perksVM);
@@ -121,7 +126,7 @@ namespace CoCEd.ViewModel
             containers.Add(_inventory);
             UpdateInventory();
 
-            _chest = new ItemContainerVM(this, _isRevampMod ? "Chest(s)" : "Chest", ItemCategories.All);
+            _chest = new ItemContainerVM(this, IsRevampMod ? "Chest(s)" : "Chest", ItemCategories.All);
             containers.Add(_chest);
             UpdateChest();
 
@@ -133,7 +138,7 @@ namespace CoCEd.ViewModel
             containers.Add(_armorRack);
             UpdateArmorRack();
 
-            if (_isRevampMod)
+            if (IsRevampMod)
             {
                 _shieldRack = new ItemContainerVM(this, "Shield rack", ItemCategories.Shield | ItemCategories.Unknown);
                 containers.Add(_shieldRack);
@@ -149,14 +154,14 @@ namespace CoCEd.ViewModel
             }
 
             // Import missing items
-            var unknownItemGroup = XmlData.Instance.ItemGroups.Last();
+            var unknownItemGroup = XmlData.Current.ItemGroups.Last();
 
             foreach (var slot in containers.SelectMany(x => x.Slots))
             {
                 // Add this item to the DB if it does not exist
                 var type = slot.Type;
                 if (String.IsNullOrEmpty(type)) continue;
-                if (XmlData.Instance.ItemGroups.SelectMany(x => x.Items).Any(x => x.ID == type)) continue;
+                if (XmlData.Current.ItemGroups.SelectMany(x => x.Items).Any(x => x.ID == type)) continue;
 
                 var xml = new XmlItem { ID = type, Name = type };
                 unknownItemGroup.Items.Add(xml);
@@ -213,10 +218,16 @@ namespace CoCEd.ViewModel
             get
             {
                 var notes = GetString("notes");
-                // unfortunately, CoC uses two different cases for this same text
+                // unfortunately, CoC uses two different sets of text for this same case
                 return notes.Equals("no notes available.", StringComparison.OrdinalIgnoreCase) ? "" : notes;
             }
             set { SetValue("notes", String.IsNullOrWhiteSpace(value) ? "No notes available." : value); }
+        }
+
+        public int Gems
+        {
+            get { return GetInt("gems"); }
+            set { SetValue("gems", value); }
         }
 
         public int Days
@@ -291,11 +302,82 @@ namespace CoCEd.ViewModel
             get
             {
                 double tou = GetDouble("tou");
-                double max = 50 + tou * 2 + Math.Min(20, Level) * 15;
+                double max = 50 + tou * 2;
+
                 if (GetPerk("Tank").IsOwned) max += 50;
                 if (GetPerk("Tank 2").IsOwned) max += (int)Math.Round(tou);
-                if (GetPerk("Chi Reflow - Defense").IsOwned) max += 50; // value: .\classes\classes\Scenes\Places\TelAdre\UmasShop.as:NEEDLEWORK_DEFENSE_EXTRA_HP
-                return (int)Math.Round(max);
+                if (GetPerk("Chi Reflow - Defense").IsOwned) max += 50; // value: classes\classes\Scenes\Places\TelAdre\UmasShop.as:NEEDLEWORK_DEFENSE_EXTRA_HP
+                if (IsRevampMod) max += Level * 15;
+                else max += Math.Min(20, Level) * 15;
+
+                if (IsRevampMod)
+                {
+                    //if (jewelryEffectId == JewelryLib.MODIFIER_HP) max += jewelryEffectMagnitude; // value: classes\classes\Items\JewelryLib.as
+                    //if (GetItem(GetString("jewelryId")).EffectId == 5) max += GetItem(GetString("jewelryId")).EffectMagnitude; // value: classes\classes\Items\JewelryLib.as
+                    if (GetString("jewelryId") == "LifeRng") max += 25; // value: classes\classes\Items\JewelryLib.as
+
+                    //max *= 1 + (countCockSocks("green") * 0.02);
+                    max *= 1 + 0.02 * Cocks.Count(x => x.CockSock == "green");
+                }
+
+                max = (int)Math.Round(max);
+
+                return Math.Min(IsRevampMod ? 9999 : 999, (int)max);
+            }
+        }
+
+        public int Lust
+        {
+            get { return GetInt("lust"); }
+            set
+            {
+                SetDouble("lust", value);
+                OnPropertyChanged("CumProduction");
+                OnPropertyChanged("CumVolume");
+            }
+        }
+
+        public int MaxLust
+        {
+            get
+            {
+                double max = 100;
+
+                if (IsRevampMod)
+                {
+                    if (GetPerk("Improved Self-Control").IsOwned) max += 20;
+                    if (GetPerk("Bro Body").IsOwned || GetPerk("Bimbo Body").IsOwned || GetPerk("Futa Form").IsOwned) max += 20;
+                    if (GetPerk("Omnibus' Gift").IsOwned) max += 15;
+
+                    var ascensionDesires = GetPerk("Ascension: Desires");
+                    if (ascensionDesires.IsOwned) max += ascensionDesires.Value1 * 5;
+                }
+
+                return Math.Min(999, (int)max);
+            }
+        }
+
+        public int Fatigue
+        {
+            get { return GetInt("fatigue"); }
+            set { SetValue("fatigue", value); }
+        }
+
+        public int MaxFatigue
+        {
+            get
+            {
+                double max = 100;
+
+                if (IsRevampMod)
+                {
+                    if (GetPerk("Improved Endurance").IsOwned) max += 20;
+
+                    var ascensionEndurance = GetPerk("Ascension: Endurance");
+                    if (ascensionEndurance.IsOwned) max += ascensionEndurance.Value1 * 5;
+                }
+
+                return Math.Min(999, (int)max);
             }
         }
 
@@ -336,29 +418,6 @@ namespace CoCEd.ViewModel
         {
             get { return GetInt("perkPoints"); }
             set { SetValue("perkPoints", value); }
-        }
-
-        public int Lust
-        {
-            get { return GetInt("lust"); }
-            set
-            {
-                SetDouble("lust", value);
-                OnPropertyChanged("CumProduction");
-                OnPropertyChanged("CumVolume");
-            }
-        }
-
-        public int Fatigue
-        {
-            get { return GetInt("fatigue"); }
-            set { SetValue("fatigue", value); }
-        }
-
-        public int Gems
-        {
-            get { return GetInt("gems"); }
-            set { SetValue("gems", value); }
         }
 
 
@@ -825,7 +884,7 @@ namespace CoCEd.ViewModel
             set { SetValue("nippleLength", value); }
         }
 
-        public string CumVolume // See: Creature.as:cumQ()
+        public string CumVolume // See: classes\classes\Creature.as:cumQ()
         {
             get
             {
@@ -844,7 +903,7 @@ namespace CoCEd.ViewModel
 
                 if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
                 if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
-                if (_isRevampMod && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
+                if (IsRevampMod && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
 
@@ -857,16 +916,28 @@ namespace CoCEd.ViewModel
                 qty += GetStatus("rut").Value1;
 
                 qty *= 1 + (2 * GetPerk("Pierced: Fertite").Value1) / 100;
-                //if (_isRevampMod && jewelryEffectId == JewelryLib.MODIFIER_FERTILITY) qty *= 1 + jewelryEffectMagnitude / 100;
+                //if (IsRevampMod && jewelryEffectId == JewelryLib.MODIFIER_FERTILITY) qty *= 1 + jewelryEffectMagnitude / 100;
+                //if (GetItem(GetString("jewelryId")).EffectId == 2) qty *= 1 + GetItem(GetString("jewelryId")).EffectMagnitude / 100; // value: classes\classes\Items\JewelryLib.as
+                //if (GetString("jewelryId") == "FertRng") qty *= 1 + 20 / 100; // value: classes\classes\Items\JewelryLib.as
+                if (GetString("jewelryId") == "FertRng") qty *= 1.2; // value: classes\classes\Items\JewelryLib.as
 
                 if (qty < 2) qty = 2;
-                if (_isRevampMod && qty > Int32.MaxValue) qty = Int32.MaxValue;
+                if (IsRevampMod && qty > Int32.MaxValue) qty = Int32.MaxValue;
 
                 return FormatVolume(qty);
             }
         }
 
-        public string CumProduction // TME: Clearly based on CumVolume, but I'm unsure how Perdev came up with this
+        // [TheMadExile]
+        // This is clearly based on CumVolume, but I'm unsure how this was devised.  All it does is remove the
+        // additive modidiers, which doesn't make a whole lot of sense to me if this is actually supposed to
+        // be showing production over time.  Maybe there was code like this in CoC before the "Great Open
+        // Sourcing"?  There certainly isn't now, however, so….
+        //
+        // Anyway, as CumVolume has evolved, due to CoC's evolution, I've kept this updated, but honestly,
+        // I think this either needs completely rewritten, probably by using the returned value of CumVolume as
+        // a base, or should simply be removed.
+        public string CumProduction
         {
             get
             {
@@ -885,16 +956,19 @@ namespace CoCEd.ViewModel
 
                 if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
                 if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
-                if (_isRevampMod && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
+                if (IsRevampMod && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
 
                 qty *= 1 + (2 * GetPerk("Pierced: Fertite").Value1) / 100;
-                //if (_isRevampMod && jewelryEffectId == JewelryLib.MODIFIER_FERTILITY) qty *= 1 + jewelryEffectMagnitude / 100;
+                //if (IsRevampMod && jewelryEffectId == JewelryLib.MODIFIER_FERTILITY) qty *= 1 + jewelryEffectMagnitude / 100;
+                //if (GetItem(GetString("jewelryId")).EffectId == 2) qty *= 1 + GetItem(GetString("jewelryId")).EffectMagnitude / 100; // value: classes\classes\Items\JewelryLib.as
+                //if (GetString("jewelryId") == "FertRng") qty *= 1 + 20 / 100; // value: classes\classes\Items\JewelryLib.as
+                if (GetString("jewelryId") == "FertRng") qty *= 1.2; // value: classes\classes\Items\JewelryLib.as
 
                 // unsure if clamping should be done here
                 //if (qty < 2) qty = 2;
-                //if (_isRevampMod && qty > Int32.MaxValue) qty = Int32.MaxValue;
+                //if (IsRevampMod && qty > Int32.MaxValue) qty = Int32.MaxValue;
 
                 return FormatVolume(qty, "/h");
             }
@@ -1163,7 +1237,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (_isRevampMod)
+                if (IsRevampMod)
                 {
                     // CoC-Revamp-Mod uses this to track achievement progress as well, so values ≥ 2 are inevitable
                     return GetStatus("Met Whitney").Value1 >= 2;
@@ -1214,7 +1288,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (_isRevampMod)
+                if (IsRevampMod)
                 {
                     return GetFlag(2020).AsInt() == 1;
                 }
@@ -1225,7 +1299,7 @@ namespace CoCEd.ViewModel
             }
             set
             {
-                if (_isRevampMod)
+                if (IsRevampMod)
                 {
                     GetFlag(2020).SetValue(value ? 1 : 0);
                 }
@@ -1254,6 +1328,49 @@ namespace CoCEd.ViewModel
             set { GetFlag(856).SetValue(value ? 1 : 0); }
         }
 
+
+        #region CoC-Revamp-Mod Specific
+
+        public double Hunger
+        {
+            get { return IsRevampMod ? GetDouble("hunger") : 0.0; }
+            set
+            {
+                if (IsRevampMod)
+                {
+                    SetValue("hunger", value);
+                    OnPropertyChanged("HungerTip");
+                }
+            }
+        }
+        public string HungerTip
+        {
+            get
+            {
+                if (Hunger >= 100) return "very full";
+                if (Hunger >= 90)  return "full";
+                if (Hunger >= 75)  return "satiated";
+                if (Hunger >= 50)  return "not hungry";
+                if (Hunger >= 25)  return "hungry";
+                if (Hunger >= 10)  return "very hungry";
+                if (Hunger > 0)    return "starving";
+                return "dying";
+            }
+        }
+
+        public int ExploredGlacialRift
+        {
+            get { return GetFlag(2059).AsInt(); }
+            set { GetFlag(2059).SetValue(value); }
+        }
+        
+        public int ExploredVolcanicCrag
+        {
+            get { return GetFlag(2060).AsInt(); }
+            set { GetFlag(2060).SetValue(value); }
+        }
+
+        #endregion
 
 
         string _rawDataSearchText;

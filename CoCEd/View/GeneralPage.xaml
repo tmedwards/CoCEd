@@ -83,10 +83,14 @@
                     <common:MyNumericBox    Value="{Binding Game.HP}" Upper="{Binding Game.MaxHP}"/>
 
                     <TextBlock              Text="Lust"/>
-                    <common:MyNumericBox    Value="{Binding Game.Lust}" Upper="100"/>
+                    <common:MyNumericBox    Value="{Binding Game.Lust}" Upper="{Binding Game.MaxLust}"/>
 
                     <TextBlock              Text="Fatigue"/>
-                    <common:MyNumericBox    Value="{Binding Game.Fatigue}" Upper="100"/>
+                    <common:MyNumericBox    Value="{Binding Game.Fatigue}" Upper="{Binding Game.MaxFatigue}"/>
+                </common:AutoGrid>
+                <common:AutoGrid Margin="0,30,0,0" IsEnabled="{Binding Game.IsRevampMod}" Visibility="{Binding Game.RevampModVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <TextBlock              Text="Hunger"/>
+                    <common:MyNumericBox    Value="{Binding Game.Hunger}" Min="0" Max="100" Upper="100" Tip="{Binding Game.HungerTip}"/>
                 </common:AutoGrid>
             </StackPanel>
 
