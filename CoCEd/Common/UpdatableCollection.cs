@@ -267,8 +267,8 @@ namespace System.ComponentModel
 
     public sealed class UpdatableCollection<T> : UpdatableCollection<T, T>
     {
-        public UpdatableCollection(IEnumerable<T> source)
-            : base(source, x => x)
+        public UpdatableCollection(IEnumerable<T> initialItems)
+            : base(initialItems, x => x)
         {
         }
     }

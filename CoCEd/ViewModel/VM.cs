@@ -185,7 +185,9 @@ namespace CoCEd.ViewModel
             if (SaveRequired) title += "\u202F*";
             if (IsRevampMod) title += "  [Revamp-Mod]";
             title += "  |  " + AppTitle;
-            Application.Current.MainWindow.Title = title; // Databinding does not work for this
+
+            if (Application.Current.MainWindow != null)         // May be null on autoload.
+                Application.Current.MainWindow.Title = title;   // Databinding does not work for this
         }
 
         public void NotifySaveRequiredChanged(bool saveRequired = true)

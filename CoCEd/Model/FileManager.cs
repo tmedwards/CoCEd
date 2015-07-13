@@ -40,7 +40,7 @@ namespace CoCEd.Model
 
         const int MaxBackupFiles = 10;
         public const int SaveSlotsLowerBound = 1;
-        public const int SaveSlotsUpperBound = 9;
+        public const int SaveSlotsUpperBound = 14;
 
         public static string PathWithMissingPermissions { get; private set; }
 

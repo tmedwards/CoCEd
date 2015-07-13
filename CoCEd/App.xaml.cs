@@ -147,7 +147,7 @@ namespace CoCEd
         static AmfFile AutoLoad(FlashDirectory[] directories)
         {
             var file = directories[0].Files[0];
-            VM.Instance.Load(file.FilePath, createBackup: true);
+            VM.Instance.Load(file.FilePath, SerializationFormat.Slot, createBackup: true);
             return file;
         }
 
