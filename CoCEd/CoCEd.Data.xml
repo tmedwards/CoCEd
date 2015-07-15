@@ -354,6 +354,7 @@
       <CockType ID="9"  Name="Dragon"/>
       <CockType ID="10" Name="C&#x0153;url"/>
       <CockType ID="11" Name="Fox"/>
+      <CockType ID="12" Name="Bee"/>
     </CockTypes>
     <!-- ========================================================================================================================================== -->
     <CockSockTypes>

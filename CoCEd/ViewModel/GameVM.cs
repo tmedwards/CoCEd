@@ -15,8 +15,12 @@ namespace CoCEd.ViewModel
     // TeaseLevel / XP
     public sealed partial class GameVM : ObjectVM
     {
-        //public readonly bool IsRevampMod = false;
+        public bool IsCoC { get { return !IsRevampMod; } }
         public bool IsRevampMod { get; private set; }
+        public Visibility CoCVisibility
+        {
+            get { return IsCoC ? Visibility.Visible : Visibility.Collapsed; }
+        }
         public Visibility RevampModVisibility
         {
             get { return IsRevampMod ? Visibility.Visible : Visibility.Collapsed; }
@@ -1358,16 +1362,52 @@ namespace CoCEd.ViewModel
             }
         }
 
+        public int BeardType
+        {
+            get { return GetInt("beardStyle"); }
+            set
+            {
+                if (IsRevampMod)
+                {
+                    SetValue("beardStyle", value);
+                }
+            }
+        }
+
+        public double BeardLength
+        {
+            get { return GetDouble("beardLength"); }
+            set
+            {
+                if (IsRevampMod)
+                {
+                    SetValue("beardLength", value);
+                }
+            }
+        }
+
         public int ExploredGlacialRift
         {
             get { return GetFlag(2059).AsInt(); }
-            set { GetFlag(2059).SetValue(value); }
+            set
+            {
+                if (IsRevampMod)
+                {
+                    GetFlag(2059).SetValue(value);
+                }
+            }
         }
         
         public int ExploredVolcanicCrag
         {
             get { return GetFlag(2060).AsInt(); }
-            set { GetFlag(2060).SetValue(value); }
+            set
+            {
+                if (IsRevampMod)
+                {
+                    GetFlag(2060).SetValue(value);
+                }
+            }
         }
 
         #endregion

@@ -87,7 +87,7 @@
                 </ToggleButton.ContextMenu>
             </ToggleButton>
 
-            <ToggleButton x:Name="saveButton" Margin="5,1,0,0" Content="Save as" BorderThickness="0" FontSize="12" Checked="saveButton_StateChanged" Unchecked="saveButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsEnabled="{Binding HasData}">
+            <ToggleButton x:Name="saveButton" Margin="5,1,0,0" Content="Save As" BorderThickness="0" FontSize="12" Checked="saveButton_StateChanged" Unchecked="saveButton_StateChanged" HorizontalContentAlignment="Left" VerticalAlignment="Top" Background="Transparent" IsEnabled="{Binding HasData}">
                 <ToggleButton.ContextMenu>
                     <ContextMenu x:Name="saveMenu" Closed="saveMenu_Closed" Placement="Bottom" MinWidth="150"/>
                 </ToggleButton.ContextMenu>

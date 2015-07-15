@@ -56,6 +56,11 @@ namespace CoCEd.ViewModel
             get { return _currentFile != null; }
         }
 
+        public bool IsCoC
+        {
+            get { return !IsRevampMod; }
+        }
+
         public bool IsRevampMod
         {
             get { return _currentFile != null && _currentFile.Contains("hunger"); }

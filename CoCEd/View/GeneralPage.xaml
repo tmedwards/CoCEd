@@ -126,43 +126,51 @@
                     <ComboBox Text="{Binding Game.HairColor}" ItemsSource="{Binding Data.Body.HairColors}" Style="{StaticResource EditableTextBox}"/>
 
                     <TextBlock              Text="Hair type"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.HairType}" ItemsSource="{Binding Data.Body.HairTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.HairType}" ItemsSource="{Binding Data.Body.HairTypes}"/>
+                </common:AutoGrid>
+                <common:AutoGrid IsEnabled="{Binding Game.IsRevampMod}" Visibility="{Binding Game.RevampModVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <TextBlock              Text="Beard length&#x202F;*" ToolTip="Enable with any value greater than 0."/>
+                    <common:MyNumericBox    Value="{Binding Game.BeardLength}" Type="Double" Unit="inches"/>
 
+                    <TextBlock              Text="Beard style"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.BeardType}" ItemsSource="{Binding Data.Body.BeardTypes}"/>
+                </common:AutoGrid>
+                <common:AutoGrid>
                     <TextBlock              Text="Face"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.FaceType}" ItemsSource="{Binding Data.Body.FaceTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.FaceType}" ItemsSource="{Binding Data.Body.FaceTypes}"/>
 
                     <TextBlock              Text="Tongue"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.TongueType}" ItemsSource="{Binding Data.Body.TongueTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.TongueType}" ItemsSource="{Binding Data.Body.TongueTypes}"/>
 
                     <TextBlock              Text="Eyes"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.EyeType}" ItemsSource="{Binding Data.Body.EyeTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.EyeType}" ItemsSource="{Binding Data.Body.EyeTypes}"/>
 
                     <TextBlock              Text="Ears"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.EarType}" ItemsSource="{Binding Data.Body.EarTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.EarType}" ItemsSource="{Binding Data.Body.EarTypes}"/>
 
                     <TextBlock              Text="Antennae"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.AntennaeType}" ItemsSource="{Binding Data.Body.AntennaeTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.AntennaeType}" ItemsSource="{Binding Data.Body.AntennaeTypes}"/>
 
                     <TextBlock              Text="Horns"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.HornType}" ItemsSource="{Binding Data.Body.HornTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.HornType}" ItemsSource="{Binding Data.Body.HornTypes}"/>
 
                     <TextBlock              Text="{Binding Game.HornsValueLabel}" IsEnabled="{Binding Game.HornsValueEnabled}"/>
                     <common:MyNumericBox    Value="{Binding Game.HornsValue}" Unit="{Binding Game.HornsValueUnit}" IsEnabled="{Binding Game.HornsValueEnabled}"/>
 
                     <TextBlock              Text="Eyebrow piercing"/>
-                    <common:MyPiercingBox DataContext="{Binding Game.EyebrowPiercing}"/>
+                    <common:MyPiercingBox   DataContext="{Binding Game.EyebrowPiercing}"/>
                 
                     <TextBlock              Text="Ears piercing"/>
-                    <common:MyPiercingBox DataContext="{Binding Game.EarsPiercing}"/>
+                    <common:MyPiercingBox   DataContext="{Binding Game.EarsPiercing}"/>
 
                     <TextBlock              Text="Nose piercing"/>
-                    <common:MyPiercingBox DataContext="{Binding Game.NosePiercing}"/>
+                    <common:MyPiercingBox   DataContext="{Binding Game.NosePiercing}"/>
 
                     <TextBlock              Text="Lip piercing"/>
-                    <common:MyPiercingBox DataContext="{Binding Game.LipPiercing}"/>
+                    <common:MyPiercingBox   DataContext="{Binding Game.LipPiercing}"/>
 
                     <TextBlock              Text="Tongue piercing"/>
-                    <common:MyPiercingBox DataContext="{Binding Game.TonguePiercing}"/>
+                    <common:MyPiercingBox   DataContext="{Binding Game.TonguePiercing}"/>
                 </common:AutoGrid>
             </StackPanel>
         </Grid>

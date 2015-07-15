@@ -37,10 +37,17 @@ namespace CoCEd.Model
         static readonly List<string> _externalPaths = new List<string>();
         static readonly List<FlashDirectory> _directories = new List<FlashDirectory>();
 
-
         const int MaxBackupFiles = 10;
+
+        const int MaxSaveSlotsCoC = 9;
+        const int MaxSaveSlotsRevampMod = 14;
         public const int SaveSlotsLowerBound = 1;
-        public const int SaveSlotsUpperBound = 14;
+        public const int SaveSlotsUpperBound = MaxSaveSlotsRevampMod; // must use largest value here
+
+        public static int SaveSlotsUpperBoundByGame
+        {
+            get { return VM.Instance.IsRevampMod ? MaxSaveSlotsRevampMod : MaxSaveSlotsCoC; }
+        }
 
         public static string PathWithMissingPermissions { get; private set; }
 
