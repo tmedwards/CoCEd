@@ -56,16 +56,6 @@ namespace CoCEd.ViewModel
             get { return _currentFile != null; }
         }
 
-        public bool IsCoC
-        {
-            get { return !IsRevampMod; }
-        }
-
-        public bool IsRevampMod
-        {
-            get { return _currentFile != null && _currentFile.Contains("hunger"); }
-        }
-
         public void Load(string path, SerializationFormat expectedFormat, bool createBackup)
         {
             FileManager.TryRegisterExternalFile(path);
@@ -127,9 +117,12 @@ namespace CoCEd.ViewModel
             if (createBackup) FileManager.CreateBackup(path);
             _currentFile = file;
 
-            XmlData.Select(IsRevampMod ? XmlData.Files.RevampMod : XmlData.Files.CoC);
+            // Is this a CoC-Revamp-Mod save?
+            bool isRevampMod = _currentFile.Contains("hunger");
+
+            XmlData.Select(isRevampMod ? XmlData.Files.RevampMod : XmlData.Files.CoC);
             Data = XmlData.Current;
-            Game = new GameVM(_currentFile, Game, IsRevampMod);
+            Game = new GameVM(_currentFile, Game, isRevampMod);
 
             OnPropertyChanged("Data");
             OnPropertyChanged("Game");
@@ -188,11 +181,11 @@ namespace CoCEd.ViewModel
         {
             string title = HasData ? Game.Name : "<unknown>";
             if (SaveRequired) title += "\u202F*";
-            if (IsRevampMod) title += "  [Revamp-Mod]";
+            if (Game.IsRevampMod) title += "  [Revamp-Mod]";
             title += "  |  " + AppTitle;
 
-            if (Application.Current.MainWindow != null)         // May be null on autoload.
-                Application.Current.MainWindow.Title = title;   // Databinding does not work for this
+            if (Application.Current.MainWindow != null)       // May be null on autoload.
+                Application.Current.MainWindow.Title = title; // Databinding does not work for this
         }
 
         public void NotifySaveRequiredChanged(bool saveRequired = true)

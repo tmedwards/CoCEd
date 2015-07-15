@@ -46,7 +46,7 @@ namespace CoCEd.Model
 
         public static int SaveSlotsUpperBoundByGame
         {
-            get { return VM.Instance.IsRevampMod ? MaxSaveSlotsRevampMod : MaxSaveSlotsCoC; }
+            get { return VM.Instance.Game.IsRevampMod ? MaxSaveSlotsRevampMod : MaxSaveSlotsCoC; }
         }
 
         public static string PathWithMissingPermissions { get; private set; }
