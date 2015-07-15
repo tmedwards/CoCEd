@@ -103,6 +103,8 @@ namespace CoCEd.Model
         public XmlEnum[] HairTypes { get; set; }
         [XmlArray, XmlArrayItem("HairColor")]
         public String[] HairColors { get; set; }
+        [XmlArray, XmlArrayItem("BeardType")]
+        public XmlEnum[] BeardTypes { get; set; }
         [XmlArray, XmlArrayItem("SkinTone")]
         public String[] SkinTones { get; set; }
         [XmlArray, XmlArrayItem("SkinAdjective")]

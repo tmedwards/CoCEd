@@ -161,7 +161,7 @@ namespace CoCEd.ViewModel
                 if (_directory.Kind == DirectoryKind.Backup)
                 {
                     foreach (var file in _directory.Files) yield return new FileVM(file, _directory.Kind, false);
-                    yield return new OpenDirectoryItemVM(_directory.Path);  // Open directory
+                    yield return new OpenDirectoryItemVM(_directory.Path); // Open directory
                     yield break;
                 }
 
@@ -169,7 +169,7 @@ namespace CoCEd.ViewModel
                 if (String.IsNullOrEmpty(_directory.Path)) yield break;
 
                 // Return either a SaveTargetVM or a FileVM for every slot
-                for (int i = FileManager.SaveSlotsLowerBound; i <= FileManager.SaveSlotsUpperBound; i++)
+                for (int i = FileManager.SaveSlotsLowerBound; i <= FileManager.SaveSlotsUpperBoundByGame; i++)
                 {
                     var name = "CoC_" + i + ".sol";
                     var file = _directory.Files.FirstOrDefault(x => x.FilePath.EndsWith(name, StringComparison.InvariantCultureIgnoreCase));

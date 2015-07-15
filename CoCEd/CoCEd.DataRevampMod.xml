@@ -175,6 +175,13 @@
       <HairColor>rubbery white</HairColor>
     </HairColors>
     <!-- ========================================================================================================================================== -->
+    <BeardTypes>
+      <BeardType ID="0" Name="Normal"/>
+      <BeardType ID="1" Name="Goatee"/>
+      <BeardType ID="2" Name="Cleancut"/>
+      <BeardType ID="3" Name="Mountain-man"/>
+    </BeardTypes>
+    <!-- ========================================================================================================================================== -->
     <FaceTypes>
       <FaceType ID="0"  Name="Human"/>
       <FaceType ID="1"  Name="Horse"/>
@@ -195,6 +202,8 @@
       <FaceType ID="16" Name="Mouse"/>
       <FaceType ID="17" Name="Ferret Mask"/>
       <FaceType ID="18" Name="Ferret Face"/>
+      <FaceType ID="19" Name="Pig"/>
+      <FaceType ID="20" Name="Boar"/>
     </FaceTypes>
     <!-- ========================================================================================================================================== -->
     <TongueTypes>
@@ -225,6 +234,7 @@
       <EarType ID="11" Name="Raccoon"/>
       <EarType ID="12" Name="Mouse"/>
       <EarType ID="13" Name="Ferret"/>
+      <EarType ID="14" Name="Pig"/>
     </EarTypes>
     <!-- ========================================================================================================================================== -->
     <HornTypes>
@@ -266,6 +276,9 @@
       <TailType ID="15" Name="Raccoon"/>
       <TailType ID="16" Name="Mouse"/>
       <TailType ID="17" Name="Ferret"/>
+      <TailType ID="18" Name="Behemoth"/>
+      <TailType ID="19" Name="Pig"/>
+      <TailType ID="20" Name="Scorpion"/>
     </TailTypes>
     <!-- ========================================================================================================================================== -->
     <WingTypes>
@@ -315,6 +328,7 @@
       <LowerBodyType ID="18" Name="Dragon"/>
       <LowerBodyType ID="19" Name="Raccoon"/>
       <LowerBodyType ID="20" Name="Ferret"/>
+      <LowerBodyType ID="21" Name="Pig"/>
     </LowerBodyTypes>
     <!-- ========================================================================================================================================== -->
     <PiercingTypes>
@@ -354,6 +368,9 @@
       <CockType ID="9"  Name="Dragon"/>
       <CockType ID="10" Name="C&#x0153;url"/>
       <CockType ID="11" Name="Fox"/>
+      <CockType ID="12" Name="Bee"/>
+      <CockType ID="13" Name="Pig"/>
+      <CockType ID="14" Name="Avian"/>
     </CockTypes>
     <!-- ========================================================================================================================================== -->
     <CockSockTypes>
@@ -373,6 +390,7 @@
     <!-- ========================================================================================================================================== -->
     <VaginaTypes>
       <VaginaType ID="0" Name="Human"/>
+      <VaginaType ID="1" Name="Horse"/>
       <VaginaType ID="5" Name="Black (Sand Trap)"/>
     </VaginaTypes>
     <!-- ========================================================================================================================================== -->
