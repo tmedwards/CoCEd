@@ -116,16 +116,27 @@ namespace CoCEd.ViewModel
                     id = GetString("id");
                 }
 
+                // Temporary Special Honey ID snafu workaround, until a game release fixes the issue
+                if (id == "Sp Honey") id = "SpHoney";
+
                 return id == "NOTHING!" ? "" : id;
             }
             set
             {
                 var oldType = Type;
                 if (value == "") value = "NOTHING!";
+
+                // Temporary Special Honey ID snafu workaround, until a game release fixes the issue
+                if (value == "SpHoney") value = "Sp Honey";
+
                 if (!SetValue("id", value)) return;
 
                 // Fix quantity
-                var xml = XmlData.Current.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == value);
+
+                // Temporary Special Honey ID snafu workaround, until a game release fixes the issue
+                //var xml = XmlData.Current.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == value);
+                var xml = XmlData.Current.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
+
                 if (xml != null && Quantity == 0) Quantity = 1;
                 else if (xml == null && Quantity != 0) Quantity = 0;
 
