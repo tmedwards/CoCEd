@@ -550,6 +550,7 @@
       <Item ID="Shark.T" Name="Shark Tooth"/>
       <Item ID="DryTent" Name="Shriveled Tentacle"/>
       <Item ID="SnakOil" Name="Snake Oil"/>
+	  <Item ID="SpHoney" Name="Special Honey"/>
       <Item ID="SucMilk" Name="Succubi Milk"/>
       <Item ID="S.Gossr" Name="Sweet Gossamer"/>
       <Item ID="TSTooth" Name="Tiger Shark Tooth"/>
