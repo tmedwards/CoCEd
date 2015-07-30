@@ -92,7 +92,9 @@ namespace CoCEd.View
             HttpWebResponse response;
 
             // Create the request
-            string fileUrl = @"https://sourceforge.net/p/coced/code/HEAD/tree/latest?format=raw";
+            // Old SF: https://sourceforge.net/p/coced/code/HEAD/tree/latest?format=raw
+            // New GH: https://raw.githubusercontent.com/tmedwards/CoCEd/master/latest
+            string fileUrl = @"https://raw.githubusercontent.com/tmedwards/CoCEd/master/latest";
             try
             {
                 request = (HttpWebRequest)HttpWebRequest.Create(fileUrl);

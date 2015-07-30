@@ -31,8 +31,8 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="statusText" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Margin="10,0,10,0">
-                <Hyperlink NavigateUri="https://sourceforge.net/projects/coced/files/latest/download?source=files" RequestNavigate="requestNavigate">
-                    An update is available! (click to download)
+                <Hyperlink NavigateUri="https://github.com/tmedwards/CoCEd/releases" RequestNavigate="requestNavigate">
+                    An update is available! (click to go to the download page)
                 </Hyperlink>
             </TextBlock>
         </Grid>
