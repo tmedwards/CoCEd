@@ -113,16 +113,27 @@ namespace CoCEd
             VM.Create();
 
             FileManager.BuildPaths();
-            var directories = FileManager.GetDirectories().ToArray();   // Load all on startup to check for errors
+            var directories = FileManager.GetDirectories().ToArray(); // Load all on startup to check for errors
             var result = ExceptionBoxResult.Continue;
-            if (FileManager.PathWithMissingPermissions != null)
+            switch (FileManager.Result)
             {
-                box = new ExceptionBox();
-                box.Title = "Could not scan some folders.";
-                box.Message = "CoCEd did not get permission to read a folder or a file.\nSome files won't be displayed in the open/save menus.";
-                box.Path = FileManager.PathWithMissingPermissions;
-                box.IsWarning = true;
-                result = box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
+                case FileEnumerationResult.NoPermission:
+                    box = new ExceptionBox();
+                    box.Title = "Could not scan some folders.";
+                    box.Message = "CoCEd did not get permission to read a folder or file.\nSome files will not be displayed in the Open/Save menus.";
+                    box.Path = FileManager.ResultPath;
+                    box.IsWarning = true;
+                    result = box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
+                    break;
+
+                case FileEnumerationResult.Unreadable:
+                    box = new ExceptionBox();
+                    box.Title = "Could not read some folders.";
+                    box.Message = "CoCEd could not read a folder or file.\nSome files will not be displayed in the Open/Save menus.";
+                    box.Path = FileManager.ResultPath;
+                    box.IsWarning = true;
+                    result = box.ShowDialog(ExceptionBoxButtons.Quit, ExceptionBoxButtons.Continue);
+                    break;
             }
             if (result == ExceptionBoxResult.Quit)
             {
