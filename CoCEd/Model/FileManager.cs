@@ -15,6 +15,13 @@ namespace CoCEd.Model
         Backup,
     }
 
+    public enum FileEnumerationResult
+    {
+        Success,
+        NoPermission,
+        Unreadable,
+    }
+
     public class FlashDirectory
     {
         public string Name;
@@ -49,7 +56,8 @@ namespace CoCEd.Model
             get { return VM.Instance.Game.IsRevampMod ? MaxSaveSlotsRevampMod : MaxSaveSlotsCoC; }
         }
 
-        public static string PathWithMissingPermissions { get; private set; }
+        public static FileEnumerationResult Result { get; private set; }
+        public static string ResultPath { get; private set; }
 
         public static string BackupPath
         {
@@ -62,6 +70,8 @@ namespace CoCEd.Model
 
         public static void BuildPaths()
         {
+            Result = FileEnumerationResult.Success;
+
             const string standardPath = @"Macromedia\Flash Player\#SharedObjects\";
             const string chromePath1 = @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\";
             const string chromePath2 = @"Google\Chrome\User Data\Profile 1\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\"; // Win 8/8.1 thing, apparently
@@ -127,14 +137,18 @@ namespace CoCEd.Model
             }
             catch (SecurityException)
             {
-                PathWithMissingPermissions = path;
+                Result = FileEnumerationResult.NoPermission;
+                ResultPath = path;
             }
             catch (UnauthorizedAccessException)
             {
-                PathWithMissingPermissions = path;
+                Result = FileEnumerationResult.NoPermission;
+                ResultPath = path;
             }
             catch (IOException)
             {
+                Result = FileEnumerationResult.Unreadable;
+                ResultPath = path;
             }
         }
 
@@ -152,14 +166,20 @@ namespace CoCEd.Model
             var dir = new FlashDirectory("Backup", BackupPath, true, DirectoryKind.Backup);
             
             var dirInfo = new DirectoryInfo(BackupPath);
-            foreach (var file in dirInfo.GetFiles("*.bak").OrderByDescending(x => x.LastWriteTimeUtc)) dir.Files.Add(new AmfFile(file.FullName));
+            foreach (var filePath in dirInfo.GetFiles("*.bak").OrderByDescending(x => x.LastWriteTimeUtc).Select(x => x.FullName))
+            {
+                AddFileToDirectory(dir, filePath);
+            }
             return dir;
         }
 
         static FlashDirectory CreateExternalDirectory()
         {
             var dir = new FlashDirectory("External", "", true, DirectoryKind.Backup);
-            foreach (var path in _externalPaths) dir.Files.Add(new AmfFile(path));
+            foreach (var filePath in _externalPaths)
+            {
+                AddFileToDirectory(dir, filePath);
+            }
             return dir;
         }
 
@@ -171,24 +191,33 @@ namespace CoCEd.Model
             for (int i = SaveSlotsLowerBound; i <= SaveSlotsUpperBound; i++)
             {
                 var filePath = Path.Combine(dir.Path, "CoC_" + i + ".sol");
-                try
-                {
-                    if (!File.Exists(filePath)) continue;
-                    dir.Files.Add(new AmfFile(filePath));
-                }
-                catch (SecurityException)
-                {
-                    PathWithMissingPermissions = filePath;
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    PathWithMissingPermissions = filePath;
-                }
-                catch (IOException)
-                {
-                }
+                AddFileToDirectory(dir, filePath);
             }
             return dir;
+        }
+
+        private static bool AddFileToDirectory(FlashDirectory dir, string filePath)
+        {
+            if (!File.Exists(filePath)) return false;
+
+            var amfFile = new AmfFile(filePath);
+            if (amfFile.Error != null)
+            {
+                switch (amfFile.Error.Type)
+                {
+                    case AmfFileError.Error.NoPermission:
+                        Result = FileEnumerationResult.NoPermission;
+                        ResultPath = filePath;
+                        return false;
+
+                    case AmfFileError.Error.Unreadable:
+                        Result = FileEnumerationResult.Unreadable;
+                        ResultPath = filePath;
+                        return false;
+                }
+            }
+            dir.Files.Add(amfFile);
+            return true;
         }
 
         public static void TryRegisterExternalFile(string path)

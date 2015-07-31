@@ -11,20 +11,19 @@ namespace CoCEd.Model
 {
     public enum SerializationFormat
     {
-        Slot = 0,
-        Exported = 1,
+        Slot,
+        Exported,
     }
-
 
     public sealed class AmfFile : AmfObject
     {
         static readonly HashSet<String> _backedUpFiles = new HashSet<string>();
 
-
         public AmfFile(string path)
             : base(AmfTypes.Array)
         {
             FilePath = path;
+            Name = Path.GetFileNameWithoutExtension(FilePath);
             Date = File.GetLastWriteTime(path);
             try
             {
@@ -40,31 +39,15 @@ namespace CoCEd.Model
                     }
                 }
             }
-#if !DEBUG
-            catch (IOException e)
+            // All exceptions need to be handled as the general case, since corrupt
+            // saves can also cause exceptions (e.g. InvalidCastException), however,
+            // we will flag permission and IO issues for consumers like FileManager
+            catch (Exception e)
             {
-                Error = e.ToString();
-            }
-            catch (InvalidOperationException e)
-            {
-                Error = e.ToString();
-            }
-            catch (ArgumentException e)
-            {
-                Error = e.ToString();
-            }
-            catch (NotImplementedException e)
-            {
-                Error = e.ToString();
-            }
-            catch (UnauthorizedAccessException e)
-            {
-                Error = e.ToString();
-            }
-#endif
-            catch (SecurityException e)
-            {
-                Error = e.ToString();
+                AmfFileError.Error type = AmfFileError.Error.Unknown;
+                if (e is SecurityException || e is UnauthorizedAccessException) type = AmfFileError.Error.NoPermission;
+                else if (e is IOException) type = AmfFileError.Error.Unreadable;
+                Error = new AmfFileError(type, e.ToString());
             }
         }
 
@@ -86,7 +69,7 @@ namespace CoCEd.Model
             private set;
         }
 
-        public string Error
+        public AmfFileError Error
         {
             get;
             private set;
@@ -184,5 +167,33 @@ namespace CoCEd.Model
             }
         }
 #endif
+    }
+
+    public sealed class AmfFileError
+    {
+        public enum Error
+        {
+            Unknown,
+            NoPermission,
+            Unreadable,
+        }
+
+        public Error Type { get; private set; }
+        public string Mesg { get; private set; }
+
+        public AmfFileError(Error type, string mesg)
+        {
+            Type = type;
+            Mesg = mesg;
+        }
+        public AmfFileError(string mesg)
+            : this(Error.Unknown, mesg)
+        {
+        }
+
+        public override string ToString()
+        {
+            return Mesg;
+        }
     }
 }
