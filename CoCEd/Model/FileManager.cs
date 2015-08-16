@@ -80,10 +80,10 @@ namespace CoCEd.Model
 
             bool insertSeparatorBeforeInMenu = false;
 
-            // "standard" handles: Firefox, Netscape Suite, Internet Explorer (desktop, not metro/tablet), Opera (legacy; i.e. < v15).
-            // "chrome" handles: Google Chrome (maybe Chromium).
-            // "opera" handles: Opera (v15+).
-            // "metro" handles: Edge and Internet Explorer (metro/tablet, not desktop).
+            // Standard handles: Firefox, Netscape Suite, Internet Explorer (desktop, not metro/tablet), Opera (v≤23; NPAPI).
+            // Chrome handles: Google Chrome (maybe Chromium).
+            // Opera handles: Opera (v≥24; PPAPI).
+            // Edge/Metro handles: Edge and Internet Explorer (metro/tablet, not desktop).
 
             BuildNpapiPath("Local (Standard{0})", @"localhost", ref insertSeparatorBeforeInMenu);
             BuildPpapiPath("Local (Chrome{0})", Environment.SpecialFolder.LocalApplicationData, chromeAppPath, chromeProfilePattern, @"localhost", ref insertSeparatorBeforeInMenu);
@@ -157,10 +157,10 @@ namespace CoCEd.Model
 
         static void BuildPpapiPath(string nameFormat, Environment.SpecialFolder appDataPath, string appPath, string appProfilePattern, string suffix, ref bool separatorBefore)
         {
-            // …\AppData\Local\Google\Chrome\User Data\{chrome_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
-            // …\AppData\Roaming\Opera Software\{opera_install_type}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
+            // …\AppData\Local\Google\Chrome\User Data\{app_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
+            // …\AppData\Roaming\Opera Software\{app_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
 
-            Regex chromeProfileRegex = new Regex(appProfilePattern);
+            Regex appProfileRegex = new Regex(appProfilePattern);
             string path = "";
             try
             {
@@ -174,37 +174,37 @@ namespace CoCEd.Model
                 basePath = Path.Combine(basePath, appPath);
                 if (!Directory.Exists(basePath)) return;
 
-                // Get Google profile directories.
+                // Get app profile directories.
                 var userDataDirectories = Directory.GetDirectories(basePath);
-                var googleProfilePaths = new List<String>();
+                var appProfilePaths = new List<String>();
                 for (int i = 0; i < userDataDirectories.Length; ++i)
                 {
-                    if (chromeProfileRegex.IsMatch(userDataDirectories[i]))
+                    if (appProfileRegex.IsMatch(userDataDirectories[i]))
                     {
                         path = Path.Combine(basePath, userDataDirectories[i]);
-                        if (Directory.Exists(path)) googleProfilePaths.Add(path);
+                        if (Directory.Exists(path)) appProfilePaths.Add(path);
                     }
                 }
 
                 // Get shared object directories.
                 var cocDirectories = new List<String>();
-                for (int i = 0; i < googleProfilePaths.Count; ++i)
+                for (int i = 0; i < appProfilePaths.Count; ++i)
                 {
-                    // …\AppData\Local\Google\Chrome\User Data\{chrome_profile}
-                    // …\AppData\Roaming\Opera Software\{opera_install_type}
-                    path = googleProfilePaths[i];
+                    // …\AppData\Local\Google\Chrome\User Data\{app_profile}
+                    // …\AppData\Roaming\Opera Software\{app_profile}
+                    path = appProfilePaths[i];
 
-                    // …\AppData\Local\Google\Chrome\User Data\{chrome_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects
-                    // …\AppData\Roaming\Opera Software\{opera_install_type}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects
+                    // …\AppData\Local\Google\Chrome\User Data\{app_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects
+                    // …\AppData\Roaming\Opera Software\{app_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects
                     path = Path.Combine(path, @"Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\");
                     if (!Directory.Exists(path)) continue;
 
-                    // …\AppData\Local\Google\Chrome\User Data\{chrome_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}
-                    // …\AppData\Roaming\Opera Software\{opera_install_type}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}
+                    // …\AppData\Local\Google\Chrome\User Data\{app_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}
+                    // …\AppData\Roaming\Opera Software\{app_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}
                     var flashProfilePaths = Directory.GetDirectories(path);
 
-                    // …\AppData\Local\Google\Chrome\User Data\{chrome_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
-                    // …\AppData\Roaming\Opera Software\{opera_install_type}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
+                    // …\AppData\Local\Google\Chrome\User Data\{app_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
+                    // …\AppData\Roaming\Opera Software\{app_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
                     for (int j = 0; j < flashProfilePaths.Length; ++j)
                     {
                         path = Path.Combine(flashProfilePaths[j], suffix);
