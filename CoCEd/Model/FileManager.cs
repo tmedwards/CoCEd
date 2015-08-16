@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security;
 using System.Text;
+using System.Text.RegularExpressions;
 using CoCEd.ViewModel;
 
 namespace CoCEd.Model
@@ -72,58 +73,143 @@ namespace CoCEd.Model
         {
             Result = FileEnumerationResult.Success;
 
-            const string standardPath = @"Macromedia\Flash Player\#SharedObjects\";
-            const string chromePath1 = @"Google\Chrome\User Data\Default\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\";
-            const string chromePath2 = @"Google\Chrome\User Data\Profile 1\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\"; // Win 8/8.1 thing, apparently
-
-            string[] standardPaths = { standardPath };
-            string[] chromePaths = { chromePath1, chromePath2 };
+            string chromeAppPath = @"Google\Chrome\User Data\";
+            string chromeProfilePattern = @"\\(?:Default|Profile \d+)$";
+            string operaAppPath = @"Opera Software\";
+            string operaProfilePattern = @"\\Opera(?: \w+)?$";
 
             bool insertSeparatorBeforeInMenu = false;
 
-            BuildPath("Local (standard{0})",        Environment.SpecialFolder.ApplicationData,      standardPaths,  "localhost",                     ref insertSeparatorBeforeInMenu);
-            BuildPath("Local (chrome{0})",          Environment.SpecialFolder.LocalApplicationData, chromePaths,    "localhost",                     ref insertSeparatorBeforeInMenu);
-            BuildPath("Local (metro{0})",           Environment.SpecialFolder.ApplicationData,      standardPaths,  @"#AppContainer\localhost",      ref insertSeparatorBeforeInMenu);
+            // "standard" handles: Firefox, Netscape Suite, Internet Explorer (desktop, not metro/tablet), Opera (legacy; i.e. < v15).
+            // "chrome" handles: Google Chrome (maybe Chromium).
+            // "opera" handles: Opera (v15+).
+            // "metro" handles: Edge and Internet Explorer (metro/tablet, not desktop).
+
+            BuildNpapiPath("Local (Standard{0})", @"localhost", ref insertSeparatorBeforeInMenu);
+            BuildPpapiPath("Local (Chrome{0})", Environment.SpecialFolder.LocalApplicationData, chromeAppPath, chromeProfilePattern, @"localhost", ref insertSeparatorBeforeInMenu);
+            BuildPpapiPath("Local (Opera{0})", Environment.SpecialFolder.ApplicationData, operaAppPath, operaProfilePattern, @"localhost", ref insertSeparatorBeforeInMenu);
+            BuildNpapiPath("Local (Edge/Metro{0})", @"#AppContainer\localhost", ref insertSeparatorBeforeInMenu);
 
             insertSeparatorBeforeInMenu = true;
-            BuildPath("LocalWithNet (standard{0})", Environment.SpecialFolder.ApplicationData,      standardPaths,  "#localWithNet",                 ref insertSeparatorBeforeInMenu);
-            BuildPath("LocalWithNet (chrome{0})",   Environment.SpecialFolder.LocalApplicationData, chromePaths,    "#localWithNet",                 ref insertSeparatorBeforeInMenu);
-            BuildPath("LocalWithNet (metro{0})",    Environment.SpecialFolder.ApplicationData,      standardPaths,  @"#AppContainer\#localWithNet",  ref insertSeparatorBeforeInMenu);
+
+            BuildNpapiPath("LocalWithNet (Standard{0})", @"#localWithNet", ref insertSeparatorBeforeInMenu);
+            BuildPpapiPath("LocalWithNet (Chrome{0})", Environment.SpecialFolder.LocalApplicationData, chromeAppPath, chromeProfilePattern, @"#localWithNet", ref insertSeparatorBeforeInMenu);
+            BuildPpapiPath("LocalWithNet (Opera{0})", Environment.SpecialFolder.ApplicationData, operaAppPath, operaProfilePattern, @"#localWithNet", ref insertSeparatorBeforeInMenu);
+            BuildNpapiPath("LocalWithNet (Edge/Metro{0})", @"#AppContainer\#localWithNet", ref insertSeparatorBeforeInMenu);
 
             insertSeparatorBeforeInMenu = true;
-            BuildPath("Online (standard{0})",       Environment.SpecialFolder.ApplicationData,      standardPaths,  "www.fenoxo.com",                ref insertSeparatorBeforeInMenu);
-            BuildPath("Online (chrome{0})",         Environment.SpecialFolder.LocalApplicationData, chromePaths,    "www.fenoxo.com",                ref insertSeparatorBeforeInMenu);
-            BuildPath("Online (metro{0})",          Environment.SpecialFolder.ApplicationData,      standardPaths,  @"#AppContainer\www.fenoxo.com", ref insertSeparatorBeforeInMenu);
+
+            BuildNpapiPath("Online (Standard{0})", @"www.fenoxo.com", ref insertSeparatorBeforeInMenu);
+            BuildPpapiPath("Online (Chrome{0})", Environment.SpecialFolder.LocalApplicationData, chromeAppPath, chromeProfilePattern, @"www.fenoxo.com", ref insertSeparatorBeforeInMenu);
+            BuildPpapiPath("Online (Opera{0})", Environment.SpecialFolder.ApplicationData, operaAppPath, operaProfilePattern, @"www.fenoxo.com", ref insertSeparatorBeforeInMenu);
+            BuildNpapiPath("Online (Edge/Metro{0})", @"#AppContainer\www.fenoxo.com", ref insertSeparatorBeforeInMenu);
         }
 
-        static void BuildPath(string nameFormat, Environment.SpecialFolder root, string[] middle, string suffix, ref bool separatorBefore)
+        static void BuildNpapiPath(string nameFormat, string suffix, ref bool separatorBefore)
         {
-            var path = "";
+            string path = "";
             try
             {
-                // User\AppData\Roaming
-                var basePath = Environment.GetFolderPath(root);
+                // …\AppData\Roaming
+                path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                if (path == null) return;
+
+                // …\AppData\Roaming\Macromedia\Flash Player\#SharedObjects
+                path = Path.Combine(path, @"Macromedia\Flash Player\#SharedObjects\");
+                if (!Directory.Exists(path)) return;
+
+                // …\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\{flash_profile}
+                var flashProfilePaths = Directory.GetDirectories(path);
+
+                // …\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\{flash_profile}\{suffix}
+                var cocDirectories = new List<String>();
+                for (int j = 0; j < flashProfilePaths.Length; ++j)
+                {
+                    path = Path.Combine(flashProfilePaths[j], suffix);
+                    if (Directory.Exists(path)) cocDirectories.Add(path);
+                }
+
+                // Create items now that we know how many of them there are.
+                for (int i = 0; i < cocDirectories.Count; ++i)
+                {
+                    var name = String.Format(nameFormat, cocDirectories.Count > 1 ? " #" + (i + 1) : "");
+                    var flash = new FlashDirectory(name, cocDirectories[i], separatorBefore, DirectoryKind.Regular);
+                    separatorBefore = false;
+                    _directories.Add(flash);
+                }
+            }
+            catch (SecurityException)
+            {
+                Result = FileEnumerationResult.NoPermission;
+                ResultPath = path;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Result = FileEnumerationResult.NoPermission;
+                ResultPath = path;
+            }
+            catch (IOException)
+            {
+                Result = FileEnumerationResult.Unreadable;
+                ResultPath = path;
+            }
+        }
+
+        static void BuildPpapiPath(string nameFormat, Environment.SpecialFolder appDataPath, string appPath, string appProfilePattern, string suffix, ref bool separatorBefore)
+        {
+            // …\AppData\Local\Google\Chrome\User Data\{chrome_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
+            // …\AppData\Roaming\Opera Software\{opera_install_type}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
+
+            Regex chromeProfileRegex = new Regex(appProfilePattern);
+            string path = "";
+            try
+            {
+                // …\AppData\Local
+                // …\AppData\Roaming
+                var basePath = Environment.GetFolderPath(appDataPath);
                 if (basePath == null) return;
 
-                var cocDirectories = new List<String>();
-                for (int i = 0; i < middle.Length; ++i)
-                {
-                    path = basePath;
+                // …\AppData\Local\Google\Chrome\User Data
+                // …\AppData\Roaming\Opera Software
+                basePath = Path.Combine(basePath, appPath);
+                if (!Directory.Exists(basePath)) return;
 
-                    // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects
-                    path = Path.Combine(path, middle[i]);
+                // Get Google profile directories.
+                var userDataDirectories = Directory.GetDirectories(basePath);
+                var googleProfilePaths = new List<String>();
+                for (int i = 0; i < userDataDirectories.Length; ++i)
+                {
+                    if (chromeProfileRegex.IsMatch(userDataDirectories[i]))
+                    {
+                        path = Path.Combine(basePath, userDataDirectories[i]);
+                        if (Directory.Exists(path)) googleProfilePaths.Add(path);
+                    }
+                }
+
+                // Get shared object directories.
+                var cocDirectories = new List<String>();
+                for (int i = 0; i < googleProfilePaths.Count; ++i)
+                {
+                    // …\AppData\Local\Google\Chrome\User Data\{chrome_profile}
+                    // …\AppData\Roaming\Opera Software\{opera_install_type}
+                    path = googleProfilePaths[i];
+
+                    // …\AppData\Local\Google\Chrome\User Data\{chrome_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects
+                    // …\AppData\Roaming\Opera Software\{opera_install_type}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects
+                    path = Path.Combine(path, @"Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\");
                     if (!Directory.Exists(path)) continue;
 
-                    // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7
-                    var profileDirectories = Directory.GetDirectories(path);
+                    // …\AppData\Local\Google\Chrome\User Data\{chrome_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}
+                    // …\AppData\Roaming\Opera Software\{opera_install_type}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}
+                    var flashProfilePaths = Directory.GetDirectories(path);
 
-                    // User\AppData\Roaming\Macromedia\Flash Player\#SharedObjects\qsdj8HdT7\localhost
-                    for (int j = 0; j < profileDirectories.Length; ++j)
+                    // …\AppData\Local\Google\Chrome\User Data\{chrome_profile}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
+                    // …\AppData\Roaming\Opera Software\{opera_install_type}\Pepper Data\Shockwave Flash\WritableRoot\#SharedObjects\{flash_profile}\{suffix}
+                    for (int j = 0; j < flashProfilePaths.Length; ++j)
                     {
-                        path = Path.Combine(profileDirectories[j], suffix);
+                        path = Path.Combine(flashProfilePaths[j], suffix);
                         if (Directory.Exists(path)) cocDirectories.Add(path);
                     }
-
                 }
 
                 // Create items now that we know how many of them there are.
