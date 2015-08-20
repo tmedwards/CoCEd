@@ -602,6 +602,7 @@
     <ItemGroup Name="Weapons" Category="Weapon">
       <Item ID="B.Sword" Name="Beautiful Sword"        Description="Has a maximum PC corruption tolerance of 34."/>
       <Item ID="Whip   " Name="Coiled Whip"/>
+      <Item ID="DrgnShl" Name="Dragon-Shell Shield"/>
       <Item ID="E.Staff" Name="Eldritch Staff"/>
       <Item ID="H.Gaunt" Name="Hooked Gauntlets"/>
       <Item ID="Warhamr" Name="Huge Warhammer"/>
