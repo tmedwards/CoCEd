@@ -27,14 +27,17 @@ namespace CoCEd.View
     /// </summary>
     public partial class TopBar : UserControl
     {
-        Style _defaultStyle;
+        Style _defaultSaveStyle;
+        Style _defaultUpdateStyle;
         public TopBar()
         {
             InitializeComponent();
 
-            _defaultStyle = openButton.Style;
+            _defaultSaveStyle = openButton.Style;
+            _defaultUpdateStyle = updateButton.Style;
 #if !DEBUG
-            openButton.Style = (Style)Resources["HighlightedButton"];
+            openButton.Style = (Style)Resources["HighlightedSaveButton"];
+            updateButton.Style = (Style)Resources["HighlightedFlatButton"];
 #endif
 
             openMenu.PlacementTarget = openButton;
@@ -53,13 +56,14 @@ namespace CoCEd.View
 
         void OnSaveRequiredChanged(object sender, bool saveRequired)
         {
-            if (saveRequired) saveButton.Style = (Style)Resources["HighlightedButton"];
-            else saveButton.Style = _defaultStyle;
+            if (saveRequired) saveButton.Style = (Style)Resources["HighlightedSaveButton"];
+            else saveButton.Style = _defaultSaveStyle;
         }
 
         void OnFileOpened(object sender, EventArgs e)
         {
-            openButton.Style = _defaultStyle;
+            openButton.Style = _defaultSaveStyle;
+            updateButton.Style = _defaultUpdateStyle;
         }
 
         void openMenu_Closed(object sender, EventArgs e)
