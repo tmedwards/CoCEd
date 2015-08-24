@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Loaded="CheckForUpdateBox_Loaded"
         Title="Update Check" Height="140" Width="400" ShowInTaskbar="False" ResizeMode="NoResize">
+
     <Window.Resources>
         <ResourceDictionary>
             <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}">
@@ -12,6 +13,7 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
+
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

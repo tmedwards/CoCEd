@@ -6,6 +6,7 @@
              xmlns:common="clr-namespace:CoCEd.Common"
              mc:Ignorable="d"
              d:DesignWidth="1024" d:DesignHeight="600">
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

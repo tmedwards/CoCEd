@@ -6,6 +6,7 @@
              xmlns:common="clr-namespace:CoCEd.Common"
              mc:Ignorable="d"
              d:DesignWidth="1024" d:DesignHeight="600">
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -30,12 +31,12 @@
                                 </Grid>
                             </Grid>
                             <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
+                                <Trigger Property="IsMouseOver" Value="True">
                                     <Setter TargetName="mouseOverBorder" Property="Opacity" Value="1" />
                                     <Setter TargetName="text" Property="Foreground" Value="#404040" />
                                     <Setter TargetName="qty" Property="Foreground" Value="#404040" />
                                 </Trigger>
-                                <Trigger Property="IsSelected" Value="true">
+                                <Trigger Property="IsSelected" Value="True">
                                     <Setter Property="Panel.ZIndex" Value="1"/>
                                     <Setter TargetName="selectionBorder" Property="Opacity" Value="1" />
                                     
@@ -46,7 +47,7 @@
                                     <Setter TargetName="qty" Property="Foreground" Value="#DA3810" />
                                     <Setter TargetName="qty" Property="FontWeight" Value="Bold" />
                                 </Trigger>
-                                <Trigger Property="IsEnabled" Value="false">
+                                <Trigger Property="IsEnabled" Value="False">
                                     <Setter TargetName="text" Property="Foreground" Value="Gray" />
                                     <Setter TargetName="qty" Property="Foreground" Value="Gray" />
                                 </Trigger>
@@ -60,7 +61,7 @@
                 <Setter Property="IsExpanded" Value="True"/>
                 <Setter Property="ItemsSource" Value="{Binding Slots}"/>
                 <Setter Property="ItemContainerStyle" Value="{StaticResource LeftSlotStyle}"/>
-                <Setter Property="Focusable" Value="false"/>
+                <Setter Property="Focusable" Value="False"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -87,14 +88,14 @@
                                 <TextBlock x:Name="text" Text="{Binding Name}" TextTrimming="CharacterEllipsis" Margin="4" SnapsToDevicePixels="True" ToolTip="{Binding ToolTip}"/>
                             </Grid>
                             <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
+                                <Trigger Property="IsMouseOver" Value="True">
                                     <Setter TargetName="mouseOverBorder" Property="Opacity" Value="1"/>
                                 </Trigger>
-                                <Trigger Property="IsSelected" Value="true">
+                                <Trigger Property="IsSelected" Value="True">
                                     <Setter TargetName="selectionBorder" Property="Opacity" Value="1"/>
                                     <Setter TargetName="text" Property="Foreground" Value="White"/>
                                 </Trigger>
-                                <Trigger Property="IsEnabled" Value="false">
+                                <Trigger Property="IsEnabled" Value="False">
                                     <Setter TargetName="text" Property="Foreground" Value="Gray"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
@@ -102,12 +103,12 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-        
+
             <Style x:Key="RightGroupStyle" TargetType="{x:Type TreeViewItem}">
                 <Setter Property="IsExpanded" Value="True"/>
                 <Setter Property="ItemsSource" Value="{Binding Items}"/>
                 <Setter Property="ItemContainerStyle" Value="{StaticResource RightItemStyle}"/>
-                <Setter Property="Focusable" Value="false"/>
+                <Setter Property="Focusable" Value="False"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -130,8 +131,9 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    
-    
+
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -149,7 +151,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- TOP BAR-->
+            <!-- TOP BAR -->
             <Grid Margin="60,30,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -161,13 +163,13 @@
                     <TextBlock              Text="Quantity" Width="Auto" Margin="-26,0,0,0"/>
                     <common:MyNumericBox    Value="{Binding Path=SelectedItem.Quantity, ElementName=leftTree}" Upper="5"/>
                 </common:AutoGrid>
-                
+
                 <common:SearchBox Grid.Column="2" Text="{Binding Game.ItemSearchText}"/>
             </Grid>
 
-            <TreeView  Grid.Row="1" ItemContainerStyle="{StaticResource RightGroupStyle}" Margin="30,30,0,0" Padding="0" BorderThickness="0" 
-                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible"
-                       ItemsSource="{Binding Path=SelectedItem.AllGroups, ElementName=leftTree}"/>
+            <TreeView Grid.Row="1" ItemContainerStyle="{StaticResource RightGroupStyle}" Margin="30,30,0,0" Padding="0" BorderThickness="0" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                      ItemsSource="{Binding Path=SelectedItem.AllGroups, ElementName=leftTree}"/>
         </Grid>
     </Grid>
 </UserControl>
