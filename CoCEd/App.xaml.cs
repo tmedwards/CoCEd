@@ -65,7 +65,7 @@ namespace CoCEd
             if (msg.Contains("0x88982F04"))
             {
                 box.Title = "Bad image codec";
-                box.Message = "You use a non-standard image codec that does not properly handle some PNG files. It's not just CoCEd: other programs may be affected too.\n\nCheck for FastPictureViewer's or Canon's codec packs and try to update or uninstall them.";
+                box.Message = "You use a non-standard image codec that does not properly handle some PNG files. It's not only CoCEd, other programs may also be affected.\n\nCheck for FastPictureViewer's or Canon's codec packs and try to update or uninstall them.";
             }
             else
             {
