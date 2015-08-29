@@ -21,7 +21,7 @@ Not currently compatible with Mac OS X and Linux (even if using Wine or Mono).
 
 ## Have A Question?  Found A Bug?  Want To Contribute? ##
 
-Please see [CoCEd's official forum thread at Fenoxo.com](http://forum.fenoxo.com/thread-6324.html "http://forum.fenoxo.com/thread-6324.html") for all questions, suggestions, and bug reports.
+Please see [CoCEd's official forum thread at `fenoxo.com`](http://fenoxo.com/forum/index.php?/topic/57-coced-a-save-editor/ "http://fenoxo.com/forum/index.php?/topic/57-coced-a-save-editor/") for all questions, suggestions, and bug reports.
 
 Additionally, as a better way to report bugs, you may create/update issues in [CoCEd's issue tracker](https://github.com/tmedwards/CoCEd/issues "https://github.com/tmedwards/CoCEd/issues").
 

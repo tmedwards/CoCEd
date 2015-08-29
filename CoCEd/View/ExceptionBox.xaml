@@ -38,7 +38,7 @@
             <TextBlock Text="Reporting the error" FontWeight="Bold"/>
             <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,5,0,0" Grid.Row="1">
                 Please report this error by copying it and either posting a message in
-                <Hyperlink NavigateUri="http://forum.fenoxo.com/thread-6324.html" RequestNavigate="requestNavigate">CoCEd's forum thread</Hyperlink>,
+                <Hyperlink NavigateUri="http://fenoxo.com/forum/index.php?/topic/57-coced-a-save-editor/" RequestNavigate="requestNavigate">CoCEd's forum thread</Hyperlink>,
                 at fenoxo.com, or opening a ticket in
                 <Hyperlink NavigateUri="https://github.com/tmedwards/CoCEd/issues" RequestNavigate="requestNavigate">CoCEd's issue tracker</Hyperlink>.
                 (Error also saved to the CoCEd.log file.)
@@ -82,7 +82,7 @@
         <Grid Background="#F0F0F0" Margin="0,10,0,0" Grid.Row="4">
             <TextBlock x:Name="linkBar" VerticalAlignment="Center" Margin="20,0,10,0">
                 <TextBlock Text="Links:" FontWeight="Bold"/>
-                <Hyperlink NavigateUri="http://forum.fenoxo.com/thread-6324.html" RequestNavigate="requestNavigate">CoCEd's forum thread</Hyperlink>
+                <Hyperlink NavigateUri="http://fenoxo.com/forum/index.php?/topic/57-coced-a-save-editor/" RequestNavigate="requestNavigate">CoCEd's forum thread</Hyperlink>
                 &amp;
                 <Hyperlink NavigateUri="https://github.com/tmedwards/CoCEd/issues" RequestNavigate="requestNavigate">CoCEd's issue tracker</Hyperlink>
             </TextBlock>

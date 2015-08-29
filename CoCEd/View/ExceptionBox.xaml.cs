@@ -99,7 +99,7 @@ namespace CoCEd.View
 
         public ExceptionBoxResult ShowDialog(params ExceptionBoxButtons[] buttons)
         {
-            // CoCEd thread  : http://forum.fenoxo.com/thread-6324.html
+            // CoCEd thread  : http://fenoxo.com/forum/index.php?/topic/57-coced-a-save-editor/  (old: http://forum.fenoxo.com/thread-6324.html)
             // CoCEd tracker : https://github.com/tmedwards/CoCEd/issues
             if (App.Current.MainWindow != this)
             {
