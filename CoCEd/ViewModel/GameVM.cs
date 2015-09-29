@@ -1388,7 +1388,7 @@ namespace CoCEd.ViewModel
 
         public int ExploredGlacialRift
         {
-            get { return GetFlag(2059).AsInt(); }
+            get { return IsRevampMod ? GetFlag(2059).AsInt() : 0; }
             set
             {
                 if (IsRevampMod)
@@ -1400,7 +1400,7 @@ namespace CoCEd.ViewModel
         
         public int ExploredVolcanicCrag
         {
-            get { return GetFlag(2060).AsInt(); }
+            get { return IsRevampMod ? GetFlag(2060).AsInt() : 0; }
             set
             {
                 if (IsRevampMod)

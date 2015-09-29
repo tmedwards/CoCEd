@@ -132,7 +132,7 @@
                     <common:MyNumericBox    Value="{Binding Game.NippleLength}" Type="Double" Unit="inches"/>
 
                     <TextBlock              Text="Nipples piercing"/>
-                    <common:MyPiercingBox DataContext="{Binding Game.NipplesPiercing}"/>
+                    <common:MyPiercingBox   DataContext="{Binding Game.NipplesPiercing}"/>
 
                     <Border/>
                     <CheckBox Content="Black nipples&#x202F;*" ToolTip="Sand trap effect." IsChecked="{Binding Game.HasSandTrapNipples}" Margin="8,5,0,0"/>

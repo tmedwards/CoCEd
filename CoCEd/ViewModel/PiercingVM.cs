@@ -40,7 +40,7 @@ namespace CoCEd.ViewModel
 
         public IEnumerable<XmlEnum> AllTypes
         {
-            get 
+            get
             {
                 foreach (var type in XmlData.Current.Body.PiercingTypes)
                 {

@@ -16,7 +16,7 @@ Not currently compatible with Mac OS X and Linux (even if using Wine or Mono).
 
 **Windows XP Note:** Users of Windows XP *must* install, at least, the [Microsoft .NET Framework 4 Client Profile](http://www.microsoft.com/en-us/download/details.aspx?id=17113 "http://www.microsoft.com/en-us/download/details.aspx?id=17113"), if you have not already done so.
 
-[Download the latest `CoCEd-*.zip` archive](https://github.com/tmedwards/CoCEd/releases/latest "https://github.com/tmedwards/CoCEd/releases/latest") from the release tab (above) and extract the files wherever you want.  No installation required.  Note that browsing the archive via Windows Explorer is not sufficient, the files *must* be extracted from the archive or you will receive errors.
+[Download the latest `CoCEd-*.zip` archive](https://github.com/tmedwards/CoCEd/releases/latest "https://github.com/tmedwards/CoCEd/releases/latest") from the releases tab (above) and extract the files wherever you want.  No installation required.  Note that browsing the archive via Windows Explorer is not sufficient, the files *must* be extracted from the archive or you will receive errors.
 
 
 ## Have A Question?  Found A Bug?  Want To Contribute? ##
