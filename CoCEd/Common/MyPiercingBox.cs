@@ -22,6 +22,8 @@ namespace CoCEd.Common
         Popup _popup;
         ComboBox _combo;
         ToggleButton _button;
+        MyComboBox _typeCombo;
+
         public override void OnApplyTemplate()
         {
             if (_popup != null) _popup.Closed -= popup_Closed;
@@ -30,10 +32,14 @@ namespace CoCEd.Common
             _popup = GetTemplateChild("popup") as Popup;
             _button = GetTemplateChild("button") as ToggleButton;
             _combo = GetTemplateChild("nameCombo") as ComboBox;
+            _typeCombo = GetTemplateChild("typeCombo") as MyComboBox;
 
             if (_button != null) _button.Checked += button_Checked;
             if (_popup != null) _popup.Closed += popup_Closed;
             if (_combo != null) _combo.PreviewKeyDown += _combo_PreviewKeyDown;
+
+            // Circumvent a bug in WPF: this binding is already declared in XAML but WPF removes it for piercing boxes that are not loaded at the start of the application.
+            _typeCombo.SetBinding(MyComboBox.SelectedValueProperty, "Type"); 
         }
 
         void _combo_PreviewKeyDown(object sender, KeyEventArgs e)
