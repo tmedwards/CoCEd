@@ -1335,6 +1335,18 @@ namespace CoCEd.ViewModel
 
         #region CoC-Revamp-Mod Specific
 
+        public string FurColor
+        {
+            get { return GetString("furColor"); }
+            set
+            {
+                if (IsRevampMod)
+                {
+                    SetValue("furColor", value);
+                }
+            }
+        }
+
         public double Hunger
         {
             get { return IsRevampMod ? GetDouble("hunger") : 0.0; }

@@ -60,7 +60,12 @@
 
                     <TextBlock              Text="Skin adjective"/>
                     <ComboBox Text="{Binding Game.SkinAdjective}" ItemsSource="{Binding Data.Body.SkinAdjectives}" Style="{StaticResource EditableTextBox}"/>
-
+                </common:AutoGrid>
+                <common:AutoGrid IsEnabled="{Binding Game.IsRevampMod}" Visibility="{Binding Game.RevampModVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <TextBlock              Text="Fur color"/>
+                    <ComboBox Text="{Binding Game.FurColor}" ItemsSource="{Binding Data.Body.FurColors}" Style="{StaticResource EditableTextBox}"/>
+                </common:AutoGrid>
+                <common:AutoGrid>
                     <TextBlock              Text="Arms"/>
                     <common:MyComboBox SelectedValue="{Binding Game.ArmType}" ItemsSource="{Binding Data.Body.ArmTypes}"/>
 

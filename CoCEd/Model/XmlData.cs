@@ -99,19 +99,20 @@ namespace CoCEd.Model
     {
         [XmlArray, XmlArrayItem("SkinType")]
         public XmlEnum[] SkinTypes { get; set; }
-        [XmlArray, XmlArrayItem("HairType")]
-        public XmlEnum[] HairTypes { get; set; }
-        [XmlArray, XmlArrayItem("HairColor")]
-        public String[] HairColors { get; set; }
-        [XmlArray, XmlArrayItem("BeardType")]
-        public XmlEnum[] BeardTypes { get; set; }
         [XmlArray, XmlArrayItem("SkinTone")]
         public String[] SkinTones { get; set; }
         [XmlArray, XmlArrayItem("SkinAdjective")]
         public String[] SkinAdjectives { get; set; }
         [XmlArray, XmlArrayItem("SkinDescription")]
         public String[] SkinDescriptions { get; set; }
-
+        [XmlArray, XmlArrayItem("FurColor")]
+        public String[] FurColors { get; set; }
+        [XmlArray, XmlArrayItem("HairType")]
+        public XmlEnum[] HairTypes { get; set; }
+        [XmlArray, XmlArrayItem("HairColor")]
+        public String[] HairColors { get; set; }
+        [XmlArray, XmlArrayItem("BeardType")]
+        public XmlEnum[] BeardTypes { get; set; }
 
         [XmlArray, XmlArrayItem("FaceType")]
         public XmlEnum[] FaceTypes { get; set; }

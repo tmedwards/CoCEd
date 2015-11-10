@@ -71,6 +71,7 @@
       <HairType ID="2" Name="Transparent"/>
       <HairType ID="3" Name="Goo"/>
       <HairType ID="4" Name="Anemone"/>
+      <HairType ID="5" Name="Quill"/>
     </HairTypes>
     <!-- ========================================================================================================================================== -->
     <HairColors>
@@ -175,6 +176,29 @@
       <HairColor>rubbery white</HairColor>
     </HairColors>
     <!-- ========================================================================================================================================== -->
+    <FurColors>
+      <FurColor>auburn</FurColor>
+      <FurColor>black</FurColor>
+      <FurColor>black and white</FurColor>
+      <FurColor>black and white spotted</FurColor>
+      <FurColor>brown</FurColor>
+      <FurColor>brown and white</FurColor>
+      <FurColor>caramel</FurColor>
+      <FurColor>chocolate</FurColor>
+      <FurColor>dark gray</FurColor>
+      <FurColor>golden</FurColor>
+      <FurColor>gray</FurColor>
+      <FurColor>gray and white</FurColor>
+      <FurColor>light gray</FurColor>
+      <FurColor>midnight black</FurColor>
+      <FurColor>orange</FurColor>
+      <FurColor>orange and white</FurColor>
+      <FurColor>peach</FurColor>
+      <FurColor>sandy brown</FurColor>
+      <FurColor>silver</FurColor>
+      <FurColor>white</FurColor>
+    </FurColors>
+    <!-- ========================================================================================================================================== -->
     <BeardTypes>
       <BeardType ID="0" Name="Normal"/>
       <BeardType ID="1" Name="Goatee"/>
@@ -204,6 +228,9 @@
       <FaceType ID="18" Name="Ferret Face"/>
       <FaceType ID="19" Name="Pig"/>
       <FaceType ID="20" Name="Boar"/>
+      <FaceType ID="21" Name="Rhino"/>
+      <FaceType ID="22" Name="Echidna"/>
+      <FaceType ID="23" Name="Deer"/>
     </FaceTypes>
     <!-- ========================================================================================================================================== -->
     <TongueTypes>
@@ -211,6 +238,7 @@
       <TongueType ID="1" Name="Snake"/>
       <TongueType ID="2" Name="Demonic"/>
       <TongueType ID="3" Name="Draconic"/>
+      <TongueType ID="4" Name="Echidna"/>
     </TongueTypes>
     <!-- ========================================================================================================================================== -->
     <EyeTypes>
@@ -245,6 +273,8 @@
       <HornType ID="4" Name="Draconic &#x00D7;4 (12&#x2033; long)"/>
       <HornType ID="5" Name="Antlers"/>
       <HornType ID="6" Name="Goat"/>
+      <HornType ID="7" Name="Unicorn"/>
+      <HornType ID="8" Name="Rhino"/>
     </HornTypes>
     <!-- ========================================================================================================================================== -->
     <AntennaeTypes>
@@ -281,6 +311,9 @@
       <TailType ID="19" Name="Pig"/>
       <TailType ID="20" Name="Scorpion"/>
       <TailType ID="21" Name="Goat"/>
+      <TailType ID="22" Name="Rhino"/>
+      <TailType ID="23" Name="Echidna"/>
+      <TailType ID="24" Name="Deer"/>
     </TailTypes>
     <!-- ========================================================================================================================================== -->
     <WingTypes>
@@ -330,7 +363,10 @@
       <LowerBodyType ID="18" Name="Dragon"/>
       <LowerBodyType ID="19" Name="Raccoon"/>
       <LowerBodyType ID="20" Name="Ferret"/>
-      <LowerBodyType ID="21" Name="Pig"/>
+      <LowerBodyType ID="21" Name="Cloven Hoofed"/>
+      <!-- LowerBodyType ID="22" Name="Rhino"/ -->
+      <LowerBodyType ID="23" Name="Echidna"/>
+      <LowerBodyType ID="24" Name="Deertaur"/>
     </LowerBodyTypes>
     <!-- ========================================================================================================================================== -->
     <PiercingTypes>
@@ -374,6 +410,7 @@
       <CockType ID="13" Name="Pig"/>
       <CockType ID="14" Name="Avian"/>
       <CockType ID="15" Name="Rhino"/>
+      <CockType ID="16" Name="Echidna"/>
     </CockTypes>
     <!-- ========================================================================================================================================== -->
     <CockSockTypes>
@@ -478,7 +515,6 @@
       <PregnancyType ID="10401" Name="Large white egg"/>
       <PregnancyType ID="10500" Name="Small rubbery black egg"/>
       <PregnancyType ID="10501" Name="Large rubbery black egg"/>
-
     </PregnancyTypes>
     <!-- ========================================================================================================================================== -->
     <AnalPregnancyTypes>
@@ -529,6 +565,7 @@
       <Item ID="GodMead" Name="God's Mead"/>
       <Item ID="GroPlus" Name="GroPlus"/>
       <Item ID="ExtSerm" Name="Hair Extension Serum"/>
+      <Item ID="H.Bisct" Name="Hard Biscuits"/>
       <Item ID="HrblCnt" Name="Herbal Contraceptive"/>
       <Item ID="Icicle " Name="Ice Shard"/>
       <Item ID="IzyMilk" Name="Isabella's Milk"/>
@@ -542,6 +579,7 @@
       <Item ID="OviElix" Name="Oviposition Elixir"/>
       <Item ID="PeppWht" Name="Peppermint White"/>
       <Item ID="P_Whsky" Name="Phouka Whiskey"              Description="Increases Faerie/Phouka pregnancy corruption."/>
+      <Item ID="MilkPtn" Name="ProLactaid"/>
       <Item ID="PrnsPkr" Name="Princess Pucker"             Description="Reduces lust and either libido or sensitivity.  Also has a random chance to change hair color to pink."/>
       <Item ID="P.Bread" Name="Prison Bread"/>
       <Item ID="PurPeac" Name="Pure Peach"/>
@@ -555,6 +593,7 @@
       <Item ID="S.Water" Name="Spring Water"/>
       <Item ID="SDelite" Name="Succubi's Delight"/>
       <Item ID="S.Dream" Name="Succubus' Dream"/>
+      <Item ID="TrailMx" Name="Trail Mix"/>
       <Item ID="TScroll" Name="Tattered Scroll"/>
       <Item ID="UrtaCum" Name="Urta's Cum"/>
       <Item ID="Vital T" Name="Vitality Tincture"/>
@@ -572,6 +611,7 @@
       <Item ID="FoxBery" Name="Fox Berry"/>
       <Item ID="FoxJewl" Name="Fox Jewel"/>
       <Item ID="Gob.Ale" Name="Goblin Ale"/>
+      <Item ID="GldRind" Name="Golden Rind"             Description="Deer TF item."/>
       <Item ID="GldSeed" Name="Golden Seed"/>
       <Item ID="Hummus " Name="Hummus"                  Description="Non-cheat version of Super Hummus."/>
       <Item ID="Hummus2" Name="Super Hummus"            Description="In-game cheat item.  Reverts PC to a basic human form."/>
@@ -977,6 +1017,7 @@
     </PerkGroup>
     <PerkGroup Name="Events">
       <Perk Name="Androgyny" Description="No gender limits on facial masculinity or femininity."/>
+      <Perk Name="Basilisk Resistance" Description="Grants immunity to basilisk's paralyzing gaze.  Disables Basilisk Bad End."/>
       <Perk Name="Basilisk Womb" Description="Enables your eggs to be properly fertilized into basilisks of both genders!"/>
       <Perk Name="Bee Ovipositor" Description="Allows you to lay eggs through a special organ on your insect abdomen, though you need at least 10 eggs to lay."/>
       <Perk Name="Bimbo Body" Description="Gives the body of a bimbo.  Tits will never stay below a 'DD' cup, libido is raised, lust resistance is raised, and upgrades tease."/>
@@ -2764,6 +2805,7 @@
     <Flag ID="2263" Name="BLACK_COCK_FRIDAS_CAKE_EATEN_COUNTER"/>
     <Flag ID="2264" Name="CODEX_ENTRY_RHINOS"/>
     <Flag ID="2265" Name="CODEX_ENTRY_ECHIDNAS"/>
+    <Flag ID="2266" Name="URTA_VIXEN_AND_CREAM_COUNTER"/>
 
     <!--
         The flags below this point come from the code, but they really do not need to be exposed
