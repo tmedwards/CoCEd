@@ -645,7 +645,11 @@ namespace CoCEd.ViewModel
         public int SkinType
         {
             get { return GetInt("skinType"); }
-            set { SetValue("skinType", value); }
+            set
+            {
+                SetValue("skinType", value);
+                OnPropertyChanged("IsFurEnabled");
+            }
         }
 
         public string SkinTone
@@ -1345,6 +1349,11 @@ namespace CoCEd.ViewModel
                     SetValue("furColor", value);
                 }
             }
+        }
+
+        public bool IsFurEnabled
+        {
+            get { return SkinType == 1; }
         }
 
         public double Hunger
