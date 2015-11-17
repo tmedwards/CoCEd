@@ -973,6 +973,7 @@
       <Perk Name="Improved Self-Control" Description="Increases maximum lust by 20."/>
       <Perk Name="Mage" Description="Increases base spell strength by 50%."/>
       <Perk Name="Nymphomania" Description="Raises minimum lust by up to 30."/>
+      <Perk Name="Parry" Description="Increases deflect chance by up to 10% while wielding a weapon. (Req's 50+ Speed)"/>
       <Perk Name="Precision" Description="Reduces enemy armor by 10. (Req's 25+ Intelligence)"/>
       <Perk Name="Regeneration" Description="Regenerates 2% of max HP/hour and 1% of max HP/round."/>
       <Perk Name="Runner" Description="Increases chances of escaping combat."/>
