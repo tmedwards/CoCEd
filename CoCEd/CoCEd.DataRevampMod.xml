@@ -2817,8 +2817,8 @@
     -->
 
     <!-- The following flags are used solely by CoC-Revamp-Mod. -->
-    <Flag ID="2979" Name="NEW_GAME_PLUS_LEVEL"                          Description="Current New Game+ level.  Each ascension increments level by 1.  Also used to raise stat maximums."/>
-    <Flag ID="2980" Name="NEW_GAME_PLUS_BONUS_UNLOCKED_HERM"            Description="Unlocked hermaphrodites as a starting player option."/>
+    <Flag ID="2979" Name="NEW_GAME_PLUS_LEVEL"                          Description="Current New Game+ level.  Each ascension increments level by 1."/>
+    <Flag ID="2980" Name="NEW_GAME_PLUS_BONUS_UNLOCKED_HERM"            Description="Unlocks hermaphrodite as a starting gender option."/>
     <!-- Flag ID="2981" Name="USE_OLD_INTERFACE"                            Description="1 = classic interface used"/ -->
     <!-- Flag ID="2982" Name="IMAGEPACK_OFF"                                Description="1 = imagepack disabled"/ -->
     <!-- Flag ID="2983" Name="SPRITE_STYLE"                                 Description="1 = original sprites used"/ -->
