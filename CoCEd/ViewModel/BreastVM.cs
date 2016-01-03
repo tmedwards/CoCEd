@@ -50,6 +50,11 @@ namespace CoCEd.ViewModel
             }
         }
 
+        public int MaxRating
+        {
+            get { return _game.IsRevampMod ? 199 : 99; }
+        }
+
         public int BreastCount
         {
             get { return GetInt("breasts"); }
@@ -111,7 +116,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                var rating = RatingDescription;
+                var rating = RatingDescriptionLong;
                 if (BreastCount == 1) return "A " + rating + " breast";
                 if (BreastCount == 2) return "A pair of " + rating + " breasts";
                 if (BreastCount == 3) return "A triad of " + rating + " breasts";
@@ -126,109 +131,128 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                switch(Rating)
+                if (_game.IsRevampMod && Rating > 99) return RatingDescriptionLong.Replace("hyper", "hyp").Replace("large", "lg");
+                else return RatingDescriptionLong;
+            }
+        }
+
+        public string RatingDescriptionLong
+        {
+            get
+            {
+                int rating = Rating;
+                var prefix = "";
+
+                // Handle CoC-Revamp-Mod "hyper" ratings
+                if (_game.IsRevampMod && rating > 99)
+                {
+                    rating -= 99;
+                    prefix = "hyper ";
+                }
+
+                switch (rating)
                 {
                     case  0: return "flat, manly";
-                    case  1: return "A-cup";
-                    case  2: return "B-cup";
-                    case  3: return "C-cup";
-                    case  4: return "D-cup";
-                    case  5: return "DD-cup";
-                    case  6: return "big DD-cup";
-                    case  7: return "E-cup";
-                    case  8: return "big E-cup";
-                    case  9: return "EE-cup";
-                    case 10: return "big EE-cup";
-                    case 11: return "F-cup";
-                    case 12: return "big F-cup";
-                    case 13: return "FF-cup";
-                    case 14: return "big FF-cup";
-                    case 15: return "G-cup";
-                    case 16: return "big G-cup";
-                    case 17: return "GG-cup";
-                    case 18: return "big GG-cup";
-                    case 19: return "H-cup";
-                    case 20: return "big H-cup";
-                    case 21: return "HH-cup";
-                    case 22: return "big HH-cup";
-                    case 23: return "HHH-cup";
-                    case 24: return "I-cup";
-                    case 25: return "big I-cup";
-                    case 26: return "II-cup";
-                    case 27: return "big II-cup";
-                    case 28: return "J-cup";
-                    case 29: return "big J-cup";
-                    case 30: return "JJ-cup";
-                    case 31: return "big JJ-cup";
-                    case 32: return "K-cup";
-                    case 33: return "big K-cup";
-                    case 34: return "KK-cup";
-                    case 35: return "big KK-cup";
-                    case 36: return "L-cup";
-                    case 37: return "big L-cup";
-                    case 38: return "LL-cup";
-                    case 39: return "big LL-cup";
-                    case 40: return "M-cup";
-                    case 41: return "big M-cup";
-                    case 42: return "MM-cup";
-                    case 43: return "big MM-cup";
-                    case 44: return "MMM-cup";
-                    case 45: return "large MMM-cup";
-                    case 46: return "N-cup";
-                    case 47: return "large N-cup";
-                    case 48: return "NN-cup";
-                    case 49: return "large NN-cup";
-                    case 50: return "O-cup";
-                    case 51: return "large O-cup";
-                    case 52: return "OO-cup";
-                    case 53: return "large OO-cup";
-                    case 54: return "P-cup";
-                    case 55: return "large P-cup";
-                    case 56: return "PP-cup";
-                    case 57: return "large PP-cup";
-                    case 58: return "Q-cup";
-                    case 59: return "large Q-cup";
-                    case 60: return "QQ-cup";
-                    case 61: return "large QQ-cup";
-                    case 62: return "R-cup";
-                    case 63: return "large R-cup";
-                    case 64: return "RR-cup";
-                    case 65: return "large RR-cup";
-                    case 66: return "S-cup";
-                    case 67: return "large S-cup";
-                    case 68: return "SS-cup";
-                    case 69: return "large SS-cup";
-                    case 70: return "T-cup";
-                    case 71: return "large T-cup";
-                    case 72: return "TT-cup";
-                    case 73: return "large TT-cup";
-                    case 74: return "U-cup";
-                    case 75: return "large U-cup";
-                    case 76: return "UU-cup";
-                    case 77: return "large UU-cup";
-                    case 78: return "V-cup";
-                    case 79: return "large V-cup";
-                    case 80: return "VV-cup";
-                    case 81: return "large VV-cup";
-                    case 82: return "W-cup";
-                    case 83: return "large W-cup";
-                    case 84: return "WW-cup";
-                    case 85: return "large WW-cup";
-                    case 86: return "X-cup";
-                    case 87: return "large X-cup";
-                    case 88: return "XX-cup";
-                    case 89: return "large XX-cup";
-                    case 90: return "Y-cup";
-                    case 91: return "large Y-cup";
-                    case 92: return "YY-cup";
-                    case 93: return "large YY-cup";
-                    case 94: return "Z-cup";
-                    case 95: return "large Z-cup";
-                    case 96: return "ZZ-cup";
-                    case 97: return "large ZZ-cup";
-                    case 98: return "ZZZ-cup";
-                    case 99: return "large ZZZ-cup";
-                    default: return "game-breaking";
+                    case  1: return prefix + "A-cup";
+                    case  2: return prefix + "B-cup";
+                    case  3: return prefix + "C-cup";
+                    case  4: return prefix + "D-cup";
+                    case  5: return prefix + "DD-cup";
+                    case  6: return prefix + "big DD-cup";
+                    case  7: return prefix + "E-cup";
+                    case  8: return prefix + "big E-cup";
+                    case  9: return prefix + "EE-cup";
+                    case 10: return prefix + "big EE-cup";
+                    case 11: return prefix + "F-cup";
+                    case 12: return prefix + "big F-cup";
+                    case 13: return prefix + "FF-cup";
+                    case 14: return prefix + "big FF-cup";
+                    case 15: return prefix + "G-cup";
+                    case 16: return prefix + "big G-cup";
+                    case 17: return prefix + "GG-cup";
+                    case 18: return prefix + "big GG-cup";
+                    case 19: return prefix + "H-cup";
+                    case 20: return prefix + "big H-cup";
+                    case 21: return prefix + "HH-cup";
+                    case 22: return prefix + "big HH-cup";
+                    case 23: return prefix + "HHH-cup";
+                    case 24: return prefix + "I-cup";
+                    case 25: return prefix + "big I-cup";
+                    case 26: return prefix + "II-cup";
+                    case 27: return prefix + "big II-cup";
+                    case 28: return prefix + "J-cup";
+                    case 29: return prefix + "big J-cup";
+                    case 30: return prefix + "JJ-cup";
+                    case 31: return prefix + "big JJ-cup";
+                    case 32: return prefix + "K-cup";
+                    case 33: return prefix + "big K-cup";
+                    case 34: return prefix + "KK-cup";
+                    case 35: return prefix + "big KK-cup";
+                    case 36: return prefix + "L-cup";
+                    case 37: return prefix + "big L-cup";
+                    case 38: return prefix + "LL-cup";
+                    case 39: return prefix + "big LL-cup";
+                    case 40: return prefix + "M-cup";
+                    case 41: return prefix + "big M-cup";
+                    case 42: return prefix + "MM-cup";
+                    case 43: return prefix + "big MM-cup";
+                    case 44: return prefix + "MMM-cup";
+                    case 45: return prefix + "large MMM-cup";
+                    case 46: return prefix + "N-cup";
+                    case 47: return prefix + "large N-cup";
+                    case 48: return prefix + "NN-cup";
+                    case 49: return prefix + "large NN-cup";
+                    case 50: return prefix + "O-cup";
+                    case 51: return prefix + "large O-cup";
+                    case 52: return prefix + "OO-cup";
+                    case 53: return prefix + "large OO-cup";
+                    case 54: return prefix + "P-cup";
+                    case 55: return prefix + "large P-cup";
+                    case 56: return prefix + "PP-cup";
+                    case 57: return prefix + "large PP-cup";
+                    case 58: return prefix + "Q-cup";
+                    case 59: return prefix + "large Q-cup";
+                    case 60: return prefix + "QQ-cup";
+                    case 61: return prefix + "large QQ-cup";
+                    case 62: return prefix + "R-cup";
+                    case 63: return prefix + "large R-cup";
+                    case 64: return prefix + "RR-cup";
+                    case 65: return prefix + "large RR-cup";
+                    case 66: return prefix + "S-cup";
+                    case 67: return prefix + "large S-cup";
+                    case 68: return prefix + "SS-cup";
+                    case 69: return prefix + "large SS-cup";
+                    case 70: return prefix + "T-cup";
+                    case 71: return prefix + "large T-cup";
+                    case 72: return prefix + "TT-cup";
+                    case 73: return prefix + "large TT-cup";
+                    case 74: return prefix + "U-cup";
+                    case 75: return prefix + "large U-cup";
+                    case 76: return prefix + "UU-cup";
+                    case 77: return prefix + "large UU-cup";
+                    case 78: return prefix + "V-cup";
+                    case 79: return prefix + "large V-cup";
+                    case 80: return prefix + "VV-cup";
+                    case 81: return prefix + "large VV-cup";
+                    case 82: return prefix + "W-cup";
+                    case 83: return prefix + "large W-cup";
+                    case 84: return prefix + "WW-cup";
+                    case 85: return prefix + "large WW-cup";
+                    case 86: return prefix + "X-cup";
+                    case 87: return prefix + "large X-cup";
+                    case 88: return prefix + "XX-cup";
+                    case 89: return prefix + "large XX-cup";
+                    case 90: return prefix + "Y-cup";
+                    case 91: return prefix + "large Y-cup";
+                    case 92: return prefix + "YY-cup";
+                    case 93: return prefix + "large YY-cup";
+                    case 94: return prefix + "Z-cup";
+                    case 95: return prefix + "large Z-cup";
+                    case 96: return prefix + "ZZ-cup";
+                    case 97: return prefix + "large ZZ-cup";
+                    case 98: return prefix + "ZZZ-cup";
+                    case 99: return prefix + "large ZZZ-cup";
+                    default: return (_game.IsRevampMod && rating == 100) ? "jacques00-cup" : "game-breaking";
                 }
             }
         }

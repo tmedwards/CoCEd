@@ -50,30 +50,30 @@
                     <common:MyNumericBox    Value="{Binding Game.Frame}" Upper="100" Tip="{Binding Game.FrameTip}"/>
 
                     <TextBlock              Text="Skin type"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.SkinType}" ItemsSource="{Binding Data.Body.SkinTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.SkinType}" ItemsSource="{Binding Data.Body.SkinTypes}"/>
 
                     <TextBlock              Text="Skin tone"/>
-                    <ComboBox Text="{Binding Game.SkinTone}" ItemsSource="{Binding Data.Body.SkinTones}" Style="{StaticResource EditableTextBox}"/>
+                    <ComboBox               Text="{Binding Game.SkinTone}" ItemsSource="{Binding Data.Body.SkinTones}" Style="{StaticResource EditableTextBox}"/>
 
                     <TextBlock              Text="Skin description"/>
-                    <ComboBox Text="{Binding Game.SkinDescription}" ItemsSource="{Binding Data.Body.SkinDescriptions}" Style="{StaticResource EditableTextBox}"/>
+                    <ComboBox               Text="{Binding Game.SkinDescription}" ItemsSource="{Binding Data.Body.SkinDescriptions}" Style="{StaticResource EditableTextBox}"/>
 
                     <TextBlock              Text="Skin adjective"/>
-                    <ComboBox Text="{Binding Game.SkinAdjective}" ItemsSource="{Binding Data.Body.SkinAdjectives}" Style="{StaticResource EditableTextBox}"/>
+                    <ComboBox               Text="{Binding Game.SkinAdjective}" ItemsSource="{Binding Data.Body.SkinAdjectives}" Style="{StaticResource EditableTextBox}"/>
                 </common:AutoGrid>
                 <common:AutoGrid IsEnabled="{Binding Game.IsRevampMod}" Visibility="{Binding Game.RevampModVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Fur color" IsEnabled="{Binding Game.IsFurEnabled}"/>
-                    <ComboBox Text="{Binding Game.FurColor}" ItemsSource="{Binding Data.Body.FurColors}" Style="{StaticResource EditableTextBox}" IsEnabled="{Binding Game.IsFurEnabled}"/>
+                    <ComboBox               Text="{Binding Game.FurColor}" ItemsSource="{Binding Data.Body.FurColors}" Style="{StaticResource EditableTextBox}" IsEnabled="{Binding Game.IsFurEnabled}"/>
                 </common:AutoGrid>
                 <common:AutoGrid>
                     <TextBlock              Text="Arms"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.ArmType}" ItemsSource="{Binding Data.Body.ArmTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.ArmType}" ItemsSource="{Binding Data.Body.ArmTypes}"/>
 
                     <TextBlock              Text="Wings/Fins"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.WingType}" ItemsSource="{Binding Data.Body.WingTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.WingType}" ItemsSource="{Binding Data.Body.WingTypes}"/>
 
                     <TextBlock              Text="Wings description" IsEnabled="{Binding Game.IsWingEnabled}"/>
-                    <ComboBox Text="{Binding Game.WingDescription}" ItemsSource="{Binding Data.Body.WingDescriptions}" Style="{StaticResource EditableTextBox}" IsEnabled="{Binding Game.IsWingEnabled}"/>
+                    <ComboBox               Text="{Binding Game.WingDescription}" ItemsSource="{Binding Data.Body.WingDescriptions}" Style="{StaticResource EditableTextBox}" IsEnabled="{Binding Game.IsWingEnabled}"/>
 
                     <Border/>
                     <CheckBox Content="Gills" IsChecked="{Binding Game.HasGills}" Margin="8,5,0,0"/>
@@ -93,10 +93,18 @@
                     <common:MyNumericBox    Value="{Binding Game.HipRating}" Upper="20" Tip="{Binding Game.HipRatingTip}"/>
 
                     <TextBlock              Text="Lower body"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.LowerBodyType}" ItemsSource="{Binding Data.Body.LowerBodyTypes}"/>
-
+                    <common:MyComboBox      SelectedValue="{Binding Game.LowerBodyType}" ItemsSource="{Binding Data.Body.LowerBodyTypes}"/>
+                </common:AutoGrid>
+                <common:AutoGrid IsEnabled="{Binding Game.HasLegConfigs}" Visibility="{Binding Game.RevampModVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <TextBlock              Text="Leg configuration"/>
+                    <ComboBox               SelectedIndex="{Binding Game.LegConfigs}">
+                        <ComboBoxItem>Bipedal</ComboBoxItem>
+                        <ComboBoxItem>Quadrupedal</ComboBoxItem>
+                    </ComboBox>
+                </common:AutoGrid>
+                <common:AutoGrid>
                     <TextBlock              Text="Tail"/>
-                    <common:MyComboBox SelectedValue="{Binding Game.TailType}" ItemsSource="{Binding Data.Body.TailTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.TailType}" ItemsSource="{Binding Data.Body.TailTypes}"/>
                     
                     <TextBlock              Text="{Binding Game.TailValueLabel}" IsEnabled="{Binding Game.IsTailValueEnabled}"/>
                     <common:MyNumericBox    Value="{Binding Game.TailValue}" IsEnabled="{Binding Game.IsTailValueEnabled}"/>
@@ -116,7 +124,7 @@
                     </common:ArrayEditor.ItemTemplate>
                     <common:AutoGrid>
                         <TextBlock              Text="Rating"/>
-                        <common:MyNumericBox    Value="{Binding Rating}" Min="0" Lower="0" Upper="99" Tip="{Binding RatingDescription}"/>
+                        <common:MyNumericBox    Value="{Binding Rating}" Min="0" Lower="0" Upper="{Binding MaxRating}" Tip="{Binding RatingDescription}"/>
 
                         <TextBlock              Text="Breast count"/>
                         <common:MyNumericBox    Value="{Binding BreastCount}" Min="1" Lower="2"/>

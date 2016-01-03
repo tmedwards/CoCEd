@@ -679,7 +679,37 @@ namespace CoCEd.ViewModel
         public int LowerBodyType
         {
             get { return GetInt("lowerBody"); }
-            set { SetValue("lowerBody", value); }
+            set
+            {
+                SetValue("lowerBody", value);
+
+                if (IsRevampMod)
+                {
+                    // Set the default `LegCount` value when the lower body type is changed.
+                    switch (value)
+                    {
+                        case 3: // Naga
+                        case 8: // Goo
+                            LegCount = 1;
+                            break;
+
+                        case 11: // Pony
+                            LegCount = 4;
+                            break;
+
+                        case 16: // Drider
+                            LegCount = 8;
+                            break;
+
+                        default:
+                            LegCount = 2;
+                            break;
+                    }
+                    OnPropertyChanged("LegCount");
+                    OnPropertyChanged("LegConfigs");
+                    OnPropertyChanged("HasLegConfigs");
+                }
+            }
         }
 
         public int TailType
@@ -1338,6 +1368,52 @@ namespace CoCEd.ViewModel
 
 
         #region CoC-Revamp-Mod Specific
+
+        public int LegCount
+        {
+            get { return GetInt("legCount"); }
+            set
+            {
+                if (IsRevampMod)
+                {
+                    SetValue("legCount", value);
+                }
+            }
+        }
+
+        // Handles bipedal and quadrupedal leg configurations.
+        public int LegConfigs
+        {
+            get
+            {
+                if (!HasLegConfigs) return -1;
+                return (LegCount / 2) - 1;
+            }
+            set
+            {
+                if (IsRevampMod)
+                {
+                    if (value == LegConfigs) return;
+                    LegCount = (value + 1) * 2;
+                }
+            }
+        }
+
+        public bool HasLegConfigs
+        {
+            get
+            {
+                if (!IsRevampMod) return false;
+                switch (LowerBodyType)
+                {
+                    case 1:  // Hoofed (has both bipedal and quadrupedal leg configurations)
+                    case 21: // Cloven-hoofed (has both bipedal and quadrupedal leg configurations)
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
 
         public string FurColor
         {
