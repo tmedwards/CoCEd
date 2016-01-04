@@ -1381,7 +1381,7 @@ namespace CoCEd.ViewModel
             }
         }
 
-        // Handles bipedal and quadrupedal leg configurations.
+        // Handles biped and quadruped leg configurations.
         public int LegConfigs
         {
             get
@@ -1406,11 +1406,28 @@ namespace CoCEd.ViewModel
                 if (!IsRevampMod) return false;
                 switch (LowerBodyType)
                 {
-                    case 1:  // Hoofed (has both bipedal and quadrupedal leg configurations)
-                    case 21: // Cloven-hoofed (has both bipedal and quadrupedal leg configurations)
-                        return true;
-                    default:
+                    // Types which definately have only a single allowed leg configuration.
+                    case  0: // Human (biped)
+                    case  3: // Naga (uniped)
+                    case  8: // Goo (uniped)
+                    case 11: // Pony (quadruped)
+                    case 16: // Drider (octoped) → Biped form is lower body type #15 (Chitinous spider legs).
                         return false;
+
+                    // Types which probably should have only a single allowed leg configuration.
+                    case  5: // Demonic high-heels (biped)    → Funny human legs, should have the same limitations as lower body type #0 (Human).
+                    case  6: // Demonic claws (biped)         → (same as the above)
+                    case  7: // Bee (biped)                   → (same as the above)
+                    case 13: // Harpy (biped)                 → (same as the above)
+                    case 15: // Chitinous spider legs (biped) → Octoped form is lower body type #16 (Drider).
+                        return false;
+
+                    // Types which I'm unsure about, but I'm allowing because the game currently does.
+                    // #14 Kangaroo (triped w/ pentapedal & bipedal-hopping locomotion) → Unsure.  Kangaroos are weird.
+
+                    // All other types may have either biped or quadruped leg configurations.
+                    default:
+                        return true;
                 }
             }
         }

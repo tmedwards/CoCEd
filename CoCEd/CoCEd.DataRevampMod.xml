@@ -3,10 +3,10 @@
   <Body>
     <!-- ========================================================================================================================================== -->
     <SkinTypes>
-      <SkinType ID="0" Name="Skin"/>
       <SkinType ID="1" Name="Fur"/>
-      <SkinType ID="2" Name="Scales"/>
       <SkinType ID="3" Name="Goo"/>
+      <SkinType ID="2" Name="Scales"/>
+      <SkinType ID="0" Name="Skin"/>
     </SkinTypes>
     <!-- ========================================================================================================================================== -->
     <SkinDescriptions>
@@ -66,11 +66,11 @@
     </SkinTones>
     <!-- ========================================================================================================================================== -->
     <HairTypes>
-      <HairType ID="0" Name="Human"/>
-      <HairType ID="1" Name="Feathery (harpy)"/>
-      <HairType ID="2" Name="Transparent (ghost)"/>
-      <HairType ID="3" Name="Goo"/>
       <HairType ID="4" Name="Anemone"/>
+      <HairType ID="1" Name="Feathery (harpy)"/>
+      <HairType ID="3" Name="Goo"/>
+      <HairType ID="0" Name="Human"/>
+      <HairType ID="2" Name="Transparent (ghostly)"/>
       <HairType ID="5" Name="Quill"/>
     </HairTypes>
     <!-- ========================================================================================================================================== -->
@@ -200,84 +200,84 @@
     </FurColors>
     <!-- ========================================================================================================================================== -->
     <BeardTypes>
-      <BeardType ID="0" Name="Normal"/>
-      <BeardType ID="1" Name="Goatee"/>
       <BeardType ID="2" Name="Cleancut"/>
+      <BeardType ID="1" Name="Goatee"/>
       <BeardType ID="3" Name="Mountain-man"/>
+      <BeardType ID="0" Name="Normal"/>
     </BeardTypes>
     <!-- ========================================================================================================================================== -->
     <FaceTypes>
-      <FaceType ID="0"  Name="Human"/>
-      <FaceType ID="1"  Name="Horse"/>
+      <FaceType ID="20" Name="Boar"/>
+      <FaceType ID="8"  Name="Bunny"/>
+      <FaceType ID="6"  Name="Cat"/>
+      <FaceType ID="3"  Name="Cow/Minotaur"/>
+      <FaceType ID="23" Name="Deer"/>
       <FaceType ID="2"  Name="Dog"/>
-      <FaceType ID="3"  Name="Cow/minotaur"/>
+      <FaceType ID="12" Name="Dragon"/>
+      <FaceType ID="22" Name="Echidna"/>
+      <FaceType ID="17" Name="Ferret mask"/>
+      <FaceType ID="18" Name="Ferret face"/>
+      <FaceType ID="11" Name="Fox"/>
+      <FaceType ID="1"  Name="Horse"/>
+      <FaceType ID="0"  Name="Human"/>
+      <FaceType ID="9"  Name="Kangaroo"/>
+      <FaceType ID="7"  Name="Lizard"/>
+      <FaceType ID="15" Name="Mouse buckteeth"/>
+      <FaceType ID="16" Name="Mouse face"/>
+      <FaceType ID="19" Name="Pig"/>
+      <FaceType ID="13" Name="Raccoon mask"/>
+      <FaceType ID="14" Name="Raccoon face"/>
+      <FaceType ID="21" Name="Rhino"/>
       <FaceType ID="4"  Name="Shark teeth"/>
       <FaceType ID="5"  Name="Snake fangs"/>
-      <FaceType ID="6"  Name="Cat"/>
-      <FaceType ID="7"  Name="Lizard"/>
-      <FaceType ID="8"  Name="Bunny"/>
-      <FaceType ID="9"  Name="Kangaroo"/>
       <FaceType ID="10" Name="Spider fangs"/>
-      <FaceType ID="11" Name="Fox"/>
-      <FaceType ID="12" Name="Dragon"/>
-      <FaceType ID="13" Name="Raccoon Mask"/>
-      <FaceType ID="14" Name="Raccoon Face"/>
-      <FaceType ID="15" Name="Buckteeth"/>
-      <FaceType ID="16" Name="Mouse"/>
-      <FaceType ID="17" Name="Ferret Mask"/>
-      <FaceType ID="18" Name="Ferret Face"/>
-      <FaceType ID="19" Name="Pig"/>
-      <FaceType ID="20" Name="Boar"/>
-      <FaceType ID="21" Name="Rhino"/>
-      <FaceType ID="22" Name="Echidna"/>
-      <FaceType ID="23" Name="Deer"/>
     </FaceTypes>
     <!-- ========================================================================================================================================== -->
     <TongueTypes>
-      <TongueType ID="0" Name="Human"/>
-      <TongueType ID="1" Name="Snake"/>
       <TongueType ID="2" Name="Demonic"/>
       <TongueType ID="3" Name="Draconic"/>
       <TongueType ID="4" Name="Echidna"/>
+      <TongueType ID="0" Name="Human"/>
+      <TongueType ID="1" Name="Snake"/>
     </TongueTypes>
     <!-- ========================================================================================================================================== -->
     <EyeTypes>
+      <EyeType ID="2" Name="Black (Sand Trap)"/>
       <EyeType ID="0" Name="Human"/>
-      <EyeType ID="1" Name="Four spider eyes"/>
-      <EyeType ID="2" Name="Black eyes (Sand Trap)"/>
+      <EyeType ID="1" Name="Spider (4&#x00D7; eyes)"/>
     </EyeTypes>
     <!-- ========================================================================================================================================== -->
     <EarTypes>
-      <EarType ID="0"  Name="Human"/>
-      <EarType ID="1"  Name="Horse"/>
-      <EarType ID="2"  Name="Dog"/>
-      <EarType ID="3"  Name="Cow"/>
-      <EarType ID="4"  Name="Elfin"/>
-      <EarType ID="5"  Name="Cat"/>
-      <EarType ID="6"  Name="Lizard"/>
       <EarType ID="7"  Name="Bunny"/>
-      <EarType ID="8"  Name="Kangaroo"/>
-      <EarType ID="9"  Name="Fox"/>
-      <EarType ID="10" Name="Dragon"/>
-      <EarType ID="11" Name="Raccoon"/>
-      <EarType ID="12" Name="Mouse"/>
-      <EarType ID="13" Name="Ferret"/>
-      <EarType ID="14" Name="Pig"/>
-      <EarType ID="15" Name="Rhino"/>
-      <EarType ID="16" Name="Echidna"/>
+      <EarType ID="5"  Name="Cat"/>
+      <EarType ID="3"  Name="Cow/Minotaur"/>
       <EarType ID="17" Name="Deer"/>
+      <EarType ID="2"  Name="Dog"/>
+      <EarType ID="10" Name="Dragon"/>
+      <EarType ID="16" Name="Echidna"/>
+      <EarType ID="4"  Name="Elfin"/>
+      <EarType ID="13" Name="Ferret"/>
+      <EarType ID="9"  Name="Fox"/>
+      <EarType ID="1"  Name="Horse"/>
+      <EarType ID="0"  Name="Human"/>
+      <EarType ID="8"  Name="Kangaroo"/>
+      <EarType ID="6"  Name="Lizard"/>
+      <EarType ID="12" Name="Mouse"/>
+      <EarType ID="14" Name="Pig"/>
+      <EarType ID="11" Name="Raccoon"/>
+      <EarType ID="15" Name="Rhino"/>
     </EarTypes>
     <!-- ========================================================================================================================================== -->
     <HornTypes>
       <HornType ID="0" Name="None"/>
+      <HornType ID="5" Name="Antlers"/>
+      <HornType ID="2" Name="Cow/Minotaur"/>
       <HornType ID="1" Name="Demon"/>
-      <HornType ID="2" Name="Cow/minotaur"/>
       <HornType ID="3" Name="Draconic &#x00D7;2"/>
       <HornType ID="4" Name="Draconic &#x00D7;4 (12&#x2033; long)"/>
-      <HornType ID="5" Name="Antlers"/>
       <HornType ID="6" Name="Goat"/>
-      <HornType ID="7" Name="Unicorn"/>
       <HornType ID="8" Name="Rhino"/>
+      <HornType ID="7" Name="Unicorn"/>
     </HornTypes>
     <!-- ========================================================================================================================================== -->
     <AntennaeTypes>
@@ -286,96 +286,96 @@
     </AntennaeTypes>
     <!-- ========================================================================================================================================== -->
     <ArmTypes>
-      <ArmType ID="0" Name="Human"/>
       <ArmType ID="1" Name="Harpy"/>
+      <ArmType ID="0" Name="Human"/>
       <ArmType ID="2" Name="Spider"/>
     </ArmTypes>
     <!-- ========================================================================================================================================== -->
     <TailTypes>
       <TailType ID="0"  Name="None"/>
-      <TailType ID="1"  Name="Horse"/>
-      <TailType ID="2"  Name="Dog"/>
-      <TailType ID="3"  Name="Demonic"/>
-      <TailType ID="4"  Name="Cow"/>
-      <TailType ID="5"  Name="Spider adbomen"/>
       <TailType ID="6"  Name="Bee abdomen"/>
-      <TailType ID="7"  Name="Shark"/>
-      <TailType ID="8"  Name="Cat"/>
-      <TailType ID="9"  Name="Lizard"/>
-      <TailType ID="10" Name="Rabbit"/>
-      <TailType ID="11" Name="Harpy"/>
-      <TailType ID="12" Name="Kangaroo"/>
-      <TailType ID="13" Name="Fox"/>
-      <TailType ID="14" Name="Draconic"/>
-      <TailType ID="15" Name="Raccoon"/>
-      <TailType ID="16" Name="Mouse"/>
-      <TailType ID="17" Name="Ferret"/>
       <TailType ID="18" Name="Behemoth"/>
-      <TailType ID="19" Name="Pig"/>
-      <TailType ID="20" Name="Scorpion"/>
-      <TailType ID="21" Name="Goat"/>
-      <TailType ID="22" Name="Rhino"/>
-      <TailType ID="23" Name="Echidna"/>
+      <TailType ID="8"  Name="Cat"/>
+      <TailType ID="4"  Name="Cow/Minotaur"/>
       <TailType ID="24" Name="Deer"/>
+      <TailType ID="3"  Name="Demonic"/>
+      <TailType ID="2"  Name="Dog"/>
+      <TailType ID="14" Name="Draconic"/>
+      <TailType ID="23" Name="Echidna"/>
+      <TailType ID="17" Name="Ferret"/>
+      <TailType ID="13" Name="Fox"/>
+      <TailType ID="21" Name="Goat"/>
+      <TailType ID="11" Name="Harpy"/>
+      <TailType ID="1"  Name="Horse"/>
+      <TailType ID="12" Name="Kangaroo"/>
+      <TailType ID="9"  Name="Lizard"/>
+      <TailType ID="16" Name="Mouse"/>
+      <TailType ID="19" Name="Pig"/>
+      <TailType ID="10" Name="Rabbit"/>
+      <TailType ID="15" Name="Raccoon"/>
+      <TailType ID="22" Name="Rhino"/>
+      <TailType ID="20" Name="Scorpion"/>
+      <TailType ID="7"  Name="Shark"/>
+      <TailType ID="5"  Name="Spider adbomen"/>
     </TailTypes>
     <!-- ========================================================================================================================================== -->
     <WingTypes>
       <WingType ID="0"  Name="None"/>
-      <WingType ID="1"  Name="Bee-like (small)"/>
-      <WingType ID="2"  Name="Bee-like (large)"/>
       <WingType ID="6"  Name="Bat-like (tiny)"/>
       <WingType ID="7"  Name="Bat-like (large)"/>
-      <WingType ID="8"  Name="Shark fin"/>
-      <WingType ID="9"  Name="Feathered (large)"/>
+      <WingType ID="1"  Name="Bee-like (small)"/>
+      <WingType ID="2"  Name="Bee-like (large)"/>
+      <WingType ID="12" Name="Dragonfly (giant)"/>
       <WingType ID="10" Name="Draconic (small)"/>
       <WingType ID="11" Name="Draconic (large)"/>
-      <WingType ID="12" Name="Giant dragonfly"/>
+      <WingType ID="9"  Name="Feathered (large)"/>
+      <WingType ID="8"  Name="Shark fin"/>
     </WingTypes>
     <!-- ========================================================================================================================================== -->
     <WingDescriptions>
       <WingDescription>non-existent</WingDescription>
-      <WingDescription>giant dragonfly</WingDescription>
-      <WingDescription>large bee-like</WingDescription>
+      <WingDescription>tiny, bat-like</WingDescription>
       <WingDescription>large, bat-like</WingDescription>
+      <WingDescription>small bee-like</WingDescription>
+      <WingDescription>large bee-like</WingDescription>
+      <WingDescription>giant dragonfly</WingDescription>
+      <WingDescription>small, draconic</WingDescription>
       <WingDescription>large, draconic</WingDescription>
       <WingDescription>large, feathered</WingDescription>
-      <WingDescription>small bee-like</WingDescription>
-      <WingDescription>small, draconic</WingDescription>
-      <WingDescription>tiny, bat-like</WingDescription>
     </WingDescriptions>
     <!-- ========================================================================================================================================== -->
     <LowerBodyTypes>
-      <LowerBodyType ID="0"  Name="Human"/>
-      <LowerBodyType ID="1"  Name="Hoofed"/>
-      <LowerBodyType ID="2"  Name="Dog"/>
-      <LowerBodyType ID="3"  Name="Naga"/>
-      <LowerBodyType ID="5"  Name="Demonic high-heels"/>
-      <LowerBodyType ID="6"  Name="Demonic claws"/>
       <LowerBodyType ID="7"  Name="Bee"/>
-      <LowerBodyType ID="8"  Name="Goo"/>
-      <LowerBodyType ID="9"  Name="Cat"/>
-      <LowerBodyType ID="10" Name="Lizard"/>
-      <LowerBodyType ID="11" Name="Pony"/>
       <LowerBodyType ID="12" Name="Bunny"/>
-      <LowerBodyType ID="13" Name="Harpy"/>
-      <LowerBodyType ID="14" Name="Kangaroo"/>
+      <LowerBodyType ID="9"  Name="Cat"/>
       <LowerBodyType ID="15" Name="Chitinous spider legs"/>
-      <LowerBodyType ID="16" Name="Drider"/>
-      <LowerBodyType ID="17" Name="Fox"/>
-      <LowerBodyType ID="18" Name="Dragon"/>
-      <LowerBodyType ID="19" Name="Raccoon"/>
-      <LowerBodyType ID="20" Name="Ferret"/>
       <LowerBodyType ID="21" Name="Cloven-hoofed"/>
+      <LowerBodyType ID="6"  Name="Demonic claws"/>
+      <LowerBodyType ID="5"  Name="Demonic high-heels"/>
+      <LowerBodyType ID="2"  Name="Dog"/>
+      <LowerBodyType ID="18" Name="Dragon"/>
+      <LowerBodyType ID="16" Name="Drider"/>
       <LowerBodyType ID="23" Name="Echidna"/>
+      <LowerBodyType ID="20" Name="Ferret"/>
+      <LowerBodyType ID="17" Name="Fox"/>
+      <LowerBodyType ID="8"  Name="Goo"/>
+      <LowerBodyType ID="13" Name="Harpy"/>
+      <LowerBodyType ID="1"  Name="Hoofed"/>
+      <LowerBodyType ID="0"  Name="Human"/>
+      <LowerBodyType ID="14" Name="Kangaroo"/>
+      <LowerBodyType ID="10" Name="Lizard"/>
+      <LowerBodyType ID="3"  Name="Naga"/>
+      <LowerBodyType ID="11" Name="Pony"/>
+      <LowerBodyType ID="19" Name="Raccoon"/>
     </LowerBodyTypes>
     <!-- ========================================================================================================================================== -->
     <PiercingTypes>
       <PiercingType ID="0" Name="None"/>
-      <PiercingType ID="1" Name="Stud"/>
-      <PiercingType ID="2" Name="Ring"/>
-      <PiercingType ID="3" Name="Ladder"/>
-      <PiercingType ID="4" Name="Hoop"/>
       <PiercingType ID="5" Name="Chain"/>
+      <PiercingType ID="4" Name="Hoop"/>
+      <PiercingType ID="3" Name="Ladder"/>
+      <PiercingType ID="2" Name="Ring"/>
+      <PiercingType ID="1" Name="Stud"/>
     </PiercingTypes>
     <!-- ========================================================================================================================================== -->
     <PiercingMaterials>
@@ -394,23 +394,23 @@
     </PiercingMaterials>
     <!-- ========================================================================================================================================== -->
     <CockTypes>
-      <CockType ID="0"  Name="Human"/>
-      <CockType ID="1"  Name="Horse"/>
-      <CockType ID="2"  Name="Dog"/>
-      <CockType ID="3"  Name="Demon"/>
-      <CockType ID="4"  Name="Tentacle"/>
-      <CockType ID="5"  Name="Cat"/>
-      <CockType ID="6"  Name="Lizard"/>
       <CockType ID="7"  Name="Anemone"/>
-      <CockType ID="8"  Name="Kangaroo"/>
-      <CockType ID="9"  Name="Dragon"/>
-      <CockType ID="10" Name="C&#x0153;url"/>
-      <CockType ID="11" Name="Fox"/>
-      <CockType ID="12" Name="Bee"/>
-      <CockType ID="13" Name="Pig"/>
       <CockType ID="14" Name="Avian"/>
-      <CockType ID="15" Name="Rhino"/>
+      <CockType ID="12" Name="Bee"/>
+      <CockType ID="5"  Name="Cat"/>
+      <CockType ID="10" Name="C&#x0153;url"/>
+      <CockType ID="3"  Name="Demon"/>
+      <CockType ID="2"  Name="Dog"/>
+      <CockType ID="9"  Name="Dragon"/>
       <CockType ID="16" Name="Echidna"/>
+      <CockType ID="11" Name="Fox"/>
+      <CockType ID="1"  Name="Horse"/>
+      <CockType ID="0"  Name="Human"/>
+      <CockType ID="8"  Name="Kangaroo"/>
+      <CockType ID="6"  Name="Lizard"/>
+      <CockType ID="13" Name="Pig"/>
+      <CockType ID="15" Name="Rhino"/>
+      <CockType ID="4"  Name="Tentacle"/>
     </CockTypes>
     <!-- ========================================================================================================================================== -->
     <CockSockTypes>
@@ -429,9 +429,9 @@
     </CockSockTypes>
     <!-- ========================================================================================================================================== -->
     <VaginaTypes>
-      <VaginaType ID="0" Name="Human"/>
-      <VaginaType ID="1" Name="Horse"/>
       <VaginaType ID="5" Name="Black (Sand Trap)"/>
+      <VaginaType ID="1" Name="Horse"/>
+      <VaginaType ID="0" Name="Human"/>
     </VaginaTypes>
     <!-- ========================================================================================================================================== -->
     <VaginalWetnessLevels>
@@ -476,10 +476,10 @@
       <PregnancyType ID="14"    Name="Basilisk"/>
       <PregnancyType ID="18"    Name="Basilisk (Benoit)"/>
       <PregnancyType ID="35"    Name="Behemoth"/>
-      <PregnancyType ID="9"     Name="Bunny-girl eggs"/>
+      <PregnancyType ID="9"     Name="Bunny-girl Eggs"/>
       <PregnancyType ID="7"     Name="Centaur"/>
       <PregnancyType ID="30"    Name="Centaur (Kelt)"/>
-      <PregnancyType ID="8"     Name="Cow-girls (Marble)"/>
+      <PregnancyType ID="8"     Name="Cow-girl (Marble)"/>
       <PregnancyType ID="17"    Name="Dragon (Ember)"/>
       <PregnancyType ID="15"    Name="Drider"/>
       <PregnancyType ID="20"    Name="Equine-morph (Cotton)"/>
@@ -491,30 +491,30 @@
       <PregnancyType ID="16"    Name="Goo-girl"/>
       <PregnancyType ID="6"     Name="Hellhound"/>
       <PregnancyType ID="1"     Name="Imp"/>
-      <PregnancyType ID="34"    Name="Minerva"/>
       <PregnancyType ID="2"     Name="Minotaur"/>
       <PregnancyType ID="11"    Name="Mouse-morph (Amily)"/>
       <PregnancyType ID="29"    Name="Mouse-morph (Jojo)"/>
       <PregnancyType ID="4"     Name="Mouse-morph (Corrupt &amp; Other)"/>
-      <PregnancyType ID="36"    Name="Phoenix (unused)"/>
-      <PregnancyType ID="22"    Name="Sand witch"/>
+      <!-- PregnancyType ID="36"    Name="Phoenix (unused)"/ -->
+      <PregnancyType ID="22"    Name="Sand Witch"/>
       <PregnancyType ID="19"    Name="Satyr"/>
       <PregnancyType ID="12"    Name="Shark/Tigershark-morph (Izma)"/>
+      <PregnancyType ID="34"    Name="Siren (Minerva)"/>
       <PregnancyType ID="13"    Name="Spider-morph"/>
       <PregnancyType ID="31"    Name="&#x25CA;&#x202F; Taoth (&quot;Urta Quest&quot;)"/>
-      <!-- Ovielixir egg "pregnancies" are unchanged, I think. -->
-      <PregnancyType ID="10000" Name="Small brown egg"/>
-      <PregnancyType ID="10001" Name="Large brown egg"/>
-      <PregnancyType ID="10100" Name="Small purple egg"/>
-      <PregnancyType ID="10101" Name="Large purple egg"/>
-      <PregnancyType ID="10200" Name="Small blue egg"/>
-      <PregnancyType ID="10201" Name="Large blue egg"/>
-      <PregnancyType ID="10300" Name="Small pink egg"/>
-      <PregnancyType ID="10301" Name="Large pink egg"/>
-      <PregnancyType ID="10400" Name="Small white egg"/>
-      <PregnancyType ID="10401" Name="Large white egg"/>
-      <PregnancyType ID="10500" Name="Small rubbery black egg"/>
-      <PregnancyType ID="10501" Name="Large rubbery black egg"/>
+      <!-- Oviposition Elixir egg "pregnancies" are unchanged, I think. -->
+      <PregnancyType ID="10500" Name="Black Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10200" Name="Blue Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10000" Name="Brown Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10300" Name="Pink Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10100" Name="Purple Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10400" Name="White Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10501" Name="Large Black Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10201" Name="Large Blue Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10001" Name="Large Brown Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10301" Name="Large Pink Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10101" Name="Large Purple Egg (Ovi Elixir)"/>
+      <PregnancyType ID="10401" Name="Large White Egg (Ovi Elixir)"/>
     </PregnancyTypes>
     <!-- ========================================================================================================================================== -->
     <AnalPregnancyTypes>
@@ -525,20 +525,20 @@
       <AnalPregnancyType ID="28" Name="Fake (Sand Trap)"/>
       <AnalPregnancyType ID="23" Name="Frog-girl"/>
       <AnalPregnancyType ID="27" Name="Insectoid (Sand Trap)"/>
-      <AnalPregnancyType ID="9"  Name="Neon pink egg (Bunny-girl)"/>
+      <AnalPregnancyType ID="9"  Name="Neon Pink Egg (Bunny-girl)"/>
       <AnalPregnancyType ID="19" Name="Satyr"/>
     </AnalPregnancyTypes>
   </Body>
   <!-- ========================================================================================================================================== -->
   <Items>
-    <ItemGroup Name="Misc" Category="Other">
-      <Item ID="B.Chitn" Name="Black Chitin"/>
+    <ItemGroup Name="Miscellaneous" Category="Other">
       <Item ID="B. Book" Name="Black Book"/>
+      <Item ID="B.Chitn" Name="Black Chitin"/>
       <Item ID="DbgWand" Name="Debug Wand"     Description="You filthy cheater!  You should be hung by your ba&#x2014; Oh, wait&#x2026; nevermind."/>
       <Item ID="D.Scale" Name="Dragon Scale"/>
-      <Item ID="GldStat" Name="Golden Statue"  Description="Enables the Meditate action at the kitsune shrine in the Deepwoods.  Can also be stolen and sold for gems."/>
+      <Item ID="GldStat" Name="Golden Statue"  Description="Enables the Meditate action at the kitsune shrine in the Deepwoods.  May also be stolen and sold for gems."/>
       <Item ID="GreenGl" Name="Green Gel"/>
-      <Item ID="ImpSkll" Name="Imp Skull"      Description="Used to decorate the wall. Will have another uses eventually."/>
+      <Item ID="ImpSkll" Name="Imp Skull"      Description="Used to decorate the wall.  Will have another uses eventually."/>
       <Item ID="Lethite" Name="Lethicite"/>
       <Item ID="T.SSilk" Name="Tough Silk"/>
       <Item ID="W. Book" Name="White Book"/>
@@ -555,9 +555,10 @@
       <Item ID="Cerul P" Name="Cerulean Potion"/>
       <Item ID="CCupcak" Name="Chocolate Cupcake"/>
       <Item ID="Coal   " Name="Coal"/>
-      <Item ID="Condom " Name="Condom"                      Description="Can be used in certain sex scenes. Nullifies corruption gains. Prevents pregnancy and (non-existent) STDs."/>
+      <Item ID="Condom " Name="Condom"                      Description="Can be used in certain sex scenes. Nullifies corruption gains.  Prevents pregnancy and (non-existent) STDs."/>
       <Item ID="C.Bread" Name="Cum Bread"/>
       <Item ID="Debimbo" Name="Debimbo"/>
+      <Item ID="DrgnEgg" Name="Dragon Egg"                  Description="Reduces fatigue by 20 and, for the DragonFire breath special attack, either removes the existing cooldown or gives a 50% bonus on your next use."/>
       <Item ID="DrakHrt" Name="Drake's Heart Flower"/>
       <Item ID="FishFil" Name="Fish Fillet"/>
       <Item ID="Fr Beer" Name="Frothy Beer"/>
@@ -601,7 +602,22 @@
       <Item ID="W.Pddng" Name="Winter Pudding"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
-    <ItemGroup Name="Transformations" Category="Other">
+    <ItemGroup Name="Consumables, Eggs" Category="Other">
+      <Item ID="BlackEg" Name="Black Egg"/>
+      <Item ID="BlueEgg" Name="Blue Egg"/>
+      <Item ID="BrownEg" Name="Brown Egg"/>
+      <Item ID="PinkEgg" Name="Pink Egg"/>
+      <Item ID="PurplEg" Name="Purple Egg"/>
+      <Item ID="WhiteEg" Name="White Egg"/>
+      <Item ID="L.BlkEg" Name="Large Black Egg"/>
+      <Item ID="L.BluEg" Name="Large Blue Egg"/>
+      <Item ID="L.BrnEg" Name="Large Brown Egg"/>
+      <Item ID="L.PnkEg" Name="Large Pink Egg"/>
+      <Item ID="L.PrpEg" Name="Large Purple Egg"/>
+      <Item ID="L.WhtEg" Name="Large White Egg"/>
+    </ItemGroup>
+    <!-- ========================================================================================================================================== -->
+    <ItemGroup Name="Transformatives" Category="Other">
       <Item ID="BeeHony" Name="Bee Honey"/>
       <Item ID="B.Gossr" Name="Black Gossamer"/>
       <Item ID="BoarTru" Name="Boar Truffle"/>
@@ -650,7 +666,7 @@
       <Item ID="VixVigr" Name="Vixen's Vigor"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
-    <ItemGroup Name="Canine peppers" Category="Other">
+    <ItemGroup Name="Transformatives, Peppers" Category="Other">
       <Item ID="BulbyPp" Name="Bulbous Canine Pepper"/>
       <Item ID="CanineP" Name="Canine Pepper"/>
       <Item ID="DblPepp" Name="Double Canine Pepper"/>
@@ -658,22 +674,6 @@
       <Item ID="LargePp" Name="Overly Large Canine Pepper"/>
       <Item ID="BlackPp" Name="Solid Black Canine Pepper"/>
       <Item ID="Wolf Pp" Name="Wolf Pepper"/>
-    </ItemGroup>
-    <!-- ========================================================================================================================================== -->
-    <ItemGroup Name="Eggs" Category="Other">
-      <Item ID="BlueEgg" Name="Blue Egg"/>
-      <Item ID="BrownEg" Name="Brown Egg"/>
-      <Item ID="WhiteEg" Name="White Egg"/>
-      <Item ID="PinkEgg" Name="Pink Egg"/>
-      <Item ID="PurplEg" Name="Purple Egg"/>
-      <Item ID="BlackEg" Name="Black Egg"/>
-      <Item ID="L.BluEg" Name="Large Blue Egg"/>
-      <Item ID="L.BrnEg" Name="Large Brown Egg"/>
-      <Item ID="L.PnkEg" Name="Large Pink Egg"/>
-      <Item ID="L.PrpEg" Name="Large Purple Egg"/>
-      <Item ID="L.BlkEg" Name="Large Black Egg"/>
-      <Item ID="L.WhtEg" Name="Large White Egg"/>
-      <Item ID="DrgnEgg" Name="Dragon Egg"         Description="Reduces fatigue by 20 and, for the DragonFire breath special attack, either removes the existing cooldown or gives a 50% bonus on your next use."/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
     <ItemGroup Name="Dyes" Category="Other">

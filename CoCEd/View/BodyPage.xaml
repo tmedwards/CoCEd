@@ -98,8 +98,8 @@
                 <common:AutoGrid IsEnabled="{Binding Game.HasLegConfigs}" Visibility="{Binding Game.RevampModVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Leg configuration"/>
                     <ComboBox               SelectedIndex="{Binding Game.LegConfigs}">
-                        <ComboBoxItem>Bipedal</ComboBoxItem>
-                        <ComboBoxItem>Quadrupedal</ComboBoxItem>
+                        <ComboBoxItem>Biped</ComboBoxItem>
+                        <ComboBoxItem>Quadruped</ComboBoxItem>
                     </ComboBox>
                 </common:AutoGrid>
                 <common:AutoGrid>
