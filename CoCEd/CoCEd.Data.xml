@@ -1588,7 +1588,7 @@
     <Flag ID="531"  Name="EMBER_ROUNDFACE"                              Description="0 for anthro Ember, 1 for dragon-girl Ember. (You might want to control this with the Type flag since only default Embers use this variable.)"/>
     <Flag ID="532"  Name="EMBER_EGG_FLUID_COUNT"                        Description="This controls when it's time to hatch. Every item use and every time you use the egg as a masturbation aid, this will be incremented. Threshold for birthing is 5, but the birthing process can only be triggered when using as a masturbatory aid. This is done to allow players the chance to modify Ember before actually hatching."/>
     <Flag ID="533"  Name="EMBER_STAT"                                   Description="All Embers have a hidden stat, Corrupt has Ego, Pure has Confidence, Tainted has Affection, and hybrids vary. There is a need to track this, but only 1 special stat for every Ember."/>
-    <Flag ID="534"  Name="EMBER_INTERNAL_DICK"                          Description="Ember can have either an internal sheath to keep their dick in or have it be more human-like. 0 = internal, 1 = external."/>
+    <Flag ID="534"  Name="EMBER_INTERNAL_DICK"                          Description="Ember can have either an internal sheath to keep their dick in or have it be more human-like. 0 = external, 1 = internal."/>
     <Flag ID="535"  Name="TIMES_EQUIPPED_EMBER_SHIELD"/>
     <Flag ID="536"  Name="TOOK_EMBER_EGG"                               Description="PC Take ember's egg home?"/>
     <Flag ID="537"  Name="EGG_BROKEN"                                   Description="PC Smash!? ember's egg?"/>
