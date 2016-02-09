@@ -1113,7 +1113,15 @@ namespace CoCEd.ViewModel
         public int RapierSkill
         {
             get { return GetFlag(137).AsInt(); }
-            set { GetFlag(137).SetValue(value); }
+            set
+            {
+                GetFlag(137).SetValue(value);
+                if (IsRevampMod)
+                {
+                    // CoC-Revamp-Mod also uses this to determine if the "Rapier Training" perk is awarded to the player
+                    GetPerk("Rapier Training").IsOwned = value >= 4;
+                }
+            }
         }
 
         public int ArcherySkill

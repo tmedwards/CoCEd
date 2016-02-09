@@ -991,6 +991,8 @@
       <Perk Name="Channeling" Description="Increases base spell strength by 50%."/>
       <Perk Name="Immovable Object" Description="Grants 20% physical damage reduction."/>
       <Perk Name="Iron Fists" Description="Hardens your fists to increase attack rating by 5."/>
+      <Perk Name="Iron Fists 2" Description="Further hardens your fists to increase attack rating by another 5."/>
+      <Perk Name="Iron Fists 3" Description="Even more hardens your fists to increase attack rating again by 5."/>
       <Perk Name="Lightning Strikes" Description="Increases the attack damage for non-heavy weapons."/>
       <Perk Name="Masochist" Description="Take 30% less physical damage but gain lust when damaged."/>
       <Perk Name="Medicine" Description="Grants 15% chance per round of cleansing poisons/drugs from your body."/>
@@ -1013,14 +1015,18 @@
       <Perk Name="Archmage" Description="Increases base spell strength by 50%."/>
       <Perk Name="Berzerker" Description="Grants 'Berzerk' ability."/>
       <Perk Name="Blademaster" Description="Gain +10% to critical strike chance when wielding a sword and not using a shield."/>
-      <Perk Name="Focused Mind" Description="Black Magic is less likely to backfire and White Magic thresold is increased."/>
+      <Perk Name="Focused Mind" Description="Black Magic is less likely to backfire and White Magic threshold is increased."/>
       <Perk Name="Hold With Both Hands" Description="Gain +20% strength modifier with melee weapons when not using a shield."/>
       <Perk Name="Iron Man" Description="Reduces the fatigue cost of physical specials by 50%."/>
+      <Perk Name="Juggernaut" Description="When wearing heavy armor, you have extra 10% damage resistance and are immune to damage from being constricted/squeezed."/>
       <Perk Name="Lunging Attacks" Description="Grants 50% armor penetration for standard attacks."/>
       <Perk Name="Raging Inferno" Description="Cumulative 20% damage increase for every subsequent fire spell without interruption."/>
       <Perk Name="Resolute" Description="Grants immunity to stuns and some statuses."/>
       <Perk Name="Shield Slam" Description="Reduces shield bash diminishing returns by 50% and increases bash damage by 20%."/>
       <Perk Name="Survivalist 2" Description="Reduces hunger depletion rate by further 20%."/>
+    </PerkGroup>
+    <PerkGroup Name="Tier 3">
+      <Perk Name="Cold Fury" Description="Berserk halves your defense instead of reducing it to zero."/>
     </PerkGroup>
     <PerkGroup Name="Events">
       <Perk Name="Androgyny" Description="No gender limits on facial masculinity or femininity."/>
@@ -1075,13 +1081,14 @@
       <Perk Name="Marble's Milk" Description="Requires you to drink LaBova milk frequently or eventually die.  You cannot shake this addiction."/>
       <Perk Name="Milk Maid" Description="Lactation does not decrease and increases milk production by 200 mL + 100 mL per level. (see value #1 for level)."/>
       <Perk Name="Minotaur Cum Addict" Description="Causes you to crave minotaur cum frequently.  You cannot shake this addiction."/>
-      <Perk Name="Misdirection" Description="Grants additional evasion chances while wearing Raphael's red bodysuit."/>
+      <Perk Name="Misdirection" Description="Grants additional evasion chances while wearing Raphael's &quot;Red, High-Society Bodysuit&quot;."/>
       <Perk Name="Omnibus' Gift" Description="Increases minimum lust (by up to 35) but provides some lust resistance."/>
       <Perk Name="One Track Mind" Description="Your constant desire for sex causes your sexual organs to be able to take larger insertions and disgorge greater amounts of fluid."/>
       <Perk Name="Oviposition" Description="Causes you to regularly lay eggs when not otherwise pregnant."/>
       <Perk Name="Pilgrim's Bounty" Description="Causes you to always cum as hard as if you had max lust."/>
       <Perk Name="Pure and Loving" Description="Your caring attitude towards love and romance makes you slightly more resistant to lust and corruption."/>
       <Perk Name="Purity Blessing" Description="Reduces the rate at which your corruption, libido, and lust increase."/>
+      <Perk Name="Rapier Training" Description="After finishing your training, increases attack power of rapiers. (see flag #137 &quot;RAPHAEL_RAPIER_TRANING&quot; for level, +2 damage per level)"/>
       <Perk Name="Sensual Lover" Description="Your sensual attitude towards love and romance makes your tease ability slightly more effective."/>
       <Perk Name="Slime Core" Description="Grants more control over your slimy body, allowing you to go twice as long without fluids."/>
       <Perk Name="Spellcasting Affinity" Description="Reduces spell costs by [20&#x2013;50]%. (see value #1 for actual percentage)"
@@ -1388,7 +1395,7 @@
     <Flag ID="99"   Name="EASY_MODE_ENABLE_FLAG"                        Description="0 = no, 1 = yes"/>
     <Flag ID="100"  Name="CORRUPT_MARAE_FOLLOWUP_ENCOUNTER_STATE"/>
     <Flag ID="101"  Name="FOUND_WIZARD_STAFF"/>
-    <Flag ID="102"  Name="UNKNOWN_FLAG_NUMBER_00102"                    Description="Has extra Jojo time been cleared? - Jojo Debug Flag"/>
+    <Flag ID="102"  Name="JOJO_LAST_MEDITATION"                         Description="Last time Jojo meditation used"/>
     <Flag ID="103"  Name="TIMES_AUTOFELLATIOED_EXGARTUAN"/>
     <Flag ID="104"  Name="WHITNEY_GEMS_PAID_THIS_WEEK"/>
     <Flag ID="105"  Name="TIMES_MET_SCYLLA_IN_ADDICTION_GROUP"/>
@@ -2545,6 +2552,8 @@
     <Flag ID="1256" Name="BEE_GIRL_COMBAT_WINS_WITHOUT_RAPE"/>
     <Flag ID="1257" Name="BEE_GIRL_COMBAT_LOSSES"/>
     <Flag ID="1258" Name="KATHERINE_MILK_OPTIONS"/>
+    <Flag ID="1259" Name="SCYLLA_FURRY_FOURSOME_COUNT"/>
+    <Flag ID="1260" Name="SCYLLA_SMALLCOCK_INTRO"                       Description="Player has had the initial small dick intro version with Scylla."/>
 
     <!-- The following flags are used solely by CoC-Revamp-Mod. -->
     <Flag ID="2001" Name="TIMES_ORGASMED"/>
@@ -2813,6 +2822,10 @@
     <Flag ID="2264" Name="CODEX_ENTRY_RHINOS"/>
     <Flag ID="2265" Name="CODEX_ENTRY_ECHIDNAS"/>
     <Flag ID="2266" Name="URTA_VIXEN_AND_CREAM_COUNTER"/>
+    <Flag ID="2267" Name="CAMP_CABIN_STONE_RESOURCES"/>
+    <Flag ID="2268" Name="ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO"/>
+    <Flag ID="2269" Name="ACHIEVEMENT_PROGRESS_ANTWORKS"/>
+    <Flag ID="2270" Name="CODEX_ENTRY_ZEBRAS"/>
 
     <!--
         The flags below this point come from the code, but they really do not need to be exposed

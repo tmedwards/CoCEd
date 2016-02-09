@@ -69,10 +69,13 @@ namespace CoCEd.ViewModel
         // See also GetPerk, GetFlag, and GetStatus.
         public void OnPerkChanged(string name)
         {
-            // Must be here, rather than in OnPerkAddedOrRemoved(), to catch property value changes.
-            if (name == "Milk Maid")
+            // These must be here, rather than in OnPerkAddedOrRemoved(), to catch property value changes.
+            if (IsRevampMod)
             {
-                foreach (var breast in Breasts) breast.UpdateMilkVolume();
+                if (name == "Milk Maid")
+                {
+                    foreach (var breast in Breasts) breast.UpdateMilkVolume();
+                }
             }
 
             foreach (var prop in _allPerks.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
@@ -80,13 +83,16 @@ namespace CoCEd.ViewModel
 
         public void OnFlagChanged(int index)
         {
-            if (index == 2008) // CAMP_CABIN_FURNITURE_DRESSER
+            if (IsRevampMod)
             {
-                UpdateDresser();
-                ItemContainers.Update();
+                if (index == 2008) // CAMP_CABIN_FURNITURE_DRESSER
+                {
+                    UpdateDresser();
+                    ItemContainers.Update();
+                }
             }
 
-            foreach(var prop in _allFlags[index].GameVMProperties) OnPropertyChanged(prop);
+            foreach (var prop in _allFlags[index].GameVMProperties) OnPropertyChanged(prop);
         }
 
         public void OnStatusChanged(string name)
@@ -96,23 +102,26 @@ namespace CoCEd.ViewModel
 
         public void OnKeyItemChanged(string name)
         {
-            // Must be here, rather than in OnKeyItemAddedOrRemoved(), to catch property value changes.
-            if (name == "Backpack") // itemSlot# [6, 10]
+            // These must be here, rather than in OnKeyItemAddedOrRemoved(), to catch property value changes.
+            if (IsRevampMod)
             {
-                var backpack = GetKeyItem("Backpack");
-                for (int i = 0; i < 5; i++) GetObj("itemSlot" + (i + 6))["unlocked"] = false;
-                if (backpack.IsOwned)
+                if (name == "Backpack") // itemSlot# [6, 10]
                 {
-                    int count = backpack.GetInt("value1");
-                    if (count < 1 || count > 5)
+                    var backpack = _allKeyitems.First(x => x.Name == name);
+                    for (int i = 0; i < 5; i++) GetObj("itemSlot" + (i + 6))["unlocked"] = false;
+                    if (backpack.IsOwned)
                     {
-                        count = Math.Max(1, Math.Min(5, count)); // clamp value to [1, 5], so CoC-Revamp-Mod doesn't assplode
-                        backpack.Value1 = count;
+                        int count = backpack.GetInt("value1");
+                        if (count < 1 || count > 5)
+                        {
+                            count = Math.Max(1, Math.Min(5, count)); // clamp value to [1, 5], so CoC-Revamp-Mod doesn't assplode
+                            backpack.Value1 = count;
+                        }
+                        for (int i = 0; i < count; i++) GetObj("itemSlot" + (i + 6))["unlocked"] = true;
                     }
-                    for (int i = 0; i < count; i++) GetObj("itemSlot" + (i + 6))["unlocked"] = true;
+                    UpdateInventory();
+                    ItemContainers.Update();
                 }
-                UpdateInventory();
-                ItemContainers.Update();
             }
 
             foreach (var prop in _allKeyitems.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
@@ -125,7 +134,23 @@ namespace CoCEd.ViewModel
             switch (name)
             {
                 case "Feeder":
-                    GetStatus(name).IsOwned = isOwned;
+                    _allStatuses.First(x => x.Name == name).IsOwned = isOwned;
+                    break;
+
+                case "Misdirection":
+                    _allFlags[138].SetValue(isOwned ? 4 : 0); // RAPHAEL_INTELLIGENCE_TRAINING
+                    break;
+
+                case "Rapier Training":
+                    if (IsRevampMod)
+                    {
+                        FlagVM rapierTraining = _allFlags[137]; // RAPHAEL_RAPIER_TRANING
+                        if (isOwned)
+                        {
+                            if (rapierTraining.AsInt() < 4) rapierTraining.SetValue(4);
+                        }
+                        else rapierTraining.SetValue(0);
+                    }
                     break;
 
                 case "Strong Back":
@@ -153,7 +178,7 @@ namespace CoCEd.ViewModel
                     if (IsRevampMod || name == "Camp - Chest")
                     {
                         var array = GetObj("itemStorage"); // max chest slots are 6 in CoC and 14 in CoC-Revamp-Mod
-                        int count = name == "Camp - Chest" ? 6 : 4; // the CoC-Revamp-Mod chests add 4 slots a piece
+                        int count = name == "Camp - Chest" ? 6 : 4; // the CoC-Revamp-Mod addon chests add 4 slots a piece
                         if (isOwned)
                         {
                             for (int i = 0; i < count; i++)
@@ -175,13 +200,13 @@ namespace CoCEd.ViewModel
                     break;
 
                 case "Equipment Rack - Weapons":
-                    GetFlag(254).SetValue(isOwned ? 1 : 0);
+                    _allFlags[254].SetValue(isOwned ? 1 : 0);
                     UpdateWeaponRack();
                     ItemContainers.Update();
                     break;
 
                 case "Equipment Rack - Armor":
-                    GetFlag(255).SetValue(isOwned ? 1 : 0);
+                    _allFlags[255].SetValue(isOwned ? 1 : 0);
                     UpdateArmorRack();
                     ItemContainers.Update();
                     break;
@@ -282,11 +307,11 @@ namespace CoCEd.ViewModel
         public void BeforeSerialization()
         {
             _obj.GetObj("perks").SortDensePart((x, y) =>
-                {
-                    var obj1 = x as AmfObject;
-                    var obj2 = y as AmfObject;
-                    return String.Compare(obj1.GetString("id"), obj2.GetString("id"));
-                });
+            {
+                var obj1 = x as AmfObject;
+                var obj2 = y as AmfObject;
+                return String.Compare(obj1.GetString("id"), obj2.GetString("id"));
+            });
 
             _obj.GetObj("keyItems").SortDensePart((x, y) =>
             {
