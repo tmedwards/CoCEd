@@ -775,7 +775,7 @@
     </PerkGroup>
     <PerkGroup Name="Tier 1">
       <Perk Name="Agility" Description="Boosts armor points by a portion of your speed on light/medium armors."/>
-      <Perk Name="Arousing Aura" Description="Exude a lust-inducing aura. (Req's corruption of 70 or more)"/>
+      <Perk Name="Arousing Aura" Description="Exude a lust-inducing aura. (Req's 70+ Corruption)"/>
       <Perk Name="Brutal Blows" Description="Reduces enemy armor with each hit."/>
       <Perk Name="Channeling" Description="Increases base spell strength by 50%."/>
       <Perk Name="Immovable Object" Description="Grants 20% physical damage reduction."/>
@@ -816,8 +816,8 @@
       <Perk Name="Chi Reflow - Lust" Description="Lust resistance and Tease are enhanced, but Libido and Sensetivity gains increased."/>
       <Perk Name="Chi Reflow - Magic" Description="Magic attacks boosted, but regular attacks are weaker."/>
       <Perk Name="Chi Reflow - Speed" Description="Speed reductions are halved, but caps strength."/>
-      <Perk Name="Cleansing Palm" Description="A ranged fighting technique of Jojo's order, allows you to blast your enemies with waves of pure spiritual energy, weakening them and hurting the corrupt.  (Jojo's second technique, requires corruption &lt;10)"/>
-      <Perk Name="Controlled Breath" Description="Jojo's training allows you to recover more quickly.  Increases rate of fatigue regeneration by 10%.  (Jojo's first technique, requires corruption &lt;30)"/>
+      <Perk Name="Cleansing Palm" Description="A ranged fighting technique of Jojo's order, allows you to blast your enemies with waves of pure spiritual energy, weakening them and hurting the corrupt.  (Jojo's second technique; Req's &lt;10 Corruption)"/>
+      <Perk Name="Controlled Breath" Description="Jojo's training allows you to recover more quickly.  Increases rate of fatigue regeneration by 10%.  (Jojo's first technique; Req's &lt;30 Corruption)"/>
       <Perk Name="Corrupted Nine-tails" Description="The mystical energy of the nine-tails surges through you, filling you with phenomenal cosmic power!  Your boundless magic allows you to recover quickly after casting spells, but your method of attaining it has corrupted the transformation, preventing you from achieving true enlightenment."/>
       <Perk Name="Cornucopia" Description="Vaginal and Anal capacities increased by 30."/>
       <Perk Name="Diapause" Description="Pregnancy does not advance normally, but develops quickly after taking in fluids."/>
@@ -825,7 +825,7 @@
       <Perk Name="Elven Bounty" Description="Increases fertility by 15% and cum production by 250 mL."
             Label1="Cum volume" Value1="250"
             Label2="Fertility multiplier" Value2="15"/>
-      <Perk Name="Enlightened" Description="Jojo's tutelage has given you a master's focus and you can feel the universe in all its glory spread out before you.  You've finally surpassed your teacher.  (Jojo's third technique, requires corruption &lt;10)"/>
+      <Perk Name="Enlightened" Description="Jojo's tutelage has given you a master's focus and you can feel the universe in all its glory spread out before you.  You've finally surpassed your teacher.  (Jojo's third technique; Req's &lt;10 Corruption)"/>
       <Perk Name="Enlightened Nine-tails" Description="The mystical energy of the nine-tails surges through you, filling you with phenomenal cosmic power!  Your boundless magic allows you to recover quickly after casting spells."/>
       <Perk Name="Feeder" Description="Lactation does not decrease and gives a compulsion to breastfeed others."/>
       <Perk Name="Fera's Boon - Alpha" Description="Increases the rate your cum builds up and cum production in general."/>
@@ -850,7 +850,7 @@
       <Perk Name="Marble Resistant" Description="Provides resistance to the addictive effects of bottled LaBova milk."/>
       <Perk Name="Marble's Milk" Description="Requires you to drink LaBova milk frequently or eventually die.  You cannot shake this addiction."/>
       <Perk Name="Minotaur Cum Addict" Description="Causes you to crave minotaur cum frequently.  You cannot shake this addiction."/>
-      <Perk Name="Misdirection" Description="Grants additional evasion chances while wearing Raphael's red bodysuit."/>
+      <Perk Name="Misdirection" Description="Grants additional evasion chances while wearing Raphael's &quot;Red, High-Society Bodysuit&quot;."/>
       <Perk Name="Omnibus' Gift" Description="Increases minimum lust (by up to 35) but provides some lust resistance."/>
       <Perk Name="One Track Mind" Description="Your constant desire for sex causes your sexual organs to be able to take larger insertions and disgorge greater amounts of fluid."/>
       <Perk Name="Oviposition" Description="Causes you to regularly lay eggs when not otherwise pregnant."/>
@@ -1593,7 +1593,7 @@
     <Flag ID="536"  Name="TOOK_EMBER_EGG"                               Description="PC Take ember's egg home?"/>
     <Flag ID="537"  Name="EGG_BROKEN"                                   Description="PC Smash!? ember's egg?"/>
     <Flag ID="538"  Name="TIMES_FOUND_EMBERS_EGG"                       Description="Times stumbled into ze egg."/>
-    <Flag ID="539"  Name="EMBER_JACKED_ON"                              Description="Has the PC masturbated on the egg yet? Needed to hatcH!"/>
+    <Flag ID="539"  Name="EMBER_JACKED_ON"                              Description="Has the PC masturbated on the egg yet? Needed to hatch!"/>
     <Flag ID="540"  Name="EMBER_OVI_BITCHED_YET"                        Description="Used to trigger emberBitchesAboutPCBeingFullOfEggs()"/>
     <Flag ID="541"  Name="EMBER_LUST_BITCHING_COUNTER"/>
     <Flag ID="542"  Name="EMBER_CURRENTLY_FREAKING_ABOUT_MINOCUM"       Description="Used to trigger minotaurJizzFreakout()"/>
@@ -1675,7 +1675,7 @@
     <Flag ID="618"  Name="RUBI_TIGHT_PANTS"/>
     <Flag ID="619"  Name="RUBI_NURSE_CLOTHES"/>
     <Flag ID="620"  Name="RUBI_SWIMWEAR"/>
-    <Flag ID="621"  Name="RUBI_PROSTITUTION"                            Description="-1 dont see others, -2 = broke up, 1 = NTR okay, 2 = prostitute"/>
+    <Flag ID="621"  Name="RUBI_PROSTITUTION"                            Description="-1 = dont see others, -2 = broke up, 1 = NTR okay, 2 = prostitute"/>
     <Flag ID="622"  Name="RUBIS_HOUSE_FIRST_TIME"/>
     <Flag ID="623"  Name="RUBI_GOT_BIMBO_SKIRT"/>
     <Flag ID="624"  Name="RUBI_PROFIT"/>
@@ -2313,8 +2313,36 @@
     <Flag ID="1256" Name="BEE_GIRL_COMBAT_WINS_WITHOUT_RAPE"/>
     <Flag ID="1257" Name="BEE_GIRL_COMBAT_LOSSES"/>
     <Flag ID="1258" Name="KATHERINE_MILK_OPTIONS"/>
+    <Flag ID="1259" Name="SCYLLA_FURRY_FOURSOME_COUNT"/>
+    <Flag ID="1260" Name="SCYLLA_SMALLCOCK_INTRO"                       Description="Player has had the initial small dick intro with Scylla."/>
+    <Flag ID="1261" Name="DRIDERINCUBUS_DEFEATED"/>
+    <Flag ID="1262" Name="DRIDERINCUBUS_KILLED"/>
+    <Flag ID="1263" Name="MITZI_RECRUITED"/>
+    <Flag ID="1264" Name="MITZI_FUCKED"/>
+    <Flag ID="1265" Name="DRIDERINCUBUS_FUCKED"/>
+    <Flag ID="1266" Name="MINOTAURKING_DEFEATED"/>
+    <Flag ID="1267" Name="MINOTAURKING_KILLED"/>
+    <Flag ID="1268" Name="MINOTAURKING_FUCKED"/>
+    <Flag ID="1269" Name="MINOTAURKINGSSLUT_FUCKED"/>
+    <Flag ID="1270" Name="MINOTAURKINGS_TOUCH"/>
+    <Flag ID="1271" Name="MINOTAURKING_ALIVE"/>
+    <Flag ID="1272" Name="LETHICE_DEFEATED"/>
+    <Flag ID="1273" Name="LAST_ATTACK_TYPE"/>
+    <Flag ID="1274" Name="LETHICE_NAME"/>
+    <Flag ID="1275" Name="LETHICE_FUCKED"/>
+    <Flag ID="1276" Name="LETHICE_REDEEMED"/>
+    <Flag ID="1277" Name="LETHICE_KILLED"/>
+    <Flag ID="1278" Name="LETHICE_LEFT_ALIVE"/>
+    <Flag ID="1279" Name="GAME_END"/>
 
-    <!-- The following flags come from the code, but I'm not sure they really need to be exposed -->
+    <!--
+        The flags below this point come from the code, but they really do not need to be exposed
+        as they have nothing directly to do with characters and are already accessible from CoC's
+        settings screen.  By exposing them here, we're just padding the flags list in CoCEd, for
+        no good reason, which makes scrolling the list more painful.  They're listed here solely
+        for completeness (and, maybe, if individual users decide to enable some or all of them).
+    -->
+
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"                                Description="Eternal holiday!"/ -->
     <!-- Flag ID="2997" Name="LOW_STANDARDS_FOR_ALL"/ -->
     <!-- Flag ID="2998" Name="HYPER_HAPPY"/ -->

@@ -567,6 +567,7 @@
       <Item ID="GroPlus" Name="GroPlus"/>
       <Item ID="ExtSerm" Name="Hair Extension Serum"/>
       <Item ID="H.Bisct" Name="Hard Biscuits"/>
+      <Item ID="H. Pill" Name="Heal Pill"/>
       <Item ID="HrblCnt" Name="Herbal Contraceptive"/>
       <Item ID="Icicle " Name="Ice Shard"/>
       <Item ID="IzyMilk" Name="Isabella's Milk"/>
@@ -576,6 +577,7 @@
       <Item ID="LustStk" Name="Lust Stick"/>
       <Item ID="M. Milk" Name="Marble's Milk"/>
       <Item ID="MinoCum" Name="Minotaur Cum"/>
+      <Item ID="NumbOil" Name="Numb Oil"/>
       <Item ID="NumbRox" Name="Numb Rocks"/>
       <Item ID="OviElix" Name="Oviposition Elixir"/>
       <Item ID="PeppWht" Name="Peppermint White"/>
@@ -587,6 +589,7 @@
       <Item ID="P.Pearl" Name="Pure Pearl"/>
       <Item ID="P.M.Cum" Name="Purified Minotaur Cum"/>
       <Item ID="PSDelit" Name="Purified Succubi's Delite"/>
+      <Item ID="PPhiltr" Name="Purity Philter"/>
       <Item ID="Reducto" Name="Reducto"/>
       <Item ID="Smart T" Name="Scholar's Tea"/>
       <Item ID="SensDrf" Name="Sensitivity Draft"/>
@@ -723,7 +726,8 @@
       <Item ID="L. Axe " Name="Large Axe"              Description="Has a PC height requirement of 6&#x2032;6&#x2033; (198.12 cm)."/>
       <Item ID="Claymor" Name="Large Claymore"/>
       <Item ID="L.Hammr" Name="Large Hammer"/>
-      <Item ID="L.Staff" Name="Lethicite Staff"        Description="Obtained from Lethice in Lethice's Stronghold (D3)."/>
+      <Item ID="L. Whip" Name="Lethice's Whip"/>
+      <Item ID="L.Staff" Name="Lethicite Staff"/>
       <Item ID="L.Daggr" Name="Lust Dagger"/>
       <Item ID="Mace   " Name="Mace"/>
       <Item ID="Pipe   " Name="Pipe"/>
@@ -761,6 +765,7 @@
       <Item ID="IndecSt" Name="Indecent Steel"/>
       <Item ID="I.Corst" Name="Inquisitor's Corset"/>
       <Item ID="I.Robes" Name="Inquisitor's Robes"/>
+      <Item ID="Kimono " Name="Kimono"/>
       <Item ID="LeathrA" Name="Leather Armor"/>
       <Item ID="LthrRob" Name="Leather Robes"/>
       <Item ID="LthcArm" Name="Lethicite Armor"/>
@@ -771,6 +776,7 @@
       <Item ID="R.BdySt" Name="Red, High-Society Bodysuit"/>
       <Item ID="M.Robes" Name="Robes"/>
       <Item ID="RbbrClt" Name="Rubber Fetish Clothes"/>
+      <Item ID="SamuArm" Name="Samurai Armor"/>
       <Item ID="ScaleMl" Name="Scale Mail"/>
       <Item ID="T.BSuit" Name="Semi-Transparent Bodysuit"/>
       <Item ID="S.Swmwr" Name="Slutty Swimwear"/>
@@ -858,7 +864,7 @@
     <KeyItem Name="Dildo"                                       Description="Masturbation aid."/>
     <KeyItem Name="Divine Bark Plates"                          Description="Can be given to Rathazul to create divine bark armor."/>
     <KeyItem Name="Dragon Egg"                                  Description="Ember's egg, before hatching."/>
-    <KeyItem Name="Dragon Eggshell"                             Description="Obtained by breaking Ember's egg open and eating it (You monster!) or by asking Ember nicely, at 100% affection, for an egg shell."/>
+    <KeyItem Name="Dragon Eggshell"                             Description="Obtained by either breaking Ember's egg open and eating it (you monster!) or by asking Ember nicely, at 100% affection, for an egg shell."/>
     <KeyItem Name="Dual Belt"                                   Description="Masturbation aid for hermaphrodites."/>
     <KeyItem Name="Equipment Rack - Armor"                      Description="Armor storage to be put at the camp."/>
     <KeyItem Name="Equipment Rack - Shields"                    Description="Shield storage to be put at the camp."/>
@@ -875,7 +881,7 @@
     <KeyItem Name="Izma's Book - Etiquette Guide"               Description="One of the books that can be studied inside cabin."/>
     <KeyItem Name="Izma's Book - Porn"                          Description="One of the books that can be studied inside cabin."/>
     <KeyItem Name="Jojo's Talisman"                             Description="Given to the player by Jojo, if a follower and Hollicynthea is allowed to grow to maturity.  Jojo then leaves the camp."/>
-    <KeyItem Name="Kelt's Bow"                                  Description="Obtained by killing Kelt.  Grants a special attack, which does 30% more damage than the basic Bow he gives you."/>
+    <KeyItem Name="Kelt's Bow"                                  Description="Obtained from Kelt.  Grants a special attack, which does 30% more damage than the basic Bow he gives you."/>
     <KeyItem Name="Laybans"                                     Description="Obtained from Doppleganger in Lethice's Stronghold (D3).  Gives some protection against basilisk gazes (in stronghold only)."/>
     <KeyItem Name="Marae's Lethicite"                           Description="Can be stolen from Corrupt Marae by quick PCs or taken after slaying her."/>
     <KeyItem Name="Marae's Seed"                                Description="Used for purification of Minerva."/>
@@ -991,8 +997,8 @@
       <Perk Name="Channeling" Description="Increases base spell strength by 50%."/>
       <Perk Name="Immovable Object" Description="Grants 20% physical damage reduction."/>
       <Perk Name="Iron Fists" Description="Hardens your fists to increase attack rating by 5."/>
-      <Perk Name="Iron Fists 2" Description="Further hardens your fists to increase attack rating by another 5."/>
-      <Perk Name="Iron Fists 3" Description="Even more hardens your fists to increase attack rating again by 5."/>
+      <Perk Name="Iron Fists 2" Description="Further hardens your fists to increase attack rating by another 3."/>
+      <Perk Name="Iron Fists 3" Description="Even more hardens your fists to increase attack rating again by 3."/>
       <Perk Name="Lightning Strikes" Description="Increases the attack damage for non-heavy weapons."/>
       <Perk Name="Masochist" Description="Take 30% less physical damage but gain lust when damaged."/>
       <Perk Name="Medicine" Description="Grants 15% chance per round of cleansing poisons/drugs from your body."/>
@@ -2553,7 +2559,26 @@
     <Flag ID="1257" Name="BEE_GIRL_COMBAT_LOSSES"/>
     <Flag ID="1258" Name="KATHERINE_MILK_OPTIONS"/>
     <Flag ID="1259" Name="SCYLLA_FURRY_FOURSOME_COUNT"/>
-    <Flag ID="1260" Name="SCYLLA_SMALLCOCK_INTRO"                       Description="Player has had the initial small dick intro version with Scylla."/>
+    <Flag ID="1260" Name="SCYLLA_SMALLCOCK_INTRO"                       Description="Player has had the initial small dick intro with Scylla."/>
+    <Flag ID="1261" Name="DRIDERINCUBUS_DEFEATED"/>
+    <Flag ID="1262" Name="DRIDERINCUBUS_KILLED"/>
+    <Flag ID="1263" Name="MITZI_RECRUITED"/>
+    <Flag ID="1264" Name="MITZI_FUCKED"/>
+    <Flag ID="1265" Name="DRIDERINCUBUS_FUCKED"/>
+    <Flag ID="1266" Name="MINOTAURKING_DEFEATED"/>
+    <Flag ID="1267" Name="MINOTAURKING_KILLED"/>
+    <Flag ID="1268" Name="MINOTAURKING_FUCKED"/>
+    <Flag ID="1269" Name="MINOTAURKINGSSLUT_FUCKED"/>
+    <Flag ID="1270" Name="MINOTAURKINGS_TOUCH"/>
+    <Flag ID="1271" Name="MINOTAURKING_ALIVE"/>
+    <Flag ID="1272" Name="LETHICE_DEFEATED"/>
+    <Flag ID="1273" Name="LAST_ATTACK_TYPE"/>
+    <Flag ID="1274" Name="LETHICE_NAME"/>
+    <Flag ID="1275" Name="LETHICE_FUCKED"/>
+    <Flag ID="1276" Name="LETHICE_REDEEMED"/>
+    <Flag ID="1277" Name="LETHICE_KILLED"/>
+    <Flag ID="1278" Name="LETHICE_LEFT_ALIVE"/>
+    <Flag ID="1279" Name="GAME_END"/>
 
     <!-- The following flags are used solely by CoC-Revamp-Mod. -->
     <Flag ID="2001" Name="TIMES_ORGASMED"/>
@@ -2826,6 +2851,9 @@
     <Flag ID="2268" Name="ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO"/>
     <Flag ID="2269" Name="ACHIEVEMENT_PROGRESS_ANTWORKS"/>
     <Flag ID="2270" Name="CODEX_ENTRY_ZEBRAS"/>
+    <Flag ID="2271" Name="ACHIEVEMENT_PROGRESS_EGG_HUNTER"/>
+    <Flag ID="2272" Name="CURRENT_WEATHER"/>
+    <Flag ID="2273" Name="WEATHER_CHANGE_COOLDOWN"                      Description="4 hours to prevent weather from changing too fast."/>
 
     <!--
         The flags below this point come from the code, but they really do not need to be exposed
@@ -2853,8 +2881,8 @@
     <!-- Flag ID="2993" Name="HUNGER_ENABLED"                               Description="1 = hunger enabled"/ -->
     <!-- Flag ID="2994" Name="USE_12_HOURS"                                 Description="0 = 24-hour clock, 1 = 12-hour clock"/ -->
 
-    <!-- Flag ID="2995" Name="MEANINGLESS_CORRUPTION" 				        Description="Disables corruption requirements."/ -->
-    <!-- Flag ID="2996" Name="ITS_EVERY_DAY"						        Description="Eternal holiday!"/ -->
+    <!-- Flag ID="2995" Name="MEANINGLESS_CORRUPTION"                       Description="Disables corruption requirements."/ -->
+    <!-- Flag ID="2996" Name="ITS_EVERY_DAY"                                Description="Eternal holiday!"/ -->
     <!-- Flag ID="2997" Name="LOW_STANDARDS_FOR_ALL"/ -->
     <!-- Flag ID="2998" Name="HYPER_HAPPY"/ -->
   </Flags>
