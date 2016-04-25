@@ -77,6 +77,9 @@ namespace CoCEd.ViewModel
             get { return GetInt(_prefix == "" ? "pierced" : _prefix + "Pierced", 0); }
             set
             {
+                // If the new type is the same as the old, do nothing (fixes GitHub issue #7).
+                if (value == Type) return;
+
                 // Upper name is unfortunately changed by the combobox when we do change type, so we store it beforehand.
                 var oldUpperName = UpperName;
                 var oldLowerName = LowerName;
