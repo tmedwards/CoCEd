@@ -288,6 +288,7 @@
     <ArmTypes>
       <ArmType ID="1" Name="Harpy"/>
       <ArmType ID="0" Name="Human"/>
+      <ArmType ID="5" Name="Salamander"/>
       <ArmType ID="2" Name="Spider"/>
     </ArmTypes>
     <!-- ========================================================================================================================================== -->
@@ -314,6 +315,7 @@
       <TailType ID="10" Name="Rabbit"/>
       <TailType ID="15" Name="Raccoon"/>
       <TailType ID="22" Name="Rhino"/>
+      <TailType ID="25" Name="Salamander"/>
       <TailType ID="20" Name="Scorpion"/>
       <TailType ID="7"  Name="Shark"/>
       <TailType ID="5"  Name="Spider adbomen"/>
@@ -367,6 +369,7 @@
       <LowerBodyType ID="3"  Name="Naga"/>
       <LowerBodyType ID="11" Name="Pony"/>
       <LowerBodyType ID="19" Name="Raccoon"/>
+      <LowerBodyType ID="25" Name="Salamander"/>
     </LowerBodyTypes>
     <!-- ========================================================================================================================================== -->
     <PiercingTypes>
@@ -654,6 +657,7 @@
       <Item ID="Reptlum" Name="Reptilum"/>
       <Item ID="RingFig" Name="Ringtail Fig"/>
       <Item ID="RizzaRt" Name="Rizza Root"/>
+      <Item ID="SalamFW" Name="Salamander Firewater"/>
       <Item ID="SatyrWn" Name="Satyr Wine"/>
       <Item ID="Shark.T" Name="Shark Tooth"/>
       <Item ID="DryTent" Name="Shriveled Tentacle"/>
@@ -812,6 +816,7 @@
       <Item ID="C.Panty" Name="Comfortable Panties"/>
       <Item ID="DS.Loin" Name="Dragonscale Loincloth"/>
       <Item ID="DSPanty" Name="Dragonscale Thong"/>
+      <Item ID="Fundosh" Name="Fundoshi"/>
       <Item ID="FurLoin" Name="Fur Loincloth"/>
       <Item ID="LtxShrt" Name="Latex Shorts"/>
       <Item ID="LtxThng" Name="Latex Thong"/>
@@ -1012,14 +1017,14 @@
       <Perk Name="Survivalist" Description="Reduces hunger depletion rate by 20%."/>
       <Perk Name="Tactician" Description="Increases critical hit chance by up to 10% (Intelligence-based)."/>
       <Perk Name="Tank 2" Description="+1 extra HP per point of toughness."/>
-      <Perk Name="Thunderous Strikes" Description="+20% 'Attack' damage while strength is at or above 80."/>
+      <Perk Name="Thunderous Strikes" Description="+20% &quot;Attack&quot; damage while strength is at or above 80."/>
       <Perk Name="Unhindered" Description="Increases chances of evading enemy attacks when you are naked. (Undergarments won't disable this perk)"/>
-      <Perk Name="Weapon Mastery" Description="Doubles damage bonus of weapons classified as 'Large'."/>
+      <Perk Name="Weapon Mastery" Description="Doubles damage bonus of weapons classified as &quot;Large&quot;."/>
       <Perk Name="Well Adjusted" Description="You gain half as much lust as time passes in Mareth."/>
     </PerkGroup>
     <PerkGroup Name="Tier 2">
       <Perk Name="Archmage" Description="Increases base spell strength by 50%."/>
-      <Perk Name="Berzerker" Description="Grants 'Berzerk' ability."/>
+      <Perk Name="Berzerker" Description="Grants &quot;Berzerk&quot; ability."/>
       <Perk Name="Blademaster" Description="Gain +10% to critical strike chance when wielding a sword and not using a shield."/>
       <Perk Name="Focused Mind" Description="Black Magic is less likely to backfire and White Magic threshold is increased."/>
       <Perk Name="Hold With Both Hands" Description="Gain +20% strength modifier with melee weapons when not using a shield."/>
@@ -1039,7 +1044,7 @@
       <Perk Name="Basilisk Resistance" Description="Grants immunity to basilisk's paralyzing gaze.  Disables Basilisk Bad End."/>
       <Perk Name="Basilisk Womb" Description="Enables your eggs to be properly fertilized into basilisks of both genders!"/>
       <Perk Name="Bee Ovipositor" Description="Allows you to lay eggs through a special organ on your insect abdomen, though you need at least 10 eggs to lay."/>
-      <Perk Name="Bimbo Body" Description="Gives the body of a bimbo.  Tits will never stay below a 'DD' cup, libido is raised, lust resistance is raised, and upgrades tease."/>
+      <Perk Name="Bimbo Body" Description="Gives the body of a bimbo.  Tits will never stay below a &quot;DD&quot; cup, libido is raised, lust resistance is raised, and upgrades tease."/>
       <Perk Name="Bimbo Brains" Description="Now that you've drank bimbo liquer, you'll never, like, have the attention span and intelligence you once did!  But it's okay, 'cause you get to be so horny an' stuff!"/>
       <Perk Name="Brawler" Description="Brawling experience allows you to make two unarmed attacks in a turn."/>
       <Perk Name="Bro Body" Description="Grants an ubermasculine body that's sure to impress.  Cocks will never stay below 10&#x2033;, libido is raised, lust resistance is raised, and upgrades tease."/>
@@ -1070,12 +1075,13 @@
       <Perk Name="Fera's Boon - Seeder" Description="Increases cum output by 1,000 mL."/>
       <Perk Name="Fera's Boon - Wide Open" Description="Keeps your pussy permanently gaped and increases pregnancy speed."/>
       <Perk Name="Fire Lord" Description="Thanks to Akbal's blessings, you're able to breathe gouts of green flame at your foes."/>
-      <Perk Name="Flexibility" Description="Grants cat-like flexibility.  Useful for dodging and 'fun'."/>
+      <Perk Name="Flexibility" Description="Grants cat-like flexibility.  Useful for dodging and &quot;fun&quot;."/>
       <Perk Name="Futa Faculties" Description="It's super hard to think about stuff that like, isn't working out or fucking!"/>
       <Perk Name="Futa Form" Description="Ensures that your body fits the Futa look (Tits DD+, Dick 8&#x2033;+, &amp; Pussy).  Also keeps your lusts burning bright and improves the tease skill."/>
       <Perk Name="Harpy Womb" Description="Increases all laid eggs to large size so long as you have harpy legs and a harpy tail."/>
       <Perk Name="Hellfire" Description="Grants a corrupted fire breath attack, like the hellhounds in the mountains."/>
       <Perk Name="Incorporeality" Description="Allows you to fade into a ghost-like state and temporarily possess others."/>
+      <Perk Name="Lustserker" Description="Grants the &quot;Lustserk&quot; ability."/>
       <Perk Name="Luststick Adapted" Description="Grants immunity to the lust-increasing effects of lust-stick and allows its use. Minimum lust is permanently raised."/>
       <Perk Name="Magical Fertility" Description="10% higher chance of pregnancy and increased pregnancy speed."/>
       <Perk Name="Magical Virility" Description="200 mL more cum per orgasm and enhanced virility."/>
@@ -1293,9 +1299,9 @@
     <Status Name="wanderer human" Description="The character has advised Marcus to stay human, against Lucia's wishes."/>
     <Status Name="worm plugged"/>
     <Status Name="WormOffer"/>
-    <Status Name="wormsHalf" Description="Gained from choosing 'Who Cares?' at the worms sign. Halves the chance that worms will be encountered."/>
-    <Status Name="wormsOff" Description="Gained from choosing 'Grossed Out' at the worms sign. Worms are turned off and will not appear in the game."/>
-    <Status Name="wormsOn" Description="Gained from choosing 'Aroused' or 'Who Cares?' at the worms sign. Worms are turned on and will appear in the game."/>
+    <Status Name="wormsHalf" Description="Gained from choosing &quot;Who Cares?&quot; at the worms sign. Halves the chance that worms will be encountered."/>
+    <Status Name="wormsOff" Description="Gained from choosing &quot;Grossed Out&quot; at the worms sign. Worms are turned off and will not appear in the game."/>
+    <Status Name="wormsOn" Description="Gained from choosing &quot;Aroused&quot; or &quot;Who Cares?&quot; at the worms sign. Worms are turned on and will appear in the game."/>
     <Status Name="Yara" Description="The PC has asked Yara about herself."/>
   </Statuses>
   <!-- ========================================================================================================================================== -->
@@ -2385,8 +2391,8 @@
     <Flag ID="1083" Name="FOLLOWER_AT_FARM_ISABELLA"/>
     <Flag ID="1084" Name="FOLLOWER_AT_FARM_VAPULA"/>
     <Flag ID="1085" Name="FOLLOWER_AT_FARM_LATEXY"/>
-    <Flag ID="1086" Name="FOLLOWER_AT_FARM_CERAPH"                      Description="Ceraph's corruption/protection: -1 = done, 0 = not started, 1&#x2013;7 = protection running"/>
-    <Flag ID="1087" Name="FOLLOWER_AT_FARM_HOLLI"                       Description="Holli's corruption/fertilization: -1 = done, 0 = not started, 1&#x2013;20 = fertilization running"/>
+    <Flag ID="1086" Name="FOLLOWER_AT_FARM_CERAPH"                      Description="Ceraph's corruption/protection: -1 = done, 0 = not started, 1&#x2013;7 = protection running."/>
+    <Flag ID="1087" Name="FOLLOWER_AT_FARM_HOLLI"                       Description="Holli's corruption/fertilization: -1 = done, 0 = not started, 1&#x2013;20 = fertilization running."/>
     <Flag ID="1088" Name="FOLLOWER_AT_FARM_KELLY"/>
     <Flag ID="1089" Name="FOLLOWER_AT_FARM_BATH_GIRL"/>
     <Flag ID="1090" Name="FARM_CORRUPTION_FIRST_DATE"                   Description="(unused)"/><!-- Description="Day that the Farm completed the corruption process" -->
@@ -2471,16 +2477,16 @@
     <Flag ID="1169" Name="TATTOO_SAVEFIX_APPLIED"/>
     <Flag ID="1170" Name="BIRTHS_PHOUKA"/>
     <Flag ID="1171" Name="BIRTHS_FAERIE"/>
-    <Flag ID="1172" Name="PHOUKA_ENCOUNTER_STATUS"                      Description="0 = never encountered, 1 = encountered, other values may be used later if you're doing something for one"/>
-    <Flag ID="1173" Name="PHOUKA_LORE"                                  Description="0 = no lore known, 1 = know their name, 2+ = more lore learned"/>
-    <Flag ID="1174" Name="PREGNANCY_CORRUPTION"                         Description="Faerie/Phouka baby corruption (Faerie if &lt;= 0, Phouka if &gt; 0): new pregnancy initializes to 2, lowered by Pure Honey, raised by Phouka Whiskey"/>
+    <Flag ID="1172" Name="PHOUKA_ENCOUNTER_STATUS"                      Description="0 = never encountered, 1 = encountered, other values may be used later if you're doing something for one."/>
+    <Flag ID="1173" Name="PHOUKA_LORE"                                  Description="0 = no lore known, 1 = know their name, 2+ = more lore learned."/>
+    <Flag ID="1174" Name="PREGNANCY_CORRUPTION"                         Description="Faerie/Phouka baby corruption (Faerie if &lt;= 0, Phouka if &gt; 0): new pregnancy initializes to 2, lowered by Pure Honey, raised by Phouka Whiskey."/>
     <Flag ID="1175" Name="TREACLE_MINE_YEAR_DONE"/>
     <Flag ID="1176" Name="PLAYER_INFECTED_HELLHOUNDS"/>
     <Flag ID="1177" Name="PLAYER_INFECTED_MINOTAURS"/>
     <Flag ID="1178" Name="PLAYER_INFECTED_IMPS"/>
     <Flag ID="1179" Name="FEMOIT_UNLOCKED"                              Description="Unlocked the option to feminise Benoit."/>
     <Flag ID="1180" Name="BIMBO_FEMOIT_UNLOCKED"                        Description="Unlocked the option to bimbofy Benoit."/>
-    <Flag ID="1181" Name="BENOIT_STATUS"                                Description="0 = male, 1 = female, 2 = bimbo"/>
+    <Flag ID="1181" Name="BENOIT_STATUS"                                Description="0 = male, 1 = female, 2 = bimbo."/>
     <Flag ID="1182" Name="FEMOIT_NEXTDAY_EVENT"                         Description="Proc the event the following day when you visit. Stores the minimum day number that the event can proc on."/>
     <Flag ID="1183" Name="FEMOIT_TALKED_TO"/>
     <Flag ID="1184" Name="KATHERINE_RANDOM_RECRUITMENT_DISABLED"/>
@@ -2509,7 +2515,7 @@
     <Flag ID="1207" Name="IZMA_PREGNANCY_TYPE"/>
     <Flag ID="1208" Name="EMBER_PREGNANCY_TYPE"/>
     <Flag ID="1209" Name="JOJO_BUTT_PREGNANCY_TYPE"/>
-    <Flag ID="1210" Name="SHEILA_DISABLED"                              Description="1 = told to avoid or you refused apology, 2 = baby issues, 3 = worm infested, 4 = Jojo's 'wife'"/>
+    <Flag ID="1210" Name="SHEILA_DISABLED"                              Description="1 = told to avoid or you refused apology, 2 = baby issues, 3 = worm infested, 4 = Jojo's &quot;wife&quot;."/>
     <Flag ID="1211" Name="SHEILA_PREGNANCY_TYPE"/>
     <Flag ID="1212" Name="KELLY_PREGNANCY_TYPE"/>
     <Flag ID="1213" Name="KELLY_KIDS_MALE"                              Description="Tracks number of sons with Kelly. Total number of children is stored in KELLY_KIDS (FLAG: 908)."/>
@@ -2688,7 +2694,7 @@
     <Flag ID="2105" Name="CONDOMED"/>
     <Flag ID="2106" Name="HELIA_HERMIFIED"/>
     <Flag ID="2107" Name="IMP_LORD_MALEHERM_PROGRESS"/>
-    <Flag ID="2108" Name="LETHICE_DEFEATED" 		                    Description="1 = defeated, 2 = killed"/>
+    <Flag ID="2108" Name="UNKNOWN_FLAG_NUMBER_02108"/>
     <Flag ID="2109" Name="PHOENIX_HP_LOSS_COUNTER" 				        Description="If this reaches 3, bad end!"/>
     <Flag ID="2110" Name="LIZAN_ROGUE_SEX_COUNTER"				        Description="Times sexed with lizan.  If this reaches 3, unlocks watersports scene, if watersports are enabled."/>
     <Flag ID="2111" Name="BENOIT_PISTOL_BOUGHT"/>
@@ -2703,7 +2709,7 @@
     <Flag ID="2120" Name="TIMES_ENCOUNTERED_GOBLIN_QUEEN"/>
     <Flag ID="2121" Name="TIMES_ENCOUNTERED_IMP_WARLORD"/>
     <Flag ID="2122" Name="TIMES_ENCOUNTERED_IMP_OVERLORD"/>
-    <Flag ID="2123" Name="IN_INGNAM" 							        Description="1 = in Ingnam"/>
+    <Flag ID="2123" Name="IN_INGNAM"                                    Description="1 = in Ingnam."/>
     <Flag ID="2124" Name="INGNAM_PROLOGUE_COMPLETE"/>
     <Flag ID="2125" Name="INGNAM_WEAPONSMITH_TALKED"/>
     <Flag ID="2126" Name="INGNAM_ARMORSMITH_TALKED"/>
@@ -2716,7 +2722,7 @@
     <Flag ID="2133" Name="INGNAM_EARS_LAST_TYPE"/>
     <Flag ID="2134" Name="INGNAM_TAIL_FREAKOUT"/>
     <Flag ID="2135" Name="INGNAM_TAIL_LAST_TYPE"/>
-    <Flag ID="2136" Name="DISABLED_JOJO_RAPE"                           Description="1 = disabled Jojo rape"/>
+    <Flag ID="2136" Name="DISABLED_JOJO_RAPE"                           Description="1 = disabled Jojo rape."/>
     <Flag ID="2137" Name="DISABLED_SEX_MACHINE"/>
     <Flag ID="2138" Name="ENEMY_CRITICAL"/>
     <Flag ID="2139" Name="MARBLE_HAMMER_QUEST_PROGRESS"/>
@@ -2854,6 +2860,8 @@
     <Flag ID="2271" Name="ACHIEVEMENT_PROGRESS_EGG_HUNTER"/>
     <Flag ID="2272" Name="CURRENT_WEATHER"/>
     <Flag ID="2273" Name="WEATHER_CHANGE_COOLDOWN"                      Description="4 hours to prevent weather from changing too fast."/>
+    <Flag ID="2274" Name="TAMANI_DEFEAT_COUNTER"/>
+    <Flag ID="2275" Name="TAMANI_BAD_ENDED"/>
 
     <!--
         The flags below this point come from the code, but they really do not need to be exposed
@@ -2885,5 +2893,6 @@
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"                                Description="Eternal holiday!"/ -->
     <!-- Flag ID="2997" Name="LOW_STANDARDS_FOR_ALL"/ -->
     <!-- Flag ID="2998" Name="HYPER_HAPPY"/ -->
+    <!-- Flag ID="2999" Name="KAIZO_MODE"/ -->
   </Flags>
 </CoCEd>
