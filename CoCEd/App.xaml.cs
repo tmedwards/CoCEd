@@ -87,6 +87,15 @@ namespace CoCEd
                     case XmlLoadingResult.Success:
                         break;
 
+                    case XmlLoadingResult.InvalidFile:
+                        box = new ExceptionBox();
+                        box.Title = "Fatal error";
+                        box.Message = "The " + xmlFile + " file is out of date. Did you replace the bundled XML?";
+                        box.Path = Environment.CurrentDirectory;
+                        box.ShowDialog(ExceptionBoxButtons.Quit);
+                        Shutdown();
+                        return;
+
                     case XmlLoadingResult.MissingFile:
                         box = new ExceptionBox();
                         box.Title = "Fatal error";

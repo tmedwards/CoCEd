@@ -18,8 +18,8 @@ namespace CoCEd.Model
         // or juggling a filename list/enum pair
         public static class Files
         {
-            public static string CoC = "CoCEd.Data.xml";
-            public static string RevampMod = "CoCEd.DataRevampMod.xml";
+            public const string CoC = "CoCEd.Data.xml";
+            public const string RevampMod = "CoCEd.DataRevampMod.xml";
             public static readonly IEnumerable<string> All = new string[] { CoC, RevampMod };
         }
 
@@ -51,6 +51,22 @@ namespace CoCEd.Model
 
                     _files.Add(xmlFile, fileData);
                     if (_files.Count == 1) Select(xmlFile);
+
+                    // Sanity check: ensure the XML files have a certain level of completeness.
+                    switch (xmlFile)
+                    {
+                        case XmlData.Files.CoC:
+                            if (!fileData.Flags.Any(x => x.ID == 1279 && x.Name == "GAME_END")) return XmlLoadingResult.InvalidFile;
+                            break;
+
+                        case XmlData.Files.RevampMod:
+                            if (!fileData.Flags.Any(x => x.ID == 1279 && x.Name == "GAME_END")) return XmlLoadingResult.InvalidFile;
+                            if (fileData.Body.LowerBodyTypes.Any(x => x.ID == 24 && x.Name == "Deertaur")) return XmlLoadingResult.InvalidFile;
+                            if (!fileData.Body.LowerBodyTypes.Any(x => x.ID == 25 && x.Name == "Salamander")) return XmlLoadingResult.InvalidFile;
+                            if (!fileData.PerkGroups.Any(x => x.Name == "Tier 1" && x.Perks.Any(p => p.Name == "Iron Fists 3"))) return XmlLoadingResult.InvalidFile;
+                            if (!fileData.PerkGroups.Any(x => x.Name == "Events" && x.Perks.Any(p => p.Name == "Lustserker"))) return XmlLoadingResult.InvalidFile;
+                            break;
+                    }
 
                     return XmlLoadingResult.Success;
                 }
@@ -312,6 +328,7 @@ namespace CoCEd.Model
     public enum XmlLoadingResult
     {
         Success,
+        InvalidFile,
         NoPermission,
         MissingFile,
     }
