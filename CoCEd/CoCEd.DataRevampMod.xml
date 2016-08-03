@@ -3,6 +3,7 @@
   <Body>
     <!-- ========================================================================================================================================== -->
     <SkinTypes>
+      <SkinType ID="5" Name="Draconic"/>
       <SkinType ID="1" Name="Fur"/>
       <SkinType ID="3" Name="Goo"/>
       <SkinType ID="2" Name="Scales"/>
@@ -16,7 +17,7 @@
     </SkinDescriptions>
     <!-- ========================================================================================================================================== -->
     <SkinAdjectives>
-      <SkinAdjective></SkinAdjective>
+      <SkinAdjective/>
       <SkinAdjective>ashen</SkinAdjective>
       <SkinAdjective>freckled</SkinAdjective>
       <SkinAdjective>latex</SkinAdjective>
@@ -242,8 +243,11 @@
     </TongueTypes>
     <!-- ========================================================================================================================================== -->
     <EyeTypes>
+      <EyeType ID="5" Name="Basilisk"/>
       <EyeType ID="2" Name="Black (Sand Trap)"/>
+      <EyeType ID="4" Name="Dragon"/>
       <EyeType ID="0" Name="Human"/>
+      <EyeType ID="3" Name="Lizard"/>
       <EyeType ID="1" Name="Spider (4&#x00D7; eyes)"/>
     </EyeTypes>
     <!-- ========================================================================================================================================== -->
@@ -288,9 +292,39 @@
     <ArmTypes>
       <ArmType ID="1" Name="Harpy"/>
       <ArmType ID="0" Name="Human"/>
+      <ArmType ID="4" Name="Predator"/>
       <ArmType ID="5" Name="Salamander"/>
       <ArmType ID="2" Name="Spider"/>
     </ArmTypes>
+    <!-- ========================================================================================================================================== -->
+    <ClawTypes>
+      <ClawType ID="0" Name="None"/>
+      <!-- ClawType ID="4" Name="Cat"/ -->
+      <!-- ClawType ID="5" Name="Dog"/ -->
+      <ClawType ID="2" Name="Dragon"/>
+      <ClawType ID="1" Name="Lizard"/>
+      <!-- ClawType ID="7" Name="Mantis"/ -->
+      <!-- ClawType ID="6" Name="Raptor"/ -->
+      <ClawType ID="3" Name="Salamander"/>
+    </ClawTypes>
+    <!-- ========================================================================================================================================== -->
+    <ClawTones>
+      <ClawTone></ClawTone>
+      <ClawTone>bluish</ClawTone>
+      <ClawTone>dark-gray</ClawTone>
+      <ClawTone>fiery-red</ClawTone>
+      <ClawTone>gray</ClawTone>
+      <ClawTone>greenish</ClawTone>
+      <ClawTone>light-gray</ClawTone>
+      <ClawTone>orangey</ClawTone>
+      <ClawTone>pale-yellow</ClawTone>
+      <ClawTone>pink</ClawTone>
+      <ClawTone>purplish</ClawTone>
+      <ClawTone>reddish</ClawTone>
+      <ClawTone>silvery</ClawTone>
+      <ClawTone>steel-gray</ClawTone>
+      <ClawTone>yellowish</ClawTone>
+    </ClawTones>
     <!-- ========================================================================================================================================== -->
     <TailTypes>
       <TailType ID="0"  Name="None"/>
@@ -857,8 +891,9 @@
     <KeyItem Name="Camp - Chest"                                Description="Item storage to be put at the camp."/>
     <KeyItem Name="Camp - Murky Chest"                          Description="Item storage to be put at the camp.  Grants 4 additional slots."/>
     <KeyItem Name="Camp - Ornate Chest"                         Description="Item storage to be put at the camp.  Grants 4 additional slots."/>
+    <KeyItem Name="Carpenter's Nail Box"                        Description="Used for building the cabin."/>
+    <KeyItem Name="Carpenter's Toolbox"                         Description="Used for building the cabin."/>
     <KeyItem Name="Carrot"                                      Description="[Seasonal] Obtained from Whitney's Farm or Oswald in Tel'Adre.  One of the components used to make a body for the ice spirit, Nieve."/>
-    <KeyItem Name="Carpenter's Toolbox"                         Description="Used for building cabin."/>
     <KeyItem Name="Centaur Pole"                                Description="A masturbatory aid suited for female centaur's needs."/>
     <KeyItem Name="Cock Milker"                                 Description="To be installed at Whitney's Farm."/>
     <KeyItem Name="Cock Milker - Installed At Whitney's Farm"   Description="Allows the character to milk their or Jojo's cock(s) at the farm."/>
@@ -2587,6 +2622,9 @@
     <Flag ID="1279" Name="GAME_END"/>
 
     <!-- The following flags are used solely by CoC-Revamp-Mod. -->
+    <Flag ID="1300" Name="BENOIT_EYES_TALK_UNLOCKED"/>
+    <Flag ID="1301" Name="BENOIT_BASIL_EYES_GRANTED"/> // Counter to keep track, how often you gained them
+    <!-- CAUTION: ID gap here. -->
     <Flag ID="2001" Name="TIMES_ORGASMED"/>
     <Flag ID="2002" Name="CORRUPTED_MARAE_KILLED"/>
     <Flag ID="2003" Name="CAMP_BUILT_CABIN"/>
@@ -2694,9 +2732,9 @@
     <Flag ID="2105" Name="CONDOMED"/>
     <Flag ID="2106" Name="HELIA_HERMIFIED"/>
     <Flag ID="2107" Name="IMP_LORD_MALEHERM_PROGRESS"/>
-    <Flag ID="2108" Name="UNKNOWN_FLAG_NUMBER_02108"/>
-    <Flag ID="2109" Name="PHOENIX_HP_LOSS_COUNTER" 				        Description="If this reaches 3, bad end!"/>
-    <Flag ID="2110" Name="LIZAN_ROGUE_SEX_COUNTER"				        Description="Times sexed with lizan.  If this reaches 3, unlocks watersports scene, if watersports are enabled."/>
+    <Flag ID="2108" Name="EMBER_SPAR_VICTORIES"                         Description="Times PC won when sparring with Ember."/>
+    <Flag ID="2109" Name="PHOENIX_HP_LOSS_COUNTER"                      Description="If this reaches 3, bad end!"/>
+    <Flag ID="2110" Name="LIZAN_ROGUE_SEX_COUNTER"                      Description="Times sexed with lizan.  If this reaches 3, unlocks watersports scene, if watersports are enabled."/>
     <Flag ID="2111" Name="BENOIT_PISTOL_BOUGHT"/>
     <Flag ID="2112" Name="FLINTLOCK_PISTOL_AMMO"/>
     <Flag ID="2113" Name="BENOIT_CLOCK_BOUGHT"/>
@@ -2862,6 +2900,27 @@
     <Flag ID="2273" Name="WEATHER_CHANGE_COOLDOWN"                      Description="4 hours to prevent weather from changing too fast."/>
     <Flag ID="2274" Name="TAMANI_DEFEAT_COUNTER"/>
     <Flag ID="2275" Name="TAMANI_BAD_ENDED"/>
+    <Flag ID="2276" Name="PHYLLA_STONES_HUNTED_TODAY"/>
+    <Flag ID="2277" Name="ANZU_PALACE_UNLOCKED"/>
+    <Flag ID="2278" Name="ANZU_RELATIONSHIP_LEVEL"/>
+    <Flag ID="2279" Name="ANZU_AFFECTION"/>
+    <Flag ID="2280" Name="ANZU_TIMES_TALKED"/>
+    <Flag ID="2281" Name="ANZU_TALKED_PAST"/>
+    <Flag ID="2282" Name="ANZU_TALKED_PALACE"/>
+    <Flag ID="2283" Name="ANZU_TALKED_RIFT"/>
+    <Flag ID="2284" Name="ANZU_TALKED_POWERS"/>
+    <Flag ID="2285" Name="ANZU_TALKED_GODS"/>
+    <Flag ID="2286" Name="ANZU_TIMES_DINED"/>
+    <Flag ID="2287" Name="UNKNOWN_FLAG_NUMBER_02287"/>
+    <Flag ID="2288" Name="UNKNOWN_FLAG_NUMBER_02288"/>
+    <Flag ID="2289" Name="UNKNOWN_FLAG_NUMBER_02289"/>
+    <Flag ID="2290" Name="UNKNOWN_FLAG_NUMBER_02290"/>
+    <Flag ID="2291" Name="UNKNOWN_FLAG_NUMBER_02291"/>
+    <Flag ID="2292" Name="UNKNOWN_FLAG_NUMBER_02292"/>
+    <Flag ID="2293" Name="UNKNOWN_FLAG_NUMBER_02293"/>
+    <Flag ID="2294" Name="UNKNOWN_FLAG_NUMBER_02294"/>
+    <Flag ID="2295" Name="SANDWITCH_SERVICED"/>
+    <Flag ID="2296" Name="JOJO_STATUS"/>
 
     <!--
         The flags below this point come from the code, but they really do not need to be exposed
