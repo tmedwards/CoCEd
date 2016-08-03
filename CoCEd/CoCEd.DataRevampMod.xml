@@ -309,7 +309,7 @@
     </ClawTypes>
     <!-- ========================================================================================================================================== -->
     <ClawTones>
-      <ClawTone></ClawTone>
+      <ClawTone/>
       <ClawTone>bluish</ClawTone>
       <ClawTone>dark-gray</ClawTone>
       <ClawTone>fiery-red</ClawTone>
