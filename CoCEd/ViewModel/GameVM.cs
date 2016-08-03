@@ -1377,6 +1377,28 @@ namespace CoCEd.ViewModel
 
         #region CoC-Revamp-Mod Specific
 
+        public int ClawType
+        {
+            get { return GetInt("clawType"); }
+            set {
+                if (IsRevampMod)
+                {
+                    SetValue("clawType", value);
+                }
+            }
+        }
+
+        public string ClawTone
+        {
+            get { return GetString("clawTone"); }
+            set {
+                if (IsRevampMod)
+                {
+                    SetValue("clawTone", value);
+                }
+            }
+        }
+
         public int LegCount
         {
             get { return GetInt("legCount"); }

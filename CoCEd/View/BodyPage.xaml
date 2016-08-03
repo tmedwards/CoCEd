@@ -34,7 +34,7 @@
 
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
                 <Border Style="{StaticResource HeaderBorder}">
-                    <TextBlock Text="Body" Style="{StaticResource Header}"/>
+                    <TextBlock Text="Upper Body" Style="{StaticResource Header}"/>
                 </Border>
                 <common:AutoGrid>
                     <TextBlock              Text="Height"/>
@@ -68,7 +68,15 @@
                 <common:AutoGrid>
                     <TextBlock              Text="Arms"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.ArmType}" ItemsSource="{Binding Data.Body.ArmTypes}"/>
+                </common:AutoGrid>
+                <common:AutoGrid IsEnabled="{Binding Game.IsRevampMod}" Visibility="{Binding Game.RevampModVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <TextBlock              Text="Claws"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.ClawType}" ItemsSource="{Binding Data.Body.ClawTypes}"/>
 
+                    <TextBlock              Text="Claw tone"/>
+                    <ComboBox               Text="{Binding Game.ClawTone}" ItemsSource="{Binding Data.Body.ClawTones}" Style="{StaticResource EditableTextBox}"/>
+                </common:AutoGrid>
+                <common:AutoGrid>
                     <TextBlock              Text="Wings/Fins"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.WingType}" ItemsSource="{Binding Data.Body.WingTypes}"/>
 
@@ -83,7 +91,7 @@
 
             <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
                 <Border Style="{StaticResource HeaderBorder}">
-                    <TextBlock Text="Lower body" Style="{StaticResource Header}"/>
+                    <TextBlock Text="Lower Body" Style="{StaticResource Header}"/>
                 </Border>
                 <common:AutoGrid>
                     <TextBlock              Text="Butt"/>

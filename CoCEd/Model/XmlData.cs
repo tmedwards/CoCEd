@@ -145,6 +145,10 @@ namespace CoCEd.Model
 
         [XmlArray, XmlArrayItem("ArmType")]
         public XmlEnum[] ArmTypes { get; set; }
+        [XmlArray, XmlArrayItem("ClawType")]
+        public XmlEnum[] ClawTypes { get; set; }
+        [XmlArray, XmlArrayItem("ClawTone")]
+        public String[] ClawTones { get; set; }
         [XmlArray, XmlArrayItem("TailType")]
         public XmlEnum[] TailTypes { get; set; }
         [XmlArray, XmlArrayItem("WingType")]
