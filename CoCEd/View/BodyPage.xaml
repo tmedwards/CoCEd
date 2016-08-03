@@ -34,7 +34,7 @@
 
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
                 <Border Style="{StaticResource HeaderBorder}">
-                    <TextBlock Text="Upper Body" Style="{StaticResource Header}"/>
+                    <TextBlock Text="Body" Style="{StaticResource Header}"/>
                 </Border>
                 <common:AutoGrid>
                     <TextBlock              Text="Height"/>

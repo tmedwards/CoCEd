@@ -2623,7 +2623,7 @@
 
     <!-- The following flags are used solely by CoC-Revamp-Mod. -->
     <Flag ID="1300" Name="BENOIT_EYES_TALK_UNLOCKED"/>
-    <Flag ID="1301" Name="BENOIT_BASIL_EYES_GRANTED"/> // Counter to keep track, how often you gained them
+    <Flag ID="1301" Name="BENOIT_BASIL_EYES_GRANTED"                    Description="Counter to track how often you've gained them."/>
     <!-- CAUTION: ID gap here. -->
     <Flag ID="2001" Name="TIMES_ORGASMED"/>
     <Flag ID="2002" Name="CORRUPTED_MARAE_KILLED"/>
