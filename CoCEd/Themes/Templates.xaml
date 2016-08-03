@@ -82,9 +82,9 @@
                         <Border x:Name="root" BorderThickness="1" BorderBrush="#ABADB3" Background="White" SnapsToDevicePixels="True" HorizontalAlignment="Stretch">
                             <Grid HorizontalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="32"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="28"/>
+                                    <ColumnDefinition Width="32"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox   Grid.ColumnSpan="3" x:Name="textBox" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource NumericTextBox}"/>
                                 <Button    Grid.Column="0" x:Name="lowerButton" Style="{StaticResource NumericExtremumButton}" HorizontalContentAlignment="Left" SnapsToDevicePixels="True"/>
