@@ -166,7 +166,8 @@ namespace CoCEd
 #if DEBUG
         static AmfFile AutoLoad(FlashDirectory[] directories)
         {
-            var file = directories[0].Files[0];
+            //var file = directories[0].Files[0];
+            var file = directories.First(dir => dir.Files.Count > 0).Files[0];
             VM.Instance.Load(file.FilePath, SerializationFormat.Slot, createBackup: true);
             return file;
         }
@@ -183,9 +184,10 @@ namespace CoCEd
 
         static void RunSerializationTest(FlashDirectory[] directories)
         {
+            var directory = directories.First(dir => dir.Files.Count > 0);
             Stopwatch s = new Stopwatch();
             s.Start();
-            foreach (var first in directories[0].Files)
+            foreach (var first in directory.Files)
             {
                 var outPath = "e:\\" + Path.GetFileName(first.FilePath);
                 first.TestSerialization();

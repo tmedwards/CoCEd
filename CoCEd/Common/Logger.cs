@@ -36,7 +36,7 @@ namespace CoCEd.Common
                 if (File.Exists("CoCEd.log")) File.Delete("CoCEd.log");
                 File.WriteAllText("CoCEd.log", msg);
             }
-            catch(IOException)
+            catch (IOException)
             {
             }
             catch (SecurityException)

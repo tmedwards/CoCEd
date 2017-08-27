@@ -18,9 +18,15 @@ namespace CoCEd.Model
         // or juggling a filename list/enum pair
         public static class Files
         {
-            public const string CoC = "CoCEd.Data.xml";
-            public const string RevampMod = "CoCEd.DataRevampMod.xml";
-            public static readonly IEnumerable<string> All = new string[] { CoC, RevampMod };
+            public const string Vanilla = "CoCEd.Data.xml";
+            public const string Revamp = "CoCEd.DataRevamp.xml";
+            public const string Xianxia = "CoCEd.DataXianxia.xml";
+            public static readonly IEnumerable<string> All = new string[]
+            {
+                Vanilla,
+                Revamp,
+                Xianxia,
+            };
         }
 
         private static Dictionary<string, XmlDataSet> _files = new Dictionary<string, XmlDataSet>();
@@ -55,16 +61,21 @@ namespace CoCEd.Model
                     // Sanity check: ensure the XML files have a certain level of completeness.
                     switch (xmlFile)
                     {
-                        case XmlData.Files.CoC:
+                        case XmlData.Files.Vanilla:
                             if (!fileData.Flags.Any(x => x.ID == 1279 && x.Name == "GAME_END")) return XmlLoadingResult.InvalidFile;
                             break;
 
-                        case XmlData.Files.RevampMod:
+                        case XmlData.Files.Revamp:
                             if (!fileData.Flags.Any(x => x.ID == 1279 && x.Name == "GAME_END")) return XmlLoadingResult.InvalidFile;
                             if (fileData.Body.LowerBodyTypes.Any(x => x.ID == 24 && x.Name == "Deertaur")) return XmlLoadingResult.InvalidFile;
                             if (!fileData.Body.LowerBodyTypes.Any(x => x.ID == 25 && x.Name == "Salamander")) return XmlLoadingResult.InvalidFile;
                             if (!fileData.PerkGroups.Any(x => x.Name == "Tier 1" && x.Perks.Any(p => p.Name == "Iron Fists 3"))) return XmlLoadingResult.InvalidFile;
                             if (!fileData.PerkGroups.Any(x => x.Name == "Events" && x.Perks.Any(p => p.Name == "Lustserker"))) return XmlLoadingResult.InvalidFile;
+                            break;
+
+                        case XmlData.Files.Xianxia:
+                            if (!fileData.Flags.Any(x => x.ID == 1279 && x.Name == "GAME_END")) return XmlLoadingResult.InvalidFile;
+                            // FIXME: Add additional Xianxia tests, if necessary.
                             break;
                     }
 

@@ -15,15 +15,24 @@ namespace CoCEd.ViewModel
     // TeaseLevel / XP
     public sealed partial class GameVM : ObjectVM
     {
-        public bool IsCoC { get { return !IsRevampMod; } }
-        public bool IsRevampMod { get; private set; }
-        public Visibility CoCVisibility
+        public ModType Type { get; private set; }
+
+        public bool IsVanilla { get { return Type == ModType.Vanilla; } }
+        public Visibility VanillaVisibility
         {
-            get { return IsCoC ? Visibility.Visible : Visibility.Collapsed; }
+            get { return Type == ModType.Vanilla ? Visibility.Visible : Visibility.Collapsed; }
         }
-        public Visibility RevampModVisibility
+
+        public bool IsRevamp { get { return Type == ModType.Revamp; } }
+        public Visibility RevampVisibility
         {
-            get { return IsRevampMod ? Visibility.Visible : Visibility.Collapsed; }
+            get { return Type == ModType.Revamp ? Visibility.Visible : Visibility.Collapsed; }
+        }
+
+        public bool IsXianxia { get { return Type == ModType.Xianxia; } }
+        public Visibility XianxiaVisibility
+        {
+            get { return Type == ModType.Xianxia ? Visibility.Visible : Visibility.Collapsed; }
         }
 
         readonly FlagVM[] _allFlags;
@@ -39,7 +48,7 @@ namespace CoCEd.ViewModel
         ItemContainerVM _shieldRack;
         ItemContainerVM _inventory;
 
-        public GameVM(AmfFile file, GameVM previousVM, bool isRevampMod = false)
+        public GameVM(AmfFile file, GameVM previousVM, ModType modType)
             : base(file)
         {
             if (previousVM != null)
@@ -51,8 +60,8 @@ namespace CoCEd.ViewModel
             }
 
 
-            // Is this save from vanilla CoC or the CoC-Revamp-Mod?
-            IsRevampMod = isRevampMod;
+            // Is this save from Vanilla, Revamp, or Xianxia?
+            Type = modType;
 
 
             // Unique children
@@ -130,7 +139,7 @@ namespace CoCEd.ViewModel
             containers.Add(_inventory);
             UpdateInventory();
 
-            _chest = new ItemContainerVM(this, IsRevampMod ? "Chest(s)" : "Chest", ItemCategories.All);
+            _chest = new ItemContainerVM(this, IsRevamp ? "Chest(s)" : "Chest", ItemCategories.All);
             containers.Add(_chest);
             UpdateChest();
 
@@ -142,7 +151,7 @@ namespace CoCEd.ViewModel
             containers.Add(_armorRack);
             UpdateArmorRack();
 
-            if (IsRevampMod)
+            if (IsRevamp)
             {
                 _shieldRack = new ItemContainerVM(this, "Shield rack", ItemCategories.Shield | ItemCategories.Unknown);
                 containers.Add(_shieldRack);
@@ -311,10 +320,10 @@ namespace CoCEd.ViewModel
                 if (GetPerk("Tank").IsOwned) max += 50;
                 if (GetPerk("Tank 2").IsOwned) max += (int)Math.Round(tou);
                 if (GetPerk("Chi Reflow - Defense").IsOwned) max += 50; // value: classes\classes\Scenes\Places\TelAdre\UmasShop.as:NEEDLEWORK_DEFENSE_EXTRA_HP
-                if (IsRevampMod) max += Level * 15;
+                if (IsRevamp) max += Level * 15;
                 else max += Math.Min(20, Level) * 15;
 
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     //if (jewelryEffectId == JewelryLib.MODIFIER_HP) max += jewelryEffectMagnitude; // value: classes\classes\Items\JewelryLib.as
                     //if (GetItem(GetString("jewelryId")).EffectId == 5) max += GetItem(GetString("jewelryId")).EffectMagnitude; // value: classes\classes\Items\JewelryLib.as
@@ -326,7 +335,7 @@ namespace CoCEd.ViewModel
 
                 max = (int)Math.Round(max);
 
-                return Math.Min(IsRevampMod ? 9999 : 999, (int)max);
+                return Math.Min(IsRevamp ? 9999 : 999, (int)max);
             }
         }
 
@@ -347,7 +356,7 @@ namespace CoCEd.ViewModel
             {
                 double max = 100;
 
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     if (GetPerk("Improved Self-Control").IsOwned) max += 20;
                     if (GetPerk("Bro Body").IsOwned || GetPerk("Bimbo Body").IsOwned || GetPerk("Futa Form").IsOwned) max += 20;
@@ -373,7 +382,7 @@ namespace CoCEd.ViewModel
             {
                 double max = 100;
 
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     if (GetPerk("Improved Endurance").IsOwned) max += 20;
 
@@ -683,7 +692,7 @@ namespace CoCEd.ViewModel
             {
                 SetValue("lowerBody", value);
 
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     // Set the default `LegCount` value when the lower body type is changed.
                     switch (value)
@@ -941,7 +950,7 @@ namespace CoCEd.ViewModel
 
                 if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
                 if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
-                if (IsRevampMod && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
+                if (IsRevamp && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
 
@@ -960,7 +969,7 @@ namespace CoCEd.ViewModel
                 if (GetString("jewelryId") == "FertRng") qty *= 1.2; // value: classes\classes\Items\JewelryLib.as
 
                 if (qty < 2) qty = 2;
-                if (IsRevampMod && qty > Int32.MaxValue) qty = Int32.MaxValue;
+                if (IsRevamp && qty > Int32.MaxValue) qty = Int32.MaxValue;
 
                 return FormatVolume(qty);
             }
@@ -994,7 +1003,7 @@ namespace CoCEd.ViewModel
 
                 if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
                 if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
-                if (IsRevampMod && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
+                if (IsRevamp && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
 
@@ -1116,7 +1125,7 @@ namespace CoCEd.ViewModel
             set
             {
                 GetFlag(137).SetValue(value);
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     // CoC-Revamp-Mod also uses this to determine if the "Rapier Training" perk is awarded to the player
                     GetPerk("Rapier Training").IsOwned = value >= 4;
@@ -1283,7 +1292,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     // CoC-Revamp-Mod uses this to track achievement progress as well, so values ≥ 2 are inevitable
                     return GetStatus("Met Whitney").Value1 >= 2;
@@ -1334,7 +1343,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     return GetFlag(2020).AsInt() == 1;
                 }
@@ -1345,7 +1354,7 @@ namespace CoCEd.ViewModel
             }
             set
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     GetFlag(2020).SetValue(value ? 1 : 0);
                 }
@@ -1375,13 +1384,13 @@ namespace CoCEd.ViewModel
         }
 
 
-        #region CoC-Revamp-Mod Specific
+        #region Revamp Specific
 
         public int ClawType
         {
             get { return GetInt("clawType"); }
             set {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     SetValue("clawType", value);
                 }
@@ -1392,7 +1401,7 @@ namespace CoCEd.ViewModel
         {
             get { return GetString("clawTone"); }
             set {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     SetValue("clawTone", value);
                 }
@@ -1404,7 +1413,7 @@ namespace CoCEd.ViewModel
             get { return GetInt("legCount"); }
             set
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     SetValue("legCount", value);
                 }
@@ -1421,7 +1430,7 @@ namespace CoCEd.ViewModel
             }
             set
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     if (value == LegConfigs) return;
                     LegCount = (value + 1) * 2;
@@ -1433,7 +1442,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (!IsRevampMod) return false;
+                if (!IsRevamp) return false;
                 switch (LowerBodyType)
                 {
                     // Types which definately have only a single allowed leg configuration.
@@ -1467,7 +1476,7 @@ namespace CoCEd.ViewModel
             get { return GetString("furColor"); }
             set
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     SetValue("furColor", value);
                 }
@@ -1481,10 +1490,10 @@ namespace CoCEd.ViewModel
 
         public double Hunger
         {
-            get { return IsRevampMod ? GetDouble("hunger") : 0.0; }
+            get { return IsRevamp ? GetDouble("hunger") : 0.0; }
             set
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     SetValue("hunger", value);
                     OnPropertyChanged("HungerTip");
@@ -1511,7 +1520,7 @@ namespace CoCEd.ViewModel
             get { return GetInt("beardStyle"); }
             set
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     SetValue("beardStyle", value);
                 }
@@ -1523,7 +1532,7 @@ namespace CoCEd.ViewModel
             get { return GetDouble("beardLength"); }
             set
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     SetValue("beardLength", value);
                 }
@@ -1532,10 +1541,10 @@ namespace CoCEd.ViewModel
 
         public int ExploredGlacialRift
         {
-            get { return IsRevampMod ? GetFlag(2059).AsInt() : 0; }
+            get { return IsRevamp ? GetFlag(2059).AsInt() : 0; }
             set
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     GetFlag(2059).SetValue(value);
                 }
@@ -1544,10 +1553,10 @@ namespace CoCEd.ViewModel
         
         public int ExploredVolcanicCrag
         {
-            get { return IsRevampMod ? GetFlag(2060).AsInt() : 0; }
+            get { return IsRevamp ? GetFlag(2060).AsInt() : 0; }
             set
             {
-                if (IsRevampMod)
+                if (IsRevamp)
                 {
                     GetFlag(2060).SetValue(value);
                 }

@@ -70,7 +70,7 @@ namespace CoCEd.ViewModel
         public void OnPerkChanged(string name)
         {
             // These must be here, rather than in OnPerkAddedOrRemoved(), to catch property value changes.
-            if (IsRevampMod)
+            if (IsRevamp)
             {
                 if (name == "Milk Maid")
                 {
@@ -83,7 +83,7 @@ namespace CoCEd.ViewModel
 
         public void OnFlagChanged(int index)
         {
-            if (IsRevampMod)
+            if (IsRevamp)
             {
                 if (index == 2008) // CAMP_CABIN_FURNITURE_DRESSER
                 {
@@ -103,7 +103,7 @@ namespace CoCEd.ViewModel
         public void OnKeyItemChanged(string name)
         {
             // These must be here, rather than in OnKeyItemAddedOrRemoved(), to catch property value changes.
-            if (IsRevampMod)
+            if (IsRevamp)
             {
                 if (name == "Backpack") // itemSlot# [6, 10]
                 {
@@ -142,7 +142,7 @@ namespace CoCEd.ViewModel
                     break;
 
                 case "Rapier Training":
-                    if (IsRevampMod)
+                    if (IsRevamp)
                     {
                         FlagVM rapierTraining = _allFlags[137]; // RAPHAEL_RAPIER_TRANING
                         if (isOwned)
@@ -175,7 +175,7 @@ namespace CoCEd.ViewModel
                 case "Camp - Chest":
                 case "Camp - Murky Chest":
                 case "Camp - Ornate Chest":
-                    if (IsRevampMod || name == "Camp - Chest")
+                    if (IsRevamp || name == "Camp - Chest")
                     {
                         var array = GetObj("itemStorage"); // max chest slots are 6 in CoC and 14 in CoC-Revamp-Mod
                         int count = name == "Camp - Chest" ? 6 : 4; // the CoC-Revamp-Mod addon chests add 4 slots a piece
@@ -226,7 +226,7 @@ namespace CoCEd.ViewModel
         void UpdateInventory()
         {
             _inventory.Clear();
-            int count = IsRevampMod ? 10 : 5; // max inventory slots are 5 in CoC and 10 in CoC-Revamp-Mod
+            int count = IsRevamp ? 10 : 5; // max inventory slots are 5 in CoC and 10 in CoC-Revamp-Mod
             for (int i = 0; i < count; i++)
             {
                 var slot = GetObj("itemSlot" + (i + 1));
@@ -243,7 +243,7 @@ namespace CoCEd.ViewModel
         void UpdateWeaponRack() // gearStorage [0, 8]
         {
             _weaponRack.Clear();
-            bool hasWeaponRack = IsRevampMod ? GetKeyItem("Equipment Rack - Weapons").IsOwned : GetFlag(254).AsInt() == 1;
+            bool hasWeaponRack = IsRevamp ? GetKeyItem("Equipment Rack - Weapons").IsOwned : GetFlag(254).AsInt() == 1;
             if (hasWeaponRack)
             {
                 var gearStorage = GetObj("gearStorage");
@@ -254,7 +254,7 @@ namespace CoCEd.ViewModel
         void UpdateArmorRack() // gearStorage [9, 17]
         {
             _armorRack.Clear();
-            bool hasArmorRack = IsRevampMod ? GetKeyItem("Equipment Rack - Armor").IsOwned : GetFlag(255).AsInt() == 1;
+            bool hasArmorRack = IsRevamp ? GetKeyItem("Equipment Rack - Armor").IsOwned : GetFlag(255).AsInt() == 1;
             if (hasArmorRack)
             {
                 var gearStorage = GetObj("gearStorage");

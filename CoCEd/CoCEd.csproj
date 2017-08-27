@@ -62,6 +62,7 @@
     </ApplicationDefinition>
     <Compile Include="Common\ArrayEditor.cs" />
     <Compile Include="Common\AutoGrid.cs" />
+    <Compile Include="Model\ModType.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -225,13 +226,16 @@
   <ItemGroup>
     <Resource Include="Assets\cross.png" />
     <Resource Include="Assets\search.png" />
+    <Content Include="CoCEd.DataXianxia.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="CoCEd.license.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="CoCEd.Data.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="CoCEd.DataRevampMod.xml">
+    <Content Include="CoCEd.DataRevamp.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

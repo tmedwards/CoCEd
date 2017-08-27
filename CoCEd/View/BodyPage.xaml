@@ -61,7 +61,7 @@
                     <TextBlock              Text="Skin adjective"/>
                     <ComboBox               Text="{Binding Game.SkinAdjective}" ItemsSource="{Binding Data.Body.SkinAdjectives}" Style="{StaticResource EditableTextBox}"/>
                 </common:AutoGrid>
-                <common:AutoGrid IsEnabled="{Binding Game.IsRevampMod}" Visibility="{Binding Game.RevampModVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                <common:AutoGrid IsEnabled="{Binding Game.IsRevamp}" Visibility="{Binding Game.RevampVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Fur color" IsEnabled="{Binding Game.IsFurEnabled}"/>
                     <ComboBox               Text="{Binding Game.FurColor}" ItemsSource="{Binding Data.Body.FurColors}" Style="{StaticResource EditableTextBox}" IsEnabled="{Binding Game.IsFurEnabled}"/>
                 </common:AutoGrid>
@@ -69,7 +69,7 @@
                     <TextBlock              Text="Arms"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.ArmType}" ItemsSource="{Binding Data.Body.ArmTypes}"/>
                 </common:AutoGrid>
-                <common:AutoGrid IsEnabled="{Binding Game.IsRevampMod}" Visibility="{Binding Game.RevampModVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                <common:AutoGrid IsEnabled="{Binding Game.IsRevamp}" Visibility="{Binding Game.RevampVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Claws"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.ClawType}" ItemsSource="{Binding Data.Body.ClawTypes}"/>
 
@@ -103,7 +103,7 @@
                     <TextBlock              Text="Lower body"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.LowerBodyType}" ItemsSource="{Binding Data.Body.LowerBodyTypes}"/>
                 </common:AutoGrid>
-                <common:AutoGrid IsEnabled="{Binding Game.HasLegConfigs}" Visibility="{Binding Game.RevampModVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                <common:AutoGrid IsEnabled="{Binding Game.HasLegConfigs}" Visibility="{Binding Game.RevampVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Leg configuration"/>
                     <ComboBox               SelectedIndex="{Binding Game.LegConfigs}">
                         <ComboBoxItem>Biped</ComboBoxItem>

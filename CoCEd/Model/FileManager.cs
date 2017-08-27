@@ -6,6 +6,7 @@ using System.Security;
 using System.Text;
 using System.Text.RegularExpressions;
 using CoCEd.ViewModel;
+using CoCEd.Common;
 
 namespace CoCEd.Model
 {
@@ -54,7 +55,7 @@ namespace CoCEd.Model
 
         public static int SaveSlotsUpperBoundByGame
         {
-            get { return VM.Instance.Game.IsRevampMod ? MaxSaveSlotsRevampMod : MaxSaveSlotsCoC; }
+            get { return VM.Instance.Game.IsRevamp ? MaxSaveSlotsRevampMod : MaxSaveSlotsCoC; }
         }
 
         public static FileEnumerationResult Result { get; private set; }

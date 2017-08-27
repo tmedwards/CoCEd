@@ -245,7 +245,7 @@ namespace CoCEd.ViewModel
         public void OnClick()
         {
             var dlg = new OpenFileDialog();
-            dlg.Filter = "\"Slot\" format|*.sol|\"Save to File\" format|*";
+            dlg.Filter = "\"Save to File\" format|*|\"Slot\" format|*.sol";
             dlg.DefaultExt = ".sol";
             dlg.CheckFileExists = true;
             dlg.Multiselect = false;
@@ -255,7 +255,7 @@ namespace CoCEd.ViewModel
             if (result == false) return;
 
             string path = dlg.FileName;
-            VM.Instance.Load(path, dlg.FilterIndex == 1 ? SerializationFormat.Slot : SerializationFormat.Exported, createBackup: true);
+            VM.Instance.Load(path, dlg.FilterIndex == 1 ? SerializationFormat.Exported : SerializationFormat.Slot, createBackup: true);
         }
     }
 
@@ -303,7 +303,7 @@ namespace CoCEd.ViewModel
         public void OnClick()
         {
             var dlg = new SaveFileDialog();
-            dlg.Filter = "\"Slot\" format (.sol)|*.sol|\"Save to File\" format|*";
+            dlg.Filter = "\"Save to File\" format|*|\"Slot\" format (.sol)|*.sol";
             dlg.AddExtension = true;
             dlg.OverwritePrompt = true;
             dlg.RestoreDirectory = true;
@@ -313,7 +313,8 @@ namespace CoCEd.ViewModel
             if (result == false) return;
 
             string path = dlg.FileName;
-            var format = (SerializationFormat)(dlg.FilterIndex - 1);
+            //var format = (SerializationFormat)(dlg.FilterIndex - 1);
+            var format = dlg.FilterIndex == 1 ? SerializationFormat.Exported : SerializationFormat.Slot;
 
             /*// CoC cannot read files from an external location, so prompt the user for confirmation.
             if (format == SerializationFormat.Exported && !FileManager.IsCoCPath(path))
@@ -369,13 +370,32 @@ namespace CoCEd.ViewModel
         {
             get 
             {
+                string label = "";
+                string suffix = "";
+
                 switch (_directoryKind)
                 {
-                    case DirectoryKind.External: return System.IO.Path.GetFileNameWithoutExtension(Source.FilePath);
-                    case DirectoryKind.Regular: return Source.Name;
-                    case DirectoryKind.Backup: return Source.Name + " - " + Source.Date.ToString();
-                    default: throw new NotImplementedException();
+                    case DirectoryKind.External:
+                        label = System.IO.Path.GetFileNameWithoutExtension(Source.FilePath);
+                        break;
+
+                    case DirectoryKind.Regular:
+                        label = Source.Name;
+                        break;
+
+                    case DirectoryKind.Backup:
+                        label = Source.Name;
+                        suffix = " - " + Source.Date.ToString();
+                        break;
+
+                    default:
+                        throw new NotImplementedException();
                 }
+
+                if (Source.Contains("soulforce")) label += "  [Xianxia]";
+                else if (Source.Contains("hunger")) label += "  [Revamp]";
+
+                return label + suffix;
             }
         }
 

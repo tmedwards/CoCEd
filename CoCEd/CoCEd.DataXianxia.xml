@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+
+	TODO: This file is incomplete and broken (the flags in particular).  Fix it.
+
+-->
 <CoCEd>
   <Body>
     <!-- ========================================================================================================================================== -->
@@ -1442,7 +1447,7 @@
     <Flag ID="99"   Name="EASY_MODE_ENABLE_FLAG"                        Description="0 = no, 1 = yes"/>
     <Flag ID="100"  Name="CORRUPT_MARAE_FOLLOWUP_ENCOUNTER_STATE"/>
     <Flag ID="101"  Name="FOUND_WIZARD_STAFF"/>
-    <Flag ID="102"  Name="JOJO_LAST_MEDITATION"                         Description="Last time Jojo meditation used"/>
+    <Flag ID="102"  Name="UNKNOWN_FLAG_NUMBER_00102"                    Description="Has extra Jojo time been cleared? - Jojo Debug Flag"/>
     <Flag ID="103"  Name="TIMES_AUTOFELLATIOED_EXGARTUAN"/>
     <Flag ID="104"  Name="WHITNEY_GEMS_PAID_THIS_WEEK"/>
     <Flag ID="105"  Name="TIMES_MET_SCYLLA_IN_ADDICTION_GROUP"/>
@@ -1594,8 +1599,8 @@
     <Flag ID="251"  Name="IZMA_CHILDREN_SHARKGIRLS"/>
     <Flag ID="252"  Name="IZMA_CHILDREN_TIGERSHARKS"/>
     <Flag ID="253"  Name="IZMA_TIME_TILL_NEW_BOOK_AVAILABLE"/>
-    <Flag ID="254"  Name="UNKNOWN_FLAG_NUMBER_00254"                    Description="Weapon Rack owned? 1 = yes"/>
-    <Flag ID="255"  Name="UNKNOWN_FLAG_NUMBER_00255"                    Description="Armor Rack owned? 2 = yes (should this be 1 = yes ?)"/>
+    <Flag ID="254"  Name="UNKNOWN_FLAG_NUMBER_00254"                    Description="Weapon rack owned: 1 = yes"/>
+    <Flag ID="255"  Name="UNKNOWN_FLAG_NUMBER_00255"                    Description="Armor rack owned: 1 = yes"/>
     <Flag ID="256"  Name="UNKNOWN_FLAG_NUMBER_00256"                    Description="PC decided to approach Isabella's camp yet? 1"/>
     <Flag ID="257"  Name="UNKNOWN_FLAG_NUMBER_00257"                    Description="Met Isabella?"/>
     <Flag ID="258"  Name="UNKNOWN_FLAG_NUMBER_00258"                    Description="Is Isabella okay with tall folks?"/>
@@ -2521,7 +2526,7 @@
     <Flag ID="1178" Name="PLAYER_INFECTED_IMPS"/>
     <Flag ID="1179" Name="FEMOIT_UNLOCKED"                              Description="Unlocked the option to feminise Benoit."/>
     <Flag ID="1180" Name="BIMBO_FEMOIT_UNLOCKED"                        Description="Unlocked the option to bimbofy Benoit."/>
-    <Flag ID="1181" Name="BENOIT_STATUS"                                Description="0 = male, 1 = female, 2 = bimbo."/>
+    <Flag ID="1181" Name="BENOIT_STATUS"                                Description="0 = male, 1 = female, 2 = bimbo"/>
     <Flag ID="1182" Name="FEMOIT_NEXTDAY_EVENT"                         Description="Proc the event the following day when you visit. Stores the minimum day number that the event can proc on."/>
     <Flag ID="1183" Name="FEMOIT_TALKED_TO"/>
     <Flag ID="1184" Name="KATHERINE_RANDOM_RECRUITMENT_DISABLED"/>
@@ -2601,326 +2606,6 @@
     <Flag ID="1258" Name="KATHERINE_MILK_OPTIONS"/>
     <Flag ID="1259" Name="SCYLLA_FURRY_FOURSOME_COUNT"/>
     <Flag ID="1260" Name="SCYLLA_SMALLCOCK_INTRO"                       Description="Player has had the initial small dick intro with Scylla."/>
-    <Flag ID="1261" Name="DRIDERINCUBUS_DEFEATED"/>
-    <Flag ID="1262" Name="DRIDERINCUBUS_KILLED"/>
-    <Flag ID="1263" Name="MITZI_RECRUITED"/>
-    <Flag ID="1264" Name="MITZI_FUCKED"/>
-    <Flag ID="1265" Name="DRIDERINCUBUS_FUCKED"/>
-    <Flag ID="1266" Name="MINOTAURKING_DEFEATED"/>
-    <Flag ID="1267" Name="MINOTAURKING_KILLED"/>
-    <Flag ID="1268" Name="MINOTAURKING_FUCKED"/>
-    <Flag ID="1269" Name="MINOTAURKINGSSLUT_FUCKED"/>
-    <Flag ID="1270" Name="MINOTAURKINGS_TOUCH"/>
-    <Flag ID="1271" Name="MINOTAURKING_ALIVE"/>
-    <Flag ID="1272" Name="LETHICE_DEFEATED"/>
-    <Flag ID="1273" Name="LAST_ATTACK_TYPE"/>
-    <Flag ID="1274" Name="LETHICE_NAME"/>
-    <Flag ID="1275" Name="LETHICE_FUCKED"/>
-    <Flag ID="1276" Name="LETHICE_REDEEMED"/>
-    <Flag ID="1277" Name="LETHICE_KILLED"/>
-    <Flag ID="1278" Name="LETHICE_LEFT_ALIVE"/>
-    <Flag ID="1279" Name="GAME_END"/>
-
-    <!-- The following flags are used solely by CoC-Revamp-Mod. -->
-    <Flag ID="1300" Name="BENOIT_EYES_TALK_UNLOCKED"/>
-    <Flag ID="1301" Name="BENOIT_BASIL_EYES_GRANTED"                    Description="Counter to track how often you've gained them."/>
-    <!-- CAUTION: ID gap here. -->
-    <Flag ID="2001" Name="TIMES_ORGASMED"/>
-    <Flag ID="2002" Name="CORRUPTED_MARAE_KILLED"/>
-    <Flag ID="2003" Name="CAMP_BUILT_CABIN"/>
-    <Flag ID="2004" Name="CAMP_CABIN_PROGRESS"/>
-    <Flag ID="2005" Name="CAMP_CABIN_WOOD_RESOURCES"/>
-    <Flag ID="2006" Name="CAMP_CABIN_FURNITURE_BED"/>
-    <Flag ID="2007" Name="CAMP_CABIN_FURNITURE_NIGHTSTAND"/>
-    <Flag ID="2008" Name="CAMP_CABIN_FURNITURE_DRESSER"/>
-    <Flag ID="2009" Name="CAMP_CABIN_FURNITURE_TABLE"/>
-    <Flag ID="2010" Name="CAMP_CABIN_FURNITURE_CHAIR1"/>
-    <Flag ID="2011" Name="CAMP_CABIN_FURNITURE_CHAIR2"/>
-    <Flag ID="2012" Name="CAMP_CABIN_FURNITURE_DESK"/>
-    <Flag ID="2013" Name="CAMP_CABIN_FURNITURE_DESKCHAIR"/>
-    <Flag ID="2014" Name="CAMP_CABIN_FURNITURE_BOOKSHELF"/>
-    <Flag ID="2015" Name="MET_MARAE"/>
-    <Flag ID="2016" Name="MET_MARAE_CORRUPTED"/>
-    <Flag ID="2017" Name="MARAE_QUEST_START"/>
-    <Flag ID="2018" Name="MARAE_QUEST_COMPLETE"/>
-    <Flag ID="2019" Name="MARAE_LETHICITE"/>
-    <Flag ID="2020" Name="FACTORY_FOUND"/>
-    <Flag ID="2021" Name="FACTORY_SUCCUBUS_DEFEATED"/>
-    <Flag ID="2022" Name="FACTORY_INCUBUS_DEFEATED"/>
-    <Flag ID="2023" Name="FACTORY_OMNIBUS_DEFEATED"/>
-    <Flag ID="2024" Name="FACTORY_SHUTDOWN"/>
-    <Flag ID="2025" Name="FACTORY_INCUBUS_BRIBED"/>
-    <Flag ID="2026" Name="FACTORY_TAKEN_LACTAID"/>
-    <Flag ID="2027" Name="FACTORY_TAKEN_GROPLUS"/>
-    <Flag ID="2028" Name="FACTORY_MILKER_BUILT"/>
-    <Flag ID="2029" Name="KELT_KILL_PLAN"/>
-    <Flag ID="2030" Name="KELT_KILLED"/>
-    <Flag ID="2031" Name="WHITNEY_GONE"/>
-    <Flag ID="2032" Name="CODEX_CURRENT_ENTRY"/>
-    <Flag ID="2033" Name="CODEX_CURRENT_PAGE"/>
-    <Flag ID="2034" Name="CODEX_UNUSED_FLAG_1"/>
-    <Flag ID="2035" Name="CODEX_UNUSED_FLAG_2"/>
-    <Flag ID="2036" Name="CODEX_ENTRY_ANEMONES"/>
-    <Flag ID="2037" Name="CODEX_ENTRY_ARACHNES"/>
-    <Flag ID="2038" Name="CODEX_ENTRY_FETISHFOLLOWERS"/>
-    <Flag ID="2039" Name="CODEX_ENTRY_GIANTBEES"/>
-    <Flag ID="2040" Name="CODEX_ENTRY_GOBLINS"/>
-    <Flag ID="2041" Name="CODEX_ENTRY_GOOGIRLS"/>
-    <Flag ID="2042" Name="CODEX_ENTRY_HARPIES"/>
-    <Flag ID="2043" Name="CODEX_ENTRY_HELLHOUNDS"/>
-    <Flag ID="2044" Name="CODEX_ENTRY_IMPS"/>
-    <Flag ID="2045" Name="CODEX_ENTRY_LABOVINES"/>
-    <Flag ID="2046" Name="CODEX_ENTRY_LIZANS"/>
-    <Flag ID="2047" Name="CODEX_ENTRY_MAGIC"/>
-    <Flag ID="2048" Name="CODEX_ENTRY_MINOTAURS"/>
-    <Flag ID="2049" Name="CODEX_ENTRY_NAGAS"/>
-    <Flag ID="2050" Name="CODEX_ENTRY_ORCS"/>
-    <Flag ID="2051" Name="CODEX_ENTRY_SALAMANDERS"/>
-    <Flag ID="2052" Name="CODEX_ENTRY_SANDWITCHES"/>
-    <Flag ID="2053" Name="CODEX_ENTRY_SATYRS"/>
-    <Flag ID="2054" Name="CODEX_ENTRY_SHARKGIRLS"/>
-    <Flag ID="2055" Name="CODEX_ENTRY_SUCCUBUS"/>
-    <Flag ID="2056" Name="PIG_SLUT_DISABLED"/>
-    <Flag ID="2057" Name="MARBLE_CORRUPT_MARAE_STORY"/>
-    <Flag ID="2058" Name="CAMP_PORTAL_PROGRESS"/>
-    <Flag ID="2059" Name="DISCOVERED_GLACIAL_RIFT"/>
-    <Flag ID="2060" Name="DISCOVERED_VOLCANO_CRAG"/>
-    <Flag ID="2061" Name="MET_YETI_FIRST_TIME"/>
-    <Flag ID="2062" Name="VALERIA_FOUND_IN_GLACIAL_RIFT"/>
-    <Flag ID="2063" Name="SHEILA_LETHICITE_FORGE_DAY"/>
-    <Flag ID="2064" Name="CHEAT_ENTERING_COUNTER_2"/>
-    <Flag ID="2065" Name="USE_OLD_INTERFACE"/>
-    <Flag ID="2066" Name="MOD_SAVE_VERSION"/>
-    <Flag ID="2067" Name="SFW_MODE"/>
-    <Flag ID="2068" Name="KEPT_PURE_JOJO_OVER_VAPULA"/>
-    <Flag ID="2069" Name="KEPT_PURE_AMILY_OVER_VAPULA"/>
-    <Flag ID="2070" Name="WATERSPORTS_ENABLED"/>
-    <Flag ID="2071" Name="LUSTSTICK_LIBIDO_INITIAL"/>
-    <Flag ID="2072" Name="LUSTSTICK_LIBIDO_MOD"/>
-    <Flag ID="2073" Name="PHOENIX_WANKED_COUNTER"/>
-    <Flag ID="2074" Name="TIMES_MASTURBATED"/>
-    <Flag ID="2075" Name="DEMONS_DEFEATED"/>
-    <Flag ID="2076" Name="AMILY_VILLAGE_EXPLORED"/>
-    <Flag ID="2077" Name="TIMES_TRANSFORMED"/>
-    <Flag ID="2078" Name="FACTORY_OMNIBUS_KILLED"/>
-    <Flag ID="2079" Name="HERMOIT_NEXTDAY_EVENT"/>
-    <Flag ID="2080" Name="HERMOIT_NEXTDAY_EVENT_DONE"/>
-    <Flag ID="2081" Name="ACHIEVEMENT_PROGRESS_FASTING"/>
-    <Flag ID="2082" Name="ACHIEVEMENT_PROGRESS_GLUTTON"/>
-    <Flag ID="2083" Name="ACHIEVEMENT_PROGRESS_SCHIZOPHRENIA"/>
-    <Flag ID="2084" Name="ACHIEVEMENT_PROGRESS_CLEAN_SLATE"/>
-    <Flag ID="2085" Name="ACHIEVEMENT_PROGRESS_TOTAL_DAMAGE"/>
-    <Flag ID="2086" Name="CLEARED_HEL_TOWER"/>
-    <Flag ID="2087" Name="MINERVA_PURIFICATION_PROGRESS"/>
-    <Flag ID="2088" Name="MINERVA_PURIFICATION_MARAE_TALKED"/>
-    <Flag ID="2089" Name="MINERVA_PURIFICATION_JOJO_TALKED"/>
-    <Flag ID="2090" Name="MINERVA_PURIFICATION_RATHAZUL_TALKED"/>
-    <Flag ID="2091" Name="MINERVA_CHILDREN"/>
-    <Flag ID="2092" Name="MINERVA_CORRUPTION_PROGRESS"/>
-    <Flag ID="2093" Name="MINERVA_TOWER_TREE"/>
-    <Flag ID="2094" Name="MINERVA_TOWER_REPAIRED"/>
-    <Flag ID="2095" Name="MINERVA_PREGNANCY_TYPE"/>
-    <Flag ID="2096" Name="MINERVA_PREGNANCY_INCUBATION"/>
-    <Flag ID="2097" Name="MINERVA_FOUND_LOST_SHARKGIRL"/>
-    <Flag ID="2098" Name="MINERVA_TELLS_ABOUT_PREGNANCY"/>
-    <Flag ID="2099" Name="TIMES_BIRTHED_SHARPIES"/>
-    <Flag ID="2100" Name="ACHIEVEMENT_PROGRESS_DEFORESTER"/>
-    <Flag ID="2101" Name="ACHIEVEMENT_PROGRESS_IM_NO_LUMBERJACK"/>
-    <Flag ID="2102" Name="ACHIEVEMENT_PROGRESS_HAMMER_TIME"/>
-    <Flag ID="2103" Name="ACHIEVEMENT_PROGRESS_SCAVENGER"/>
-    <Flag ID="2104" Name="TIMES_BAD_ENDED"/>
-    <Flag ID="2105" Name="CONDOMED"/>
-    <Flag ID="2106" Name="HELIA_HERMIFIED"/>
-    <Flag ID="2107" Name="IMP_LORD_MALEHERM_PROGRESS"/>
-    <Flag ID="2108" Name="EMBER_SPAR_VICTORIES"                         Description="Times PC won when sparring with Ember."/>
-    <Flag ID="2109" Name="PHOENIX_HP_LOSS_COUNTER"                      Description="If this reaches 3, bad end!"/>
-    <Flag ID="2110" Name="LIZAN_ROGUE_SEX_COUNTER"                      Description="Times sexed with lizan.  If this reaches 3, unlocks watersports scene, if watersports are enabled."/>
-    <Flag ID="2111" Name="BENOIT_PISTOL_BOUGHT"/>
-    <Flag ID="2112" Name="FLINTLOCK_PISTOL_AMMO"/>
-    <Flag ID="2113" Name="BENOIT_CLOCK_BOUGHT"/>
-    <Flag ID="2114" Name="BENOIT_CLOCK_ALARM"/>
-    <Flag ID="2115" Name="GOBLIN_ELDER_GRATEFUL_OVER_LETHICE_DEFEAT"/>
-    <Flag ID="2116" Name="MET_LIZAN_FIRST_TIME"/>
-    <Flag ID="2117" Name="TIMES_ENCOUNTERED_GOBLIN_WARRIOR"/>
-    <Flag ID="2118" Name="TIMES_ENCOUNTERED_GOBLIN_SHAMAN"/>
-    <Flag ID="2119" Name="TIMES_ENCOUNTERED_GOBLIN_ELDER"/>
-    <Flag ID="2120" Name="TIMES_ENCOUNTERED_GOBLIN_QUEEN"/>
-    <Flag ID="2121" Name="TIMES_ENCOUNTERED_IMP_WARLORD"/>
-    <Flag ID="2122" Name="TIMES_ENCOUNTERED_IMP_OVERLORD"/>
-    <Flag ID="2123" Name="IN_INGNAM"                                    Description="1 = in Ingnam."/>
-    <Flag ID="2124" Name="INGNAM_PROLOGUE_COMPLETE"/>
-    <Flag ID="2125" Name="INGNAM_WEAPONSMITH_TALKED"/>
-    <Flag ID="2126" Name="INGNAM_ARMORSMITH_TALKED"/>
-    <Flag ID="2127" Name="INGNAM_RUMORS"/>
-    <Flag ID="2128" Name="INGNAM_FARMER_MET"/>
-    <Flag ID="2129" Name="INGNAM_BLACKMARKET_TALKED"/>
-    <Flag ID="2130" Name="INGNAM_ALCHEMIST_TALKED"/>
-    <Flag ID="2131" Name="UNKNOWN_FLAG_NUMBER_02131"/>
-    <Flag ID="2132" Name="INGNAM_EARS_FREAKOUT"/>
-    <Flag ID="2133" Name="INGNAM_EARS_LAST_TYPE"/>
-    <Flag ID="2134" Name="INGNAM_TAIL_FREAKOUT"/>
-    <Flag ID="2135" Name="INGNAM_TAIL_LAST_TYPE"/>
-    <Flag ID="2136" Name="DISABLED_JOJO_RAPE"                           Description="1 = disabled Jojo rape."/>
-    <Flag ID="2137" Name="DISABLED_SEX_MACHINE"/>
-    <Flag ID="2138" Name="ENEMY_CRITICAL"/>
-    <Flag ID="2139" Name="MARBLE_HAMMER_QUEST_PROGRESS"/>
-    <Flag ID="2140" Name="SHIFT_KEY_DOWN"/>
-    <Flag ID="2141" Name="IN_PRISON"/>
-    <Flag ID="2142" Name="PRISON_CAPTURE_CHANCE"/>
-    <Flag ID="2143" Name="PRISON_TRAINING_LEVEL"/>
-    <Flag ID="2144" Name="PRISON_TRAINING_REFUSED"/>
-    <Flag ID="2145" Name="PRISON_DIRT_ENABLED"/>
-    <Flag ID="2146" Name="PRISON_PUNISHMENT"/>
-    <Flag ID="2147" Name="PRISON_DOOR_UNLOCKED"/>
-    <Flag ID="2148" Name="PRISON_CAPTURE_COUNTER"/>
-    <Flag ID="2149" Name="PRISON_DILDO_RACK"/>
-    <Flag ID="2150" Name="PRISON_TRAIN_SELF_CONTROL_UNLOCKED"/>
-    <Flag ID="2151" Name="PRISON_TRAIN_ANAL_CAPACITY_UNLOCKED"/>
-    <Flag ID="2152" Name="PRISON_TRAIN_PUPPY_TRICKS_UNLOCKED"/>
-    <Flag ID="2153" Name="PRISON_STUDY_MANNERS_UNLOCKED"/>
-    <Flag ID="2154" Name="PRISON_STUDY_BREATHING_UNLOCKED"/>
-    <Flag ID="2155" Name="PRISON_BITCHED_ABOUT_MARBLE_MILK"/>
-    <Flag ID="2156" Name="PRISON_EVENT_TIMEOUT"/>
-    <Flag ID="2157" Name="PRISON_STORAGE_ARMOR"/>
-    <Flag ID="2158" Name="PRISON_STORAGE_WEAPON"/>
-    <Flag ID="2159" Name="PRISON_STORAGE_SHIELD"/>
-    <Flag ID="2160" Name="MET_BEHEMOTH"/>
-    <Flag ID="2161" Name="BEHEMOTH_ANAL_PITCH"/>
-    <Flag ID="2162" Name="BEHEMOTH_ANAL_CATCH"/>
-    <Flag ID="2163" Name="BEHEMOTH_VAGINAL_CATCH"/>
-    <Flag ID="2164" Name="BEHEMOTH_COCK_SUCKED"/>
-    <Flag ID="2165" Name="BEHEMOTH_CUM_BATH"/>
-    <Flag ID="2166" Name="BEHEMOTH_WATERSPORTS"/>
-    <Flag ID="2167" Name="BEHEMOTH_GEMS"/>
-    <Flag ID="2168" Name="BEHEMOTH_TALK_LEVEL"/>
-    <Flag ID="2169" Name="BEHEMOTH_CHILDREN"/>
-    <Flag ID="2170" Name="BEHEMOTH_TENT"/>
-    <Flag ID="2171" Name="BEHEMOTH_TALKED_ABOUT_CUM"/>
-    <Flag ID="2172" Name="THIEF_GEMS"/>
-    <Flag ID="2173" Name="INGNAM_GREETED_AFTER_LONGTIME"/>
-    <Flag ID="2174" Name="CODEX_ENTRY_BEHEMOTH"/>
-    <Flag ID="2175" Name="SCARRED_BLADE_STATUS"/>
-    <Flag ID="2176" Name="PURE_MARAE_ENDGAME"/>
-    <Flag ID="2177" Name="UNEQUIP_SHIELD_BECAUSE_TWO_HANDED_WEAPON"/>
-    <Flag ID="2178" Name="CAMP_WALL_PROGRESS"                           Description="Should be in multiples of 20"/>
-    <Flag ID="2179" Name="CAMP_WALL_GATE"                               Description="1 = gate built"/>
-    <Flag ID="2180" Name="CAMP_WALL_SKULLS"                             Description="Number of imp skulls hung on camp wall"/>
-    <Flag ID="2181" Name="BEHEMOTH_CHILD_1_BIRTH_DAY"/>
-    <Flag ID="2182" Name="BEHEMOTH_CHILD_2_BIRTH_DAY"/>
-    <Flag ID="2183" Name="BEHEMOTH_CHILD_3_BIRTH_DAY"/>
-    <Flag ID="2184" Name="JOJO_SEX_COUNTER"/>
-    <Flag ID="2185" Name="JOJO_ANAL_XP"/>
-    <Flag ID="2186" Name="JOJO_LITTERS"/>
-    <Flag ID="2187" Name="JOJO_BLOWJOB_XP"/>
-    <Flag ID="2188" Name="JOJO_VAGINAL_CATCH_COUNTER"/>
-    <Flag ID="2189" Name="JOJO_LITTERS_AMILY_REACTION_COUNTER"/>
-    <Flag ID="2190" Name="LETHICITE_ARMOR_TAKEN"/>
-    <Flag ID="2191" Name="KIHA_UNDERGARMENTS"/>
-    <Flag ID="2192" Name="KIHA_PREGNANCY_TYPE"/>
-    <Flag ID="2193" Name="KIHA_INCUBATION"/>
-    <Flag ID="2194" Name="KIHA_EGG_COUNTER"/>
-    <Flag ID="2195" Name="KIHA_CHILDREN_BOYS"/>
-    <Flag ID="2196" Name="KIHA_CHILDREN_GIRLS"/>
-    <Flag ID="2197" Name="KIHA_CHILDREN_HERMS"/>
-    <Flag ID="2198" Name="KIHA_CHILD_MATURITY_COUNTER"/>
-    <Flag ID="2199" Name="KIHA_PREGNANCY_POTENTIAL"/>
-    <Flag ID="2200" Name="KIHA_PREGNANCY_POTENTIAL"/>
-    <Flag ID="2201" Name="IZMA_FEEDING_VALERIA"/>
-    <Flag ID="2202" Name="HELLHOUNDS_KILLED"/>
-    <Flag ID="2203" Name="IMPS_KILLED"/>
-    <Flag ID="2204" Name="GOBLINS_KILLED"/>
-    <Flag ID="2205" Name="MINOTAURS_KILLED"/>
-    <Flag ID="2206" Name="TIMES_SLEPT_WITH_EMBER"/>
-    <Flag ID="2207" Name="EMBER_MORNING"/>
-    <Flag ID="2208" Name="BASILISK_RESISTANCE_TRACKER"/>
-    <Flag ID="2209" Name="MINOTAUR_CUM_RESISTANCE_TRACKER"/>
-    <Flag ID="2210" Name="DLC_APRIL_FOOLS"/>
-    <Flag ID="2211" Name="GOBLIN_ELDER_TALK_COUNTER"/>
-    <Flag ID="2212" Name="ISABELLA_POTENCY_STATE"/>
-    <Flag ID="2213" Name="ISABELLA_COWMOTHER"/>
-    <Flag ID="2214" Name="ISABELLA_PREGNANCY_TYPE"/>
-    <Flag ID="2215" Name="ISABELLA_PREGNANCY_INCUBATION"/>
-    <Flag ID="2216" Name="ISABELLA_PREGNANCY_BOOSTED"/>
-    <Flag ID="2217" Name="ISABELLA_CHILDREN_HUMANS"/>
-    <Flag ID="2218" Name="ISABELLA_CHILDREN_COWGIRLS"/>
-    <Flag ID="2219" Name="ISABELLA_COUNTDOWN_TO_CONTRACEPTIONS"/>
-    <Flag ID="2220" Name="ISABELLA_VALERIA_SPARRED"/>
-    <Flag ID="2221" Name="FAERIE_ENCOUNTER_DISABLED"/>
-    <Flag ID="2222" Name="MINERVA_CORRUPTED_CUM_ADDICTION"/>
-    <Flag ID="2223" Name="ERLKING_CANE_OBTAINED"/>
-    <Flag ID="2224" Name="ERLKING_CANE_ATTACK_COUNTER"                  Description="Has a chance to break if &#x2265; 10"/>
-    <Flag ID="2225" Name="KIHA_DESTROYING_CORRUPTED_GLADES"             Description="1 = Kiha is currently destroying corrupted glades"/>
-    <Flag ID="2226" Name="AMILY_DESTROYING_CORRUPTED_GLADES"            Description="1 = Amily is currently destroying corrupted glades"/>
-    <Flag ID="2227" Name="BIMBO_LIQUEUR_STASH_COUNTER_FOR_JOJO"/>
-    <Flag ID="2228" Name="JOJO_BIMBO_STATE"/>
-    <Flag ID="2229" Name="JOY_COCK_SIZE"/>
-    <Flag ID="2230" Name="JOY_BREAST_SIZE"/>
-    <Flag ID="2231" Name="JOY_VAGINAL_WETNESS"/>
-    <Flag ID="2232" Name="JOY_LACTAID_MILKED_COUNTER"/>
-    <Flag ID="2233" Name="JOY_INTELLIGENCE"                             Description="Starts at 20, increases by 1-4 with each dose of Scholar's Tea, up to maximum of 50. Increases chance of successfully meditating."/>
-    <Flag ID="2234" Name="TIMES_PENETRATED_JOY_VAGINALLY"/>
-    <Flag ID="2235" Name="TIMES_LICKED_JOYS_PUSSY"/>
-    <Flag ID="2236" Name="TIMES_FROTTED_WITH_JOY"/>
-    <Flag ID="2237" Name="TIMES_GET_BLOWN_BY_JOY"/>
-    <Flag ID="2238" Name="TIMES_GET_LICKED_BY_JOY"/>
-    <Flag ID="2239" Name="JOY_TALKED_ABOUT_YOURSELF"/>
-    <Flag ID="2240" Name="JOY_TALKED_ABOUT_HERSELF"/>
-    <Flag ID="2241" Name="JOY_TALKED_ABOUT_OLD_LIFE"/>
-    <Flag ID="2242" Name="JOY_TALKED_ABOUT_DEMONS"/>
-    <Flag ID="2243" Name="JOY_TALKED_ABOUT_BABIES"/>
-    <Flag ID="2244" Name="JOY_COCK_FONDNESS"                            Description="When this reaches 10, Joy won't take any more pink eggs."/>
-    <Flag ID="2245" Name="JOY_EATEN_BLUE_EGG"/>
-    <Flag ID="2246" Name="JOY_PREGNANCY_TYPE"/>
-    <Flag ID="2247" Name="JOY_PREGNANCY_INCUBATION"/>
-    <Flag ID="2248" Name="JOY_TWINS_BIRTHED"/>
-    <Flag ID="2249" Name="JOY_NIGHT_FUCK"/>
-    <Flag ID="2250" Name="JOY_TAKES_BABIES_AWAY_COUNTER"/>
-    <Flag ID="2251" Name="BLACK_COCK_MET_ANITA"/>
-    <Flag ID="2252" Name="BLACK_COCK_MET_ANDY"/>
-    <Flag ID="2253" Name="BLACK_COCK_MET_HARRY"/>
-    <Flag ID="2254" Name="BLACK_COCK_MET_FRIDA"/>
-    <Flag ID="2255" Name="BLACK_COCK_ANITA_SONGS_LISTENED"/>
-    <Flag ID="2256" Name="BLACK_COCK_ANITA_SEX_INTRO"/>
-    <Flag ID="2257" Name="BLACK_COCK_ANITA_SEX_COUNTER"/>
-    <Flag ID="2258" Name="BLACK_COCK_ANDY_STASH_STATE"/>
-    <Flag ID="2259" Name="BLACK_COCK_ANDY_ORAL_GIVEN"/>
-    <Flag ID="2260" Name="BLACK_COCK_ANDY_SEX_COUNTER"/>
-    <Flag ID="2261" Name="BLACK_COCK_HARRY_SEX_INTRO"/>
-    <Flag ID="2262" Name="BLACK_COCK_HARRY_SEX_COUNTER"/>
-    <Flag ID="2263" Name="BLACK_COCK_FRIDAS_CAKE_EATEN_COUNTER"/>
-    <Flag ID="2264" Name="CODEX_ENTRY_RHINOS"/>
-    <Flag ID="2265" Name="CODEX_ENTRY_ECHIDNAS"/>
-    <Flag ID="2266" Name="URTA_VIXEN_AND_CREAM_COUNTER"/>
-    <Flag ID="2267" Name="CAMP_CABIN_STONE_RESOURCES"/>
-    <Flag ID="2268" Name="ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO"/>
-    <Flag ID="2269" Name="ACHIEVEMENT_PROGRESS_ANTWORKS"/>
-    <Flag ID="2270" Name="CODEX_ENTRY_ZEBRAS"/>
-    <Flag ID="2271" Name="ACHIEVEMENT_PROGRESS_EGG_HUNTER"/>
-    <Flag ID="2272" Name="CURRENT_WEATHER"/>
-    <Flag ID="2273" Name="WEATHER_CHANGE_COOLDOWN"                      Description="4 hours to prevent weather from changing too fast."/>
-    <Flag ID="2274" Name="TAMANI_DEFEAT_COUNTER"/>
-    <Flag ID="2275" Name="TAMANI_BAD_ENDED"/>
-    <Flag ID="2276" Name="PHYLLA_STONES_HUNTED_TODAY"/>
-    <Flag ID="2277" Name="ANZU_PALACE_UNLOCKED"/>
-    <Flag ID="2278" Name="ANZU_RELATIONSHIP_LEVEL"/>
-    <Flag ID="2279" Name="ANZU_AFFECTION"/>
-    <Flag ID="2280" Name="ANZU_TIMES_TALKED"/>
-    <Flag ID="2281" Name="ANZU_TALKED_PAST"/>
-    <Flag ID="2282" Name="ANZU_TALKED_PALACE"/>
-    <Flag ID="2283" Name="ANZU_TALKED_RIFT"/>
-    <Flag ID="2284" Name="ANZU_TALKED_POWERS"/>
-    <Flag ID="2285" Name="ANZU_TALKED_GODS"/>
-    <Flag ID="2286" Name="ANZU_TIMES_DINED"/>
-    <Flag ID="2287" Name="UNKNOWN_FLAG_NUMBER_02287"/>
-    <Flag ID="2288" Name="UNKNOWN_FLAG_NUMBER_02288"/>
-    <Flag ID="2289" Name="UNKNOWN_FLAG_NUMBER_02289"/>
-    <Flag ID="2290" Name="UNKNOWN_FLAG_NUMBER_02290"/>
-    <Flag ID="2291" Name="UNKNOWN_FLAG_NUMBER_02291"/>
-    <Flag ID="2292" Name="UNKNOWN_FLAG_NUMBER_02292"/>
-    <Flag ID="2293" Name="UNKNOWN_FLAG_NUMBER_02293"/>
-    <Flag ID="2294" Name="UNKNOWN_FLAG_NUMBER_02294"/>
-    <Flag ID="2295" Name="SANDWITCH_SERVICED"/>
-    <Flag ID="2296" Name="JOJO_STATUS"/>
 
     <!--
         The flags below this point come from the code, but they really do not need to be exposed
@@ -2930,28 +2615,8 @@
         for completeness (and, maybe, if individual users decide to enable some or all of them).
     -->
 
-    <!-- The following flags are used solely by CoC-Revamp-Mod. -->
-    <Flag ID="2979" Name="NEW_GAME_PLUS_LEVEL"                          Description="Current New Game+ level.  Each ascension increments level by 1."/>
-    <Flag ID="2980" Name="NEW_GAME_PLUS_BONUS_UNLOCKED_HERM"            Description="Unlocks hermaphrodite as a starting gender option."/>
-    <!-- Flag ID="2981" Name="USE_OLD_INTERFACE"                            Description="1 = classic interface used"/ -->
-    <!-- Flag ID="2982" Name="IMAGEPACK_OFF"                                Description="1 = imagepack disabled"/ -->
-    <!-- Flag ID="2983" Name="SPRITE_STYLE"                                 Description="1 = original sprites used"/ -->
-    <!-- Flag ID="2984" Name="AUTO_LEVEL"                                   Description="1 = automatic leveling enabled"/ -->
-    <!-- Flag ID="2985" Name="SFW_MODE"                                     Description="1 = SFW enabled"/ -->
-    <!-- Flag ID="2986" Name="WATERSPORTS_ENABLED"                          Description="1 = watersport scenes enabled"/ -->
-    <!-- Flag ID="2987" Name="USE_METRICS"                                  Description="0 = US Customary, 1 = SI/Metric"/ -->
-    <!-- Flag ID="2988" Name="USE_OLD_FONT"                                 Description="Side bar font."/ -->
-    <!-- Flag ID="2989" Name="BACKGROUND_STYLE"                             Description="Background theme."/ -->
-    <!-- Flag ID="2990" Name="GAME_DIFFICULTY"                              Description="0 = normal, 1 = hard, 2 = nightmare, 3 = extreme.  Affects HP and damage."/ -->
-    <!-- Flag ID="2991" Name="HARDCORE_MODE"                                Description="1 = enabled.  Forces save and causes deletion of save file on bad end."/ -->
-    <!-- Flag ID="2992" Name="HARDCORE_SLOT"                                Description="The current slot for hardcore mode.  Forced autosave will save over the selected slot."/ -->
-    <!-- Flag ID="2993" Name="HUNGER_ENABLED"                               Description="1 = hunger enabled"/ -->
-    <!-- Flag ID="2994" Name="USE_12_HOURS"                                 Description="0 = 24-hour clock, 1 = 12-hour clock"/ -->
-
-    <!-- Flag ID="2995" Name="MEANINGLESS_CORRUPTION"                       Description="Disables corruption requirements."/ -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"                                Description="Eternal holiday!"/ -->
     <!-- Flag ID="2997" Name="LOW_STANDARDS_FOR_ALL"/ -->
     <!-- Flag ID="2998" Name="HYPER_HAPPY"/ -->
-    <!-- Flag ID="2999" Name="KAIZO_MODE"/ -->
   </Flags>
 </CoCEd>

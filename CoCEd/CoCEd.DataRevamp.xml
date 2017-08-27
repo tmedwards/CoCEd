@@ -3,6 +3,7 @@
   <Body>
     <!-- ========================================================================================================================================== -->
     <SkinTypes>
+      <SkinType ID="5" Name="Draconic"/>
       <SkinType ID="1" Name="Fur"/>
       <SkinType ID="3" Name="Goo"/>
       <SkinType ID="2" Name="Scales"/>
@@ -71,6 +72,7 @@
       <HairType ID="3" Name="Goo"/>
       <HairType ID="0" Name="Human"/>
       <HairType ID="2" Name="Transparent (ghostly)"/>
+      <HairType ID="5" Name="Quill"/>
     </HairTypes>
     <!-- ========================================================================================================================================== -->
     <HairColors>
@@ -175,13 +177,45 @@
       <HairColor>rubbery white</HairColor>
     </HairColors>
     <!-- ========================================================================================================================================== -->
+    <FurColors>
+      <FurColor>auburn</FurColor>
+      <FurColor>black</FurColor>
+      <FurColor>black and white</FurColor>
+      <FurColor>black and white spotted</FurColor>
+      <FurColor>brown</FurColor>
+      <FurColor>brown and white</FurColor>
+      <FurColor>caramel</FurColor>
+      <FurColor>chocolate</FurColor>
+      <FurColor>dark gray</FurColor>
+      <FurColor>golden</FurColor>
+      <FurColor>gray</FurColor>
+      <FurColor>gray and white</FurColor>
+      <FurColor>light gray</FurColor>
+      <FurColor>midnight black</FurColor>
+      <FurColor>orange</FurColor>
+      <FurColor>orange and white</FurColor>
+      <FurColor>peach</FurColor>
+      <FurColor>sandy brown</FurColor>
+      <FurColor>silver</FurColor>
+      <FurColor>white</FurColor>
+    </FurColors>
+    <!-- ========================================================================================================================================== -->
+    <BeardTypes>
+      <BeardType ID="2" Name="Cleancut"/>
+      <BeardType ID="1" Name="Goatee"/>
+      <BeardType ID="3" Name="Mountain-man"/>
+      <BeardType ID="0" Name="Normal"/>
+    </BeardTypes>
+    <!-- ========================================================================================================================================== -->
     <FaceTypes>
+      <FaceType ID="20" Name="Boar"/>
       <FaceType ID="8"  Name="Bunny"/>
       <FaceType ID="6"  Name="Cat"/>
       <FaceType ID="3"  Name="Cow/Minotaur"/>
       <FaceType ID="23" Name="Deer"/>
       <FaceType ID="2"  Name="Dog"/>
       <FaceType ID="12" Name="Dragon"/>
+      <FaceType ID="22" Name="Echidna"/>
       <FaceType ID="17" Name="Ferret mask"/>
       <FaceType ID="18" Name="Ferret face"/>
       <FaceType ID="11" Name="Fox"/>
@@ -191,8 +225,10 @@
       <FaceType ID="7"  Name="Lizard"/>
       <FaceType ID="15" Name="Mouse buckteeth"/>
       <FaceType ID="16" Name="Mouse face"/>
+      <FaceType ID="19" Name="Pig"/>
       <FaceType ID="13" Name="Raccoon mask"/>
       <FaceType ID="14" Name="Raccoon face"/>
+      <FaceType ID="21" Name="Rhino"/>
       <FaceType ID="4"  Name="Shark teeth"/>
       <FaceType ID="5"  Name="Snake fangs"/>
       <FaceType ID="10" Name="Spider fangs"/>
@@ -201,13 +237,17 @@
     <TongueTypes>
       <TongueType ID="2" Name="Demonic"/>
       <TongueType ID="3" Name="Draconic"/>
+      <TongueType ID="4" Name="Echidna"/>
       <TongueType ID="0" Name="Human"/>
       <TongueType ID="1" Name="Snake"/>
     </TongueTypes>
     <!-- ========================================================================================================================================== -->
     <EyeTypes>
+      <EyeType ID="5" Name="Basilisk"/>
       <EyeType ID="2" Name="Black (Sand Trap)"/>
+      <EyeType ID="4" Name="Dragon"/>
       <EyeType ID="0" Name="Human"/>
+      <EyeType ID="3" Name="Lizard"/>
       <EyeType ID="1" Name="Spider (4&#x00D7; eyes)"/>
     </EyeTypes>
     <!-- ========================================================================================================================================== -->
@@ -215,8 +255,10 @@
       <EarType ID="7"  Name="Bunny"/>
       <EarType ID="5"  Name="Cat"/>
       <EarType ID="3"  Name="Cow/Minotaur"/>
+      <EarType ID="17" Name="Deer"/>
       <EarType ID="2"  Name="Dog"/>
       <EarType ID="10" Name="Dragon"/>
+      <EarType ID="16" Name="Echidna"/>
       <EarType ID="4"  Name="Elfin"/>
       <EarType ID="13" Name="Ferret"/>
       <EarType ID="9"  Name="Fox"/>
@@ -225,7 +267,9 @@
       <EarType ID="8"  Name="Kangaroo"/>
       <EarType ID="6"  Name="Lizard"/>
       <EarType ID="12" Name="Mouse"/>
+      <EarType ID="14" Name="Pig"/>
       <EarType ID="11" Name="Raccoon"/>
+      <EarType ID="15" Name="Rhino"/>
     </EarTypes>
     <!-- ========================================================================================================================================== -->
     <HornTypes>
@@ -235,6 +279,9 @@
       <HornType ID="1" Name="Demon"/>
       <HornType ID="3" Name="Draconic &#x00D7;2"/>
       <HornType ID="4" Name="Draconic &#x00D7;4 (12&#x2033; long)"/>
+      <HornType ID="6" Name="Goat"/>
+      <HornType ID="8" Name="Rhino"/>
+      <HornType ID="7" Name="Unicorn"/>
     </HornTypes>
     <!-- ========================================================================================================================================== -->
     <AntennaeTypes>
@@ -245,26 +292,65 @@
     <ArmTypes>
       <ArmType ID="1" Name="Harpy"/>
       <ArmType ID="0" Name="Human"/>
+      <ArmType ID="4" Name="Predator"/>
+      <ArmType ID="5" Name="Salamander"/>
       <ArmType ID="2" Name="Spider"/>
     </ArmTypes>
+    <!-- ========================================================================================================================================== -->
+    <ClawTypes>
+      <ClawType ID="0" Name="None"/>
+      <!-- ClawType ID="4" Name="Cat"/ -->
+      <!-- ClawType ID="5" Name="Dog"/ -->
+      <ClawType ID="2" Name="Dragon"/>
+      <ClawType ID="1" Name="Lizard"/>
+      <!-- ClawType ID="7" Name="Mantis"/ -->
+      <!-- ClawType ID="6" Name="Raptor"/ -->
+      <ClawType ID="3" Name="Salamander"/>
+    </ClawTypes>
+    <!-- ========================================================================================================================================== -->
+    <ClawTones>
+      <ClawTone/>
+      <ClawTone>bluish</ClawTone>
+      <ClawTone>dark-gray</ClawTone>
+      <ClawTone>fiery-red</ClawTone>
+      <ClawTone>gray</ClawTone>
+      <ClawTone>greenish</ClawTone>
+      <ClawTone>light-gray</ClawTone>
+      <ClawTone>orangey</ClawTone>
+      <ClawTone>pale-yellow</ClawTone>
+      <ClawTone>pink</ClawTone>
+      <ClawTone>purplish</ClawTone>
+      <ClawTone>reddish</ClawTone>
+      <ClawTone>silvery</ClawTone>
+      <ClawTone>steel-gray</ClawTone>
+      <ClawTone>yellowish</ClawTone>
+    </ClawTones>
     <!-- ========================================================================================================================================== -->
     <TailTypes>
       <TailType ID="0"  Name="None"/>
       <TailType ID="6"  Name="Bee abdomen"/>
+      <TailType ID="18" Name="Behemoth"/>
       <TailType ID="8"  Name="Cat"/>
       <TailType ID="4"  Name="Cow/Minotaur"/>
+      <TailType ID="24" Name="Deer"/>
       <TailType ID="3"  Name="Demonic"/>
       <TailType ID="2"  Name="Dog"/>
       <TailType ID="14" Name="Draconic"/>
+      <TailType ID="23" Name="Echidna"/>
       <TailType ID="17" Name="Ferret"/>
       <TailType ID="13" Name="Fox"/>
+      <TailType ID="21" Name="Goat"/>
       <TailType ID="11" Name="Harpy"/>
       <TailType ID="1"  Name="Horse"/>
       <TailType ID="12" Name="Kangaroo"/>
       <TailType ID="9"  Name="Lizard"/>
       <TailType ID="16" Name="Mouse"/>
+      <TailType ID="19" Name="Pig"/>
       <TailType ID="10" Name="Rabbit"/>
       <TailType ID="15" Name="Raccoon"/>
+      <TailType ID="22" Name="Rhino"/>
+      <TailType ID="25" Name="Salamander"/>
+      <TailType ID="20" Name="Scorpion"/>
       <TailType ID="7"  Name="Shark"/>
       <TailType ID="5"  Name="Spider adbomen"/>
     </TailTypes>
@@ -298,13 +384,14 @@
       <LowerBodyType ID="7"  Name="Bee"/>
       <LowerBodyType ID="12" Name="Bunny"/>
       <LowerBodyType ID="9"  Name="Cat"/>
-      <LowerBodyType ID="4"  Name="Centaur"/>
       <LowerBodyType ID="15" Name="Chitinous spider legs"/>
+      <LowerBodyType ID="21" Name="Cloven-hoofed"/>
       <LowerBodyType ID="6"  Name="Demonic claws"/>
       <LowerBodyType ID="5"  Name="Demonic high-heels"/>
       <LowerBodyType ID="2"  Name="Dog"/>
       <LowerBodyType ID="18" Name="Dragon"/>
       <LowerBodyType ID="16" Name="Drider"/>
+      <LowerBodyType ID="23" Name="Echidna"/>
       <LowerBodyType ID="20" Name="Ferret"/>
       <LowerBodyType ID="17" Name="Fox"/>
       <LowerBodyType ID="8"  Name="Goo"/>
@@ -316,6 +403,7 @@
       <LowerBodyType ID="3"  Name="Naga"/>
       <LowerBodyType ID="11" Name="Pony"/>
       <LowerBodyType ID="19" Name="Raccoon"/>
+      <LowerBodyType ID="25" Name="Salamander"/>
     </LowerBodyTypes>
     <!-- ========================================================================================================================================== -->
     <PiercingTypes>
@@ -344,26 +432,34 @@
     <!-- ========================================================================================================================================== -->
     <CockTypes>
       <CockType ID="7"  Name="Anemone"/>
+      <CockType ID="14" Name="Avian"/>
       <CockType ID="12" Name="Bee"/>
       <CockType ID="5"  Name="Cat"/>
       <CockType ID="10" Name="C&#x0153;url"/>
       <CockType ID="3"  Name="Demon"/>
       <CockType ID="2"  Name="Dog"/>
       <CockType ID="9"  Name="Dragon"/>
+      <CockType ID="16" Name="Echidna"/>
+      <CockType ID="11" Name="Fox"/>
       <CockType ID="1"  Name="Horse"/>
       <CockType ID="0"  Name="Human"/>
       <CockType ID="8"  Name="Kangaroo"/>
       <CockType ID="6"  Name="Lizard"/>
+      <CockType ID="13" Name="Pig"/>
+      <CockType ID="15" Name="Rhino"/>
       <CockType ID="4"  Name="Tentacle"/>
     </CockTypes>
     <!-- ========================================================================================================================================== -->
     <CockSockTypes>
       <CockSockType ID=""            Name="None"/>
       <CockSockType ID="alabaster"   Name="Alabaster"/>
+      <CockSockType ID="blue"        Name="Blue"/>
       <CockSockType ID="cobalt"      Name="Cobalt"/>
       <CockSockType ID="cockring"    Name="Cockring"/>
       <CockSockType ID="gilded"      Name="Gilded"/>
+      <CockSockType ID="green"       Name="Green"/>
       <CockSockType ID="amaranthine" Name="Purple"/>
+      <CockSockType ID="red"         Name="Red"/>
       <CockSockType ID="scarlet"     Name="Scarlet"/>
       <CockSockType ID="viridian"    Name="Viridian"/>
       <CockSockType ID="wool"        Name="Wool"/>
@@ -371,6 +467,7 @@
     <!-- ========================================================================================================================================== -->
     <VaginaTypes>
       <VaginaType ID="5" Name="Black (Sand Trap)"/>
+      <VaginaType ID="1" Name="Horse"/>
       <VaginaType ID="0" Name="Human"/>
     </VaginaTypes>
     <!-- ========================================================================================================================================== -->
@@ -415,6 +512,7 @@
       <PregnancyType ID="10"    Name="Anemone"/>
       <PregnancyType ID="14"    Name="Basilisk"/>
       <PregnancyType ID="18"    Name="Basilisk (Benoit)"/>
+      <PregnancyType ID="35"    Name="Behemoth"/>
       <PregnancyType ID="9"     Name="Bunny-girl Eggs"/>
       <PregnancyType ID="7"     Name="Centaur"/>
       <PregnancyType ID="30"    Name="Centaur (Kelt)"/>
@@ -434,9 +532,11 @@
       <PregnancyType ID="11"    Name="Mouse-morph (Amily)"/>
       <PregnancyType ID="29"    Name="Mouse-morph (Jojo)"/>
       <PregnancyType ID="4"     Name="Mouse-morph (Corrupt &amp; Other)"/>
+      <!-- PregnancyType ID="36"    Name="Phoenix (unused)"/ -->
       <PregnancyType ID="22"    Name="Sand Witch"/>
       <PregnancyType ID="19"    Name="Satyr"/>
       <PregnancyType ID="12"    Name="Shark/Tigershark-morph (Izma)"/>
+      <PregnancyType ID="34"    Name="Siren (Minerva)"/>
       <PregnancyType ID="13"    Name="Spider-morph"/>
       <PregnancyType ID="31"    Name="&#x25CA;&#x202F; Taoth (&quot;Urta Quest&quot;)"/>
       <!-- Oviposition Elixir egg "pregnancies" are unchanged, I think. -->
@@ -471,27 +571,42 @@
     <ItemGroup Name="Miscellaneous" Category="Other">
       <Item ID="B. Book" Name="Black Book"/>
       <Item ID="B.Chitn" Name="Black Chitin"/>
+      <Item ID="DbgWand" Name="Debug Wand"     Description="You filthy cheater!  You should be hung by your ba&#x2014; Oh, wait&#x2026; nevermind."/>
+      <Item ID="D.Scale" Name="Dragon Scale"/>
       <Item ID="GldStat" Name="Golden Statue"  Description="Enables the Meditate action at the kitsune shrine in the Deepwoods.  May also be stolen and sold for gems."/>
       <Item ID="GreenGl" Name="Green Gel"/>
+      <Item ID="ImpSkll" Name="Imp Skull"      Description="Used to decorate the wall.  Will have another uses eventually."/>
+      <Item ID="Lethite" Name="Lethicite"/>
       <Item ID="T.SSilk" Name="Tough Silk"/>
       <Item ID="W. Book" Name="White Book"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
     <ItemGroup Name="Consumables" Category="Other">
+      <Item ID="AkbalSl" Name="Akbal's Saliva"/>
+      <Item ID="BhmtCum" Name="Behemoth's Cum"/>
       <Item ID="BimboCh" Name="Bimbo Champagne"/>
       <Item ID="BimboLq" Name="Bimbo Liqueur"/>
       <Item ID="BC Beer" Name="Black Cat Beer"/>
       <Item ID="BroBrew" Name="Bro Brew"/>
+      <Item ID="C. Mint" Name="Calm Mint"/>
       <Item ID="Cerul P" Name="Cerulean Potion"/>
+      <Item ID="CCupcak" Name="Chocolate Cupcake"/>
       <Item ID="Coal   " Name="Coal"/>
+      <Item ID="Condom " Name="Condom"                      Description="Can be used in certain sex scenes. Nullifies corruption gains.  Prevents pregnancy and (non-existent) STDs."/>
+      <Item ID="C.Bread" Name="Cum Bread"/>
       <Item ID="Debimbo" Name="Debimbo"/>
       <Item ID="DrgnEgg" Name="Dragon Egg"                  Description="Reduces fatigue by 20 and, for the DragonFire breath special attack, either removes the existing cooldown or gives a 50% bonus on your next use."/>
+      <Item ID="DrakHrt" Name="Drake's Heart Flower"/>
       <Item ID="FishFil" Name="Fish Fillet"/>
+      <Item ID="Fr Beer" Name="Frothy Beer"/>
       <Item ID="F.Draft" Name="Fuck Draft"/>
       <Item ID="GodMead" Name="God's Mead"/>
       <Item ID="GroPlus" Name="GroPlus"/>
       <Item ID="ExtSerm" Name="Hair Extension Serum"/>
+      <Item ID="H.Bisct" Name="Hard Biscuits"/>
+      <Item ID="H. Pill" Name="Heal Pill"/>
       <Item ID="HrblCnt" Name="Herbal Contraceptive"/>
+      <Item ID="Icicle " Name="Ice Shard"/>
       <Item ID="IzyMilk" Name="Isabella's Milk"/>
       <Item ID="KitGift" Name="Kitsune's Gift"/>
       <Item ID="Lactaid" Name="Lactaid"/>
@@ -499,23 +614,32 @@
       <Item ID="LustStk" Name="Lust Stick"/>
       <Item ID="M. Milk" Name="Marble's Milk"/>
       <Item ID="MinoCum" Name="Minotaur Cum"/>
+      <Item ID="NumbOil" Name="Numb Oil"/>
       <Item ID="NumbRox" Name="Numb Rocks"/>
       <Item ID="OviElix" Name="Oviposition Elixir"/>
       <Item ID="PeppWht" Name="Peppermint White"/>
       <Item ID="P_Whsky" Name="Phouka Whiskey"              Description="Increases Faerie/Phouka pregnancy corruption."/>
+      <Item ID="MilkPtn" Name="ProLactaid"/>
       <Item ID="PrnsPkr" Name="Princess Pucker"             Description="Reduces lust and either libido or sensitivity.  Also has a random chance to change hair color to pink."/>
+      <Item ID="P.Bread" Name="Prison Bread"/>
       <Item ID="PurPeac" Name="Pure Peach"/>
       <Item ID="P.Pearl" Name="Pure Pearl"/>
+      <Item ID="P.M.Cum" Name="Purified Minotaur Cum"/>
       <Item ID="PSDelit" Name="Purified Succubi's Delite"/>
+      <Item ID="PPhiltr" Name="Purity Philter"/>
       <Item ID="Reducto" Name="Reducto"/>
       <Item ID="Smart T" Name="Scholar's Tea"/>
       <Item ID="SensDrf" Name="Sensitivity Draft"/>
       <Item ID="SheepMk" Name="Sheep Milk"/>
+      <Item ID="S.Water" Name="Spring Water"/>
       <Item ID="SDelite" Name="Succubi's Delight"/>
       <Item ID="S.Dream" Name="Succubus' Dream"/>
+      <Item ID="TrailMx" Name="Trail Mix"/>
       <Item ID="TScroll" Name="Tattered Scroll"/>
+      <Item ID="UrtaCum" Name="Urta's Cum"/>
       <Item ID="Vital T" Name="Vitality Tincture"/>
       <Item ID="W.Stick" Name="Wingstick"/>
+      <Item ID="W.Pddng" Name="Winter Pudding"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
     <ItemGroup Name="Consumables, Eggs" Category="Other">
@@ -536,14 +660,17 @@
     <ItemGroup Name="Transformatives" Category="Other">
       <Item ID="BeeHony" Name="Bee Honey"/>
       <Item ID="B.Gossr" Name="Black Gossamer"/>
+      <Item ID="BoarTru" Name="Boar Truffle"/>
       <Item ID="EctoPls" Name="Ectoplasm"/>
       <Item ID="Equinum" Name="Equinum"/>
       <Item ID="Frrtfrt" Name="Ferret Fruit"/>
       <Item ID="FoxBery" Name="Fox Berry"/>
       <Item ID="FoxJewl" Name="Fox Jewel"/>
       <Item ID="Gob.Ale" Name="Goblin Ale"/>
+      <Item ID="GldRind" Name="Golden Rind"             Description="Deer TF item."/>
       <Item ID="GldSeed" Name="Golden Seed"/>
-      <Item ID="Hummus " Name="Hummus"                  Description="In-game cheat item.  Reverts PC to a basic human form."/>
+      <Item ID="Hummus " Name="Hummus"                  Description="Non-cheat version of Super Hummus."/>
+      <Item ID="Hummus2" Name="Super Hummus"            Description="In-game cheat item.  Reverts PC to a basic human form."/>
       <Item ID="ImpFood" Name="Imp Food"/>
       <Item ID="IncubiD" Name="Incubi Draft"/>
       <Item ID="KangaFt" Name="Kanga Fruit"/>
@@ -554,6 +681,7 @@
       <Item ID="MouseCo" Name="Mouse Cocoa"/>
       <Item ID="MystJwl" Name="Mystic Jewel"/>
       <Item ID="NPnkEgg" Name="Neon Pink Egg"/>
+      <Item ID="PigTruf" Name="Pigtail Truffle"/>
       <Item ID="ProBova" Name="ProBova"/>
       <Item ID="PurHony" Name="Pure Honey"              Description="If pregnant with Faerie/Phouka, will decrease pregnancy corruption rather than giving its normal effect."/>
       <Item ID="P.Draft" Name="Purified Incubi Draft"/>
@@ -563,12 +691,15 @@
       <Item ID="Reptlum" Name="Reptilum"/>
       <Item ID="RingFig" Name="Ringtail Fig"/>
       <Item ID="RizzaRt" Name="Rizza Root"/>
+      <Item ID="SalamFW" Name="Salamander Firewater"/>
+      <Item ID="SatyrWn" Name="Satyr Wine"/>
       <Item ID="Shark.T" Name="Shark Tooth"/>
       <Item ID="DryTent" Name="Shriveled Tentacle"/>
       <Item ID="SnakOil" Name="Snake Oil"/>
-	  <Item ID="SpHoney" Name="Special Honey"/>
+      <Item ID="SpHoney" Name="Special Honey"/>
       <Item ID="SucMilk" Name="Succubi Milk"/>
       <Item ID="S.Gossr" Name="Sweet Gossamer"/>
+      <Item ID="Taurico" Name="Taurinum"/>
       <Item ID="TSTooth" Name="Tiger Shark Tooth"/>
       <Item ID="TrapOil" Name="Trap Oil"/>
       <Item ID="WetClth" Name="Wet Cloth"/>
@@ -583,6 +714,7 @@
       <Item ID="KnottyP" Name="Knotty Canine Pepper"/>
       <Item ID="LargePp" Name="Overly Large Canine Pepper"/>
       <Item ID="BlackPp" Name="Solid Black Canine Pepper"/>
+      <Item ID="Wolf Pp" Name="Wolf Pepper"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
     <ItemGroup Name="Dyes" Category="Other">
@@ -592,34 +724,67 @@
       <Item ID="BlueDye" Name="Blue Hair Dye"/>
       <Item ID="Brown D" Name="Brown Hair Dye"/>
       <Item ID="GrayDye" Name="Gray Hair Dye"/>
+      <Item ID="Green D" Name="Green Hair Dye"/>
       <Item ID="OrangDy" Name="Orange Hair Dye"/>
       <Item ID="PinkDye" Name="Pink Hair Dye"/>
       <Item ID="PurpDye" Name="Purple Hair Dye"/>
+      <Item ID="RainDye" Name="Rainbow Hair Dye"/>
       <Item ID="Red Dye" Name="Red Hair Dye"/>
       <Item ID="WhiteDy" Name="White Hair Dye"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
-    <ItemGroup Name="Weapons" Category="Weapon">
+    <ItemGroup Name="Oils &amp; Lotions" Category="Other">
+      <Item ID="ClearLn" Name="Clear Lotion"/>
+      <Item ID="DarkOil" Name="Dark Oil"/>
+      <Item ID="EbonyOl" Name="Ebony Oil"/>
+      <Item ID="FairOil" Name="Fair Oil"/>
+      <Item ID="LightOl" Name="Light Oil"/>
+      <Item ID="MahogOl" Name="Mahogany Oil"/>
+      <Item ID="OliveOl" Name="Olive Oil"/>
+      <Item ID="RoughLn" Name="Rough Lotion"/>
+      <Item ID="RussOil" Name="Russet Oil"/>
+      <Item ID="SexyLtn" Name="Sexy Lotion"/>
+      <Item ID="SmthLtn" Name="Smooth Lotion"/>
+    </ItemGroup>
+    <!-- ========================================================================================================================================== -->
+    <ItemGroup Name="Weapons, Melee" Category="Weapon">
       <Item ID="B.Sword" Name="Beautiful Sword"        Description="Has a maximum PC corruption tolerance of 34."/>
+      <Item ID="B.ScarB" Name="Broken Scarred Blade"   Description="No corruption requirement because you broke it."/>
       <Item ID="Whip   " Name="Coiled Whip"/>
-      <Item ID="DrgnShl" Name="Dragon-Shell Shield"/>
+      <Item ID="Dagger " Name="Dagger"/>
       <Item ID="E.Staff" Name="Eldritch Staff"/>
+      <Item ID="KihaAxe" Name="Fiery Greataxe"/>
+      <Item ID="Flail  " Name="Flail"/>
       <Item ID="H.Gaunt" Name="Hooked Gauntlets"/>
       <Item ID="Warhamr" Name="Huge Warhammer"/>
+      <Item ID="H. Cane" Name="Huntsman's Cane"        Description="Halves PC corruption gains while equipped.  May break after 10 strikes, rendering it lost forever."/>
       <Item ID="S.Blade" Name="Inscribed Spellblade"/>
       <Item ID="JRapier" Name="Jeweled Rapier"/>
       <Item ID="Katana " Name="Katana"/>
       <Item ID="L. Axe " Name="Large Axe"              Description="Has a PC height requirement of 6&#x2032;6&#x2033; (198.12 cm)."/>
       <Item ID="Claymor" Name="Large Claymore"/>
       <Item ID="L.Hammr" Name="Large Hammer"/>
+      <Item ID="L. Whip" Name="Lethice's Whip"/>
+      <Item ID="L.Staff" Name="Lethicite Staff"/>
       <Item ID="L.Daggr" Name="Lust Dagger"/>
+      <Item ID="Mace   " Name="Mace"/>
       <Item ID="Pipe   " Name="Pipe"/>
+      <Item ID="PtchFrk" Name="Pitchfork"/>
       <Item ID="RRapier" Name="Raphael's Rapier"/>
       <Item ID="RidingC" Name="Riding Crop"/>
+      <Item ID="ScarBld" Name="Scarred Blade"          Description="Has a minimum PC corruption requirement of 70."/>
+      <Item ID="Scimitr" Name="Scimitar"/>
       <Item ID="Spear  " Name="Spear"/>
       <Item ID="S.Gaunt" Name="Spiked Gauntlets"/>
       <Item ID="SucWhip" Name="Succubi Whip"/>
+      <Item ID="UrtaHlb" Name="Urta's Halberd"/>
       <Item ID="W.Staff" Name="Wizard's Staff"/>
+    </ItemGroup>
+    <!-- ========================================================================================================================================== -->
+    <ItemGroup Name="Weapons, Ranged" Category="Weapon">
+      <Item ID="Blunder" Name="Blunderbuss"/>
+      <Item ID="Crossbw" Name="Crossbow"/>
+      <Item ID="Flintlk" Name="Flintlock Pistol"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
     <ItemGroup Name="Armors" Category="Armor">
@@ -629,16 +794,19 @@
       <Item ID="ChBikni" Name="Chain Bikini"/>
       <Item ID="ClssyCl" Name="Classy Suitclothes"/>
       <Item ID="C.Cloth" Name="Comfortable Clothes"/>
+      <Item ID="DB.Armr" Name="Divine Bark Armor"/>
+      <Item ID="DSclArm" Name="Dragonscale Armor"/>
       <Item ID="FullChn" Name="Full Chain"/>
       <Item ID="FullPlt" Name="Full Plate"/>
-      <!-- Item ID="FurLoin" Name="Fur Loincloths"/ -->
       <Item ID="GelArmr" Name="Gel Armor"/>
       <Item ID="AdvClth" Name="Green Adventurer's Clothes"/>
       <Item ID="IndecSt" Name="Indecent Steel"/>
       <Item ID="I.Corst" Name="Inquisitor's Corset"/>
       <Item ID="I.Robes" Name="Inquisitor's Robes"/>
+      <Item ID="Kimono " Name="Kimono"/>
       <Item ID="LeathrA" Name="Leather Armor"/>
       <Item ID="LthrRob" Name="Leather Robes"/>
+      <Item ID="LthcArm" Name="Lethicite Armor"/>
       <Item ID="B.Dress" Name="Long Dress"/>
       <Item ID="LMArmor" Name="Lusty Maiden's Armor"/>
       <Item ID="NurseCl" Name="Nurse's Outfit"/>
@@ -646,11 +814,13 @@
       <Item ID="R.BdySt" Name="Red, High-Society Bodysuit"/>
       <Item ID="M.Robes" Name="Robes"/>
       <Item ID="RbbrClt" Name="Rubber Fetish Clothes"/>
+      <Item ID="SamuArm" Name="Samurai Armor"/>
       <Item ID="ScaleMl" Name="Scale Mail"/>
       <Item ID="T.BSuit" Name="Semi-Transparent Bodysuit"/>
       <Item ID="S.Swmwr" Name="Slutty Swimwear"/>
       <Item ID="SSArmor" Name="Spider-Silk Armor"/>
       <Item ID="SS.Robe" Name="Spider-Silk Robes"/>
+      <Item ID="TB.Armr" Name="Tentacled Bark Armor"/>
       <Item ID="LthrPnt" Name="Tight Leather Pants"/>
       <Item ID="TubeTop" Name="Tube Top"/>
       <Item ID="W.Robes" Name="Wizard's Robes"/>
@@ -659,6 +829,53 @@
     <ItemGroup Name="Armors, Cursed" Category="ArmorCursed">
       <Item ID="SeductA" Name="Scandalously Seductive Armor" Description="A suit of cursed armor created by Ceraph.  Upon equipping the armor it transforms into black nipple-studs and gives the bondage fetish."/>
     </ItemGroup>
+    <!-- ========================================================================================================================================== -->
+    <ItemGroup Name="Shields" Category="Shield">
+      <Item ID="Buckler" Name="Buckler"/>
+      <Item ID="DrgnShl" Name="Dragon-Shell Shield"/>
+      <Item ID="GreatSh" Name="Greatshield"/>
+      <Item ID="Kite Sh" Name="Kite Shield"/>
+      <Item ID="TowerSh" Name="Tower Shield"/>
+    </ItemGroup>
+    <!-- ========================================================================================================================================== -->
+    <ItemGroup Name="Undergarments, Upper" Category="Undergarment">
+      <Item ID="C. Bra " Name="Comfortable Bra"/>
+      <Item ID="DS. Bra" Name="Dragonscale Bra"/>
+      <Item ID="Ltx.Bra" Name="Latex Bra"/>
+      <Item ID="SS. Bra" Name="Spider-Silk Bra"/>
+    </ItemGroup>
+    <!-- ========================================================================================================================================== -->
+    <ItemGroup Name="Undergarments, Lower" Category="Undergarment">
+      <Item ID="C. Loin" Name="Comfortable Loincloth"/>
+      <Item ID="C.Panty" Name="Comfortable Panties"/>
+      <Item ID="DS.Loin" Name="Dragonscale Loincloth"/>
+      <Item ID="DSPanty" Name="Dragonscale Thong"/>
+      <Item ID="Fundosh" Name="Fundoshi"/>
+      <Item ID="FurLoin" Name="Fur Loincloth"/>
+      <Item ID="LtxShrt" Name="Latex Shorts"/>
+      <Item ID="LtxThng" Name="Latex Thong"/>
+      <Item ID="SS.Loin" Name="Spider-Silk Loincloth"/>
+      <Item ID="SSPanty" Name="Spider-Silk Panties"/>
+      <Item ID="Garters" Name="Stockings and Garters"/>
+    </ItemGroup>
+    <!-- ========================================================================================================================================== -->
+    <ItemGroup Name="Rings, Normal" Category="Jewelry">
+      <Item ID="DiamRng" Name="Diamond Ring"/>
+      <Item ID="GoldRng" Name="Gold Ring"/>
+      <Item ID="LthcRng" Name="Lethicite Ring"  Description="Slowly corrupts the wearer at a rate of 1 corruption every 10 hours."/>
+      <Item ID="PlatRng" Name="Platinum Ring"/>
+      <Item ID="SilvRng" Name="Silver Ring"/>
+    </ItemGroup>
+    <!-- ========================================================================================================================================== -->
+    <ItemGroup Name="Rings, Enchanted" Category="Jewelry">
+      <Item ID="CrimRng" Name="Crimstone Ring" Description="Increases minimum lust."/>
+      <Item ID="FertRng" Name="Fertite Ring"   Description="Increases fertility rating and cum production."/>
+      <Item ID="Ice_Rng" Name="Icestone Ring"  Description="Reduces minimum lust."/>
+      <Item ID="LifeRng" Name="Life Ring"      Description="Increases maximum HP."/>
+      <Item ID="MystRng" Name="Mystic Ring"    Description="Increases spell power."/>
+      <Item ID="PowrRng" Name="Power Ring"     Description="Increases attack damage."/>
+      <Item ID="PureRng" Name="Purity Ring"    Description="Reduces minimum libido and increases lust resistance."/>
+    </ItemGroup>
   </Items>
   <!-- ========================================================================================================================================== -->
   <KeyItems>
@@ -666,10 +883,16 @@
     <KeyItem Name="All-Natural Self-Stimulation Belt"           Description="Masturbation aid for hermaphrodites."/>
     <KeyItem Name="Arian's Talisman"                            Description="Arian's Talisman, uncharged version."/>
     <KeyItem Name="Arian's Charged Talisman"                    Description="Arian's Talisman, spell charged version.  You'll have to add the appropriate status effect yourself (either: Shielding Spell or Immolation Spell)."/>
+    <KeyItem Name="Backpack"                                    Description="Grants an additional [3&#x2013;5] inventory slots. (see value #1 for actual bonus)"
+             Label1="Size" Value1="5"/>
     <KeyItem Name="Bow"                                         Description="Grants a special attack."/>
     <KeyItem Name="Breast Milker"                               Description="To be installed at Whitney's Farm."/>
     <KeyItem Name="Breast Milker - Installed At Whitney's Farm" Description="Allows the character to milk their breasts at the farm.  Also, possibly, used by Isabella."/>
     <KeyItem Name="Camp - Chest"                                Description="Item storage to be put at the camp."/>
+    <KeyItem Name="Camp - Murky Chest"                          Description="Item storage to be put at the camp.  Grants 4 additional slots."/>
+    <KeyItem Name="Camp - Ornate Chest"                         Description="Item storage to be put at the camp.  Grants 4 additional slots."/>
+    <KeyItem Name="Carpenter's Nail Box"                        Description="Used for building the cabin."/>
+    <KeyItem Name="Carpenter's Toolbox"                         Description="Used for building the cabin."/>
     <KeyItem Name="Carrot"                                      Description="[Seasonal] Obtained from Whitney's Farm or Oswald in Tel'Adre.  One of the components used to make a body for the ice spirit, Nieve."/>
     <KeyItem Name="Centaur Pole"                                Description="A masturbatory aid suited for female centaur's needs."/>
     <KeyItem Name="Cock Milker"                                 Description="To be installed at Whitney's Farm."/>
@@ -679,11 +902,14 @@
     <KeyItem Name="Deluxe Onahole"                              Description="Masturbation aid."/>
     <KeyItem Name="Demonic Strap-On"                            Description="Masturbation aid."/>
     <KeyItem Name="Dildo"                                       Description="Masturbation aid."/>
+    <KeyItem Name="Divine Bark Plates"                          Description="Can be given to Rathazul to create divine bark armor."/>
     <KeyItem Name="Dragon Egg"                                  Description="Ember's egg, before hatching."/>
-    <KeyItem Name="Dragon Eggshell"                             Description="Obtained by breaking Ember's egg open and eating it.  You monster."/>
+    <KeyItem Name="Dragon Eggshell"                             Description="Obtained by either breaking Ember's egg open and eating it (you monster!) or by asking Ember nicely, at 100% affection, for an egg shell."/>
     <KeyItem Name="Dual Belt"                                   Description="Masturbation aid for hermaphrodites."/>
-    <KeyItem Name="Equipment Rack - Armor"                      Description="Item storage to be put at the camp."/>
-    <KeyItem Name="Equipment Rack - Weapons"                    Description="Item storage to be put at the camp."/>
+    <KeyItem Name="Equipment Rack - Armor"                      Description="Armor storage to be put at the camp."/>
+    <KeyItem Name="Equipment Rack - Shields"                    Description="Shield storage to be put at the camp."/>
+    <KeyItem Name="Equipment Rack - Weapons"                    Description="Weapon storage to be put at the camp."/>
+    <KeyItem Name="Equipment Storage - Jewelry Box"             Description="Jewelry storage to be put at the camp."/>
     <KeyItem Name="Fake Mare"                                   Description="A masturbatory aid suited for male centaur's needs."/>
     <KeyItem Name="Golden Antlers"                              Description="Obtained from the Erlking, if you decide to turn the tables on him."/>
     <KeyItem Name="Harpy Key A"                                 Description="Obtained from Brigid the Jailer in Helia's (phoenix) dungeon."/>
@@ -691,15 +917,22 @@
     <KeyItem Name="Hentai Comic"                                Description="Can be given to the incubus mechanic in the factory."/>
     <KeyItem Name="Holli's Ashes"                               Description="Obtained by killing Holli.  You monster."/>
     <KeyItem Name="Iron Key"                                    Description="Allows further progression into the Demon Factory."/>
+    <KeyItem Name="Izma's Book - Combat Manual"                 Description="One of the books that can be studied inside cabin."/>
+    <KeyItem Name="Izma's Book - Etiquette Guide"               Description="One of the books that can be studied inside cabin."/>
+    <KeyItem Name="Izma's Book - Porn"                          Description="One of the books that can be studied inside cabin."/>
     <KeyItem Name="Jojo's Talisman"                             Description="Given to the player by Jojo, if a follower and Hollicynthea is allowed to grow to maturity.  Jojo then leaves the camp."/>
+    <KeyItem Name="Kelt's Bow"                                  Description="Obtained from Kelt.  Grants a special attack, which does 30% more damage than the basic Bow he gives you."/>
     <KeyItem Name="Laybans"                                     Description="Obtained from Doppleganger in Lethice's Stronghold (D3).  Gives some protection against basilisk gazes (in stronghold only)."/>
-    <KeyItem Name="Marae's Lethicite"                           Description="Can be stolen from Corrupt Marae by quick PCs."/>
+    <KeyItem Name="Marae's Lethicite"                           Description="Can be stolen from Corrupt Marae by quick PCs or taken after slaying her."/>
+    <KeyItem Name="Marae's Seed"                                Description="Used for purification of Minerva."/>
+    <KeyItem Name="Mistress Elly's Slave Collar"                Description="Your reward for being a slave to Mistress Elly in the prison."/>
     <KeyItem Name="Nieve's Tear"                                Description="[Seasonal] Given as a memento after your ice spirit lover melts after the winter event."/>
     <KeyItem Name="North Star Key"                              Description="[Seasonal] Winding-key for the clockwork-man, North."/>
     <KeyItem Name="Onyx Token - Ceraph's"                       Description="Obtained from Ceraph, if a follower and the PC chooses to carry her token instead of using it as a belly-button piercing."/>
     <KeyItem Name="Opal Ring"                                   Description="Obtained from Scylla, if the PC has high cum production and has agreed to be Scylla's sole source of cum."/>
     <KeyItem Name="Plain Onahole"                               Description="Masturbation aid."/>
     <KeyItem Name="Potent Mixture"                              Description="Used to corrupt Amily in the town ruins."/>
+    <KeyItem Name="Rathazul's Purity Potion"                    Description="Used for purification of Minerva."/>
     <KeyItem Name="Ruby Heart"                                  Description="Inactive remnant of the PC's goo-girl Slime Core.  Will reactivate if the PC becomes a goo-girl again."/>
     <KeyItem Name="Self-Stimulation Belt"                       Description="Masturbation aid."/>
     <KeyItem Name="Sheila's Lethicite"                          Description="Obtained from Corrupt Sheila."/>
@@ -708,6 +941,7 @@
     <KeyItem Name="Stone Statue Lethicite"                      Description="Obtained from Stone Statue in Lethice's Stronghold (D3)."/>
     <KeyItem Name="Super Reducto"                               Description="Obtained from Rathazul, after the Milk Slave becomes a follower."/>
     <KeyItem Name="Supervisor's Key"                            Description="Obtained from the Omnibus Overseer's desk in the demon factory.  Used to unlock the Premium Products room there."/>
+    <KeyItem Name="Tentacled Bark Plates"                       Description="Can be given to Rathazul to create tentacled bark armor."/>
     <KeyItem Name="Traveler's Guide"                            Description="Bought from Giacomo.  Gives you the option to avoid the Bee-girl encounter."/>
     <KeyItem Name="Yoga Guide"                                  Description="Bought from Giacomo.  Needed by Centaur and Naga PCs before they can join Cotton for yoga."/>
     <KeyItem Name="Zetaz's Map"                                 Description="Allows the PC to find Lethice's Stronghold (D3) in the High Mountains."/>
@@ -729,6 +963,8 @@
             Value1="0.25" Type1="Double"/>
       <Perk Name="Messy Orgasms" Description="Produces 50% more cum volume."
             Value1="1.25" Type1="Double"/>
+      <Perk Name="Pervert" Description="Gains corruption 25% faster."
+            Value1="0.25" Type1="Double"/>
       <Perk Name="Sensitive" Description="Gains sensitivity 25% faster."
             Value1="0.25" Type1="Double"/>
       <Perk Name="Smart" Description="Gains intelligence 25% faster."
@@ -740,19 +976,33 @@
       <Perk Name="Wet Pussy" Description="Keeps your pussy wet and provides a bonus to capacity."
             Value1="2"/>
     </PerkGroup>
+    <PerkGroup Name="Ascension (change value #1 to set ranks)">
+      <Perk Name="Ascension: Desires" Description="Increases maximum lust by 5 per level."/>
+      <Perk Name="Ascension: Endurance" Description="Increases maximum fatigue by 5 per level."/>
+      <Perk Name="Ascension: Fertility" Description="Increases base fertility by 5 per level, making it easier to get pregnant."/>
+      <Perk Name="Ascension: Fortune" Description="Increases gems gained in battles by 10% per level."/>
+      <Perk Name="Ascension: Moral Shifter" Description="Increases corruption gains and losses by 20% per level."/>
+      <Perk Name="Ascension: Mysticality" Description="Increases spell effect multiplier by 5% per level, stacks multiplicatively with other perks."/>
+      <Perk Name="Ascension: Corruption Tolerance" Description="Increases NPC's tolerance to your corruption by 5 per level and reduces corruption requirements for certain scenes by 5 per level."/>
+      <Perk Name="Ascension: Virility" Description="Increases base virility by 5 per level, making it easier to impregnate certain NPCs."/>
+      <Perk Name="Ascension: Wisdom" Description="Increases experience gained in battles by 10% per level."/>
+    </PerkGroup>
     <PerkGroup Name="History">
       <Perk Name="History: Alchemist" Description="Alchemical experience makes items more reactive to your body."/>
-      <Perk Name="History: Fighter"   Description="A past full of conflict increases physical damage dealt by 10%."/>
-      <Perk Name="History: Healer"    Description="Healing experience increases HP gains by 20%."/>
+      <Perk Name="History: Fighter" Description="A past full of conflict increases physical damage dealt by 10%."/>
+      <Perk Name="History: Fortune" Description="A history full of luck increases gems gained from battles by 15%."/>
+      <Perk Name="History: Healer" Description="Healing experience increases HP gains by 20%."/>
       <Perk Name="History: Religious" Description="Replaces masturbate with meditate when corruption less than or equal to 66."/>
-      <Perk Name="History: Scholar"   Description="Time spent focusing your mind makes spellcasting 20% less fatiguing."/>
-      <Perk Name="History: Slacker"   Description="Regenerate fatigue 20% faster."/>
-      <Perk Name="History: Slut"      Description="Sexual experience has made you more able to handle large insertions and more resistant to stretching."/>
-      <Perk Name="History: Smith"     Description="Knowledge of armor and fitting increases armor effectiveness by roughly 10%."/>
-      <Perk Name="History: Whore"     Description="Seductive experience causes your tease attacks to be 15% more effective."/>
+      <Perk Name="History: Scholar" Description="Time spent focusing your mind makes spellcasting 20% less fatiguing."/>
+      <Perk Name="History: Slacker" Description="Regenerate fatigue 20% faster."/>
+      <Perk Name="History: Slut" Description="Sexual experience has made you more able to handle large insertions and more resistant to stretching."/>
+      <Perk Name="History: Smith" Description="Knowledge of armor and fitting increases armor effectiveness by roughly 10%."/>
+      <Perk Name="History: Whore" Description="Seductive experience causes your tease attacks to be 15% more effective."/>
     </PerkGroup>
     <PerkGroup Name="Tier 0">
       <Perk Name="Acclimation" Description="Reduces lust gain by 15%."/>
+      <Perk Name="Cold Blooded" Description="Reduces minimum lust by up to 20, down to a minimum of 20. Caps minimum lust at 80."
+            Value1="20"/>
       <Perk Name="Corrupted Libido" Description="Reduces lust gain by 10%."
             Value1="20"/>
       <Perk Name="Double Attack" Description="Allows you to perform two melee attacks per round."/>
@@ -760,10 +1010,16 @@
       <Perk Name="Fertility+" Description="Increases fertility rating by 15 and cum volume by up to 50%."
             Value1="15"
             Value2="1.75" Type2="Double"/>
+      <Perk Name="Fertility-" Description="Decreases fertility rating by 15 and cum volume by up to 30%."
+            Value1="15"
+            Value2="0.7" Type2="Double"/>
       <Perk Name="Hot Blooded" Description="Raises minimum lust by up to 20."
             Value1="20"/>
+      <Perk Name="Improved Endurance" Description="Increases maximum fatigue by 20."/>
+      <Perk Name="Improved Self-Control" Description="Increases maximum lust by 20."/>
       <Perk Name="Mage" Description="Increases base spell strength by 50%."/>
       <Perk Name="Nymphomania" Description="Raises minimum lust by up to 30."/>
+      <Perk Name="Parry" Description="Increases deflect chance by up to 10% while wielding a weapon (Speed-based). (Req's 50+ Speed)"/>
       <Perk Name="Precision" Description="Reduces enemy armor by 10. (Req's 25+ Intelligence)"/>
       <Perk Name="Regeneration" Description="Regenerates 2% of max HP/hour and 1% of max HP/round."/>
       <Perk Name="Runner" Description="Increases chances of escaping combat."/>
@@ -776,34 +1032,54 @@
     <PerkGroup Name="Tier 1">
       <Perk Name="Agility" Description="Boosts armor points by a portion of your speed on light/medium armors."/>
       <Perk Name="Arousing Aura" Description="Exude a lust-inducing aura. (Req's 70+ Corruption)"/>
+      <Perk Name="Battlemage" Description="Start every battle with Might enabled, if you meet Black Magic requirements before it starts."/>
       <Perk Name="Brutal Blows" Description="Reduces enemy armor with each hit."/>
       <Perk Name="Channeling" Description="Increases base spell strength by 50%."/>
       <Perk Name="Immovable Object" Description="Grants 20% physical damage reduction."/>
+      <Perk Name="Iron Fists" Description="Hardens your fists to increase attack rating by 5."/>
+      <Perk Name="Iron Fists 2" Description="Further hardens your fists to increase attack rating by another 3."/>
+      <Perk Name="Iron Fists 3" Description="Even more hardens your fists to increase attack rating again by 3."/>
       <Perk Name="Lightning Strikes" Description="Increases the attack damage for non-heavy weapons."/>
       <Perk Name="Masochist" Description="Take 30% less physical damage but gain lust when damaged."/>
       <Perk Name="Medicine" Description="Grants 15% chance per round of cleansing poisons/drugs from your body."/>
-      <Perk Name="Regeneration 2" Description="Gain 2% of max HP per round of combat and 4% of max HP per hour out of combat."/>
+      <Perk Name="Regeneration 2" Description="Regenerates further 2% of max HP/hour and 1% of max HP/round."/>
       <Perk Name="Resistance" Description="Reduces lust gain by 10%."/>
       <Perk Name="Sadist" Description="Deal 20% more damage, but gain lust at the same time."/>
+      <Perk Name="Shield Mastery" Description="Increases block chance by up to 10% while using a shield (Toughness-based)."/>
       <Perk Name="Speedy Recovery" Description="Regain fatigue 50% faster."/>
+      <Perk Name="Spellsword" Description="Start every battle with Charge Weapon enabled, if you meet White Magic requirements before it starts."/>
+      <Perk Name="Staff Channeling" Description="Basic attack with wizards staves is replaced with ranged magic bolt."/>
+      <Perk Name="Survivalist" Description="Reduces hunger depletion rate by 20%."/>
       <Perk Name="Tactician" Description="Increases critical hit chance by up to 10% (Intelligence-based)."/>
       <Perk Name="Tank 2" Description="+1 extra HP per point of toughness."/>
-      <Perk Name="Thunderous Strikes" Description="+20% 'Attack' damage while strength is at or above 80."/>
-      <Perk Name="Weapon Mastery" Description="Doubles damage bonus of weapons classified as 'Large'."/>
+      <Perk Name="Thunderous Strikes" Description="+20% &quot;Attack&quot; damage while strength is at or above 80."/>
+      <Perk Name="Unhindered" Description="Increases chances of evading enemy attacks when you are naked. (Undergarments won't disable this perk)"/>
+      <Perk Name="Weapon Mastery" Description="Doubles damage bonus of weapons classified as &quot;Large&quot;."/>
       <Perk Name="Well Adjusted" Description="You gain half as much lust as time passes in Mareth."/>
     </PerkGroup>
     <PerkGroup Name="Tier 2">
       <Perk Name="Archmage" Description="Increases base spell strength by 50%."/>
-      <Perk Name="Berzerker" Description="Grants 'Berzerk' ability."/>
+      <Perk Name="Berzerker" Description="Grants &quot;Berzerk&quot; ability."/>
+      <Perk Name="Blademaster" Description="Gain +10% to critical strike chance when wielding a sword and not using a shield."/>
+      <Perk Name="Focused Mind" Description="Black Magic is less likely to backfire and White Magic threshold is increased."/>
+      <Perk Name="Hold With Both Hands" Description="Gain +20% strength modifier with melee weapons when not using a shield."/>
       <Perk Name="Iron Man" Description="Reduces the fatigue cost of physical specials by 50%."/>
+      <Perk Name="Juggernaut" Description="When wearing heavy armor, you have extra 10% damage resistance and are immune to damage from being constricted/squeezed."/>
       <Perk Name="Lunging Attacks" Description="Grants 50% armor penetration for standard attacks."/>
+      <Perk Name="Raging Inferno" Description="Cumulative 20% damage increase for every subsequent fire spell without interruption."/>
       <Perk Name="Resolute" Description="Grants immunity to stuns and some statuses."/>
+      <Perk Name="Shield Slam" Description="Reduces shield bash diminishing returns by 50% and increases bash damage by 20%."/>
+      <Perk Name="Survivalist 2" Description="Reduces hunger depletion rate by further 20%."/>
+    </PerkGroup>
+    <PerkGroup Name="Tier 3">
+      <Perk Name="Cold Fury" Description="Berserk halves your defense instead of reducing it to zero."/>
     </PerkGroup>
     <PerkGroup Name="Events">
       <Perk Name="Androgyny" Description="No gender limits on facial masculinity or femininity."/>
+      <Perk Name="Basilisk Resistance" Description="Grants immunity to basilisk's paralyzing gaze.  Disables Basilisk Bad End."/>
       <Perk Name="Basilisk Womb" Description="Enables your eggs to be properly fertilized into basilisks of both genders!"/>
       <Perk Name="Bee Ovipositor" Description="Allows you to lay eggs through a special organ on your insect abdomen, though you need at least 10 eggs to lay."/>
-      <Perk Name="Bimbo Body" Description="Gives the body of a bimbo.  Tits will never stay below a 'DD' cup, libido is raised, lust resistance is raised, and upgrades tease."/>
+      <Perk Name="Bimbo Body" Description="Gives the body of a bimbo.  Tits will never stay below a &quot;DD&quot; cup, libido is raised, lust resistance is raised, and upgrades tease."/>
       <Perk Name="Bimbo Brains" Description="Now that you've drank bimbo liquer, you'll never, like, have the attention span and intelligence you once did!  But it's okay, 'cause you get to be so horny an' stuff!"/>
       <Perk Name="Brawler" Description="Brawling experience allows you to make two unarmed attacks in a turn."/>
       <Perk Name="Bro Body" Description="Grants an ubermasculine body that's sure to impress.  Cocks will never stay below 10&#x2033;, libido is raised, lust resistance is raised, and upgrades tease."/>
@@ -834,12 +1110,13 @@
       <Perk Name="Fera's Boon - Seeder" Description="Increases cum output by 1,000 mL."/>
       <Perk Name="Fera's Boon - Wide Open" Description="Keeps your pussy permanently gaped and increases pregnancy speed."/>
       <Perk Name="Fire Lord" Description="Thanks to Akbal's blessings, you're able to breathe gouts of green flame at your foes."/>
-      <Perk Name="Flexibility" Description="Grants cat-like flexibility.  Useful for dodging and 'fun'."/>
+      <Perk Name="Flexibility" Description="Grants cat-like flexibility.  Useful for dodging and &quot;fun&quot;."/>
       <Perk Name="Futa Faculties" Description="It's super hard to think about stuff that like, isn't working out or fucking!"/>
       <Perk Name="Futa Form" Description="Ensures that your body fits the Futa look (Tits DD+, Dick 8&#x2033;+, &amp; Pussy).  Also keeps your lusts burning bright and improves the tease skill."/>
       <Perk Name="Harpy Womb" Description="Increases all laid eggs to large size so long as you have harpy legs and a harpy tail."/>
       <Perk Name="Hellfire" Description="Grants a corrupted fire breath attack, like the hellhounds in the mountains."/>
       <Perk Name="Incorporeality" Description="Allows you to fade into a ghost-like state and temporarily possess others."/>
+      <Perk Name="Lustserker" Description="Grants the &quot;Lustserk&quot; ability."/>
       <Perk Name="Luststick Adapted" Description="Grants immunity to the lust-increasing effects of lust-stick and allows its use. Minimum lust is permanently raised."/>
       <Perk Name="Magical Fertility" Description="10% higher chance of pregnancy and increased pregnancy speed."/>
       <Perk Name="Magical Virility" Description="200 mL more cum per orgasm and enhanced virility."/>
@@ -849,6 +1126,7 @@
       <Perk Name="Marae's Gift - Stud" Description="Increases your cum production and potency greatly."/>
       <Perk Name="Marble Resistant" Description="Provides resistance to the addictive effects of bottled LaBova milk."/>
       <Perk Name="Marble's Milk" Description="Requires you to drink LaBova milk frequently or eventually die.  You cannot shake this addiction."/>
+      <Perk Name="Milk Maid" Description="Lactation does not decrease and increases milk production by 200 mL + 100 mL per level. (see value #1 for level)."/>
       <Perk Name="Minotaur Cum Addict" Description="Causes you to crave minotaur cum frequently.  You cannot shake this addiction."/>
       <Perk Name="Misdirection" Description="Grants additional evasion chances while wearing Raphael's &quot;Red, High-Society Bodysuit&quot;."/>
       <Perk Name="Omnibus' Gift" Description="Increases minimum lust (by up to 35) but provides some lust resistance."/>
@@ -857,6 +1135,7 @@
       <Perk Name="Pilgrim's Bounty" Description="Causes you to always cum as hard as if you had max lust."/>
       <Perk Name="Pure and Loving" Description="Your caring attitude towards love and romance makes you slightly more resistant to lust and corruption."/>
       <Perk Name="Purity Blessing" Description="Reduces the rate at which your corruption, libido, and lust increase."/>
+      <Perk Name="Rapier Training" Description="After finishing your training, increases attack power of rapiers. (see flag #137 &quot;RAPHAEL_RAPIER_TRANING&quot; for level, +2 damage per level)"/>
       <Perk Name="Sensual Lover" Description="Your sensual attitude towards love and romance makes your tease ability slightly more effective."/>
       <Perk Name="Slime Core" Description="Grants more control over your slimy body, allowing you to go twice as long without fluids."/>
       <Perk Name="Spellcasting Affinity" Description="Reduces spell costs by [20&#x2013;50]%. (see value #1 for actual percentage)"
@@ -878,6 +1157,8 @@
       <Perk Name="Pierced: Fertite" Description="Increases fertility and cum production by 5%."
             Value1="5"/>
       <Perk Name="Pierced: Furrite" Description="Increases chances of encountering &quot;furry&quot; foes."/>
+      <Perk Name="Pierced: Icestone" Description="Reduces minimum lust by 5."
+            Value1="5"/>
       <Perk Name="Pierced: Lethite" Description="Increases chances of encountering demonic foes."/>
       <Perk Name="Slutty Seduction" Description="Increases odds of successfully teasing and lust damage of successful teases by [5&#x2013;18] points. (see value #1 for actual bonus)"
             Label1="Tease bonus" Value1="10"/>
@@ -891,6 +1172,10 @@
   <Statuses>
     <Status Name="all-natural onahole used" Description="You've used the All-Natural Onahole during self-stimulation."/>
     <Status Name="ateEgg" Description="How many times you've eaten Oviposition Elixir pregnancy eggs."/>
+    <Status Name="Andy's Smoke" Description="Under the influence of Nepenthe."
+            Label1="Hours remaining"
+            Label2="Speed penalty"
+            Label3="Intelligence boost"/>
     <Status Name="Anemone Arousal" Description="Temporary status; used only for a variable duration after an anemone pregnancy if you already have 10+ anemone cocks."/>
     <Status Name="Bimbo Champagne" Description="Temporary status; used only when under the effects of Bimbo Champagne."/>
     <Status Name="Birthed" Description="The number of times you have given birth. At 9, the next pregnancy results in acquiring the Brood Mother perk"/>
@@ -934,6 +1219,7 @@
     <Status Name="fetishON" Description="Fetish Cultists may now be encountered by the lake."/>
     <Status Name="Found Factory" Description="You've found the factory, making it directly available in the &quot;Places&quot; menu."/>
     <Status Name="FuckedMarble" Description="You've had sex with Marble."/>
+    <Status Name="Fullness" Description="Replacement for hunger when hunger is not enabled. Used in The Black Cock. Prevents you from eating food when full."/>
     <Status Name="gooStuffed" Description="Value 1: Hours remaining until goo-girl comes out. Value 2: Penis stuffed? 0 = no, 1 = yes (penis only), 2 = yes (penis &amp; balls). Value 3: Vagina stuffed? 0 = no, 1 = yes. Your anus is always stuffed."
             Label1="Hours remaining"
             Label2="Penis too?"
@@ -1048,9 +1334,9 @@
     <Status Name="wanderer human" Description="The character has advised Marcus to stay human, against Lucia's wishes."/>
     <Status Name="worm plugged"/>
     <Status Name="WormOffer"/>
-    <Status Name="wormsHalf" Description="Gained from choosing 'Who Cares?' at the worms sign. Halves the chance that worms will be encountered."/>
-    <Status Name="wormsOff" Description="Gained from choosing 'Grossed Out' at the worms sign. Worms are turned off and will not appear in the game."/>
-    <Status Name="wormsOn" Description="Gained from choosing 'Aroused' or 'Who Cares?' at the worms sign. Worms are turned on and will appear in the game."/>
+    <Status Name="wormsHalf" Description="Gained from choosing &quot;Who Cares?&quot; at the worms sign. Halves the chance that worms will be encountered."/>
+    <Status Name="wormsOff" Description="Gained from choosing &quot;Grossed Out&quot; at the worms sign. Worms are turned off and will not appear in the game."/>
+    <Status Name="wormsOn" Description="Gained from choosing &quot;Aroused&quot; or &quot;Who Cares?&quot; at the worms sign. Worms are turned on and will appear in the game."/>
     <Status Name="Yara" Description="The PC has asked Yara about herself."/>
   </Statuses>
   <!-- ========================================================================================================================================== -->
@@ -1156,7 +1442,7 @@
     <Flag ID="99"   Name="EASY_MODE_ENABLE_FLAG"                        Description="0 = no, 1 = yes"/>
     <Flag ID="100"  Name="CORRUPT_MARAE_FOLLOWUP_ENCOUNTER_STATE"/>
     <Flag ID="101"  Name="FOUND_WIZARD_STAFF"/>
-    <Flag ID="102"  Name="UNKNOWN_FLAG_NUMBER_00102"                    Description="Has extra Jojo time been cleared? - Jojo Debug Flag"/>
+    <Flag ID="102"  Name="JOJO_LAST_MEDITATION"                         Description="Last time Jojo meditation used"/>
     <Flag ID="103"  Name="TIMES_AUTOFELLATIOED_EXGARTUAN"/>
     <Flag ID="104"  Name="WHITNEY_GEMS_PAID_THIS_WEEK"/>
     <Flag ID="105"  Name="TIMES_MET_SCYLLA_IN_ADDICTION_GROUP"/>
@@ -1326,10 +1612,10 @@
     <Flag ID="269"  Name="PLAYER_DISARMED_WEAPON_ATTACK"                Description="weapon damage"/>
     <Flag ID="270"  Name="UNKNOWN_FLAG_NUMBER_00270"                    Description="Times encountered spiderbitches"/>
     <Flag ID="271"  Name="FEMALE_SPIDERMORPH_PREGNANCY_INCUBATION"      Description="Spider Preggo Timer"/>
-    <Flag ID="272"  Name="UNKNOWN_FLAG_NUMBER_00272"                    Description="Times Explored Swamp"/>
+    <Flag ID="272"  Name="TIMES_EXPLORED_SWAMP"                         Description="Times Explored Swamp"/>
     <Flag ID="273"  Name="SHOW_SPRITES_FLAG"/>
     <Flag ID="274"  Name="RATHAZUL_SILK_ARMOR_COUNTDOWN"                Description="Rathazul silk armor queue: 1 = armor done"/>
-    <Flag ID="275"  Name="UNKNOWN_FLAG_NUMBER_00275"                    Description="Rathazul armor type selector: 1 = armor, 2 = robes"/>
+    <Flag ID="275"  Name="UNKNOWN_FLAG_NUMBER_00275"                    Description="Rathazul armor type selector: 1 = armor, 2 = robes, 3=bra, 4=panties, 5=loincloth"/>
     <Flag ID="276"  Name="UNKNOWN_FLAG_NUMBER_00276"                    Description="Times Encountered Basilisk"/>
     <Flag ID="277"  Name="UNKNOWN_FLAG_NUMBER_00277"                    Description="Times Encountered Drider"/>
     <Flag ID="278"  Name="UNKNOWN_FLAG_NUMBER_00278"                    Description="LOTTIE DISABLED (1+ = YUS)"/>
@@ -2140,8 +2426,8 @@
     <Flag ID="1083" Name="FOLLOWER_AT_FARM_ISABELLA"/>
     <Flag ID="1084" Name="FOLLOWER_AT_FARM_VAPULA"/>
     <Flag ID="1085" Name="FOLLOWER_AT_FARM_LATEXY"/>
-    <Flag ID="1086" Name="FOLLOWER_AT_FARM_CERAPH"                      Description="Ceraph's corruption/protection: -1 = done, 0 = not started, 1&#x2013;7 = protection running"/>
-    <Flag ID="1087" Name="FOLLOWER_AT_FARM_HOLLI"                       Description="Holli's corruption/fertilization: -1 = done, 0 = not started, 1&#x2013;20 = fertilization running"/>
+    <Flag ID="1086" Name="FOLLOWER_AT_FARM_CERAPH"                      Description="Ceraph's corruption/protection: -1 = done, 0 = not started, 1&#x2013;7 = protection running."/>
+    <Flag ID="1087" Name="FOLLOWER_AT_FARM_HOLLI"                       Description="Holli's corruption/fertilization: -1 = done, 0 = not started, 1&#x2013;20 = fertilization running."/>
     <Flag ID="1088" Name="FOLLOWER_AT_FARM_KELLY"/>
     <Flag ID="1089" Name="FOLLOWER_AT_FARM_BATH_GIRL"/>
     <Flag ID="1090" Name="FARM_CORRUPTION_FIRST_DATE"                   Description="(unused)"/><!-- Description="Day that the Farm completed the corruption process" -->
@@ -2226,16 +2512,16 @@
     <Flag ID="1169" Name="TATTOO_SAVEFIX_APPLIED"/>
     <Flag ID="1170" Name="BIRTHS_PHOUKA"/>
     <Flag ID="1171" Name="BIRTHS_FAERIE"/>
-    <Flag ID="1172" Name="PHOUKA_ENCOUNTER_STATUS"                      Description="0 = never encountered, 1 = encountered, other values may be used later if you're doing something for one"/>
-    <Flag ID="1173" Name="PHOUKA_LORE"                                  Description="0 = no lore known, 1 = know their name, 2+ = more lore learned"/>
-    <Flag ID="1174" Name="PREGNANCY_CORRUPTION"                         Description="Faerie/Phouka baby corruption (Faerie if &lt;= 0, Phouka if &gt; 0): new pregnancy initializes to 2, lowered by Pure Honey, raised by Phouka Whiskey"/>
+    <Flag ID="1172" Name="PHOUKA_ENCOUNTER_STATUS"                      Description="0 = never encountered, 1 = encountered, other values may be used later if you're doing something for one."/>
+    <Flag ID="1173" Name="PHOUKA_LORE"                                  Description="0 = no lore known, 1 = know their name, 2+ = more lore learned."/>
+    <Flag ID="1174" Name="PREGNANCY_CORRUPTION"                         Description="Faerie/Phouka baby corruption (Faerie if &lt;= 0, Phouka if &gt; 0): new pregnancy initializes to 2, lowered by Pure Honey, raised by Phouka Whiskey."/>
     <Flag ID="1175" Name="TREACLE_MINE_YEAR_DONE"/>
     <Flag ID="1176" Name="PLAYER_INFECTED_HELLHOUNDS"/>
     <Flag ID="1177" Name="PLAYER_INFECTED_MINOTAURS"/>
     <Flag ID="1178" Name="PLAYER_INFECTED_IMPS"/>
     <Flag ID="1179" Name="FEMOIT_UNLOCKED"                              Description="Unlocked the option to feminise Benoit."/>
     <Flag ID="1180" Name="BIMBO_FEMOIT_UNLOCKED"                        Description="Unlocked the option to bimbofy Benoit."/>
-    <Flag ID="1181" Name="BENOIT_STATUS"                                Description="0 = male, 1 = female, 2 = bimbo"/>
+    <Flag ID="1181" Name="BENOIT_STATUS"                                Description="0 = male, 1 = female, 2 = bimbo, 3 = herm"/>
     <Flag ID="1182" Name="FEMOIT_NEXTDAY_EVENT"                         Description="Proc the event the following day when you visit. Stores the minimum day number that the event can proc on."/>
     <Flag ID="1183" Name="FEMOIT_TALKED_TO"/>
     <Flag ID="1184" Name="KATHERINE_RANDOM_RECRUITMENT_DISABLED"/>
@@ -2264,7 +2550,7 @@
     <Flag ID="1207" Name="IZMA_PREGNANCY_TYPE"/>
     <Flag ID="1208" Name="EMBER_PREGNANCY_TYPE"/>
     <Flag ID="1209" Name="JOJO_BUTT_PREGNANCY_TYPE"/>
-    <Flag ID="1210" Name="SHEILA_DISABLED"                              Description="1 = told to avoid or you refused apology, 2 = baby issues, 3 = worm infested, 4 = Jojo's 'wife'"/>
+    <Flag ID="1210" Name="SHEILA_DISABLED"                              Description="1 = told to avoid or you refused apology, 2 = baby issues, 3 = worm infested, 4 = Jojo's &quot;wife&quot;."/>
     <Flag ID="1211" Name="SHEILA_PREGNANCY_TYPE"/>
     <Flag ID="1212" Name="KELLY_PREGNANCY_TYPE"/>
     <Flag ID="1213" Name="KELLY_KIDS_MALE"                              Description="Tracks number of sons with Kelly. Total number of children is stored in KELLY_KIDS (FLAG: 908)."/>
@@ -2335,6 +2621,307 @@
     <Flag ID="1278" Name="LETHICE_LEFT_ALIVE"/>
     <Flag ID="1279" Name="GAME_END"/>
 
+    <!-- The following flags are used solely by CoC-Revamp-Mod. -->
+    <Flag ID="1300" Name="BENOIT_EYES_TALK_UNLOCKED"/>
+    <Flag ID="1301" Name="BENOIT_BASIL_EYES_GRANTED"                    Description="Counter to track how often you've gained them."/>
+    <!-- CAUTION: ID gap here. -->
+    <Flag ID="2001" Name="TIMES_ORGASMED"/>
+    <Flag ID="2002" Name="CORRUPTED_MARAE_KILLED"/>
+    <Flag ID="2003" Name="CAMP_BUILT_CABIN"/>
+    <Flag ID="2004" Name="CAMP_CABIN_PROGRESS"/>
+    <Flag ID="2005" Name="CAMP_CABIN_WOOD_RESOURCES"/>
+    <Flag ID="2006" Name="CAMP_CABIN_FURNITURE_BED"/>
+    <Flag ID="2007" Name="CAMP_CABIN_FURNITURE_NIGHTSTAND"/>
+    <Flag ID="2008" Name="CAMP_CABIN_FURNITURE_DRESSER"/>
+    <Flag ID="2009" Name="CAMP_CABIN_FURNITURE_TABLE"/>
+    <Flag ID="2010" Name="CAMP_CABIN_FURNITURE_CHAIR1"/>
+    <Flag ID="2011" Name="CAMP_CABIN_FURNITURE_CHAIR2"/>
+    <Flag ID="2012" Name="CAMP_CABIN_FURNITURE_DESK"/>
+    <Flag ID="2013" Name="CAMP_CABIN_FURNITURE_DESKCHAIR"/>
+    <Flag ID="2014" Name="CAMP_CABIN_FURNITURE_BOOKSHELF"/>
+    <Flag ID="2015" Name="MET_MARAE"/>
+    <Flag ID="2016" Name="MET_MARAE_CORRUPTED"/>
+    <Flag ID="2017" Name="MARAE_QUEST_START"/>
+    <Flag ID="2018" Name="MARAE_QUEST_COMPLETE"/>
+    <Flag ID="2019" Name="MARAE_LETHICITE"/>
+    <Flag ID="2020" Name="FACTORY_FOUND"/>
+    <Flag ID="2021" Name="FACTORY_SUCCUBUS_DEFEATED"/>
+    <Flag ID="2022" Name="FACTORY_INCUBUS_DEFEATED"/>
+    <Flag ID="2023" Name="FACTORY_OMNIBUS_DEFEATED"/>
+    <Flag ID="2024" Name="FACTORY_SHUTDOWN"/>
+    <Flag ID="2025" Name="FACTORY_INCUBUS_BRIBED"/>
+    <Flag ID="2026" Name="FACTORY_TAKEN_LACTAID"/>
+    <Flag ID="2027" Name="FACTORY_TAKEN_GROPLUS"/>
+    <Flag ID="2028" Name="FACTORY_MILKER_BUILT"/>
+    <Flag ID="2029" Name="KELT_KILL_PLAN"/>
+    <Flag ID="2030" Name="KELT_KILLED"/>
+    <Flag ID="2031" Name="WHITNEY_GONE"/>
+    <Flag ID="2032" Name="CODEX_CURRENT_ENTRY"/>
+    <Flag ID="2033" Name="CODEX_CURRENT_PAGE"/>
+    <Flag ID="2034" Name="CODEX_UNUSED_FLAG_1"/>
+    <Flag ID="2035" Name="CODEX_UNUSED_FLAG_2"/>
+    <Flag ID="2036" Name="CODEX_ENTRY_ANEMONES"/>
+    <Flag ID="2037" Name="CODEX_ENTRY_ARACHNES"/>
+    <Flag ID="2038" Name="CODEX_ENTRY_FETISHFOLLOWERS"/>
+    <Flag ID="2039" Name="CODEX_ENTRY_GIANTBEES"/>
+    <Flag ID="2040" Name="CODEX_ENTRY_GOBLINS"/>
+    <Flag ID="2041" Name="CODEX_ENTRY_GOOGIRLS"/>
+    <Flag ID="2042" Name="CODEX_ENTRY_HARPIES"/>
+    <Flag ID="2043" Name="CODEX_ENTRY_HELLHOUNDS"/>
+    <Flag ID="2044" Name="CODEX_ENTRY_IMPS"/>
+    <Flag ID="2045" Name="CODEX_ENTRY_LABOVINES"/>
+    <Flag ID="2046" Name="CODEX_ENTRY_LIZANS"/>
+    <Flag ID="2047" Name="CODEX_ENTRY_MAGIC"/>
+    <Flag ID="2048" Name="CODEX_ENTRY_MINOTAURS"/>
+    <Flag ID="2049" Name="CODEX_ENTRY_NAGAS"/>
+    <Flag ID="2050" Name="CODEX_ENTRY_ORCS"/>
+    <Flag ID="2051" Name="CODEX_ENTRY_SALAMANDERS"/>
+    <Flag ID="2052" Name="CODEX_ENTRY_SANDWITCHES"/>
+    <Flag ID="2053" Name="CODEX_ENTRY_SATYRS"/>
+    <Flag ID="2054" Name="CODEX_ENTRY_SHARKGIRLS"/>
+    <Flag ID="2055" Name="CODEX_ENTRY_SUCCUBUS"/>
+    <Flag ID="2056" Name="PIG_SLUT_DISABLED"/>
+    <Flag ID="2057" Name="MARBLE_CORRUPT_MARAE_STORY"/>
+    <Flag ID="2058" Name="CAMP_PORTAL_PROGRESS"/>
+    <Flag ID="2059" Name="DISCOVERED_GLACIAL_RIFT"/>
+    <Flag ID="2060" Name="DISCOVERED_VOLCANO_CRAG"/>
+    <Flag ID="2061" Name="MET_YETI_FIRST_TIME"/>
+    <Flag ID="2062" Name="VALERIA_FOUND_IN_GLACIAL_RIFT"/>
+    <Flag ID="2063" Name="SHEILA_LETHICITE_FORGE_DAY"/>
+    <Flag ID="2064" Name="CHEAT_ENTERING_COUNTER_2"/>
+    <Flag ID="2065" Name="USE_OLD_INTERFACE"/>
+    <Flag ID="2066" Name="MOD_SAVE_VERSION"/>
+    <Flag ID="2067" Name="SFW_MODE"/>
+    <Flag ID="2068" Name="KEPT_PURE_JOJO_OVER_VAPULA"/>
+    <Flag ID="2069" Name="KEPT_PURE_AMILY_OVER_VAPULA"/>
+    <Flag ID="2070" Name="WATERSPORTS_ENABLED"/>
+    <Flag ID="2071" Name="LUSTSTICK_LIBIDO_INITIAL"/>
+    <Flag ID="2072" Name="LUSTSTICK_LIBIDO_MOD"/>
+    <Flag ID="2073" Name="PHOENIX_WANKED_COUNTER"/>
+    <Flag ID="2074" Name="TIMES_MASTURBATED"/>
+    <Flag ID="2075" Name="DEMONS_DEFEATED"/>
+    <Flag ID="2076" Name="AMILY_VILLAGE_EXPLORED"/>
+    <Flag ID="2077" Name="TIMES_TRANSFORMED"/>
+    <Flag ID="2078" Name="FACTORY_OMNIBUS_KILLED"/>
+    <Flag ID="2079" Name="HERMOIT_NEXTDAY_EVENT"/>
+    <Flag ID="2080" Name="HERMOIT_NEXTDAY_EVENT_DONE"/>
+    <Flag ID="2081" Name="ACHIEVEMENT_PROGRESS_FASTING"/>
+    <Flag ID="2082" Name="ACHIEVEMENT_PROGRESS_GLUTTON"/>
+    <Flag ID="2083" Name="ACHIEVEMENT_PROGRESS_SCHIZOPHRENIA"/>
+    <Flag ID="2084" Name="ACHIEVEMENT_PROGRESS_CLEAN_SLATE"/>
+    <Flag ID="2085" Name="ACHIEVEMENT_PROGRESS_TOTAL_DAMAGE"/>
+    <Flag ID="2086" Name="CLEARED_HEL_TOWER"/>
+    <Flag ID="2087" Name="MINERVA_PURIFICATION_PROGRESS"/>
+    <Flag ID="2088" Name="MINERVA_PURIFICATION_MARAE_TALKED"/>
+    <Flag ID="2089" Name="MINERVA_PURIFICATION_JOJO_TALKED"/>
+    <Flag ID="2090" Name="MINERVA_PURIFICATION_RATHAZUL_TALKED"/>
+    <Flag ID="2091" Name="MINERVA_CHILDREN"/>
+    <Flag ID="2092" Name="MINERVA_CORRUPTION_PROGRESS"/>
+    <Flag ID="2093" Name="MINERVA_TOWER_TREE"/>
+    <Flag ID="2094" Name="MINERVA_TOWER_REPAIRED"/>
+    <Flag ID="2095" Name="MINERVA_PREGNANCY_TYPE"/>
+    <Flag ID="2096" Name="MINERVA_PREGNANCY_INCUBATION"/>
+    <Flag ID="2097" Name="MINERVA_FOUND_LOST_SHARKGIRL"/>
+    <Flag ID="2098" Name="MINERVA_TELLS_ABOUT_PREGNANCY"/>
+    <Flag ID="2099" Name="TIMES_BIRTHED_SHARPIES"/>
+    <Flag ID="2100" Name="ACHIEVEMENT_PROGRESS_DEFORESTER"/>
+    <Flag ID="2101" Name="ACHIEVEMENT_PROGRESS_IM_NO_LUMBERJACK"/>
+    <Flag ID="2102" Name="ACHIEVEMENT_PROGRESS_HAMMER_TIME"/>
+    <Flag ID="2103" Name="ACHIEVEMENT_PROGRESS_SCAVENGER"/>
+    <Flag ID="2104" Name="TIMES_BAD_ENDED"/>
+    <Flag ID="2105" Name="CONDOMED"/>
+    <Flag ID="2106" Name="HELIA_HERMIFIED"/>
+    <Flag ID="2107" Name="IMP_LORD_MALEHERM_PROGRESS"/>
+    <Flag ID="2108" Name="EMBER_SPAR_VICTORIES"                         Description="Times PC won when sparring with Ember."/>
+    <Flag ID="2109" Name="PHOENIX_HP_LOSS_COUNTER"                      Description="If this reaches 3, bad end!"/>
+    <Flag ID="2110" Name="LIZAN_ROGUE_SEX_COUNTER"                      Description="Times sexed with lizan.  If this reaches 3, unlocks watersports scene, if watersports are enabled."/>
+    <Flag ID="2111" Name="BENOIT_PISTOL_BOUGHT"/>
+    <Flag ID="2112" Name="FLINTLOCK_PISTOL_AMMO"/>
+    <Flag ID="2113" Name="BENOIT_CLOCK_BOUGHT"/>
+    <Flag ID="2114" Name="BENOIT_CLOCK_ALARM"/>
+    <Flag ID="2115" Name="GOBLIN_ELDER_GRATEFUL_OVER_LETHICE_DEFEAT"/>
+    <Flag ID="2116" Name="MET_LIZAN_FIRST_TIME"/>
+    <Flag ID="2117" Name="TIMES_ENCOUNTERED_GOBLIN_WARRIOR"/>
+    <Flag ID="2118" Name="TIMES_ENCOUNTERED_GOBLIN_SHAMAN"/>
+    <Flag ID="2119" Name="TIMES_ENCOUNTERED_GOBLIN_ELDER"/>
+    <Flag ID="2120" Name="TIMES_ENCOUNTERED_GOBLIN_QUEEN"/>
+    <Flag ID="2121" Name="TIMES_ENCOUNTERED_IMP_WARLORD"/>
+    <Flag ID="2122" Name="TIMES_ENCOUNTERED_IMP_OVERLORD"/>
+    <Flag ID="2123" Name="IN_INGNAM"                                    Description="1 = in Ingnam."/>
+    <Flag ID="2124" Name="INGNAM_PROLOGUE_COMPLETE"/>
+    <Flag ID="2125" Name="INGNAM_WEAPONSMITH_TALKED"/>
+    <Flag ID="2126" Name="INGNAM_ARMORSMITH_TALKED"/>
+    <Flag ID="2127" Name="INGNAM_RUMORS"/>
+    <Flag ID="2128" Name="INGNAM_FARMER_MET"/>
+    <Flag ID="2129" Name="INGNAM_BLACKMARKET_TALKED"/>
+    <Flag ID="2130" Name="INGNAM_ALCHEMIST_TALKED"/>
+    <Flag ID="2131" Name="UNKNOWN_FLAG_NUMBER_02131"/>
+    <Flag ID="2132" Name="INGNAM_EARS_FREAKOUT"/>
+    <Flag ID="2133" Name="INGNAM_EARS_LAST_TYPE"/>
+    <Flag ID="2134" Name="INGNAM_TAIL_FREAKOUT"/>
+    <Flag ID="2135" Name="INGNAM_TAIL_LAST_TYPE"/>
+    <Flag ID="2136" Name="DISABLED_JOJO_RAPE"                           Description="1 = disabled Jojo rape."/>
+    <Flag ID="2137" Name="DISABLED_SEX_MACHINE"/>
+    <Flag ID="2138" Name="ENEMY_CRITICAL"/>
+    <Flag ID="2139" Name="MARBLE_HAMMER_QUEST_PROGRESS"/>
+    <Flag ID="2140" Name="SHIFT_KEY_DOWN"/>
+    <Flag ID="2141" Name="IN_PRISON"/>
+    <Flag ID="2142" Name="PRISON_CAPTURE_CHANCE"/>
+    <Flag ID="2143" Name="PRISON_TRAINING_LEVEL"/>
+    <Flag ID="2144" Name="PRISON_TRAINING_REFUSED"/>
+    <Flag ID="2145" Name="PRISON_DIRT_ENABLED"/>
+    <Flag ID="2146" Name="PRISON_PUNISHMENT"/>
+    <Flag ID="2147" Name="PRISON_DOOR_UNLOCKED"/>
+    <Flag ID="2148" Name="PRISON_CAPTURE_COUNTER"/>
+    <Flag ID="2149" Name="PRISON_DILDO_RACK"/>
+    <Flag ID="2150" Name="PRISON_TRAIN_SELF_CONTROL_UNLOCKED"/>
+    <Flag ID="2151" Name="PRISON_TRAIN_ANAL_CAPACITY_UNLOCKED"/>
+    <Flag ID="2152" Name="PRISON_TRAIN_PUPPY_TRICKS_UNLOCKED"/>
+    <Flag ID="2153" Name="PRISON_STUDY_MANNERS_UNLOCKED"/>
+    <Flag ID="2154" Name="PRISON_STUDY_BREATHING_UNLOCKED"/>
+    <Flag ID="2155" Name="PRISON_BITCHED_ABOUT_MARBLE_MILK"/>
+    <Flag ID="2156" Name="PRISON_EVENT_TIMEOUT"/>
+    <Flag ID="2157" Name="PRISON_STORAGE_ARMOR"/>
+    <Flag ID="2158" Name="PRISON_STORAGE_WEAPON"/>
+    <Flag ID="2159" Name="PRISON_STORAGE_SHIELD"/>
+    <Flag ID="2160" Name="MET_BEHEMOTH"/>
+    <Flag ID="2161" Name="BEHEMOTH_ANAL_PITCH"/>
+    <Flag ID="2162" Name="BEHEMOTH_ANAL_CATCH"/>
+    <Flag ID="2163" Name="BEHEMOTH_VAGINAL_CATCH"/>
+    <Flag ID="2164" Name="BEHEMOTH_COCK_SUCKED"/>
+    <Flag ID="2165" Name="BEHEMOTH_CUM_BATH"/>
+    <Flag ID="2166" Name="BEHEMOTH_WATERSPORTS"/>
+    <Flag ID="2167" Name="BEHEMOTH_GEMS"/>
+    <Flag ID="2168" Name="BEHEMOTH_TALK_LEVEL"/>
+    <Flag ID="2169" Name="BEHEMOTH_CHILDREN"/>
+    <Flag ID="2170" Name="BEHEMOTH_TENT"/>
+    <Flag ID="2171" Name="BEHEMOTH_TALKED_ABOUT_CUM"/>
+    <Flag ID="2172" Name="THIEF_GEMS"/>
+    <Flag ID="2173" Name="INGNAM_GREETED_AFTER_LONGTIME"/>
+    <Flag ID="2174" Name="CODEX_ENTRY_BEHEMOTH"/>
+    <Flag ID="2175" Name="SCARRED_BLADE_STATUS"/>
+    <Flag ID="2176" Name="PURE_MARAE_ENDGAME"/>
+    <Flag ID="2177" Name="UNEQUIP_SHIELD_BECAUSE_TWO_HANDED_WEAPON"/>
+    <Flag ID="2178" Name="CAMP_WALL_PROGRESS"                           Description="Should be in multiples of 20"/>
+    <Flag ID="2179" Name="CAMP_WALL_GATE"                               Description="1 = gate built"/>
+    <Flag ID="2180" Name="CAMP_WALL_SKULLS"                             Description="Number of imp skulls hung on camp wall"/>
+    <Flag ID="2181" Name="BEHEMOTH_CHILD_1_BIRTH_DAY"/>
+    <Flag ID="2182" Name="BEHEMOTH_CHILD_2_BIRTH_DAY"/>
+    <Flag ID="2183" Name="BEHEMOTH_CHILD_3_BIRTH_DAY"/>
+    <Flag ID="2184" Name="JOJO_SEX_COUNTER"/>
+    <Flag ID="2185" Name="JOJO_ANAL_XP"/>
+    <Flag ID="2186" Name="JOJO_LITTERS"/>
+    <Flag ID="2187" Name="JOJO_BLOWJOB_XP"/>
+    <Flag ID="2188" Name="JOJO_VAGINAL_CATCH_COUNTER"/>
+    <Flag ID="2189" Name="JOJO_LITTERS_AMILY_REACTION_COUNTER"/>
+    <Flag ID="2190" Name="LETHICITE_ARMOR_TAKEN"/>
+    <Flag ID="2191" Name="KIHA_UNDERGARMENTS"/>
+    <Flag ID="2192" Name="KIHA_PREGNANCY_TYPE"/>
+    <Flag ID="2193" Name="KIHA_INCUBATION"/>
+    <Flag ID="2194" Name="KIHA_EGG_COUNTER"/>
+    <Flag ID="2195" Name="KIHA_CHILDREN_BOYS"/>
+    <Flag ID="2196" Name="KIHA_CHILDREN_GIRLS"/>
+    <Flag ID="2197" Name="KIHA_CHILDREN_HERMS"/>
+    <Flag ID="2198" Name="KIHA_CHILD_MATURITY_COUNTER"/>
+    <Flag ID="2199" Name="KIHA_PREGNANCY_POTENTIAL"/>
+    <Flag ID="2200" Name="KIHA_PREGNANCY_POTENTIAL"/>
+    <Flag ID="2201" Name="IZMA_FEEDING_VALERIA"/>
+    <Flag ID="2202" Name="HELLHOUNDS_KILLED"/>
+    <Flag ID="2203" Name="IMPS_KILLED"/>
+    <Flag ID="2204" Name="GOBLINS_KILLED"/>
+    <Flag ID="2205" Name="MINOTAURS_KILLED"/>
+    <Flag ID="2206" Name="TIMES_SLEPT_WITH_EMBER"/>
+    <Flag ID="2207" Name="EMBER_MORNING"/>
+    <Flag ID="2208" Name="BASILISK_RESISTANCE_TRACKER"/>
+    <Flag ID="2209" Name="MINOTAUR_CUM_RESISTANCE_TRACKER"/>
+    <Flag ID="2210" Name="DLC_APRIL_FOOLS"/>
+    <Flag ID="2211" Name="GOBLIN_ELDER_TALK_COUNTER"/>
+    <Flag ID="2212" Name="ISABELLA_POTENCY_STATE"/>
+    <Flag ID="2213" Name="ISABELLA_COWMOTHER"/>
+    <Flag ID="2214" Name="ISABELLA_PREGNANCY_TYPE"/>
+    <Flag ID="2215" Name="ISABELLA_PREGNANCY_INCUBATION"/>
+    <Flag ID="2216" Name="ISABELLA_PREGNANCY_BOOSTED"/>
+    <Flag ID="2217" Name="ISABELLA_CHILDREN_HUMANS"/>
+    <Flag ID="2218" Name="ISABELLA_CHILDREN_COWGIRLS"/>
+    <Flag ID="2219" Name="ISABELLA_COUNTDOWN_TO_CONTRACEPTIONS"/>
+    <Flag ID="2220" Name="ISABELLA_VALERIA_SPARRED"/>
+    <Flag ID="2221" Name="FAERIE_ENCOUNTER_DISABLED"/>
+    <Flag ID="2222" Name="MINERVA_CORRUPTED_CUM_ADDICTION"/>
+    <Flag ID="2223" Name="ERLKING_CANE_OBTAINED"/>
+    <Flag ID="2224" Name="ERLKING_CANE_ATTACK_COUNTER"                  Description="Has a chance to break if &#x2265; 10"/>
+    <Flag ID="2225" Name="KIHA_DESTROYING_CORRUPTED_GLADES"             Description="1 = Kiha is currently destroying corrupted glades"/>
+    <Flag ID="2226" Name="AMILY_DESTROYING_CORRUPTED_GLADES"            Description="1 = Amily is currently destroying corrupted glades"/>
+    <Flag ID="2227" Name="BIMBO_LIQUEUR_STASH_COUNTER_FOR_JOJO"/>
+    <Flag ID="2228" Name="JOJO_BIMBO_STATE"/>
+    <Flag ID="2229" Name="JOY_COCK_SIZE"/>
+    <Flag ID="2230" Name="JOY_BREAST_SIZE"/>
+    <Flag ID="2231" Name="JOY_VAGINAL_WETNESS"/>
+    <Flag ID="2232" Name="JOY_LACTAID_MILKED_COUNTER"/>
+    <Flag ID="2233" Name="JOY_INTELLIGENCE"                             Description="Starts at 20, increases by 1-4 with each dose of Scholar's Tea, up to maximum of 50. Increases chance of successfully meditating."/>
+    <Flag ID="2234" Name="TIMES_PENETRATED_JOY_VAGINALLY"/>
+    <Flag ID="2235" Name="TIMES_LICKED_JOYS_PUSSY"/>
+    <Flag ID="2236" Name="TIMES_FROTTED_WITH_JOY"/>
+    <Flag ID="2237" Name="TIMES_GET_BLOWN_BY_JOY"/>
+    <Flag ID="2238" Name="TIMES_GET_LICKED_BY_JOY"/>
+    <Flag ID="2239" Name="JOY_TALKED_ABOUT_YOURSELF"/>
+    <Flag ID="2240" Name="JOY_TALKED_ABOUT_HERSELF"/>
+    <Flag ID="2241" Name="JOY_TALKED_ABOUT_OLD_LIFE"/>
+    <Flag ID="2242" Name="JOY_TALKED_ABOUT_DEMONS"/>
+    <Flag ID="2243" Name="JOY_TALKED_ABOUT_BABIES"/>
+    <Flag ID="2244" Name="JOY_COCK_FONDNESS"                            Description="When this reaches 10, Joy won't take any more pink eggs."/>
+    <Flag ID="2245" Name="JOY_EATEN_BLUE_EGG"/>
+    <Flag ID="2246" Name="JOY_PREGNANCY_TYPE"/>
+    <Flag ID="2247" Name="JOY_PREGNANCY_INCUBATION"/>
+    <Flag ID="2248" Name="JOY_TWINS_BIRTHED"/>
+    <Flag ID="2249" Name="JOY_NIGHT_FUCK"/>
+    <Flag ID="2250" Name="JOY_TAKES_BABIES_AWAY_COUNTER"/>
+    <Flag ID="2251" Name="BLACK_COCK_MET_ANITA"/>
+    <Flag ID="2252" Name="BLACK_COCK_MET_ANDY"/>
+    <Flag ID="2253" Name="BLACK_COCK_MET_HARRY"/>
+    <Flag ID="2254" Name="BLACK_COCK_MET_FRIDA"/>
+    <Flag ID="2255" Name="BLACK_COCK_ANITA_SONGS_LISTENED"/>
+    <Flag ID="2256" Name="BLACK_COCK_ANITA_SEX_INTRO"/>
+    <Flag ID="2257" Name="BLACK_COCK_ANITA_SEX_COUNTER"/>
+    <Flag ID="2258" Name="BLACK_COCK_ANDY_STASH_STATE"/>
+    <Flag ID="2259" Name="BLACK_COCK_ANDY_ORAL_GIVEN"/>
+    <Flag ID="2260" Name="BLACK_COCK_ANDY_SEX_COUNTER"/>
+    <Flag ID="2261" Name="BLACK_COCK_HARRY_SEX_INTRO"/>
+    <Flag ID="2262" Name="BLACK_COCK_HARRY_SEX_COUNTER"/>
+    <Flag ID="2263" Name="BLACK_COCK_FRIDAS_CAKE_EATEN_COUNTER"/>
+    <Flag ID="2264" Name="CODEX_ENTRY_RHINOS"/>
+    <Flag ID="2265" Name="CODEX_ENTRY_ECHIDNAS"/>
+    <Flag ID="2266" Name="URTA_VIXEN_AND_CREAM_COUNTER"/>
+    <Flag ID="2267" Name="CAMP_CABIN_STONE_RESOURCES"/>
+    <Flag ID="2268" Name="ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO"/>
+    <Flag ID="2269" Name="ACHIEVEMENT_PROGRESS_ANTWORKS"/>
+    <Flag ID="2270" Name="CODEX_ENTRY_ZEBRAS"/>
+    <Flag ID="2271" Name="ACHIEVEMENT_PROGRESS_EGG_HUNTER"/>
+    <Flag ID="2272" Name="CURRENT_WEATHER"/>
+    <Flag ID="2273" Name="WEATHER_CHANGE_COOLDOWN"                      Description="4 hours to prevent weather from changing too fast."/>
+    <Flag ID="2274" Name="TAMANI_DEFEAT_COUNTER"/>
+    <Flag ID="2275" Name="TAMANI_BAD_ENDED"/>
+    <Flag ID="2276" Name="PHYLLA_STONES_HUNTED_TODAY"/>
+    <Flag ID="2277" Name="ANZU_PALACE_UNLOCKED"/>
+    <Flag ID="2278" Name="ANZU_RELATIONSHIP_LEVEL"/>
+    <Flag ID="2279" Name="ANZU_AFFECTION"/>
+    <Flag ID="2280" Name="ANZU_TIMES_TALKED"/>
+    <Flag ID="2281" Name="ANZU_TALKED_PAST"/>
+    <Flag ID="2282" Name="ANZU_TALKED_PALACE"/>
+    <Flag ID="2283" Name="ANZU_TALKED_RIFT"/>
+    <Flag ID="2284" Name="ANZU_TALKED_POWERS"/>
+    <Flag ID="2285" Name="ANZU_TALKED_GODS"/>
+    <Flag ID="2286" Name="ANZU_TIMES_DINED"/>
+    <Flag ID="2287" Name="UNKNOWN_FLAG_NUMBER_02287"/>
+    <Flag ID="2288" Name="UNKNOWN_FLAG_NUMBER_02288"/>
+    <Flag ID="2289" Name="UNKNOWN_FLAG_NUMBER_02289"/>
+    <Flag ID="2290" Name="UNKNOWN_FLAG_NUMBER_02290"/>
+    <Flag ID="2291" Name="UNKNOWN_FLAG_NUMBER_02291"/>
+    <Flag ID="2292" Name="UNKNOWN_FLAG_NUMBER_02292"/>
+    <Flag ID="2293" Name="UNKNOWN_FLAG_NUMBER_02293"/>
+    <Flag ID="2294" Name="UNKNOWN_FLAG_NUMBER_02294"/>
+    <Flag ID="2295" Name="SANDWITCH_SERVICED"/>
+    <Flag ID="2296" Name="JOJO_STATUS"/>
+
     <!--
         The flags below this point come from the code, but they really do not need to be exposed
         as they have nothing directly to do with characters and are already accessible from CoC's
@@ -2343,8 +2930,28 @@
         for completeness (and, maybe, if individual users decide to enable some or all of them).
     -->
 
+    <!-- The following flags are used solely by CoC-Revamp-Mod. -->
+    <Flag ID="2979" Name="NEW_GAME_PLUS_LEVEL"                          Description="Current New Game+ level.  Each ascension increments level by 1."/>
+    <Flag ID="2980" Name="NEW_GAME_PLUS_BONUS_UNLOCKED_HERM"            Description="Unlocks hermaphrodite as a starting gender option."/>
+    <!-- Flag ID="2981" Name="USE_OLD_INTERFACE"                            Description="1 = classic interface used"/ -->
+    <!-- Flag ID="2982" Name="IMAGEPACK_OFF"                                Description="1 = imagepack disabled"/ -->
+    <!-- Flag ID="2983" Name="SPRITE_STYLE"                                 Description="1 = original sprites used"/ -->
+    <!-- Flag ID="2984" Name="AUTO_LEVEL"                                   Description="1 = automatic leveling enabled"/ -->
+    <!-- Flag ID="2985" Name="SFW_MODE"                                     Description="1 = SFW enabled"/ -->
+    <!-- Flag ID="2986" Name="WATERSPORTS_ENABLED"                          Description="1 = watersport scenes enabled"/ -->
+    <!-- Flag ID="2987" Name="USE_METRICS"                                  Description="0 = US Customary, 1 = SI/Metric"/ -->
+    <!-- Flag ID="2988" Name="USE_OLD_FONT"                                 Description="Side bar font."/ -->
+    <!-- Flag ID="2989" Name="BACKGROUND_STYLE"                             Description="Background theme."/ -->
+    <!-- Flag ID="2990" Name="GAME_DIFFICULTY"                              Description="0 = normal, 1 = hard, 2 = nightmare, 3 = extreme.  Affects HP and damage."/ -->
+    <!-- Flag ID="2991" Name="HARDCORE_MODE"                                Description="1 = enabled.  Forces save and causes deletion of save file on bad end."/ -->
+    <!-- Flag ID="2992" Name="HARDCORE_SLOT"                                Description="The current slot for hardcore mode.  Forced autosave will save over the selected slot."/ -->
+    <!-- Flag ID="2993" Name="HUNGER_ENABLED"                               Description="1 = hunger enabled"/ -->
+    <!-- Flag ID="2994" Name="USE_12_HOURS"                                 Description="0 = 24-hour clock, 1 = 12-hour clock"/ -->
+
+    <!-- Flag ID="2995" Name="MEANINGLESS_CORRUPTION"                       Description="Disables corruption requirements."/ -->
     <!-- Flag ID="2996" Name="ITS_EVERY_DAY"                                Description="Eternal holiday!"/ -->
     <!-- Flag ID="2997" Name="LOW_STANDARDS_FOR_ALL"/ -->
     <!-- Flag ID="2998" Name="HYPER_HAPPY"/ -->
+    <!-- Flag ID="2999" Name="KAIZO_MODE"/ -->
   </Flags>
 </CoCEd>

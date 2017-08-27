@@ -104,7 +104,7 @@
                 </Border>
 
                 <common:AutoGrid>
-                    <TextBlock              Text="Loosness"/>
+                    <TextBlock              Text="Looseness"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.Ass.Looseness}" ItemsSource="{Binding Data.Body.AnalLoosenessLevels}"/>
 
                     <TextBlock              Text="Wetness"/>
@@ -126,7 +126,7 @@
                         <TextBlock              Text="Type"/>
                         <common:MyComboBox      SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
 
-                        <TextBlock              Text="Loosness"/>
+                        <TextBlock              Text="Looseness"/>
                         <common:MyComboBox      SelectedValue="{Binding Looseness}" ItemsSource="{Binding AllLoosenessLevels}"/>
 
                         <TextBlock              Text="Wetness"/>

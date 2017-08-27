@@ -117,12 +117,26 @@ namespace CoCEd.ViewModel
             if (createBackup) FileManager.CreateBackup(path);
             _currentFile = file;
 
-            // Is this a CoC-Revamp-Mod save?
-            bool isRevampMod = _currentFile.Contains("hunger");
+            // Is this save from Vanilla, Revamp, or Xianxia?
+            ModType modType;
+            if (_currentFile.Contains("soulforce"))
+            {
+                modType = ModType.Xianxia;
+                XmlData.Select(XmlData.Files.Xianxia);
+            }
+            else if (_currentFile.Contains("hunger"))
+            {
+                modType = ModType.Revamp;
+                XmlData.Select(XmlData.Files.Revamp);
+            }
+            else
+            {
+                modType = ModType.Vanilla;
+                XmlData.Select(XmlData.Files.Vanilla);
+            }
 
-            XmlData.Select(isRevampMod ? XmlData.Files.RevampMod : XmlData.Files.CoC);
             Data = XmlData.Current;
-            Game = new GameVM(_currentFile, Game, isRevampMod);
+            Game = new GameVM(_currentFile, Game, modType);
 
             OnPropertyChanged("Data");
             OnPropertyChanged("Game");
@@ -181,7 +195,16 @@ namespace CoCEd.ViewModel
         {
             string title = HasData ? Game.Name : "<unknown>";
             if (SaveRequired) title += "\u202F*";
-            if (Game.IsRevampMod) title += "  [Revamp-Mod]";
+            switch (Game.Type)
+            {
+                case ModType.Revamp:
+                    title += "  [Revamp]";
+                    break;
+
+                case ModType.Xianxia:
+                    title += "  [Xianxia]";
+                    break;
+            }
             title += "  |  " + AppTitle;
 
             if (Application.Current.MainWindow != null)       // May be null on autoload.
