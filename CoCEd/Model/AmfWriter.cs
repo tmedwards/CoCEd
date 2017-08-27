@@ -262,14 +262,13 @@ namespace CoCEd.Model
 
         void WriteString(string str)
         {
-            int index;
             // Empty string, special case.
             if (str == "")
             {
                 WriteU29(0, true);
             }
             // String stored by reference.
-            else if (_stringLookup.TryGetValue(str, out index))
+            else if (_stringLookup.TryGetValue(str, out int index))
             {
                 WriteU29(index, false);
             }
@@ -388,8 +387,7 @@ namespace CoCEd.Model
         void WriteTrait(AmfTrait trait)
         {
             // By reference or by instance?
-            int index;
-            if (_traitLookup.TryGetValue(trait, out index))
+            if (_traitLookup.TryGetValue(trait, out int index))
             {
                 WriteU29((index << 2) | 1);
                 return;
@@ -469,8 +467,7 @@ namespace CoCEd.Model
         // Most object types are stored by reference so that they are only serialized once. After that only their reference index is stored.
         bool TryWriteRef(Object obj)
         {
-            int index;
-            if (_objectLookup.TryGetValue(obj, out index))
+            if (_objectLookup.TryGetValue(obj, out int index))
             {
                 WriteU29(index, false);
                 return true;

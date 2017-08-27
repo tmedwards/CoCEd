@@ -80,7 +80,7 @@ namespace CoCEd.ViewModel
                 // If the new type is the same as the old, do nothing (fixes GitHub issue #7).
                 if (value == Type) return;
 
-                // Upper name is unfortunately changed by the combobox when we do change type, so we store it beforehand.
+                // Upper name is changed by the combobox when the type is changed, so we store it beforehand.
                 var oldUpperName = UpperName;
                 var oldLowerName = LowerName;
                 bool wasStandardUpperName = String.IsNullOrEmpty(oldUpperName) || GetUnorderedNames().Contains(oldUpperName);

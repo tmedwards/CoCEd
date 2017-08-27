@@ -31,9 +31,7 @@ namespace CoCEd.Model
                 {
                     using (var reader = new AmfReader(stream))
                     {
-                        string name;
-                        SerializationFormat format;
-                        reader.Run(this, out name, out format);
+                        reader.Run(this, out string name, out SerializationFormat format);
                         Format = format;
                         Name = name;
                     }

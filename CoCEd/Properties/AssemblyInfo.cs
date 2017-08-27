@@ -8,11 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CoCEd")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A save editor for Corruption of Champions.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("CoCEd")]
-[assembly: AssemblyCopyright("Copyright © Perdev  2013")]
+[assembly: AssemblyCopyright("Copyright © 2013 Perdev")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

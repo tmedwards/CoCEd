@@ -15,20 +15,19 @@ namespace CoCEd.ViewModel
 
         protected override AmfObject CreateNewObject()
         {
-            var obj = new AmfObject(AmfTypes.Array);
-
-            obj["clipPLong"] = "";
-            obj["clitPShort"] = "";
-            obj["clitPierced"] = false;
-
-            obj["labiaPLong"] = "";
-            obj["labiaPShort"] = "";
-            obj["labiaPierced"] = false;
-
-            obj["type"] = 0;
-            obj["virgin"] = true;
-            obj["vaginalWetness"] = 2;
-            obj["vaginalLooseness"] = 0;
+            var obj = new AmfObject(AmfTypes.Array)
+            {
+                ["clipPLong"] = "",
+                ["clitPShort"] = "",
+                ["clitPierced"] = false,
+                ["labiaPLong"] = "",
+                ["labiaPShort"] = "",
+                ["labiaPierced"] = false,
+                ["type"] = 0,
+                ["virgin"] = true,
+                ["vaginalWetness"] = 2,
+                ["vaginalLooseness"] = 0,
+            };
             return obj;
         }
     }

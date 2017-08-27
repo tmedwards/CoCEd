@@ -95,8 +95,7 @@ namespace CoCEd.ViewModel
             if (Int32.TryParse(value, NumberStyles.Integer, CultureInfo.CurrentCulture, out iValue)) return iValue;
             if (Int32.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out iValue)) return iValue;
 
-            double fValue;
-            if (Double.TryParse(value, NumberStyles.AllowDecimalPoint, CultureInfo.CurrentCulture, out fValue)) return iValue;
+            if (Double.TryParse(value, NumberStyles.AllowDecimalPoint, CultureInfo.CurrentCulture, out double fValue)) return iValue;
             if (Double.TryParse(value, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out fValue)) return iValue;
 
             if (String.Equals(value, "true", StringComparison.InvariantCulture)) return true;
@@ -121,9 +120,11 @@ namespace CoCEd.ViewModel
 
         AmfObject ConvertIntegerToEnum(int value)
         {
-            var result = new AmfObject(AmfTypes.Object);
-            result.Trait = _valueTrait;
-            result["value"] = value;
+            var result = new AmfObject(AmfTypes.Object)
+            {
+                Trait = _valueTrait,
+                ["value"] = value,
+            };
             return result;
         }
 

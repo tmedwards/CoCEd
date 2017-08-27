@@ -62,8 +62,7 @@ namespace CoCEd.View
             var family = new FontFamily(familyName);
             var typeFace = new Typeface(family, FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
 
-            GlyphTypeface glyphTypeFace;
-            return typeFace.TryGetGlyphTypeface(out glyphTypeFace);
+            return typeFace.TryGetGlyphTypeface(out GlyphTypeface glyphTypeFace);
         }
 
         public bool IsWarning { get; set; }

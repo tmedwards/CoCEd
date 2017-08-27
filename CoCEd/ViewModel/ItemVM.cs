@@ -135,7 +135,7 @@ namespace CoCEd.ViewModel
 
                 // Temporary Special Honey ID snafu workaround, until a game release fixes the issue
                 //var xml = XmlData.Current.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == value);
-                var xml = XmlData.Current.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type);
+                var xml = XmlData.Current.ItemGroups.SelectMany(x => x.Items).FirstOrDefault(x => x.ID == Type); // FIXME: Would using `oldType` be better here?
 
                 if (xml != null && Quantity == 0) Quantity = 1;
                 else if (xml == null && Quantity != 0) Quantity = 0;

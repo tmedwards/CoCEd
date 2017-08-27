@@ -16,14 +16,16 @@ namespace CoCEd.ViewModel
 
         protected override AmfObject CreateNewObject()
         {
-            var obj = new AmfObject(AmfTypes.Array);
-            obj["breasts"] = 2;
-            obj["nipplesPerBreast"] = 1;
-            obj["breastRating"] = 3.0;
-            obj["lactationMultiplier"] = 0.0;
-            obj["milkFullness"] = 0.0;
-            obj["fullness"] = 0.0;
-            obj["fuckable"] = false;
+            var obj = new AmfObject(AmfTypes.Array)
+            {
+                ["breasts"] = 2,
+                ["nipplesPerBreast"] = 1,
+                ["breastRating"] = 3.0,
+                ["lactationMultiplier"] = 0.0,
+                ["milkFullness"] = 0.0,
+                ["fullness"] = 0.0,
+                ["fuckable"] = false,
+            };
             return obj;
         }
     }

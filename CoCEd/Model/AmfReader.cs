@@ -152,8 +152,7 @@ namespace CoCEd.Model
         string ReadString()
         {
             // Stored by reference?
-            bool isValue;
-            var lengthOrIndex = ReadU29(out isValue);
+            var lengthOrIndex = ReadU29(out bool isValue);
             if (!isValue) return _stringLookup[lengthOrIndex];
 
             // Empty string (never stored by ref) ?
@@ -242,8 +241,7 @@ namespace CoCEd.Model
         DateTime ReadDate()
         {
             // Stored by ref?
-            bool isInstance;
-            int refIndex = ReadU29(out isInstance);
+            int refIndex = ReadU29(out bool isInstance);
             if (!isInstance) return (DateTime)_objectLookup[refIndex];
 
             // Stored by value
@@ -256,8 +254,7 @@ namespace CoCEd.Model
         AmfObject ReadArray()
         {
             // Stored by ref?
-            bool isInstance;
-            var indexOrCount = ReadU29(out isInstance);
+            var indexOrCount = ReadU29(out bool isInstance);
             if (!isInstance) return (AmfObject)_objectLookup[indexOrCount];
 
             // Stored by value
@@ -287,8 +284,7 @@ namespace CoCEd.Model
         AmfObject ReadObject()
         {
             // Stored by ref?
-            bool isInstance;
-            int refIndex = ReadU29(out isInstance);
+            int refIndex = ReadU29(out bool isInstance);
             if (!isInstance) return (AmfObject)_objectLookup[refIndex];
 
             // Stored by value
@@ -369,8 +365,7 @@ namespace CoCEd.Model
         byte[] ReadByteArray()
         {
             // Stored by ref?
-            bool isInstance;
-            int lengthOrIndex = ReadU29(out isInstance);
+            int lengthOrIndex = ReadU29(out bool isInstance);
             if (!isInstance) return (byte[])_objectLookup[lengthOrIndex];
 
             // Stored by value
@@ -382,8 +377,7 @@ namespace CoCEd.Model
         AmfObject ReadVector(AmfTypes type)
         {
             // Stored by ref?
-            bool isInstance;
-            int lengthOrIndex = ReadU29(out isInstance);
+            int lengthOrIndex = ReadU29(out bool isInstance);
             if (!isInstance) return (AmfObject)_objectLookup[lengthOrIndex];
 
             // Stored by value
@@ -423,8 +417,7 @@ namespace CoCEd.Model
         AmfObject ReadDictionary()
         {
             // Stored by ref?
-            bool isInstance;
-            int lengthOrIndex = ReadU29(out isInstance);
+            int lengthOrIndex = ReadU29(out bool isInstance);
             if (!isInstance) return (AmfObject)_objectLookup[lengthOrIndex];
 
             // Stored by value
@@ -444,8 +437,7 @@ namespace CoCEd.Model
         AmfXmlType ReadXML(bool isDocument)
         {
             // Stored by ref?
-            bool isInstance;
-            int lengthOrIndex = ReadU29(out isInstance);
+            int lengthOrIndex = ReadU29(out bool isInstance);
             if (!isInstance) return (AmfXmlType)_objectLookup[lengthOrIndex];
 
             // Stored by value

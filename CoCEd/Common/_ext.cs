@@ -27,8 +27,7 @@ namespace CoCEd.Common
 
         public static TValue GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue = default(TValue))
         {
-            TValue existingValue;
-            if (dictionary.TryGetValue(key, out existingValue)) return existingValue;
+            if (dictionary.TryGetValue(key, out TValue existingValue)) return existingValue;
             return defaultValue;
         }
 

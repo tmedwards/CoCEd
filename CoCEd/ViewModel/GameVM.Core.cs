@@ -183,10 +183,12 @@ namespace CoCEd.ViewModel
                         {
                             for (int i = 0; i < count; i++)
                             {
-                                var slot = new AmfObject(AmfTypes.Object);
-                                slot["id"] = "NOTHING!";  // having to set this to "NOTHING!" is daft
-                                slot["quantity"] = 0;
-                                slot["unlocked"] = false; // must now be false or the camp chest will break in-game
+                                var slot = new AmfObject(AmfTypes.Object)
+                                {
+                                    ["id"] = "NOTHING!",  // having to set this to "NOTHING!" is daft
+                                    ["quantity"] = 0,
+                                    ["unlocked"] = false, // must now be false or the camp chest will break in-game
+                                };
                                 array.Push(slot);
                             }
                         }

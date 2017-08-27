@@ -16,15 +16,17 @@ namespace CoCEd.ViewModel
 
         protected override AmfObject CreateNewObject()
         {
-            var obj = new AmfObject(AmfTypes.Array);
-            obj["cockLength"] = 8;
-            obj["cockThickness"] = 2;
-            obj["cockType"] = 0;
-            obj["knotMultiplier"] = 1.0;
-            obj["pierced"] = 0;
-            obj["pLongDesc"] = "";
-            obj["pShortDesc"] = "";
-            obj["sock"] = "";
+            var obj = new AmfObject(AmfTypes.Array)
+            {
+                ["cockLength"] = 8,
+                ["cockThickness"] = 2,
+                ["cockType"] = 0,
+                ["knotMultiplier"] = 1.0,
+                ["pierced"] = 0,
+                ["pLongDesc"] = "",
+                ["pShortDesc"] = "",
+                ["sock"] = "",
+            };
             return obj;
         }
     }

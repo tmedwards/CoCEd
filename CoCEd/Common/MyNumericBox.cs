@@ -252,7 +252,6 @@ namespace CoCEd.Common
         bool _preserveText;
         bool TrySetValue(bool showError = true)
         {
-            double value;
             // Do it now for performances reasons
             if (ValueToText(Value) == _textBox.Text)
             {
@@ -260,7 +259,7 @@ namespace CoCEd.Common
                 return true;
             }
 
-            if (TextToValue(_textBox.Text, out value))
+            if (TextToValue(_textBox.Text, out double value))
             {
                 _preserveText = true;
                 try
@@ -322,11 +321,7 @@ namespace CoCEd.Common
         bool TextToValue(string str, out double value)
         {
             value = 0;
-            string unit1;
-            string unit2;
-            double value1;
-            double value2;
-            if (!Parse(str, out value1, out unit1, out value2, out unit2)) return false;
+            if (!Parse(str, out double value1, out string unit1, out double value2, out string unit2)) return false;
 
             var unit = NormalizeUnit(Unit);
             value = value1;
