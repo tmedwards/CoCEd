@@ -239,7 +239,14 @@ namespace CoCEd.ViewModel
         void UpdateChest()
         {
             _chest.Clear();
-            foreach (var pair in GetObj("itemStorage")) _chest.Add(pair.ValueAsObject);
+            if (GetObj("itemStorage") != null)
+            {
+                foreach (var pair in GetObj("itemStorage")) _chest.Add(pair.ValueAsObject);
+            }
+            else if (GetObj("inventory").GetObj("itemStorage") != null)
+            {
+                foreach (var pair in GetObj("inventory").GetObj("itemStorage")) _chest.Add(pair.ValueAsObject);
+            }
         }
 
         void UpdateWeaponRack() // gearStorage [0, 8]
