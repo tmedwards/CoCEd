@@ -225,14 +225,22 @@ namespace CoCEd.ViewModel
             }
         }
 
+        //Not sure how I can make the code better as I can't apply the same trick to chest without complicating the code further.
         void UpdateInventory()
         {
             _inventory.Clear();
             int count = IsRevamp ? 10 : 5; // max inventory slots are 5 in CoC and 10 in CoC-Revamp-Mod
-            for (int i = 0; i < count; i++)
+            if (GetObj("itemSlots") != null) //For serialized saves.
             {
-                var slot = GetObj("itemSlot" + (i + 1));
-                if (slot != null && slot.GetBool("unlocked")) _inventory.Add(slot);
+                foreach (var pair in GetObj("itemSlots")) _inventory.Add(pair.ValueAsObject);
+            }
+            else //For legacy item slots used in Vanilla and Revamp 1.4.15-pre. 
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    var slot = GetObj("itemSlot" + (i + 1));
+                    if (slot != null && slot.GetBool("unlocked")) _inventory.Add(slot);
+                }
             }
         }
 
