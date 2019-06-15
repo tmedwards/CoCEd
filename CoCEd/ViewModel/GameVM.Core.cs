@@ -177,7 +177,7 @@ namespace CoCEd.ViewModel
                 case "Camp - Ornate Chest":
                     if (IsRevamp || name == "Camp - Chest")
                     {
-                        var array = GetObj("itemStorage"); // max chest slots are 6 in CoC and 14 in CoC-Revamp-Mod
+                        var array = GetItemStorageObj(); // max chest slots are 6 in CoC and 14 in CoC-Revamp-Mod
                         int count = name == "Camp - Chest" ? 6 : 4; // the CoC-Revamp-Mod addon chests add 4 slots a piece
                         if (isOwned)
                         {
@@ -236,17 +236,16 @@ namespace CoCEd.ViewModel
             }
         }
 
+        AmfObject GetItemStorageObj()
+        {
+            var itemStorage = GetObj("itemStorage");
+            return itemStorage != null ? itemStorage : GetObj("inventory").GetObj("itemStorage");
+        }
+
         void UpdateChest()
         {
             _chest.Clear();
-            if (GetObj("itemStorage") != null)
-            {
-                foreach (var pair in GetObj("itemStorage")) _chest.Add(pair.ValueAsObject);
-            }
-            else if (GetObj("inventory").GetObj("itemStorage") != null)
-            {
-                foreach (var pair in GetObj("inventory").GetObj("itemStorage")) _chest.Add(pair.ValueAsObject);
-            }
+            foreach (var pair in GetItemStorageObj()) _chest.Add(pair.ValueAsObject);
         }
 
         void UpdateWeaponRack() // gearStorage [0, 8]
