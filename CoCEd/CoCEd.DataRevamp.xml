@@ -3,10 +3,14 @@
   <Body>
     <!-- ========================================================================================================================================== -->
     <SkinTypes>
-      <SkinType ID="5" Name="Draconic"/>
+      <SkinType ID="9" Name="Bark"/>
+      <SkinType ID="5" Name="Dragon Scales"/>
+      <SkinType ID="6" Name="Fish Scales" Description="Not used yet..."/>
+      <SkinType ID="8" Name="Feathers"/>
       <SkinType ID="1" Name="Fur"/>
       <SkinType ID="3" Name="Goo"/>
-      <SkinType ID="2" Name="Scales"/>
+      <SkinType ID="2" Name="Lizard Scales"/>
+      <SkinType ID="7" Name="Wool"/>
       <SkinType ID="0" Name="Skin"/>
     </SkinTypes>
     <!-- ========================================================================================================================================== -->
@@ -14,6 +18,9 @@
       <SkinDescription>fur</SkinDescription>
       <SkinDescription>scales</SkinDescription>
       <SkinDescription>skin</SkinDescription>
+      <SkinDescription>bark</SkinDescription>
+      <SkinDescription>feathers</SkinDescription>
+      <SkinDescription>wool</SkinDescription>
     </SkinDescriptions>
     <!-- ========================================================================================================================================== -->
     <SkinAdjectives>
@@ -235,10 +242,12 @@
     </FaceTypes>
     <!-- ========================================================================================================================================== -->
     <TongueTypes>
+      <TongueType ID="6" Name="Cat"/>
       <TongueType ID="2" Name="Demonic"/>
       <TongueType ID="3" Name="Draconic"/>
       <TongueType ID="4" Name="Echidna"/>
       <TongueType ID="0" Name="Human"/>
+      <TongueType ID="5" Name="Lizard"/>
       <TongueType ID="1" Name="Snake"/>
     </TongueTypes>
     <!-- ========================================================================================================================================== -->
@@ -298,18 +307,23 @@
     </ArmTypes>
     <!-- ========================================================================================================================================== -->
     <ClawTypes>
-      <ClawType ID="0" Name="None"/>
-      <!-- ClawType ID="4" Name="Cat"/ -->
-      <!-- ClawType ID="5" Name="Dog"/ -->
-      <ClawType ID="2" Name="Dragon"/>
-      <ClawType ID="1" Name="Lizard"/>
-      <!-- ClawType ID="7" Name="Mantis"/ -->
-      <!-- ClawType ID="6" Name="Raptor"/ -->
-      <ClawType ID="3" Name="Salamander"/>
+      <ClawType ID="0"  Name="None"/>
+      <ClawType ID="4"  Name="Cat"/>
+      <ClawType ID="9"  Name="Cockatrice"/>
+      <ClawType ID="5"  Name="Dog"/>
+      <ClawType ID="2"  Name="Dragon"/>
+      <ClawType ID="11" Name="Ferret"/>
+      <ClawType ID="8"  Name="Imp"/>
+      <ClawType ID="1"  Name="Lizard"/>
+      <ClawType ID="7"  Name="Mantis"/>
+      <ClawType ID="6"  Name="Raptor"/>
+      <ClawType ID="10" Name="Red Panda"/>
+      <ClawType ID="9"  Name="Cockatrice"/>
+      <ClawType ID="3"  Name="Salamander"/>
     </ClawTypes>
     <!-- ========================================================================================================================================== -->
     <ClawTones>
-      <ClawTone/>
+      <ClawTone></ClawTone>
       <ClawTone>bluish</ClawTone>
       <ClawTone>dark-gray</ClawTone>
       <ClawTone>fiery-red</ClawTone>
@@ -325,6 +339,12 @@
       <ClawTone>steel-gray</ClawTone>
       <ClawTone>yellowish</ClawTone>
     </ClawTones>
+    <!-- ========================================================================================================================================== -->
+    <NeckTypes>
+      <NeckType ID="2" Name="Cockatrice"/>
+      <NeckType ID="1" Name="Draconic"/>
+      <NeckType ID="0" Name="Normal"/>
+    </NeckTypes>
     <!-- ========================================================================================================================================== -->
     <TailTypes>
       <TailType ID="0"  Name="None"/>
@@ -364,8 +384,12 @@
       <WingType ID="12" Name="Dragonfly (giant)"/>
       <WingType ID="10" Name="Draconic (small)"/>
       <WingType ID="11" Name="Draconic (large)"/>
+      <WingType ID="14" Name="Faerie (small)"/>
+      <WingType ID="15" Name="Faerie (large)"/>
       <WingType ID="9"  Name="Feathered (large)"/>
-      <WingType ID="8"  Name="Shark fin"/>
+      <WingType ID="5"  Name="Imp (small)"/>
+      <WingType ID="13" Name="Imp (large)"/>
+      <!--WingType ID="8"  Name="Shark fin"  Description="Deprecated as this is now a back slot."/-->
     </WingTypes>
     <!-- ========================================================================================================================================== -->
     <WingDescriptions>
@@ -377,8 +401,19 @@
       <WingDescription>giant dragonfly</WingDescription>
       <WingDescription>small, draconic</WingDescription>
       <WingDescription>large, draconic</WingDescription>
+      <WingDescription>small, faerie</WingDescription>
+      <WingDescription>large, faerie</WingDescription>
       <WingDescription>large, feathered</WingDescription>
+      <WingDescription>small, imp</WingDescription>
+      <WingDescription>large, imp</WingDescription>
     </WingDescriptions>
+    <!-- ========================================================================================================================================== -->
+    <RearBodyTypes>
+	  <RearBodyType ID="0" Name="None"/>
+	  <RearBodyType ID="1" Name="Draconic Mane"/>
+	  <RearBodyType ID="2" Name="Draconic Spikes"/>
+	  <RearBodyType ID="3" Name="Shark Fin"/>
+	</RearBodyTypes>
     <!-- ========================================================================================================================================== -->
     <LowerBodyTypes>
       <LowerBodyType ID="7"  Name="Bee"/>
@@ -386,6 +421,7 @@
       <LowerBodyType ID="9"  Name="Cat"/>
       <LowerBodyType ID="15" Name="Chitinous spider legs"/>
       <LowerBodyType ID="21" Name="Cloven-hoofed"/>
+      <LowerBodyType ID="28" Name="Cockatrice"/>
       <LowerBodyType ID="6"  Name="Demonic claws"/>
       <LowerBodyType ID="5"  Name="Demonic high-heels"/>
       <LowerBodyType ID="2"  Name="Dog"/>
@@ -398,12 +434,15 @@
       <LowerBodyType ID="13" Name="Harpy"/>
       <LowerBodyType ID="1"  Name="Hoofed"/>
       <LowerBodyType ID="0"  Name="Human"/>
+      <LowerBodyType ID="27" Name="Imp"/>
       <LowerBodyType ID="14" Name="Kangaroo"/>
       <LowerBodyType ID="10" Name="Lizard"/>
       <LowerBodyType ID="3"  Name="Naga"/>
       <LowerBodyType ID="11" Name="Pony"/>
       <LowerBodyType ID="19" Name="Raccoon"/>
+      <LowerBodyType ID="29" Name="Red panda"/>
       <LowerBodyType ID="25" Name="Salamander"/>
+      <LowerBodyType ID="26" Name="Wolf"/>
     </LowerBodyTypes>
     <!-- ========================================================================================================================================== -->
     <PiercingTypes>
@@ -440,14 +479,17 @@
       <CockType ID="2"  Name="Dog"/>
       <CockType ID="9"  Name="Dragon"/>
       <CockType ID="16" Name="Echidna"/>
+      <CockType ID="19" Name="Ferret"/>
       <CockType ID="11" Name="Fox"/>
       <CockType ID="1"  Name="Horse"/>
       <CockType ID="0"  Name="Human"/>
       <CockType ID="8"  Name="Kangaroo"/>
       <CockType ID="6"  Name="Lizard"/>
       <CockType ID="13" Name="Pig"/>
+      <CockType ID="18" Name="Red panda"/>
       <CockType ID="15" Name="Rhino"/>
       <CockType ID="4"  Name="Tentacle"/>
+      <CockType ID="17" Name="Wolf"/>
     </CockTypes>
     <!-- ========================================================================================================================================== -->
     <CockSockTypes>
@@ -573,10 +615,12 @@
       <Item ID="B.Chitn" Name="Black Chitin"/>
       <Item ID="DbgWand" Name="Debug Wand"     Description="You filthy cheater!  You should be hung by your ba&#x2014; Oh, wait&#x2026; nevermind."/>
       <Item ID="D.Scale" Name="Dragon Scale"/>
+      <Item ID="E.Flower" Name="Ebonbloom Flower"/>
       <Item ID="GldStat" Name="Golden Statue"  Description="Enables the Meditate action at the kitsune shrine in the Deepwoods.  May also be stolen and sold for gems."/>
       <Item ID="GreenGl" Name="Green Gel"/>
       <Item ID="ImpSkll" Name="Imp Skull"      Description="Used to decorate the wall.  Will have another uses eventually."/>
       <Item ID="Lethite" Name="Lethicite"/>
+      <Item ID="ObShard" Name="Obsidian Shard"/>
       <Item ID="T.SSilk" Name="Tough Silk"/>
       <Item ID="W. Book" Name="White Book"/>
     </ItemGroup>
@@ -620,6 +664,7 @@
       <Item ID="PeppWht" Name="Peppermint White"/>
       <Item ID="P_Whsky" Name="Phouka Whiskey"              Description="Increases Faerie/Phouka pregnancy corruption."/>
       <Item ID="MilkPtn" Name="ProLactaid"/>
+      <Item ID="ProMead" Name="Premium God's Mead"/>
       <Item ID="PrnsPkr" Name="Princess Pucker"             Description="Reduces lust and either libido or sensitivity.  Also has a random chance to change hair color to pink."/>
       <Item ID="P.Bread" Name="Prison Bread"/>
       <Item ID="PurPeac" Name="Pure Peach"/>
@@ -661,6 +706,7 @@
       <Item ID="BeeHony" Name="Bee Honey"/>
       <Item ID="B.Gossr" Name="Black Gossamer"/>
       <Item ID="BoarTru" Name="Boar Truffle"/>
+      <Item ID="Clovis"  Name="Clovis"                  Description="Sheep TF item."/>
       <Item ID="EctoPls" Name="Ectoplasm"/>
       <Item ID="Equinum" Name="Equinum"/>
       <Item ID="Frrtfrt" Name="Ferret Fruit"/>
@@ -669,7 +715,7 @@
       <Item ID="Gob.Ale" Name="Goblin Ale"/>
       <Item ID="GldRind" Name="Golden Rind"             Description="Deer TF item."/>
       <Item ID="GldSeed" Name="Golden Seed"/>
-      <Item ID="Hummus " Name="Hummus"                  Description="Non-cheat version of Super Hummus."/>
+      <Item ID="Hummus " Name="Hummanus"                Description="Human TF item. Non-cheat version of Super Hummus."/>
       <Item ID="Hummus2" Name="Super Hummus"            Description="In-game cheat item.  Reverts PC to a basic human form."/>
       <Item ID="ImpFood" Name="Imp Food"/>
       <Item ID="IncubiD" Name="Incubi Draft"/>
@@ -681,6 +727,7 @@
       <Item ID="MouseCo" Name="Mouse Cocoa"/>
       <Item ID="MystJwl" Name="Mystic Jewel"/>
       <Item ID="NPnkEgg" Name="Neon Pink Egg"/>
+      <Item ID="Oculum " Name="Oculum Arachnae"         Description="If consumed, has a chance to give spider eyes."/>
       <Item ID="PigTruf" Name="Pigtail Truffle"/>
       <Item ID="ProBova" Name="ProBova"/>
       <Item ID="PurHony" Name="Pure Honey"              Description="If pregnant with Faerie/Phouka, will decrease pregnancy corruption rather than giving its normal effect."/>
@@ -747,44 +794,102 @@
       <Item ID="SmthLtn" Name="Smooth Lotion"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
-    <ItemGroup Name="Weapons, Melee" Category="Weapon">
-      <Item ID="B.Sword" Name="Beautiful Sword"        Description="Has a maximum PC corruption tolerance of 34."/>
-      <Item ID="B.ScarB" Name="Broken Scarred Blade"   Description="No corruption requirement because you broke it."/>
+    <ItemGroup Name="Weapons, Melee (Standard)" Category="Weapon">
       <Item ID="Whip   " Name="Coiled Whip"/>
+      <Item ID="Whip  1" Name="Coiled Whip+1"/>
+      <Item ID="Whip  2" Name="Coiled Whip+2"/>
       <Item ID="Dagger " Name="Dagger"/>
-      <Item ID="E.Staff" Name="Eldritch Staff"/>
-      <Item ID="KihaAxe" Name="Fiery Greataxe"/>
+      <Item ID="Dagger1" Name="Dagger+1"/>
+      <Item ID="Dagger2" Name="Dagger+2"/>
+      <Item ID="DaggerO" Name="Obsidian-Bladed Dagger"        Durability="200"/>
       <Item ID="Flail  " Name="Flail"/>
+      <Item ID="Flail 1" Name="Flail+1"/>
+      <Item ID="Flail 2" Name="Flail+2"/>
+      <Item ID="Flail O" Name="Obsidian-Spiked Flail"         Durability="200"/>
       <Item ID="H.Gaunt" Name="Hooked Gauntlets"/>
+      <Item ID="H.Gaun1" Name="Hooked Gauntlets+1"/>
+      <Item ID="H.Gaun2" Name="Hooked Gauntlets+2"/>
+      <Item ID="H.GaunO" Name="Obsidian-Hooked Gauntlets"     Durability="200"/>
       <Item ID="Warhamr" Name="Huge Warhammer"/>
-      <Item ID="H. Cane" Name="Huntsman's Cane"        Description="Halves PC corruption gains while equipped.  May break after 10 strikes, rendering it lost forever."/>
-      <Item ID="S.Blade" Name="Inscribed Spellblade"/>
-      <Item ID="JRapier" Name="Jeweled Rapier"/>
+      <Item ID="Warham1" Name="Huge Warhammer+1"/>
+      <Item ID="Warham2" Name="Huge Warhammer+2"/>
+      <Item ID="WarhamO" Name="Obsidian-Spiked Huge Warhammer" Durability="200"/>
       <Item ID="Katana " Name="Katana"/>
-      <Item ID="L. Axe " Name="Large Axe"              Description="Has a PC height requirement of 6&#x2032;6&#x2033; (198.12 cm)."/>
+      <Item ID="Katana1" Name="Katana+1"/>
+      <Item ID="Katana2" Name="Katana+2"/>
+      <Item ID="KatanaO" Name="Obsidian-Lined Katana"         Durability="200"/>
+      <Item ID="L. Axe " Name="Large Axe"              Description="Has a PC height requirement of 6&#x2032;6&#x2033; (198.12 cm) OR 80+ Strength."/>
+      <Item ID="L. Axe1" Name="Large Axe+1"            Description="Has a PC height requirement of 6&#x2032;6&#x2033; (198.12 cm) OR 80+ Strength."/>
+      <Item ID="L. Axe2" Name="Large Axe+2"            Description="Has a PC height requirement of 6&#x2032;6&#x2033; (198.12 cm) OR 80+ Strength."/>
+      <Item ID="L. AxeO" Name="Obsidian-Reinforced Large Axe" Durability="200"  Description="Has a PC height requirement of 6&#x2032;6&#x2033; (198.12 cm) OR 80+ Strength."/>
       <Item ID="Claymor" Name="Large Claymore"/>
+      <Item ID="Claymr1" Name="Large Claymore+1"/>
+      <Item ID="Claymr2" Name="Large Claymore+2"/>
+      <Item ID="ClaymrO" Name="Obsidian-Bladed Claymore"      Durability="200"/>
       <Item ID="L.Hammr" Name="Large Hammer"/>
-      <Item ID="L. Whip" Name="Lethice's Whip"/>
-      <Item ID="L.Staff" Name="Lethicite Staff"/>
+      <Item ID="L.Hamr1" Name="Large Hammer+1"/>
+      <Item ID="L.Hamr2" Name="Large Hammer+2"/>
+      <Item ID="L.HamrO" Name="Obsidian-Spiked Large Hammer"  Durability="200"/>
       <Item ID="L.Daggr" Name="Lust Dagger"/>
+      <Item ID="L.Dagr1" Name="Lust Dagger+1"/>
+      <Item ID="L.Dagr2" Name="Lust Dagger+2"/>
       <Item ID="Mace   " Name="Mace"/>
+      <Item ID="Mace  1" Name="Mace+1"/>
+      <Item ID="Mace  2" Name="Mace+2"/>
+      <Item ID="Mace  O" Name="Obsidian-Spiked Mace"          Durability="200"/>
       <Item ID="Pipe   " Name="Pipe"/>
       <Item ID="PtchFrk" Name="Pitchfork"/>
-      <Item ID="RRapier" Name="Raphael's Rapier"/>
       <Item ID="RidingC" Name="Riding Crop"/>
-      <Item ID="ScarBld" Name="Scarred Blade"          Description="Has a minimum PC corruption requirement of 70."/>
+      <Item ID="Riding1" Name="Riding Crop+1"/>
+      <Item ID="Riding2" Name="Riding Crop+2"/>
       <Item ID="Scimitr" Name="Scimitar"/>
+      <Item ID="Scimtr1" Name="Scimitar+1"/>
+      <Item ID="Scimtr2" Name="Scimitar+2"/>
+      <Item ID="ScimtrO" Name="Obsidian-Bladed Scimitar"      Durability="200"/>
       <Item ID="Spear  " Name="Spear"/>
+      <Item ID="Spear 1" Name="Spear+1"/>
+      <Item ID="Spear 2" Name="Spear+2"/>
+      <Item ID="Spear O" Name="Obsidian-Tipped Spear"         Durability="200"/>
       <Item ID="S.Gaunt" Name="Spiked Gauntlets"/>
-      <Item ID="SucWhip" Name="Succubi Whip"/>
-      <Item ID="UrtaHlb" Name="Urta's Halberd"/>
-      <Item ID="W.Staff" Name="Wizard's Staff"/>
+      <Item ID="S.Gaun1" Name="Spiked Gauntlets+1"/>
+      <Item ID="S.Gaun2" Name="Spiked Gauntlets+2"/>
+      <Item ID="S.GaunO" Name="Obsidian-Spiked Gauntlets"     Durability="200"/>
     </ItemGroup>
+	<ItemGroup Name="Weapons, Melee (Special)" Category="Weapon">
+      <Item ID="BBSword" Name="Broken Beautiful Sword" Description="Found in the lake after overloading the factory but didn't take the blade beforehand. Can be reforged."/>
+      <Item ID="B.Sword" Name="Beautiful Sword"        Description="Has a maximum PC corruption tolerance of 34."/>
+      <Item ID="B.ScarB" Name="Broken Scarred Blade"   Description="No corruption requirement because you broke it. Can be reforged."/>
+      <Item ID="DPSword" Name="Divine Pearl Sword"     Description="Has a maximum PC corruption tolerance of 34. Upgraded version of Beautiful Sword."/>
+      <Item ID="H. Cane" Name="Huntsman's Cane"        Description="Halves PC corruption gains while equipped.  Breaks after 25 strikes, rendering it lost forever."  Durability="25"/>
+      <Item ID="JRapier" Name="Jeweled Rapier"/>
+      <Item ID="KihaAxe" Name="Fiery Greataxe"/>
+      <Item ID="L. Whip" Name="Lethice's Whip"         Description="The superior, flaming version of Succubi's Whip."/>
+      <Item ID="MRapier" Name="Midnight Rapier"        Description="The superior version of Jeweled Rapier."/>
+      <Item ID="RRapier" Name="Raphael's Rapier"/>
+      <Item ID="ScarBld" Name="Scarred Blade"          Description="Has a minimum PC corruption requirement of 70. Upgraded from Ugly Sword."/>
+      <Item ID="SucWhip" Name="Succubi Whip"/>
+      <Item ID="U.Sword" Name="Ugly Sword"             Description="Has a minimum PC corruption requirement of 70."/>
+      <Item ID="UrtaHlb" Name="Urta's Halberd"/>
+	</ItemGroup>
     <!-- ========================================================================================================================================== -->
     <ItemGroup Name="Weapons, Ranged" Category="Weapon">
       <Item ID="Blunder" Name="Blunderbuss"/>
+      <Item ID="Blundr1" Name="Blunderbuss+1"/>
+      <Item ID="Blundr2" Name="Blunderbuss+2"/>
       <Item ID="Crossbw" Name="Crossbow"/>
+      <Item ID="Crsbow1" Name="Crossbow+1"/>
+      <Item ID="Crsbow2" Name="Crossbow+2"/>
       <Item ID="Flintlk" Name="Flintlock Pistol"/>
+      <Item ID="Flntlk1" Name="Flintlock Pistol+1"/>
+      <Item ID="Flntlk2" Name="Flintlock Pistol+2"/>
+    </ItemGroup>
+    <!-- ========================================================================================================================================== -->
+    <ItemGroup Name="Weapons, Magic" Category="Weapon">
+      <Item ID="E.Staff" Name="Eldritch Staff"/>
+      <Item ID="S.Blade" Name="Inscribed Spellblade"/>
+      <Item ID="RSBlade" Name="Inscribed Runed Spellblade" Description="Upgraded version of the Inscribed Spellblade, boasting higher attack and SEM."/>
+      <Item ID="L.Staff" Name="Lethicite Staff"/>
+      <Item ID="W.Staff" Name="Wizard's Staff"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
     <ItemGroup Name="Armors" Category="Armor">
@@ -796,6 +901,11 @@
       <Item ID="C.Cloth" Name="Comfortable Clothes"/>
       <Item ID="DB.Armr" Name="Divine Bark Armor"/>
       <Item ID="DSclArm" Name="Dragonscale Armor"/>
+      <Item ID="EWPlate" Name="Ebonweave Platemail"/>
+      <Item ID="EWJackt" Name="Ebonweave Jacket"/>
+      <Item ID="EW Robe" Name="Ebonweave Robe"/>
+      <Item ID="EWIRobe" Name="Indecent Ebonweave Robe"/>
+      <Item ID="FrsGown" Name="Forest Gown"/>
       <Item ID="FullChn" Name="Full Chain"/>
       <Item ID="FullPlt" Name="Full Plate"/>
       <Item ID="GelArmr" Name="Gel Armor"/>
@@ -809,6 +919,7 @@
       <Item ID="LthcArm" Name="Lethicite Armor"/>
       <Item ID="B.Dress" Name="Long Dress"/>
       <Item ID="LMArmor" Name="Lusty Maiden's Armor"/>
+      <Item ID="NagaSlk" Name="Naga Silk Dress"/>
       <Item ID="NurseCl" Name="Nurse's Outfit"/>
       <Item ID="Overall" Name="Overalls"/>
       <Item ID="R.BdySt" Name="Red, High-Society Bodysuit"/>
@@ -832,15 +943,27 @@
     <!-- ========================================================================================================================================== -->
     <ItemGroup Name="Shields" Category="Shield">
       <Item ID="Buckler" Name="Buckler"/>
+      <Item ID="Bucklr1" Name="Buckler+1"/>
+      <Item ID="Bucklr2" Name="Buckler+2"/>
       <Item ID="DrgnShl" Name="Dragon-Shell Shield"/>
+      <Item ID="RDgnShl" Name="Runed Dragon-Shell Shield"/>
       <Item ID="GreatSh" Name="Greatshield"/>
+      <Item ID="GrtShl1" Name="Greatshield+1"/>
+      <Item ID="GrtShl2" Name="Greatshield+2"/>
       <Item ID="Kite Sh" Name="Kite Shield"/>
+      <Item ID="KiteSh1" Name="Kite Shield+1"/>
+      <Item ID="KiteSh2" Name="Kite Shield+2"/>
       <Item ID="TowerSh" Name="Tower Shield"/>
+      <Item ID="TowerS1" Name="Tower Shield+1"/>
+      <Item ID="TowerS2" Name="Tower Shield+2"/>
+      <Item ID="WoodShl" Name="Wooden Shield"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
     <ItemGroup Name="Undergarments, Upper" Category="Undergarment">
       <Item ID="C. Bra " Name="Comfortable Bra"/>
       <Item ID="DS. Bra" Name="Dragonscale Bra"/>
+      <Item ID="EW Vest" Name="Ebonweave Vest"/>
+      <Item ID="EW Crst" Name="Ebonweave Corset"/>
       <Item ID="Ltx.Bra" Name="Latex Bra"/>
       <Item ID="SS. Bra" Name="Spider-Silk Bra"/>
     </ItemGroup>
@@ -850,10 +973,17 @@
       <Item ID="C.Panty" Name="Comfortable Panties"/>
       <Item ID="DS.Loin" Name="Dragonscale Loincloth"/>
       <Item ID="DSPanty" Name="Dragonscale Thong"/>
+      <Item ID="EWCloth" Name="Ebonweave Loincloth"/>
+      <Item ID="EWThong" Name="Ebonweave Thong"/>
+      <Item ID="EWStrap" Name="Ebonweave Jockstrap"/>
       <Item ID="Fundosh" Name="Fundoshi"/>
       <Item ID="FurLoin" Name="Fur Loincloth"/>
+      <Item ID="Garters" Name="Stockings and Garters"/>
       <Item ID="LtxShrt" Name="Latex Shorts"/>
       <Item ID="LtxThng" Name="Latex Thong"/>
+      <Item ID="RnCloth" Name="Runed Ebonweave Loincloth" Description="Grants the Wellspring of Lust perk while worn, raising lust to black magic threshold."/>
+      <Item ID="RnThong" Name="Runed Ebonweave Panties" Description="Grants the Wellspring of Lust perk while worn, raising lust to black magic threshold."/>
+      <Item ID="RnStrap" Name="Runed Ebonweave Jockstrap" Description="Grants the Wellspring of Lust perk while worn, raising lust to black magic threshold."/>
       <Item ID="SS.Loin" Name="Spider-Silk Loincloth"/>
       <Item ID="SSPanty" Name="Spider-Silk Panties"/>
       <Item ID="Garters" Name="Stockings and Garters"/>
@@ -862,20 +992,44 @@
     <ItemGroup Name="Rings, Normal" Category="Jewelry">
       <Item ID="DiamRng" Name="Diamond Ring"/>
       <Item ID="GoldRng" Name="Gold Ring"/>
-      <Item ID="LthcRng" Name="Lethicite Ring"  Description="Slowly corrupts the wearer at a rate of 1 corruption every 10 hours."/>
       <Item ID="PlatRng" Name="Platinum Ring"/>
       <Item ID="SilvRng" Name="Silver Ring"/>
     </ItemGroup>
     <!-- ========================================================================================================================================== -->
-    <ItemGroup Name="Rings, Enchanted" Category="Jewelry">
-      <Item ID="CrimRng" Name="Crimstone Ring" Description="Increases minimum lust."/>
-      <Item ID="FertRng" Name="Fertite Ring"   Description="Increases fertility rating and cum production."/>
-      <Item ID="Ice_Rng" Name="Icestone Ring"  Description="Reduces minimum lust."/>
-      <Item ID="LifeRng" Name="Life Ring"      Description="Increases maximum HP."/>
-      <Item ID="MystRng" Name="Mystic Ring"    Description="Increases spell power."/>
-      <Item ID="PowrRng" Name="Power Ring"     Description="Increases attack damage."/>
-      <Item ID="PureRng" Name="Purity Ring"    Description="Reduces minimum libido and increases lust resistance."/>
+    <ItemGroup Name="Rings, Enchanted (Tier 1)" Category="Jewelry">
+      <Item ID="CrimRng" Name="Lesser Crimstone Ring" Description="Increases minimum lust. (+10 minimum lust)"/>
+      <Item ID="FertRng" Name="Lesser Fertite Ring"   Description="Increases fertility rating and cum production. (+20 fertility/cum production)"/>
+      <Item ID="CritRng" Name="Lesser Critical Ring"  Description="Increases critical chance. (+3% critical chance)"/>
+      <Item ID="Ice_Rng" Name="Lesser Icestone Ring"  Description="Reduces minimum lust. (-10 minimum lust)"/>
+      <Item ID="LifeRng" Name="Lesser Life Ring"      Description="Increases maximum HP. (+30 HP)"/>
+      <Item ID="MystRng" Name="Lesser Mystic Ring"    Description="Increases spell power. (+20% spellpower)"/>
+      <Item ID="PowrRng" Name="Lesser Power Ring"     Description="Increases attack damage. (+6% power)"/>
+      <Item ID="RegnRng" Name="Lesser Regen Ring"     Description="Regenerates HP over time and turns. (2 HP)"/>
     </ItemGroup>
+    <ItemGroup Name="Rings, Enchanted (Tier 2)" Category="Jewelry">
+      <Item ID="CrimRn2" Name="Crimstone Ring" Description="Increases minimum lust. (+15 minimum lust)"/>
+      <Item ID="FertRn2" Name="Fertite Ring"   Description="Increases fertility rating and cum production. (+30 fertility/cum production)"/>
+      <Item ID="CritRn2" Name="Critical Ring" Description="Increases critical chance. (+5% critical chance)"/>
+      <Item ID="Ice_Rn2" Name="Icestone Ring"  Description="Reduces minimum lust. (-15 minimum lust)"/>
+      <Item ID="LifeRn2" Name="Life Ring"      Description="Increases maximum HP. (+45 HP)"/>
+      <Item ID="MystRn2" Name="Mystic Ring"    Description="Increases spell power. (+30% spellpower)"/>
+      <Item ID="PowrRn2" Name="Power Ring"     Description="Increases attack damage. (+9% power)"/>
+      <Item ID="RegnRn2" Name="Regen Ring"     Description="Regenerates HP over time and turns. (3 HP)"/>
+    </ItemGroup>
+    <ItemGroup Name="Rings, Enchanted (Tier 3)" Category="Jewelry">
+      <Item ID="CrimRn3" Name="Greater Crimstone Ring" Description="Increases minimum lust. (+20 minimum lust)"/>
+      <Item ID="FertRn3" Name="Greater Fertite Ring"   Description="Increases fertility rating and cum production. (+40 fertility/cum production)"/>
+      <Item ID="CritRn3" Name="Greater Critical Ring" Description="Increases critical chance. (+7% critical chance)"/>
+      <Item ID="Ice_Rn3" Name="Greater Icestone Ring"  Description="Reduces minimum lust. (-20 minimum lust)"/>
+      <Item ID="LifeRn3" Name="Greater Life Ring"      Description="Increases maximum HP. (+60 HP)"/>
+      <Item ID="MystRn3" Name="Greater Mystic Ring"    Description="Increases spell power. (+40% spellpower)"/>
+      <Item ID="PowrRn3" Name="Greater Power Ring"     Description="Increases attack damage. (+12% power)"/>
+      <Item ID="RegnRn3" Name="Greater Regen Ring"     Description="Regenerates HP over time and turns. (4 HP)"/>
+    </ItemGroup>
+	<ItemGroup Name="Rings, Special" Category="Jewelry">
+      <Item ID="LthcRng" Name="Lethicite Ring"  Description="Slowly corrupts the wearer at a rate of 1 corruption every 10 hours."/>
+	  <Item ID="PureRng" Name="Purity Ring"    Description="Reduces minimum libido and increases lust resistance."/>
+	</ItemGroup>
   </Items>
   <!-- ========================================================================================================================================== -->
   <KeyItems>
@@ -1244,6 +1398,7 @@
     <Status Name="KeltBJ"/>
     <Status Name="KeltOff" Description="You did something that really pissed off Kelt&#x2014;even more so than usual, for the arrogant prick&#x2014; and now he's stormed off and refuses to teach you ever again. You must have made some sort of egregious affront to his ego. Remove this to bring him back."/>
     <Status Name="Knows Arouse" Description="You know the black-magic lust-raising enticement spell, &quot;Arouse&quot;"/>
+    <Status Name="Knows Blackfire" Description="You know the black-magic unholy fire spell, &quot;Blackfire&quot;"/>
     <Status Name="Knows Blind" Description="You know the white-magic vision-impairment spell, &quot;Blind&quot;"/>
     <Status Name="Knows Charge" Description="You know the white-magic weapon-enhancement spell, &quot;Charge&quot;"/>
     <Status Name="Knows Heal" Description="You know the black-magic healing spell, &quot;Heal&quot;"/>
@@ -1594,8 +1749,8 @@
     <Flag ID="251"  Name="IZMA_CHILDREN_SHARKGIRLS"/>
     <Flag ID="252"  Name="IZMA_CHILDREN_TIGERSHARKS"/>
     <Flag ID="253"  Name="IZMA_TIME_TILL_NEW_BOOK_AVAILABLE"/>
-    <Flag ID="254"  Name="UNKNOWN_FLAG_NUMBER_00254"                    Description="Weapon rack owned: 1 = yes"/>
-    <Flag ID="255"  Name="UNKNOWN_FLAG_NUMBER_00255"                    Description="Armor rack owned: 1 = yes"/>
+    <Flag ID="254"  Name="UNKNOWN_FLAG_NUMBER_00254"                    Description="Weapon Rack owned? 1 = yes"/>
+    <Flag ID="255"  Name="UNKNOWN_FLAG_NUMBER_00255"                    Description="Armor Rack owned? 2 = yes (should this be 1 = yes ?)"/>
     <Flag ID="256"  Name="UNKNOWN_FLAG_NUMBER_00256"                    Description="PC decided to approach Isabella's camp yet? 1"/>
     <Flag ID="257"  Name="UNKNOWN_FLAG_NUMBER_00257"                    Description="Met Isabella?"/>
     <Flag ID="258"  Name="UNKNOWN_FLAG_NUMBER_00258"                    Description="Is Isabella okay with tall folks?"/>
@@ -1612,10 +1767,10 @@
     <Flag ID="269"  Name="PLAYER_DISARMED_WEAPON_ATTACK"                Description="weapon damage"/>
     <Flag ID="270"  Name="UNKNOWN_FLAG_NUMBER_00270"                    Description="Times encountered spiderbitches"/>
     <Flag ID="271"  Name="FEMALE_SPIDERMORPH_PREGNANCY_INCUBATION"      Description="Spider Preggo Timer"/>
-    <Flag ID="272"  Name="TIMES_EXPLORED_SWAMP"                         Description="Times Explored Swamp"/>
+    <Flag ID="272"  Name="UNKNOWN_FLAG_NUMBER_00272"                    Description="Times Explored Swamp"/>
     <Flag ID="273"  Name="SHOW_SPRITES_FLAG"/>
     <Flag ID="274"  Name="RATHAZUL_SILK_ARMOR_COUNTDOWN"                Description="Rathazul silk armor queue: 1 = armor done"/>
-    <Flag ID="275"  Name="UNKNOWN_FLAG_NUMBER_00275"                    Description="Rathazul armor type selector: 1 = armor, 2 = robes, 3=bra, 4=panties, 5=loincloth"/>
+    <Flag ID="275"  Name="UNKNOWN_FLAG_NUMBER_00275"                    Description="Rathazul armor type selector: 1 = armor, 2 = robes"/>
     <Flag ID="276"  Name="UNKNOWN_FLAG_NUMBER_00276"                    Description="Times Encountered Basilisk"/>
     <Flag ID="277"  Name="UNKNOWN_FLAG_NUMBER_00277"                    Description="Times Encountered Drider"/>
     <Flag ID="278"  Name="UNKNOWN_FLAG_NUMBER_00278"                    Description="LOTTIE DISABLED (1+ = YUS)"/>
@@ -2521,7 +2676,7 @@
     <Flag ID="1178" Name="PLAYER_INFECTED_IMPS"/>
     <Flag ID="1179" Name="FEMOIT_UNLOCKED"                              Description="Unlocked the option to feminise Benoit."/>
     <Flag ID="1180" Name="BIMBO_FEMOIT_UNLOCKED"                        Description="Unlocked the option to bimbofy Benoit."/>
-    <Flag ID="1181" Name="BENOIT_STATUS"                                Description="0 = male, 1 = female, 2 = bimbo, 3 = herm"/>
+    <Flag ID="1181" Name="BENOIT_STATUS"                                Description="0 = male, 1 = female, 2 = bimbo."/>
     <Flag ID="1182" Name="FEMOIT_NEXTDAY_EVENT"                         Description="Proc the event the following day when you visit. Stores the minimum day number that the event can proc on."/>
     <Flag ID="1183" Name="FEMOIT_TALKED_TO"/>
     <Flag ID="1184" Name="KATHERINE_RANDOM_RECRUITMENT_DISABLED"/>
@@ -2910,17 +3065,100 @@
     <Flag ID="2283" Name="ANZU_TALKED_RIFT"/>
     <Flag ID="2284" Name="ANZU_TALKED_POWERS"/>
     <Flag ID="2285" Name="ANZU_TALKED_GODS"/>
-    <Flag ID="2286" Name="ANZU_TIMES_DINED"/>
-    <Flag ID="2287" Name="UNKNOWN_FLAG_NUMBER_02287"/>
-    <Flag ID="2288" Name="UNKNOWN_FLAG_NUMBER_02288"/>
-    <Flag ID="2289" Name="UNKNOWN_FLAG_NUMBER_02289"/>
-    <Flag ID="2290" Name="UNKNOWN_FLAG_NUMBER_02290"/>
-    <Flag ID="2291" Name="UNKNOWN_FLAG_NUMBER_02291"/>
-    <Flag ID="2292" Name="UNKNOWN_FLAG_NUMBER_02292"/>
-    <Flag ID="2293" Name="UNKNOWN_FLAG_NUMBER_02293"/>
-    <Flag ID="2294" Name="UNKNOWN_FLAG_NUMBER_02294"/>
-    <Flag ID="2295" Name="SANDWITCH_SERVICED"/>
-    <Flag ID="2296" Name="JOJO_STATUS"/>
+    <Flag ID="2286" Name="ANZU_TIMES_DINED_BREAKFAST"/>
+    <Flag ID="2287" Name="ANZU_TIMES_DINED_LUNCH"/>
+    <Flag ID="2288" Name="ANZU_TIMES_DINED_DINNER"/>
+    <Flag ID="2289" Name="ANZU_TIMES_DRUNK_SEX"/>
+    <Flag ID="2290" Name="ANZU_TIMES_RACED"/>
+    <Flag ID="2291" Name="ANZU_ANAL_CATCH_COUNTER"/>
+    <Flag ID="2292" Name="ANZU_VAGINAL_CATCH_COUNTER"/>
+    <Flag ID="2293" Name="ANZU_BLOWN_YOU_COUNTER"/>
+    <Flag ID="2294" Name="ANZU_SUCKED_OFF_COUNTER"/>
+    <Flag ID="2295" Name="ANZU_ANAL_PITCH_COUNTER"/>
+    <Flag ID="2296" Name="ANZU_FED_COUNTER"/>
+    <Flag ID="2297" Name="TIMES_EXPLORED"/>
+    <Flag ID="2298" Name="TIMES_EXPLORED_FOREST"/>
+    <Flag ID="2399" Name="TIMES_EXPLORED_DESERT"/>
+    <Flag ID="2300" Name="TIMES_EXPLORED_MOUNTAIN"/>
+    <Flag ID="2301" Name="TIMES_EXPLORED_LAKE"/>
+    <Flag ID="2302" Name="HELIA_SPAR_VICTORIES"/>
+    <Flag ID="2303" Name="HELSPAWN_SPAR_VICTORIES"/>
+    <Flag ID="2304" Name="KIHA_SPAR_VICTORIES"/>
+    <Flag ID="2305" Name="ISABELLA_SPAR_VICTORIES"/>
+    <Flag ID="2306" Name="MINERVA_SPAR_VICTORIES"/>
+    <Flag ID="2307" Name="VALERIA_SPAR_VICTORIES"/>
+    <Flag ID="2308" Name="AIKO_SPAR_VICTORIES"/>
+    <Flag ID="2309" Name="BEHEMOTH_SPAR_VICTORIES"/>
+    <Flag ID="2310" Name="SANDWITCH_SERVICED"/>
+    <Flag ID="2311" Name="JOJO_STATUS"/>
+    <Flag ID="2312" Name="IZMA_BROFIED"/>
+    <Flag ID="2313" Name="IZMAEL_ANAL_PENETRATED"/>
+    <Flag ID="2314" Name="IZMAEL_FRENZIED"/>
+    <Flag ID="2315" Name="IZMAEL_ENTRAPPED"/>
+    <Flag ID="2316" Name="IZMAEL_BATHTIME_COUNTER"/>
+    <Flag ID="2317" Name="UNKNOWN_FLAG_NUMBER_02317"/>
+    <Flag ID="2318" Name="UNKNOWN_FLAG_NUMBER_02318"/>
+    <Flag ID="2319" Name="TOWN_RUINS_SCAVENGE_CONSIDERED"/>
+    <Flag ID="2320" Name="TOWN_RUINS_HOUSES_DISMANTLED"/>
+    <Flag ID="2321" Name="TOWN_RUINS_HOUSE_SCAVENGE_PROGRESS"/>
+    <Flag ID="2322" Name="TOWN_RUINS_TOWNHALL_SCAVENGE_PROGRESS"/>
+    <Flag ID="2323" Name="TOWN_RUINS_SHOP_SCAVENGE_PROGRESS"/>
+    <Flag ID="2324" Name="TOWN_RUINS_HOUSE_FURNITURE_FOUND"/>
+    <Flag ID="2325" Name="TOWN_RUINS_TOWNHALL_FURNITURE_FOUND"/>
+    <Flag ID="2326" Name="TOWN_RUINS_SHOP_FURNITURE_FOUND"/>
+    <Flag ID="2327" Name="PABLO_MET"/>
+    <Flag ID="2328" Name="PABLO_AFFECTION"/>
+    <Flag ID="2329" Name="PABLO_WORKOUT_COUNTER"/>
+    <Flag ID="2330" Name="PABLO_SECRET_LEARNED"/>
+    <Flag ID="2331" Name="PABLO_SEX_UNLOCKED"/>
+    <Flag ID="2332" Name="PABLO_GOT_DICKED_VAGINALLY"/>
+    <Flag ID="2333" Name="PABLO_GOT_DICKED_ANALLY"/>
+    <Flag ID="2334" Name="PABLO_USED_YOUR_PUSSY"/>
+    <Flag ID="2335" Name="PABLO_USED_YOUR_ASS"/>
+    <Flag ID="2336" Name="PABLO_FREAKED_OUT_OVER_WORMS"/>
+    <Flag ID="2337" Name="TIMES_MINO_MUTUAL"/>
+    <Flag ID="2338" Name="BIMBO_MINISKIRT_PROGRESS_DISABLED"/>
+    <Flag ID="2339" Name="AMAROK_LOSSES"/>
+    <Flag ID="2340" Name="MRAPIER_BOUGHT"/>
+    <Flag ID="2341" Name="GOTTEN_INQUISITOR_CORSET"/>
+    <Flag ID="2342" Name="GOTTEN_INQUISITOR_ROBES"/>
+    <Flag ID="2343" Name="GOBLIN_ELDER_FOREPLAY_COUNTER"/>
+    <Flag ID="2344" Name="GOBLIN_ELDER_RELATION_COUNTER"/>
+    <Flag ID="2345" Name="GOBLIN_ELDER_WRESTLE_COUNTER"/>
+    <Flag ID="2346" Name="GOBLIN_ELDER_BEAST_COUNTER"/>
+    <Flag ID="2347" Name="WEAPON_SHOP_UPGRADE_ITEM"/>
+    <Flag ID="2348" Name="WEAPON_SHOP_UPGRADE_TIME"/>
+    <Flag ID="2349" Name="ARMOUR_SHOP_UPGRADE_ITEM"/>
+    <Flag ID="2350" Name="ARMOUR_SHOP_UPGRADE_TIME"/>
+    <Flag ID="2351" Name="CHILL_SMITH_UPGRADE_ITEM"/>
+    <Flag ID="2352" Name="CHILL_SMITH_UPGRADE_TIME"/>
+    <Flag ID="2353" Name="AIKO_TIMES_MET"/>
+    <Flag ID="2354" Name="AIKO_CORRUPTION"/>
+    <Flag ID="2355" Name="AIKO_CORRUPTION_ACTIVE"/>
+    <Flag ID="2356" Name="AIKO_AFFECTION"/>
+    <Flag ID="2357" Name="AIKO_SEXED"/>
+    <Flag ID="2358" Name="AIKO_BALL_RETURNED"/>
+    <Flag ID="2359" Name="AIKO_FIRST_CHOICE"/>
+    <Flag ID="2360" Name="AIKO_FIRST_SEX_COOLDOWN"/>
+    <Flag ID="2361" Name="AIKO_HAS_FOUGHT"/>
+    <Flag ID="2362" Name="AIKO_FIGHT_WON"/>
+    <Flag ID="2363" Name="AIKO_HOT_BLOOD"/>
+    <Flag ID="2364" Name="AIKO_APOLOGY_SINCERE"/>
+    <Flag ID="2365" Name="AIKO_RAPE"/>
+    <Flag ID="2366" Name="AIKO_TALK_CULTURE"/>
+    <Flag ID="2367" Name="AIKO_TALK_AIKO"/>
+    <Flag ID="2368" Name="AIKO_TALK_ARCHERY"/>
+    <Flag ID="2369" Name="AIKO_BOSS_INTRO"/>
+    <Flag ID="2370" Name="AIKO_BOSS_COMPLETE"/>
+    <Flag ID="2371" Name="AIKO_BOSS_OUTRO"/>
+    <Flag ID="2372" Name="YAMATA_MASOCHIST"/>
+    <Flag ID="2373" Name="TOTAL_HP_VICTORIES"/>
+    <Flag ID="2374" Name="TENTACLE_BEASTS_KILLED"/>
+    <Flag ID="2375" Name="WORMS_MASS_KILLED"/>
+    <Flag ID="2376" Name="ACHIEVEMENT_PROGRESS_DAMAGE_SPONGE"/>
+    <Flag ID="2377" Name="DEMON_SOLDIERS_ENCOUNTERED"/>
+    <Flag ID="2378" Name="DEMON_SOLDIERS_KILLED"/>
+    <Flag ID="2379" Name="HELSPAWN_SPARRED_TODAY"/>
 
     <!--
         The flags below this point come from the code, but they really do not need to be exposed
