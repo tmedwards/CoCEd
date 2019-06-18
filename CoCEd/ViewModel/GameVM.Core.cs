@@ -225,17 +225,17 @@ namespace CoCEd.ViewModel
             }
         }
 
-        //Not sure how I can make the code better as I can't apply the same trick to chest without complicating the code further.
         void UpdateInventory()
         {
             _inventory.Clear();
-            int count = IsRevamp ? 10 : 5; // max inventory slots are 5 in CoC and 10 in CoC-Revamp-Mod
-            if (GetObj("itemSlots") != null) //For serialized saves.
+            AmfObject itemSlots = IsRevamp ? GetObj("itemSlots") : null;
+            if (itemSlots != null) // for CoC-Revamp-Mod ≥v1.4.15
             {
-                foreach (var pair in GetObj("itemSlots")) _inventory.Add(pair.ValueAsObject);
+                foreach (var pair in itemSlots) _inventory.Add(pair.ValueAsObject);
             }
-            else //For legacy item slots used in Vanilla and Revamp 1.4.15-pre. 
+            else // for CoC and CoC-Revamp-Mod <v1.4.15
             {
+                int count = IsRevamp ? 10 : 5; // max inventory slots are 5 in CoC and 10 in CoC-Revamp-Mod
                 for (int i = 0; i < count; i++)
                 {
                     var slot = GetObj("itemSlot" + (i + 1));
@@ -246,7 +246,9 @@ namespace CoCEd.ViewModel
 
         AmfObject GetItemStorageObj()
         {
-            var itemStorage = GetObj("itemStorage");
+            // The following line will return an object for CoC and CoC-Revamp-Mod <v1.4.15
+            // or null for CoC-Revamp-Mod ≥v1.4.15.
+            AmfObject itemStorage = GetObj("itemStorage");
             return itemStorage != null ? itemStorage : GetObj("inventory").GetObj("itemStorage");
         }
 
