@@ -20,12 +20,12 @@ namespace CoCEd.Model
         {
             public const string Vanilla = "CoCEd.Data.xml";
             public const string Revamp = "CoCEd.DataRevamp.xml";
-            public const string Xianxia = "CoCEd.DataXianxia.xml";
+            //public const string Xianxia = "CoCEd.DataXianxia.xml";
             public static readonly IEnumerable<string> All = new string[]
             {
                 Vanilla,
                 Revamp,
-                Xianxia,
+                //Xianxia,
             };
         }
 
@@ -73,10 +73,10 @@ namespace CoCEd.Model
                             if (!fileData.PerkGroups.Any(x => x.Name == "Events" && x.Perks.Any(p => p.Name == "Lustserker"))) return XmlLoadingResult.InvalidFile;
                             break;
 
-                        case XmlData.Files.Xianxia:
-                            if (!fileData.Flags.Any(x => x.ID == 1279 && x.Name == "GAME_END")) return XmlLoadingResult.InvalidFile;
-                            // FIXME: Add additional Xianxia tests, if necessary.
-                            break;
+                        //case XmlData.Files.Xianxia:
+                        //    if (!fileData.Flags.Any(x => x.ID == 1279 && x.Name == "GAME_END")) return XmlLoadingResult.InvalidFile;
+                        //    // FIXME: Add additional Xianxia tests, if necessary.
+                        //    break;
                     }
 
                     return XmlLoadingResult.Success;
