@@ -140,7 +140,7 @@ namespace CoCEd.Common
             // M1 not pressed?
             if (e.LeftButton != MouseButtonState.Pressed) return;
 
-            // Not engouh distance from start point?
+            // Not enough distance from start point?
             var diff = e.GetPosition(this) - _dragSourcePoint;
             if (Math.Abs(diff.X) < SystemParameters.MinimumHorizontalDragDistance && Math.Abs(diff.Y) < SystemParameters.MinimumVerticalDragDistance) return;
 

@@ -70,7 +70,7 @@ namespace CoCEd
             else
             {
                 box.Title = "Unexpected error";
-                box.Message = "An unexpected error occured and the application is going to exit.";
+                box.Message = "An unexpected error occurred and the application is going to exit.";
                 box.ShowReportInstructions = true;
             }
         }

@@ -977,7 +977,7 @@ namespace CoCEd.ViewModel
 
         // [TheMadExile]
         // This is clearly based on CumVolume, but I'm unsure how this was devised.  All it does is remove the
-        // additive modidiers, which doesn't make a whole lot of sense to me if this is actually supposed to
+        // additive modifiers, which doesn't make a whole lot of sense to me if this is actually supposed to
         // be showing production over time.  Maybe there was code like this in CoC before the "Great Open
         // Sourcing"?  There certainly isn't now, however, so….
         //
@@ -1445,7 +1445,7 @@ namespace CoCEd.ViewModel
                 if (!IsRevamp) return false;
                 switch (LowerBodyType)
                 {
-                    // Types which definately have only a single allowed leg configuration.
+                    // Types which definitely have only a single allowed leg configuration.
                     case  0: // Human (biped)
                     case  3: // Naga (uniped)
                     case  8: // Goo (uniped)
