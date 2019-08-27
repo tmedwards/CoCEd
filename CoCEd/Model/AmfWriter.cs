@@ -224,7 +224,7 @@ namespace CoCEd.Model
         void WriteU29(int value)
         {
             // Unsigned integer encoded on 8 to 32 bits, with 7 to 29 significant bits.
-            // The most signficant bits are stored on the left (at the beginning).
+            // The most significant bits are stored on the left (at the beginning).
             // The fourth byte always have 8 significant bits. 
             // 7-7-7-8  or  7-7-7   or 7-7  or 7
 
@@ -249,7 +249,7 @@ namespace CoCEd.Model
 
                 // Skip if:
                 // * No group of bits have been written yet.
-                // * Those 7 most signficant bits so far are zero
+                // * Those 7 most significant bits so far are zero
                 // * They are not the 7 least significant bits (we always need to write those to store the number 0).
                 if (b == 0 && numBytes == 0 && shift >= 0) continue;    
                 ++numBytes;
@@ -284,7 +284,7 @@ namespace CoCEd.Model
         {
             // Paint in the butt: strings are stored as length-in-bytes followed by the characters.
             // This is different from dotnet where strings are stored as number-of-characters followed by the characters.
-            // Hence wny we first write the string in _charSteam, in order to get its length in bytes (and after we only need to copy the buffer).
+            // Hence why we first write the string in _charSteam, in order to get its length in bytes (and after we only need to copy the buffer).
             _charStream.Position = 0;
             foreach (var c in str) _charWriter.Write(c);
 
