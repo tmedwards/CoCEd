@@ -227,7 +227,7 @@
     <Resource Include="Assets\cross.png" />
     <Resource Include="Assets\search.png" />
     <Content Include="CoCEd.DataXianxia.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CoCEd.license.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

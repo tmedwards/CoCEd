@@ -44,6 +44,9 @@
                     <TextBlock              Text="Gems"/>
                     <common:MyNumericBox    Value="{Binding Game.Gems}" Upper="10000" UpperLabel="10k"/>
 
+                    <TextBlock              Text="Spirit Stones"/>
+                    <common:MyNumericBox    IsEnabled="{Binding Game.IsXianxia}" Value="{Binding Game.SpiritStones}" Upper="10000" UpperLabel="10k"/>
+                    
                     <TextBlock              Text="Days"/>
                     <common:MyNumericBox    Value="{Binding Game.Days}" Unit="days"/>
 
@@ -68,6 +71,9 @@
 
                     <TextBlock              Text="Intelligence"/>
                     <common:MyNumericBox    Value="{Binding Game.Intelligence}" Upper="100"/>
+                    
+                    <TextBlock              Text="Wisdom"/>
+                    <common:MyNumericBox    IsEnabled="{Binding Game.IsXianxia}" Value="{Binding Game.Wisdom}" Upper="100"/>
 
                     <TextBlock              Text="Libido"/>
                     <common:MyNumericBox    Value="{Binding Game.Libido}" Upper="100"/>
@@ -88,9 +94,12 @@
                     <TextBlock              Text="Fatigue"/>
                     <common:MyNumericBox    Value="{Binding Game.Fatigue}" Upper="{Binding Game.MaxFatigue}"/>
                 </common:AutoGrid>
-                <common:AutoGrid Margin="0,30,0,0" IsEnabled="{Binding Game.IsRevamp}" Visibility="{Binding Game.RevampVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                <common:AutoGrid Margin="0,30,0,0" IsEnabled="{Binding Game.IsRevampOrXianxia}" Visibility="{Binding Game.RevampOrXianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Hunger"/>
                     <common:MyNumericBox    Value="{Binding Game.Hunger}" Min="0" Max="100" Upper="100" Tip="{Binding Game.HungerTip}"/>
+                    <TextBlock              Text="Soulforce"/>
+                    <common:MyNumericBox    IsEnabled="{Binding Game.IsXianxia}" Value="{Binding Game.Soulforce}" Min="0" Max="100" Upper="100"/>
+
                 </common:AutoGrid>
             </StackPanel>
 
@@ -128,7 +137,7 @@
                     <TextBlock              Text="Hair type"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.HairType}" ItemsSource="{Binding Data.Body.HairTypes}"/>
                 </common:AutoGrid>
-                <common:AutoGrid IsEnabled="{Binding Game.IsRevamp}" Visibility="{Binding Game.RevampVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                <common:AutoGrid IsEnabled="{Binding Game.IsRevampOrXianxia}" Visibility="{Binding Game.RevampOrXianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Beard length&#x202F;*" ToolTip="Enable with any value greater than 0."/>
                     <common:MyNumericBox    Value="{Binding Game.BeardLength}" Type="Double" Unit="inches"/>
 
@@ -144,6 +153,9 @@
 
                     <TextBlock              Text="Eyes"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.EyeType}" ItemsSource="{Binding Data.Body.EyeTypes}"/>
+                    
+                    <TextBlock Text="Eye color"/>
+                    <ComboBox IsEnabled="{Binding Game.IsXianxia}" Style="{StaticResource EditableTextBox}" Text="{Binding Game.EyeColor}" ItemsSource="{Binding Data.Body.EyeColors}"/>
 
                     <TextBlock              Text="Ears"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.EarType}" ItemsSource="{Binding Data.Body.EarTypes}"/>

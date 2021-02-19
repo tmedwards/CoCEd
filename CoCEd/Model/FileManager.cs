@@ -55,7 +55,7 @@ namespace CoCEd.Model
 
         public static int SaveSlotsUpperBoundByGame
         {
-            get { return VM.Instance.Game.IsRevamp ? MaxSaveSlotsRevampMod : MaxSaveSlotsCoC; }
+            get { return VM.Instance.Game.IsRevamp || VM.Instance.Game.IsXianxia ? MaxSaveSlotsRevampMod : MaxSaveSlotsCoC; }
         }
 
         public static FileEnumerationResult Result { get; private set; }

@@ -35,6 +35,13 @@ namespace CoCEd.ViewModel
             get { return Type == ModType.Xianxia ? Visibility.Visible : Visibility.Collapsed; }
         }
 
+        public bool IsRevampOrXianxia { get { return Type == ModType.Xianxia || Type == ModType.Revamp; } }
+        public Visibility RevampOrXianxiaVisibility
+        {
+            get { return Type == ModType.Xianxia || Type == ModType.Revamp ? Visibility.Visible : Visibility.Collapsed; }
+        }
+
+
         readonly FlagVM[] _allFlags;
         readonly StatusVM[] _allStatuses;
         readonly KeyItemVM[] _allKeyitems;
@@ -139,7 +146,7 @@ namespace CoCEd.ViewModel
             containers.Add(_inventory);
             UpdateInventory();
 
-            _chest = new ItemContainerVM(this, IsRevamp ? "Chest(s)" : "Chest", ItemCategories.All);
+            _chest = new ItemContainerVM(this, IsRevamp || IsXianxia ? "Chest(s)" : "Chest", ItemCategories.All);
             containers.Add(_chest);
             UpdateChest();
 
@@ -151,7 +158,7 @@ namespace CoCEd.ViewModel
             containers.Add(_armorRack);
             UpdateArmorRack();
 
-            if (IsRevamp)
+            if (IsRevamp || IsXianxia)
             {
                 _shieldRack = new ItemContainerVM(this, "Shield rack", ItemCategories.Shield | ItemCategories.Unknown);
                 containers.Add(_shieldRack);
@@ -243,6 +250,16 @@ namespace CoCEd.ViewModel
             set { SetValue("gems", value); }
         }
 
+        public int SpiritStones
+        {
+            get { return GetFlag(2349).AsInt(); }
+            set
+            {
+                GetFlag(2349).SetValue(value);
+                OnPropertyChanged();
+            }
+        }
+
         public int Days
         {
             get { return GetInt("days"); }
@@ -286,6 +303,12 @@ namespace CoCEd.ViewModel
             set { SetDouble("inte", value); }
         }
 
+        public int Wisdom
+        {
+            get { return GetInt("wis", 0); }
+            set { SetDouble("wis", value); }
+        }
+
         public int Libido
         {
             get { return GetInt("lib"); }
@@ -320,10 +343,10 @@ namespace CoCEd.ViewModel
                 if (GetPerk("Tank").IsOwned) max += 50;
                 if (GetPerk("Tank 2").IsOwned) max += (int)Math.Round(tou);
                 if (GetPerk("Chi Reflow - Defense").IsOwned) max += 50; // value: classes\classes\Scenes\Places\TelAdre\UmasShop.as:NEEDLEWORK_DEFENSE_EXTRA_HP
-                if (IsRevamp) max += Level * 15;
+                if (IsRevamp || IsXianxia) max += Level * 15;
                 else max += Math.Min(20, Level) * 15;
 
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     //if (jewelryEffectId == JewelryLib.MODIFIER_HP) max += jewelryEffectMagnitude; // value: classes\classes\Items\JewelryLib.as
                     //if (GetItem(GetString("jewelryId")).EffectId == 5) max += GetItem(GetString("jewelryId")).EffectMagnitude; // value: classes\classes\Items\JewelryLib.as
@@ -335,7 +358,7 @@ namespace CoCEd.ViewModel
 
                 max = (int)Math.Round(max);
 
-                return Math.Min(IsRevamp ? 9999 : 999, (int)max);
+                return Math.Min(IsRevamp || IsXianxia ? 9999 : 999, (int)max);
             }
         }
 
@@ -356,7 +379,7 @@ namespace CoCEd.ViewModel
             {
                 double max = 100;
 
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     if (GetPerk("Improved Self-Control").IsOwned) max += 20;
                     if (GetPerk("Bro Body").IsOwned || GetPerk("Bimbo Body").IsOwned || GetPerk("Futa Form").IsOwned) max += 20;
@@ -382,7 +405,7 @@ namespace CoCEd.ViewModel
             {
                 double max = 100;
 
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     if (GetPerk("Improved Endurance").IsOwned) max += 20;
 
@@ -392,6 +415,12 @@ namespace CoCEd.ViewModel
 
                 return Math.Min(999, (int)max);
             }
+        }
+
+        public int Soulforce
+        {
+            get { return GetInt("soulforce", 0); }
+            set { SetValue("soulforce", value); }
         }
 
         public int XP
@@ -468,6 +497,12 @@ namespace CoCEd.ViewModel
         {
             get { return GetInt("eyeType"); }
             set { SetValue("eyeType", value); }
+        }
+
+        public string EyeColor
+        {
+            get { return GetString("eyeColor"); }
+            set { SetValue("eyeColor", value); }
         }
 
         public int EarType
@@ -661,6 +696,15 @@ namespace CoCEd.ViewModel
             }
         }
 
+        public string SkinBase
+        {
+            get { return GetString("skinBase"); }
+            set
+            {
+                SetValue("skinBase", value);
+            }
+        }
+
         public string SkinTone
         {
             get { return GetString("skinTone"); }
@@ -685,6 +729,12 @@ namespace CoCEd.ViewModel
             set { SetValue("armType", value); }
         }
 
+        public int RearBodyType
+        {
+            get { return GetInt("rearBody"); }
+            set { SetValue("rearBody", value); }
+        }
+
         public int LowerBodyType
         {
             get { return GetInt("lowerBody"); }
@@ -692,7 +742,7 @@ namespace CoCEd.ViewModel
             {
                 SetValue("lowerBody", value);
 
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     // Set the default `LegCount` value when the lower body type is changed.
                     switch (value)
@@ -785,6 +835,12 @@ namespace CoCEd.ViewModel
         {
             get { return GetBool("gills"); }
             set { SetValue("gills", value); }
+        }
+
+        public int GillType
+        {
+            get { return GetInt("gillType"); }
+            set { SetValue("gillType", value); }
         }
 
         public bool HasSandTrapBalls
@@ -950,7 +1006,7 @@ namespace CoCEd.ViewModel
 
                 if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
                 if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
-                if (IsRevamp && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
+                if ((IsRevamp || IsXianxia) && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
 
@@ -969,7 +1025,7 @@ namespace CoCEd.ViewModel
                 if (GetString("jewelryId") == "FertRng") qty *= 1.2; // value: classes\classes\Items\JewelryLib.as
 
                 if (qty < 2) qty = 2;
-                if (IsRevamp && qty > Int32.MaxValue) qty = Int32.MaxValue;
+                if ((IsRevamp || IsXianxia) && qty > Int32.MaxValue) qty = Int32.MaxValue;
 
                 return FormatVolume(qty);
             }
@@ -1003,7 +1059,7 @@ namespace CoCEd.ViewModel
 
                 if (GetPerk("Bro Body").IsOwned) qty *= 1.3;
                 if (GetPerk("Fertility+").IsOwned) qty *= 1.5;
-                if (IsRevamp && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
+                if ((IsRevamp || IsXianxia) && GetPerk("Fertility-").IsOwned && Libido < 25) qty *= 0.7;
                 if (GetPerk("Messy Orgasms").IsOwned) qty *= 1.5;
                 if (GetPerk("One Track Mind").IsOwned) qty *= 1.1;
 
@@ -1125,7 +1181,7 @@ namespace CoCEd.ViewModel
             set
             {
                 GetFlag(137).SetValue(value);
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     // CoC-Revamp-Mod also uses this to determine if the "Rapier Training" perk is awarded to the player
                     GetPerk("Rapier Training").IsOwned = value >= 4;
@@ -1292,7 +1348,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     // CoC-Revamp-Mod uses this to track achievement progress as well, so values ≥ 2 are inevitable
                     return GetStatus("Met Whitney").Value1 >= 2;
@@ -1339,11 +1395,35 @@ namespace CoCEd.ViewModel
             set { GetFlag(1165).SetValue(value ? 1 : 0); }
         }
 
+        public bool UnlockedOasisTower
+        {
+            get { return GetFlag(821).AsInt() == 1; }
+            set { GetFlag(821).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedShrine
+        {
+            get { return GetFlag(2490).AsInt() == 1; }
+            set { GetFlag(2490).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedTemple
+        {
+            get { return GetFlag(2443).AsInt() == 1; }
+            set { GetFlag(2443).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedWinterGear
+        {
+            get { return GetFlag(2619).AsInt() == 1; }
+            set { GetFlag(2619).SetValue(value ? 1 : 0); }
+        }
+
         public bool UnlockedDungeonFactory
         {
             get
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     return GetFlag(2020).AsInt() == 1;
                 }
@@ -1354,7 +1434,7 @@ namespace CoCEd.ViewModel
             }
             set
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     GetFlag(2020).SetValue(value ? 1 : 0);
                 }
@@ -1383,6 +1463,90 @@ namespace CoCEd.ViewModel
             set { GetFlag(856).SetValue(value ? 1 : 0); }
         }
 
+        public bool UnlockedDungeonHiddenCave
+        {
+            get { return GetFlag(2467).AsInt() == 1; }
+            set { GetFlag(2467).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedDungeonDenofDesire
+        {
+            get { return GetFlag(2532).AsInt() == 1; }
+            set { GetFlag(2532).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedDungeonEbonLabyrinth
+        {
+            get { return GetFlag(1239).AsInt() == 1; }
+            set { GetFlag(1239).SetValue(value ? 1 : 0); }
+
+        }
+
+        public bool UnlockedLumisLab
+        {
+            get { return GetFlag(53).AsInt() == 1; }
+            set { GetFlag(53).SetValue(value ? 1 : 0); }
+
+        }
+
+        public bool UnlockedAnzusPalace
+        {
+            get { return GetFlag(2505).AsInt() == 1; }
+            set { GetFlag(2505).SetValue(value ? 1 : 0); }
+
+        }
+
+
+        //SoulSense locations
+
+        public bool UnlockedHexindao
+        {
+            get { return GetFlag(2294).AsInt() == 1; }
+            set { GetFlag(2294).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedSenseGiacomo
+        {
+            get { return GetFlag(2487).AsInt() >= 3; }
+            set { GetFlag(2487).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedSenseTamani
+        {
+            get { return GetFlag(2461).AsInt() >= 3; }
+            set { GetFlag(2461).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedSenseTamaniD
+        {
+            get { return GetFlag(2462).AsInt() >= 3; }
+            set { GetFlag(2462).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedSensePriscilla
+        {
+            get { return GetFlag(2488).AsInt() >= 3; }
+            set { GetFlag(2488).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedSenseKitMansion
+        {
+            get { return GetFlag(2463).AsInt() >= 3; }
+            set { GetFlag(2463).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedSenseIzumi
+        {
+            get { return GetFlag(2464).AsInt() >= 3; }
+            set { GetFlag(2464).SetValue(value ? 1 : 0); }
+        }
+
+        public bool UnlockedSenseWorldTree
+        {
+            get { return GetFlag(2486).AsInt() == 1; }
+            set { GetFlag(2486).SetValue(value ? 1 : 0); }
+        }
+
 
         #region Revamp Specific
 
@@ -1390,7 +1554,7 @@ namespace CoCEd.ViewModel
         {
             get { return GetInt("clawType"); }
             set {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     SetValue("clawType", value);
                 }
@@ -1401,7 +1565,7 @@ namespace CoCEd.ViewModel
         {
             get { return GetString("clawTone"); }
             set {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     SetValue("clawTone", value);
                 }
@@ -1413,7 +1577,7 @@ namespace CoCEd.ViewModel
             get { return GetInt("legCount"); }
             set
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     SetValue("legCount", value);
                 }
@@ -1430,7 +1594,7 @@ namespace CoCEd.ViewModel
             }
             set
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     if (value == LegConfigs) return;
                     LegCount = (value + 1) * 2;
@@ -1442,7 +1606,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (!IsRevamp) return false;
+                if (!IsRevamp && !IsXianxia) return false;
                 switch (LowerBodyType)
                 {
                     // Types which definitely have only a single allowed leg configuration.
@@ -1476,7 +1640,7 @@ namespace CoCEd.ViewModel
             get { return GetString("furColor"); }
             set
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     SetValue("furColor", value);
                 }
@@ -1490,10 +1654,10 @@ namespace CoCEd.ViewModel
 
         public double Hunger
         {
-            get { return IsRevamp ? GetDouble("hunger") : 0.0; }
+            get { return IsRevamp || IsXianxia ? GetDouble("hunger") : 0.0; }
             set
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     SetValue("hunger", value);
                     OnPropertyChanged("HungerTip");
@@ -1520,7 +1684,7 @@ namespace CoCEd.ViewModel
             get { return GetInt("beardStyle"); }
             set
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     SetValue("beardStyle", value);
                 }
@@ -1532,7 +1696,7 @@ namespace CoCEd.ViewModel
             get { return GetDouble("beardLength"); }
             set
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     SetValue("beardLength", value);
                 }
@@ -1541,10 +1705,10 @@ namespace CoCEd.ViewModel
 
         public int ExploredGlacialRift
         {
-            get { return IsRevamp ? GetFlag(2059).AsInt() : 0; }
+            get { return IsRevamp || IsXianxia ? GetFlag(2059).AsInt() : 0; }
             set
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     GetFlag(2059).SetValue(value);
                 }
@@ -1553,16 +1717,87 @@ namespace CoCEd.ViewModel
         
         public int ExploredVolcanicCrag
         {
-            get { return IsRevamp ? GetFlag(2060).AsInt() : 0; }
+            get { return IsRevamp || IsXianxia ? GetFlag(2060).AsInt() : 0; }
             set
             {
-                if (IsRevamp)
+                if (IsRevamp || IsXianxia)
                 {
                     GetFlag(2060).SetValue(value);
                 }
             }
         }
 
+        public int ExploredOuterBattlefield
+        {
+            get { return IsXianxia ? GetFlag(2285).AsInt() : 0; }
+            set
+            {
+                if (IsXianxia)
+                {
+                    GetFlag(2285).SetValue(value);
+                }
+            }
+        }
+
+        public int ExploredBlightRidge
+        {
+            get { return IsXianxia ? GetFlag(2284).AsInt() : 0; }
+            set
+            {
+                if (IsXianxia)
+                {
+                    GetFlag(2284).SetValue(value);
+                }
+            }
+        }
+
+        public int ExploredCaves
+        {
+            get { return IsXianxia ? GetFlag(2667).AsInt() : 0; }
+            set
+            {
+                if (IsXianxia)
+                {
+                    GetFlag(2667).SetValue(value);
+                }
+            }
+        }
+
+        public int ExploredBeach
+        {
+            get { return IsXianxia ? GetFlag(2290).AsInt() : 0; }
+            set
+            {
+                if (IsXianxia)
+                {
+                    GetFlag(2290).SetValue(value);
+                }
+            }
+        }
+
+        public int ExploredOcean
+        {
+            get { return IsXianxia ? GetFlag(2291).AsInt() : 0; }
+            set
+            {
+                if (IsXianxia)
+                {
+                    GetFlag(2291).SetValue(value);
+                }
+            }
+        }
+
+        public int ExploredDeepSea
+        {
+            get { return IsXianxia ? GetFlag(2292).AsInt() : 0; }
+            set
+            {
+                if (IsXianxia)
+                {
+                    GetFlag(2292).SetValue(value);
+                }
+            }
+        }
         #endregion
 
 

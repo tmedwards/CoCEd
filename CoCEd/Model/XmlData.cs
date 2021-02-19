@@ -20,12 +20,12 @@ namespace CoCEd.Model
         {
             public const string Vanilla = "CoCEd.Data.xml";
             public const string Revamp = "CoCEd.DataRevamp.xml";
-            //public const string Xianxia = "CoCEd.DataXianxia.xml";
+            public const string Xianxia = "CoCEd.DataXianxia.xml";
             public static readonly IEnumerable<string> All = new string[]
             {
                 Vanilla,
                 Revamp,
-                //Xianxia,
+                Xianxia,
             };
         }
 
@@ -73,10 +73,12 @@ namespace CoCEd.Model
                             if (!fileData.PerkGroups.Any(x => x.Name == "Events" && x.Perks.Any(p => p.Name == "Lustserker"))) return XmlLoadingResult.InvalidFile;
                             break;
 
-                        //case XmlData.Files.Xianxia:
-                        //    if (!fileData.Flags.Any(x => x.ID == 1279 && x.Name == "GAME_END")) return XmlLoadingResult.InvalidFile;
-                        //    // FIXME: Add additional Xianxia tests, if necessary.
-                        //    break;
+                        case XmlData.Files.Xianxia:
+                            if (!fileData.Flags.Any(x => x.ID == 1279 && x.Name == "GAME_END")) return XmlLoadingResult.InvalidFile;
+                            if (!fileData.Flags.Any(x => x.ID == 2147 && x.Name == "PRISON_DOOR_UNLOCKED")) return XmlLoadingResult.InvalidFile;
+
+                            //FIXME: Add additional Xianxia tests, if necessary.
+                            break;
                     }
 
                     return XmlLoadingResult.Success;
@@ -147,6 +149,8 @@ namespace CoCEd.Model
         public XmlEnum[] TongueTypes { get; set; }
         [XmlArray, XmlArrayItem("EyeType")]
         public XmlEnum[] EyeTypes { get; set; }
+        [XmlArray, XmlArrayItem("EyeColor")]
+        public string[] EyeColors { get; set; }
         [XmlArray, XmlArrayItem("EarType")]
         public XmlEnum[] EarTypes { get; set; }
         [XmlArray, XmlArrayItem("HornType")]
@@ -162,6 +166,10 @@ namespace CoCEd.Model
         public String[] ClawTones { get; set; }
         [XmlArray, XmlArrayItem("TailType")]
         public XmlEnum[] TailTypes { get; set; }
+        [XmlArray, XmlArrayItem("RearBodyType")]
+        public XmlEnum[] RearBodyTypes { get; set; }
+        [XmlArray, XmlArrayItem("GillType")]
+        public XmlEnum[] GillTypes { get; set; }
         [XmlArray, XmlArrayItem("WingType")]
         public XmlEnum[] WingTypes { get; set; }
         [XmlArray, XmlArrayItem("WingDescription")]

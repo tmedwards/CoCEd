@@ -75,12 +75,31 @@
                     <TextBlock              Text="Bog"/>
                     <common:MyNumericBox    Value="{Binding Game.ExploredBog}" Upper="1"/>
                 </common:AutoGrid>
-                <common:AutoGrid Margin="-50,0,-30,0" IsEnabled="{Binding Game.IsRevamp}" Visibility="{Binding Game.RevampVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                <common:AutoGrid Margin="-50,0,-30,0" IsEnabled="{Binding Game.IsRevampOrXianxia}" Visibility="{Binding Game.RevampOrXianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Glacial Rift"/>
                     <common:MyNumericBox    Value="{Binding Game.ExploredGlacialRift}" Upper="1"/>
 
                     <TextBlock              Text="Volcanic Crag"/>
                     <common:MyNumericBox    Value="{Binding Game.ExploredVolcanicCrag}" Upper="1"/>
+                </common:AutoGrid>
+                <common:AutoGrid Margin="-50,0,-30,0" IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <TextBlock Text="Outer Battlefield"/>
+                    <common:MyNumericBox Upper="1" Value="{Binding Game.ExploredOuterBattlefield}"/>
+                    
+                    <TextBlock Text="Blight Ridge"/>
+                    <common:MyNumericBox Upper="1" Value="{Binding Game.ExploredBlightRidge}"/>
+                    
+                    <TextBlock Text="Caves"/>
+                    <common:MyNumericBox Upper="1" Value="{Binding Game.ExploredCaves}"/>
+                    
+                    <TextBlock Text="Beach"/>
+                    <common:MyNumericBox Upper="1" Value="{Binding Game.ExploredBeach}"/>
+                    
+                    <TextBlock Text="Ocean"/>
+                    <common:MyNumericBox Upper="1" Value="{Binding Game.ExploredOcean}"/>
+                    
+                    <TextBlock Text="Deep Sea"/>
+                    <common:MyNumericBox Upper="1" Value="{Binding Game.ExploredDeepSea}"/>
                 </common:AutoGrid>
             </StackPanel>
 
@@ -98,7 +117,12 @@
                     <CheckBox Content="Town Ruins" IsChecked="{Binding Game.UnlockedTownRuins}"/>
                     <CheckBox Content="Lake Boat" IsChecked="{Binding Game.UnlockedBoat}"/>
                 </UniformGrid>
-
+                <UniformGrid Columns="2" Width="250" IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <CheckBox Content="Kitsune Shrine" IsChecked="{Binding Game.UnlockedShrine}"/>
+                    <CheckBox Content="Oasis Tower" IsChecked="{Binding Game.UnlockedOasisTower}"/>
+                    <CheckBox Content="Temple" IsChecked="{Binding Game.UnlockedTemple}"/>
+                    <CheckBox Content="Winter Gear" IsChecked="{Binding Game.UnlockedWinterGear}"/>
+                </UniformGrid>
                 <Border Style="{StaticResource HeaderBorder}" Margin="0,30,0,4">
                     <TextBlock Text="Dungeons Unlocked" Style="{StaticResource Header}"/>
                 </Border>
@@ -108,6 +132,31 @@
                     <CheckBox Content="Stronghold (D3)" IsChecked="{Binding Game.UnlockedDungeonStronghold}"/>
                     <CheckBox Content="Desert Cave" IsChecked="{Binding Game.UnlockedDungeonDesertCave}"/>
                 </UniformGrid>
+                <UniformGrid Columns="2" Width="250" IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <CheckBox Content="Hidden Cave" IsChecked="{Binding Game.UnlockedDungeonHiddenCave}"/>
+                    <CheckBox Content="Den of Desire" IsChecked="{Binding Game.UnlockedDungeonDenofDesire}"/>
+                    <CheckBox Content="Ebon Labyrinth" IsChecked="{Binding Game.UnlockedDungeonEbonLabyrinth}"/>
+                </UniformGrid>
+                <Border Style="{StaticResource HeaderBorder}" Margin="0,30,0,4" IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <TextBlock Text="Places Under the Dungeons Tab Unlocked" Style="{StaticResource Header}"/>
+                </Border>
+                <UniformGrid Columns="2" Width="250" IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <CheckBox Content="Lumi's Lab" IsChecked="{Binding Game.UnlockedLumisLab}"/>
+                    <CheckBox Content="Anzu's Palace" IsChecked="{Binding Game.UnlockedAnzusPalace}"/>
+                </UniformGrid>
+                <Border Style="{StaticResource HeaderBorder}" Margin="0,30,0,4" IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <TextBlock Text="Soul Sense Locations Unlocked" Style="{StaticResource Header}"/>
+                </Border>
+                <UniformGrid Columns="2" Width="250" IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <CheckBox Content="Giacomo" IsChecked="{Binding Game.UnlockedSenseGiacomo}"/>
+                    <CheckBox Content="Tamani" IsChecked="{Binding Game.UnlockedSenseTamani}"/>
+                    <CheckBox Content="Tamani Daughters" IsChecked="{Binding Game.UnlockedSenseTamaniD}"/>
+                    <CheckBox Content="Priscilla" IsChecked="{Binding Game.UnlockedSensePriscilla}"/>
+                    <CheckBox Content="Kitsune Mansion" IsChecked="{Binding Game.UnlockedSenseKitMansion}"/>
+                    <CheckBox Content="Izumi" IsChecked="{Binding Game.UnlockedSenseIzumi}"/>
+                    <CheckBox Content="World Tree" IsChecked="{Binding Game.UnlockedSenseWorldTree}"/>
+                </UniformGrid>
+
             </StackPanel>
         </Grid>
     </ScrollViewer>

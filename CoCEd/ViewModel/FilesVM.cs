@@ -392,9 +392,8 @@ namespace CoCEd.ViewModel
                         throw new NotImplementedException();
                 }
 
-                //if (Source.Contains("soulforce")) label += "  [Xianxia]";
-                //else 
-                if (Source.Contains("hunger")) label += "  [Revamp]";
+                if (Source.Contains("soulforce")) label += "  [Xianxia]";
+                else if (Source.Contains("hunger")) label += "  [Revamp]";
 
                 return label + suffix;
             }

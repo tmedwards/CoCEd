@@ -100,7 +100,7 @@ namespace CoCEd.ViewModel
             set
             {
                 bool greenSockChanged = false;
-                if (_game.IsRevamp)
+                if (_game.IsRevamp || _game.IsXianxia)
                 {
                     if (CockSock == "green")
                     {

@@ -54,7 +54,7 @@ namespace CoCEd.ViewModel
 
         public int MaxRating
         {
-            get { return _game.IsRevamp ? 199 : 99; }
+            get { return _game.IsRevamp || _game.IsXianxia ? 199 : 99; }
         }
 
         public int BreastCount
@@ -97,13 +97,13 @@ namespace CoCEd.ViewModel
                 double endurance = _game.GetStatus("Lactation Endurance").IsOwned ? _game.GetStatus("Lactation Endurance").Value1 : 1.0;
                 double reduction = _game.GetStatus("Lactation Reduction").IsOwned ? _game.GetStatus("Lactation Reduction").Value1 : 0.0;
                 double qty = Rating * 10 * LactationMultiplier * endurance * BreastCount;
-                if (_game.IsRevamp)
+                if (_game.IsRevamp || _game.IsXianxia)
                 {
                     var milkMaid = _game.GetPerk("Milk Maid");
                     if (milkMaid.IsOwned) qty += 200 + milkMaid.Value1 * 100;
                 }
                 if (reduction >= 48) qty *= 1.5;
-                if (_game.IsRevamp && qty > Int32.MaxValue) qty = Int32.MaxValue;
+                if ((_game.IsRevamp || _game.IsXianxia) && qty > Int32.MaxValue) qty = Int32.MaxValue;
                 //return GameVM.FormatVolume(qty, "/h (base)");
                 return GameVM.FormatVolume(qty);
             }
@@ -133,7 +133,7 @@ namespace CoCEd.ViewModel
         {
             get
             {
-                if (_game.IsRevamp && Rating > 99) return RatingDescriptionLong.Replace("hyper", "hyp").Replace("large", "lg");
+                if ((_game.IsRevamp || _game.IsXianxia) && Rating > 99) return RatingDescriptionLong.Replace("hyper", "hyp").Replace("large", "lg");
                 else return RatingDescriptionLong;
             }
         }
@@ -146,7 +146,7 @@ namespace CoCEd.ViewModel
                 var prefix = "";
 
                 // Handle CoC-Revamp-Mod "hyper" ratings
-                if (_game.IsRevamp && rating > 99)
+                if ((_game.IsRevamp || _game.IsXianxia) && rating > 99)
                 {
                     rating -= 99;
                     prefix = "hyper ";
@@ -254,7 +254,7 @@ namespace CoCEd.ViewModel
                     case 97: return prefix + "large ZZ-cup";
                     case 98: return prefix + "ZZZ-cup";
                     case 99: return prefix + "large ZZZ-cup";
-                    default: return (_game.IsRevamp && rating == 100) ? "jacques00-cup" : "game-breaking";
+                    default: return ((_game.IsRevamp || _game.IsXianxia) && rating == 100) ? "jacques00-cup" : "game-breaking";
                 }
             }
         }
