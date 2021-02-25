@@ -100,29 +100,53 @@ namespace CoCEd.ViewModel
             foreach (var prop in _allStatuses.First(x => x.Name == name).GameVMProperties) OnPropertyChanged(prop);
         }
 
+        public void UpdateItemSlots()
+        {
+
+            int maxItems = IsXianxia ? 20 : 10;
+            int startingSlot = IsXianxia ? 6 : 4;
+            if (GetPerk("Strong Back").IsOwned)
+            {
+                GetObj("itemSlot" + startingSlot)["unlocked"] = true;
+                startingSlot++;
+            }
+            if (GetPerk("Strong Back 2: Strong Harder").IsOwned)
+            {
+                GetObj("itemSlot" + startingSlot)["unlocked"] = true;
+                startingSlot++;
+            }
+            if (IsRevampOrXianxia && GetPerk("Strong Back 3: Strong Hardest").IsOwned)
+            {
+                GetObj("itemSlot" + startingSlot)["unlocked"] = true;
+                startingSlot++;
+            }
+            if (IsRevampOrXianxia && GetKeyItem("Backpack").IsOwned)
+            {
+                var backpack = _allKeyitems.First(x => x.Name == "Backpack");
+                for (int i = startingSlot; i <= maxItems; i++) GetObj("itemSlot" + i)["unlocked"] = false;
+                if (backpack.IsOwned)
+                {
+                    int count = backpack.GetInt("value1");
+                    if (count < 1 || count > maxItems)
+                    {
+                        count = Math.Max(1, Math.Min(maxItems, count)); // clamp value to [1, maxItems], so CoC-Revamp/Xianxia doesn't assplode
+                        backpack.Value1 = count;
+                    }
+                    for (int i = startingSlot; i < startingSlot + count; i++) GetObj("itemSlot" + i)["unlocked"] = true;
+                }
+            }
+            UpdateInventory();
+            ItemContainers.Update();
+        }
+
         public void OnKeyItemChanged(string name)
         {
             // These must be here, rather than in OnKeyItemAddedOrRemoved(), to catch property value changes.
             if (IsRevamp || IsXianxia)
             {
-                int maxItems = IsRevamp ? 5 : 15;
-                int startingSlot = IsRevamp ? 6 : 7;
                 if (name == "Backpack") // itemSlot# [startingSlot, 10]
                 {
-                    var backpack = _allKeyitems.First(x => x.Name == name);
-                    for (int i = 0; i < maxItems; i++) GetObj("itemSlot" + (i + startingSlot))["unlocked"] = false;
-                    if (backpack.IsOwned)
-                    {
-                        int count = backpack.GetInt("value1");
-                        if (count < 1 || count > maxItems)
-                        {
-                            count = Math.Max(1, Math.Min(maxItems, count)); // clamp value to [1, maxItems], so CoC-Revamp-Mod doesn't assplode
-                            backpack.Value1 = count;
-                        }
-                        for (int i = 0; i < count; i++) GetObj("itemSlot" + (i + startingSlot))["unlocked"] = true;
-                    }
-                    UpdateInventory();
-                    ItemContainers.Update();
+                    UpdateItemSlots();
                 }
             }
 
@@ -156,21 +180,9 @@ namespace CoCEd.ViewModel
                     break;
 
                 case "Strong Back":
-                    GetObj("itemSlot4")["unlocked"] = isOwned;
-                    UpdateInventory();
-                    ItemContainers.Update();
-                    break;
-
                 case "Strong Back 2: Strong Harder":
-                    GetObj("itemSlot5")["unlocked"] = isOwned;
-                    UpdateInventory();
-                    ItemContainers.Update();
-                    break;
-
                 case "Strong Back 3: Strong Hardest":
-                    GetObj("itemSlot6")["unlocked"] = isOwned;
-                    UpdateInventory();
-                    ItemContainers.Update();
+                    UpdateItemSlots();
                     break;
 
             }
@@ -237,12 +249,15 @@ namespace CoCEd.ViewModel
         void UpdateInventory()
         {
             _inventory.Clear();
-            AmfObject itemSlots = IsRevamp || IsXianxia ? GetObj("itemSlots") : null;
+            AmfObject itemSlots = IsRevamp ? GetObj("itemSlots") : null;
             if (itemSlots != null) // for CoC-Revamp-Mod ≥v1.4.15
             {
-                foreach (var pair in itemSlots) _inventory.Add(pair.ValueAsObject);
+                foreach (var pair in itemSlots) 
+                { 
+                    _inventory.Add(pair.ValueAsObject); 
+                }
             }
-            else // for CoC and CoC-Revamp-Mod <v1.4.15
+            else // for CoC, CoC-Revamp-Mod <v1.4.15, and Xianxia
             {
                 // max inventory slots are 5 in CoC and 10 in CoC-Revamp-Mod
                 int count =  5;

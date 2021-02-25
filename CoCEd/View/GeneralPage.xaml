@@ -71,9 +71,13 @@
 
                     <TextBlock              Text="Intelligence"/>
                     <common:MyNumericBox    Value="{Binding Game.Intelligence}" Upper="100"/>
-                    
+                </common:AutoGrid>
+                <common:AutoGrid IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+
                     <TextBlock              Text="Wisdom"/>
-                    <common:MyNumericBox    IsEnabled="{Binding Game.IsXianxia}" Value="{Binding Game.Wisdom}" Upper="100"/>
+                    <common:MyNumericBox    Value="{Binding Game.Wisdom}" Upper="100"/>
+                </common:AutoGrid>
+                <common:AutoGrid>
 
                     <TextBlock              Text="Libido"/>
                     <common:MyNumericBox    Value="{Binding Game.Libido}" Upper="100"/>

@@ -40,6 +40,12 @@ namespace CoCEd.ViewModel
         {
             get { return Type == ModType.Xianxia || Type == ModType.Revamp ? Visibility.Visible : Visibility.Collapsed; }
         }
+        public bool IsNotXianxia { get { return Type != ModType.Xianxia; } }
+        public Visibility NotXianxiaVisibility
+        {
+            get { return Type != ModType.Xianxia ? Visibility.Visible : Visibility.Collapsed; }
+        }
+
 
 
         readonly FlagVM[] _allFlags;
@@ -54,6 +60,7 @@ namespace CoCEd.ViewModel
         ItemContainerVM _dresser;
         ItemContainerVM _shieldRack;
         ItemContainerVM _inventory;
+        AmfObject stats;
 
         public GameVM(AmfFile file, GameVM previousVM, ModType modType)
             : base(file)
@@ -274,39 +281,37 @@ namespace CoCEd.ViewModel
 
         public int Strength
         {
-            get { return GetInt("str"); }
-            set { SetDouble("str", value); }
+            get { return IsXianxia ? GetPrimaryStatCoreValue("str") : GetInt("str"); }
+            set { if (IsXianxia) SetPrimaryStatCoreValue("str", value); else SetDouble("str", value); }
         }
 
         public int Toughness
         {
-            get { return GetInt("tou"); }
+            get { return IsXianxia ? GetPrimaryStatCoreValue("tou") : GetInt("tou"); }
             set
             {
-                SetDouble("tou", value);
+                if (IsXianxia) SetPrimaryStatCoreValue("tou", value); else SetDouble("tou", value);
                 OnPropertyChanged("MaxHP");
             }
         }
 
         public int Speed
         {
-            get { return GetInt("spe"); }
-            set
-            {
-                SetDouble("spe", value);
-            }
+            get { return IsXianxia ? GetPrimaryStatCoreValue("spe") : GetInt("spe"); }
+            set { if (IsXianxia) SetPrimaryStatCoreValue("spe", value); else SetDouble("spe", value); }
         }
 
         public int Intelligence
         {
-            get { return GetInt("inte"); }
-            set { SetDouble("inte", value); }
+            get { return IsXianxia ? GetPrimaryStatCoreValue("int") : GetInt("inte"); }
+            set { if (IsXianxia) SetPrimaryStatCoreValue("int", value); else SetDouble("inte", value); }
         }
+        
 
         public int Wisdom
         {
-            get { return GetInt("wis", 0); }
-            set { SetDouble("wis", value); }
+            get { return IsXianxia ? GetPrimaryStatCoreValue("wis") : GetInt("wis"); }
+            set { if (IsXianxia) SetPrimaryStatCoreValue("wis", value); else SetDouble("wis", value); }
         }
 
         public int Libido
@@ -333,12 +338,76 @@ namespace CoCEd.ViewModel
             set { SetValue("HP", value); }
         }
 
+        public void SetPrimaryStatCoreValue(string name, int value)
+        {
+            var stats = GetObj("stats");
+            var stat = stats.GetObj(name);
+            var core = stat.GetObj("core");
+            SetValue(core, "value", value);
+        }
+
+        public int GetPrimaryStatCoreValue(string name)
+        {
+            var stats = GetObj("stats");
+            var stat = stats.GetObj(name);
+            var core = stat.GetObj("core");
+            var coreValue = core.GetInt("value",0);
+            return coreValue;
+        }
+
+        //This is insufficient. Need to create a VM for this.
+        public int GetTotalStatValue(string name)
+        {
+            var stats = GetObj("stats");
+            var stat = stats.GetObj(name);
+            var core = stat.GetObj("core");
+            var corevalue = core.GetInt("value",0);
+
+            var multipliers = stat.GetObj("mult").GetObj("effects");
+            var totalMultiplier = 1;
+
+            foreach (var multiplier in multipliers)
+            {
+                var mult = multiplier.ValueAsObject;
+                var val = mult.GetInt("0");
+                if (val == 0)
+                {
+                    continue;
+                }
+                else if (val < 1)
+                {
+                    totalMultiplier -= val;
+                } 
+                else if (val > 1)
+                {
+                    totalMultiplier += val;
+                }
+            }
+            var bonuses = stat.GetObj("bonus").GetObj("effects");
+            var totalBonus = 0;
+            foreach (var bonus in bonuses)
+            {
+                var bon = bonus.ValueAsObject;
+                var val = bon.GetInt("0");
+                totalBonus += val;
+            }
+            var TotalStatValue = (corevalue + totalBonus) * totalMultiplier;
+            return TotalStatValue;
+        }
+
         public int MaxHP
         {
             get
             {
+                
                 double tou = GetDouble("tou");
                 double max = 50 + tou * 2;
+                if (IsXianxia)
+                {
+                    var stats = GetObj("stats");
+                    var tou2 = GetTotalStatValue("tou");
+                    max = 50 + tou2 * 2;
+                }
 
                 if (GetPerk("Tank").IsOwned) max += 50;
                 if (GetPerk("Tank 2").IsOwned) max += (int)Math.Round(tou);

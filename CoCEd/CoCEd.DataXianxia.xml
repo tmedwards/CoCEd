@@ -1878,8 +1878,8 @@
     <KeyItem Name="Avina's Shattered Phylactery"                Description="Proof of Alvina's death for Siegweird."/>
     <KeyItem Name="Arian's Talisman"                            Description="Arian's Talisman, uncharged version."/>
     <KeyItem Name="Arian's Charged Talisman"                    Description="Arian's Talisman, spell charged version.  You'll have to add the appropriate status effect yourself (either: Shielding Spell or Immolation Spell)."/>
-    <KeyItem Name="Backpack"                                    Description="Grants an additional [3&#x2013;5] inventory slots. (see value #1 for actual bonus)"
-             Label1="Size" Value1="5"/>
+    <KeyItem Name="Backpack"                                    Description="Grants an additional [2&#x2013;12] inventory slots. (see value #1 for actual bonus)"
+             Label1="Size" Value1="12"/>
     <KeyItem Name="Bag of Cosmos"            				    Description="Inventory sub-container."/>
     <KeyItem Name="Black Soul Gem"            				    Description="Contains the corrupted Gargoyle's soul."/>
     <KeyItem Name="Bow"                                         Description="DEPRECIATED - Grants a special attack."/>
@@ -2157,8 +2157,9 @@
       <Perk Name="Runner" Description="Increases chances of escaping combat."/>
       <Perk Name="Seduction" Description="Upgrades your tease attack, making it more effective."/>
       <Perk Name="Spellpower" Description="Increases base spell strength by 50%."/>
-      <Perk Name="Strong Back" Description="Enables fourth item slot."/>
-      <Perk Name="Strong Back 2: Strong Harder" Description="Enables fifth item slot."/>
+      <Perk Name="Strong Back" Description="Enables sixth item slot."/>
+      <Perk Name="Strong Back 2: Strong Harder" Description="Enables seventh item slot."/>
+      <Perk Name="Strong Back 3: Strong Hardest" Description="Enables eighth item slot."/>
       <Perk Name="Tank" Description="Raises max HP by 50."/>
     </PerkGroup>
     <PerkGroup Name="Tier 1">

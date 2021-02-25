@@ -66,13 +66,17 @@
 
                     <TextBlock              Text="Wings description" IsEnabled="{Binding Game.IsWingEnabled}"/>
                     <ComboBox               Text="{Binding Game.WingDescription}" ItemsSource="{Binding Data.Body.WingDescriptions}" Style="{StaticResource EditableTextBox}" IsEnabled="{Binding Game.IsWingEnabled}"/>
+                </common:AutoGrid>
 
+                <common:AutoGrid IsEnabled="{Binding Game.IsRevamp}" Visibility="{Binding Game.RevampVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <CheckBox               Content="Gills" IsEnabled="{Binding Game.IsRevamp}" IsChecked="{Binding Game.HasGills}" Margin="8,5,0,0"/>
                     <TextBlock Text=""/>
+                </common:AutoGrid>
+                <common:AutoGrid IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="GillType"/>
-                    <common:MyComboBox      IsEnabled="{Binding Game.IsXianxia}" SelectedValue="{Binding Game.GillType}" ItemsSource="{Binding Data.Body.GillTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.GillType}" ItemsSource="{Binding Data.Body.GillTypes}"/>
                     <TextBlock              Text="Rear Body"/>
-                    <common:MyComboBox      IsEnabled="{Binding Game.IsXianxia}" SelectedValue="{Binding Game.RearBodyType}" ItemsSource="{Binding Data.Body.RearBodyTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.RearBodyType}" ItemsSource="{Binding Data.Body.RearBodyTypes}"/>
                     <Border/>
                 </common:AutoGrid>
             </StackPanel>
