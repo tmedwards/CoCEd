@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -902,8 +902,12 @@ namespace CoCEd.ViewModel
 
         public bool HasGills
         {
-            get { return GetBool("gills"); }
-            set { SetValue("gills", value); }
+            get {
+                if (!IsRevamp) return false;
+                return GetBool("gills"); }
+            set {
+                if (!IsRevamp) return;
+                SetValue("gills", value); }
         }
 
         public int GillType
@@ -1198,13 +1202,19 @@ namespace CoCEd.ViewModel
 
         public bool HasMetTamani
         {
-            get { return GetStatus("Tamani").IsOwned; }
+            get {
+                if (!IsVanilla) return false;
+                return GetStatus("Tamani").IsOwned; }
         }
 
         public int BirthedTamaniChildren
         {
-            get { return (int)GetStatus("Tamani").Value2; }
-            set { GetStatus("Tamani").Value2 = value; }
+            get {
+                if (!IsVanilla) return 0;
+                return (int)GetStatus("Tamani").Value2; }
+            set { 
+                if (!IsVanilla) return;
+                GetStatus("Tamani").Value2 = value; }
         }
 
         public int BirthedImps

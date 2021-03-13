@@ -114,8 +114,7 @@
                     <common:MyNumericBox    Value="{Binding Game.AnalCapacityBonus}" Type="Double" Unit="inches²"/>
                 </common:AutoGrid>
             </StackPanel>
-
-            <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical">
+            <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical" IsEnabled="{Binding Game.IsVanilla}" Visibility="{Binding Game.VanillaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                 <common:ArrayEditor Header="Vaginas" Items="{Binding Game.Vaginas}" Capacity="2">
                     <common:ArrayEditor.ItemTemplate>
                         <DataTemplate>
@@ -140,16 +139,55 @@
 
                         <Border/>
                         <CheckBox Content="Virgin" IsChecked="{Binding Virgin}"/>
+
                     </common:AutoGrid>
                 </common:ArrayEditor>
-
                 <common:AutoGrid Margin="0,30,0,0" Visibility="{Binding Game.ClitVisibility}">
                     <TextBlock              Text="Clit length"/>
-                    <common:MyNumericBox    Value="{Binding Game.ClitLength}" Type="Double" Unit="inches"/>
+                    <common:MyNumericBox    Value="{Binding Game.ClitLength}" Type="Double" Unit="inches" />
 
                     <TextBlock              Text="Capacity bonus&#x202F;*" ToolTip="In respect of cock length &#x00D7; thickness."/>
                     <common:MyNumericBox    Value="{Binding Game.VaginalCapacityBonus}" Type="Double" Unit="inches²"/>
                 </common:AutoGrid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical" IsEnabled="{Binding Game.IsRevampOrXianxia}" Visibility="{Binding Game.RevampOrXianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                <common:ArrayEditor Header="Vaginas" Items="{Binding Game.Vaginas}" Capacity="2">
+                    <common:ArrayEditor.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Description}"/>
+                        </DataTemplate>
+                    </common:ArrayEditor.ItemTemplate>
+                    <common:AutoGrid>
+                        <TextBlock              Text="Type"/>
+                        <common:MyComboBox      SelectedValue="{Binding Type}" ItemsSource="{Binding AllTypes}"/>
+
+                        <TextBlock              Text="Looseness"/>
+                        <common:MyComboBox      SelectedValue="{Binding Looseness}" ItemsSource="{Binding AllLoosenessLevels}"/>
+
+                        <TextBlock              Text="Wetness"/>
+                        <common:MyComboBox      SelectedValue="{Binding Wetness}" ItemsSource="{Binding AllWetnessLevels}"/>
+
+                        <TextBlock              Text="Labia piercing"/>
+                        <common:MyPiercingBox   DataContext="{Binding LabiaPiercing}"/>
+
+                        <TextBlock              Text="Clit piercing"/>
+                        <common:MyPiercingBox   DataContext="{Binding ClitPiercing}"/>
+
+                        <Border/>
+                        <CheckBox Content="Virgin" IsChecked="{Binding Virgin}"/>
+
+                        <TextBlock              Text="Clit length"/>
+                        <common:MyNumericBox    Value="{Binding ClitLength}" Type="Double" Unit="inches" />
+
+                    </common:AutoGrid>
+                </common:ArrayEditor>
+                <common:AutoGrid Margin="0,30,0,0" Visibility="{Binding Game.ClitVisibility}">
+                  
+                    <TextBlock              Text="Capacity bonus&#x202F;*" ToolTip="In respect of cock length &#x00D7; thickness."/>
+                    <common:MyNumericBox    Value="{Binding Game.VaginalCapacityBonus}" Type="Double" Unit="inches²"/>
+                </common:AutoGrid>
+
             </StackPanel>
         </Grid>
     </ScrollViewer>

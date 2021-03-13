@@ -17,6 +17,7 @@ namespace CoCEd.ViewModel
         {
             var obj = new AmfObject(AmfTypes.Array)
             {
+                ["clitLength"] = 0.5,
                 ["clipPLong"] = "",
                 ["clitPShort"] = "",
                 ["clitPierced"] = false,
@@ -81,6 +82,12 @@ namespace CoCEd.ViewModel
         {
             get { return GetBool("virgin"); }
             set { SetValue("virgin", value); }
+        }
+
+        public double ClitLength
+        {
+            get { return GetDouble("clitLength"); }
+            set { SetValue("clitLength", value); }
         }
 
         public string Description

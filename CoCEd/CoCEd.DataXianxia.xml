@@ -902,24 +902,25 @@
       <CockType ID="4"  Name="Tentacle"/>
       <CockType ID="5"  Name="Scylla Tentacle"/>
       <CockType ID="6"  Name="Cat"/>
-      <CockType ID="7"  Name="Reptile"/>
-      <CockType ID="8"  Name="Cave Wyrm"/>
-      <CockType ID="9"  Name="Anemone"/>
-      <CockType ID="10" Name="Kangaroo"/>
-      <CockType ID="11" Name="Dragon"/>
-      <CockType ID="12" Name="C&#x0153;url"/>
-      <CockType ID="13" Name="Fox"/>
-      <CockType ID="14" Name="Bee"/>
-      <CockType ID="15" Name="Pig"/>
-      <CockType ID="16" Name="Avian"/>
-      <CockType ID="17" Name="Rhino"/>
-      <CockType ID="18" Name="Echidna"/>
-      <CockType ID="19" Name="Wolf"/>
-      <CockType ID="20" Name="Stamen"/>
-      <CockType ID="21" Name="Red Panda"/>
-      <CockType ID="22" Name="Gryphon"/>
-      <CockType ID="23" Name="Oomukade"/>
-      <CockType ID="24" Name="Ushi Oni"/>
+      <CockType ID="7"  Name="Cancer"/>
+      <CockType ID="8"  Name="Lizard"/>
+      <CockType ID="9"  Name="Cave Wyrm"/>
+      <CockType ID="10" Name="Anemone"/>
+      <CockType ID="11" Name="Kangaroo"/>
+      <CockType ID="12" Name="Dragon"/>
+      <CockType ID="13" Name="C&#x0153;url"/>
+      <CockType ID="14" Name="Fox"/>
+      <CockType ID="15" Name="Bee"/>
+      <CockType ID="16" Name="Pig"/>
+      <CockType ID="17" Name="Avian"/>
+      <CockType ID="18" Name="Rhino"/>
+      <CockType ID="19" Name="Echidna"/>
+      <CockType ID="20" Name="Wolf"/>
+      <CockType ID="21" Name="Stamen"/>
+      <CockType ID="22" Name="Red Panda"/>
+      <CockType ID="23" Name="Gryphon"/>
+      <CockType ID="24" Name="Oomukade"/>
+      <CockType ID="25" Name="Ushi Oni"/>
     </CockTypes>
     <!-- ========================================================================================================================================== -->
     <CockSockTypes>
@@ -945,7 +946,11 @@
       <VaginaType ID="7" Name="Venom-dripping"/>
       <VaginaType ID="8" Name="Manticore"/>
       <VaginaType ID="9" Name="Cancer"/>
+      <VaginaType ID="10" Name="Demonic"/>
+      <VaginaType ID="11" Name="Alarune"/>
+      <VaginaType ID="12" Name="Scylla"/>
     </VaginaTypes>
+    
     <!-- ========================================================================================================================================== -->
     <VaginalWetnessLevels>
       <VaginalWetnessLevel ID="0" Name="Dry"/>
