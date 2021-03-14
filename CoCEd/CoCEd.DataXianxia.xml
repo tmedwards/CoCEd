@@ -868,6 +868,8 @@
       <LowerBodyType ID="64"  Name="Flower Liliraune"/>
       <LowerBodyType ID="65"  Name="Weasel"/>
       <LowerBodyType ID="66"  Name="Gazer"/>
+      <LowerBodyType ID="67"  Name="Squirrel"/>
+      <LowerBodyType ID="68"  Name="Wendigo"/>
     </LowerBodyTypes>
     <!-- ========================================================================================================================================== -->
     <PiercingTypes>
