@@ -84,9 +84,12 @@
 
                         <TextBlock              Text="Thickness"/>
                         <common:MyNumericBox    Value="{Binding Thickness}" Type="Double" Unit="inches"/>
+                        
+                        <Border/>
+                        <CheckBox Content="Enable Knot" IsChecked="{Binding KnotEnabled}"/>
 
-                        <TextBlock              Text="Knot multiplier" IsEnabled="{Binding IsKnotEnabled}"/>
-                        <common:MyNumericBox    Value="{Binding KnotMultiplier}" Type="Double" IsEnabled="{Binding IsKnotEnabled}"/>
+                        <TextBlock              Text="Knot multiplier" IsEnabled="{Binding KnotEnabled}"/>
+                        <common:MyNumericBox    Value="{Binding KnotMultiplier}" Type="Double" IsEnabled="{Binding KnotEnabled}"/>
 
                         <TextBlock              Text="Cock-sock"/>
                         <common:MyComboBox      SelectedValue="{Binding CockSock}" ItemsSource="{Binding AllCockSocks}"/>
