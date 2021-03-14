@@ -12,37 +12,29 @@
       <SkinType ID="7" Name="Stone"/>
       <SkinType ID="8" Name="Tattoed"/>
       <SkinType ID="9" Name="Aqua Scales"/>
-      <SkinType ID="10" Name="Partial fur"/>
-      <SkinType ID="11" Name="Partial scales"/>
-      <SkinType ID="12" Name="Partial chitin"/>
-      <SkinType ID="13" Name="Partial bark"/>
       <SkinType ID="14" Name="Dragon scales"/>
       <SkinType ID="15" Name="Moss"/>
-      <SkinType ID="16" Name="Partial dragon scales"/>
-      <SkinType ID="17" Name="Partial stone"/>
-      <SkinType ID="18" Name="Partial aqua scales"/>
       <SkinType ID="19" Name="Aqua rubber like"/>
-      <SkinType ID="20" Name="Tattoed oni"/>
       <SkinType ID="21" Name="Feather"/>
       <SkinType ID="22" Name="Transparent"/>
     </SkinTypes>
 	<!-- ========================================================================================================================================== -->
 	<SkinPatterns>
-	  <SkinPattern ID="0" Name="None"/>
-	  <SkinPattern ID="1" Name="Magical Tattoo"/>
-	  <SkinPattern ID="2" Name="Orca Underbody"/>
-	  <SkinPattern ID="3" Name="Bee Stripes"/>
-	  <SkinPattern ID="4" Name="Tiger Stripes"/>
-	  <SkinPattern ID="5" Name="Battle Tattoo"/>
-	  <SkinPattern ID="6" Name="Spotted"/>
-	  <SkinPattern ID="7" Name="Lightning Shaped Tattoo"/>
-	  <SkinPattern ID="8" Name="Red Panda Underbody"/>
-	  <SkinPattern ID="9" Name="Scar Shaped Tattoo"/>
-	  <SkinPattern ID="10" Name="White with Black Veins"/>
-	  <SkinPattern ID="11" Name="Venomous Markings"/>
-	  <SkinPattern ID="12" Name="Ushi Oni/Onna Tattoo"/>
-	  <SkinPattern ID="13" Name="Scar Windswept"/>
-	  <SkinPattern ID="14" Name="Oil"/>
+	  <SkinPattern ID="0" Name="None" Description=""/>
+	  <SkinPattern ID="1" Name="Magical Tattoo" Description="magical tattoo"/>
+	  <SkinPattern ID="2" Name="Orca Underbody" Description="orca underbody"/>
+	  <SkinPattern ID="3" Name="Bee Stripes" Description="bee stripes"/>
+	  <SkinPattern ID="4" Name="Tiger Stripes" Description="tiger stripes"/>
+	  <SkinPattern ID="5" Name="Battle Tattoo" Description="battle tattoo"/>
+	  <SkinPattern ID="6" Name="Spotted" Description="spotted"/>
+	  <SkinPattern ID="7" Name="Lightning Shaped Tattoo" Description="lightning shaped tattoo"/>
+	  <SkinPattern ID="8" Name="Red Panda Underbody" Description="red panda underbody"/>
+	  <SkinPattern ID="9" Name="Scar Shaped Tattoo" Description="scar shaped tattoo"/>
+	  <SkinPattern ID="10" Name="White with Black Veins" Description="white and black veins"/>
+	  <SkinPattern ID="11" Name="Venomous Markings" Description="venomous markings"/>
+	  <SkinPattern ID="12" Name="Ushi Oni/Onna Tattoo" Description="ushi-oni-tattoo"/>
+	  <SkinPattern ID="13" Name="Scar Windswept" Description="windswept scars"/>
+	  <SkinPattern ID="14" Name="Oil" Description="oily skin"/>
 	</SkinPatterns>
     <!-- ========================================================================================================================================== -->
     <SkinDescriptions>

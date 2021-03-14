@@ -178,8 +178,8 @@ namespace CoCEd.ViewModel
                     var curColor = GetString("color");
                     SetValue("color", value);
 
-                    // if color 2 was set to the same color, change that too
-                    if (curColor == Color2)
+                    // If there's no pattern, change color2 to equal color
+                    if (Pattern == 0)
                     {
                         Color2 = Color;
                     }
@@ -209,6 +209,19 @@ namespace CoCEd.ViewModel
                 if (_game.IsXianxia)
                 {
                     SetValue("pattern", value);
+                    var matches = AllPatterns.Where(s => s.ID == Pattern);
+                    if (matches.Count() > 0)
+                    {
+                        Adjective = matches.First().Description;
+                        OnPropertyChanged("Adjective");
+                        OnPropertyChanged("IsPatternEnabled");
+                    }
+                    if (value == 0)
+                    {
+                        Color2 = Color;
+                    }
+                    OnPropertyChanged("Color2");
+
                 }
             }
         }
@@ -257,6 +270,13 @@ namespace CoCEd.ViewModel
                     SetValue("color2", "");
                 }
                 SetValue("color2", value);
+            }
+        }
+        public bool IsPatternEnabled
+        {
+            get
+            {
+                return Pattern > 0;
             }
         }
     }

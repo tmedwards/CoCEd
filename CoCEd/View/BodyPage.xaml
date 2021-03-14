@@ -104,18 +104,27 @@
                 <common:AutoGrid IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Skin pattern"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.Skin.Base.Pattern}" ItemsSource="{Binding Game.Skin.Base.AllPatterns}"/>
-
-                    <TextBlock              Text="Coat Coverage"/>
+                    <TextBlock              Text="Skin pattern color"/>
+                    <ComboBox               SelectedValue="{Binding Game.Skin.Base.Color2}" ItemsSource="{Binding Data.Body.SkinTones}" IsEnabled="{Binding Game.Skin.Base.IsPatternEnabled}" Style="{StaticResource EditableTextBox}"/>
+                </common:AutoGrid>
+                <common:AutoGrid IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <TextBlock              Text="Coat coverage"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.Skin.Coverage}" ItemsSource="{Binding Data.Body.CoatCoverages}"/>
                     <TextBlock              Text="Coat type" IsEnabled="{Binding Game.Skin.IsCoatEnabled}"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.Skin.Coat.Type}" ItemsSource="{Binding Game.Skin.Coat.AllTypes}" IsEnabled="{Binding Game.Skin.IsCoatEnabled}"/>
-                    <TextBlock              Text="Coat pattern" IsEnabled="{Binding Game.Skin.IsCoatEnabled}"/>
-                    <common:MyComboBox      SelectedValue="{Binding Game.Skin.Coat.Pattern}" ItemsSource="{Binding Game.Skin.Coat.AllPatterns}" IsEnabled="{Binding Game.Skin.IsCoatEnabled}"/>
+
                 </common:AutoGrid>
                 <common:AutoGrid IsEnabled="{Binding Game.IsRevampOrXianxia}" Visibility="{Binding Game.RevampOrXianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
-                    
+
                     <TextBlock              Text="Coat color" IsEnabled="{Binding Game.Skin.IsCoatEnabled}"/>
                     <ComboBox               Text="{Binding Game.Skin.Coat.Color}" ItemsSource="{Binding Data.Body.FurColors}" Style="{StaticResource EditableTextBox}" IsEnabled="{Binding Game.Skin.IsCoatEnabled}"/>
+                </common:AutoGrid>
+                <common:AutoGrid IsEnabled="{Binding Game.IsXianxia}" Visibility="{Binding Game.XianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
+                    <TextBlock              Text="Coat pattern" IsEnabled="{Binding Game.Skin.IsCoatEnabled}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.Skin.Coat.Pattern}" ItemsSource="{Binding Game.Skin.Coat.AllPatterns}" IsEnabled="{Binding Game.Skin.IsCoatEnabled}"/>
+                    <TextBlock              Text="Coat pattern color" IsEnabled="{Binding Game.Skin.Coat.IsPatternEnabled}"/>
+                    <ComboBox               SelectedValue="{Binding Game.Skin.Coat.Color2}" ItemsSource="{Binding Data.Body.FurColors}" IsEnabled="{Binding Game.Skin.Coat.IsPatternEnabled}" Style="{StaticResource EditableTextBox}"/>
+
                 </common:AutoGrid>
             </StackPanel>
 
