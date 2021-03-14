@@ -74,6 +74,10 @@
     <Compile Include="Common\MyComboBox.cs" />
     <Compile Include="Common\MyPiercingBox.cs" />
     <Compile Include="Common\SearchBox.cs" />
+    <Compile Include="ViewModel\FaceVM.cs" />
+    <Compile Include="ViewModel\ClawsVM.cs" />
+    <Compile Include="ViewModel\TailVM.cs" />
+    <Compile Include="ViewModel\LowerBodyVM.cs" />
     <Compile Include="ViewModel\SkinVM.cs" />
     <Compile Include="ViewModel\NamedVector4VM.cs" />
     <Compile Include="Common\UpdatableCollection.cs" />
