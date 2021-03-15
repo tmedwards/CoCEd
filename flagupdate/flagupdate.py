@@ -22,13 +22,13 @@ with open ("checkflag.txt", "w+") as f:
 					print (j)
 					#print (i)
 					j3 = j.find("Description")
-					j3 = (j[j3:]).strip() + "\"/>"
+					j3 = (j[j3:]).strip().replace("<", "&lt;").replace(">","&gt;") + "\"/>"
 					i = i.replace(":int", "\"")
 					k = i.split("=",3)[3]	#Cleans away =   1; similars
 					i = i.replace(k, "")[:-1] + j3
 					f.write(i)
 				else:
-					j2 = "Description=\"" + j2 + "\"/>"
+					j2 = "Description=\"" + j2.replace("<", "&lt;").replace(">","&gt;").replace("\"", "") + "\"/>"
 					i = i.replace(":int", "\"").replace(j, "")
 					k = i.split("=",3)[3]
 					i = i.replace(k, "")[:-1]

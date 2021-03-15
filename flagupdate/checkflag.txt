@@ -36,7 +36,7 @@
 	<Flag ID="35"	Name="AMILY_MET"                                                   Description="(0 = not met, 1 = met)Amily Met.     0=Not Met, 1=Met"/>
 	<Flag ID="36"	Name="AMILY_VILLAGE_ENCOUNTERS_DISABLED"                           Description="1=true,44=village buttonAmily Village Encounters Disabled.     1=True, 44=Village Button?"/>
 	<Flag ID="37"	Name="AMILY_GROSSED_OUT_BY_WORMS"                                  Description="1=freaked out-Amily encounters disabled due to worms 0=False, 1= True"/>
-	<Flag ID="38"	Name="AMILY_AFFECTION"                                             Description="(< 15 = low.  In between = medium. 40+= high affect)Amily Affection.    15 = Low.  In Between = Medium. 40+= High Affect"/>
+	<Flag ID="38"	Name="AMILY_AFFECTION"                                             Description="(&lt; 15 = low.  In between = medium. 40+= high affect)Amily Affection.    15 = Low.  In Between = Medium. 40+= High Affect"/>
 	<Flag ID="39"	Name="AMILY_OFFER_ACCEPTED"                                        Description="(1 = true, 0 = not yet)Amily Offer Accepted.    0=False, 1=True"/>
 	<Flag ID="40"	Name="AMILY_BIRTH_TOTAL"                                           Description="Amily Birth Total."/>
 	<Flag ID="41"	Name="AMILY_INCUBATION"                                            Description="0 = not pregnant, otherwise hours till birth 168Amily Incubation.    0=Not Pregnant, Otherwise Hours Till Birth Starting From 168"/>
@@ -46,11 +46,11 @@
 	<Flag ID="45"	Name="AMILY_WANG_LENGTH"                                           Description="Starts 4x1, maxes @ 13x2"/>
 	<Flag ID="46"	Name="AMILY_WANG_GIRTH"                                            Description="Amily Penis Gith.    Default=0"/>
 	<Flag ID="47"	Name="AMILY_CUP_SIZE"                                              Description="5-JanAmily's Cup Size (1 to 5)"/>
-	<Flag ID="48"	Name="AMILY_NIPPLE_LENGTH"                                         Description="0.3-4Nipple Length from .3 to 4""/>
+	<Flag ID="48"	Name="AMILY_NIPPLE_LENGTH"                                         Description="0.3-4Nipple Length from .3 to 4"/>
 	<Flag ID="49"	Name="AMILY_HIP_RATING"                                            Description="girly-womanlyAmily Hip Rating - girly to womanly - Default=12"/>
-	<Flag ID="50"	Name="AMILY_ASS_SIZE"                                              Description="Can increase ass from "unremarkable ass" to "delightfully jiggly" - Default=12"/>
+	<Flag ID="50"	Name="AMILY_ASS_SIZE"                                              Description="Can increase ass from unremarkable ass to delightfully jiggly - Default=12"/>
 	<Flag ID="51"	Name="AMILY_LACTATION_RATE"                                        Description="Amily Lactation Rate. Default=0"/>
-	<Flag ID="52"	Name="AMILY_CLOTHING"                                              Description="Amily Clothing. Default="sexy rags""/>
+	<Flag ID="52"	Name="AMILY_CLOTHING"                                              Description="Amily Clothing. Default=sexy rags"/>
 	<Flag ID="53"	Name="LUMI_MET"                                                    Description="Lumi Met"/>
 	<Flag ID="54"	Name="NUMBER_OF_TIMES_MET_SCYLLA"                                  Description="Met Scylla:   -1 = decline.  0 = not met.  1 = sucked once, 2 = sucked twice, etc"/>
 	<Flag ID="55"	Name="TIMES_ENCOUNTED_TAMANIS_DAUGHTERS"                           Description="Times encountered Tamani's Daughters"/>
@@ -532,7 +532,7 @@
 	<Flag ID="531"	Name="EMBER_ROUNDFACE"                                             Description="0 for anthro Ember, 1 for dragon-girl Ember. (You might want to control this with the Type flag since only default Embers use this variable.)"/>
 	<Flag ID="532"	Name="EMBER_EGG_FLUID_COUNT"                                       Description="This controls when it's time to hatch. Every item use and every time you use the egg as a masturbation aid, this will be incremented. Threshold for birthing is 5, but the birthing process can only be triggered when using as a masturbatory aid. This is done to allow players the chance to modify Ember before actually hatching."/>
 	<Flag ID="533"	Name="EMBER_STAT"                                                  Description="All Embers have a hidden stat, Corrupt has Ego, Pure has Confidence, Tainted has Affection, and hybrids vary. There is a need to track this, but only 1 special stat for every Ember."/>
-	<Flag ID="534"	Name="EMBER_INTERNAL_DICK"                                         Description="Dragon-girl Ember can have either a internal sheath to keep " + emberMF("his","her") + " dick in or have it be more human-like. 0 = internal, 1 = external."/>
+	<Flag ID="534"	Name="EMBER_INTERNAL_DICK"                                         Description="Dragon-girl Ember can have either a internal sheath to keep  + emberMF(his,her) +  dick in or have it be more human-like. 0 = internal, 1 = external."/>
 	<Flag ID="535"	Name="TIMES_EQUIPPED_EMBER_SHIELD"/>
 	<Flag ID="536"	Name="TOOK_EMBER_EGG"                                              Description="PC Take ember's egg home?"/>
 	<Flag ID="537"	Name="EGG_BROKEN"                                                  Description="PC Smash!? ember's egg?"/>
@@ -1073,7 +1073,7 @@
 	<Flag ID="1072"	Name="WHITNEY_TALK_HIGH_MOUNTAIN"                                  Description="Player talked to Whitney about the High Mountains"/>
 	<Flag ID="1073"	Name="WHITNEY_TALK_DUNGEON"                                        Description="Player talked to Whitney about shutting D1 down"/>
 	<Flag ID="1074"	Name="WHITNEY_TALK_DUNGEON_FOLLOWUP"                               Description="Player talked to Whitney about D1 #"/>
-	<Flag ID="1075"	Name="FARM_CORRUPTION_DISABLED"                                    Description="Player selected "Never" when presented with an option to corrupt farm"/>
+	<Flag ID="1075"	Name="FARM_CORRUPTION_DISABLED"                                    Description="Player selected Never when presented with an option to corrupt farm"/>
 	<Flag ID="1076"	Name="FARM_CORRUPT_PROMPT_DISPLAY"                                 Description="Tracking the state for prompt display"/>
 	<Flag ID="1077"	Name="FARM_CORRUPTION_STARTED"                                     Description="Player has started the farm corruption process"/>
 	<Flag ID="1078"	Name="WHITNEY_CORRUPTION"                                          Description="Whitneys corruption value"/>
@@ -1179,7 +1179,7 @@
 	<Flag ID="1178"	Name="PLAYER_INFECTED_IMPS"/>
 	<Flag ID="1179"	Name="FEMOIT_UNLOCKED"                                             Description="Unlocked the option to feminise Benoit"/>
 	<Flag ID="1180"	Name="BIMBO_FEMOIT_UNLOCKED"                                       Description="Unlocked the option to bimbofy Benoit"/>
-	<Flag ID="1181"	Name="BENOIT_STATUS"                                               Description="Benoits "mode" -- 0 = Male, 1 = Fem, 2 = Bimbo, 3 = Herm (only in mod)"/>
+	<Flag ID="1181"	Name="BENOIT_STATUS"                                               Description="Benoits mode -- 0 = Male, 1 = Fem, 2 = Bimbo, 3 = Herm (only in mod)"/>
 	<Flag ID="1182"	Name="FEMOIT_NEXTDAY_EVENT"                                        Description="Proc the event the following day when you visit - stores the minimum day number that the event can proc on."/>
 	<Flag ID="1183"	Name="FEMOIT_TALKED_TO"/>
 	<Flag ID="1184"	Name="KATHERINE_RANDOM_RECRUITMENT_DISABLED"/>
@@ -1271,7 +1271,7 @@
 	<Flag ID="1270"	Name="MINOTAURKINGS_TOUCH"/>
 	<Flag ID="1271"	Name="MINOTAURKING_ALIVE"/>
 	<Flag ID="1272"	Name="LETHICE_DEFEATED"/>
-	<Flag ID="1273"	Name="LAST_ATTACK_TYPE"                                   			Description="1 => arrow, 2 => hp spell, 3 => lust spell, 4 => physical"/>
+	<Flag ID="1273"	Name="LAST_ATTACK_TYPE"                                   			Description="1 =&gt; arrow, 2 =&gt; hp spell, 3 =&gt; lust spell, 4 =&gt; physical"/>
 	<Flag ID="1274"	Name="LETHICE_NAME"/>
 	<Flag ID="1275"	Name="LETHICE_FUCKED"/>
 	<Flag ID="1276"	Name="LETHICE_REDEEMED"/>
