@@ -111,11 +111,13 @@
                     <TextBlock              Text="Remaining&#x202F;*" IsEnabled="{Binding Game.IsButtPregnancyEnabled}" ToolTip="With the diapause perk it will only progress when you absorb fluids."/>
                     <common:MyNumericBox    Value="{Binding Game.ButtPregnancyTime}" Unit="hours" IsEnabled="{Binding Game.IsButtPregnancyEnabled}"/>
                 </common:AutoGrid>
-
-                <common:AutoGrid Margin="0,30,0,0">
+                
+                <common:AutoGrid Margin="0,30,0,0" IsEnabled="{Binding Game.IsVanilla}" Visibility="{Binding Game.VanillaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Birthed Tamani children&#x202F;*" IsEnabled="{Binding Game.HasMetTamani}" ToolTip="After 24 daughters, enables a new encounter whose level is a factor of the total number."/>
                     <common:MyNumericBox    Value="{Binding Game.BirthedTamaniChildren}" IsEnabled="{Binding Game.HasMetTamani}"/>
+                </common:AutoGrid>
 
+                <common:AutoGrid Margin="0,30,0,0">
                     <TextBlock              Text="Birthed adult minotaurs&#x202F;*" ToolTip="Affects encounters in the mountain. Past 25 children the minotaur gangbang bad ending is triggered for addicted players in need of minotaur cum."/>
                     <common:MyNumericBox    Value="{Binding Game.BirthedMinotaurs}"/>
 

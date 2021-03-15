@@ -150,7 +150,7 @@
                 </common:AutoGrid>
                 <common:AutoGrid>
                     <TextBlock              Text="Face"/>
-                    <common:MyComboBox      SelectedValue="{Binding Game.FaceType}" ItemsSource="{Binding Data.Body.FaceTypes}"/>
+                    <common:MyComboBox      SelectedValue="{Binding Game.Face.Type}" ItemsSource="{Binding Data.Body.FaceTypes}"/>
 
                     <TextBlock              Text="Tongue"/>
                     <common:MyComboBox      SelectedValue="{Binding Game.TongueType}" ItemsSource="{Binding Data.Body.TongueTypes}"/>

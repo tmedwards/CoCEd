@@ -96,6 +96,11 @@ namespace CoCEd.ViewModel
             Breasts.CollectionChanged += OnGenitalCollectionChanged;
             Cocks.CollectionChanged += OnGenitalCollectionChanged;
 
+            Face = new FaceVM(this, file.GetObj("facePart"));
+            LowerBody = new LowerBodyVM(this, file.GetObj("lowerBodyPart"));
+            Skin = new SkinVM(this, file.GetObj("skin"));
+            Tail = new TailVM(this, file.GetObj("tail"));
+            Claws = new ClawsVM(this, file.GetObj("clawsPart"));
 
             // Flags
             int numFlags = XmlData.Current.Flags.Max(x => x.ID) + 25; // was 200; I'm unsure if there's really a need for a buffer at all anymore
@@ -219,6 +224,13 @@ namespace CoCEd.ViewModel
         public CockArrayVM Cocks { get; private set; }
         public BreastArrayVM Breasts { get; private set; }
         public VaginaArrayVM Vaginas { get; private set; }
+
+        public FaceVM Face { get; private set; }
+        public LowerBodyVM LowerBody { get; private set; }
+        public TailVM Tail { get; private set; }
+        public ClawsVM Claws { get; private set; }
+        public SkinVM Skin { get; private set; }
+
 
         public UpdatableCollection<ItemContainerVM> ItemContainers { get; private set; }
         public UpdatableCollection<KeyItemVM> KeyItems { get; private set; }
@@ -755,43 +767,6 @@ namespace CoCEd.ViewModel
             }
         }
 
-        public int SkinType
-        {
-            get { return GetInt("skinType"); }
-            set
-            {
-                SetValue("skinType", value);
-                OnPropertyChanged("IsFurEnabled");
-            }
-        }
-
-        public string SkinBase
-        {
-            get { return GetString("skinBase"); }
-            set
-            {
-                SetValue("skinBase", value);
-            }
-        }
-
-        public string SkinTone
-        {
-            get { return GetString("skinTone"); }
-            set { SetValue("skinTone", value); }
-        }
-
-        public string SkinDescription
-        {
-            get { return GetString("skinDesc"); }
-            set { SetValue("skinDesc", value); }
-        }
-
-        public string SkinAdjective
-        {
-            get { return GetString("skinAdj"); }
-            set { SetValue("skinAdj", value); }
-        }
-
         public int ArmType
         {
             get { return GetInt("armType"); }
@@ -802,81 +777,6 @@ namespace CoCEd.ViewModel
         {
             get { return GetInt("rearBody"); }
             set { SetValue("rearBody", value); }
-        }
-
-        public int LowerBodyType
-        {
-            get { return GetInt("lowerBody"); }
-            set
-            {
-                SetValue("lowerBody", value);
-
-                if (IsRevamp || IsXianxia)
-                {
-                    // Set the default `LegCount` value when the lower body type is changed.
-                    switch (value)
-                    {
-                        case 3: // Naga
-                        case 8: // Goo
-                            LegCount = 1;
-                            break;
-
-                        case 11: // Pony
-                            LegCount = 4;
-                            break;
-
-                        case 16: // Drider
-                            LegCount = 8;
-                            break;
-
-                        default:
-                            LegCount = 2;
-                            break;
-                    }
-                    OnPropertyChanged("LegCount");
-                    OnPropertyChanged("LegConfigs");
-                    OnPropertyChanged("HasLegConfigs");
-                }
-            }
-        }
-
-        public int TailType
-        {
-            get { return GetInt("tailType"); }
-            set
-            {
-                SetValue("tailType", value);
-                OnPropertyChanged("TailValueLabel");
-                OnPropertyChanged("IsTailValueEnabled");
-                OnPropertyChanged("IsTailRechargeEnabled");
-            }
-        }
-
-        public string TailValueLabel
-        {
-            get { return TailType == 13 ? "Tail count" : "Tail venom"; }
-        }
-
-        public int TailValue
-        {
-            get { return GetInt("tailVenum"); }
-            set { SetValue("tailVenum", value); }
-        }
-
-        public int TailRecharge
-        {
-            get { return GetInt("tailRecharge"); }
-            set { SetValue("tailRecharge", value); }
-        }
-
-        public bool IsTailValueEnabled
-        {
-            get { return (TailType == 5 || TailType == 6 || TailType == 13); }
-        }
-
-        public bool IsTailRechargeEnabled
-        {
-            get { return (TailType == 5 || TailType == 6); }
         }
 
         public int WingType
@@ -902,8 +802,12 @@ namespace CoCEd.ViewModel
 
         public bool HasGills
         {
-            get { return GetBool("gills"); }
-            set { SetValue("gills", value); }
+            get {
+                if (!IsRevamp) return false;
+                return GetBool("gills"); }
+            set {
+                if (!IsRevamp) return;
+                SetValue("gills", value); }
         }
 
         public int GillType
@@ -1046,8 +950,18 @@ namespace CoCEd.ViewModel
 
         public double ClitLength
         {
-            get { return GetDouble("clitLength"); }
-            set { SetValue("clitLength", value); }
+            get {
+                if (IsXianxia)
+                {
+                    return 0;
+                }
+                return GetDouble("clitLength"); 
+            }
+            set { 
+                if (IsNotXianxia) {
+                    SetValue("clitLength", value);
+                }
+            }
         }
 
         public double NippleLength
@@ -1198,13 +1112,19 @@ namespace CoCEd.ViewModel
 
         public bool HasMetTamani
         {
-            get { return GetStatus("Tamani").IsOwned; }
+            get {
+                if (!IsVanilla) return false;
+                return GetStatus("Tamani").IsOwned; }
         }
 
         public int BirthedTamaniChildren
         {
-            get { return (int)GetStatus("Tamani").Value2; }
-            set { GetStatus("Tamani").Value2 = value; }
+            get {
+                if (!IsVanilla) return 0;
+                return (int)GetStatus("Tamani").Value2; }
+            set { 
+                if (!IsVanilla) return;
+                GetStatus("Tamani").Value2 = value; }
         }
 
         public int BirthedImps
@@ -1619,107 +1539,6 @@ namespace CoCEd.ViewModel
 
         #region Revamp Specific
 
-        public int ClawType
-        {
-            get { return GetInt("clawType"); }
-            set {
-                if (IsRevamp || IsXianxia)
-                {
-                    SetValue("clawType", value);
-                }
-            }
-        }
-
-        public string ClawTone
-        {
-            get { return GetString("clawTone"); }
-            set {
-                if (IsRevamp || IsXianxia)
-                {
-                    SetValue("clawTone", value);
-                }
-            }
-        }
-
-        public int LegCount
-        {
-            get { return GetInt("legCount"); }
-            set
-            {
-                if (IsRevamp || IsXianxia)
-                {
-                    SetValue("legCount", value);
-                }
-            }
-        }
-
-        // Handles biped and quadruped leg configurations.
-        public int LegConfigs
-        {
-            get
-            {
-                if (!HasLegConfigs) return -1;
-                return (LegCount / 2) - 1;
-            }
-            set
-            {
-                if (IsRevamp || IsXianxia)
-                {
-                    if (value == LegConfigs) return;
-                    LegCount = (value + 1) * 2;
-                }
-            }
-        }
-
-        public bool HasLegConfigs
-        {
-            get
-            {
-                if (!IsRevamp && !IsXianxia) return false;
-                switch (LowerBodyType)
-                {
-                    // Types which definitely have only a single allowed leg configuration.
-                    case  0: // Human (biped)
-                    case  3: // Naga (uniped)
-                    case  8: // Goo (uniped)
-                    case 11: // Pony (quadruped)
-                    case 16: // Drider (octoped) → Biped form is lower body type #15 (Chitinous spider legs).
-                        return false;
-
-                    // Types which probably should have only a single allowed leg configuration.
-                    case  5: // Demonic high-heels (biped)    → Funny human legs, should have the same limitations as lower body type #0 (Human).
-                    case  6: // Demonic claws (biped)         → (same as the above)
-                    case  7: // Bee (biped)                   → (same as the above)
-                    case 13: // Harpy (biped)                 → (same as the above)
-                    case 15: // Chitinous spider legs (biped) → Octoped form is lower body type #16 (Drider).
-                        return false;
-
-                    // Types which I'm unsure about, but I'm allowing because the game currently does.
-                    // #14 Kangaroo (triped w/ pentapedal & bipedal-hopping locomotion) → Unsure.  Kangaroos are weird.
-
-                    // All other types may have either biped or quadruped leg configurations.
-                    default:
-                        return true;
-                }
-            }
-        }
-
-        public string FurColor
-        {
-            get { return GetString("furColor"); }
-            set
-            {
-                if (IsRevamp || IsXianxia)
-                {
-                    SetValue("furColor", value);
-                }
-            }
-        }
-
-        public bool IsFurEnabled
-        {
-            get { return SkinType == 1; }
-        }
 
         public double Hunger
         {

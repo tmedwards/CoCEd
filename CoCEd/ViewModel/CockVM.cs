@@ -21,7 +21,7 @@ namespace CoCEd.ViewModel
                 ["cockLength"] = 8,
                 ["cockThickness"] = 2,
                 ["cockType"] = 0,
-                ["knotMultiplier"] = 1.0,
+                ["knotMultiplier"] = 0.0,
                 ["pierced"] = 0,
                 ["pLongDesc"] = "",
                 ["pShortDesc"] = "",
@@ -33,6 +33,7 @@ namespace CoCEd.ViewModel
 
     public class CockVM : ObjectVM
     {
+        private bool _knotEnabled;
         public CockVM(GameVM game, AmfObject obj)
             : base(obj)
         {
@@ -40,7 +41,24 @@ namespace CoCEd.ViewModel
 
             _game = game;
         }
-
+        public bool KnotEnabled {
+            get {
+                return _knotEnabled;
+            }
+            set {
+                _knotEnabled = value;
+                if (_knotEnabled && KnotMultiplier < 1.0)
+                {
+                    KnotMultiplier = 1.0;
+                }
+                else if (!_knotEnabled)
+                {
+                    KnotMultiplier = 0.0;
+                }
+                OnPropertyChanged("KnotEnabled");
+                OnPropertyChanged("KnotMultiplier");
+            }
+        }
         private GameVM _game { get; set; }
 
         public PiercingVM Piercing { get; private set; }
@@ -86,12 +104,6 @@ namespace CoCEd.ViewModel
         {
             get { return GetDouble("knotMultiplier"); }
             set { SetValue("knotMultiplier", value); }
-        }
-
-        public bool IsKnotEnabled
-        {
-            // Dog, Coeurl, Fox
-            get { return (Type == 2 || Type == 10 || Type == 11); }
         }
 
         public string CockSock
