@@ -102,6 +102,10 @@ namespace CoCEd.View
             // CoCEd tracker : https://github.com/tmedwards/CoCEd/issues
             if (App.Current.MainWindow != this)
             {
+                if (App.Current.MainWindow.Visibility != Visibility.Visible)
+                {
+                    App.Current.MainWindow.Visibility = Visibility.Visible;
+                }
                 Owner = App.Current.MainWindow;
                 WindowStartupLocation = WindowStartupLocation.CenterOwner;
             }
