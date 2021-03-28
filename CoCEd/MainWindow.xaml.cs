@@ -33,10 +33,11 @@ namespace CoCEd
             RestoreSizeAndState();
 
             ((FrameworkElement)Content).QueryContinueDrag += OnQueryContinueDrag;
-
-            var version = Assembly.GetExecutingAssembly().GetName().Version;
-            if (version.Build == 0) versionLabel.Text = version.Major + "." + version.Minor;
-            else versionLabel.Text = version.Major + "." + version.Minor + "." + version.Build;
+            var version = ((string)Assembly.GetExecutingAssembly().GetType("GitVersionInformation")
+                                                                   .GetField("FullSemVer")
+                                                                   .GetValue(null))
+                                                                   .TrimStart('v');
+            versionLabel.Text = version;
         }
 
         public NamedVector4Popup ValuesPopup
