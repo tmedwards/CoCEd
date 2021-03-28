@@ -367,7 +367,7 @@ namespace CoCEd.ViewModel
             return coreValue;
         }
 
-        //This is insufficient. Need to create a VM for this.
+        // TODO: This is insufficient. Need to create a VM for this.
         public int GetTotalStatValue(string name)
         {
             var stats = GetObj("stats");
@@ -560,12 +560,6 @@ namespace CoCEd.ViewModel
         {
             get { return GetInt("hairType"); }
             set { SetValue("hairType", value); }
-        }
-
-        public int FaceType
-        {
-            get { return GetInt("faceType"); }
-            set { SetValue("faceType", value); }
         }
 
         public int AntennaeType
