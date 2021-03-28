@@ -185,13 +185,16 @@ namespace CoCEd.ViewModel
                     }
                 }
                 // not xianxia
-                if (Name == "skin")
-                {
-                    _game.SetValue("skinTone", value);
-                }
                 else
                 {
-                    _game.SetValue("furColor", value);
+                    if (Name == "skin")
+                    {
+                        _game.SetValue("skinTone", value);
+                    }
+                    else
+                    {
+                        _game.SetValue("furColor", value);
+                    }
                 }
             }
         }
@@ -221,7 +224,6 @@ namespace CoCEd.ViewModel
                         Color2 = Color;
                     }
                     OnPropertyChanged("Color2");
-
                 }
             }
         }
