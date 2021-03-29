@@ -2751,7 +2751,7 @@
 	<Flag ID="2750"	Name="UNKNOWN_FLAG_NUMBER_02750"/>
 	<Flag ID="2751"	Name="UNKNOWN_FLAG_NUMBER_02751"/>
 	<Flag ID="2752"	Name="UNKNOWN_FLAG_NUMBER_02752"/>
-	<Flag ID="2753"	Name="UNKNOWN_FLAG_NUMBER_02753"/>
+	<Flag ID="2753"	Name="ASURA_FORM_COMBAT_MODE"/>
 	<Flag ID="2754"	Name="CRINOS_SHAPE_COMBAT_MODE"/>
 	<Flag ID="2755"	Name="WARRIORS_RAGE_COMBAT_MODE"/>
 	<Flag ID="2756"	Name="MET_YETI_AS_A_GIRL_FIRST_TIME"/>
@@ -2961,8 +2961,8 @@
 	<Flag ID="2960"	Name="APEX_SELECTED_RACE"/>
 	<Flag ID="2961"	Name="UNKNOWN_FLAG_NUMBER_02961"/>
 	<Flag ID="2962"	Name="UNKNOWN_FLAG_NUMBER_02962"/>
-	<Flag ID="2963"	Name="UNKNOWN_FLAG_NUMBER_02963"/>
-	<Flag ID="2964"	Name="LVL_UP_FAST"/>
+	<Flag ID="2963"	Name="MUTATIONS_SPOILERS"                                   		Description="Mutations Help."/>
+	<Flag ID="2964"	Name="LVL_UP_FAST"                                   				Description="Bulk/Manual Incremental/Singular Levelling"/>
 	<Flag ID="2965"	Name="SECONDARY_STATS_SCALING"/>
 	<Flag ID="2966"	Name="MELEE_DAMAGE_OVERHAUL"/>
 	<Flag ID="2967"	Name="INVT_MGMT_TYPE"                                   			Description="Toggles Inventory Management type between existing and new."/>

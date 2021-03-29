@@ -14,20 +14,17 @@ with open ("checkflag.txt", "w+") as f:
 			if "//" in i:	#Comments
 				j = i.split("//",1)[1]
 				j2 = j.strip()
-				#print (j2)
-				if not j2:
+				if not j2:      #No tooltip
 					i = i.replace(":int","\"/>?").split("?",1)[0]
 					f.write(i)
-				elif "Description=" in j2:
-					print (j)
-					#print (i)
+				elif "Description=" in j2:      #Tooltip, with "description"
 					j3 = j.find("Description")
 					j3 = (j[j3:]).strip().replace("<", "&lt;").replace(">","&gt;") + "\"/>"
 					i = i.replace(":int", "\"")
 					k = i.split("=",3)[3]	#Cleans away =   1; similars
 					i = i.replace(k, "")[:-1] + j3
 					f.write(i)
-				else:
+				else:   #Tooltip, without "description"
 					j2 = "Description=\"" + j2.replace("<", "&lt;").replace(">","&gt;").replace("\"", "") + "\"/>"
 					i = i.replace(":int", "\"").replace(j, "")
 					k = i.split("=",3)[3]
@@ -38,3 +35,5 @@ with open ("checkflag.txt", "w+") as f:
 				f.write(i)
 			f.write("\n")
 			fcount += 1
+
+print("Done.")
