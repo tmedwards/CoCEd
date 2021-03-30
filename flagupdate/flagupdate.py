@@ -37,3 +37,4 @@ with open ("checkflag.txt", "w+") as f:
 			fcount += 1
 
 print("Done.")
+input('Press Enter to exit')
