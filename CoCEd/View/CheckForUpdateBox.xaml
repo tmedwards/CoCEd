@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Loaded="CheckForUpdateBox_Loaded"
-        Title="Update Check" Height="140" Width="400" ShowInTaskbar="False" ResizeMode="NoResize">
+        Title="Update Check" Height="140" Width="400" ShowInTaskbar="False" ResizeMode="NoResize"
+        >
 
     <Window.Resources>
         <ResourceDictionary>
@@ -33,7 +34,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="statusText" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Margin="10,0,10,0">
-                <Hyperlink NavigateUri="https://github.com/hormelcookies/CoCEd/releases/latest" RequestNavigate="requestNavigate">
+                <Hyperlink NavigateUri="{Binding ReleasesPageUrl}"  RequestNavigate="requestNavigate">
                     An update is available! (click to go to the download page)
                 </Hyperlink>
             </TextBlock>

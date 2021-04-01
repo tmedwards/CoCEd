@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 using System.Diagnostics;
-//using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
-using System.Threading;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Interop;
-//using System.Windows.Media;
-//using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-
+using Semver;
+using CoCEd.Common;
 namespace CoCEd.View
 {
     public partial class CheckForUpdateBox : Window
@@ -31,7 +23,12 @@ namespace CoCEd.View
             Yes,
             Unknown,
         }
-
+        static readonly string ReleasesPageUrl = $"http://github.com/{Settings.Default.CoCEdRepo}/releases/latest";
+        static readonly SemVersion CurrentVersion = SemVersion.Parse(((string)Assembly.GetExecutingAssembly()
+                                                                                      .GetType("GitVersionInformation")
+                                                                                      .GetField("FullSemVer")
+                                                                                      .GetValue(null))
+                                                                                      .TrimStart('v'));
         //Task _updateCheckTask;
 
         public CheckForUpdateBox()
@@ -85,70 +82,22 @@ namespace CoCEd.View
             checkingGrid.Visibility = Visibility.Collapsed;
             statusGrid.Visibility = Visibility.Visible;
         }
-
         UpdateCheckResult CheckForUpdate()
         {
-            HttpWebRequest request;
-            HttpWebResponse response;
-
-            // Create the request
-            // Old SF: https://sourceforge.net/p/coced/code/HEAD/tree/latest?format=raw
-            // New GH: https://raw.githubusercontent.com/tmedwards/CoCEd/master/latest
-            string fileUrl = @"https://raw.githubusercontent.com/tmedwards/CoCEd/master/latest";
-            try
-            {
-                request = (HttpWebRequest)HttpWebRequest.Create(fileUrl);
+            try {
+                var ver_string = Task.Run(GitHubGetters.GetLatestCocEdVersion).Result;
+                var availableVersion = SemVersion.Parse(ver_string);
+                if (availableVersion > CurrentVersion)
+                {
+                    return UpdateCheckResult.Yes;
+                }
+                return UpdateCheckResult.No;
             }
-            catch { return UpdateCheckResult.Unknown; }
-            if (request == null) return UpdateCheckResult.Unknown;
-            request.Method = "GET";
-
-            // Get the response
-            try
+            catch (Exception e)
             {
-                response = (HttpWebResponse)request.GetResponse();
+                Console.WriteLine(e.ToString());
             }
-            catch { return UpdateCheckResult.Unknown; }
-            if (response == null) return UpdateCheckResult.Unknown;
-
-            // Check for an update
-            UpdateCheckResult result = UpdateCheckResult.No;
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                Stream responseStream = response.GetResponseStream();
-                StreamReader readStream = new StreamReader(responseStream, Encoding.UTF8);
-                string contents = readStream.ReadToEnd();
-                responseStream.Close();
-                readStream.Close();
-
-                // Parse the contents and make the comparison
-                var latest = ParseVersion(contents);
-                var local = Assembly.GetExecutingAssembly().GetName().Version;
-                if (latest[0] > local.Major) result = UpdateCheckResult.Yes;
-                else if (latest[0] == local.Major)
-                    if (latest[1] > local.Minor) result = UpdateCheckResult.Yes;
-                    else if (latest[1] == local.Minor)
-                        if (latest[2] > local.Build) result = UpdateCheckResult.Yes;
-            }
-
-            // Close the response
-            response.Close();
-
-            return result;
-        }
-
-        int[] ParseVersion(string verString)
-        {
-            string[] parts = verString.TrimEnd('\r', '\n', ' ').Split('.');
-            int[] latestVersion = new int[3];
-
-            try
-            {
-                for (int i = 0; i < 3; i++) latestVersion[i] = int.Parse(parts[i]);
-            }
-            catch { /* noop */ }
-
-            return latestVersion;
+            return UpdateCheckResult.Unknown;
         }
     }
 }

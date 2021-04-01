@@ -49,7 +49,7 @@ namespace CoCEd
             }
             catch(Exception e2)
             {
-                MessageBox.Show(e2.ToString(), "Error in error box ?!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(e.ToString() + "\nand then there was an error in the error box: \n"+ e2.ToString(), "Error in error box ?!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             Logger.Error(e.Exception);
