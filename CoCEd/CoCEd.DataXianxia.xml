@@ -692,8 +692,6 @@
       <RearBodyType ID="18" Name="Centipede" />
       <RearBodyType ID="19" Name="Kraken" />
       <RearBodyType ID="20" Name="Frostwyrm" />
-	  <RearBodyType ID="21" Name="Fur Coat" />
-	  <RearBodyType ID="22" Name="Tentacle Eyestalks" />
     </RearBodyTypes>
     <GillTypes>
       <GillType ID="0" Name="None" />
