@@ -350,6 +350,12 @@ namespace CoCEd.ViewModel
             set { SetValue("HP", value); }
         }
 
+        public int Mana
+        {
+            get { return GetInt("mana"); }
+            set { SetValue("mana", value); }
+        }
+
         public void SetPrimaryStatCoreValue(string name, int value)
         {
             var stats = GetObj("stats");
@@ -1380,9 +1386,9 @@ namespace CoCEd.ViewModel
 
         public bool UnlockedOasisTower
         {
-            get { return GetFlag(821).AsInt() == 1; }
-            set { GetFlag(821).SetValue(value ? 1 : 0); }
-        }
+            get { return GetFlag(821).AsInt() >= 4; }
+            set { GetFlag(821).SetValue(value ? 4 : 0); }   
+        } 
 
         public bool UnlockedShrine
         {

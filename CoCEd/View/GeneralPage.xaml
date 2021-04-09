@@ -97,6 +97,9 @@
 
                     <TextBlock              Text="Fatigue"/>
                     <common:MyNumericBox    Value="{Binding Game.Fatigue}" Upper="{Binding Game.MaxFatigue}"/>
+
+					<TextBlock              Text="Mana"/>
+					<common:MyNumericBox    Value="{Binding Game.Mana}" Upper="100"/>   <!--Dunno what the max is, not about to manually figure it out. Not like the uppers above are entirely accurate anyways.-->
                 </common:AutoGrid>
                 <common:AutoGrid Margin="0,30,0,0" IsEnabled="{Binding Game.IsRevampOrXianxia}" Visibility="{Binding Game.RevampOrXianxiaVisibility, FallbackValue={x:Static Visibility.Collapsed}}">
                     <TextBlock              Text="Hunger"/>
