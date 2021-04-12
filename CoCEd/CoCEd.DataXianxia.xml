@@ -1938,6 +1938,7 @@
       <Item ID="MastGlo" Name="Master Gloves" />
       <Item ID="S.Gaunt" Name="Spiked Gauntlets" />
       <Item ID="YamaRG" Name="Yama-Raja Gloves" />
+      <Item ID="VenClaw" Name="Venoclaw" />
     </ItemGroup>
     <ItemGroup Name="Spears" Category="Weapon">
       <Item ID="DSSpear" Name="Demon Snake Spear" />
