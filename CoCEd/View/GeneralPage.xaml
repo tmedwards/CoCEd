@@ -95,6 +95,9 @@
                     <TextBlock              Text="Lust"/>
                     <common:MyNumericBox    Value="{Binding Game.Lust}" Upper="{Binding Game.MaxLust}"/>
 
+                    <TextBlock              Text="Wrath"/>
+                    <common:MyNumericBox    IsEnabled="{Binding Game.IsXianxia}" Value="{Binding Game.Wrath}" Min="0" Upper="100"/>
+
                     <TextBlock              Text="Fatigue"/>
                     <common:MyNumericBox    Value="{Binding Game.Fatigue}" Upper="{Binding Game.MaxFatigue}"/>
 					
@@ -105,7 +108,7 @@
                     <TextBlock              Text="Hunger"/>
                     <common:MyNumericBox    Value="{Binding Game.Hunger}" Min="0" Max="100" Upper="100" Tip="{Binding Game.HungerTip}"/>
                     <TextBlock              Text="Soulforce"/>
-                    <common:MyNumericBox    IsEnabled="{Binding Game.IsXianxia}" Value="{Binding Game.Soulforce}" Min="0" Max="100" Upper="100"/>
+                    <common:MyNumericBox    IsEnabled="{Binding Game.IsXianxia}" Value="{Binding Game.Soulforce}" Min="0" Upper="100"/>
 
                 </common:AutoGrid>
             </StackPanel>

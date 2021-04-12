@@ -503,6 +503,12 @@ namespace CoCEd.ViewModel
             }
         }
 
+        public int Wrath
+        {
+            get { return GetInt("wrath", 0); }
+            set { SetValue("wrath", value); }
+        }
+
         public int Soulforce
         {
             get { return GetInt("soulforce", 0); }
