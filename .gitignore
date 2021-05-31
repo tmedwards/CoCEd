@@ -1,6 +1,6 @@
 CocEd/bin
 CocEd/obj
 .vs
-/CoCEdDataUpdate/bin/Debug
-/CoCEdDataUpdate/obj/Debug
 /packages
+CoCEdDataUpdate/bin
+CoCEdDataUpdate/obj
